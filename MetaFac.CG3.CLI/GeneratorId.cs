@@ -1,4 +1,4 @@
-﻿namespace MetaCode.TS3.CLI
+﻿namespace MetaFac.CG3.CLI
 {
     public enum GeneratorId
     {

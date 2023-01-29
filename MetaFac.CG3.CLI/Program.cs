@@ -1,65 +1,22 @@
-﻿using MetaFac.CG3.TextProcessing;
+﻿using MetaFac.CG3.Generators;
+using MetaFac.CG3.ModelReader;
+using MetaFac.CG3.TextProcessing;
 using MetaFac.Platform;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using MiniCLI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MetaFac.CG3.CLI
 {
     static class Program
     {
-        private static IEnumerable<string> ReadLines(string filename)
-        {
-            using var sr = new StreamReader(filename);
-            string? line;
-            while ((line = sr.ReadLine()) != null)
-            {
-                yield return line;
-            }
-        }
-
-        private static void WriteLinesToFile(IEnumerable<string?>? content, string filename)
-        {
-            if (content is null) return;
-            using var sw = new StreamWriter(filename);
-            foreach (var line in content)
-            {
-                sw.WriteLine(line);
-            }
-        }
-
-        private static async ValueTask<int> ConvertTemplateToGenerator(
-            string templateFilename,
-            string generatorFilename,
-            string generatorNamespace,
-            string generatorShortname)
-        {
-            if (logger is null) throw new ArgumentNullException(nameof(logger));
-
-            // get relative paths
-            string currentPath = Directory.GetCurrentDirectory();
-            string templateRelPath = Path.GetRelativePath(currentPath, templateFilename);
-            string generatorRelPath = Path.GetRelativePath(currentPath, generatorFilename);
-
-            logger.LogInformation("  Current path: {value}", currentPath);
-            logger.LogInformation(" Template file: {value}", templateRelPath);
-            logger.LogInformation("Generator file: {value}", generatorRelPath);
-
-            var sourceLines = ReadLines(templateRelPath);
-            var outputLines = TextProcessor.ConvertTemplateToGenerator(
-                sourceLines, generatorNamespace, generatorShortname, new NotEncryptedTextCache());
-            WriteLinesToFile(outputLines, generatorRelPath);
-            await Task.Delay(0);
-            return 0;
-        }
-
-        private static readonly ILogger logger = ConfigureLogger();
-        private static readonly ITimeOfDayClock clock = new TimeOfDayClock();
-
         private static ILogger ConfigureLogger()
         {
             using ILoggerFactory loggerFactory =
@@ -75,21 +32,13 @@ namespace MetaFac.CG3.CLI
             return loggerFactory.CreateLogger("MFCG3");
         }
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-
-            var cmd = new Cmd<string, string, string, string, int>(
-                "t2g", "Converts a template to a code generator",
-                new Arg<string>("tf", "template", "The template file to process", s => s),
-                new Arg<string>("gf", "output", "The name of the generated file", s => s),
-                new Arg<string>("gn", "namespace", "The namespace for the generated code", s => s),
-                new Arg<string>("gs", "shortname", "The short name (or id) of the generator", s => s),
-                ConvertTemplateToGenerator);
-
-            int result = cmd.Run(args).ConfigureAwait(false).GetAwaiter().GetResult();
-
+            var logger = ConfigureLogger();
+            var clock = new TimeOfDayClock();
+            var commands = new Commands(logger, clock);
+            int result = await commands.Run(args);
             Environment.ExitCode = result;
-
         }
     }
 }
