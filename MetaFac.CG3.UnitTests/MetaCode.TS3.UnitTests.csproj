@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG3.Template.ClassesV2\MetaCode.TS3.Template.ClassesV2.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Template.Freezables\MetaCode.TS3.Template.Freezables.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.ClassesV2\MetaFac.CG3.Template.ClassesV2.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.Freezables\MetaFac.CG3.Template.Freezables.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Template.Immutables\MetaCode.TS3.Template.Immutables.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Template.Interfaces\MetaCode.TS3.Template.Interfaces.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Template.JsonPoco\MetaCode.TS3.Template.JsonPoco.csproj" />

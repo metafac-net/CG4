@@ -46,7 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG3.Template.Contracts\MetaCode.TS3.Template.Contracts.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.Contracts\MetaFac.CG3.Template.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
