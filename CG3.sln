@@ -22,23 +22,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.TextProcessing.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.CLI", "MetaFac.CG3.CLI\MetaFac.CG3.CLI.csproj", "{EC1AA90F-175B-4261-9595-786D716A19D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.Runtime", "MetaFac.CG3.Runtime\MetaCode.Runtime.csproj", "{63C05644-2288-4FE1-B28A-405F476F8039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime", "MetaFac.CG3.Runtime\MetaFac.CG3.Runtime.csproj", "{63C05644-2288-4FE1-B28A-405F476F8039}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.Runtime.GProto3", "MetaFac.CG3.Runtime.GProto3\MetaCode.Runtime.GProto3.csproj", "{C77DED72-38F8-4952-A13A-8A096E8118DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.GProto3", "MetaFac.CG3.Runtime.GProto3\MetaFac.CG3.Runtime.GProto3.csproj", "{C77DED72-38F8-4952-A13A-8A096E8118DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.Runtime.GProto3.Tests", "MetaFac.CG3.Runtime.GProto3.Tests\MetaCode.Runtime.GProto3.Tests.csproj", "{86B88E79-1D7C-4235-9E3E-53159508EA4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.GProto3.Tests", "MetaFac.CG3.Runtime.GProto3.Tests\MetaFac.CG3.Runtime.GProto3.Tests.csproj", "{86B88E79-1D7C-4235-9E3E-53159508EA4E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.Runtime.JsonPoco", "MetaFac.CG3.Runtime.JsonPoco\MetaCode.Runtime.JsonPoco.csproj", "{5DB4FC7C-470A-4428-B667-7791B967D7C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.JsonPoco", "MetaFac.CG3.Runtime.JsonPoco\MetaFac.CG3.Runtime.JsonPoco.csproj", "{5DB4FC7C-470A-4428-B667-7791B967D7C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.Runtime.JsonPoco.Tests", "MetaFac.CG3.Runtime.JsonPoco.Tests\MetaCode.Runtime.JsonPoco.Tests.csproj", "{92005143-11FF-462A-90E1-CB4B7593AA9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.JsonPoco.Tests", "MetaFac.CG3.Runtime.JsonPoco.Tests\MetaFac.CG3.Runtime.JsonPoco.Tests.csproj", "{92005143-11FF-462A-90E1-CB4B7593AA9C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.Runtime.MsgPack", "MetaFac.CG3.Runtime.MsgPack\MetaCode.Runtime.MsgPack.csproj", "{60B3AD98-8552-4103-A613-242AF8608A49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.MsgPack", "MetaFac.CG3.Runtime.MsgPack\MetaFac.CG3.Runtime.MsgPack.csproj", "{60B3AD98-8552-4103-A613-242AF8608A49}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.Runtime.ProtobufNet3", "MetaFac.CG3.Runtime.ProtobufNet3\MetaCode.Runtime.ProtobufNet3.csproj", "{3A49E0B1-50E3-44D7-A7A9-EF9867B54E56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.ProtobufNet3", "MetaFac.CG3.Runtime.ProtobufNet3\MetaFac.CG3.Runtime.ProtobufNet3.csproj", "{3A49E0B1-50E3-44D7-A7A9-EF9867B54E56}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.Runtime.ProtobufNet3.Tests", "MetaFac.CG3.Runtime.ProtobufNet3.Tests\MetaCode.Runtime.ProtobufNet3.Tests.csproj", "{5F882C36-3914-432B-938D-4AE4E09396C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.ProtobufNet3.Tests", "MetaFac.CG3.Runtime.ProtobufNet3.Tests\MetaFac.CG3.Runtime.ProtobufNet3.Tests.csproj", "{5F882C36-3914-432B-938D-4AE4E09396C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.Runtime.Tests", "MetaFac.CG3.Runtime.Tests\MetaCode.Runtime.Tests.csproj", "{4BFB6AF0-F154-47E6-A752-48D5C448E9C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.Tests", "MetaFac.CG3.Runtime.Tests\MetaFac.CG3.Runtime.Tests.csproj", "{4BFB6AF0-F154-47E6-A752-48D5C448E9C6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.TS3.UnitTests", "MetaFac.CG3.UnitTests\MetaCode.TS3.UnitTests.csproj", "{C39BFDD5-D9A8-4CAA-A428-500BBC0C80F8}"
 EndProject

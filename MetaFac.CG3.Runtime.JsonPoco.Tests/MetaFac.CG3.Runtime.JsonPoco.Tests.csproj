@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG3.Runtime.ProtobufNet3\MetaCode.Runtime.ProtobufNet3.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Runtime.JsonPoco\MetaFac.CG3.Runtime.JsonPoco.csproj" />
   </ItemGroup>
 
 </Project>

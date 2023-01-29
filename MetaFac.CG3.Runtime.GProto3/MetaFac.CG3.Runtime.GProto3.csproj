@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG3.Runtime\MetaCode.Runtime.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Runtime\MetaFac.CG3.Runtime.csproj" />
   </ItemGroup>
 
 </Project>
