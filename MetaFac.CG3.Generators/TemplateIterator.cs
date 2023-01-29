@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace MetaCode.Generators
+namespace MetaFac.CG3.Generators
 {
     public class TemplateIterator
     {

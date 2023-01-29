@@ -2,7 +2,7 @@ using FluentAssertions;
 using System.Collections.Generic;
 using Xunit;
 
-namespace MetaCode.TS3.UnitTests
+namespace MetaFac.CG3.Template.UnitTests
 {
     //>>using (Ignored()) {
     using T_IndexType_ = System.String;

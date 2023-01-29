@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace MetaCode.Generators
+namespace MetaFac.CG3.Generators
 {
     public static class ModelExtensions
     {
@@ -31,7 +31,7 @@ namespace MetaCode.Generators
                 tokens["BufferType"] = true.ToString();
             if (fieldDef.IsStringType)
                 tokens["StringType"] = true.ToString();
-            if(fieldDef.ProxyDef is not null)
+            if (fieldDef.ProxyDef is not null)
             {
                 tokens[$"External{fieldDef.InnerType}"] = fieldDef.ProxyDef.ExternalName ?? "Unknown_Proxy_ExternalName";
                 tokens[$"Concrete{fieldDef.InnerType}"] = fieldDef.ProxyDef.ConcreteName ?? "Unknown_Proxy_ConcreteName";

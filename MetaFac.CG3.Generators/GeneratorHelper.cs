@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace MetaCode.Generators
+namespace MetaFac.CG3.Generators
 {
     public sealed class MetaCodeOptions
     {

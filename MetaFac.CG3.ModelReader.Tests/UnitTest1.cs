@@ -1,9 +1,8 @@
 using FluentAssertions;
-using MetaFac.CG3.ModelReader;
 using System.Reflection;
 using Xunit;
 
-namespace MetaCode.ModelReader.Tests
+namespace MetaFac.CG3.ModelReader.Tests
 {
     public class UnitTest1
     {

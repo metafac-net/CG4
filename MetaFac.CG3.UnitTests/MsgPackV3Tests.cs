@@ -7,10 +7,10 @@ using T_Namespace_.Contracts;
 using T_Namespace_.MsgPackV3;
 using Xunit;
 
-namespace MetaCode.TS3.UnitTests
+namespace MetaFac.CG3.Template.UnitTests
 {
-    using T_ExternalOtherType_ = System.Int64;
-    using T_IndexType_ = System.String;
+    using T_ExternalOtherType_ = Int64;
+    using T_IndexType_ = String;
 
     public class MsgPackV3Tests
     {
@@ -18,9 +18,9 @@ namespace MetaCode.TS3.UnitTests
         public void ImmutableBufferRoundtrip()
         {
             ReadOnlyMemory<byte> orig = new byte[] { 1, 2, 3 };
-            ImmutableArray<byte> array1 = orig.ToImmutableArray<byte>();
+            ImmutableArray<byte> array1 = orig.ToImmutableArray();
             ReadOnlyMemory<byte> copy = array1.AsMemory();
-            ImmutableArray<byte> array2 = copy.ToImmutableArray<byte>();
+            ImmutableArray<byte> array2 = copy.ToImmutableArray();
 
             copy.Length.Should().Be(orig.Length);
             //copy.Should().BeEquivalentTo(orig);
@@ -103,7 +103,7 @@ namespace MetaCode.TS3.UnitTests
         {
             var options = MessagePackSerializerOptions.Standard.WithCompression(compression);
             var original = new T_ClassName_();
-            byte[] buffer = MessagePackSerializer.Serialize<T_ClassName_>(original, options);
+            byte[] buffer = MessagePackSerializer.Serialize(original, options);
             buffer.Length.Should().Be(compressedSize);
             var duplicate = MessagePackSerializer.Deserialize<T_ClassName_>(buffer);
             duplicate.Should().Be(original);
@@ -310,7 +310,7 @@ namespace MetaCode.TS3.UnitTests
             };
 
             var options = MessagePackSerializerOptions.Standard.WithCompression(compression);
-            byte[] buffer = MessagePackSerializer.Serialize<T_ClassName_>(original, options);
+            byte[] buffer = MessagePackSerializer.Serialize(original, options);
             //buffer.Length.Should().Be(compressedSize);
             var duplicate = MessagePackSerializer.Deserialize<T_ClassName_>(buffer);
             duplicate.Should().Be(original);

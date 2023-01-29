@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MetaCode.Generators
+namespace MetaFac.CG3.Generators
 {
     public abstract class GeneratorBase
     {

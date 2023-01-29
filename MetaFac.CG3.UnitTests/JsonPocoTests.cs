@@ -6,7 +6,7 @@ using T_Namespace_.Interfaces;
 using T_Namespace_.JsonPoco;
 using Xunit;
 
-namespace MetaCode.TS3.UnitTests
+namespace MetaFac.CG3.Template.UnitTests
 {
     using T_ConcreteOtherType_ = System.Int64;
     //>>using (Ignored()) {
@@ -74,7 +74,7 @@ namespace MetaCode.TS3.UnitTests
             concrete.T_IndexOtherFieldName_ = new Dictionary<T_IndexType_, T_ConcreteOtherType_>()
             {
                 ["987"] = 456L,
-                ["876"] = default(T_ConcreteOtherType_),
+                ["876"] = default,
             };
 
             concrete.T_UnaryMaybeFieldName_ = null;
@@ -106,7 +106,7 @@ namespace MetaCode.TS3.UnitTests
         {
             var original = new T_ClassName_();
             var options = new JsonSerializerOptions() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
-            string json = JsonSerializer.Serialize<T_ClassName_>(original, options);
+            string json = JsonSerializer.Serialize(original, options);
             json.Should().Be("{\"T_UnaryOtherFieldName_\":0}");
             var duplicate = JsonSerializer.Deserialize<T_ClassName_>(json);
             duplicate.Should().Be(original);
@@ -130,7 +130,7 @@ namespace MetaCode.TS3.UnitTests
             original.T_IndexOtherFieldName_ = new Dictionary<T_IndexType_, T_ConcreteOtherType_>()
             {
                 ["987"] = 456L,
-                ["876"] = default(T_ConcreteOtherType_),
+                ["876"] = default,
             };
 
             original.T_UnaryMaybeFieldName_ = null;
@@ -141,7 +141,7 @@ namespace MetaCode.TS3.UnitTests
                 ["876"] = null,
             };
 
-            string json = JsonSerializer.Serialize<T_ClassName_>(original);
+            string json = JsonSerializer.Serialize(original);
             var duplicate = JsonSerializer.Deserialize<T_ClassName_>(json);
             duplicate.Should().Be(original);
             duplicate!.Equals(original).Should().BeTrue();

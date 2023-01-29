@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MetaCode.Generators
+namespace MetaFac.CG3.Generators
 {
     public class TemplateEngine
     {

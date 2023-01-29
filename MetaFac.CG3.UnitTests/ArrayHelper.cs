@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 
-namespace MetaCode.TS3.UnitTests
+namespace MetaFac.CG3.Template.UnitTests
 {
     internal static class ArrayHelper
     {

@@ -5,7 +5,7 @@ using T_Namespace_.Freezables;
 using T_Namespace_.Interfaces;
 using Xunit;
 
-namespace MetaCode.TS3.UnitTests
+namespace MetaFac.CG3.Template.UnitTests
 {
     using T_ConcreteOtherType_ = System.Int64;
     //>>using (Ignored()) {

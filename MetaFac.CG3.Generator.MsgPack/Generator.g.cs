@@ -8,7 +8,8 @@
 // |metacode:generator_header|
 using System;
 using System.Linq;
-using MetaCode.Generators;
+using MetaFac.CG3.Generators;
+
 namespace MetaCode.TS3.Generator.MsgPack
 {
     public partial class Generator : GeneratorBase

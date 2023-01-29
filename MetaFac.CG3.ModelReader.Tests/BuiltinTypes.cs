@@ -2,7 +2,7 @@
 using System;
 using MetaFac.CG3.Schemas;
 
-namespace MetaCode.ModelReader.Tests.TestModel
+namespace MetaFac.CG3.ModelReader.Tests.TestModel
 {
     [Proxy("LabApps.Units.Quantity", "QuantityValue")]
     public struct Quantity { }

@@ -6,10 +6,10 @@ using T_Namespace_.ClassesV2;
 using T_Namespace_.Contracts;
 using Xunit;
 
-namespace MetaCode.TS3.UnitTests
+namespace MetaFac.CG3.Template.UnitTests
 {
-    using T_ConcreteOtherType_ = System.Int64;
-    using T_IndexType_ = System.String;
+    using T_ConcreteOtherType_ = Int64;
+    using T_IndexType_ = String;
 
     public class ClassesV2Tests
     {
@@ -72,7 +72,7 @@ namespace MetaCode.TS3.UnitTests
 
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
-            object.Equals(duplicate, original).Should().BeTrue();
+            Equals(duplicate, original).Should().BeTrue();
         }
 
         [Fact]
@@ -138,7 +138,7 @@ namespace MetaCode.TS3.UnitTests
 
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
-            object.Equals(duplicate, original).Should().BeTrue();
+            Equals(duplicate, original).Should().BeTrue();
         }
     }
 }

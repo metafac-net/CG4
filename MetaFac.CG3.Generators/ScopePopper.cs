@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetaCode.Generators
+namespace MetaFac.CG3.Generators
 {
     internal class ScopePopper : IDisposable
     {

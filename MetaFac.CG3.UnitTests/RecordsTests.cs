@@ -5,7 +5,7 @@ using T_Namespace_.Interfaces;
 using T_Namespace_.Records;
 using Xunit;
 
-namespace MetaCode.TS3.UnitTests
+namespace MetaFac.CG3.Template.UnitTests
 {
     using T_ConcreteOtherType_ = System.Int64;
     using T_IndexType_ = System.String;
