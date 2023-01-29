@@ -1,5 +1,8 @@
 # CG3
+[![Build Status](https://dev.azure.com/MetaFac/OSR/_apis/build/status/CG3?branchName=main)](https://dev.azure.com/MetaFac/OSR/_build/latest?definitionId=10&branchName=main)
 
-## Schemas [![Build Status](https://dev.azure.com/LabApps21/MCP/_apis/build/status/Attributes?branchName=main)](https://dev.azure.com/LabApps21/MCP/_build/latest?definitionId=7&branchName=main)
+## Schemas
 C# attributes for defining CG3 models in code.
 
+## TextProcessing
+Bi-directional text processor to convert templates to generators (and back).
