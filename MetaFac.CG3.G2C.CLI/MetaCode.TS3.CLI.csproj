@@ -58,7 +58,6 @@
     <ProjectReference Include="..\MetaFac.CG3.Generator.ProtobufNet3\MetaFac.CG3.Generator.ProtobufNet3.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.RecordsV2\MetaFac.CG3.Generator.RecordsV2.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.Records\MetaFac.CG3.Generator.Records.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generators\MetaFac.CG3.Generators.csproj" />
   </ItemGroup>
 
 </Project>
