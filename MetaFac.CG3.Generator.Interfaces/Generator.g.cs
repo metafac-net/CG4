@@ -14,7 +14,7 @@ namespace MetaFac.CG3.Generator.Interfaces
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaCode.TS3.Interfaces") { }
+        public Generator() : base("MetaFac.CG3.Interfaces") { }
         protected override void OnGenerate(TemplateScope outerScope)
         {
 // |metacode:generator_body|

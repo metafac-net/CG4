@@ -14,7 +14,7 @@ namespace MetaFac.CG3.Generator.Immutables
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaCode.TS3.Immutables") { }
+        public Generator() : base("MetaFac.CG3.Immutables") { }
         protected override void OnGenerate(TemplateScope outerScope)
         {
 // |metacode:generator_body|

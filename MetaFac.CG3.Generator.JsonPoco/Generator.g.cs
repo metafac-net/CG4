@@ -14,7 +14,7 @@ namespace MetaFac.CG3.Generator.JsonPoco
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaCode.TS3.JsonPoco") { }
+        public Generator() : base("MetaFac.CG3.JsonPoco") { }
         protected override void OnGenerate(TemplateScope outerScope)
         {
 // |metacode:generator_body|

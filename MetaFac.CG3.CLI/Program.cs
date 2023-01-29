@@ -72,22 +72,18 @@ namespace MetaFac.CG3.CLI
                                 options.ColorBehavior = LoggerColorBehavior.Enabled;
                             }));
 
-            return loggerFactory.CreateLogger("MetaCode");
+            return loggerFactory.CreateLogger("MFCG3");
         }
 
         public static void Main(string[] args)
         {
 
             var cmd = new Cmd<string, string, string, string, int>(
-                "MetaCode", "Converts a template to a code generator",
+                "t2g", "Converts a template to a code generator",
                 new Arg<string>("tf", "template", "The template file to process", s => s),
                 new Arg<string>("gf", "output", "The name of the generated file", s => s),
                 new Arg<string>("gn", "namespace", "The namespace for the generated code", s => s),
                 new Arg<string>("gs", "shortname", "The short name (or id) of the generator", s => s),
-                //new Arg<string>("ef", "encrypt", "Encrypt the template source code to this file", s => s, ""),
-                //new Arg<string>("xp", "secrets-path","The location where the secrets are stored", s => s, "."),
-                //new Arg<string>("s", "server", "The address (URL) of the metacode server", s => s, Constants.ServerUrl.MetaCodeWebApiV1),
-                //new Arg<string>("t", "token", "The MetaCode administrator token for the account", s => s, ""),
                 ConvertTemplateToGenerator);
 
             int result = cmd.Run(args).ConfigureAwait(false).GetAwaiter().GetResult();

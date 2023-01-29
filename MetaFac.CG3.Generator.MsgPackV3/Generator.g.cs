@@ -14,7 +14,7 @@ namespace MetaFac.CG3.Generator.MsgPackV3
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaCode.TS3.MsgPackV3") { }
+        public Generator() : base("MetaFac.CG3.MsgPackV3") { }
         protected override void OnGenerate(TemplateScope outerScope)
         {
 // |metacode:generator_body|

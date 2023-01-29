@@ -14,7 +14,7 @@ namespace MetaFac.CG3.Generator.Freezables
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaCode.TS3.Freezables") { }
+        public Generator() : base("MetaFac.CG3.Freezables") { }
         protected override void OnGenerate(TemplateScope outerScope)
         {
 // |metacode:generator_body|

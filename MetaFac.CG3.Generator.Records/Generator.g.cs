@@ -14,7 +14,7 @@ namespace MetaFac.CG3.Generator.Records
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaCode.TS3.Records") { }
+        public Generator() : base("MetaFac.CG3.Records") { }
         protected override void OnGenerate(TemplateScope outerScope)
         {
 // |metacode:generator_body|
