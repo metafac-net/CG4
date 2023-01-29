@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MetaFac.CG3.Template.ClassesV2\MetaCode.TS3.Template.ClassesV2.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.Freezables\MetaCode.TS3.Template.Freezables.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.Immutables\MetaCode.TS3.Template.Immutables.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.Interfaces\MetaCode.TS3.Template.Interfaces.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.JsonPoco\MetaCode.TS3.Template.JsonPoco.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.MsgPackV2\MetaCode.TS3.Template.MsgPackV2.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.MsgPackV3\MetaCode.TS3.Template.MsgPackV3.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.MsgPack\MetaCode.TS3.Template.MsgPack.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.RecordsV2\MetaCode.TS3.Template.RecordsV2.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.Records\MetaCode.TS3.Template.Records.csproj" />
+  </ItemGroup>
+
+</Project>
