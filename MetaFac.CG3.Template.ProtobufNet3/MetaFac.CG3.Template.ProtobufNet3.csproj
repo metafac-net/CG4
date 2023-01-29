@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG3.Template.Interfaces\MetaCode.TS3.Template.Interfaces.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.Interfaces\MetaFac.CG3.Template.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>
