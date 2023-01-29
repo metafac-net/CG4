@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MetaCode.ModelReader
+namespace MetaFac.CG3.ModelReader
 {
     internal class ClassDefInfo
     {

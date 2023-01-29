@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MetaCode.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MetaCode.Models
+namespace MetaFac.CG3.ModelReader
 {
     public class JsonMetadata : IEquatable<JsonMetadata>
     {
@@ -40,16 +41,16 @@ namespace MetaCode.Models
                 // order sensitive
                 if (ModelDefs != null)
                 {
-                    hashCode = (hashCode * 397) ^ ModelDefs.Count.GetHashCode();
+                    hashCode = hashCode * 397 ^ ModelDefs.Count.GetHashCode();
                     for (int i = 0; i < ModelDefs.Count; i++)
                     {
-                        hashCode = (hashCode * 397) ^ ModelDefs[i].GetHashCode();
+                        hashCode = hashCode * 397 ^ ModelDefs[i].GetHashCode();
                     }
                 }
                 // order ignored
                 if (Tokens != null)
                 {
-                    hashCode = (hashCode * 397) ^ Tokens.Count.GetHashCode();
+                    hashCode = hashCode * 397 ^ Tokens.Count.GetHashCode();
                     foreach (var kvp in Tokens)
                     {
                         hashCode = hashCode ^ kvp.Key.GetHashCode();

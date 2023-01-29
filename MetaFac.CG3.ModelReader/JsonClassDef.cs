@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MetaCode.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MetaCode.Models
+namespace MetaFac.CG3.ModelReader
 {
     public class JsonClassDef : IEquatable<JsonClassDef>
     {
@@ -32,7 +33,7 @@ namespace MetaCode.Models
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
-                   && (this.IsAbstract == other.IsAbstract)
+                   && IsAbstract == other.IsAbstract
                    && string.Equals(BaseClassName, other.BaseClassName)
                    && FieldDefs.IsEqualTo(other.FieldDefs)
                    && Tokens.IsEqualTo(other.Tokens);
@@ -48,22 +49,22 @@ namespace MetaCode.Models
             unchecked
             {
                 int hashCode = Tag?.GetHashCode() ?? 0;
-                hashCode = (hashCode * 397) ^ (Name?.GetHashCode() ?? 0);
-                hashCode = (hashCode * 397) ^ IsAbstract.GetHashCode();
-                hashCode = (hashCode * 397) ^ (BaseClassName?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
+                hashCode = hashCode * 397 ^ (BaseClassName?.GetHashCode() ?? 0);
                 // order sensitive
                 if (FieldDefs != null)
                 {
-                    hashCode = (hashCode * 397) ^ FieldDefs.Count.GetHashCode();
+                    hashCode = hashCode * 397 ^ FieldDefs.Count.GetHashCode();
                     for (int i = 0; i < FieldDefs.Count; i++)
                     {
-                        hashCode = (hashCode * 397) ^ FieldDefs[i].GetHashCode();
+                        hashCode = hashCode * 397 ^ FieldDefs[i].GetHashCode();
                     }
                 }
                 // order ignored
                 if (Tokens != null)
                 {
-                    hashCode = (hashCode * 397) ^ Tokens.Count.GetHashCode();
+                    hashCode = hashCode * 397 ^ Tokens.Count.GetHashCode();
                     foreach (var kvp in Tokens)
                     {
                         hashCode = hashCode ^ kvp.Key.GetHashCode();

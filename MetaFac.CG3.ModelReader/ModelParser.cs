@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using MetaCode.Models;
 using MetaCode.Exceptions;
+using MetaFac.CG3.ModelReader;
 
 namespace MetaCode.ModelReader
 {

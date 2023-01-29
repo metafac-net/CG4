@@ -1,7 +1,8 @@
-﻿using System;
+﻿using MetaCode.Models;
+using System;
 using System.Collections.Generic;
 
-namespace MetaCode.Models
+namespace MetaFac.CG3.ModelReader
 {
 
     public class JsonFieldDef : IEquatable<JsonFieldDef>
@@ -60,16 +61,16 @@ namespace MetaCode.Models
             unchecked
             {
                 int hashCode = Tag?.GetHashCode() ?? 0;
-                hashCode = (hashCode * 397) ^ (Name?.GetHashCode() ?? 0);
-                hashCode = (hashCode * 397) ^ (InnerType?.GetHashCode() ?? 0);
-                hashCode = (hashCode * 397) ^ Nullable.GetHashCode();
-                hashCode = (hashCode * 397) ^ (ProxyDef?.GetHashCode() ?? 0);
-                hashCode = (hashCode * 397) ^ ArrayRank.GetHashCode();
-                hashCode = (hashCode * 397) ^ (IndexType?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (InnerType?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ Nullable.GetHashCode();
+                hashCode = hashCode * 397 ^ (ProxyDef?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ ArrayRank.GetHashCode();
+                hashCode = hashCode * 397 ^ (IndexType?.GetHashCode() ?? 0);
                 // order ignored
                 if (Tokens != null)
                 {
-                    hashCode = (hashCode * 397) ^ Tokens.Count.GetHashCode();
+                    hashCode = hashCode * 397 ^ Tokens.Count.GetHashCode();
                     foreach (var kvp in Tokens)
                     {
                         hashCode = hashCode ^ kvp.Key.GetHashCode();

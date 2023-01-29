@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MetaCode.Models
+namespace MetaFac.CG3.ModelReader
 {
     internal static class EqualityHelper
     {
