@@ -1,4 +1,4 @@
-﻿namespace MetaCode.Exceptions
+﻿namespace MetaFac.CG3.ModelReader
 {
 
     public class ValidationException : MetaCodeException

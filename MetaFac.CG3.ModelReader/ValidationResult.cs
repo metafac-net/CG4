@@ -1,7 +1,6 @@
-﻿using MetaCode.Exceptions;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 
-namespace MetaCode.Validator
+namespace MetaFac.CG3.ModelReader
 {
     public class ValidationResult
     {

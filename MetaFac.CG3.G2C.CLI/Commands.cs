@@ -1,8 +1,5 @@
 ﻿using MetaFac.Platform;
 using MetaCode.Generators;
-using MetaCode.ModelReader;
-using MetaCode.Models;
-using MetaCode.Validator;
 using Microsoft.Extensions.Logging;
 using MiniCLI;
 using System;
@@ -12,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using MetaFac.CG3.ModelReader;
 
 namespace MetaCode.TS3.CLI
 {

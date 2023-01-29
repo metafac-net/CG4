@@ -1,6 +1,4 @@
-﻿using MetaCode.Exceptions;
-
-namespace MetaFac.CG3.ModelReader
+﻿namespace MetaFac.CG3.ModelReader
 {
     public class GeneratorException : MetaCodeException
     {

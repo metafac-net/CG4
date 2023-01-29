@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetaCode.ModelReader
+namespace MetaFac.CG3.ModelReader
 {
     internal class ProxyTypeInfo
     {

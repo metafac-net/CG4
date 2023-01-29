@@ -1,5 +1,4 @@
-﻿using MetaFac.CG3.ModelReader;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
@@ -8,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Xml.Linq;
 
-namespace MetaCode.Models
+namespace MetaFac.CG3.ModelReader
 {
 
     public class ModelFieldDef : IEquatable<ModelFieldDef>
@@ -60,7 +59,7 @@ namespace MetaCode.Models
             Name = source.Name ?? "Unknown_Field";
             InnerType = source.InnerType ?? nameof(Unknown);
             Nullable = source.Nullable;
-            ProxyDef = source.ProxyDef is null ? null: new ModelProxyDef(source.ProxyDef);
+            ProxyDef = source.ProxyDef is null ? null : new ModelProxyDef(source.ProxyDef);
             ArrayRank = source.ArrayRank;
             IndexType = source.IndexType;
             BigEndian = source.BigEndian;
@@ -75,7 +74,7 @@ namespace MetaCode.Models
         {
             if (ProxyDef is not null)
             {
-                if(ProxyDef.HasNames)
+                if (ProxyDef.HasNames)
                 {
                     writer.WriteLine($"    [Proxy(\"{ProxyDef.ExternalName}\", \"{ProxyDef.ConcreteName}\")]");
                 }
@@ -98,7 +97,7 @@ namespace MetaCode.Models
         public string ToJson()
         {
             var member = new JsonFieldDef(this);
-            return JsonSerializer.Serialize<JsonFieldDef>(member);
+            return JsonSerializer.Serialize(member);
         }
 
         public static ModelFieldDef FromJson(string json)
@@ -143,16 +142,16 @@ namespace MetaCode.Models
             unchecked
             {
                 var hashCode = Tag.GetHashCode();
-                hashCode = (hashCode * 397) ^ (Name?.GetHashCode() ?? 0);
-                hashCode = (hashCode * 397) ^ (InnerType?.GetHashCode() ?? 0);
-                hashCode = (hashCode * 397) ^ Nullable.GetHashCode();
-                hashCode = (hashCode * 397) ^ (ProxyDef?.GetHashCode() ?? 0);
-                hashCode = (hashCode * 397) ^ ArrayRank.GetHashCode();
-                hashCode = (hashCode * 397) ^ (IndexType?.GetHashCode() ?? 0);
-                hashCode = (hashCode * 397) ^ BigEndian.GetHashCode();
-                hashCode = (hashCode * 397) ^ FieldSize.GetHashCode();
-                hashCode = (hashCode * 397) ^ ArraySize.GetHashCode();
-                hashCode = (hashCode * 397) ^ Tokens.Count.GetHashCode();
+                hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (InnerType?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ Nullable.GetHashCode();
+                hashCode = hashCode * 397 ^ (ProxyDef?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ ArrayRank.GetHashCode();
+                hashCode = hashCode * 397 ^ (IndexType?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ BigEndian.GetHashCode();
+                hashCode = hashCode * 397 ^ FieldSize.GetHashCode();
+                hashCode = hashCode * 397 ^ ArraySize.GetHashCode();
+                hashCode = hashCode * 397 ^ Tokens.Count.GetHashCode();
                 // order ignored
                 foreach (var kvp in Tokens)
                 {

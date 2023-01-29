@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 
-namespace MetaCode.ModelReader
+namespace MetaFac.CG3.ModelReader
 {
     internal class ProxyTypeInfoCollection
     {

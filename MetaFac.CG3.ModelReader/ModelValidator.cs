@@ -1,12 +1,9 @@
-﻿using MetaCode.Exceptions;
-using MetaCode.Models;
-using MetaFac.CG3.ModelReader;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace MetaCode.Validator
+namespace MetaFac.CG3.ModelReader
 {
     public class ModelValidator
     {

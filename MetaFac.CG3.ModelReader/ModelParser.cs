@@ -6,11 +6,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
-using MetaCode.Models;
-using MetaCode.Exceptions;
-using MetaFac.CG3.ModelReader;
 
-namespace MetaCode.ModelReader
+namespace MetaFac.CG3.ModelReader
 {
     public static class ModelParser
     {
@@ -366,15 +363,15 @@ namespace MetaCode.ModelReader
                     bool isVector = fieldInfo.ArrayRank == 1;
                     string typeDesc = $"{innerTypeName}{(fieldInfo.nullable ? "?" : "")}{(isVector ? "[" : "")}{fieldInfo.indexTypeName}{(isVector ? "]" : "")}";
                     ModelProxyDef? proxyDef = null;
-                    if (fieldInfo.IsProxy 
-                        && proxyTypes.TryGetValue(innerTypeName, out var pd) 
+                    if (fieldInfo.IsProxy
+                        && proxyTypes.TryGetValue(innerTypeName, out var pd)
                         && pd is not null)
                     {
                         proxyDef = new ModelProxyDef(pd.HasNames, pd.ExternalName, pd.ConcreteName);
                     }
                     var fieldDef = new ModelFieldDef(
                         fieldName, fieldTag, innerTypeName, fieldInfo.nullable,
-                        proxyDef, 
+                        proxyDef,
                         fieldInfo.ArrayRank, fieldInfo.indexTypeName,
                         arraySize, bigEndian, fieldSize, fieldTokens);
                     fieldDefsByName.Add(fieldName, fieldDef);

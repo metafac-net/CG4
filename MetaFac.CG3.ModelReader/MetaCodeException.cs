@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetaCode.Exceptions
+namespace MetaFac.CG3.ModelReader
 {
     public abstract class MetaCodeException : Exception
     {

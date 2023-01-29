@@ -1,5 +1,4 @@
-﻿using MetaFac.CG3.ModelReader;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 
-namespace MetaCode.Models
+namespace MetaFac.CG3.ModelReader
 {
     public class ModelDefinition : IEquatable<ModelDefinition>
     {
@@ -82,7 +81,7 @@ namespace MetaCode.Models
         public string ToJson()
         {
             var md = new JsonModelDef(this);
-            return JsonSerializer.Serialize<JsonModelDef>(md);
+            return JsonSerializer.Serialize(md);
         }
 
         public static ModelDefinition FromJson(string json)
@@ -120,9 +119,9 @@ namespace MetaCode.Models
             unchecked
             {
                 var hashCode = Tag.GetHashCode();
-                hashCode = (hashCode * 397) ^ (Name != null ? Name.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (Tag != null ? Tag.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (ClassDefs != null ? ClassDefs.GetHashCode() : 0);
+                hashCode = hashCode * 397 ^ (Name != null ? Name.GetHashCode() : 0);
+                hashCode = hashCode * 397 ^ (Tag != null ? Tag.GetHashCode() : 0);
+                hashCode = hashCode * 397 ^ (ClassDefs != null ? ClassDefs.GetHashCode() : 0);
                 // order ignored
                 foreach (var kvp in Tokens)
                 {

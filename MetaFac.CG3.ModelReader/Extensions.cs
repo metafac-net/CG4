@@ -1,7 +1,4 @@
-﻿using MetaCode.Exceptions;
-using MetaCode.Models;
-
-namespace MetaFac.CG3.ModelReader
+﻿namespace MetaFac.CG3.ModelReader
 {
     internal static class Extensions
     {

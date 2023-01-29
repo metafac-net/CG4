@@ -1,5 +1,4 @@
-﻿using MetaFac.CG3.ModelReader;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 
-namespace MetaCode.Models
+namespace MetaFac.CG3.ModelReader
 {
     public class ModelClassDef : IEquatable<ModelClassDef>
     {
@@ -70,7 +69,7 @@ namespace MetaCode.Models
         public string ToJson()
         {
             var cd = new JsonClassDef(this);
-            return JsonSerializer.Serialize<JsonClassDef>(cd);
+            return JsonSerializer.Serialize(cd);
         }
 
         public static ModelClassDef FromJson(string json)
@@ -94,7 +93,7 @@ namespace MetaCode.Models
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
-                   && (this.IsAbstract == other.IsAbstract)
+                   && IsAbstract == other.IsAbstract
                    && string.Equals(BaseClassName, other.BaseClassName)
                    && FieldDefs.IsEqualTo(other.FieldDefs)
                    && Tokens.IsEqualTo(other.Tokens);
@@ -110,16 +109,16 @@ namespace MetaCode.Models
             unchecked
             {
                 var hashCode = Tag.GetHashCode();
-                hashCode = (hashCode * 397) ^ (Name != null ? Name.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ IsAbstract.GetHashCode();
-                hashCode = (hashCode * 397) ^ (BaseClassName != null ? BaseClassName.GetHashCode() : 0);
+                hashCode = hashCode * 397 ^ (Name != null ? Name.GetHashCode() : 0);
+                hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
+                hashCode = hashCode * 397 ^ (BaseClassName != null ? BaseClassName.GetHashCode() : 0);
                 // ordered
-                hashCode = (hashCode * 397) ^ FieldDefs.Count.GetHashCode();
+                hashCode = hashCode * 397 ^ FieldDefs.Count.GetHashCode();
                 foreach (var field in FieldDefs)
                 {
-                    hashCode = (hashCode * 397) ^ field.GetHashCode();
+                    hashCode = hashCode * 397 ^ field.GetHashCode();
                 }
-                hashCode = (hashCode * 397) ^ Tokens.Count.GetHashCode();
+                hashCode = hashCode * 397 ^ Tokens.Count.GetHashCode();
                 // order ignored
                 foreach (var kvp in Tokens)
                 {

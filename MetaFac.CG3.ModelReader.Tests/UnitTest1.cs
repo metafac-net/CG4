@@ -1,5 +1,5 @@
 using FluentAssertions;
-using MetaCode.Models;
+using MetaFac.CG3.ModelReader;
 using System.Reflection;
 using Xunit;
 

@@ -1,11 +1,10 @@
-﻿using MetaFac.CG3.ModelReader;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text.Json;
 
-namespace MetaCode.Models
+namespace MetaFac.CG3.ModelReader
 {
 
     public sealed class ModelContainer : IEquatable<ModelContainer>
@@ -74,7 +73,7 @@ namespace MetaCode.Models
         public string ToJson()
         {
             var md = new JsonMetadata(this);
-            return JsonSerializer.Serialize<JsonMetadata>(md);
+            return JsonSerializer.Serialize(md);
         }
 
         public static ModelContainer FromJson(string? json)

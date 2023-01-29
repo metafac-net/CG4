@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetaCode.Models
+namespace MetaFac.CG3.ModelReader
 {
     public class JsonProxyDef : IEquatable<JsonProxyDef>
     {
@@ -36,8 +36,8 @@ namespace MetaCode.Models
             unchecked
             {
                 var hashCode = HasNames.GetHashCode();
-                hashCode = (hashCode * 397) ^ (ExternalName?.GetHashCode() ?? 0);
-                hashCode = (hashCode * 397) ^ (ConcreteName?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (ExternalName?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (ConcreteName?.GetHashCode() ?? 0);
                 return hashCode;
             }
         }
