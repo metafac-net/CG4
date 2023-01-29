@@ -19,10 +19,10 @@
     <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
     <PackageTags>MetaCode, meta-programming, model-first, code-first, template engine</PackageTags>
     <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG3</RepositoryUrl>
-    <Description>Converts templates into code generators.</Description>
-    <PackageId>MetaCode.CLI</PackageId>
+    <Description>Converts templates into generators, and with schemas, generates code.</Description>
+    <PackageId>MetaFac.CG3.CLI</PackageId>
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>metacode</ToolCommandName>
+    <ToolCommandName>mfcg3</ToolCommandName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\SigningKey.snk</AssemblyOriginatorKeyFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>

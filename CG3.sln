@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Schemas", "Meta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Schemas.UnitTests", "MetaFac.CG3.Schemas.Tests\MetaFac.CG3.Schemas.UnitTests.csproj", "{CD7FEEDB-A8E7-47BB-A669-F5285F7CB0CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.T2G.CLI", "MetaFac.CG3.T2G.CLI\MetaFac.CG3.T2G.CLI.csproj", "{3597426E-5BE5-4E1D-A394-EEB9166E35C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.CLI", "MetaFac.CG3.T2G.CLI\MetaFac.CG3.CLI.csproj", "{3597426E-5BE5-4E1D-A394-EEB9166E35C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.TextProcessing", "MetaFac.CG3.TextProcessing\MetaFac.CG3.TextProcessing.csproj", "{403E26CB-1933-4970-91FB-DC1CC545E01B}"
 EndProject

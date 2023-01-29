@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MetaFac.CG3.T2G.CLI
+namespace MetaFac.CG3.CLI
 {
     static class Program
     {
