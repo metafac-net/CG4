@@ -9,9 +9,9 @@
     <Company>MetaFac</Company>
     <Product>CG3</Product>
     <Copyright>Copyright (c) 2020-2023 MetaFac</Copyright>
-    <PackageProjectUrl>https://dev.azure.com/LabApps21/MetaCode</PackageProjectUrl>
+    <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
     <PackageTags>MetaCode, meta-programming, model-first, code-first, template engine</PackageTags>
-    <RepositoryUrl>https://dev.azure.com/LabApps21/MetaCode/_git/TS3Fork</RepositoryUrl>
+    <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG3</RepositoryUrl>
     <Description>C# template for model generated polymorphic interfaces</Description>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\SigningKey.snk</AssemblyOriginatorKeyFile>

@@ -92,6 +92,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.TS3.Generator.MsgP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.TS3.Generator.ClassesV2", "MetaFac.CG3.Generator.ClassesV2\MetaCode.TS3.Generator.ClassesV2.csproj", "{FD221B35-8E4B-4C86-A9F7-FDDD02932B18}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.TS3.Template.ProtobufNet3", "MetaFac.CG3.Template.ProtobufNet3\MetaCode.TS3.Template.ProtobufNet3.csproj", "{4986DA7C-108B-4F4A-A646-83E04A85E3A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -258,6 +260,10 @@ Global
 		{FD221B35-8E4B-4C86-A9F7-FDDD02932B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD221B35-8E4B-4C86-A9F7-FDDD02932B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD221B35-8E4B-4C86-A9F7-FDDD02932B18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4986DA7C-108B-4F4A-A646-83E04A85E3A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4986DA7C-108B-4F4A-A646-83E04A85E3A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4986DA7C-108B-4F4A-A646-83E04A85E3A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4986DA7C-108B-4F4A-A646-83E04A85E3A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

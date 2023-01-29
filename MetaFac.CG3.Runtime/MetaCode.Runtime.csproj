@@ -16,9 +16,9 @@
     <Product>CG3</Product>
     <Copyright>Copyright (c) 2020-2023 MetaFac</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://dev.azure.com/LabApps21/MCP</PackageProjectUrl>
+    <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
     <PackageTags>MetaCode runtime</PackageTags>
-    <RepositoryUrl>https://dev.azure.com/LabApps21/MCP/_git/Runtime</RepositoryUrl>
+    <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG3</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <Description>Common types used by generated code: hashing, equality and enumeration helpers.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
