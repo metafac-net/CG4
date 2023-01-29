@@ -12,18 +12,11 @@ namespace MetaFac.CG3.Generators
 {
     public sealed class MetaCodeOptions
     {
-        public string? SecretsFolder { get; set; } = null;
-        public string? ServerUrl { get; set; } = null;
-        public string? MetaCodeToken { get; set; } = null;
-
         public MetaCodeOptions() { }
 
         public MetaCodeOptions(MetaCodeOptions? source)
         {
             if (source is null) return;
-            SecretsFolder = source.SecretsFolder;
-            ServerUrl = source.ServerUrl;
-            MetaCodeToken = source.MetaCodeToken;
         }
     }
     public static class GeneratorHelper
@@ -58,7 +51,7 @@ namespace MetaFac.CG3.Generators
         /// <param name="outputNamespace">The output namespace for the generated source files.</param>
         /// <param name="filenamePrefix">The filename prefix for the generated source files.</param>
         /// <param name="copyrightInfo">The users' copyright information to be included in the generated source files.</param>
-        /// <param name="usersOptions">The users' options, including where secrets are stored, and/or MetaCode API tokens.</param>
+        /// <param name="usersOptions">The optional users' options.</param>
         /// <param name="generators">The generators to be run in the order given.</param>
         public static void GenerateOutputs(
             ILogger logger,
@@ -78,11 +71,6 @@ namespace MetaFac.CG3.Generators
             string modelNamespace = modelAnchorType.Namespace ?? "Unknown_Namespace";
             logger.LogInformation("Generator version: {version}", fileVersion);
             logger.LogInformation("Model source     : {modelAssembly} ({modelNamespace})", modelAssembly.GetName().Name, modelNamespace);
-            logger.LogInformation("Secrets folder   : {secretsFolder}", options.SecretsFolder ?? ".");
-            if (string.IsNullOrWhiteSpace(options.MetaCodeToken))
-            {
-                logger.LogInformation("MetaCode token   : {token}", options.MetaCodeToken);
-            }
             var metadata = ModelParser.ParseAssembly(modelAssembly, modelNamespace);
             string metadataSource = Path.GetFileName(modelAssembly.Location);
             string metadataVersion = $"(version {FileVersionInfo.GetVersionInfo(modelAssembly.Location).FileVersion})";

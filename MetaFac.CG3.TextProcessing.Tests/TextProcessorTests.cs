@@ -37,7 +37,7 @@ namespace MetaFac.CG3.TextProcessing.UnitTests
             "// |metacode:generator_header|",
             "using System;",
             "using System.Linq;",
-            "using MetaCode.Generators;",
+            "using MetaFac.CG3.Generators;",
             "namespace MyOrganisation.Generator",
             "{",
             "    public partial class Generator : GeneratorBase",

@@ -58,7 +58,7 @@ namespace MetaCode.TS3.CLI
         private readonly ILogger logger;
         private readonly ITimeOfDayClock clock;
 
-        public Commands(ILogger logger, ITimeOfDayClock clock) : base("MCTS3", "MetaCode Template Suite 3 (TS3) Code Generator")
+        public Commands(ILogger logger, ITimeOfDayClock clock) : base("MFCG3", "MetaFac Code Generator 3 (CG3)")
         {
             this.logger = logger;
             this.clock = clock;
@@ -70,9 +70,6 @@ namespace MetaCode.TS3.CLI
                 new Arg<string>("g", "generator", $"The id of the generator: {string.Join(',', GetGeneratorIds())}", s => s),
                 new Arg<string>("o", "output-filename", "The implementation file to create.", s => s),
                 new Arg<string>("on", "output-namespace", "The target namespace for the output.", s => s),
-                //new Arg<string>("xp", "secrets-path", "The path where secrets are stored.", s => s, "."),
-                //new Arg<string>("s", "server", "The address (URL) of the metacode server.", s => s, Constants.ServerUrl.MetaCodeWebApiV1),
-                //new Arg<string>("t", "token", "The MetaCode token for the account.", s => s, ""),
                 g2cHandler);
         }
 

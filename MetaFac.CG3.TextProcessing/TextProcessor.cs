@@ -80,7 +80,7 @@ namespace MetaFac.CG3.TextProcessing
         {
             "using System;",
             "using System.Linq;",
-            "using MetaCode.Generators;",
+            "using MetaFac.CG3.Generators;",
             "namespace T_GeneratorNamespace_",
             "{",
             "    public partial class Generator : GeneratorBase",
