@@ -40,7 +40,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.Protobu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.Tests", "MetaFac.CG3.Runtime.Tests\MetaFac.CG3.Runtime.Tests.csproj", "{4BFB6AF0-F154-47E6-A752-48D5C448E9C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaCode.TS3.UnitTests", "MetaFac.CG3.UnitTests\MetaCode.TS3.UnitTests.csproj", "{C39BFDD5-D9A8-4CAA-A428-500BBC0C80F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Template.UnitTests", "MetaFac.CG3.UnitTests\MetaFac.CG3.Template.UnitTests.csproj", "{C39BFDD5-D9A8-4CAA-A428-500BBC0C80F8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Template.Interfaces", "MetaFac.CG3.Template.Interfaces\MetaFac.CG3.Template.Interfaces.csproj", "{9F32021C-AD50-4046-8B3D-DC687704BB54}"
 EndProject
