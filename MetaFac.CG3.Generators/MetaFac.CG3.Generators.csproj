@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG3.ModelReader\MetaCode.ModelReader.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.ModelReader\MetaFac.CG3.ModelReader.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.TextProcessing\MetaFac.CG3.TextProcessing.csproj" />
   </ItemGroup>
 
