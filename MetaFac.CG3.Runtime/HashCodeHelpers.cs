@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime
+namespace MetaFac.CG3.Runtime
 {
     public static class HashCodeHelpers
     {
@@ -36,7 +36,7 @@ namespace MetaCode.Runtime
                 int hash = array.Length;
                 foreach (var element in array)
                 {
-                    hash = (hash * 397) ^ element.GetUnaryHashCode();
+                    hash = hash * 397 ^ element.GetUnaryHashCode();
                 }
                 return hash;
             }
@@ -51,7 +51,7 @@ namespace MetaCode.Runtime
                 int hash = array.Length;
                 foreach (var element in array)
                 {
-                    hash = (hash * 397) ^ element.GetUnaryHashCode();
+                    hash = hash * 397 ^ element.GetUnaryHashCode();
                 }
                 return hash;
             }
@@ -66,7 +66,7 @@ namespace MetaCode.Runtime
                 int hash = array.Length;
                 foreach (var element in array)
                 {
-                    hash = (hash * 397) ^ element.GetUnaryHashCode();
+                    hash = hash * 397 ^ element.GetUnaryHashCode();
                 }
                 return hash;
             }
@@ -81,7 +81,7 @@ namespace MetaCode.Runtime
                 int hash = array.Length;
                 foreach (var element in array)
                 {
-                    hash = (hash * 397) ^ element.GetUnaryHashCode();
+                    hash = hash * 397 ^ element.GetUnaryHashCode();
                 }
                 return hash;
             }
@@ -96,7 +96,7 @@ namespace MetaCode.Runtime
                 int hash = list.Count;
                 foreach (var element in list)
                 {
-                    hash = (hash * 397) ^ element.GetUnaryHashCode();
+                    hash = hash * 397 ^ element.GetUnaryHashCode();
                 }
                 return hash;
             }
@@ -111,7 +111,7 @@ namespace MetaCode.Runtime
                 int hash = list.Count;
                 foreach (var element in list)
                 {
-                    hash = (hash * 397) ^ element.GetUnaryHashCode();
+                    hash = hash * 397 ^ element.GetUnaryHashCode();
                 }
                 return hash;
             }
@@ -127,7 +127,7 @@ namespace MetaCode.Runtime
                 foreach (var kvp in dict)
                 {
                     // note: unordered
-                    hash = (hash) ^ (kvp.Key.GetUnaryHashCode()) ^ (kvp.Value.GetUnaryHashCode());
+                    hash = hash ^ kvp.Key.GetUnaryHashCode() ^ kvp.Value.GetUnaryHashCode();
                 }
                 return hash;
             }
@@ -143,7 +143,7 @@ namespace MetaCode.Runtime
                 foreach (var kvp in dict)
                 {
                     // note: unordered
-                    hash = (hash) ^ (kvp.Key.GetUnaryHashCode()) ^ (kvp.Value.GetUnaryHashCode());
+                    hash = hash ^ kvp.Key.GetUnaryHashCode() ^ kvp.Value.GetUnaryHashCode();
                 }
                 return hash;
             }
@@ -158,7 +158,7 @@ namespace MetaCode.Runtime
                 int hash = buffer.Length;
                 for (int i = 0; i < buffer.Length; i++)
                 {
-                    hash = (hash * 397) ^ buffer[i];
+                    hash = hash * 397 ^ buffer[i];
                 }
                 return hash;
             }
@@ -173,7 +173,7 @@ namespace MetaCode.Runtime
                 int hash = buffers.Length;
                 foreach (var buffer in buffers)
                 {
-                    hash = (hash * 397) ^ buffer.GetUnaryHashCode();
+                    hash = hash * 397 ^ buffer.GetUnaryHashCode();
                 }
                 return hash;
             }
@@ -189,7 +189,7 @@ namespace MetaCode.Runtime
                 foreach (var kvp in dict)
                 {
                     // note: unordered
-                    hash = (hash) ^ (kvp.Key.GetUnaryHashCode()) ^ (kvp.Value.GetUnaryHashCode());
+                    hash = hash ^ kvp.Key.GetUnaryHashCode() ^ kvp.Value.GetUnaryHashCode();
                 }
                 return hash;
             }

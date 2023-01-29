@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MetaCode.Runtime
+namespace MetaFac.CG3.Runtime
 {
     public class ListFacade<TExternal, TInternal> : IReadOnlyList<TExternal?>
     {
@@ -18,7 +18,7 @@ namespace MetaCode.Runtime
         public TExternal? this[int index] => _map(_list[index]);
         public int Count => _list.Count;
         public IEnumerator<TExternal?> GetEnumerator() => new ListEnumerator(_list, _map);
-        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         private class ListEnumerator : IEnumerator<TExternal?>
         {
@@ -32,7 +32,7 @@ namespace MetaCode.Runtime
             }
 
             public TExternal? Current => _map(_enumerator.Current);
-            object? IEnumerator.Current => this.Current;
+            object? IEnumerator.Current => Current;
             public void Dispose() => _enumerator.Dispose();
             public bool MoveNext() => _enumerator.MoveNext();
             public void Reset() => _enumerator.Reset();

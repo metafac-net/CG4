@@ -36,8 +36,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.MsgPack
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.ProtobufNet3", "MetaFac.CG3.Runtime.ProtobufNet3\MetaFac.CG3.Runtime.ProtobufNet3.csproj", "{3A49E0B1-50E3-44D7-A7A9-EF9867B54E56}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.ProtobufNet3.Tests", "MetaFac.CG3.Runtime.ProtobufNet3.Tests\MetaFac.CG3.Runtime.ProtobufNet3.Tests.csproj", "{5F882C36-3914-432B-938D-4AE4E09396C7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.Tests", "MetaFac.CG3.Runtime.Tests\MetaFac.CG3.Runtime.Tests.csproj", "{4BFB6AF0-F154-47E6-A752-48D5C448E9C6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Template.UnitTests", "MetaFac.CG3.UnitTests\MetaFac.CG3.Template.UnitTests.csproj", "{C39BFDD5-D9A8-4CAA-A428-500BBC0C80F8}"
@@ -148,10 +146,6 @@ Global
 		{3A49E0B1-50E3-44D7-A7A9-EF9867B54E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A49E0B1-50E3-44D7-A7A9-EF9867B54E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A49E0B1-50E3-44D7-A7A9-EF9867B54E56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F882C36-3914-432B-938D-4AE4E09396C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F882C36-3914-432B-938D-4AE4E09396C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F882C36-3914-432B-938D-4AE4E09396C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F882C36-3914-432B-938D-4AE4E09396C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BFB6AF0-F154-47E6-A752-48D5C448E9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4BFB6AF0-F154-47E6-A752-48D5C448E9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BFB6AF0-F154-47E6-A752-48D5C448E9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU

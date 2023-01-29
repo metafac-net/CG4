@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime.MsgPack
+namespace MetaFac.CG3.Runtime.MsgPack
 {
     public static class ConversionHelpers
     {
@@ -54,25 +54,25 @@ namespace MetaCode.Runtime.MsgPack
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Decimal ToExternal(this DecimalValue value)
+        public static decimal ToExternal(this DecimalValue value)
         {
             return value;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Decimal? ToExternal(this DecimalValue? value)
+        public static decimal? ToExternal(this DecimalValue? value)
         {
             return value;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static DecimalValue ToInternal(this Decimal value)
+        public static DecimalValue ToInternal(this decimal value)
         {
             return value;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static DecimalValue? ToInternal(this Decimal? value)
+        public static DecimalValue? ToInternal(this decimal? value)
         {
             return value;
         }

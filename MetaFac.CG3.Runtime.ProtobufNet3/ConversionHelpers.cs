@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime.ProtobufNet3
+namespace MetaFac.CG3.Runtime.ProtobufNet3
 {
     //todo add support for NodaTime
     public static class ConversionHelpers

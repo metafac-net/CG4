@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime.GProto3
+namespace MetaFac.CG3.Runtime.GProto3
 {
     public static class GuidHelpers
     {

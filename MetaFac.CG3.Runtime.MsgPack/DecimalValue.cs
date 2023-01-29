@@ -1,7 +1,7 @@
 ﻿using MessagePack;
 using System;
 
-namespace MetaCode.Runtime.MsgPack
+namespace MetaFac.CG3.Runtime.MsgPack
 {
     [MessagePackObject]
     public struct DecimalValue : IEquatable<DecimalValue>
@@ -26,7 +26,7 @@ namespace MetaCode.Runtime.MsgPack
             Bits3 = bits3;
         }
 
-        public DecimalValue(Decimal value)
+        public DecimalValue(decimal value)
         {
             int[] bits = decimal.GetBits(value);
             Bits0 = bits[0];
@@ -57,12 +57,12 @@ namespace MetaCode.Runtime.MsgPack
                 ;
         }
 
-        public static implicit operator DecimalValue(Decimal value)
+        public static implicit operator DecimalValue(decimal value)
         {
             return new DecimalValue(value);
         }
 
-        public static implicit operator Decimal(DecimalValue value)
+        public static implicit operator decimal(DecimalValue value)
         {
             return new decimal(new int[] { value.Bits0, value.Bits1, value.Bits2, value.Bits3 });
         }

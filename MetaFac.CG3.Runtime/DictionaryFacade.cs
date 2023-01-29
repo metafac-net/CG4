@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MetaCode.Runtime
+namespace MetaFac.CG3.Runtime
 {
     public class DictionaryFacade<TKey, TExternal, TInternal> : IReadOnlyDictionary<TKey, TExternal?> where TKey : notnull
     {
@@ -49,7 +49,7 @@ namespace MetaCode.Runtime
                 }
             }
 
-            object IEnumerator.Current => this.Current;
+            object IEnumerator.Current => Current;
             public void Dispose() => _enumerator.Dispose();
             public bool MoveNext() => _enumerator.MoveNext();
             public void Reset() => _enumerator.Reset();

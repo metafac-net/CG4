@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime.GProto3
+namespace MetaFac.CG3.Runtime.GProto3
 {
     public static class SByteHelpers
     {
@@ -18,7 +18,7 @@ namespace MetaCode.Runtime.GProto3
         {
             unchecked
             {
-                return input is null ? null : (sbyte?)(sbyte)input.Value;
+                return input is null ? null : (sbyte)input.Value;
             }
         }
 

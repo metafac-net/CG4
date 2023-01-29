@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime
+namespace MetaFac.CG3.Runtime
 {
     public static class EqualityHelpers
     {

@@ -1,6 +1,7 @@
-﻿using System;
+﻿using MetaFac.CG3.Runtime.JsonPoco;
+using System;
 
-namespace MetaCode.Runtime.JsonPoco.Tests
+namespace MetaFac.CG3.Runtime.JsonPoco.Tests
 {
     internal class TestPoco : IEquatable<TestPoco>
     {
@@ -23,7 +24,7 @@ namespace MetaCode.Runtime.JsonPoco.Tests
         public override int GetHashCode()
         {
             int hash = Field1?.GetHashCode() ?? 0;
-            hash = (hash * 397) ^ Field2.GetHashCode();
+            hash = hash * 397 ^ Field2.GetHashCode();
             return hash;
         }
     }

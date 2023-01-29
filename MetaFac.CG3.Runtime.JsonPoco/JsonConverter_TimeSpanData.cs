@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MetaCode.Runtime.JsonPoco
+namespace MetaFac.CG3.Runtime.JsonPoco
 {
     public class JsonConverter_TimeSpanData : JsonConverter<TimeSpanData>
     {

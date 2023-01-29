@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime
+namespace MetaFac.CG3.Runtime
 {
     public static class CalculateHashExtensions
     {
@@ -29,7 +29,7 @@ namespace MetaCode.Runtime
                 int hash = self.Length;
                 for (int i = 0; i < self.Length; i++)
                 {
-                    hash = (hash * 397) ^ self[i];
+                    hash = hash * 397 ^ self[i];
                 }
                 return hash;
             }
@@ -45,7 +45,7 @@ namespace MetaCode.Runtime
                 int hash = span.Length;
                 for (int i = 0; i < span.Length; i++)
                 {
-                    hash = (hash * 397) ^ span[i];
+                    hash = hash * 397 ^ span[i];
                 }
                 return hash;
             }

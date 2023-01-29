@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime.GProto3
+namespace MetaFac.CG3.Runtime.GProto3
 {
     public static class Int16Helpers
     {
@@ -18,7 +18,7 @@ namespace MetaCode.Runtime.GProto3
         {
             unchecked
             {
-                return input is null ? null : (short?)(short)input.Value;
+                return input is null ? null : (short)input.Value;
             }
         }
 

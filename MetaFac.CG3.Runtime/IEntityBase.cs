@@ -1,4 +1,4 @@
-﻿namespace MetaCode.Runtime
+﻿namespace MetaFac.CG3.Runtime
 {
     public interface IEntityBase
     {

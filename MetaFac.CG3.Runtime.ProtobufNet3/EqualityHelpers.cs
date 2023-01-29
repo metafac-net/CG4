@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime.ProtobufNet3
+namespace MetaFac.CG3.Runtime.ProtobufNet3
 {
     public static class EqualityHelpers
     {

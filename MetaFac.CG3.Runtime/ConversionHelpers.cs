@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime
+namespace MetaFac.CG3.Runtime
 {
     public static class BenignCodecs
     {
@@ -86,26 +86,26 @@ namespace MetaCode.Runtime
     public static class ConversionHelpers
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static DateTime Decode_DateTime_From_UInt64(this UInt64 value)
+        public static DateTime Decode_DateTime_From_UInt64(this ulong value)
         {
             return value.DecodeToDateTime();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static DateTime? Decode_DateTime_From_UInt64(this UInt64? value, int notUsed)
+        public static DateTime? Decode_DateTime_From_UInt64(this ulong? value, int notUsed)
         {
             if (value is null) return null;
             return value.Value.DecodeToDateTime();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static UInt64 Encode_DateTime_To_UInt64(this DateTime value)
+        public static ulong Encode_DateTime_To_UInt64(this DateTime value)
         {
             return value.EncodeToInt64();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static UInt64? Encode_DateTime_To_UInt64(this DateTime? value)
+        public static ulong? Encode_DateTime_To_UInt64(this DateTime? value)
         {
             if (value is null) return null;
             return value.Value.EncodeToInt64();

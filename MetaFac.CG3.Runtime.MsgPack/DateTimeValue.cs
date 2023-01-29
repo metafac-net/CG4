@@ -1,7 +1,7 @@
 ﻿using MessagePack;
 using System;
 
-namespace MetaCode.Runtime.MsgPack
+namespace MetaFac.CG3.Runtime.MsgPack
 {
     [MessagePackObject]
     public struct DateTimeValue : IEquatable<DateTimeValue>
@@ -36,8 +36,8 @@ namespace MetaCode.Runtime.MsgPack
 
         public bool Equals(DateTimeValue other)
         {
-            return other.Ticks.Equals(this.Ticks)
-                && other.Kind.Equals(this.Kind);
+            return other.Ticks.Equals(Ticks)
+                && other.Kind.Equals(Kind);
         }
 
         public static implicit operator DateTimeValue(DateTime value)

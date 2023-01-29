@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace MetaCode.Runtime.JsonPoco
+namespace MetaFac.CG3.Runtime.JsonPoco
 {
     [JsonConverter(typeof(JsonConverter_TimeSpanData))]
     public struct TimeSpanData : IEquatable<TimeSpanData>
@@ -25,7 +25,7 @@ namespace MetaCode.Runtime.JsonPoco
 
         public bool Equals(TimeSpanData other)
         {
-            return other.Value.Equals(this.Value);
+            return other.Value.Equals(Value);
         }
 
         public static implicit operator TimeSpanData(TimeSpan value)

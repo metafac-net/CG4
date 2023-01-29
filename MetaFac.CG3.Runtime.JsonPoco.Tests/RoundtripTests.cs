@@ -1,9 +1,10 @@
 using FluentAssertions;
+using MetaFac.CG3.Runtime.JsonPoco;
 using System;
 using System.Text.Json;
 using Xunit;
 
-namespace MetaCode.Runtime.JsonPoco.Tests
+namespace MetaFac.CG3.Runtime.JsonPoco.Tests
 {
     public class RoundtripTests
     {
@@ -17,7 +18,7 @@ namespace MetaCode.Runtime.JsonPoco.Tests
         {
             TimeSpan original = new TimeSpan(ticks);
             TimeSpanData outgoing = original;
-            string json = JsonSerializer.Serialize<TimeSpanData>(outgoing);
+            string json = JsonSerializer.Serialize(outgoing);
             json.Should().Be(expectedJson);
             TimeSpanData incoming = JsonSerializer.Deserialize<TimeSpanData>(json);
             TimeSpan duplicate = incoming;
@@ -33,7 +34,7 @@ namespace MetaCode.Runtime.JsonPoco.Tests
         public void Roundtrip_PocoWithTimeSpan(long ticks)
         {
             TestPoco original = new TestPoco() { Field1 = "abc", Field2 = new TimeSpan(ticks) };
-            string json = JsonSerializer.Serialize<TestPoco>(original);
+            string json = JsonSerializer.Serialize(original);
             TestPoco? duplicate = JsonSerializer.Deserialize<TestPoco>(json);
             duplicate.Should().NotBeNull();
             duplicate.Should().Be(original);

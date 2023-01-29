@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime.JsonPoco
+namespace MetaFac.CG3.Runtime.JsonPoco
 {
     public static class ConversionHelpers
     {

@@ -1,7 +1,7 @@
 ﻿using ProtoBuf;
 using System;
 
-namespace MetaCode.Runtime.ProtobufNet3
+namespace MetaFac.CG3.Runtime.ProtobufNet3
 {
     [ProtoContract]
     public struct DateTimeData : IEquatable<DateTimeData>
@@ -30,8 +30,8 @@ namespace MetaCode.Runtime.ProtobufNet3
 
         public bool Equals(DateTimeData other)
         {
-            return other.Ticks.Equals(this.Ticks)
-                && other.Kind.Equals(this.Kind);
+            return other.Ticks.Equals(Ticks)
+                && other.Kind.Equals(Kind);
         }
 
         public static implicit operator DateTimeData(DateTime value)

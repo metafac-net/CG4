@@ -1,7 +1,8 @@
 using FluentAssertions;
+using MetaFac.CG3.Runtime.GProto3;
 using Xunit;
 
-namespace MetaCode.Runtime.GProto3.Tests
+namespace MetaFac.CG3.Runtime.GProto3.Tests
 {
     public class ShortCodecTests
     {
@@ -25,7 +26,7 @@ namespace MetaCode.Runtime.GProto3.Tests
         [InlineData(short.MaxValue, (int)short.MaxValue, short.MaxValue)]
         [InlineData((short)1, 1, (short)1)]
         [InlineData((short)0, 0, (short)0)]
-        [InlineData((short)(-1), -1, (short)(-1))]
+        [InlineData((short)-1, -1, (short)-1)]
         [InlineData(short.MinValue, (int)short.MinValue, short.MinValue)]
         public void Short_Nullable(short? outgoing, int? expectedTransit, short? expectedIncoming)
         {

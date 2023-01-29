@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace MetaCode.Runtime.MsgPack
+namespace MetaFac.CG3.Runtime.MsgPack
 {
     [MessagePackObject]
     public struct GuidValue : IEquatable<GuidValue>
@@ -83,21 +83,21 @@ namespace MetaCode.Runtime.MsgPack
             unchecked
             {
                 byte b00 = (byte)(lo & 0xFF);
-                byte b01 = (byte)((lo >> 8) & 0xFF);
-                byte b02 = (byte)((lo >> 16) & 0xFF);
-                byte b03 = (byte)((lo >> 24) & 0xFF);
-                byte b04 = (byte)((lo >> 32) & 0xFF);
-                byte b05 = (byte)((lo >> 40) & 0xFF);
-                byte b06 = (byte)((lo >> 48) & 0xFF);
-                byte b07 = (byte)((lo >> 56) & 0xFF);
+                byte b01 = (byte)(lo >> 8 & 0xFF);
+                byte b02 = (byte)(lo >> 16 & 0xFF);
+                byte b03 = (byte)(lo >> 24 & 0xFF);
+                byte b04 = (byte)(lo >> 32 & 0xFF);
+                byte b05 = (byte)(lo >> 40 & 0xFF);
+                byte b06 = (byte)(lo >> 48 & 0xFF);
+                byte b07 = (byte)(lo >> 56 & 0xFF);
                 byte b08 = (byte)(hi & 0xFF);
-                byte b09 = (byte)((hi >> 8) & 0xFF);
-                byte b10 = (byte)((hi >> 16) & 0xFF);
-                byte b11 = (byte)((hi >> 24) & 0xFF);
-                byte b12 = (byte)((hi >> 32) & 0xFF);
-                byte b13 = (byte)((hi >> 40) & 0xFF);
-                byte b14 = (byte)((hi >> 48) & 0xFF);
-                byte b15 = (byte)((hi >> 56) & 0xFF);
+                byte b09 = (byte)(hi >> 8 & 0xFF);
+                byte b10 = (byte)(hi >> 16 & 0xFF);
+                byte b11 = (byte)(hi >> 24 & 0xFF);
+                byte b12 = (byte)(hi >> 32 & 0xFF);
+                byte b13 = (byte)(hi >> 40 & 0xFF);
+                byte b14 = (byte)(hi >> 48 & 0xFF);
+                byte b15 = (byte)(hi >> 56 & 0xFF);
                 bytes = new byte[] { b00, b01, b02, b03, b04, b05, b06, b07, b08, b09, b10, b11, b12, b13, b14, b15, };
             }
             return new Guid(bytes);

@@ -1,7 +1,7 @@
 ﻿using MessagePack;
 using System;
 
-namespace MetaCode.Runtime.MsgPack
+namespace MetaFac.CG3.Runtime.MsgPack
 {
     [MessagePackObject]
     public struct DateTimeOffsetValue : IEquatable<DateTimeOffsetValue>
@@ -36,8 +36,8 @@ namespace MetaCode.Runtime.MsgPack
 
         public bool Equals(DateTimeOffsetValue other)
         {
-            return other.DateTimeTicks.Equals(this.DateTimeTicks)
-                && other.TimeSpanTicks.Equals(this.TimeSpanTicks);
+            return other.DateTimeTicks.Equals(DateTimeTicks)
+                && other.TimeSpanTicks.Equals(TimeSpanTicks);
         }
 
         public static implicit operator DateTimeOffsetValue(DateTimeOffset value)

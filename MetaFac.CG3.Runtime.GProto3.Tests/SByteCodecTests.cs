@@ -1,7 +1,8 @@
 using FluentAssertions;
+using MetaFac.CG3.Runtime.GProto3;
 using Xunit;
 
-namespace MetaCode.Runtime.GProto3.Tests
+namespace MetaFac.CG3.Runtime.GProto3.Tests
 {
     public class SByteCodecTests
     {
@@ -25,7 +26,7 @@ namespace MetaCode.Runtime.GProto3.Tests
         [InlineData(sbyte.MaxValue, (int)sbyte.MaxValue, sbyte.MaxValue)]
         [InlineData((sbyte)1, 1, (sbyte)1)]
         [InlineData((sbyte)0, 0, (sbyte)0)]
-        [InlineData((sbyte)(-1), -1, (sbyte)(-1))]
+        [InlineData((sbyte)-1, -1, (sbyte)-1)]
         [InlineData(sbyte.MinValue, (int)sbyte.MinValue, sbyte.MinValue)]
         public void SByte_Nullable(sbyte? outgoing, int? expectedTransit, sbyte? expectedIncoming)
         {
