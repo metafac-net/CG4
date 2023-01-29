@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG3.Generators\MetaCode.TS3.Generators.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Generators\MetaFac.CG3.Generators.csproj" />
   </ItemGroup>
 
 </Project>
