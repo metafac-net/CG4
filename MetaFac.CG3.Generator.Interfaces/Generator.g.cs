@@ -10,7 +10,7 @@ using System;
 using System.Linq;
 using MetaFac.CG3.Generators;
 
-namespace MetaCode.TS3.Generator.Interfaces
+namespace MetaFac.CG3.Generator.Interfaces
 {
     public partial class Generator : GeneratorBase
     {
