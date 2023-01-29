@@ -101,8 +101,8 @@ Emit("//------------------------------------------------------------------------
 Emit("#endregion");
 Emit("#nullable enable");
 Emit("using MetaFac.Memory;");
-Emit("using MetaCode.Runtime;");
-Emit("using MetaCode.Runtime.ProtobufNet3;");
+Emit("using MetaFac.CG3.Runtime;");
+Emit("using MetaFac.CG3.Runtime.ProtobufNet3;");
 Emit("using ProtoBuf;");
 Emit("using System;");
 Emit("using System.Collections.Generic;");

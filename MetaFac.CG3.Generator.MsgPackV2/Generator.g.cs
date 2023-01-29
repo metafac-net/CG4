@@ -105,8 +105,8 @@ Emit("//------------------------------------------------------------------------
 Emit("#endregion");
 Emit("#nullable enable");
 Emit("using MessagePack;");
-Emit("using MetaCode.Runtime;");
-Emit("using MetaCode.Runtime.MsgPack;");
+Emit("using MetaFac.CG3.Runtime;");
+Emit("using MetaFac.CG3.Runtime.MsgPack;");
 Emit("using System;");
 Emit("using System.Collections.Generic;");
 Emit("using System.Linq;");

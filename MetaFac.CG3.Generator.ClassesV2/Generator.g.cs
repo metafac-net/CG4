@@ -78,7 +78,7 @@ Emit("//------------------------------------------------------------------------
 Emit("#endregion");
 Emit("#nullable enable");
 Emit("using MetaFac.Mutability;");
-Emit("using MetaCode.Runtime;");
+Emit("using MetaFac.CG3.Runtime;");
 Emit("using System;");
 Emit("using System.Collections.Generic;");
 Emit("using System.Collections.Immutable;");

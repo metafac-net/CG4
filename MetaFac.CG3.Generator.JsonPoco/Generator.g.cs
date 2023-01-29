@@ -99,8 +99,8 @@ Emit("//------------------------------------------------------------------------
 Emit("#endregion");
 Emit("#nullable enable");
 Emit("using MetaFac.Memory;");
-Emit("using MetaCode.Runtime;");
-Emit("using MetaCode.Runtime.JsonPoco;");
+Emit("using MetaFac.CG3.Runtime;");
+Emit("using MetaFac.CG3.Runtime.JsonPoco;");
 Emit("using System;");
 Emit("using System.Collections.Generic;");
 Emit("using System.Linq;");

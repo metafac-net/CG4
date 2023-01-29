@@ -80,7 +80,7 @@ Emit("#nullable enable");
 Emit("using MetaFac.Collections.Freezables;");
 Emit("using MetaFac.Mutability;");
 Emit("using MetaFac.Memory;");
-Emit("using MetaCode.Runtime;");
+Emit("using MetaFac.CG3.Runtime;");
 Emit("using System;");
 Emit("using System.Collections.Generic;");
 Emit("using System.Linq;");
