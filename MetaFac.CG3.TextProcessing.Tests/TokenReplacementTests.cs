@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace MetaCode.TextProcessing.Tests
+namespace MetaFac.CG3.TextProcessing.UnitTests
 {
     public class TokenReplacementTests
     {

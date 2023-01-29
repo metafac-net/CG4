@@ -4,7 +4,7 @@ using System.Collections.Immutable;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MetaCode.TextProcessing
+namespace MetaFac.CG3.TextProcessing
 {
     public class NotEncryptedTextCache : IEncryptedTextCache
     {
@@ -28,7 +28,7 @@ namespace MetaCode.TextProcessing
                 var inputBuffer = Encoding.Unicode.GetBytes(text);
                 Guid hash = new Guid(hasher.ComputeHash(inputBuffer));
                 if (_cache.TryGetValue(hash, out var _)) return hash;
-                ImmutableInterlocked.TryAdd(ref _cache, hash, inputBuffer.ToImmutableArray<byte>());
+                ImmutableInterlocked.TryAdd(ref _cache, hash, inputBuffer.ToImmutableArray());
                 return hash;
             }
         }

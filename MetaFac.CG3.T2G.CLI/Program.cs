@@ -1,4 +1,4 @@
-﻿using MetaCode.TextProcessing;
+﻿using MetaFac.CG3.TextProcessing;
 using MetaFac.Platform;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MetaCode.CLI
+namespace MetaFac.CG3.T2G.CLI
 {
     static class Program
     {

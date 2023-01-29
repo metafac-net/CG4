@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Xunit;
 
-namespace MetaCode.TextProcessing.Tests
+namespace MetaFac.CG3.TextProcessing.UnitTests
 {
     public class EncryptedTextTests
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetaCode.TextProcessing.Tests
+namespace MetaFac.CG3.TextProcessing.UnitTests
 {
     public readonly struct TextSpan
     {

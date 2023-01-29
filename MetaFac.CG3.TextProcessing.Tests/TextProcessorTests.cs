@@ -2,7 +2,7 @@ using FluentAssertions;
 using System.Linq;
 using Xunit;
 
-namespace MetaCode.TextProcessing.Tests
+namespace MetaFac.CG3.TextProcessing.UnitTests
 {
     public class TextProcessorTests
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 
-namespace MetaCode.TextProcessing
+namespace MetaFac.CG3.TextProcessing
 {
     public interface IEncryptedTextCache : IDisposable
     {
