@@ -52,9 +52,7 @@
     <ProjectReference Include="..\MetaFac.CG3.Generator.Immutables\MetaFac.CG3.Generator.Immutables.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.Interfaces\MetaFac.CG3.Generator.Interfaces.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.JsonPoco\MetaFac.CG3.Generator.JsonPoco.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generator.MsgPackV2\MetaFac.CG3.Generator.MsgPackV2.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generator.MsgPackV3\MetaFac.CG3.Generator.MsgPackV3.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generator.MsgPack\MetaFac.CG3.Generator.MsgPack.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Generator.MessagePack\MetaFac.CG3.Generator.MsgPackV3.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.ProtobufNet3\MetaFac.CG3.Generator.ProtobufNet3.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.RecordsV2\MetaFac.CG3.Generator.RecordsV2.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.Records\MetaFac.CG3.Generator.Records.csproj" />

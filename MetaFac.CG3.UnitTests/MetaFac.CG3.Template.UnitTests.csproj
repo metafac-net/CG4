@@ -28,9 +28,8 @@
     <ProjectReference Include="..\MetaFac.CG3.Template.Immutables\MetaFac.CG3.Template.Immutables.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Template.Interfaces\MetaFac.CG3.Template.Interfaces.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Template.JsonPoco\MetaFac.CG3.Template.JsonPoco.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Template.MsgPackV2\MetaFac.CG3.Template.MsgPackV2.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Template.MsgPackV3\MetaFac.CG3.Template.MsgPackV3.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Template.MsgPack\MetaFac.CG3.Template.MsgPack.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.MessagePack\MetaFac.CG3.Template.MsgPackV3.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Template.ProtobufNet3\MetaFac.CG3.Template.ProtobufNet3.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Template.RecordsV2\MetaFac.CG3.Template.RecordsV2.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Template.Records\MetaFac.CG3.Template.Records.csproj" />
   </ItemGroup>

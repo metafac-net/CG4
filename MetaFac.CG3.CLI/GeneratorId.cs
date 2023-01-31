@@ -8,7 +8,6 @@
         Interfaces,
         Freezables,
         Immutables,
-        MsgPack,
         JsonPoco,
         ProtobufNet3,
         Records,
@@ -27,11 +26,6 @@
         /// C# immutable records (requires C# V8.0+).
         /// </summary>
         RecordsV2,
-
-        /// <summary>
-        /// C# mutable DTO classes for MessagePack.
-        /// </summary>
-        MsgPackV2,
 
         /// <summary>
         /// C# immutable DTO classes for MessagePack.
