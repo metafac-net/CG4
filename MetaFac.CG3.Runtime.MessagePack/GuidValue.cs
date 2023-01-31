@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace MetaFac.CG3.Runtime.MsgPack
+namespace MetaFac.CG3.Runtime.MessagePack
 {
     [MessagePackObject]
     public struct GuidValue : IEquatable<GuidValue>

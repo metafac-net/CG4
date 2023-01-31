@@ -44,7 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG3.Runtime.MessagePack\MetaFac.CG3.Runtime.MsgPack.csproj" />
+    <ProjectReference Include="..\MetaFac.CG3.Runtime.MessagePack\MetaFac.CG3.Runtime.MessagePack.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Template.Contracts\MetaFac.CG3.Template.Contracts.csproj" />
   </ItemGroup>
 

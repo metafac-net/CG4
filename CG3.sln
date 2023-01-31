@@ -80,11 +80,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.ModelReader", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.ModelReader.Tests", "MetaFac.CG3.ModelReader.Tests\MetaFac.CG3.ModelReader.Tests.csproj", "{814A6627-9A4A-4A8C-9077-7841693253F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Generator.MsgPackV3", "MetaFac.CG3.Generator.MessagePack\MetaFac.CG3.Generator.MsgPackV3.csproj", "{C8B6422E-C964-4892-AAC9-1AB3CEC2CBC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Generator.MessagePack", "MetaFac.CG3.Generator.MessagePack\MetaFac.CG3.Generator.MessagePack.csproj", "{C8B6422E-C964-4892-AAC9-1AB3CEC2CBC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.MsgPack", "MetaFac.CG3.Runtime.MessagePack\MetaFac.CG3.Runtime.MsgPack.csproj", "{D6D6B6F5-F8A7-4124-B811-523D415DD563}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Runtime.MessagePack", "MetaFac.CG3.Runtime.MessagePack\MetaFac.CG3.Runtime.MessagePack.csproj", "{D6D6B6F5-F8A7-4124-B811-523D415DD563}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Template.MsgPackV3", "MetaFac.CG3.Template.MessagePack\MetaFac.CG3.Template.MsgPackV3.csproj", "{50271521-A85A-4244-8F3A-F7412952EE18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Template.MessagePack", "MetaFac.CG3.Template.MessagePack\MetaFac.CG3.Template.MessagePack.csproj", "{50271521-A85A-4244-8F3A-F7412952EE18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

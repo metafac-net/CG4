@@ -4,7 +4,7 @@ using MetaFac.CG3.Runtime;
 using System;
 using System.Collections.Immutable;
 using T_Namespace_.Contracts;
-using T_Namespace_.MsgPackV3;
+using T_Namespace_.MessagePack;
 using Xunit;
 
 namespace MetaFac.CG3.Template.UnitTests
@@ -12,7 +12,7 @@ namespace MetaFac.CG3.Template.UnitTests
     using T_ExternalOtherType_ = Int64;
     using T_IndexType_ = String;
 
-    public class MsgPackV3Tests
+    public class MessagePackTests
     {
         [Fact]
         public void ImmutableBufferRoundtrip()

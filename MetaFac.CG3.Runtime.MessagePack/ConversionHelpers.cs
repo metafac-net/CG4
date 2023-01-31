@@ -1,7 +1,8 @@
-﻿using System;
+﻿using MetaFac.CG3.Runtime.MessagePack;
+using System;
 using System.Runtime.CompilerServices;
 
-namespace MetaFac.CG3.Runtime.MsgPack
+namespace MetaFac.CG3.Runtime.MessagePack
 {
     public static class ConversionHelpers
     {

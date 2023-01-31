@@ -30,7 +30,7 @@
         /// <summary>
         /// C# immutable DTO classes for MessagePack.
         /// </summary>
-        MsgPackV3,
+        MessagePack,
 
     }
 }

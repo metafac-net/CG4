@@ -96,7 +96,7 @@
 using MetaFac.Mutability;
 using MessagePack;
 using MetaFac.CG3.Runtime;
-using MetaFac.CG3.Runtime.MsgPack;
+using MetaFac.CG3.Runtime.MessagePack;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -104,7 +104,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using T_Namespace_.Contracts;
 
-namespace T_Namespace_.MsgPackV3
+namespace T_Namespace_.MessagePack
 {
     //>>using (Ignored()) {
     using T_ConcreteOtherType_ = System.Int64;

@@ -10,11 +10,11 @@ using System;
 using System.Linq;
 using MetaFac.CG3.Generators;
 
-namespace MetaFac.CG3.Generator.MsgPackV3
+namespace MetaFac.CG3.Generator.MessagePack
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaFac.CG3.MsgPackV3") { }
+        public Generator() : base("MetaFac.CG3.MessagePack") { }
         protected override void OnGenerate(TemplateScope outerScope)
         {
 // |metacode:generator_body|
@@ -108,7 +108,7 @@ Emit("#nullable enable");
 Emit("using MetaFac.Mutability;");
 Emit("using MessagePack;");
 Emit("using MetaFac.CG3.Runtime;");
-Emit("using MetaFac.CG3.Runtime.MsgPack;");
+Emit("using MetaFac.CG3.Runtime.MessagePack;");
 Emit("using System;");
 Emit("using System.Collections.Generic;");
 Emit("using System.Collections.Immutable;");
@@ -116,7 +116,7 @@ Emit("using System.Linq;");
 Emit("using System.Runtime.CompilerServices;");
 Emit("using T_Namespace_.Contracts;");
 Emit("");
-Emit("namespace T_Namespace_.MsgPackV3");
+Emit("namespace T_Namespace_.MessagePack");
 Emit("{");
     using (Ignored()) {
 Emit("    using T_ConcreteOtherType_ = System.Int64;");

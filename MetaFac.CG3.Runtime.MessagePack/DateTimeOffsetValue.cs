@@ -1,7 +1,7 @@
 ﻿using MessagePack;
 using System;
 
-namespace MetaFac.CG3.Runtime.MsgPack
+namespace MetaFac.CG3.Runtime.MessagePack
 {
     [MessagePackObject]
     public struct DateTimeOffsetValue : IEquatable<DateTimeOffsetValue>

@@ -47,7 +47,7 @@ namespace MetaFac.CG3.CLI
                 GeneratorId.Records => new MetaFac.CG3.Generator.Records.Generator(),
                 GeneratorId.Contracts => new MetaFac.CG3.Generator.Contracts.Generator(),
                 GeneratorId.RecordsV2 => new MetaFac.CG3.Generator.RecordsV2.Generator(),
-                GeneratorId.MsgPackV3 => new MetaFac.CG3.Generator.MsgPackV3.Generator(),
+                GeneratorId.MessagePack => new MetaFac.CG3.Generator.MessagePack.Generator(),
                 GeneratorId.ClassesV2 => new MetaFac.CG3.Generator.ClassesV2.Generator(),
                 _ => throw new NotSupportedException($"GeneratorId: {generatorId}"),
             };
