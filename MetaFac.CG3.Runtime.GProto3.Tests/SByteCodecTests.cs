@@ -1,5 +1,4 @@
 using FluentAssertions;
-using MetaFac.CG3.Runtime.GProto3;
 using Xunit;
 
 namespace MetaFac.CG3.Runtime.GProto3.Tests

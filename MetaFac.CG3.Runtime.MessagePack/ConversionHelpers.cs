@@ -1,5 +1,4 @@
-﻿using MetaFac.CG3.Runtime.MessagePack;
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 
 namespace MetaFac.CG3.Runtime.MessagePack

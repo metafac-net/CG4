@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using MetaFac.CG3.Runtime;
 using Xunit;
 
 namespace MetaFac.CG3.Runtime.Tests

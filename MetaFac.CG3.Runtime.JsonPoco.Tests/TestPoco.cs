@@ -1,5 +1,4 @@
-﻿using MetaFac.CG3.Runtime.JsonPoco;
-using System;
+﻿using System;
 
 namespace MetaFac.CG3.Runtime.JsonPoco.Tests
 {

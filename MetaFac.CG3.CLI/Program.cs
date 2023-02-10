@@ -1,16 +1,7 @@
-﻿using MetaFac.CG3.Generators;
-using MetaFac.CG3.ModelReader;
-using MetaFac.CG3.TextProcessing;
-using MetaFac.Platform;
+﻿using MetaFac.Platform;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
-using MiniCLI;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MetaFac.CG3.CLI
