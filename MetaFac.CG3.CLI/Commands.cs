@@ -2,8 +2,8 @@
 using MetaFac.CG3.ModelReader;
 using MetaFac.CG3.TextProcessing;
 using MetaFac.Platform;
+using MetaFac.TinyCLI;
 using Microsoft.Extensions.Logging;
-using MiniCLI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
