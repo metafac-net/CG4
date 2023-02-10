@@ -1,7 +1,9 @@
-﻿namespace MetaFac.CG3.ModelReader
+﻿using System;
+
+namespace MetaFac.CG3.ModelReader
 {
 
-    public class ValidationException : MetaCodeException
+    public class ValidationException : Exception
     {
         public ValidationException(ValidationError error) : base(error.Message)
         {

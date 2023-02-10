@@ -10,15 +10,6 @@ using System.Reflection;
 
 namespace MetaFac.CG3.Generators
 {
-    public sealed class MetaCodeOptions
-    {
-        public MetaCodeOptions() { }
-
-        public MetaCodeOptions(MetaCodeOptions? source)
-        {
-            if (source is null) return;
-        }
-    }
     public static class GeneratorHelper
     {
         public static GeneratorBase GetGeneratorByName(string name, GeneratorBase[] generators)
@@ -60,10 +51,10 @@ namespace MetaFac.CG3.Generators
             string outputNamespace,
             string filenamePrefix,
             string copyrightInfo,
-            MetaCodeOptions? usersOptions,
+            GeneratorOptions? usersOptions,
             params GeneratorBase[] generators)
         {
-            var options = new MetaCodeOptions(usersOptions);
+            var options = new GeneratorOptions(usersOptions);
             string fileVersion = FileVersionInfo.GetVersionInfo(typeof(GeneratorHelper).Assembly.Location).FileVersion ?? "unknown";
             using var scope1 = logger.BeginScope(nameof(GeneratorHelper));
 

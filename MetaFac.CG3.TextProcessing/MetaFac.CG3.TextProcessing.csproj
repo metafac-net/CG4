@@ -15,7 +15,7 @@
     <Copyright>Copyright (c) 2020-2023 MetaFac</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
-    <PackageTags>MetaCode, meta-programming, model-first, code-first, template engine</PackageTags>
+    <PackageTags>MetaFac, CG3, meta-programming, model-first, code-first, template engine</PackageTags>
     <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG3</RepositoryUrl>
     <Description>Bi-directional text processor</Description>
     <SignAssembly>true</SignAssembly>

@@ -99,7 +99,7 @@ namespace MetaFac.CG3.Generators
         /// or
         /// options
         /// </exception>
-        public IEnumerable<string> Generate(ILogger logger, ITimeOfDayClock clock, TemplateScope metadata, MetaCodeOptions? usersOptions)
+        public IEnumerable<string> Generate(ILogger logger, ITimeOfDayClock clock, TemplateScope metadata, GeneratorOptions? usersOptions)
         {
             if (metadata is null) throw new ArgumentNullException(nameof(metadata));
 

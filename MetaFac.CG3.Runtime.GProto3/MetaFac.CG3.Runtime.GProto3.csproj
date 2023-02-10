@@ -17,7 +17,7 @@
     <Copyright>Copyright (c) 2020-2023 MetaFac</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
-    <PackageTags>MetaCode runtime</PackageTags>
+    <PackageTags>MetaFac CG3 runtime</PackageTags>
     <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG3</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <Description>Runtime helpers for generated code to use Google Protobuf (not Protobuf-Net) serialization.</Description>
