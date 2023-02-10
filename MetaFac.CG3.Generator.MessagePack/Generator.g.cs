@@ -9,7 +9,6 @@
 using System;
 using System.Linq;
 using MetaFac.CG3.Generators;
-
 namespace MetaFac.CG3.Generator.MessagePack
 {
     public partial class Generator : GeneratorBase

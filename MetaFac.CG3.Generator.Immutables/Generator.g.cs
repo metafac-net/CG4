@@ -9,7 +9,6 @@
 using System;
 using System.Linq;
 using MetaFac.CG3.Generators;
-
 namespace MetaFac.CG3.Generator.Immutables
 {
     public partial class Generator : GeneratorBase
