@@ -81,7 +81,7 @@
 // Metadata : T_MetadataSource_ T_MetadataVersion_
 //
 // For more information about using this tool, the help command is:
-// mcts3 g2c --help
+// mfcg3 g2c --help
 //
 // To download and install the tool, the .NET CLI command is:
 // dotnet tool install --global MetaFac.CG3.CLI

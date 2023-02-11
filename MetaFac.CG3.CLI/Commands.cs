@@ -54,12 +54,10 @@ namespace MetaFac.CG3.CLI
             return generator;
         }
 
-        private readonly ILogger logger;
         private readonly ITimeOfDayClock clock;
 
-        public Commands(ILogger logger, ITimeOfDayClock clock) : base("MFCG3", "MetaFac Code Generator 3 (CG3)")
+        public Commands(ITimeOfDayClock clock) : base("MFCG3", "MetaFac Code Generator 3 (CG3)")
         {
-            this.logger = logger;
             this.clock = clock;
 
             AddCommand("t2g", "Converts a template to a code generator",
@@ -105,16 +103,14 @@ namespace MetaFac.CG3.CLI
             string generatorNamespace,
             string generatorShortname)
         {
-            if (logger is null) throw new ArgumentNullException(nameof(logger));
-
             // get relative paths
             string currentPath = Directory.GetCurrentDirectory();
             string templateRelPath = Path.GetRelativePath(currentPath, templateFilename);
             string generatorRelPath = Path.GetRelativePath(currentPath, generatorFilename);
 
-            logger.LogInformation("  Current path: {value}", currentPath);
-            logger.LogInformation(" Template file: {value}", templateRelPath);
-            logger.LogInformation("Generator file: {value}", generatorRelPath);
+            Logger.LogInformation("  Current path: {value}", currentPath);
+            Logger.LogInformation(" Template file: {value}", templateRelPath);
+            Logger.LogInformation("Generator file: {value}", generatorRelPath);
 
             var sourceLines = ReadLines(templateRelPath);
             var outputLines = TextProcessor.ConvertTemplateToGenerator(
@@ -175,26 +171,26 @@ namespace MetaFac.CG3.CLI
 
             // good to go
             string fileVersion = ThisAssembly.AssemblyFileVersion;
-            logger.LogInformation($"  Source: {metadataSource} ({sourceNamespace ?? "*"})");
-            logger.LogInformation($"  Output: {outputFilename}");
+            Logger.LogInformation($"  Source: {metadataSource} ({sourceNamespace ?? "*"})");
+            Logger.LogInformation($"  Output: {outputFilename}");
 
             // validate metadata before generation
             var validationResult = new ModelValidator().Validate(metadata, ValidationErrorHandling.Default);
             if (validationResult.HasErrors)
             {
-                logger.LogError($"  Metadata errors:");
+                Logger.LogError($"  Metadata errors:");
                 foreach (var ve in validationResult.Errors)
                 {
-                    logger.LogError($"    {ve.ErrorCode}: {ve.Message}");
+                    Logger.LogError($"    {ve.ErrorCode}: {ve.Message}");
                 }
                 return 1;
             }
             if (validationResult.HasWarnings)
             {
-                logger.LogWarning($"  Metadata warnings:");
+                Logger.LogWarning($"  Metadata warnings:");
                 foreach (var ve in validationResult.Warnings)
                 {
-                    logger.LogWarning($"    {ve.ErrorCode}: {ve.Message}");
+                    Logger.LogWarning($"    {ve.ErrorCode}: {ve.Message}");
                 }
             }
 
@@ -207,24 +203,24 @@ namespace MetaFac.CG3.CLI
                 ;
             if (proxyDefs.Count > 0)
             {
-                logger.LogInformation($"  Proxy definitions:");
+                Logger.LogInformation($"  Proxy definitions:");
                 foreach (var pd in proxyDefs)
                 {
-                    logger.LogInformation($"    {pd.ProxyTypeName}={pd.ExternalTypeName},{pd.ConcreteTypeName}");
+                    Logger.LogInformation($"    {pd.ProxyTypeName}={pd.ExternalTypeName},{pd.ConcreteTypeName}");
                     outerScope = outerScope.SetProxyTypeTokens(pd);
                 }
             }
 
             // generate!
-            logger.LogInformation($"  Generating...");
-            var outputText = generator.Generate(logger, clock, outerScope, null).ToArray();
+            Logger.LogInformation($"  Generating...");
+            var outputText = generator.Generate(Logger, clock, outerScope, null).ToArray();
             using var sw = new StreamWriter(outputFilename);
             foreach (var line in outputText)
             {
                 sw.WriteLine(line);
             }
 
-            logger.LogInformation($"  Complete.");
+            Logger.LogInformation($"  Complete.");
 
             await Task.Delay(0);
             return 0;

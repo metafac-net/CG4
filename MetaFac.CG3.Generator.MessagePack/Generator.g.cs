@@ -96,7 +96,7 @@ Emit("// Generator: T_GeneratorId_ T_GeneratorVersion_");
 Emit("// Metadata : T_MetadataSource_ T_MetadataVersion_");
 Emit("//");
 Emit("// For more information about using this tool, the help command is:");
-Emit("// mcts3 g2c --help");
+Emit("// mfcg3 g2c --help");
 Emit("//");
 Emit("// To download and install the tool, the .NET CLI command is:");
 Emit("// dotnet tool install --global MetaFac.CG3.CLI");
