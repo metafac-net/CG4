@@ -4,9 +4,6 @@ using MetaFac.CG3.Schemas;
 
 namespace MetaFac.CG3.ModelReader.Tests.TestModel
 {
-    [Proxy("LabApps.Units.Quantity", "QuantityValue")]
-    public struct Quantity { }
-
     [Entity(1)]
     public class BuiltinTypes
     {
@@ -29,6 +26,36 @@ namespace MetaFac.CG3.ModelReader.Tests.TestModel
         [Member(17)] public Guid[]? Guids { get; set; }
         [Member(18)] public String[]? Strings { get; set; }
         [Member(19)] public Octets[]? Buffers { get; set; }
-        [Member(20)] public Quantity[]? Quantities { get; set; }
+    }
+
+    [Proxy("LabApps.Units.Quantity", "QuantityValue")]
+    public struct Quantity { }
+
+    [Entity(2)]
+    public class ExternalTypes
+    {
+        [Member(1)] public Quantity[]? Quantities { get; set; }
+    }
+
+    public enum MyCustomEnum
+    {
+        DefaultValue,
+        FirstValue,
+        SomeValue,
+        LastValue,
+    }
+
+    //[Proxy(nameof(MyEnumKind), "MyEnumValue")]
+    //public struct MyEnum { }
+
+    [Proxy("System.DateTimeKind", "MyDateTimeKindValue")]
+    public struct MyDateTimeKind { }
+
+    [Entity(3)]
+    public class EnumeratorTypes
+    {
+        [Member(1)] public DayOfWeek[]? DaysOfWeek { get; set; }
+        [Member(2)] public MyCustomEnum[]? MyCustomEnums { get; set; }
+        [Member(3)] public MyDateTimeKind[]? MyDateTimeKinds { get; set; }
     }
 }

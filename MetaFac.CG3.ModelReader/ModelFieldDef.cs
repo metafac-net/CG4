@@ -72,12 +72,7 @@ namespace MetaFac.CG3.ModelReader
         {
             if (ProxyDef is not null)
             {
-                if (ProxyDef.HasNames)
-                {
-                    writer.WriteLine($"    [Proxy(\"{ProxyDef.ExternalName}\", \"{ProxyDef.ConcreteName}\")]");
-                }
-                else
-                    writer.WriteLine($"    [Proxy]");
+                writer.WriteLine($"    [Proxy(\"{ProxyDef.ExternalName}\", \"{ProxyDef.ConcreteName}\")]");
             }
             if (Tokens.Count > 0)
                 writer.WriteLine($"    [{string.Join(",", Tokens.Select(t => $"{t.Key}={t.Value}"))}]");

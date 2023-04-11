@@ -27,27 +27,25 @@ namespace MetaFac.CG3.ModelReader
                 int? entityTag = null;
                 foreach (Attribute attr in typeInfo.GetCustomAttributes(false))
                 {
-                    if (attr is ExcludeAttribute excludeAttribute)
-                    {
-                        exclude = true;
-                    }
-
-                    if (attr is ProxyAttribute pa)
-                    {
-                        proxyAttr = pa;
-                    }
                     if (attr is EntityAttribute tagAttribute)
                     {
                         entityTag = tagAttribute.Tag;
                     }
-
+                    else if (attr is ProxyAttribute pa)
+                    {
+                        proxyAttr = pa;
+                    }
+                    else if (attr is ExcludeAttribute excludeAttribute)
+                    {
+                        exclude = true;
+                    }
                 }
                 if (!exclude)
                 {
                     if (proxyAttr is not null)
                     {
                         string typeName = typeInfo.Name;
-                        proxyTypes.Add(typeName, new ProxyTypeInfo(proxyAttr.HasNames, proxyAttr.ExternalName, proxyAttr.ConcreteName));
+                        proxyTypes.Add(typeName, new ProxyTypeInfo(proxyAttr.ExternalName, proxyAttr.ConcreteName));
                     }
                     else if (typeInfo.IsClass && entityTag.HasValue)
                     {
@@ -367,7 +365,7 @@ namespace MetaFac.CG3.ModelReader
                         && proxyTypes.TryGetValue(innerTypeName, out var pd)
                         && pd is not null)
                     {
-                        proxyDef = new ModelProxyDef(pd.HasNames, pd.ExternalName, pd.ConcreteName);
+                        proxyDef = new ModelProxyDef(pd.ExternalName, pd.ConcreteName);
                     }
                     var fieldDef = new ModelFieldDef(
                         fieldName, fieldTag, innerTypeName, fieldInfo.nullable,
