@@ -20,23 +20,11 @@ namespace MetaFac.CG3.Generators
             _shortName = shortName;
         }
 
-        private IEncryptedTextCache? _etc = null;
-
         protected void Emit(string encodedOutput)
         {
             if (!_engine.Current.Ignored)
             {
                 string templateLine = encodedOutput;
-                if (_etc is null || _etc.IsNonEncrypting)
-                {
-                    // not encrypted
-                }
-                else
-                {
-                    // encrypted
-                    Guid hash = Guid.Parse(encodedOutput);
-                    templateLine = _etc.GetText(hash);
-                }
                 string? replacedLine = _engine.Current.ReplaceTokens(templateLine);
                 _output.Add(replacedLine ?? "");
             }
@@ -106,15 +94,7 @@ namespace MetaFac.CG3.Generators
             using var etc = new NotEncryptedTextCache();
             using (NewScope(metadata))
             {
-                _etc = etc;
-                try
-                {
-                    OnGenerate(metadata);
-                }
-                finally
-                {
-                    _etc = null;
-                }
+                OnGenerate(metadata);
                 foreach (var line in _output)
                 {
                     yield return line;

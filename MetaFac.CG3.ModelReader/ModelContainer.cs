@@ -70,10 +70,11 @@ namespace MetaFac.CG3.ModelReader
             return hashCode;
         }
 
-        public string ToJson()
+        public string ToJson(bool writeIndented = false)
         {
             var md = new JsonMetadata(this);
-            return JsonSerializer.Serialize(md);
+            var options = new JsonSerializerOptions() { WriteIndented = writeIndented };
+            return JsonSerializer.Serialize(md, options);
         }
 
         public static ModelContainer FromJson(string? json)

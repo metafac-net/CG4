@@ -96,5 +96,86 @@ namespace MetaFac.CG3.Generators
                 WriteLines(output, outputFilename);
             }
         }
+
+        /// <summary>
+        /// A helper method to aid generating multiple outputs from a single model source.
+        /// </summary>
+        /// <param name="logger">The event logger.</param>
+        /// <param name="modelAnchorType">An anchor type in the model used to find all other model types.</param>
+        /// <param name="outputNamespace">The output namespace for the generated source files.</param>
+        /// <param name="filenamePrefix">The filename prefix for the generated source files.</param>
+        /// <param name="usersOptions">The optional users' options.</param>
+        /// <param name="generators">The generators to be run in the order given.</param>
+        public static void GenerateSourceFiles(
+            ILogger logger,
+            ITimeOfDayClock clock,
+            Type modelAnchorType,
+            string outputNamespace,
+            string outputFilenamePrefix,
+            GeneratorOptions? usersOptions,
+            params GeneratorBase[] generators)
+        {
+            if (string.IsNullOrWhiteSpace(outputNamespace))
+            {
+                throw new ArgumentException($"'{nameof(outputNamespace)}' cannot be null or whitespace.", nameof(outputNamespace));
+            }
+
+            if (string.IsNullOrWhiteSpace(outputFilenamePrefix))
+            {
+                throw new ArgumentException($"'{nameof(outputFilenamePrefix)}' cannot be null or whitespace.", nameof(outputFilenamePrefix));
+            }
+
+            var options = new GeneratorOptions(usersOptions);
+            string fileVersion = FileVersionInfo.GetVersionInfo(typeof(GeneratorHelper).Assembly.Location).FileVersion ?? "unknown";
+            using var scope1 = logger.BeginScope(nameof(GeneratorHelper));
+
+            Assembly modelAssembly = modelAnchorType.Assembly;
+            string modelNamespace = modelAnchorType.Namespace ?? "Unknown_Namespace";
+            logger.LogInformation("Generator version: {version}", fileVersion);
+            logger.LogInformation("Model source     : {modelAssembly} ({modelNamespace})", modelAssembly.GetName().Name, modelNamespace);
+            var metadata = ModelParser.ParseAssembly(modelAssembly, modelNamespace);
+            string metadataSource = Path.GetFileName(modelAssembly.Location);
+            string metadataVersion = $"(version {FileVersionInfo.GetVersionInfo(modelAssembly.Location).FileVersion})";
+
+            // validate metadata
+            var validationResult = new ModelValidator().Validate(metadata, ValidationErrorHandling.ThrowOnFirst);
+            if (validationResult.HasWarnings)
+            {
+                using (var scope2 = logger.BeginScope("Metadata warnings"))
+                {
+                    foreach (var ve in validationResult.Warnings)
+                    {
+                        logger.LogWarning("{errorCode} {errorMessage}", ve.ErrorCode, ve.Message);
+                    }
+                }
+            }
+
+            var outerScope = metadata.GetScopeFromMetadata()
+                .SetToken("Namespace", outputNamespace)
+                .SetToken("MetadataSource", metadataSource)
+                .SetToken("MetadataVersion", metadataVersion);
+            if (options.CopyrightInfo is not null)
+            {
+                outerScope = outerScope.SetToken("CopyrightInfo", options.CopyrightInfo);
+            }
+            foreach (var generator in generators)
+            {
+                string outputFilename = $"{outputFilenamePrefix}.{generator.ShortName}.g.cs";
+                logger.LogInformation("Output filename  : {filename}", outputFilename);
+                string generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "unknown";
+                var innerScope = outerScope
+                    .SetToken("GeneratorId", generator.GetType().FullName ?? "Unknown_Generator")
+                    .SetToken("GeneratorVersion", $"(version {generatorVersion})");
+                var source = generator.Generate(logger, clock, innerScope, options).ToList();
+                WriteLines(source, outputFilename);
+            }
+            if (options.EmitModelAsJson)
+            {
+                string outputFilename = $"{outputFilenamePrefix}.models.json";
+                var output = metadata.ToJson(true);
+                using var sw = new StreamWriter(outputFilename);
+                sw.WriteLine(output);
+            }
+        }
     }
 }

@@ -8,6 +8,29 @@ namespace MetaFac.CG3.ModelReader.Tests
     public class ModelReaderTests
     {
         [Fact]
+        public void RoundtripModelViaJson()
+        {
+            // arrange
+            string ns = typeof(TestModel.BuiltinTypes).Namespace!;
+            ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
+            metadata.Tokens.Count.Should().Be(0);
+            metadata.ModelDefs.Count.Should().Be(1);
+            string originalJson = metadata.ToJson(true);
+
+            // act
+            var metadata2 = ModelContainer.FromJson(originalJson);
+
+            // assert
+            metadata2.Should().Be(metadata);
+
+            // act again
+            string duplicateJson = metadata2.ToJson(true);
+
+            // assert
+            duplicateJson.Should().Be(originalJson);
+        }
+
+        [Fact]
         public void ReadBuiltinTypes()
         {
             string ns = typeof(TestModel.BuiltinTypes).Namespace!;

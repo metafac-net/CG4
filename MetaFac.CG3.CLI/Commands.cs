@@ -71,9 +71,10 @@ namespace MetaFac.CG3.CLI
                 new Arg<string>("jm", "json-metadata", "The metadata file (JSON) to process.", s => s, ""),
                 new Arg<string>("am", "assm-metadata", "The metadata file (DLL) to process.", s => s, ""),
                 new Arg<string>("an", "assm-namespace", "The namespace within the assembly to search.", s => s, ""),
-                new Arg<string>("g", "generator", $"The id of the generator: {string.Join(',', GetGeneratorIds())}", s => s),
+                new Arg<string>("g", "generator", $"The id of the generator: {string.Join(", ", GetGeneratorIds())}", s => s),
                 new Arg<string>("o", "output-filename", "The implementation file to create.", s => s),
                 new Arg<string>("on", "output-namespace", "The target namespace for the output.", s => s),
+                new Arg<string>("oj", "output-json", "The metadata file (JSON) to emit.", s => s, ""),
                 g2cHandler);
         }
 
@@ -122,7 +123,8 @@ namespace MetaFac.CG3.CLI
 
         internal async ValueTask<int> g2cHandler(
             string jsonFilename, string assmFilename, string assmNamespace,
-            string generatorName, string outputFilename, string outputNamespace)
+            string generatorName, string outputCodeFilename, string outputNamespace,
+            string outputJsonFilename)
         {
             string metadataSource;
             string metadataVersion;
@@ -172,7 +174,7 @@ namespace MetaFac.CG3.CLI
             // good to go
             string fileVersion = ThisAssembly.AssemblyFileVersion;
             Logger.LogInformation($"  Source: {metadataSource} ({sourceNamespace ?? "*"})");
-            Logger.LogInformation($"  Output: {outputFilename}");
+            Logger.LogInformation($"  Output: {outputCodeFilename}");
 
             // validate metadata before generation
             var validationResult = new ModelValidator().Validate(metadata, ValidationErrorHandling.Default);
@@ -214,10 +216,15 @@ namespace MetaFac.CG3.CLI
             // generate!
             Logger.LogInformation($"  Generating...");
             var outputText = generator.Generate(Logger, clock, outerScope, null).ToArray();
-            using var sw = new StreamWriter(outputFilename);
+            using var csw = new StreamWriter(outputCodeFilename);
             foreach (var line in outputText)
             {
-                sw.WriteLine(line);
+                csw.WriteLine(line);
+            }
+            if (!string.IsNullOrEmpty(outputJsonFilename))
+            {
+                using var jsw = new StreamWriter(outputJsonFilename);
+                jsw.WriteLine(metadata.ToJson(true));
             }
 
             Logger.LogInformation($"  Complete.");
