@@ -17,7 +17,7 @@
     <Copyright>Copyright (c) 2020-2023 MetaFac</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
-    <PackageTags>MetaFac, CG3, meta-programming, model-first, code-first, template engine</PackageTags>
+    <PackageTags>MetaFac, CG3, meta-programming, source-generator, model-first, code-first, template engine</PackageTags>
     <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG3</RepositoryUrl>
     <Description>Converts templates into generators, and with schemas, generates code.</Description>
     <PackageId>MetaFac.CG3.CLI</PackageId>

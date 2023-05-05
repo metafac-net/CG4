@@ -10,7 +10,7 @@
     <Product>CG3</Product>
     <Copyright>Copyright (c) 2020-2023 MetaFac</Copyright>
     <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
-    <PackageTags>MetaFac, CG3, meta-programming, model-first, code-first, template engine</PackageTags>
+    <PackageTags>MetaFac, CG3, meta-programming, source-generator, model-first, code-first, template engine</PackageTags>
     <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG3</RepositoryUrl>
     <Description>Helpers for quickly writing generator CLIs.</Description>
     <SignAssembly>true</SignAssembly>
