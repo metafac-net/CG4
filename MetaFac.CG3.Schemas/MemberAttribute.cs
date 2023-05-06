@@ -8,7 +8,7 @@ namespace MetaFac.CG3.Schemas
 
         public MemberAttribute(int tag)
         {
-            if (tag <= 0) throw new ArgumentOutOfRangeException(nameof(tag));
+            if (tag <= 0) throw new ArgumentOutOfRangeException(nameof(tag), tag, "Must be > 0");
             Tag = tag;
         }
     }

@@ -56,8 +56,7 @@ namespace MetaFac.CG3.ModelReader
                 }
             }
 
-            int requeueCount = 0;
-            while (toBeProcessed.Count > 0 && requeueCount <= toBeProcessed.Count)
+            while (toBeProcessed.Count > 0)
             {
                 ClassDefInfo classDefInfo = toBeProcessed.Dequeue();
                 Type classType = classDefInfo.ClassType;
@@ -104,7 +103,6 @@ namespace MetaFac.CG3.ModelReader
                     var classDef = new ModelClassDef(className, classTag.Value, isAbstract, baseClassName, fieldList, classTokens);
                     classDefsByName.Add(className, classDef);
                     classDefsByTag.Add(classTag.Value, classDef);
-                    requeueCount = 0;
                 }
 
             } // while
@@ -130,20 +128,20 @@ namespace MetaFac.CG3.ModelReader
             switch (typeCode)
             {
                 case TypeCode.Boolean: return "bool";
-                case TypeCode.Byte: return "uint8";
-                case TypeCode.Char: return "char";
-                case TypeCode.DateTime: return "datetime";
-                case TypeCode.Decimal: return "decimal";
-                case TypeCode.Double: return "double";
-                case TypeCode.Int16: return "int16";
-                case TypeCode.Int32: return "int32";
-                case TypeCode.Int64: return "int64";
                 case TypeCode.SByte: return "int8";
-                case TypeCode.Single: return "single";
-                case TypeCode.String: return "string";
+                case TypeCode.Byte: return "uint8";
+                case TypeCode.Int16: return "int16";
                 case TypeCode.UInt16: return "uint16";
+                case TypeCode.Char: return "char";
+                case TypeCode.Int32: return "int32";
                 case TypeCode.UInt32: return "uint32";
+                case TypeCode.Single: return "single";
+                case TypeCode.Int64: return "int64";
                 case TypeCode.UInt64: return "uint64";
+                case TypeCode.DateTime: return "datetime";
+                case TypeCode.Double: return "double";
+                case TypeCode.Decimal: return "decimal";
+                case TypeCode.String: return "string";
             }
             if (dataType == typeof(TimeSpan)) return "timespan";
             if (dataType == typeof(DateTimeOffset)) return "datetimezone";
@@ -217,11 +215,11 @@ namespace MetaFac.CG3.ModelReader
                     case TypeCode.Int16:
                     case TypeCode.Int32:
                     case TypeCode.Int64:
+                        result.isSignedType = true;
+                        break;
                     case TypeCode.Decimal:
                     case TypeCode.Double:
                     case TypeCode.Single:
-                        result.isSignedType = true;
-                        break;
                     case TypeCode.Boolean:
                     case TypeCode.DateTime:
                         break;
