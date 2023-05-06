@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
-    internal static class EqualityHelper
+    public static class ModelEqualityHelpers
     {
         public static bool IsEqualTo<T>(this T self, T other) where T : class, IEquatable<T>
         {

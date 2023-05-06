@@ -1,5 +1,6 @@
 ﻿using MetaFac.CG3.Generators;
 using MetaFac.CG3.ModelReader;
+using MetaFac.CG3.Models;
 using MetaFac.CG3.TextProcessing;
 using MetaFac.Platform;
 using MetaFac.TinyCLI;

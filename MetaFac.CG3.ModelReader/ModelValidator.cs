@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetaFac.CG3.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -133,9 +134,9 @@ namespace MetaFac.CG3.ModelReader
             var model = metadata.ModelDefs[0];
 
             // validation rules
-            // 1. all classes have unique, positive tags
+            // 1. all class tags must be: unique, positive
             // 2. all data types are native or defined
-            // 3. all fields have unique tags
+            // 3. all field tags must be: unique, positive
             ValidationResult result = ValidationResult.Init(errorHandling);
 
             ImmutableDictionary<int, ModelClassDef> classTagMap = ImmutableDictionary<int, ModelClassDef>.Empty;

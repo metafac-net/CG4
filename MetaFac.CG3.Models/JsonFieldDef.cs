@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
-
     public class JsonFieldDef : IEquatable<JsonFieldDef>
     {
         public int? Tag { get; set; }

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using System.Collections.Immutable;
 using System.IO;
-using System.Linq;
 using System.Text.Json;
+using System.Linq;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
     public class ModelDefinition : IEquatable<ModelDefinition>
     {
@@ -49,7 +49,7 @@ namespace MetaFac.CG3.ModelReader
                 : ImmutableDictionary<string, string>.Empty;
         }
 
-        internal ModelDefinition(JsonModelDef? source)
+        public ModelDefinition(JsonModelDef? source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;

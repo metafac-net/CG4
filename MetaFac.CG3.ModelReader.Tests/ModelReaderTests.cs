@@ -1,4 +1,5 @@
 using FluentAssertions;
+using MetaFac.CG3.Models;
 using System.Linq;
 using System.Reflection;
 using Xunit;

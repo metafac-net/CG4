@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using System.Collections.Immutable;
 using System.IO;
-using System.Linq;
 using System.Text.Json;
+using System.Linq;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
-
     public class ModelFieldDef : IEquatable<ModelFieldDef>
     {
         public readonly int? Tag;
@@ -50,7 +49,7 @@ namespace MetaFac.CG3.ModelReader
                 : ImmutableDictionary<string, string>.Empty;
         }
 
-        internal ModelFieldDef(JsonFieldDef? source)
+        public ModelFieldDef(JsonFieldDef? source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
@@ -68,7 +67,7 @@ namespace MetaFac.CG3.ModelReader
                 : ImmutableDictionary<string, string>.Empty;
         }
 
-        internal void Write(TextWriter writer)
+        public void Write(TextWriter writer)
         {
             if (ProxyDef is not null)
             {

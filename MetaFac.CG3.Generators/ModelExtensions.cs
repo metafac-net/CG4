@@ -1,4 +1,5 @@
 ﻿using MetaFac.CG3.ModelReader;
+using MetaFac.CG3.Models;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;

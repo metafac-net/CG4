@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
+using MetaFac.CG3.Models;
 
 namespace MetaFac.CG3.ModelReader
 {

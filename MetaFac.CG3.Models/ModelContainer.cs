@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using System.Collections.Immutable;
-using System.Linq;
 using System.Text.Json;
+using System.Linq;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
-
     public sealed class ModelContainer : IEquatable<ModelContainer>
     {
         public readonly ImmutableList<ModelDefinition> ModelDefs;

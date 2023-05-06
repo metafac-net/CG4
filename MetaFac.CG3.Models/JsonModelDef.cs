@@ -1,46 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using System.Linq;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
-    public class JsonClassDef : IEquatable<JsonClassDef>
+    public class JsonModelDef : IEquatable<JsonModelDef>
     {
         public int? Tag { get; set; }
         public string? Name { get; set; }
-        public bool IsAbstract { get; set; }
-        public string? BaseClassName { get; set; }
-        public List<JsonFieldDef>? FieldDefs { get; set; }
+        public List<JsonClassDef>? ClassDefs { get; set; }
         public Dictionary<string, string>? Tokens { get; set; }
 
-        public JsonClassDef() { }
+        public JsonModelDef() { }
 
-        public JsonClassDef(ModelClassDef source)
+        public JsonModelDef(ModelDefinition source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
             Name = source.Name;
-            IsAbstract = source.IsAbstract;
-            BaseClassName = source.BaseClassName;
-            FieldDefs = source.FieldDefs.Select(fd => new JsonFieldDef(fd)).ToList();
+            ClassDefs = source.ClassDefs.Select(cd => new JsonClassDef(cd)).ToList();
             Tokens = new Dictionary<string, string>(source.Tokens);
         }
 
-        public bool Equals(JsonClassDef? other)
+        public bool Equals(JsonModelDef? other)
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
-                   && IsAbstract == other.IsAbstract
-                   && string.Equals(BaseClassName, other.BaseClassName)
-                   && FieldDefs.IsEqualTo(other.FieldDefs)
+                   && ClassDefs.IsEqualTo(other.ClassDefs)
                    && Tokens.IsEqualTo(other.Tokens);
         }
 
         public override bool Equals(object? obj)
         {
-            return obj is JsonClassDef other && Equals(other);
+            return obj is JsonModelDef other && Equals(other);
         }
 
         public override int GetHashCode()
@@ -49,15 +43,13 @@ namespace MetaFac.CG3.ModelReader
             {
                 int hashCode = Tag?.GetHashCode() ?? 0;
                 hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
-                hashCode = hashCode * 397 ^ (BaseClassName?.GetHashCode() ?? 0);
                 // order sensitive
-                if (FieldDefs != null)
+                if (ClassDefs != null)
                 {
-                    hashCode = hashCode * 397 ^ FieldDefs.Count.GetHashCode();
-                    for (int i = 0; i < FieldDefs.Count; i++)
+                    hashCode = hashCode * 397 ^ ClassDefs.Count.GetHashCode();
+                    for (int i = 0; i < ClassDefs.Count; i++)
                     {
-                        hashCode = hashCode * 397 ^ FieldDefs[i].GetHashCode();
+                        hashCode = hashCode * 397 ^ ClassDefs[i].GetHashCode();
                     }
                 }
                 // order ignored

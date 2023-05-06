@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
     public class ModelProxyDef : IEquatable<ModelProxyDef>
     {
