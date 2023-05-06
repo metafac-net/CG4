@@ -1,10 +1,9 @@
-﻿using MetaFac.CG3.Models;
+﻿using System.Collections.Generic;
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
     public class ModelValidator
     {

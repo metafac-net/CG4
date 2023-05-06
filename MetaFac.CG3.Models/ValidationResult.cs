@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
     public class ValidationResult
     {

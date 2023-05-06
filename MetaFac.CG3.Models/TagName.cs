@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MetaFac.CG3.ModelReader
+namespace MetaFac.CG3.Models
 {
     public class TagName
     {

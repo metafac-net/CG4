@@ -1,4 +1,5 @@
 ﻿using MetaFac.CG3.ModelReader;
+using MetaFac.CG3.Models;
 using MetaFac.Platform;
 using Microsoft.Extensions.Logging;
 using System;

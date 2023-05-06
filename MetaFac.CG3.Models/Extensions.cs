@@ -1,6 +1,4 @@
-﻿using MetaFac.CG3.Models;
-
-namespace MetaFac.CG3.ModelReader
+﻿namespace MetaFac.CG3.Models
 {
     internal static class Extensions
     {

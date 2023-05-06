@@ -1,4 +1,4 @@
-﻿namespace MetaFac.CG3.ModelReader
+﻿namespace MetaFac.CG3.Models
 {
     public enum ValidationErrorHandling
     {
