@@ -100,8 +100,7 @@ namespace MetaFac.CG4.TextProcessing
         public static IEnumerable<string?> ConvertTemplateToGenerator(
             IEnumerable<string> sourceLines,
             string generatorNamespace,
-            string generatorShortname,
-            IEncryptedTextCache etc)
+            string generatorShortname)
         {
             TextState state = default;
             int lineNumber = 0;
@@ -181,7 +180,7 @@ namespace MetaFac.CG4.TextProcessing
                                 else
                                 {
                                     // not metacode - just emit the input unchanged
-                                    string encodedSource = EncodeSource(etc, outerIndent, sourceCode);
+                                    string encodedSource = EncodeSource(outerIndent, sourceCode);
                                     yield return $"{EmitCodePrefix}{encodedSource}{EmitCodeSuffix}";
                                 }
                             }
@@ -189,7 +188,7 @@ namespace MetaFac.CG4.TextProcessing
                         else
                         {
                             // not comment - emit code
-                            string encodedSource = EncodeSource(etc, outerIndent, sourceCode);
+                            string encodedSource = EncodeSource(outerIndent, sourceCode);
                             yield return $"{EmitCodePrefix}{encodedSource}{EmitCodeSuffix}";
                         }
                         break;
@@ -259,21 +258,9 @@ namespace MetaFac.CG4.TextProcessing
             }
         }
 
-        private static string EncodeSource(IEncryptedTextCache etc, string outerIndent, string sourceCode)
+        private static string EncodeSource(string outerIndent, string sourceCode)
         {
-            string encodedSource;
-            if (etc.IsNonEncrypting)
-            {
-                encodedSource = $"{outerIndent}{Escaped(sourceCode)}";
-            }
-            else
-            {
-                string clearText = $"{outerIndent}{sourceCode}";
-                Guid hash = etc.AddText(clearText);
-                encodedSource = hash.ToString("N");
-            }
-
-            return encodedSource;
+            return $"{outerIndent}{Escaped(sourceCode)}";
         }
         private static string? Escaped(string input)
         {

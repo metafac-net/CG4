@@ -70,7 +70,7 @@ namespace MetaFac.CG4.TextProcessing.UnitTests
         public void TemplateToGenerator()
         {
             var actualOutput = TextProcessor.ConvertTemplateToGenerator(
-                originalTemplate, "MyOrganisation.Generator", "MyGeneratorId", new NotEncryptedTextCache()).ToArray();
+                originalTemplate, "MyOrganisation.Generator", "MyGeneratorId").ToArray();
             actualOutput.Should().BeEquivalentTo(expectedGenerated);
         }
 

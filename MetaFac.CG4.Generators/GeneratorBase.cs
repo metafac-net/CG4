@@ -57,25 +57,6 @@ namespace MetaFac.CG4.Generators
 
         protected abstract void OnGenerate(TemplateScope outerScope);
 
-        protected virtual IEnumerable<(string, string)> OnGetEncryptedText()
-        {
-            yield break;
-        }
-
-        private IEnumerable<KeyValuePair<Guid, ImmutableArray<byte>>> GetEncryptedText()
-        {
-            foreach ((string hash, string data) in OnGetEncryptedText())
-            {
-                yield return new KeyValuePair<Guid, ImmutableArray<byte>>(
-                    new Guid(hash),
-                    ImmutableArray<byte>.Empty.AddRange(Convert.FromBase64String(data)));
-            }
-        }
-
-        protected virtual string? OnGetEncryptionKeyId() { return null; }
-
-        private string? GetEncryptionKeyId() => OnGetEncryptionKeyId();
-
         /// <summary>
         /// Generates output using the supplied metadata and options.
         /// </summary>

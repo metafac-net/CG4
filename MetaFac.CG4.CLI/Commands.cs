@@ -110,7 +110,7 @@ namespace MetaFac.CG4.CLI
 
             var sourceLines = ReadLines(templateRelPath);
             var outputLines = TextProcessor.ConvertTemplateToGenerator(
-                sourceLines, generatorNamespace, generatorShortname, new NotEncryptedTextCache());
+                sourceLines, generatorNamespace, generatorShortname);
             WriteLinesToFile(outputLines, generatorRelPath);
             await Task.Delay(0);
             return 0;
