@@ -89,6 +89,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Models", "MetaF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG3.Template.UnitTests", "MetaFac.CG3.Template.UnitTests\MetaFac.CG3.Template.UnitTests.csproj", "{A07E226F-0BD9-4145-AF48-D5F5187EAAD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaFac.CG3.Generators.UnitTests", "MetaFac.CG3.Generators.UnitTests\MetaFac.CG3.Generators.UnitTests.csproj", "{83AC5A99-8821-416F-A3AC-CAAD8905635E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -247,6 +249,10 @@ Global
 		{A07E226F-0BD9-4145-AF48-D5F5187EAAD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A07E226F-0BD9-4145-AF48-D5F5187EAAD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A07E226F-0BD9-4145-AF48-D5F5187EAAD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83AC5A99-8821-416F-A3AC-CAAD8905635E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83AC5A99-8821-416F-A3AC-CAAD8905635E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83AC5A99-8821-416F-A3AC-CAAD8905635E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83AC5A99-8821-416F-A3AC-CAAD8905635E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
