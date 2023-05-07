@@ -35,5 +35,29 @@ namespace MetaFac.CG3.Generators.UnitTests
             await Verifier.Verify(sourceCode);
         }
 
+        [Fact]
+        public async Task Generate_ClassesV2()
+        {
+            var generator = new Generator.ClassesV2.Generator();
+            string sourceCode = GenerateSourceCode(generator);
+            await Verifier.Verify(sourceCode);
+        }
+
+        [Fact]
+        public async Task Generate_RecordsV2()
+        {
+            var generator = new Generator.RecordsV2.Generator();
+            string sourceCode = GenerateSourceCode(generator);
+            await Verifier.Verify(sourceCode);
+        }
+
+        [Fact]
+        public async Task Generate_MessagePack()
+        {
+            var generator = new Generator.MessagePack.Generator();
+            string sourceCode = GenerateSourceCode(generator);
+            await Verifier.Verify(sourceCode);
+        }
+
     }
 }
