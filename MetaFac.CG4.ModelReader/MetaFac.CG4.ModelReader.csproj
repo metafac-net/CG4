@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Authors>MetaFac Contributors</Authors>
+    <Company>MetaFac</Company>
+    <Product>CG4</Product>
+    <Copyright>Copyright (c) 2020-2023 MetaFac</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
+    <PackageTags>MetaFac, CG4, meta-programming, source-generator, model-first, code-first, template engine</PackageTags>
+    <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG4</RepositoryUrl>
+    <Description>Reads models defined in attributed assemblies</Description>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\SigningKey.snk</AssemblyOriginatorKeyFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MetaFac.Memory" Version="1.1.4" />
+    <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.128">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Immutable" Version="7.0.0" />
+    <PackageReference Include="System.Text.Json" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MetaFac.CG4.Models\MetaFac.CG4.Models.csproj" />
+    <ProjectReference Include="..\MetaFac.CG4.Schemas\MetaFac.CG4.Schemas.csproj" />
+  </ItemGroup>
+
+</Project>

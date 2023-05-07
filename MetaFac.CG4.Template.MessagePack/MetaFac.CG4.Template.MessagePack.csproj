@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+	  <LangVersion>latest</LangVersion>
+	  <Nullable>enable</Nullable>
+	  <WarningsAsErrors>nullable</WarningsAsErrors>
+	  <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MessagePack" Version="2.5.108" />
+    <PackageReference Include="MessagePackAnalyzer" Version="2.5.108">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MetaFac.CG4.Runtime.MessagePack\MetaFac.CG4.Runtime.MessagePack.csproj" />
+    <ProjectReference Include="..\MetaFac.CG4.Template.Contracts\MetaFac.CG4.Template.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
