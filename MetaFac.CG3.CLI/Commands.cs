@@ -40,12 +40,6 @@ namespace MetaFac.CG3.CLI
         {
             GeneratorBase generator = generatorId switch
             {
-                GeneratorId.Interfaces => new MetaFac.CG3.Generator.Interfaces.Generator(),
-                GeneratorId.Freezables => new MetaFac.CG3.Generator.Freezables.Generator(),
-                GeneratorId.Immutables => new MetaFac.CG3.Generator.Immutables.Generator(),
-                GeneratorId.JsonPoco => new MetaFac.CG3.Generator.JsonPoco.Generator(),
-                GeneratorId.ProtobufNet3 => new MetaFac.CG3.Generator.ProtobufNet3.Generator(),
-                GeneratorId.Records => new MetaFac.CG3.Generator.Records.Generator(),
                 GeneratorId.Contracts => new MetaFac.CG3.Generator.Contracts.Generator(),
                 GeneratorId.RecordsV2 => new MetaFac.CG3.Generator.RecordsV2.Generator(),
                 GeneratorId.MessagePack => new MetaFac.CG3.Generator.MessagePack.Generator(),

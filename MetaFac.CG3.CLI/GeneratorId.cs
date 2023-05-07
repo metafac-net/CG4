@@ -3,16 +3,6 @@
     public enum GeneratorId
     {
         /// <summary>
-        /// Common interfaces for all simple (non-polymorphic) generated code.
-        /// </summary>
-        Interfaces,
-        Freezables,
-        Immutables,
-        JsonPoco,
-        ProtobufNet3,
-        Records,
-
-        /// <summary>
         /// Common interfaces for all polymorphic generated code.
         /// </summary>
         Contracts,

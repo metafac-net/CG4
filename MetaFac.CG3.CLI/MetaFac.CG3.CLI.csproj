@@ -48,14 +48,8 @@
   <ItemGroup>
     <ProjectReference Include="..\MetaFac.CG3.Generator.ClassesV2\MetaFac.CG3.Generator.ClassesV2.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.Contracts\MetaFac.CG3.Generator.Contracts.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generator.Freezables\MetaFac.CG3.Generator.Freezables.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generator.Immutables\MetaFac.CG3.Generator.Immutables.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generator.Interfaces\MetaFac.CG3.Generator.Interfaces.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generator.JsonPoco\MetaFac.CG3.Generator.JsonPoco.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.MessagePack\MetaFac.CG3.Generator.MessagePack.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generator.ProtobufNet3\MetaFac.CG3.Generator.ProtobufNet3.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generator.RecordsV2\MetaFac.CG3.Generator.RecordsV2.csproj" />
-    <ProjectReference Include="..\MetaFac.CG3.Generator.Records\MetaFac.CG3.Generator.Records.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.Generators\MetaFac.CG3.Generators.csproj" />
     <ProjectReference Include="..\MetaFac.CG3.TextProcessing\MetaFac.CG3.TextProcessing.csproj" />
   </ItemGroup>
