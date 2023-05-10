@@ -12,24 +12,12 @@ namespace MetaFac.CG4.Models
         public readonly string Name;
         public readonly int? Tag;
         public readonly ImmutableList<ModelClassDef> ClassDefs;
-        public readonly ImmutableDictionary<string, string> Tokens;
 
-        private ModelDefinition(string name, int? tag, ImmutableList<ModelClassDef> classDefs, ImmutableDictionary<string, string> tokens)
+        private ModelDefinition(string name, int? tag, ImmutableList<ModelClassDef> classDefs)
         {
             Name = name;
             Tag = tag;
             ClassDefs = classDefs;
-            Tokens = tokens;
-        }
-
-        public ModelDefinition SetToken(string name, string value)
-        {
-            return new ModelDefinition(Name, Tag, ClassDefs, Tokens.SetItem(name, value));
-        }
-
-        public ModelDefinition SetTokens(IEnumerable<KeyValuePair<string, string>> tokens)
-        {
-            return new ModelDefinition(Name, Tag, ClassDefs, Tokens.SetItems(tokens));
         }
 
         public IEnumerable<ModelClassDef> DescendentsOf(string className)
@@ -62,9 +50,6 @@ namespace MetaFac.CG4.Models
             ClassDefs = classDefs != null
                 ? ImmutableList<ModelClassDef>.Empty.AddRange(classDefs.Where(cd => cd != null))
                 : ImmutableList<ModelClassDef>.Empty;
-            Tokens = tokens != null
-                ? ImmutableDictionary<string, string>.Empty.AddRange(tokens)
-                : ImmutableDictionary<string, string>.Empty;
         }
 
         public ModelDefinition(JsonModelDef? source)
@@ -75,9 +60,6 @@ namespace MetaFac.CG4.Models
             ClassDefs = source.ClassDefs != null
                 ? ImmutableList<ModelClassDef>.Empty.AddRange(source.ClassDefs.Where(cd => cd != null).Select(cd => new ModelClassDef(cd)))
                 : ImmutableList<ModelClassDef>.Empty;
-            Tokens = source.Tokens != null
-                ? ImmutableDictionary<string, string>.Empty.AddRange(source.Tokens)
-                : ImmutableDictionary<string, string>.Empty;
         }
 
         internal void Write(TextWriter writer)
@@ -121,9 +103,7 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
-                   && ClassDefs.IsEqualTo(other.ClassDefs)
-                   && Tokens.IsEqualTo(other.Tokens)
-                   ;
+                   && ClassDefs.IsEqualTo(other.ClassDefs);
         }
 
         public override bool Equals(object? obj)
@@ -139,12 +119,6 @@ namespace MetaFac.CG4.Models
                 hashCode = hashCode * 397 ^ (Name != null ? Name.GetHashCode() : 0);
                 hashCode = hashCode * 397 ^ (Tag != null ? Tag.GetHashCode() : 0);
                 hashCode = hashCode * 397 ^ (ClassDefs != null ? ClassDefs.GetHashCode() : 0);
-                // order ignored
-                foreach (var kvp in Tokens)
-                {
-                    hashCode = hashCode ^ kvp.Key.GetHashCode();
-                    if (kvp.Value != null) hashCode = hashCode ^ kvp.Value.GetHashCode();
-                }
                 return hashCode;
             }
         }

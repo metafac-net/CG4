@@ -39,7 +39,6 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
-            modelDef.Tokens.Count.Should().Be(0);
             modelDef.ClassDefs.Count.Should().Be(3);
             var classDef = modelDef.ClassDefs[0];
             classDef.Name.Should().Be("BuiltinTypes");

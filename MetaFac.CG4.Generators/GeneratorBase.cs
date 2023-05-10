@@ -47,6 +47,12 @@ namespace MetaFac.CG4.Generators
             return _engine.NewScope(tokens);
         }
 
+        protected IDisposable NewScope(ModelDefinition modelDef)
+        {
+            var tokens = new Dictionary<string, string>();
+            return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
+        }
+
         protected IDisposable NewScope(ModelClassDef classDef)
         {
             var tokens = new Dictionary<string, string>();
@@ -141,7 +147,7 @@ namespace MetaFac.CG4.Generators
             var modelDef = metadata.ModelDefs[0];
 
             using (NewScope(metadata.Tokens))
-            using (NewScope(modelDef.Tokens))
+            using (NewScope(modelDef))
             {
                 OnGenerate(modelDef);
                 foreach (var line in _output)
