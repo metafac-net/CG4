@@ -133,7 +133,7 @@ namespace MetaFac.CG4.Models
             var model = metadata.ModelDefs[0];
 
             // validation rules
-            // 1. all class tags must be: unique, positive
+            // 1. all entity tags must be: unique, positive
             // 2. all data types are native or defined
             // 3. all field tags must be: unique, positive
             ValidationResult result = ValidationResult.Init(errorHandling);
@@ -143,7 +143,7 @@ namespace MetaFac.CG4.Models
 
             foreach (var entityDef in model.EntityDefs)
             {
-                //---------- check class tag not missing
+                //---------- check entity tag not missing
                 if (!entityDef.Tag.HasValue)
                     result = result.AddError(
                         new ValidationError(
@@ -164,7 +164,7 @@ namespace MetaFac.CG4.Models
 
                 ModelEntityDef? tempEntityDef;
 
-                //---------- check class tag is unique
+                //---------- check entity tag is unique
                 if (entityDef.Tag.HasValue)
                 {
                     var entityTag = entityDef.Tag.Value;
@@ -320,8 +320,8 @@ namespace MetaFac.CG4.Models
                 if (IsNativeDataType(fieldDef.InnerType))
                     continue;
 
-                ModelEntityDef? otherClass;
-                if (allEntities.TryGetValue(fieldDef.InnerType, out otherClass))
+                ModelEntityDef? otherEntity;
+                if (allEntities.TryGetValue(fieldDef.InnerType, out otherEntity))
                 {
                     // known type - check recursion
                     if (visitedEntities.ContainsKey(fieldDef.InnerType))
@@ -329,13 +329,13 @@ namespace MetaFac.CG4.Models
                         // circular ref!
                         result = result.AddWarning(new ValidationError(
                             ValidationErrorCode.CircularReference,
-                            model.Name, entityDef.ToTagName(), fieldDef.ToTagName(), otherClass.ToTagName(), null));
+                            model.Name, entityDef.ToTagName(), fieldDef.ToTagName(), otherEntity.ToTagName(), null));
                     }
                     else
                     {
                         // recurse
                         result = CheckFieldRecursion(result, errorHandling, metadata,
-                            otherClass, allEntities, visitedEntities.Add(otherClass.Name, otherClass));
+                            otherEntity, allEntities, visitedEntities.Add(otherEntity.Name, otherEntity));
                     }
                 }
                 else

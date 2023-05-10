@@ -12,7 +12,7 @@ namespace MetaFac.CG4.ModelReader
 {
     public static class ModelParser
     {
-        internal static List<ModelEntityDef> ParseClasses(string modelName, Assembly sourceAssembly, string sourceNamespace)
+        internal static List<ModelEntityDef> ParseEntities(string modelName, Assembly sourceAssembly, string sourceNamespace)
         {
             var entityDefsByName = new Dictionary<string, ModelEntityDef>();
             var entityDefsByTag = new Dictionary<int, ModelEntityDef>();
@@ -63,7 +63,6 @@ namespace MetaFac.CG4.ModelReader
                 bool isAbstract = entityType.IsAbstract;
                 int? entityTag = entityDefInfo.Tag;
                 var entityTagName = new TagName(entityTag, entityName);
-                //var classTokens = entityDefInfo.ClassTokens;
                 bool exclude = false;
                 foreach (Attribute attr in entityType.GetTypeInfo().GetCustomAttributes(false))
                 {
@@ -106,7 +105,7 @@ namespace MetaFac.CG4.ModelReader
 
             } // while
 
-            // check for unbound classes
+            // check for unbound entities
             if (toBeProcessed.Count > 0)
             {
                 var entityTypeInfo = toBeProcessed.Dequeue();
@@ -363,7 +362,7 @@ namespace MetaFac.CG4.ModelReader
             int modelTag = 1;
             string modelName = "Model1";
             var modelTokens = new Dictionary<string, string>();
-            List<ModelEntityDef> entityListA = ParseClasses(modelName, sourceAssembly, sourceNamespace);
+            List<ModelEntityDef> entityListA = ParseEntities(modelName, sourceAssembly, sourceNamespace);
             var modelDefinition = new ModelDefinition(modelName, modelTag, entityListA, modelTokens);
 
             // derive class hierarchy

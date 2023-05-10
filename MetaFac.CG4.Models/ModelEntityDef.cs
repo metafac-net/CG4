@@ -28,13 +28,6 @@ namespace MetaFac.CG4.Models
             DerivedEntities = derivedEntities;
         }
 
-        private static ImmutableDictionary<string, string> BuildTokens(string name, int? tag, string? parentName, IEnumerable<KeyValuePair<string, string>>? tokens)
-        {
-            var newTokens = ImmutableDictionary<string, string>.Empty;
-            if (tokens is not null) newTokens = newTokens.AddRange(tokens);
-            return newTokens;
-        }
-
         public ModelEntityDef(string entityName, int? tag, bool isAbstract, string? parentName,
             IEnumerable<ModelFieldDef> fieldDefs)
         {
@@ -57,7 +50,7 @@ namespace MetaFac.CG4.Models
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
-            Name = source.Name ?? "Unknown_Class";
+            Name = source.Name ?? "Unknown_Entity";
             IsAbstract = source.IsAbstract;
             ParentName = source.ParentName;
             FieldDefs = source.FieldDefs != null
