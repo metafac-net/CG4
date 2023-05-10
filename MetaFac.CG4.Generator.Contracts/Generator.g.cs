@@ -180,7 +180,7 @@ Emit("    }");
 Emit("");
     using (Ignored())
     {
-Emit("    public interface IT_SuperEntityName_ : IT_EntityName_ { }");
+Emit("    public interface IT_DerivedName_ : IT_EntityName_ { }");
     }
 Emit("");
 Emit("}");

@@ -168,7 +168,7 @@ namespace T_Namespace_.Contracts
 
     //>>using (Ignored())
     //>>{
-    public interface IT_SuperEntityName_ : IT_EntityName_ { }
+    public interface IT_DerivedName_ : IT_EntityName_ { }
     //>>}
 
 }
