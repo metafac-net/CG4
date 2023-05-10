@@ -13,7 +13,7 @@ namespace MetaFac.CG4.TextProcessing
         private const string EmitCodeSuffix = "\");";
         private const string DirectiveTemplateBegin = "template_begin";
         private const string DirectiveTemplateEnd = "template_end";
-        private const string DirectiveGeneratorHeader = "generator_header";
+        private const string DirectiveGeneratorHeaderqqq = "generator_header";
         private const string DirectiveGeneratorBody = "generator_body";
         private const string DirectiveGeneratorFooter = "generator_footer";
         private const string DirectiveGeneratorEnd = "generator_end";
@@ -61,7 +61,7 @@ namespace MetaFac.CG4.TextProcessing
                     {
                         case DirectiveTemplateBegin: return DirectiveTemplateBegin;
                         case DirectiveTemplateEnd: return DirectiveTemplateEnd;
-                        case DirectiveGeneratorHeader: return DirectiveGeneratorHeader;
+                        case DirectiveGeneratorHeaderqqq: return DirectiveGeneratorHeaderqqq;
                         case DirectiveGeneratorBody: return DirectiveGeneratorBody;
                         case DirectiveGeneratorFooter: return DirectiveGeneratorFooter;
                         case DirectiveGeneratorEnd: return DirectiveGeneratorEnd;
@@ -81,12 +81,13 @@ namespace MetaFac.CG4.TextProcessing
             "using System;",
             "using System.Linq;",
             "using MetaFac.CG4.Generators;",
+            "using MetaFac.CG4.Models;",
             "namespace T_GeneratorNamespace_",
             "{",
             "    public partial class Generator : GeneratorBase",
             "    {",
             "        public Generator() : base(\"T_GeneratorShortName_\") { }",
-            "        protected override void OnGenerate(TemplateScope outerScope)",
+            "        protected override void OnGenerate(ModelDefinition outerScope)",
             "        {",
         };
 
@@ -122,7 +123,7 @@ namespace MetaFac.CG4.TextProcessing
                             }
                             else if (directive == DirectiveTemplateBegin)
                             {
-                                yield return $"{outerIndent}{PrefixCsharpComment} {FormatDirective(DirectiveGeneratorHeader)}";
+                                yield return $"{outerIndent}{PrefixCsharpComment} {FormatDirective(DirectiveGeneratorHeaderqqq)}";
                                 var outerTokens = new Dictionary<string, string>()
                                 {
                                     ["GeneratorNamespace"] = generatorNamespace,
@@ -259,7 +260,7 @@ namespace MetaFac.CG4.TextProcessing
                             {
                                 yield return input;
                             }
-                            else if (directive == DirectiveGeneratorHeader)
+                            else if (directive == DirectiveGeneratorHeaderqqq)
                             {
                                 state = TextState.Header;
                             }

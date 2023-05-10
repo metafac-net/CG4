@@ -62,6 +62,11 @@ namespace MetaFac.CG4.CLI
                 new Arg<string>("gs", "shortname", "The short name (or id) of the generator", s => s),
                 ConvertTemplateToGenerator);
 
+            AddCommand("g2t", "Converts a generator to template",
+                new Arg<string>("gf", "source", "The generator source file", s => s),
+                new Arg<string>("tf", "target", "The template file to produce", s => s),
+                ConvertGeneratorToTemplate);
+
             AddCommand("g2c", "Generates source code using the named generator and supplied metadata.",
                 new Arg<string>("jm", "json-metadata", "The metadata file (JSON) to process.", s => s, ""),
                 new Arg<string>("am", "assm-metadata", "The metadata file (DLL) to process.", s => s, ""),
@@ -112,6 +117,24 @@ namespace MetaFac.CG4.CLI
             var outputLines = TextProcessor.ConvertTemplateToGenerator(
                 sourceLines, generatorNamespace, generatorShortname);
             WriteLinesToFile(outputLines, generatorRelPath);
+            await Task.Delay(0);
+            return 0;
+        }
+
+        internal async ValueTask<int> ConvertGeneratorToTemplate(string generatorFilename, string templateFilename)
+        {
+            // get relative paths
+            string currentPath = Directory.GetCurrentDirectory();
+            string generatorRelPath = Path.GetRelativePath(currentPath, generatorFilename);
+            string templateRelPath = Path.GetRelativePath(currentPath, templateFilename);
+
+            Logger.LogInformation("  Current path: {value}", currentPath);
+            Logger.LogInformation("Generator file: {value}", generatorRelPath);
+            Logger.LogInformation(" Template file: {value}", templateRelPath);
+
+            var sourceLines = ReadLines(generatorRelPath);
+            var outputLines = TextProcessor.ConvertGeneratorToTemplate(sourceLines);
+            WriteLinesToFile(outputLines, templateRelPath);
             await Task.Delay(0);
             return 0;
         }
