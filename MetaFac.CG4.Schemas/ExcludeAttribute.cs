@@ -7,7 +7,7 @@ namespace MetaFac.CG4.Schemas
     /// </summary>
     public class ExcludeAttribute : Attribute
     {
-
+        // todo use Obsolete attribute instead
     }
 
 

@@ -33,7 +33,7 @@ namespace MetaFac.CG4.Schemas.UnitTests
             {
                 Attribute[] customAttributes = typeof(BadTagEntity).GetCustomAttributes().ToArray();
             });
-            ex.Message.Should().StartWith("Specified argument was out of the range of valid values.");
+            ex.Message.Should().StartWith("Must be > 0");
         }
     }
 }

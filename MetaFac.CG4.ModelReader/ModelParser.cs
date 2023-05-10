@@ -317,9 +317,6 @@ namespace MetaFac.CG4.ModelReader
                 //    fieldTokens.Add("StringType", true.ToString());
 
                 bool exclude = false;
-                //bool bigEndian = false;
-                //int fieldSize = 0;
-                //int arraySize = 0;
                 foreach (Attribute attr in propInfo.GetCustomAttributes())
                 {
                     switch (attr)
@@ -330,15 +327,6 @@ namespace MetaFac.CG4.ModelReader
                         case ExcludeAttribute excludeAttribute:
                             exclude = true;
                             break;
-                        //case EndianAttribute endianAttr:
-                        //    bigEndian = endianAttr.BigEndian;
-                        //    break;
-                        //case FieldSizeAttribute fieldSizeAttr:
-                        //    fieldSize = fieldSizeAttr.FieldSize;
-                        //    break;
-                        //case ArraySizeAttribute arraySizeAttr:
-                        //    arraySize = arraySizeAttr.ArraySize;
-                        //    break;
                         default:
                             break;
                     }
