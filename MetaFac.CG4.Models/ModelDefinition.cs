@@ -62,21 +62,6 @@ namespace MetaFac.CG4.Models
                 : ImmutableList<ModelClassDef>.Empty;
         }
 
-        internal void Write(TextWriter writer)
-        {
-            writer.Write($" model");
-            if (Tag.HasValue)
-                writer.Write($" {Tag.Value}:");
-            writer.WriteLine($" {Name}");
-            writer.WriteLine("{");
-            foreach (ModelClassDef classDef in ClassDefs)
-            {
-                if (classDef != null)
-                    classDef.Write(writer);
-            }
-            writer.WriteLine("}");
-        }
-
         public string ToJson()
         {
             var md = new JsonModelDef(this);
@@ -87,14 +72,6 @@ namespace MetaFac.CG4.Models
         {
             var md = JsonSerializer.Deserialize<JsonModelDef>(json);
             return new ModelDefinition(md);
-        }
-
-        public void WriteTo(Stream stream)
-        {
-            using (StreamWriter writer = new StreamWriter(stream))
-            {
-                Write(writer);
-            }
         }
 
         public bool Equals(ModelDefinition? other)
@@ -122,15 +99,5 @@ namespace MetaFac.CG4.Models
                 return hashCode;
             }
         }
-
-        public override string ToString()
-        {
-            using (StringWriter writer = new StringWriter())
-            {
-                Write(writer);
-                return writer.ToString();
-            }
-        }
-
     }
 }

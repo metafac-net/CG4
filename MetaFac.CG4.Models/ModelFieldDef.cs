@@ -51,23 +51,6 @@ namespace MetaFac.CG4.Models
             IsModelType = source.IsModelType;
         }
 
-        public void Write(TextWriter writer)
-        {
-            if (ProxyDef is not null)
-            {
-                writer.WriteLine($"    [Proxy(\"{ProxyDef.ExternalName}\", \"{ProxyDef.ConcreteName}\")]");
-            }
-            writer.Write($"    field");
-            if (Tag.HasValue)
-                writer.Write($" {Tag.Value}:");
-            writer.Write($"{InnerType}");
-            if (Nullable)
-                writer.Write($"?");
-            if (ArrayRank == 1)
-                writer.Write($"[{IndexType}]");
-            writer.WriteLine($" {Name};");
-        }
-
         public string ToJson()
         {
             var member = new JsonFieldDef(this);
@@ -78,15 +61,6 @@ namespace MetaFac.CG4.Models
         {
             var member = JsonSerializer.Deserialize<JsonFieldDef>(json);
             return new ModelFieldDef(member);
-        }
-
-        public override string ToString()
-        {
-            using (StringWriter writer = new StringWriter())
-            {
-                Write(writer);
-                return writer.ToString();
-            }
         }
 
         public bool Equals(ModelFieldDef? other)

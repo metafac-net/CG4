@@ -66,24 +66,6 @@ namespace MetaFac.CG4.Models
             AllDerivedClasses = ImmutableList<ModelClassDef>.Empty;
         }
 
-        public void Write(TextWriter writer)
-        {
-            writer.Write($"  class");
-            if (Tag.HasValue)
-                writer.Write($" {Tag.Value}:");
-            writer.Write($" {Name}");
-            if (BaseClassName != null)
-                writer.Write($" extends {BaseClassName}");
-            writer.WriteLine();
-            writer.WriteLine("  {");
-            foreach (ModelFieldDef fieldDef in FieldDefs)
-            {
-                if (fieldDef != null)
-                    fieldDef.Write(writer);
-            }
-            writer.WriteLine("  }");
-        }
-
         public string ToJson()
         {
             var cd = new JsonClassDef(this);
@@ -94,15 +76,6 @@ namespace MetaFac.CG4.Models
         {
             var cd = JsonSerializer.Deserialize<JsonClassDef>(json);
             return new ModelClassDef(cd);
-        }
-
-        public override string ToString()
-        {
-            using (StringWriter writer = new StringWriter())
-            {
-                Write(writer);
-                return writer.ToString();
-            }
         }
 
         public bool Equals(ModelClassDef? other)
