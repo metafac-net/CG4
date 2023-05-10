@@ -11,7 +11,6 @@ namespace MetaFac.CG4.Models
         public bool IsAbstract { get; set; }
         public string? BaseClassName { get; set; }
         public List<JsonFieldDef>? FieldDefs { get; set; }
-        public Dictionary<string, string>? Tokens { get; set; }
 
         public JsonClassDef() { }
 
@@ -23,7 +22,6 @@ namespace MetaFac.CG4.Models
             IsAbstract = source.IsAbstract;
             BaseClassName = source.BaseClassName;
             FieldDefs = source.FieldDefs.Select(fd => new JsonFieldDef(fd)).ToList();
-            Tokens = new Dictionary<string, string>(source.Tokens);
         }
 
         public bool Equals(JsonClassDef? other)
@@ -34,8 +32,7 @@ namespace MetaFac.CG4.Models
                    && string.Equals(Name, other.Name)
                    && IsAbstract == other.IsAbstract
                    && string.Equals(BaseClassName, other.BaseClassName)
-                   && FieldDefs.IsEqualTo(other.FieldDefs)
-                   && Tokens.IsEqualTo(other.Tokens);
+                   && FieldDefs.IsEqualTo(other.FieldDefs);
         }
 
         public override bool Equals(object? obj)
@@ -58,16 +55,6 @@ namespace MetaFac.CG4.Models
                     for (int i = 0; i < FieldDefs.Count; i++)
                     {
                         hashCode = hashCode * 397 ^ FieldDefs[i].GetHashCode();
-                    }
-                }
-                // order ignored
-                if (Tokens != null)
-                {
-                    hashCode = hashCode * 397 ^ Tokens.Count.GetHashCode();
-                    foreach (var kvp in Tokens)
-                    {
-                        hashCode = hashCode ^ kvp.Key.GetHashCode();
-                        if (kvp.Value != null) hashCode = hashCode ^ kvp.Value.GetHashCode();
                     }
                 }
                 return hashCode;

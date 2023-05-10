@@ -242,14 +242,14 @@ namespace T_Namespace_.MessagePack
     }
     //>>}
 
-    //>>foreach (var cs in outerScope.Iterators["Classes"].Iterations) {
-    //>>using (NewScope(cs)) {
-    //>>var derivedClasses = cs.Iterators["AllDerivedClasses"].Iterations;
+    //>>foreach (var cd in outerScope.ClassDefs) {
+    //>>using (NewScope(cd)) {
+    //>>var derivedClasses = cd.AllDerivedClasses;
     //>>if (derivedClasses.Count > 0)
     //>>{
     //>>    foreach (var derived in derivedClasses)
     //>>    {
-    //>>        using (NewScope(derived)) {
+    //>>        using (NewScope(derived.Tokens)) {
     [Union(T_ClassName_.ClassTag, typeof(T_ClassName_))]
     //>>        }
     //>>    }
@@ -263,7 +263,7 @@ namespace T_Namespace_.MessagePack
             switch (classTag)
             {
                 //>>foreach (var derived in derivedClasses) {
-                //>>    using (NewScope(derived)) {
+                //>>    using (NewScope(derived.Tokens)) {
                 case T_ClassName_.ClassTag: return T_ClassName_.CreateFrom((IT_ClassName_)source);
                 //>>}}
                 default:
@@ -297,9 +297,9 @@ namespace T_Namespace_.MessagePack
     {
         protected override void OnFreeze()
         {
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -334,9 +334,9 @@ namespace T_Namespace_.MessagePack
         protected override int OnGetEntityTag() => ClassTag;
 
         // ---------- private fields ----------
-        //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-        //>>  using (NewScope(fs)) {
-        //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+        //>>foreach (var fd in cd.FieldDefs) {
+        //>>  using (NewScope(fd)) {
+        //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
         //>>switch (fieldInfo.Kind)
         //>>{
         //>>    case FieldKind.UnaryModel:
@@ -375,9 +375,9 @@ namespace T_Namespace_.MessagePack
         //>>}}
 
         // ---------- accessors ----------
-        //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-        //>>  using (NewScope(fs)) {
-        //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+        //>>foreach (var fd in cd.FieldDefs) {
+        //>>  using (NewScope(fd)) {
+        //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
         [Key(T_FieldTag_)]
         //>>using (Ignored()) {
         public int IgnoreThisField { get; set; }
@@ -525,9 +525,9 @@ namespace T_Namespace_.MessagePack
         //>>}}
 
         // ---------- IT_ClassName_ methods ----------
-        //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-        //>>  using (NewScope(fs)) {
-        //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+        //>>foreach (var fd in cd.FieldDefs) {
+        //>>  using (NewScope(fd)) {
+        //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
         //>>switch (fieldInfo.Kind)
         //>>{
         //>>    case FieldKind.UnaryModel:
@@ -586,9 +586,9 @@ namespace T_Namespace_.MessagePack
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_ClassName_(T_ClassName_ source) : base(source)
         {
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -629,9 +629,9 @@ namespace T_Namespace_.MessagePack
         public void CopyFrom(T_ClassName_ source)
         {
             base.CopyFrom(source);
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -672,9 +672,9 @@ namespace T_Namespace_.MessagePack
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_ClassName_(IT_ClassName_ source) : base(source)
         {
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -744,9 +744,9 @@ namespace T_Namespace_.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -808,9 +808,9 @@ namespace T_Namespace_.MessagePack
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:

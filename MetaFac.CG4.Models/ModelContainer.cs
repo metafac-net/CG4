@@ -11,6 +11,12 @@ namespace MetaFac.CG4.Models
         public readonly ImmutableList<ModelDefinition> ModelDefs;
         public readonly ImmutableDictionary<string, string> Tokens;
 
+        private ModelContainer(ImmutableList<ModelDefinition> modelDefs, ImmutableDictionary<string, string> tokens)
+        {
+            ModelDefs = modelDefs;
+            Tokens = tokens;
+        }
+
         public ModelContainer(ModelDefinition modelDef, IEnumerable<KeyValuePair<string, string>>? tokens = null)
         {
             if (modelDef is null) throw new ArgumentNullException(nameof(modelDef));
@@ -38,6 +44,16 @@ namespace MetaFac.CG4.Models
             Tokens = source.Tokens != null
                 ? ImmutableDictionary<string, string>.Empty.AddRange(source.Tokens)
                 : ImmutableDictionary<string, string>.Empty;
+        }
+
+        public ModelContainer SetToken(string name, string value)
+        {
+            return new ModelContainer(ModelDefs, Tokens.SetItem(name, value));
+        }
+
+        public ModelContainer SetTokens(IEnumerable<KeyValuePair<string,string>> tokens)
+        {
+            return new ModelContainer(ModelDefs, Tokens.SetItems(tokens));
         }
 
         public bool Equals(ModelContainer? other)

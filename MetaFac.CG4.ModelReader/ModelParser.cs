@@ -50,8 +50,7 @@ namespace MetaFac.CG4.ModelReader
                     }
                     else if (typeInfo.IsClass && entityTag.HasValue)
                     {
-                        var classTokens = new Dictionary<string, string>();
-                        toBeProcessed.Enqueue(new ClassDefInfo(typeInfo.AsType(), entityTag, classTokens));
+                        toBeProcessed.Enqueue(new ClassDefInfo(typeInfo.AsType(), entityTag));
                     }
                 }
             }
@@ -64,7 +63,7 @@ namespace MetaFac.CG4.ModelReader
                 bool isAbstract = classType.IsAbstract;
                 int? classTag = classDefInfo.ClassTag;
                 var classTagName = new TagName(classTag, className);
-                var classTokens = classDefInfo.ClassTokens;
+                //var classTokens = classDefInfo.ClassTokens;
                 bool exclude = false;
                 foreach (Attribute attr in classType.GetTypeInfo().GetCustomAttributes(false))
                 {
@@ -100,7 +99,7 @@ namespace MetaFac.CG4.ModelReader
                     //        new ModelClassDef(null, baseType.Name, null), null));
                     //}
 
-                    var classDef = new ModelClassDef(className, classTag.Value, isAbstract, baseClassName, fieldList, classTokens);
+                    var classDef = new ModelClassDef(className, classTag.Value, isAbstract, baseClassName, fieldList);
                     classDefsByName.Add(className, classDef);
                     classDefsByTag.Add(classTag.Value, classDef);
                 }
@@ -157,8 +156,6 @@ namespace MetaFac.CG4.ModelReader
             public int ArrayRank = 0;
             public bool isModelType = false;
             public bool isValueType = false;
-            public bool isSignedType = false;
-            public bool isUnsignedType = false;
             public bool isBufferType = false;
             public bool isStringType = false;
             public string? innerTypeName = null;
@@ -209,13 +206,11 @@ namespace MetaFac.CG4.ModelReader
                     case TypeCode.UInt16:
                     case TypeCode.UInt32:
                     case TypeCode.UInt64:
-                        result.isUnsignedType = true;
                         break;
                     case TypeCode.SByte:
                     case TypeCode.Int16:
                     case TypeCode.Int32:
                     case TypeCode.Int64:
-                        result.isSignedType = true;
                         break;
                     case TypeCode.Decimal:
                     case TypeCode.Double:
@@ -312,24 +307,19 @@ namespace MetaFac.CG4.ModelReader
                 var fieldInfo = GetFieldInfo(sourceNamespace, modelName, classTagName, fieldName, fieldType, proxyTypes);
                 string innerTypeName = fieldInfo.innerTypeName ?? nameof(Unknown);
                 // emit field tokens
-                var fieldTokens = new Dictionary<string, string>();
-                if (fieldInfo.isModelType)
-                    fieldTokens.Add("ModelType", innerTypeName);
-                if (fieldInfo.isValueType)
-                    fieldTokens.Add("ValueType", innerTypeName);
-                if (fieldInfo.isSignedType)
-                    fieldTokens.Add("SignedType", innerTypeName);
-                if (fieldInfo.isUnsignedType)
-                    fieldTokens.Add("UnsignedType", innerTypeName);
-                if (fieldInfo.isBufferType)
-                    fieldTokens.Add("BufferType", true.ToString());
-                if (fieldInfo.isStringType)
-                    fieldTokens.Add("StringType", true.ToString());
+                // todo? emit these tokens later
+                //var fieldTokens = new Dictionary<string, string>();
+                //if (fieldInfo.isValueType)
+                //    fieldTokens.Add("ValueType", innerTypeName);
+                //if (fieldInfo.isBufferType)
+                //    fieldTokens.Add("BufferType", true.ToString());
+                //if (fieldInfo.isStringType)
+                //    fieldTokens.Add("StringType", true.ToString());
 
                 bool exclude = false;
-                bool bigEndian = false;
-                int fieldSize = 0;
-                int arraySize = 0;
+                //bool bigEndian = false;
+                //int fieldSize = 0;
+                //int arraySize = 0;
                 foreach (Attribute attr in propInfo.GetCustomAttributes())
                 {
                     switch (attr)
@@ -340,15 +330,15 @@ namespace MetaFac.CG4.ModelReader
                         case ExcludeAttribute excludeAttribute:
                             exclude = true;
                             break;
-                        case EndianAttribute endianAttr:
-                            bigEndian = endianAttr.BigEndian;
-                            break;
-                        case FieldSizeAttribute fieldSizeAttr:
-                            fieldSize = fieldSizeAttr.FieldSize;
-                            break;
-                        case ArraySizeAttribute arraySizeAttr:
-                            arraySize = arraySizeAttr.ArraySize;
-                            break;
+                        //case EndianAttribute endianAttr:
+                        //    bigEndian = endianAttr.BigEndian;
+                        //    break;
+                        //case FieldSizeAttribute fieldSizeAttr:
+                        //    fieldSize = fieldSizeAttr.FieldSize;
+                        //    break;
+                        //case ArraySizeAttribute arraySizeAttr:
+                        //    arraySize = arraySizeAttr.ArraySize;
+                        //    break;
                         default:
                             break;
                     }
@@ -367,10 +357,12 @@ namespace MetaFac.CG4.ModelReader
                         proxyDef = new ModelProxyDef(pd.ExternalName, pd.ConcreteName);
                     }
                     var fieldDef = new ModelFieldDef(
-                        fieldName, fieldTag, innerTypeName, fieldInfo.nullable,
+                        fieldName, fieldTag, innerTypeName, 
+                        fieldInfo.nullable,
                         proxyDef,
-                        fieldInfo.ArrayRank, fieldInfo.indexTypeName,
-                        arraySize, bigEndian, fieldSize, fieldTokens);
+                        fieldInfo.ArrayRank, 
+                        fieldInfo.indexTypeName,
+                        fieldInfo.isModelType);
                     fieldDefsByName.Add(fieldName, fieldDef);
                 }
             } // foreach field
@@ -385,6 +377,17 @@ namespace MetaFac.CG4.ModelReader
             var modelTokens = new Dictionary<string, string>();
             List<ModelClassDef> classList = ParseClasses(modelName, sourceAssembly, sourceNamespace);
             var modelDefinition = new ModelDefinition(modelName, modelTag, classList, modelTokens);
+
+            // derive class hierarchy
+            List<ModelClassDef> updatedClassList = new List<ModelClassDef>();
+            foreach (var classDef in classList)
+            {
+                var allDescendents = modelDefinition.AllDescendentsOf(classDef.Name);
+                var updatedClassDef = classDef.SetAllDerivedClasses(allDescendents);
+                updatedClassList.Add(updatedClassDef);
+            }
+
+            modelDefinition = new ModelDefinition(modelName, modelTag, updatedClassList, modelTokens);
             modelDefinitions.Add(modelDefinition);
             return new ModelContainer(modelDefinitions);
         }

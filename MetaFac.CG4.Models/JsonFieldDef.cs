@@ -12,10 +12,7 @@ namespace MetaFac.CG4.Models
         public JsonProxyDef? ProxyDef { get; set; }
         public int ArrayRank { get; set; }
         public string? IndexType { get; set; }
-        public bool BigEndian { get; set; }
-        public int FieldSize { get; set; }
-        public int ArraySize { get; set; }
-        public Dictionary<string, string>? Tokens { get; set; }
+        public bool IsModelType { get; set; }
 
         public JsonFieldDef() { }
 
@@ -28,11 +25,8 @@ namespace MetaFac.CG4.Models
             Nullable = source.Nullable;
             ProxyDef = source.ProxyDef is null ? null : new JsonProxyDef(source.ProxyDef);
             ArrayRank = source.ArrayRank;
-            BigEndian = source.BigEndian;
-            FieldSize = source.FieldSize;
-            ArraySize = source.ArraySize;
+            IsModelType = source.IsModelType;
             IndexType = source.IndexType;
-            Tokens = new Dictionary<string, string>(source.Tokens);
         }
 
         public bool Equals(JsonFieldDef? other)
@@ -45,8 +39,8 @@ namespace MetaFac.CG4.Models
                    && Nullable == other.Nullable
                    && Equals(ProxyDef, other.ProxyDef)
                    && ArrayRank == other.ArrayRank
-                   && string.Equals(IndexType, other.IndexType)
-                   && Tokens.IsEqualTo(other.Tokens);
+                   && IsModelType == other.IsModelType
+                   && string.Equals(IndexType, other.IndexType);
         }
 
         public override bool Equals(object? obj)
@@ -65,16 +59,7 @@ namespace MetaFac.CG4.Models
                 hashCode = hashCode * 397 ^ (ProxyDef?.GetHashCode() ?? 0);
                 hashCode = hashCode * 397 ^ ArrayRank.GetHashCode();
                 hashCode = hashCode * 397 ^ (IndexType?.GetHashCode() ?? 0);
-                // order ignored
-                if (Tokens != null)
-                {
-                    hashCode = hashCode * 397 ^ Tokens.Count.GetHashCode();
-                    foreach (var kvp in Tokens)
-                    {
-                        hashCode = hashCode ^ kvp.Key.GetHashCode();
-                        if (kvp.Value != null) hashCode = hashCode ^ kvp.Value.GetHashCode();
-                    }
-                }
+                hashCode = hashCode * 397 ^ IsModelType.GetHashCode();
                 return hashCode;
             }
         }

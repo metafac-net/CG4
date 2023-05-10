@@ -14,22 +14,43 @@ namespace MetaFac.CG4.Models
         public readonly bool IsAbstract;
         public readonly string? BaseClassName;
         public readonly ImmutableList<ModelFieldDef> FieldDefs;
-        public readonly ImmutableDictionary<string, string> Tokens;
+        public readonly ImmutableList<ModelClassDef> AllDerivedClasses;
 
-        public ModelClassDef(string className, int? tag, bool isAbstract, string? baseClassName,
-            IEnumerable<ModelFieldDef>? fieldDefs = null,
-            IEnumerable<KeyValuePair<string, string>>? tokens = null)
+        private ModelClassDef(string className, int? tag, bool isAbstract, string? baseClassName,
+            ImmutableList<ModelFieldDef> fieldDefs,
+            ImmutableList<ModelClassDef> allDerivedClasses)
         {
             Tag = tag;
             Name = className;
             IsAbstract = isAbstract;
             BaseClassName = baseClassName;
-            FieldDefs = fieldDefs != null
-                ? ImmutableList<ModelFieldDef>.Empty.AddRange(fieldDefs)
-                : ImmutableList<ModelFieldDef>.Empty;
-            Tokens = tokens != null
-                ? ImmutableDictionary<string, string>.Empty.AddRange(tokens)
-                : ImmutableDictionary<string, string>.Empty;
+            FieldDefs = fieldDefs;
+            AllDerivedClasses = allDerivedClasses;
+        }
+
+        private static ImmutableDictionary<string, string> BuildTokens(string name, int? tag, string? baseClassName, IEnumerable<KeyValuePair<string, string>>? tokens)
+        {
+            var newTokens = ImmutableDictionary<string, string>.Empty;
+            if (tokens is not null) newTokens = newTokens.AddRange(tokens);
+            return newTokens;
+        }
+
+        public ModelClassDef(string className, int? tag, bool isAbstract, string? baseClassName,
+            IEnumerable<ModelFieldDef> fieldDefs)
+        {
+            Tag = tag;
+            Name = className;
+            IsAbstract = isAbstract;
+            BaseClassName = baseClassName;
+            FieldDefs = ImmutableList<ModelFieldDef>.Empty.AddRange(fieldDefs);
+            AllDerivedClasses = ImmutableList<ModelClassDef>.Empty;
+        }
+
+        public ModelClassDef SetAllDerivedClasses(IEnumerable<ModelClassDef> allDerivedClasses)
+        {
+            return new ModelClassDef(
+                Name, Tag, IsAbstract, BaseClassName, FieldDefs,
+                ImmutableList<ModelClassDef>.Empty.AddRange(allDerivedClasses));
         }
 
         public ModelClassDef(JsonClassDef? source)
@@ -42,9 +63,7 @@ namespace MetaFac.CG4.Models
             FieldDefs = source.FieldDefs != null
                 ? ImmutableList<ModelFieldDef>.Empty.AddRange(source.FieldDefs.Where(fd => fd != null).Select(fd => new ModelFieldDef(fd)))
                 : ImmutableList<ModelFieldDef>.Empty;
-            Tokens = source.Tokens != null
-                ? ImmutableDictionary<string, string>.Empty.AddRange(source.Tokens)
-                : ImmutableDictionary<string, string>.Empty;
+            AllDerivedClasses = ImmutableList<ModelClassDef>.Empty;
         }
 
         public void Write(TextWriter writer)
@@ -94,8 +113,7 @@ namespace MetaFac.CG4.Models
                    && string.Equals(Name, other.Name)
                    && IsAbstract == other.IsAbstract
                    && string.Equals(BaseClassName, other.BaseClassName)
-                   && FieldDefs.IsEqualTo(other.FieldDefs)
-                   && Tokens.IsEqualTo(other.Tokens);
+                   && FieldDefs.IsEqualTo(other.FieldDefs);
         }
 
         public override bool Equals(object? obj)
@@ -116,13 +134,6 @@ namespace MetaFac.CG4.Models
                 foreach (var field in FieldDefs)
                 {
                     hashCode = hashCode * 397 ^ field.GetHashCode();
-                }
-                hashCode = hashCode * 397 ^ Tokens.Count.GetHashCode();
-                // order ignored
-                foreach (var kvp in Tokens)
-                {
-                    hashCode = hashCode ^ kvp.Key.GetHashCode();
-                    if (kvp.Value != null) hashCode = hashCode ^ kvp.Value.GetHashCode();
                 }
                 return hashCode;
             }

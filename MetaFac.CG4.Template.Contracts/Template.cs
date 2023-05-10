@@ -98,13 +98,13 @@ namespace T_Namespace_.Contracts
     public interface IT_ModelType_ : IFreezable, IEntityBase { int TestData { get; } }
     //>>}
 
-    //>>foreach (var cs in outerScope.Iterators["Classes"].Iterations) {
-    //>>using (NewScope(cs)) {
+    //>>foreach (var cd in outerScope.ClassDefs) {
+    //>>using (NewScope(cd)) {
     public partial interface IT_ClassName_ : IT_BaseClassName_
     {
-        //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-        //>>  using (NewScope(fs)) {
-        //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+        //>>foreach (var fd in cd.FieldDefs) {
+        //>>  using (NewScope(fd)) {
+        //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
         //>>switch (fieldInfo.Kind)
         //>>{
         //>>    case FieldKind.UnaryModel:

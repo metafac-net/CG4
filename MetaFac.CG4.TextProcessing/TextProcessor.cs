@@ -214,50 +214,6 @@ namespace MetaFac.CG4.TextProcessing
 
         }
 
-        public static IEnumerable<string?> EmitEncryptedText(
-            IEncryptedTextCache etc,
-            string generatorNamespace,
-            string generatorShortname)
-        {
-            string[] file_header = new string[]
-            {
-                "using System.Collections.Generic;",
-                "namespace T_GeneratorNamespace_",
-                "{",
-                "    public partial class Generator",
-                "    {",
-                "        protected override string OnGetEncryptionKeyId() => \"T_GeneratorKeyId_\";",
-                "        protected override IEnumerable<(string,string)> OnGetEncryptedText()",
-                "        {",
-            };
-            string[] file_footer = new string[]
-            {
-                "        }",
-                "    }",
-                "}"
-            };
-            var outerTokens = new Dictionary<string, string>()
-            {
-                ["GeneratorNamespace"] = generatorNamespace,
-                ["GeneratorShortName"] = generatorShortname,
-                ["GeneratorKeyId"] = etc.KeyId.ToString("N"),
-            };
-            var replacer = new TokenReplacer("T_", "_", outerTokens);
-            foreach (string line in file_header)
-            {
-                yield return replacer.ReplaceTokens(line);
-            }
-            foreach (var kvp in etc.Cache)
-            {
-                string line = $"            yield return (\"{kvp.Key.ToString("N")}\", \"{Convert.ToBase64String(kvp.Value.AsSpan().ToArray())}\");";
-                yield return line;
-            }
-            foreach (string line in file_footer)
-            {
-                yield return line;
-            }
-        }
-
         private static string EncodeSource(string outerIndent, string sourceCode)
         {
             return $"{outerIndent}{Escaped(sourceCode)}";
@@ -283,7 +239,7 @@ namespace MetaFac.CG4.TextProcessing
             return input.Replace("\\\"", "\"");
         }
 
-        public static IEnumerable<string> ConvertGeneratorToTemplate(IEnumerable<string> sourceLines, IEncryptedTextCache? etc)
+        public static IEnumerable<string> ConvertGeneratorToTemplate(IEnumerable<string> sourceLines)
         {
             TextState state = default;
             int lineNumber = 0;
@@ -369,16 +325,7 @@ namespace MetaFac.CG4.TextProcessing
                                 string emitted = sourceCode
                                     .Substring(0, sourceCode.Length - EmitCodeSuffix.Length)
                                     .Substring(EmitCodePrefix.Length);
-                                if (etc is null)
-                                {
-                                    yield return Unescaped(emitted);
-                                }
-                                else
-                                {
-                                    Guid hash = Guid.Parse(emitted);
-                                    string decryptedSource = etc.GetText(hash);
-                                    yield return decryptedSource;
-                                }
+                                yield return Unescaped(emitted);
                             }
                             else
                             {

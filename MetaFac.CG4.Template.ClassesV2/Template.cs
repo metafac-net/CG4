@@ -182,9 +182,9 @@ namespace T_Namespace_.ClassesV2
     }
     //>>}
 
-    //>>foreach (var cs in outerScope.Iterators["Classes"].Iterations) {
-    //>>using (NewScope(cs)) {
-    //>>if (cs.Tokens.ContainsKey("IsAbstract")) {
+    //>>foreach (var cd in outerScope.ClassDefs) {
+    //>>using (NewScope(cd)) {
+    //>>if (cd.IsAbstract) {
     public abstract partial class T_ClassName2_
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -194,8 +194,8 @@ namespace T_Namespace_.ClassesV2
             int classTag = source.GetEntityTag();
             switch (classTag)
             {
-                //>>foreach (var derived in cs.Iterators["AllDerivedClasses"].Iterations) {
-                //>>    using (NewScope(derived)) {
+                //>>foreach (var derived in cd.AllDerivedClasses) {
+                //>>    using (NewScope(derived.Tokens)) {
                 case T_ClassName_.ClassTag: return T_ClassName_.CreateFrom((IT_ClassName_)source);
                 //>>}}
                 default:
@@ -243,9 +243,9 @@ namespace T_Namespace_.ClassesV2
 
         protected override void OnFreeze()
         {
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -278,9 +278,9 @@ namespace T_Namespace_.ClassesV2
         public new const int ClassTag = T_ClassTag_;
         protected override int OnGetEntityTag() => ClassTag;
 
-        //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-        //>>  using (NewScope(fs)) {
-        //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+        //>>foreach (var fd in cd.FieldDefs) {
+        //>>  using (NewScope(fd)) {
+        //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
         //>>switch (fieldInfo.Kind)
         //>>{
         //>>    case FieldKind.UnaryModel:
@@ -418,9 +418,9 @@ namespace T_Namespace_.ClassesV2
         public T_ClassName_(T_ClassName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -462,9 +462,9 @@ namespace T_Namespace_.ClassesV2
         public T_ClassName_(IT_ClassName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -529,9 +529,9 @@ namespace T_Namespace_.ClassesV2
             if (source is null) return;
             if (_isFrozen) ThrowIsReadonly();
             base.CopyFrom(source);
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -594,9 +594,9 @@ namespace T_Namespace_.ClassesV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:
@@ -640,9 +640,9 @@ namespace T_Namespace_.ClassesV2
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            //>>foreach (var fs in cs.Iterators["Fields"].Iterations) {
-            //>>  using (NewScope(fs)) {
-            //>>    var fieldInfo = new FieldInfo(fs, _engine.Current);
+            //>>foreach (var fd in cd.FieldDefs) {
+            //>>  using (NewScope(fd)) {
+            //>>    var fieldInfo = new FieldInfo(fd, _engine.Current);
             //>>switch (fieldInfo.Kind)
             //>>{
             //>>    case FieldKind.UnaryModel:

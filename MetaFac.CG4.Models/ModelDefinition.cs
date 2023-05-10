@@ -14,6 +14,24 @@ namespace MetaFac.CG4.Models
         public readonly ImmutableList<ModelClassDef> ClassDefs;
         public readonly ImmutableDictionary<string, string> Tokens;
 
+        private ModelDefinition(string name, int? tag, ImmutableList<ModelClassDef> classDefs, ImmutableDictionary<string, string> tokens)
+        {
+            Name = name;
+            Tag = tag;
+            ClassDefs = classDefs;
+            Tokens = tokens;
+        }
+
+        public ModelDefinition SetToken(string name, string value)
+        {
+            return new ModelDefinition(Name, Tag, ClassDefs, Tokens.SetItem(name, value));
+        }
+
+        public ModelDefinition SetTokens(IEnumerable<KeyValuePair<string, string>> tokens)
+        {
+            return new ModelDefinition(Name, Tag, ClassDefs, Tokens.SetItems(tokens));
+        }
+
         public IEnumerable<ModelClassDef> DescendentsOf(string className)
         {
             foreach (var classDef in ClassDefs)

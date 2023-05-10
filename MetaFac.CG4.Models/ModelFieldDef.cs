@@ -16,10 +16,7 @@ namespace MetaFac.CG4.Models
         public readonly ModelProxyDef? ProxyDef;
         public readonly int ArrayRank;
         public readonly string? IndexType;
-        public readonly bool BigEndian;
-        public readonly int FieldSize;
-        public readonly int ArraySize;
-        public readonly ImmutableDictionary<string, string> Tokens;
+        public readonly bool IsModelType;
 
         public bool IsBufferType => InnerType == "binary";
         public bool IsStringType => InnerType == "string";
@@ -28,11 +25,8 @@ namespace MetaFac.CG4.Models
             bool nullable,
             ModelProxyDef? proxyDef,
             int arrayRank,
-            string? indexType = null,
-            int arraySize = 0,
-            bool bigEndian = false,
-            int fieldSize = 0,
-            IEnumerable<KeyValuePair<string, string>>? tokens = null)
+            string? indexType,
+            bool isModelType)
         {
             Tag = tag;
             Name = fieldName;
@@ -41,12 +35,7 @@ namespace MetaFac.CG4.Models
             ProxyDef = proxyDef;
             ArrayRank = arrayRank;
             IndexType = indexType;
-            BigEndian = bigEndian;
-            FieldSize = fieldSize;
-            ArraySize = arraySize;
-            Tokens = tokens != null
-                ? ImmutableDictionary<string, string>.Empty.AddRange(tokens)
-                : ImmutableDictionary<string, string>.Empty;
+            IsModelType = isModelType;
         }
 
         public ModelFieldDef(JsonFieldDef? source)
@@ -59,12 +48,7 @@ namespace MetaFac.CG4.Models
             ProxyDef = source.ProxyDef is null ? null : new ModelProxyDef(source.ProxyDef);
             ArrayRank = source.ArrayRank;
             IndexType = source.IndexType;
-            BigEndian = source.BigEndian;
-            FieldSize = source.FieldSize;
-            ArraySize = source.ArraySize;
-            Tokens = source.Tokens != null
-                ? ImmutableDictionary<string, string>.Empty.AddRange(source.Tokens)
-                : ImmutableDictionary<string, string>.Empty;
+            IsModelType = source.IsModelType;
         }
 
         public void Write(TextWriter writer)
@@ -73,8 +57,6 @@ namespace MetaFac.CG4.Models
             {
                 writer.WriteLine($"    [Proxy(\"{ProxyDef.ExternalName}\", \"{ProxyDef.ConcreteName}\")]");
             }
-            if (Tokens.Count > 0)
-                writer.WriteLine($"    [{string.Join(",", Tokens.Select(t => $"{t.Key}={t.Value}"))}]");
             writer.Write($"    field");
             if (Tag.HasValue)
                 writer.Write($" {Tag.Value}:");
@@ -118,10 +100,7 @@ namespace MetaFac.CG4.Models
                    && Equals(ProxyDef, other.ProxyDef)
                    && ArrayRank == other.ArrayRank
                    && string.Equals(IndexType, other.IndexType)
-                   && BigEndian == other.BigEndian
-                   && FieldSize == other.FieldSize
-                   && ArraySize == other.ArraySize
-                   && Tokens.IsEqualTo(other.Tokens);
+                   && IsModelType == other.IsModelType;
         }
 
         public override bool Equals(object? obj)
@@ -140,16 +119,7 @@ namespace MetaFac.CG4.Models
                 hashCode = hashCode * 397 ^ (ProxyDef?.GetHashCode() ?? 0);
                 hashCode = hashCode * 397 ^ ArrayRank.GetHashCode();
                 hashCode = hashCode * 397 ^ (IndexType?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ BigEndian.GetHashCode();
-                hashCode = hashCode * 397 ^ FieldSize.GetHashCode();
-                hashCode = hashCode * 397 ^ ArraySize.GetHashCode();
-                hashCode = hashCode * 397 ^ Tokens.Count.GetHashCode();
-                // order ignored
-                foreach (var kvp in Tokens)
-                {
-                    hashCode = hashCode ^ kvp.Key.GetHashCode();
-                    if (kvp.Value != null) hashCode = hashCode ^ kvp.Value.GetHashCode();
-                }
+                hashCode = hashCode * 397 ^ IsModelType.GetHashCode();
                 return hashCode;
             }
         }

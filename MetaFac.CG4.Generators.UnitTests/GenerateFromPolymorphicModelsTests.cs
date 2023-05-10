@@ -19,9 +19,8 @@ namespace MetaFac.CG4.Generators.UnitTests
             string ns = typeof(PolymorphicModels.Tree).Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
             var logger = NullLogger.Instance;
-            var clock = new TimeOfDayClock();
             var options = new GeneratorOptions() { CopyrightInfo = "Copyright (c) 2023 MetaFac" };
-            var sourceLines = GeneratorHelper.GenerateSource(logger, clock, metadata, "Generated", options, generator)
+            var sourceLines = GeneratorHelper.GenerateSource(logger, metadata, "Generated", options, generator)
                 .ToArray();
             string sourceCode = string.Join(Environment.NewLine, sourceLines);
             return sourceCode;

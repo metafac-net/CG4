@@ -43,7 +43,6 @@ namespace MetaFac.CG4.ModelReader.Tests
             modelDef.ClassDefs.Count.Should().Be(3);
             var classDef = modelDef.ClassDefs[0];
             classDef.Name.Should().Be("BuiltinTypes");
-            classDef.Tokens.Count.Should().Be(0);
             classDef.FieldDefs.Count.Should().Be(19);
         }
 
@@ -56,7 +55,6 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
             var classDef = modelDef.ClassDefs.Where(cd => cd.Name == "ExternalTypes").Single();
-            classDef.Tokens.Count.Should().Be(0);
             classDef.FieldDefs.Count.Should().Be(1);
 
             // external type
@@ -79,7 +77,6 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
             var classDef = modelDef.ClassDefs.Where(cd => cd.Name == "EnumeratorTypes").Single();
-            classDef.Tokens.Count.Should().Be(0);
             classDef.FieldDefs.Count.Should().Be(3);
 
             // enumerator types

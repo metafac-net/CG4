@@ -77,7 +77,7 @@ namespace MetaFac.CG4.TextProcessing.UnitTests
         [Fact]
         public void GeneratorToTemplate()
         {
-            string[] actualOutput = TextProcessor.ConvertGeneratorToTemplate(expectedGenerated, null).ToArray();
+            string[] actualOutput = TextProcessor.ConvertGeneratorToTemplate(expectedGenerated).ToArray();
             actualOutput.Should().BeEquivalentTo(originalTemplate);
         }
 

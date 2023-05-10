@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetaFac.CG4.Models;
+using System;
 
 namespace MetaFac.CG4.Generators
 {
@@ -7,11 +8,6 @@ namespace MetaFac.CG4.Generators
         private readonly EngineScope _engineScope;
 
         public FieldKind Kind { get; }
-
-        private readonly bool _isSignedType;
-        public bool IsSignedType => _isSignedType;
-        private readonly bool _isUnsignedType;
-        public bool IsUnsignedType => _isUnsignedType;
 
         private void Define(string name, string value)
         {
@@ -27,20 +23,17 @@ namespace MetaFac.CG4.Generators
             else
                 Define($"Unary{kind}FieldName", "T_FieldName_");
         }
-        public FieldInfo(TemplateScope fieldScope, EngineScope engineScope)
+        public FieldInfo(ModelFieldDef fieldDef, EngineScope engineScope)
         {
             _engineScope = engineScope ?? throw new ArgumentNullException(nameof(engineScope));
 
-            _isSignedType = fieldScope.Tokens.TryGetValue("SignedType", out var _);
-            _isUnsignedType = fieldScope.Tokens.TryGetValue("UnsignedType", out var _);
-
             Kind = default;
-            if (fieldScope.Tokens.TryGetValue("ModelType", out var _)) Kind = Kind | FieldKind.IsModelType;
-            if (fieldScope.Tokens.TryGetValue("IndexType", out var _)) Kind = Kind | FieldKind.IsIndexType;
-            if (fieldScope.Tokens.TryGetValue("ArrayRank", out var _)) Kind = Kind | FieldKind.IsArrayType;
-            if (fieldScope.Tokens.TryGetValue("BufferType", out var _)) Kind = Kind | FieldKind.IsBufferType;
-            if (fieldScope.Tokens.TryGetValue("StringType", out var _)) Kind = Kind | FieldKind.IsStringType;
-            if (fieldScope.Tokens.TryGetValue("Nullable", out var _)) Kind = Kind | FieldKind.IsNullable;
+            if (fieldDef.IsModelType) Kind = Kind | FieldKind.IsModelType;
+            if (fieldDef.IndexType is not null) Kind = Kind | FieldKind.IsIndexType;
+            if (fieldDef.ArrayRank > 0) Kind = Kind | FieldKind.IsArrayType;
+            if (fieldDef.IsBufferType) Kind = Kind | FieldKind.IsBufferType;
+            if (fieldDef.IsStringType) Kind = Kind | FieldKind.IsStringType;
+            if (fieldDef.Nullable) Kind = Kind | FieldKind.IsNullable;
             if (Kind.IsModelType())
             {
                 DefineFieldName("Model");
@@ -67,6 +60,5 @@ namespace MetaFac.CG4.Generators
                 }
             }
         }
-
     }
 }

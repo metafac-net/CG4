@@ -74,7 +74,7 @@ namespace MetaFac.CG4.Models
                     if (newClassTag == 0)
                         newClassTag = ++maxClassTag;
                     mergedClassDefsByTag.Add(newClassTag,
-                        new ModelClassDef(ncd.Name, newClassTag, ncd.IsAbstract, ncd.BaseClassName, ncd.FieldDefs, ncd.Tokens));
+                        new ModelClassDef(ncd.Name, newClassTag, ncd.IsAbstract, ncd.BaseClassName, ncd.FieldDefs));
                     mergedClassNameToTagMap.Add(ncd.Name, newClassTag);
                     newClassDefs.Remove(newClassName);
                 }
@@ -102,7 +102,7 @@ namespace MetaFac.CG4.Models
                     {
                         // update class
                         mergedClassDefsByTag.Add(oldClassTag,
-                            new ModelClassDef(ncd.Name, oldClassTag, ncd.IsAbstract, ncd.BaseClassName, ncd.FieldDefs, ncd.Tokens));
+                            new ModelClassDef(ncd.Name, oldClassTag, ncd.IsAbstract, ncd.BaseClassName, ncd.FieldDefs));
                         mergedClassNameToTagMap.Add(ncd.Name, oldClassTag);
                         newClassDefs.Remove(newClassName);
                         oldClassNameToTagMap.Remove(oldClassDef.Name);

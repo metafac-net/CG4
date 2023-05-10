@@ -155,18 +155,6 @@ namespace MetaFac.CG4.CLI
 
             var generator = GetGenerator(ParseGeneratorId(generatorName));
 
-            // check proxy definitions
-            // todo proxy definitions
-            var proxyDefs = new List<ProxyDef>();
-            //if (proxyDefinitions.HasValue())
-            //{
-            //    foreach (string value in proxyDefinitions.Values)
-            //    {
-            //        proxyDefs.Add(ParseProxyDef(value));
-            //    }
-            //}
-
-            // good to go
             string fileVersion = ThisAssembly.AssemblyFileVersion;
             Logger.LogInformation($"  Source: {metadataSource} ({sourceNamespace ?? "*"})");
             Logger.LogInformation($"  Output: {outputCodeFilename}");
@@ -191,26 +179,18 @@ namespace MetaFac.CG4.CLI
                 }
             }
 
-            TemplateScope outerScope = metadata.GetScopeFromMetadata()
+            // todo GetScopeFromMetadata
+            metadata = metadata
                 .SetToken("Namespace", outputNamespace)
                 .SetToken("GeneratorId", generator.ShortName)
                 .SetToken("GeneratorVersion", $"(version {fileVersion})")
                 .SetToken("MetadataSource", metadataSource)
                 .SetToken("MetadataVersion", metadataVersion)
                 ;
-            if (proxyDefs.Count > 0)
-            {
-                Logger.LogInformation($"  Proxy definitions:");
-                foreach (var pd in proxyDefs)
-                {
-                    Logger.LogInformation($"    {pd.ProxyTypeName}={pd.ExternalTypeName},{pd.ConcreteTypeName}");
-                    outerScope = outerScope.SetProxyTypeTokens(pd);
-                }
-            }
 
             // generate!
             Logger.LogInformation($"  Generating...");
-            var outputText = generator.Generate(Logger, clock, outerScope, null).ToArray();
+            var outputText = generator.Generate(metadata);
             using var csw = new StreamWriter(outputCodeFilename);
             foreach (var line in outputText)
             {
