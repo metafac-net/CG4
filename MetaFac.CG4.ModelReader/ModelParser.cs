@@ -12,11 +12,11 @@ namespace MetaFac.CG4.ModelReader
 {
     public static class ModelParser
     {
-        internal static List<ModelClassDef> ParseClasses(string modelName, Assembly sourceAssembly, string sourceNamespace)
+        internal static List<ModelEntityDef> ParseClasses(string modelName, Assembly sourceAssembly, string sourceNamespace)
         {
-            var classDefsByName = new Dictionary<string, ModelClassDef>();
-            var classDefsByTag = new Dictionary<int, ModelClassDef>();
-            Queue<ClassDefInfo> toBeProcessed = new Queue<ClassDefInfo>();
+            var entityDefsByName = new Dictionary<string, ModelEntityDef>();
+            var entityDefsByTag = new Dictionary<int, ModelEntityDef>();
+            Queue<EntityDefInfo> toBeProcessed = new Queue<EntityDefInfo>();
             var proxyTypes = new ProxyTypeInfoCollection();
 
             foreach (
@@ -50,30 +50,30 @@ namespace MetaFac.CG4.ModelReader
                     }
                     else if (typeInfo.IsClass && entityTag.HasValue)
                     {
-                        toBeProcessed.Enqueue(new ClassDefInfo(typeInfo.AsType(), entityTag));
+                        toBeProcessed.Enqueue(new EntityDefInfo(typeInfo.AsType(), entityTag));
                     }
                 }
             }
 
             while (toBeProcessed.Count > 0)
             {
-                ClassDefInfo classDefInfo = toBeProcessed.Dequeue();
-                Type classType = classDefInfo.ClassType;
-                var className = classType.Name;
-                bool isAbstract = classType.IsAbstract;
-                int? classTag = classDefInfo.ClassTag;
-                var classTagName = new TagName(classTag, className);
-                //var classTokens = classDefInfo.ClassTokens;
+                EntityDefInfo entityDefInfo = toBeProcessed.Dequeue();
+                Type entityType = entityDefInfo.Type;
+                var entityName = entityType.Name;
+                bool isAbstract = entityType.IsAbstract;
+                int? entityTag = entityDefInfo.Tag;
+                var entityTagName = new TagName(entityTag, entityName);
+                //var classTokens = entityDefInfo.ClassTokens;
                 bool exclude = false;
-                foreach (Attribute attr in classType.GetTypeInfo().GetCustomAttributes(false))
+                foreach (Attribute attr in entityType.GetTypeInfo().GetCustomAttributes(false))
                 {
                     if (attr is EntityAttribute tagAttribute)
                     {
-                        if (classTag.HasValue && tagAttribute.Tag != classTag.Value)
+                        if (entityTag.HasValue && tagAttribute.Tag != entityTag.Value)
                             throw new ValidationException(
-                                new ValidationError(ValidationErrorCode.RedefinedClassTag, modelName,
-                                classTagName, null, new TagName(tagAttribute.Tag, className), null));
-                        classTag = tagAttribute.Tag;
+                                new ValidationError(ValidationErrorCode.RedefinedEntityTag, modelName,
+                                entityTagName, null, new TagName(tagAttribute.Tag, entityName), null));
+                        entityTag = tagAttribute.Tag;
                     }
 
                     if (attr is ExcludeAttribute excludeAttribute)
@@ -82,26 +82,26 @@ namespace MetaFac.CG4.ModelReader
                     }
                 }
 
-                List<ModelFieldDef> fieldList = ParseFields(classDefInfo, sourceNamespace, modelName, classTagName, proxyTypes);
+                List<ModelFieldDef> fieldList = ParseFields(entityDefInfo, sourceNamespace, modelName, entityTagName, proxyTypes);
 
-                if (!exclude && classTag.HasValue)
+                if (!exclude && entityTag.HasValue)
                 {
-                    // ensure base class has been processed first
-                    Type? baseType = classType.GetTypeInfo().BaseType;
-                    string? baseClassName = !(baseType is null) && baseType != typeof(object)
+                    // ensure parent has been processed first
+                    Type? baseType = entityType.GetTypeInfo().BaseType;
+                    string? parentName = !(baseType is null) && baseType != typeof(object)
                         ? baseType.Name
                         : null;
 
                     //if (baseType != null && baseType != typeof(Object))
                     //{
-                    //    throw new ValidationException(new ValidationError(ValidationErrorCode.BaseClassNotSupported,
-                    //        modelName, new ModelClassDef(classTag, className, null), null,
-                    //        new ModelClassDef(null, baseType.Name, null), null));
+                    //    throw new ValidationException(new ValidationError(ValidationErrorCode.ParentNotSupported,
+                    //        modelName, new ModelEntityDef(entityTag, entityName, null), null,
+                    //        new ModelEntityDef(null, baseType.Name, null), null));
                     //}
 
-                    var classDef = new ModelClassDef(className, classTag.Value, isAbstract, baseClassName, fieldList);
-                    classDefsByName.Add(className, classDef);
-                    classDefsByTag.Add(classTag.Value, classDef);
+                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, isAbstract, parentName, fieldList);
+                    entityDefsByName.Add(entityName, entityDef);
+                    entityDefsByTag.Add(entityTag.Value, entityDef);
                 }
 
             } // while
@@ -109,13 +109,13 @@ namespace MetaFac.CG4.ModelReader
             // check for unbound classes
             if (toBeProcessed.Count > 0)
             {
-                var classTypeInfo = toBeProcessed.Dequeue();
-                var className = classTypeInfo.ClassType.Name;
+                var entityTypeInfo = toBeProcessed.Dequeue();
+                var entityName = entityTypeInfo.Type.Name;
 
-                throw new ValidationException(new ValidationError(ValidationErrorCode.UnknownBaseClass, modelName, new TagName(null, className), null, null, null));
+                throw new ValidationException(new ValidationError(ValidationErrorCode.UnknownParent, modelName, new TagName(null, entityName), null, null, null));
             }
 
-            return classDefsByName.Values.ToList();
+            return entityDefsByName.Values.ToList();
 
         }
 
@@ -164,7 +164,7 @@ namespace MetaFac.CG4.ModelReader
 
         private static FieldInfo GetFieldInfo(
             string sourceNamespace,
-            string modelName, TagName classTagName, string fieldName, Type fieldType,
+            string modelName, TagName entityTagName, string fieldName, Type fieldType,
             ProxyTypeInfoCollection proxyTypes)
         {
             var result = new FieldInfo();
@@ -239,7 +239,7 @@ namespace MetaFac.CG4.ModelReader
                             throw new ValidationException(
                                 new ValidationError(
                                     ValidationErrorCode.UnknownFieldType,
-                                    modelName, classTagName, new TagName(null, fieldName, fieldType.FullName), null, null));
+                                    modelName, entityTagName, new TagName(null, fieldName, fieldType.FullName), null, null));
                 }
 
             }
@@ -277,7 +277,7 @@ namespace MetaFac.CG4.ModelReader
                 throw new ValidationException(
                     new ValidationError(
                         ValidationErrorCode.UnknownFieldType,
-                        modelName, classTagName, new TagName(null, fieldName, fieldType.FullName), null, null));
+                        modelName, entityTagName, new TagName(null, fieldName, fieldType.FullName), null, null));
             }
 
             // convert built-in type names
@@ -292,19 +292,19 @@ namespace MetaFac.CG4.ModelReader
         }
 
         internal static List<ModelFieldDef> ParseFields(
-            ClassDefInfo classDefInfo, string sourceNamespace, string modelName, TagName classTagName,
+            EntityDefInfo entityDefInfo, string sourceNamespace, string modelName, TagName entityTagName,
             ProxyTypeInfoCollection proxyTypes)
         {
-            var classType = classDefInfo.ClassType;
+            var entityType = entityDefInfo.Type;
             var fieldDefsByName = new Dictionary<string, ModelFieldDef>();
             // process fields
             // todo include inherited fields?
-            foreach (var propInfo in classType.GetRuntimeProperties().Where(p => p.DeclaringType == classType))
+            foreach (var propInfo in entityType.GetRuntimeProperties().Where(p => p.DeclaringType == entityType))
             {
                 int fieldTag = 0;
                 string fieldName = propInfo.Name;
                 Type fieldType = propInfo.PropertyType;
-                var fieldInfo = GetFieldInfo(sourceNamespace, modelName, classTagName, fieldName, fieldType, proxyTypes);
+                var fieldInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, fieldName, fieldType, proxyTypes);
                 string innerTypeName = fieldInfo.innerTypeName ?? nameof(Unknown);
                 // emit field tokens
                 // todo? emit these tokens later
@@ -363,19 +363,19 @@ namespace MetaFac.CG4.ModelReader
             int modelTag = 1;
             string modelName = "Model1";
             var modelTokens = new Dictionary<string, string>();
-            List<ModelClassDef> classList = ParseClasses(modelName, sourceAssembly, sourceNamespace);
-            var modelDefinition = new ModelDefinition(modelName, modelTag, classList, modelTokens);
+            List<ModelEntityDef> entityListA = ParseClasses(modelName, sourceAssembly, sourceNamespace);
+            var modelDefinition = new ModelDefinition(modelName, modelTag, entityListA, modelTokens);
 
             // derive class hierarchy
-            List<ModelClassDef> updatedClassList = new List<ModelClassDef>();
-            foreach (var classDef in classList)
+            var entityListB = new List<ModelEntityDef>();
+            foreach (var entityDef in entityListA)
             {
-                var allDescendents = modelDefinition.AllDescendentsOf(classDef.Name);
-                var updatedClassDef = classDef.SetAllDerivedClasses(allDescendents);
-                updatedClassList.Add(updatedClassDef);
+                var allDescendents = modelDefinition.AllDescendentsOf(entityDef.Name);
+                var updatedEntityDef = entityDef.SetDerivedEntities(allDescendents);
+                entityListB.Add(updatedEntityDef);
             }
 
-            modelDefinition = new ModelDefinition(modelName, modelTag, updatedClassList, modelTokens);
+            modelDefinition = new ModelDefinition(modelName, modelTag, entityListB, modelTokens);
             modelDefinitions.Add(modelDefinition);
             return new ModelContainer(modelDefinitions);
         }

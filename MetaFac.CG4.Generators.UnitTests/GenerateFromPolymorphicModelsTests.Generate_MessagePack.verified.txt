@@ -32,7 +32,7 @@ namespace Generated.MessagePack
     public abstract class EntityBase : IFreezable, IEntityBase, IEquatable<EntityBase>, ICopyFrom<EntityBase>
     {
         public static EntityBase Empty => throw new NotSupportedException();
-        public const int ClassTag = 0;
+        public const int EntityTag = 0;
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static void ThrowIsReadonly()
@@ -87,23 +87,23 @@ namespace Generated.MessagePack
     }
 
 
-    [Union(Int32Node.ClassTag, typeof(Int32Node))]
-    [Union(StringNode.ClassTag, typeof(StringNode))]
-    [Union(BooleanNode.ClassTag, typeof(BooleanNode))]
+    [Union(Int32Node.EntityTag, typeof(Int32Node))]
+    [Union(StringNode.EntityTag, typeof(StringNode))]
+    [Union(BooleanNode.EntityTag, typeof(BooleanNode))]
     public abstract partial class ValueNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueNode? CreateFrom(IValueNode? source)
         {
             if (source is null) return null;
-            int classTag = source.GetEntityTag();
-            switch (classTag)
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
             {
-                case Int32Node.ClassTag: return Int32Node.CreateFrom((IInt32Node)source);
-                case StringNode.ClassTag: return StringNode.CreateFrom((IStringNode)source);
-                case BooleanNode.ClassTag: return BooleanNode.CreateFrom((IBooleanNode)source);
+                case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case StringNode.EntityTag: return StringNode.CreateFrom((IStringNode)source);
+                case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(classTag), classTag, null);
+                    throw new ArgumentOutOfRangeException(nameof(entityTag), entityTag, null);
             }
         }
     }
@@ -115,8 +115,8 @@ namespace Generated.MessagePack
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 1;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 1;
+        protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
         private Int64 field_Id;
@@ -241,8 +241,8 @@ namespace Generated.MessagePack
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 2;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 2;
+        protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
         private Int32 field_IntValue;
@@ -354,8 +354,8 @@ namespace Generated.MessagePack
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 3;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 3;
+        protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
         private String? field_StrValue;
@@ -467,8 +467,8 @@ namespace Generated.MessagePack
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 4;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 4;
+        protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
         private Boolean field_BoolValue;
@@ -583,8 +583,8 @@ namespace Generated.MessagePack
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 10;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 10;
+        protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
         private Tree? field_Left;

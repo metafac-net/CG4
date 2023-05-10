@@ -4,40 +4,40 @@ using System.Linq;
 
 namespace MetaFac.CG4.Models
 {
-    public class JsonClassDef : IEquatable<JsonClassDef>
+    public class JsonEntityDef : IEquatable<JsonEntityDef>
     {
         public int? Tag { get; set; }
         public string? Name { get; set; }
         public bool IsAbstract { get; set; }
-        public string? BaseClassName { get; set; }
+        public string? ParentName { get; set; }
         public List<JsonFieldDef>? FieldDefs { get; set; }
 
-        public JsonClassDef() { }
+        public JsonEntityDef() { }
 
-        public JsonClassDef(ModelClassDef source)
+        public JsonEntityDef(ModelEntityDef source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
             Name = source.Name;
             IsAbstract = source.IsAbstract;
-            BaseClassName = source.BaseClassName;
+            ParentName = source.ParentName;
             FieldDefs = source.FieldDefs.Select(fd => new JsonFieldDef(fd)).ToList();
         }
 
-        public bool Equals(JsonClassDef? other)
+        public bool Equals(JsonEntityDef? other)
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
                    && IsAbstract == other.IsAbstract
-                   && string.Equals(BaseClassName, other.BaseClassName)
+                   && string.Equals(ParentName, other.ParentName)
                    && FieldDefs.IsEqualTo(other.FieldDefs);
         }
 
         public override bool Equals(object? obj)
         {
-            return obj is JsonClassDef other && Equals(other);
+            return obj is JsonEntityDef other && Equals(other);
         }
 
         public override int GetHashCode()
@@ -47,7 +47,7 @@ namespace MetaFac.CG4.Models
                 int hashCode = Tag?.GetHashCode() ?? 0;
                 hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
                 hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
-                hashCode = hashCode * 397 ^ (BaseClassName?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (ParentName?.GetHashCode() ?? 0);
                 // order sensitive
                 if (FieldDefs != null)
                 {

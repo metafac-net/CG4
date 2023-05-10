@@ -2,18 +2,18 @@
 {
     public enum ValidationErrorCode
     {
-        MissingClassTag,
-        InvalidClassTag,
-        DuplicateClassTag,
-        RedefinedClassTag,
-        DuplicateClassName,
+        MissingEntityTag,
+        InvalidEntityTag,
+        DuplicateEntityTag,
+        RedefinedEntityTag,
+        DuplicateEntityName,
         MissingFieldTag,
         DuplicateFieldTag,
         DuplicateFieldName,
         UnknownFieldType,
         CircularReference,
-        UnknownBaseClass,
-        BaseClassNotSupported,
-        NonAbstractBaseClass,
+        UnknownParent,
+        ParentNotSupported,
+        NonAbstractParent,
     }
 }

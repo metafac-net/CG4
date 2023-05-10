@@ -32,7 +32,7 @@ namespace Generated.RecordsV2
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        public const int ClassTag = 0;
+        public const int EntityTag = 0;
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
@@ -51,7 +51,7 @@ namespace Generated.RecordsV2
         public static BuiltinTypes? CreateFrom(IBuiltinTypes? source)
         {
             if (source is null) return null;
-            if (source is BuiltinTypes thisClass) return thisClass;
+            if (source is BuiltinTypes thisEntity) return thisEntity;
             return new BuiltinTypes(source);
         }
 
@@ -61,8 +61,8 @@ namespace Generated.RecordsV2
     }
     public partial record BuiltinTypes : EntityBase, IBuiltinTypes
     {
-        public new const int ClassTag = 1;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 1;
+        protected override int OnGetEntityTag() => EntityTag;
 
         public ImmutableList<Boolean>? Bools { get; init; }
         IReadOnlyList<Boolean>? IBuiltinTypes.Bools => Bools;

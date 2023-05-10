@@ -35,7 +35,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Fact]
         public void Create_Empty()
         {
-            var concrete = T_ClassName_.Empty;
+            var concrete = T_EntityName_.Empty;
             concrete.IsFrozen().Should().BeTrue();
             concrete.T_UnaryModelFieldName_.Should().BeNull();
             concrete.T_ArrayModelFieldName_.Should().BeNull();
@@ -53,7 +53,7 @@ namespace MetaFac.CG4.Template.UnitTests
             concrete.T_ArrayStringFieldName_.Should().BeNull();
             concrete.T_IndexStringFieldName_.Should().BeNull();
 
-            IT_ClassName_ external = concrete;
+            IT_EntityName_ external = concrete;
             external.T_UnaryModelFieldName_.Should().BeNull();
             external.T_ArrayModelFieldName_.Should().BeNull();
             external.T_IndexModelFieldName_.Should().BeNull();
@@ -70,7 +70,7 @@ namespace MetaFac.CG4.Template.UnitTests
             external.T_ArrayStringFieldName_.Should().BeNull();
             external.T_IndexStringFieldName_.Should().BeNull();
 
-            var duplicate = new T_ClassName_(external);
+            var duplicate = new T_EntityName_(external);
             duplicate.IsFrozen().Should().BeFalse();
             duplicate.Freeze();
             duplicate.IsFrozen().Should().BeTrue();
@@ -102,10 +102,10 @@ namespace MetaFac.CG4.Template.UnitTests
         public void Roundtrip_Empty(MessagePackCompression compression, int compressedSize)
         {
             var options = MessagePackSerializerOptions.Standard.WithCompression(compression);
-            var original = new T_ClassName_();
+            var original = new T_EntityName_();
             byte[] buffer = MessagePackSerializer.Serialize(original, options);
             buffer.Length.Should().Be(compressedSize);
-            var duplicate = MessagePackSerializer.Deserialize<T_ClassName_>(buffer);
+            var duplicate = MessagePackSerializer.Deserialize<T_EntityName_>(buffer);
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -113,7 +113,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Fact]
         public void Create_NonEmpty1()
         {
-            var original = new T_ClassName_()
+            var original = new T_EntityName_()
             {
                 T_UnaryModelFieldName_ = new T_ModelType_(123),
                 T_ArrayModelFieldName_ = ImmutableList<T_ModelType_?>.Empty.Add(new T_ModelType_(234)),
@@ -140,7 +140,7 @@ namespace MetaFac.CG4.Template.UnitTests
             };
             original.Freeze();
 
-            IT_ClassName_ external = original;
+            IT_EntityName_ external = original;
             external.T_UnaryModelFieldName_.Should().NotBeNull();
             external.T_ArrayModelFieldName_.Should().NotBeNull();
             external.T_IndexModelFieldName_.Should().NotBeNull();
@@ -153,7 +153,7 @@ namespace MetaFac.CG4.Template.UnitTests
             external.T_UnaryBufferFieldName_.IsEmpty.Should().BeFalse();
             external.T_UnaryBufferFieldName_.Length.Should().Be(4);
 
-            var duplicate = new T_ClassName_(external);
+            var duplicate = new T_EntityName_(external);
             duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
             duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
             duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);
@@ -177,7 +177,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Fact]
         public void Create_NonEmpty2()
         {
-            var original = new T_ClassName_()
+            var original = new T_EntityName_()
             {
                 T_UnaryModelFieldName_ = new T_ModelType_(123),
                 T_ArrayModelFieldName_ = ImmutableList<T_ModelType_?>.Empty.Add(new T_ModelType_(234)),
@@ -204,7 +204,7 @@ namespace MetaFac.CG4.Template.UnitTests
             };
             original.Freeze();
 
-            var duplicate = new T_ClassName_(original);
+            var duplicate = new T_EntityName_(original);
             duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
             duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
             duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);
@@ -228,7 +228,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Fact]
         public void Create_NonEmpty3()
         {
-            var original = new T_ClassName_()
+            var original = new T_EntityName_()
             {
                 T_UnaryModelFieldName_ = new T_ModelType_(123),
                 T_ArrayModelFieldName_ = ImmutableList<T_ModelType_?>.Empty.Add(new T_ModelType_(234)),
@@ -255,7 +255,7 @@ namespace MetaFac.CG4.Template.UnitTests
             };
             original.Freeze();
 
-            var duplicate = new T_ClassName_();
+            var duplicate = new T_EntityName_();
             duplicate.CopyFrom(original);
             duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
             duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
@@ -283,7 +283,7 @@ namespace MetaFac.CG4.Template.UnitTests
         //[InlineData(MessagePackCompression.Lz4BlockArray)] fails! todo bug?
         public void Roundtrip_NonEmpty(MessagePackCompression compression)
         {
-            var original = new T_ClassName_()
+            var original = new T_EntityName_()
             {
                 T_UnaryModelFieldName_ = new T_ModelType_(123),
                 T_ArrayModelFieldName_ = ImmutableList<T_ModelType_?>.Empty.Add(new T_ModelType_(234)),
@@ -312,7 +312,7 @@ namespace MetaFac.CG4.Template.UnitTests
             var options = MessagePackSerializerOptions.Standard.WithCompression(compression);
             byte[] buffer = MessagePackSerializer.Serialize(original, options);
             //buffer.Length.Should().Be(compressedSize);
-            var duplicate = MessagePackSerializer.Deserialize<T_ClassName_>(buffer);
+            var duplicate = MessagePackSerializer.Deserialize<T_EntityName_>(buffer);
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }

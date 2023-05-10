@@ -16,7 +16,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Fact]
         public void Create_Empty()
         {
-            var original = T_ClassName_.Empty;
+            var original = T_EntityName_.Empty;
             original.T_UnaryModelFieldName_.Should().BeNull();
             original.T_ArrayModelFieldName_.Should().BeNull();
             original.T_IndexModelFieldName_.Should().BeNull();
@@ -33,7 +33,7 @@ namespace MetaFac.CG4.Template.UnitTests
             original.T_ArrayStringFieldName_.Should().BeNull();
             original.T_IndexStringFieldName_.Should().BeNull();
 
-            IT_ClassName_ external = original;
+            IT_EntityName_ external = original;
             external.T_UnaryModelFieldName_.Should().BeNull();
             external.T_ArrayModelFieldName_.Should().BeNull();
             external.T_IndexModelFieldName_.Should().BeNull();
@@ -50,7 +50,7 @@ namespace MetaFac.CG4.Template.UnitTests
             external.T_ArrayStringFieldName_.Should().BeNull();
             external.T_IndexStringFieldName_.Should().BeNull();
 
-            var duplicate = new T_ClassName_(external);
+            var duplicate = new T_EntityName_(external);
             duplicate.T_UnaryModelFieldName_.Should().BeNull();
             duplicate.T_ArrayModelFieldName_.Should().BeNull();
             duplicate.T_IndexModelFieldName_.Should().BeNull();
@@ -75,7 +75,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Fact]
         public void Create_NonEmpty()
         {
-            var original = new T_ClassName_()
+            var original = new T_EntityName_()
             {
                 T_UnaryModelFieldName_ = new T_ModelType_(123),
                 T_ArrayModelFieldName_ = ImmutableList<T_ModelType_?>.Empty.AddRange(new[] { new T_ModelType_(234) }),
@@ -100,7 +100,7 @@ namespace MetaFac.CG4.Template.UnitTests
                 }),
             };
 
-            IT_ClassName_ external = original;
+            IT_EntityName_ external = original;
             external.T_UnaryModelFieldName_.Should().NotBeNull();
             external.T_ArrayModelFieldName_.Should().NotBeNull();
             external.T_IndexModelFieldName_.Should().NotBeNull();
@@ -111,7 +111,7 @@ namespace MetaFac.CG4.Template.UnitTests
             external.T_ArrayMaybeFieldName_.Should().NotBeNull();
             external.T_IndexMaybeFieldName_.Should().NotBeNull();
 
-            var duplicate = new T_ClassName_(external);
+            var duplicate = new T_EntityName_(external);
             duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
             duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
             duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);

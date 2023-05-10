@@ -32,7 +32,7 @@ namespace Generated.RecordsV2
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        public const int ClassTag = 0;
+        public const int EntityTag = 0;
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
@@ -51,12 +51,12 @@ namespace Generated.RecordsV2
         public static ValueNode? CreateFrom(IValueNode? source)
         {
             if (source is null) return null;
-            int classTag = source.GetEntityTag();
-            switch (classTag)
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
             {
-                case Int32Node.ClassTag: return Int32Node.CreateFrom((IInt32Node)source);
-                case StringNode.ClassTag: return StringNode.CreateFrom((IStringNode)source);
-                case BooleanNode.ClassTag: return BooleanNode.CreateFrom((IBooleanNode)source);
+                case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case StringNode.EntityTag: return StringNode.CreateFrom((IStringNode)source);
+                case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -65,8 +65,8 @@ namespace Generated.RecordsV2
     }
     public partial record ValueNode : EntityBase, IValueNode
     {
-        public new const int ClassTag = 1;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 1;
+        protected override int OnGetEntityTag() => EntityTag;
 
         public Int64 Id { get; init; }
         Int64 IValueNode.Id => Id;
@@ -127,7 +127,7 @@ namespace Generated.RecordsV2
         public static Int32Node? CreateFrom(IInt32Node? source)
         {
             if (source is null) return null;
-            if (source is Int32Node thisClass) return thisClass;
+            if (source is Int32Node thisEntity) return thisEntity;
             return new Int32Node(source);
         }
 
@@ -137,8 +137,8 @@ namespace Generated.RecordsV2
     }
     public partial record Int32Node : ValueNode, IInt32Node
     {
-        public new const int ClassTag = 2;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 2;
+        protected override int OnGetEntityTag() => EntityTag;
 
         public Int32 IntValue { get; init; }
         Int32 IInt32Node.IntValue => IntValue;
@@ -193,7 +193,7 @@ namespace Generated.RecordsV2
         public static StringNode? CreateFrom(IStringNode? source)
         {
             if (source is null) return null;
-            if (source is StringNode thisClass) return thisClass;
+            if (source is StringNode thisEntity) return thisEntity;
             return new StringNode(source);
         }
 
@@ -203,8 +203,8 @@ namespace Generated.RecordsV2
     }
     public partial record StringNode : ValueNode, IStringNode
     {
-        public new const int ClassTag = 3;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 3;
+        protected override int OnGetEntityTag() => EntityTag;
 
         public String? StrValue { get; init; }
         String? IStringNode.StrValue => StrValue;
@@ -259,7 +259,7 @@ namespace Generated.RecordsV2
         public static BooleanNode? CreateFrom(IBooleanNode? source)
         {
             if (source is null) return null;
-            if (source is BooleanNode thisClass) return thisClass;
+            if (source is BooleanNode thisEntity) return thisEntity;
             return new BooleanNode(source);
         }
 
@@ -269,8 +269,8 @@ namespace Generated.RecordsV2
     }
     public partial record BooleanNode : ValueNode, IBooleanNode
     {
-        public new const int ClassTag = 4;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 4;
+        protected override int OnGetEntityTag() => EntityTag;
 
         public Boolean BoolValue { get; init; }
         Boolean IBooleanNode.BoolValue => BoolValue;
@@ -325,7 +325,7 @@ namespace Generated.RecordsV2
         public static Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
-            if (source is Tree thisClass) return thisClass;
+            if (source is Tree thisEntity) return thisEntity;
             return new Tree(source);
         }
 
@@ -335,8 +335,8 @@ namespace Generated.RecordsV2
     }
     public partial record Tree : EntityBase, ITree
     {
-        public new const int ClassTag = 10;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 10;
+        protected override int OnGetEntityTag() => EntityTag;
 
         public Tree? Left { get; init; }
         ITree? ITree.Left => Left;

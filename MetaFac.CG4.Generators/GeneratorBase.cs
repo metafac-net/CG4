@@ -54,15 +54,15 @@ namespace MetaFac.CG4.Generators
             return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
         }
 
-        protected IDisposable NewScope(ModelClassDef classDef)
+        protected IDisposable NewScope(ModelEntityDef entityDef)
         {
             var tokens = new Dictionary<string, string>();
-            tokens["ClassName"] = classDef.Name;
-            tokens["ClassName2"] = classDef.Name;
-            if (classDef.Tag.HasValue)
-                tokens["ClassTag"] = classDef.Tag.Value.ToString();
-            if (classDef.BaseClassName is not null)
-                tokens["BaseClassName"] = classDef.BaseClassName;
+            tokens["EntityName"] = entityDef.Name;
+            tokens["EntityName2"] = entityDef.Name;
+            if (entityDef.Tag.HasValue)
+                tokens["EntityTag"] = entityDef.Tag.Value.ToString();
+            if (entityDef.ParentName is not null)
+                tokens["ParentName"] = entityDef.ParentName;
             return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
         }
 

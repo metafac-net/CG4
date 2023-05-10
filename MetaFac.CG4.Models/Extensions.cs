@@ -2,9 +2,9 @@
 {
     internal static class Extensions
     {
-        public static TagName ToTagName(this ModelClassDef classDef)
+        public static TagName ToTagName(this ModelEntityDef entityDef)
         {
-            return new TagName(classDef.Tag, classDef.Name);
+            return new TagName(entityDef.Tag, entityDef.Name);
         }
         public static TagName ToTagName(this ModelFieldDef fieldDef)
         {

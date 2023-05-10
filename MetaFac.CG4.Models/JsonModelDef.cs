@@ -8,7 +8,7 @@ namespace MetaFac.CG4.Models
     {
         public int? Tag { get; set; }
         public string? Name { get; set; }
-        public List<JsonClassDef>? ClassDefs { get; set; }
+        public List<JsonEntityDef>? EntityDefs { get; set; }
 
         public JsonModelDef() { }
 
@@ -17,7 +17,7 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
             Name = source.Name;
-            ClassDefs = source.ClassDefs.Select(cd => new JsonClassDef(cd)).ToList();
+            EntityDefs = source.EntityDefs.Select(cd => new JsonEntityDef(cd)).ToList();
         }
 
         public bool Equals(JsonModelDef? other)
@@ -26,7 +26,7 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
-                   && ClassDefs.IsEqualTo(other.ClassDefs);
+                   && EntityDefs.IsEqualTo(other.EntityDefs);
         }
 
         public override bool Equals(object? obj)
@@ -41,12 +41,12 @@ namespace MetaFac.CG4.Models
                 int hashCode = Tag?.GetHashCode() ?? 0;
                 hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
                 // order sensitive
-                if (ClassDefs != null)
+                if (EntityDefs != null)
                 {
-                    hashCode = hashCode * 397 ^ ClassDefs.Count.GetHashCode();
-                    for (int i = 0; i < ClassDefs.Count; i++)
+                    hashCode = hashCode * 397 ^ EntityDefs.Count.GetHashCode();
+                    for (int i = 0; i < EntityDefs.Count; i++)
                     {
-                        hashCode = hashCode * 397 ^ ClassDefs[i].GetHashCode();
+                        hashCode = hashCode * 397 ^ EntityDefs[i].GetHashCode();
                     }
                 }
                 return hashCode;

@@ -30,7 +30,7 @@ namespace Generated.ClassesV2
     public abstract class EntityBase : IFreezable, IEntityBase
     {
         public static EntityBase Empty => throw new NotSupportedException();
-        public const int ClassTag = 0;
+        public const int EntityTag = 0;
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
@@ -67,7 +67,7 @@ namespace Generated.ClassesV2
         public static BuiltinTypes? CreateFrom(IBuiltinTypes? source)
         {
             if (source is null) return null;
-            if (source is BuiltinTypes thisClass && thisClass._isFrozen) return thisClass;
+            if (source is BuiltinTypes thisEntity && thisEntity._isFrozen) return thisEntity;
             return new BuiltinTypes(source);
         }
 
@@ -101,8 +101,8 @@ namespace Generated.ClassesV2
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 1;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 1;
+        protected override int OnGetEntityTag() => EntityTag;
 
         private ImmutableList<Boolean>? field_Bools;
         IReadOnlyList<Boolean>? IBuiltinTypes.Bools => field_Bools;

@@ -39,10 +39,10 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
-            modelDef.ClassDefs.Count.Should().Be(3);
-            var classDef = modelDef.ClassDefs[0];
-            classDef.Name.Should().Be("BuiltinTypes");
-            classDef.FieldDefs.Count.Should().Be(19);
+            modelDef.EntityDefs.Count.Should().Be(3);
+            var entityDef = modelDef.EntityDefs[0];
+            entityDef.Name.Should().Be("BuiltinTypes");
+            entityDef.FieldDefs.Count.Should().Be(19);
         }
 
         [Fact]
@@ -53,11 +53,11 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
-            var classDef = modelDef.ClassDefs.Where(cd => cd.Name == "ExternalTypes").Single();
-            classDef.FieldDefs.Count.Should().Be(1);
+            var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "ExternalTypes").Single();
+            entityDef.FieldDefs.Count.Should().Be(1);
 
             // external type
-            var field0 = classDef.FieldDefs[0];
+            var field0 = entityDef.FieldDefs[0];
             field0.Tag.Should().Be(1);
             field0.Name.Should().Be("Quantities");
             field0.ProxyDef.Should().NotBeNull();
@@ -75,12 +75,12 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
-            var classDef = modelDef.ClassDefs.Where(cd => cd.Name == "EnumeratorTypes").Single();
-            classDef.FieldDefs.Count.Should().Be(3);
+            var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "EnumeratorTypes").Single();
+            entityDef.FieldDefs.Count.Should().Be(3);
 
             // enumerator types
             {
-                var fieldDef = classDef.FieldDefs[0];
+                var fieldDef = entityDef.FieldDefs[0];
                 fieldDef.Tag.Should().Be(1);
                 fieldDef.Name.Should().Be("DaysOfWeek");
                 fieldDef.ProxyDef.Should().BeNull();
@@ -88,7 +88,7 @@ namespace MetaFac.CG4.ModelReader.Tests
                 fieldDef.InnerType.Should().Be("System.DayOfWeek");
             }
             {
-                var fieldDef = classDef.FieldDefs[1];
+                var fieldDef = entityDef.FieldDefs[1];
                 fieldDef.Tag.Should().Be(2);
                 fieldDef.Name.Should().Be("MyCustomEnums");
                 fieldDef.ProxyDef.Should().BeNull();
@@ -96,7 +96,7 @@ namespace MetaFac.CG4.ModelReader.Tests
                 fieldDef.InnerType.Should().Be("MetaFac.CG4.ModelReader.Tests.TestModel.MyCustomEnum");
             }
             {
-                var fieldDef = classDef.FieldDefs[2];
+                var fieldDef = entityDef.FieldDefs[2];
                 fieldDef.Tag.Should().Be(3);
                 fieldDef.Name.Should().Be("MyDateTimeKinds");
                 fieldDef.ProxyDef.Should().NotBeNull();

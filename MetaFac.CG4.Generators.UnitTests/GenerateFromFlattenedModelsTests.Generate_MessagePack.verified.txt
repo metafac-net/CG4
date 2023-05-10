@@ -32,7 +32,7 @@ namespace Generated.MessagePack
     public abstract class EntityBase : IFreezable, IEntityBase, IEquatable<EntityBase>, ICopyFrom<EntityBase>
     {
         public static EntityBase Empty => throw new NotSupportedException();
-        public const int ClassTag = 0;
+        public const int EntityTag = 0;
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static void ThrowIsReadonly()
@@ -114,8 +114,8 @@ namespace Generated.MessagePack
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 1;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 1;
+        protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
         private ImmutableList<Boolean>? field_Bools;

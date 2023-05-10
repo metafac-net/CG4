@@ -9,10 +9,10 @@ namespace MetaFac.CG4.Models
     {
         public ModelContainer MergeMetadata(ModelContainer oldMetadata, ModelContainer newMetadata,
             bool updateModelName = false,
-            bool createClasses = false,
-            bool ignoreNewClassTags = false,
-            bool updateClasses = false,
-            bool deleteClasses = false)
+            bool createEntities = false,
+            bool ignoreNewEntityTags = false,
+            bool updateEntities = false,
+            bool deleteEntities = false)
         {
             if (oldMetadata is null) throw new ArgumentNullException(nameof(oldMetadata));
             if (newMetadata is null) throw new ArgumentNullException(nameof(newMetadata));
@@ -32,96 +32,96 @@ namespace MetaFac.CG4.Models
             if (newMetadata.ModelDefs[0].Tag.HasValue)
                 modelTag = newMetadata.ModelDefs[0].Tag;
 
-            Dictionary<string, ModelClassDef> newClassDefs = new Dictionary<string, ModelClassDef>();
-            foreach (var ncd in newMetadata.ModelDefs[0].ClassDefs)
+            Dictionary<string, ModelEntityDef> newEntityDefs = new Dictionary<string, ModelEntityDef>();
+            foreach (var ncd in newMetadata.ModelDefs[0].EntityDefs)
             {
-                newClassDefs.Add(ncd.Name, ncd);
+                newEntityDefs.Add(ncd.Name, ncd);
             }
 
-            Dictionary<int, ModelClassDef> oldClassDefsByTag = new Dictionary<int, ModelClassDef>();
-            Dictionary<string, int> oldClassNameToTagMap = new Dictionary<string, int>();
-            foreach (var ocd in oldMetadata.ModelDefs[0].ClassDefs)
+            Dictionary<int, ModelEntityDef> oldEntityDefsByTag = new Dictionary<int, ModelEntityDef>();
+            Dictionary<string, int> oldEntityNameToTagMap = new Dictionary<string, int>();
+            foreach (var ocd in oldMetadata.ModelDefs[0].EntityDefs)
             {
                 if (ocd.Tag.HasValue)
                 {
-                    oldClassDefsByTag.Add(ocd.Tag.Value, ocd);
-                    oldClassNameToTagMap.Add(ocd.Name, ocd.Tag.Value);
+                    oldEntityDefsByTag.Add(ocd.Tag.Value, ocd);
+                    oldEntityNameToTagMap.Add(ocd.Name, ocd.Tag.Value);
                 }
                 else
                     throw new ArgumentException("Metadata is not valid", nameof(oldMetadata));
             }
 
-            Dictionary<int, ModelClassDef> mergedClassDefsByTag = new Dictionary<int, ModelClassDef>();
-            Dictionary<string, int> mergedClassNameToTagMap = new Dictionary<string, int>();
+            Dictionary<int, ModelEntityDef> mergedEntityDefsByTag = new Dictionary<int, ModelEntityDef>();
+            Dictionary<string, int> mergedEntityNameToTagMap = new Dictionary<string, int>();
 
-            int maxClassTag = 0;
-            if (oldClassNameToTagMap.Any())
-                maxClassTag = oldClassNameToTagMap.Values.Max();
+            int maxEntityTag = 0;
+            if (oldEntityNameToTagMap.Any())
+                maxEntityTag = oldEntityNameToTagMap.Values.Max();
 
-            if (createClasses)
+            if (createEntities)
             {
-                var newClassNames = newClassDefs.Keys.ToList();
-                foreach (var newClassName in newClassNames)
+                var newEntityNames = newEntityDefs.Keys.ToList();
+                foreach (var newEntityName in newEntityNames)
                 {
-                    var ncd = newClassDefs[newClassName];
-                    int newClassTag = ignoreNewClassTags ? 0 : ncd.Tag ?? 0;
-                    if (oldClassDefsByTag.ContainsKey(newClassTag))
+                    var ncd = newEntityDefs[newEntityName];
+                    int newEntityTag = ignoreNewEntityTags ? 0 : ncd.Tag ?? 0;
+                    if (oldEntityDefsByTag.ContainsKey(newEntityTag))
                         continue;
-                    if (oldClassNameToTagMap.ContainsKey(ncd.Name))
+                    if (oldEntityNameToTagMap.ContainsKey(ncd.Name))
                         continue;
 
                     // add new class
-                    if (newClassTag == 0)
-                        newClassTag = ++maxClassTag;
-                    mergedClassDefsByTag.Add(newClassTag,
-                        new ModelClassDef(ncd.Name, newClassTag, ncd.IsAbstract, ncd.BaseClassName, ncd.FieldDefs));
-                    mergedClassNameToTagMap.Add(ncd.Name, newClassTag);
-                    newClassDefs.Remove(newClassName);
+                    if (newEntityTag == 0)
+                        newEntityTag = ++maxEntityTag;
+                    mergedEntityDefsByTag.Add(newEntityTag,
+                        new ModelEntityDef(ncd.Name, newEntityTag, ncd.IsAbstract, ncd.ParentName, ncd.FieldDefs));
+                    mergedEntityNameToTagMap.Add(ncd.Name, newEntityTag);
+                    newEntityDefs.Remove(newEntityName);
                 }
             }
 
-            if (updateClasses)
+            if (updateEntities)
             {
-                var newClassNames = newClassDefs.Keys.ToList();
-                foreach (var newClassName in newClassNames)
+                var newEntityNames = newEntityDefs.Keys.ToList();
+                foreach (var newEntityName in newEntityNames)
                 {
-                    var ncd = newClassDefs[newClassName];
-                    int oldClassTag;
-                    ModelClassDef? oldClassDef = null;
-                    if (ncd.Tag.HasValue && !ignoreNewClassTags)
+                    var ncd = newEntityDefs[newEntityName];
+                    int oldEntityTag;
+                    ModelEntityDef? oldEntityDef = null;
+                    if (ncd.Tag.HasValue && !ignoreNewEntityTags)
                     {
-                        oldClassTag = ncd.Tag.Value;
-                        oldClassDefsByTag.TryGetValue(oldClassTag, out oldClassDef);
+                        oldEntityTag = ncd.Tag.Value;
+                        oldEntityDefsByTag.TryGetValue(oldEntityTag, out oldEntityDef);
                     }
                     else
                     {
-                        if (oldClassNameToTagMap.TryGetValue(ncd.Name, out oldClassTag))
-                            oldClassDefsByTag.TryGetValue(oldClassTag, out oldClassDef);
+                        if (oldEntityNameToTagMap.TryGetValue(ncd.Name, out oldEntityTag))
+                            oldEntityDefsByTag.TryGetValue(oldEntityTag, out oldEntityDef);
                     }
-                    if (oldClassDef != null)
+                    if (oldEntityDef != null)
                     {
                         // update class
-                        mergedClassDefsByTag.Add(oldClassTag,
-                            new ModelClassDef(ncd.Name, oldClassTag, ncd.IsAbstract, ncd.BaseClassName, ncd.FieldDefs));
-                        mergedClassNameToTagMap.Add(ncd.Name, oldClassTag);
-                        newClassDefs.Remove(newClassName);
-                        oldClassNameToTagMap.Remove(oldClassDef.Name);
-                        oldClassDefsByTag.Remove(oldClassTag);
+                        mergedEntityDefsByTag.Add(oldEntityTag,
+                            new ModelEntityDef(ncd.Name, oldEntityTag, ncd.IsAbstract, ncd.ParentName, ncd.FieldDefs));
+                        mergedEntityNameToTagMap.Add(ncd.Name, oldEntityTag);
+                        newEntityDefs.Remove(newEntityName);
+                        oldEntityNameToTagMap.Remove(oldEntityDef.Name);
+                        oldEntityDefsByTag.Remove(oldEntityTag);
                     }
                 }
             }
 
-            // delete or retain remaining old classes
-            foreach (var ocd in oldClassDefsByTag.Values.ToList())
+            // delete or retain remaining old entities
+            foreach (var ocd in oldEntityDefsByTag.Values.ToList())
             {
-                if (!deleteClasses || newClassDefs.ContainsKey(ocd.Name))
+                if (!deleteEntities || newEntityDefs.ContainsKey(ocd.Name))
                 {
-                    mergedClassDefsByTag.Add(ocd.Tag ?? 0, ocd);
-                    mergedClassNameToTagMap.Add(ocd.Name, ocd.Tag ?? 0);
+                    mergedEntityDefsByTag.Add(ocd.Tag ?? 0, ocd);
+                    mergedEntityNameToTagMap.Add(ocd.Name, ocd.Tag ?? 0);
                 }
             }
 
-            return new ModelContainer(new ModelDefinition(modelName, modelTag, mergedClassDefsByTag.Values.OrderBy(c => c.Tag ?? 0)));
+            return new ModelContainer(new ModelDefinition(modelName, modelTag, mergedEntityDefsByTag.Values.OrderBy(c => c.Tag ?? 0)));
         }
 
         public ValidationResult Validate(ModelContainer metadata,
@@ -138,44 +138,44 @@ namespace MetaFac.CG4.Models
             // 3. all field tags must be: unique, positive
             ValidationResult result = ValidationResult.Init(errorHandling);
 
-            ImmutableDictionary<int, ModelClassDef> classTagMap = ImmutableDictionary<int, ModelClassDef>.Empty;
-            ImmutableDictionary<string, ModelClassDef> classNameMap = ImmutableDictionary<string, ModelClassDef>.Empty;
+            ImmutableDictionary<int, ModelEntityDef> entityTagMap = ImmutableDictionary<int, ModelEntityDef>.Empty;
+            ImmutableDictionary<string, ModelEntityDef> entityNameMap = ImmutableDictionary<string, ModelEntityDef>.Empty;
 
-            foreach (var classDef in model.ClassDefs)
+            foreach (var entityDef in model.EntityDefs)
             {
                 //---------- check class tag not missing
-                if (!classDef.Tag.HasValue)
+                if (!entityDef.Tag.HasValue)
                     result = result.AddError(
                         new ValidationError(
-                            ValidationErrorCode.MissingClassTag,
-                            model.Name, classDef.ToTagName(), null, null, null));
+                            ValidationErrorCode.MissingEntityTag,
+                            model.Name, entityDef.ToTagName(), null, null, null));
 
                 if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)
                     return result;
 
-                if (classDef.Tag.HasValue && classDef.Tag.Value <= 0)
+                if (entityDef.Tag.HasValue && entityDef.Tag.Value <= 0)
                     result = result.AddError(
                         new ValidationError(
-                            ValidationErrorCode.InvalidClassTag,
-                            model.Name, classDef.ToTagName(), null, null, null));
+                            ValidationErrorCode.InvalidEntityTag,
+                            model.Name, entityDef.ToTagName(), null, null, null));
 
                 if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)
                     return result;
 
-                ModelClassDef? tempClassDef;
+                ModelEntityDef? tempEntityDef;
 
                 //---------- check class tag is unique
-                if (classDef.Tag.HasValue)
+                if (entityDef.Tag.HasValue)
                 {
-                    var classTag = classDef.Tag.Value;
-                    if (classTagMap.TryGetValue(classTag, out tempClassDef))
+                    var entityTag = entityDef.Tag.Value;
+                    if (entityTagMap.TryGetValue(entityTag, out tempEntityDef))
                         result = result.AddError(
                             new ValidationError(
-                                ValidationErrorCode.DuplicateClassTag,
-                                model.Name, classDef.ToTagName(), null, tempClassDef.ToTagName(), null));
+                                ValidationErrorCode.DuplicateEntityTag,
+                                model.Name, entityDef.ToTagName(), null, tempEntityDef.ToTagName(), null));
                     else
                     {
-                        classTagMap = classTagMap.Add(classTag, classDef);
+                        entityTagMap = entityTagMap.Add(entityTag, entityDef);
                     }
                 }
 
@@ -183,16 +183,16 @@ namespace MetaFac.CG4.Models
                     return result;
 
                 //---------- check class name is unique
-                var className = classDef.Name;
-                if (classNameMap.TryGetValue(className, out tempClassDef))
+                var entityName = entityDef.Name;
+                if (entityNameMap.TryGetValue(entityName, out tempEntityDef))
                 {
                     result = result.AddError(new ValidationError(
-                        ValidationErrorCode.DuplicateClassName,
-                        model.Name, classDef.ToTagName(), null, tempClassDef.ToTagName(), null));
+                        ValidationErrorCode.DuplicateEntityName,
+                        model.Name, entityDef.ToTagName(), null, tempEntityDef.ToTagName(), null));
                 }
                 else
                 {
-                    classNameMap = classNameMap.Add(className, classDef);
+                    entityNameMap = entityNameMap.Add(entityName, entityDef);
                 }
 
                 if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)
@@ -201,14 +201,14 @@ namespace MetaFac.CG4.Models
                 Dictionary<int, ModelFieldDef> fieldTagMap = new Dictionary<int, ModelFieldDef>();
                 Dictionary<string, ModelFieldDef> fieldNameMap = new Dictionary<string, ModelFieldDef>();
 
-                foreach (var fieldDef in classDef.FieldDefs)
+                foreach (var fieldDef in entityDef.FieldDefs)
                 {
                     //---------- check field tag is not missing
                     if (!fieldDef.Tag.HasValue)
                         result = result.AddError(
                             new ValidationError(
                                 ValidationErrorCode.MissingFieldTag,
-                                model.Name, classDef.ToTagName(), fieldDef.ToTagName(), null, null));
+                                model.Name, entityDef.ToTagName(), fieldDef.ToTagName(), null, null));
 
                     if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)
                         return result;
@@ -220,7 +220,7 @@ namespace MetaFac.CG4.Models
                         if (fieldTagMap.TryGetValue(fieldTag, out var other1))
                             result = result.AddError(
                                 new ValidationError(ValidationErrorCode.DuplicateFieldTag,
-                                    model.Name, classDef.ToTagName(), fieldDef.ToTagName(), null, other1.ToTagName()));
+                                    model.Name, entityDef.ToTagName(), fieldDef.ToTagName(), null, other1.ToTagName()));
                         else
                         {
                             fieldTagMap[fieldTag] = fieldDef;
@@ -236,7 +236,7 @@ namespace MetaFac.CG4.Models
                     {
                         result = result.AddError(new ValidationError(
                             ValidationErrorCode.DuplicateFieldName,
-                            model.Name, classDef.ToTagName(), fieldDef.ToTagName(), null, other2.ToTagName()));
+                            model.Name, entityDef.ToTagName(), fieldDef.ToTagName(), null, other2.ToTagName()));
                     }
                     else
                     {
@@ -248,28 +248,28 @@ namespace MetaFac.CG4.Models
                 }
             }
 
-            // ---------- check missing base classes
-            foreach (var classDef in model.ClassDefs)
+            // ---------- check missing parents
+            foreach (var entityDef in model.EntityDefs)
             {
-                if (classDef.BaseClassName != null)
+                if (entityDef.ParentName != null)
                 {
-                    if (classNameMap.TryGetValue(classDef.BaseClassName, out var baseClass))
+                    if (entityNameMap.TryGetValue(entityDef.ParentName, out var parent))
                     {
-                        // known base class - check is abstract
-                        if (!baseClass.IsAbstract)
+                        // known parent - check is abstract
+                        if (!parent.IsAbstract)
                         {
                             result = result.AddWarning(new ValidationError(
-                                ValidationErrorCode.NonAbstractBaseClass,
-                                model.Name, classDef.ToTagName(), null, baseClass.ToTagName(), null));
+                                ValidationErrorCode.NonAbstractParent,
+                                model.Name, entityDef.ToTagName(), null, parent.ToTagName(), null));
                         }
                     }
                     else
                     {
-                        // unknown base class
-                        baseClass = new ModelClassDef(classDef.BaseClassName, null, false, null, new List<ModelFieldDef>());
+                        // unknown parent
+                        parent = new ModelEntityDef(entityDef.ParentName, null, false, null, new List<ModelFieldDef>());
                         result = result.AddError(new ValidationError(
-                            ValidationErrorCode.UnknownBaseClass,
-                            model.Name, classDef.ToTagName(), null, baseClass.ToTagName(), null));
+                            ValidationErrorCode.UnknownParent,
+                            model.Name, entityDef.ToTagName(), null, parent.ToTagName(), null));
                     }
                 }
 
@@ -281,11 +281,11 @@ namespace MetaFac.CG4.Models
             // todo
 
             // ---------- check circular refs
-            foreach (var classDef in model.ClassDefs)
+            foreach (var entityDef in model.EntityDefs)
             {
-                ImmutableDictionary<string, ModelClassDef> visitedClassDefs =
-                    ImmutableDictionary<string, ModelClassDef>.Empty.Add(classDef.Name, classDef);
-                result = CheckFieldRecursion(result, errorHandling, metadata, classDef, classNameMap, visitedClassDefs);
+                ImmutableDictionary<string, ModelEntityDef> visitedEntityDefs =
+                    ImmutableDictionary<string, ModelEntityDef>.Empty.Add(entityDef.Name, entityDef);
+                result = CheckFieldRecursion(result, errorHandling, metadata, entityDef, entityNameMap, visitedEntityDefs);
 
                 if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)
                     return result;
@@ -303,16 +303,16 @@ namespace MetaFac.CG4.Models
             ValidationResult result,
             ValidationErrorHandling errorHandling,
             ModelContainer metadata,
-            ModelClassDef classDef,
-            ImmutableDictionary<string, ModelClassDef> allClasses,
-            ImmutableDictionary<string, ModelClassDef> visitedClasses
+            ModelEntityDef entityDef,
+            ImmutableDictionary<string, ModelEntityDef> allEntities,
+            ImmutableDictionary<string, ModelEntityDef> visitedEntities
         )
         {
             if (metadata.ModelDefs.Count != 1)
                 throw new NotSupportedException("Metadata with multiple models!");
             var model = metadata.ModelDefs[0];
 
-            foreach (var fieldDef in classDef.FieldDefs)
+            foreach (var fieldDef in entityDef.FieldDefs)
             {
                 if (fieldDef.ProxyDef is not null)
                     continue;
@@ -320,22 +320,22 @@ namespace MetaFac.CG4.Models
                 if (IsNativeDataType(fieldDef.InnerType))
                     continue;
 
-                ModelClassDef? otherClass;
-                if (allClasses.TryGetValue(fieldDef.InnerType, out otherClass))
+                ModelEntityDef? otherClass;
+                if (allEntities.TryGetValue(fieldDef.InnerType, out otherClass))
                 {
                     // known type - check recursion
-                    if (visitedClasses.ContainsKey(fieldDef.InnerType))
+                    if (visitedEntities.ContainsKey(fieldDef.InnerType))
                     {
                         // circular ref!
                         result = result.AddWarning(new ValidationError(
                             ValidationErrorCode.CircularReference,
-                            model.Name, classDef.ToTagName(), fieldDef.ToTagName(), otherClass.ToTagName(), null));
+                            model.Name, entityDef.ToTagName(), fieldDef.ToTagName(), otherClass.ToTagName(), null));
                     }
                     else
                     {
                         // recurse
                         result = CheckFieldRecursion(result, errorHandling, metadata,
-                            otherClass, allClasses, visitedClasses.Add(otherClass.Name, otherClass));
+                            otherClass, allEntities, visitedEntities.Add(otherClass.Name, otherClass));
                     }
                 }
                 else
@@ -343,7 +343,7 @@ namespace MetaFac.CG4.Models
                     // unknown field type
                     result = result.AddError(new ValidationError(
                         ValidationErrorCode.UnknownFieldType,
-                        model.Name, classDef.ToTagName(), fieldDef.ToTagName(), null, null));
+                        model.Name, entityDef.ToTagName(), fieldDef.ToTagName(), null, null));
                 }
 
                 if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)

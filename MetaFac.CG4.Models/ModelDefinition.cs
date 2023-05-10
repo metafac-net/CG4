@@ -11,30 +11,30 @@ namespace MetaFac.CG4.Models
     {
         public readonly string Name;
         public readonly int? Tag;
-        public readonly ImmutableList<ModelClassDef> ClassDefs;
+        public readonly ImmutableList<ModelEntityDef> EntityDefs;
 
-        private ModelDefinition(string name, int? tag, ImmutableList<ModelClassDef> classDefs)
+        private ModelDefinition(string name, int? tag, ImmutableList<ModelEntityDef> entityDefs)
         {
             Name = name;
             Tag = tag;
-            ClassDefs = classDefs;
+            EntityDefs = entityDefs;
         }
 
-        public IEnumerable<ModelClassDef> DescendentsOf(string className)
+        public IEnumerable<ModelEntityDef> DescendentsOf(string entityName)
         {
-            foreach (var classDef in ClassDefs)
+            foreach (var entityDef in EntityDefs)
             {
-                if (classDef.BaseClassName == className)
-                    yield return classDef;
+                if (entityDef.ParentName == entityName)
+                    yield return entityDef;
             }
         }
 
-        public IEnumerable<ModelClassDef> AllDescendentsOf(string className)
+        public IEnumerable<ModelEntityDef> AllDescendentsOf(string entityName)
         {
-            foreach (var classDef in DescendentsOf(className))
+            foreach (var entityDef in DescendentsOf(entityName))
             {
-                yield return classDef;
-                foreach (var derived in AllDescendentsOf(classDef.Name))
+                yield return entityDef;
+                foreach (var derived in AllDescendentsOf(entityDef.Name))
                 {
                     yield return derived;
                 }
@@ -42,14 +42,14 @@ namespace MetaFac.CG4.Models
         }
 
         public ModelDefinition(string modelName, int? tag,
-            IEnumerable<ModelClassDef>? classDefs = null,
+            IEnumerable<ModelEntityDef>? entityDefs = null,
             IEnumerable<KeyValuePair<string, string>>? tokens = null)
         {
             Name = modelName;
             Tag = tag;
-            ClassDefs = classDefs != null
-                ? ImmutableList<ModelClassDef>.Empty.AddRange(classDefs.Where(cd => cd != null))
-                : ImmutableList<ModelClassDef>.Empty;
+            EntityDefs = entityDefs != null
+                ? ImmutableList<ModelEntityDef>.Empty.AddRange(entityDefs.Where(cd => cd != null))
+                : ImmutableList<ModelEntityDef>.Empty;
         }
 
         public ModelDefinition(JsonModelDef? source)
@@ -57,9 +57,9 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
             Name = source.Name ?? "Unknown_Model";
-            ClassDefs = source.ClassDefs != null
-                ? ImmutableList<ModelClassDef>.Empty.AddRange(source.ClassDefs.Where(cd => cd != null).Select(cd => new ModelClassDef(cd)))
-                : ImmutableList<ModelClassDef>.Empty;
+            EntityDefs = source.EntityDefs != null
+                ? ImmutableList<ModelEntityDef>.Empty.AddRange(source.EntityDefs.Where(cd => cd != null).Select(cd => new ModelEntityDef(cd)))
+                : ImmutableList<ModelEntityDef>.Empty;
         }
 
         public string ToJson()
@@ -80,7 +80,7 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
-                   && ClassDefs.IsEqualTo(other.ClassDefs);
+                   && EntityDefs.IsEqualTo(other.EntityDefs);
         }
 
         public override bool Equals(object? obj)
@@ -95,7 +95,7 @@ namespace MetaFac.CG4.Models
                 var hashCode = Tag.GetHashCode();
                 hashCode = hashCode * 397 ^ (Name != null ? Name.GetHashCode() : 0);
                 hashCode = hashCode * 397 ^ (Tag != null ? Tag.GetHashCode() : 0);
-                hashCode = hashCode * 397 ^ (ClassDefs != null ? ClassDefs.GetHashCode() : 0);
+                hashCode = hashCode * 397 ^ (EntityDefs != null ? EntityDefs.GetHashCode() : 0);
                 return hashCode;
             }
         }

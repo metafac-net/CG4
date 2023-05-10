@@ -30,7 +30,7 @@ namespace Generated.ClassesV2
     public abstract class EntityBase : IFreezable, IEntityBase
     {
         public static EntityBase Empty => throw new NotSupportedException();
-        public const int ClassTag = 0;
+        public const int EntityTag = 0;
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
@@ -67,12 +67,12 @@ namespace Generated.ClassesV2
         public static ValueNode? CreateFrom(IValueNode? source)
         {
             if (source is null) return null;
-            int classTag = source.GetEntityTag();
-            switch (classTag)
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
             {
-                case Int32Node.ClassTag: return Int32Node.CreateFrom((IInt32Node)source);
-                case StringNode.ClassTag: return StringNode.CreateFrom((IStringNode)source);
-                case BooleanNode.ClassTag: return BooleanNode.CreateFrom((IBooleanNode)source);
+                case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case StringNode.EntityTag: return StringNode.CreateFrom((IStringNode)source);
+                case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -99,8 +99,8 @@ namespace Generated.ClassesV2
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 1;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 1;
+        protected override int OnGetEntityTag() => EntityTag;
 
         private Int64 field_Id;
         Int64 IValueNode.Id => field_Id;
@@ -183,7 +183,7 @@ namespace Generated.ClassesV2
         public static Int32Node? CreateFrom(IInt32Node? source)
         {
             if (source is null) return null;
-            if (source is Int32Node thisClass && thisClass._isFrozen) return thisClass;
+            if (source is Int32Node thisEntity && thisEntity._isFrozen) return thisEntity;
             return new Int32Node(source);
         }
 
@@ -217,8 +217,8 @@ namespace Generated.ClassesV2
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 2;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 2;
+        protected override int OnGetEntityTag() => EntityTag;
 
         private Int32 field_IntValue;
         Int32 IInt32Node.IntValue => field_IntValue;
@@ -289,7 +289,7 @@ namespace Generated.ClassesV2
         public static StringNode? CreateFrom(IStringNode? source)
         {
             if (source is null) return null;
-            if (source is StringNode thisClass && thisClass._isFrozen) return thisClass;
+            if (source is StringNode thisEntity && thisEntity._isFrozen) return thisEntity;
             return new StringNode(source);
         }
 
@@ -323,8 +323,8 @@ namespace Generated.ClassesV2
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 3;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 3;
+        protected override int OnGetEntityTag() => EntityTag;
 
         private String? field_StrValue;
         String? IStringNode.StrValue => field_StrValue;
@@ -395,7 +395,7 @@ namespace Generated.ClassesV2
         public static BooleanNode? CreateFrom(IBooleanNode? source)
         {
             if (source is null) return null;
-            if (source is BooleanNode thisClass && thisClass._isFrozen) return thisClass;
+            if (source is BooleanNode thisEntity && thisEntity._isFrozen) return thisEntity;
             return new BooleanNode(source);
         }
 
@@ -429,8 +429,8 @@ namespace Generated.ClassesV2
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 4;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 4;
+        protected override int OnGetEntityTag() => EntityTag;
 
         private Boolean field_BoolValue;
         Boolean IBooleanNode.BoolValue => field_BoolValue;
@@ -501,7 +501,7 @@ namespace Generated.ClassesV2
         public static Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
-            if (source is Tree thisClass && thisClass._isFrozen) return thisClass;
+            if (source is Tree thisEntity && thisEntity._isFrozen) return thisEntity;
             return new Tree(source);
         }
 
@@ -538,8 +538,8 @@ namespace Generated.ClassesV2
             base.OnFreeze();
         }
 
-        public new const int ClassTag = 10;
-        protected override int OnGetEntityTag() => ClassTag;
+        public new const int EntityTag = 10;
+        protected override int OnGetEntityTag() => EntityTag;
 
         private Tree? field_Left;
         ITree? ITree.Left => field_Left;

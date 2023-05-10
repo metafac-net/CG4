@@ -7,91 +7,91 @@ using System.Linq;
 
 namespace MetaFac.CG4.Models
 {
-    public class ModelClassDef : IEquatable<ModelClassDef>
+    public class ModelEntityDef : IEquatable<ModelEntityDef>
     {
         public readonly int? Tag;
         public readonly string Name;
         public readonly bool IsAbstract;
-        public readonly string? BaseClassName;
+        public readonly string? ParentName;
         public readonly ImmutableList<ModelFieldDef> FieldDefs;
-        public readonly ImmutableList<ModelClassDef> AllDerivedClasses;
+        public readonly ImmutableList<ModelEntityDef> DerivedEntities;
 
-        private ModelClassDef(string className, int? tag, bool isAbstract, string? baseClassName,
+        private ModelEntityDef(string entityName, int? tag, bool isAbstract, string? parentName,
             ImmutableList<ModelFieldDef> fieldDefs,
-            ImmutableList<ModelClassDef> allDerivedClasses)
+            ImmutableList<ModelEntityDef> derivedEntities)
         {
             Tag = tag;
-            Name = className;
+            Name = entityName;
             IsAbstract = isAbstract;
-            BaseClassName = baseClassName;
+            ParentName = parentName;
             FieldDefs = fieldDefs;
-            AllDerivedClasses = allDerivedClasses;
+            DerivedEntities = derivedEntities;
         }
 
-        private static ImmutableDictionary<string, string> BuildTokens(string name, int? tag, string? baseClassName, IEnumerable<KeyValuePair<string, string>>? tokens)
+        private static ImmutableDictionary<string, string> BuildTokens(string name, int? tag, string? parentName, IEnumerable<KeyValuePair<string, string>>? tokens)
         {
             var newTokens = ImmutableDictionary<string, string>.Empty;
             if (tokens is not null) newTokens = newTokens.AddRange(tokens);
             return newTokens;
         }
 
-        public ModelClassDef(string className, int? tag, bool isAbstract, string? baseClassName,
+        public ModelEntityDef(string entityName, int? tag, bool isAbstract, string? parentName,
             IEnumerable<ModelFieldDef> fieldDefs)
         {
             Tag = tag;
-            Name = className;
+            Name = entityName;
             IsAbstract = isAbstract;
-            BaseClassName = baseClassName;
+            ParentName = parentName;
             FieldDefs = ImmutableList<ModelFieldDef>.Empty.AddRange(fieldDefs);
-            AllDerivedClasses = ImmutableList<ModelClassDef>.Empty;
+            DerivedEntities = ImmutableList<ModelEntityDef>.Empty;
         }
 
-        public ModelClassDef SetAllDerivedClasses(IEnumerable<ModelClassDef> allDerivedClasses)
+        public ModelEntityDef SetDerivedEntities(IEnumerable<ModelEntityDef> derivedEntities)
         {
-            return new ModelClassDef(
-                Name, Tag, IsAbstract, BaseClassName, FieldDefs,
-                ImmutableList<ModelClassDef>.Empty.AddRange(allDerivedClasses));
+            return new ModelEntityDef(
+                Name, Tag, IsAbstract, ParentName, FieldDefs,
+                ImmutableList<ModelEntityDef>.Empty.AddRange(derivedEntities));
         }
 
-        public ModelClassDef(JsonClassDef? source)
+        public ModelEntityDef(JsonEntityDef? source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
             Name = source.Name ?? "Unknown_Class";
             IsAbstract = source.IsAbstract;
-            BaseClassName = source.BaseClassName;
+            ParentName = source.ParentName;
             FieldDefs = source.FieldDefs != null
                 ? ImmutableList<ModelFieldDef>.Empty.AddRange(source.FieldDefs.Where(fd => fd != null).Select(fd => new ModelFieldDef(fd)))
                 : ImmutableList<ModelFieldDef>.Empty;
-            AllDerivedClasses = ImmutableList<ModelClassDef>.Empty;
+            DerivedEntities = ImmutableList<ModelEntityDef>.Empty;
         }
 
         public string ToJson()
         {
-            var cd = new JsonClassDef(this);
+            var cd = new JsonEntityDef(this);
             return JsonSerializer.Serialize(cd);
         }
 
-        public static ModelClassDef FromJson(string json)
+        public static ModelEntityDef FromJson(string json)
         {
-            var cd = JsonSerializer.Deserialize<JsonClassDef>(json);
-            return new ModelClassDef(cd);
+            var cd = JsonSerializer.Deserialize<JsonEntityDef>(json);
+            return new ModelEntityDef(cd);
         }
 
-        public bool Equals(ModelClassDef? other)
+        public bool Equals(ModelEntityDef? other)
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
                    && IsAbstract == other.IsAbstract
-                   && string.Equals(BaseClassName, other.BaseClassName)
+                   && string.Equals(ParentName, other.ParentName)
                    && FieldDefs.IsEqualTo(other.FieldDefs);
         }
 
         public override bool Equals(object? obj)
         {
-            return obj is ModelClassDef other && Equals(other);
+            return obj is ModelEntityDef other && Equals(other);
         }
 
         public override int GetHashCode()
@@ -101,7 +101,7 @@ namespace MetaFac.CG4.Models
                 var hashCode = Tag.GetHashCode();
                 hashCode = hashCode * 397 ^ (Name != null ? Name.GetHashCode() : 0);
                 hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
-                hashCode = hashCode * 397 ^ (BaseClassName != null ? BaseClassName.GetHashCode() : 0);
+                hashCode = hashCode * 397 ^ (ParentName != null ? ParentName.GetHashCode() : 0);
                 // ordered
                 hashCode = hashCode * 397 ^ FieldDefs.Count.GetHashCode();
                 foreach (var field in FieldDefs)
