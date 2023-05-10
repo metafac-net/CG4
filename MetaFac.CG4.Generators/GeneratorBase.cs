@@ -42,14 +42,15 @@ namespace MetaFac.CG4.Generators
             return _engine.Ignore();
         }
 
-        protected IDisposable NewScope(ImmutableDictionary<string, string> tokens)
+        protected IDisposable NewScope(ModelContainer container)
         {
-            return _engine.NewScope(tokens);
+            return _engine.NewScope(container.Tokens);
         }
 
         protected IDisposable NewScope(ModelDefinition modelDef)
         {
             var tokens = new Dictionary<string, string>();
+            tokens["ModelName"] = modelDef.Name;
             return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
         }
 
@@ -146,7 +147,7 @@ namespace MetaFac.CG4.Generators
                 throw new NotSupportedException("Metadata with multiple models!");
             var modelDef = metadata.ModelDefs[0];
 
-            using (NewScope(metadata.Tokens))
+            using (NewScope(metadata))
             using (NewScope(modelDef))
             {
                 OnGenerate(modelDef);
