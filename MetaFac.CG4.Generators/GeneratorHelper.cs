@@ -112,7 +112,6 @@ namespace MetaFac.CG4.Generators
 
             string generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "unknown";
 
-            // todo GetScopeFromMetadata
             metadata = metadata
                 .SetToken("Namespace", outputNamespace)
                 .SetToken("GeneratorId", generator.GetType().FullName ?? "Unknown_Generator")

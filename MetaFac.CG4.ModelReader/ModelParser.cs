@@ -297,7 +297,6 @@ namespace MetaFac.CG4.ModelReader
             var entityType = entityDefInfo.Type;
             var fieldDefsByName = new Dictionary<string, ModelFieldDef>();
             // process fields
-            // todo include inherited fields?
             foreach (var propInfo in entityType.GetRuntimeProperties().Where(p => p.DeclaringType == entityType))
             {
                 int fieldTag = 0;
@@ -306,14 +305,6 @@ namespace MetaFac.CG4.ModelReader
                 var fieldInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, fieldName, fieldType, proxyTypes);
                 string innerTypeName = fieldInfo.innerTypeName ?? nameof(Unknown);
                 // emit field tokens
-                // todo? emit these tokens later
-                //var fieldTokens = new Dictionary<string, string>();
-                //if (fieldInfo.isValueType)
-                //    fieldTokens.Add("ValueType", innerTypeName);
-                //if (fieldInfo.isBufferType)
-                //    fieldTokens.Add("BufferType", true.ToString());
-                //if (fieldInfo.isStringType)
-                //    fieldTokens.Add("StringType", true.ToString());
 
                 bool exclude = false;
                 foreach (Attribute attr in propInfo.GetCustomAttributes())

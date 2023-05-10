@@ -18,7 +18,6 @@ namespace MetaFac.CG4.TextProcessing
 
         public string ReplaceTokens(string input)
         {
-            // todo this is a brute force method
             string result = input;
             string lastResult;
             do
@@ -29,11 +28,6 @@ namespace MetaFac.CG4.TextProcessing
                     string token = _prefix + item.Key + _suffix;
                     string before = result;
                     result = result.Replace(token, item.Value);
-                    string after = result;
-                    if (after != before)
-                    {
-                        after = before;
-                    }
                 }
             } while (result != lastResult);
             return result;

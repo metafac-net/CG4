@@ -202,7 +202,6 @@ namespace MetaFac.CG4.CLI
                 }
             }
 
-            // todo GetScopeFromMetadata
             metadata = metadata
                 .SetToken("Namespace", outputNamespace)
                 .SetToken("GeneratorId", generator.ShortName)
