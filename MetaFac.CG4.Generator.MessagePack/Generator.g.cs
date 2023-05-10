@@ -5,7 +5,7 @@
 //------------------------------------------------------------------------------
 //
 // |metacode:version=0.1|
-            // |metacode:generator_header|
+// |metacode:generator_header|
 using System;
 using System.Linq;
 using MetaFac.CG4.Generators;
@@ -17,74 +17,74 @@ namespace MetaFac.CG4.Generator.MessagePack
         public Generator() : base("MetaFac.CG4.MessagePack") { }
         protected override void OnGenerate(ModelDefinition outerScope)
         {
-            // |metacode:generator_body|
-            Define("BooleanFieldType", "Boolean");
-            Define("SByteFieldType", "SByte");
-            Define("ByteFieldType", "Byte");
-            Define("Int16FieldType", "Int16");
-            Define("UInt16FieldType", "UInt16");
-            Define("CharFieldType", "Char");
-            Define("Int32FieldType", "Int32");
-            Define("UInt32FieldType", "UInt32");
-            Define("SingleFieldType", "Single");
-            Define("Int64FieldType", "Int64");
-            Define("UInt64FieldType", "UInt64");
-            Define("DoubleFieldType", "Double");
-            Define("DateTimeFieldType", "DateTime");
-            Define("TimeSpanFieldType", "TimeSpan");
-            Define("DateTimeZoneFieldType", "DateTimeOffset");
-            Define("DecimalFieldType", "Decimal");
-            Define("GuidFieldType", "Guid");
-            Define("StringFieldType", "String");
-            Define("BinaryFieldType", "ImmutableArray<byte>");
-            Define("ConcreteBoolean", "T_BooleanFieldType_");
-            Define("ConcreteSByte", "T_SByteFieldType_");
-            Define("ConcreteByte", "T_ByteFieldType_");
-            Define("ConcreteInt16", "T_Int16FieldType_");
-            Define("ConcreteUInt16", "T_UInt16FieldType_");
-            Define("ConcreteChar", "T_CharFieldType_");
-            Define("ConcreteInt32", "T_Int32FieldType_");
-            Define("ConcreteUInt32", "T_UInt32FieldType_");
-            Define("ConcreteSingle", "T_SingleFieldType_");
-            Define("ConcreteInt64", "T_Int64FieldType_");
-            Define("ConcreteUInt64", "T_UInt64FieldType_");
-            Define("ConcreteDouble", "T_DoubleFieldType_");
-            Define("ConcreteDateTime", "T_DateTimeFieldType_");
-            Define("ConcreteTimeSpan", "T_TimeSpanFieldType_");
-            Define("ConcreteDateTimeOffset", "T_DateTimeZoneFieldType_");
-            Define("ConcreteDecimal", "T_DecimalFieldType_");
-            Define("ConcreteGuid", "T_GuidFieldType_");
-            Define("ConcreteString", "T_StringFieldType_");
-            Define("ConcreteBinaryFieldType", "T_BinaryFieldType_");
-            Define("ExternalBoolean", "T_BooleanFieldType_");
-            Define("ExternalSByte", "T_SByteFieldType_");
-            Define("ExternalByte", "T_ByteFieldType_");
-            Define("ExternalInt16", "T_Int16FieldType_");
-            Define("ExternalUInt16", "T_UInt16FieldType_");
-            Define("ExternalChar", "T_CharFieldType_");
-            Define("ExternalInt32", "T_Int32FieldType_");
-            Define("ExternalUInt32", "T_UInt32FieldType_");
-            Define("ExternalSingle", "T_SingleFieldType_");
-            Define("ExternalInt64", "T_Int64FieldType_");
-            Define("ExternalUInt64", "T_UInt64FieldType_");
-            Define("ExternalDouble", "T_DoubleFieldType_");
-            Define("ExternalDateTime", "T_DateTimeFieldType_");
-            Define("ExternalTimeSpan", "T_TimeSpanFieldType_");
-            Define("ExternalDateTimeOffset", "T_DateTimeZoneFieldType_");
-            Define("ExternalDecimal", "T_DecimalFieldType_");
-            Define("ExternalGuid", "T_GuidFieldType_");
-            Define("ExternalString", "T_StringFieldType_");
-            Define("ExternalBinaryFieldType", "T_BinaryFieldType_");
-            Define("BinaryFieldType", "ImmutableArray<byte>");
-            Define("ConcreteDateTime", "DateTimeValue");
-            Define("ExternalDateTime", "DateTime");
-            Define("ConcreteDateTimeOffset", "DateTimeOffsetValue");
-            Define("ExternalDateTimeOffset", "DateTimeOffset");
-            Define("ConcreteDecimal", "DecimalValue");
-            Define("ExternalDecimal", "Decimal");
-            Define("ConcreteGuid", "GuidValue");
-            Define("ExternalGuid", "Guid");
-            Define("BaseClassName", "EntityBase");
+// |metacode:generator_body|
+Define("BooleanFieldType", "Boolean");
+Define("SByteFieldType", "SByte");
+Define("ByteFieldType", "Byte");
+Define("Int16FieldType", "Int16");
+Define("UInt16FieldType", "UInt16");
+Define("CharFieldType", "Char");
+Define("Int32FieldType", "Int32");
+Define("UInt32FieldType", "UInt32");
+Define("SingleFieldType", "Single");
+Define("Int64FieldType", "Int64");
+Define("UInt64FieldType", "UInt64");
+Define("DoubleFieldType", "Double");
+Define("DateTimeFieldType", "DateTime");
+Define("TimeSpanFieldType", "TimeSpan");
+Define("DateTimeZoneFieldType", "DateTimeOffset");
+Define("DecimalFieldType", "Decimal");
+Define("GuidFieldType", "Guid");
+Define("StringFieldType", "String");
+Define("BinaryFieldType", "ImmutableArray<byte>");
+Define("ConcreteBoolean", "T_BooleanFieldType_");
+Define("ConcreteSByte", "T_SByteFieldType_");
+Define("ConcreteByte", "T_ByteFieldType_");
+Define("ConcreteInt16", "T_Int16FieldType_");
+Define("ConcreteUInt16", "T_UInt16FieldType_");
+Define("ConcreteChar", "T_CharFieldType_");
+Define("ConcreteInt32", "T_Int32FieldType_");
+Define("ConcreteUInt32", "T_UInt32FieldType_");
+Define("ConcreteSingle", "T_SingleFieldType_");
+Define("ConcreteInt64", "T_Int64FieldType_");
+Define("ConcreteUInt64", "T_UInt64FieldType_");
+Define("ConcreteDouble", "T_DoubleFieldType_");
+Define("ConcreteDateTime", "T_DateTimeFieldType_");
+Define("ConcreteTimeSpan", "T_TimeSpanFieldType_");
+Define("ConcreteDateTimeOffset", "T_DateTimeZoneFieldType_");
+Define("ConcreteDecimal", "T_DecimalFieldType_");
+Define("ConcreteGuid", "T_GuidFieldType_");
+Define("ConcreteString", "T_StringFieldType_");
+Define("ConcreteBinaryFieldType", "T_BinaryFieldType_");
+Define("ExternalBoolean", "T_BooleanFieldType_");
+Define("ExternalSByte", "T_SByteFieldType_");
+Define("ExternalByte", "T_ByteFieldType_");
+Define("ExternalInt16", "T_Int16FieldType_");
+Define("ExternalUInt16", "T_UInt16FieldType_");
+Define("ExternalChar", "T_CharFieldType_");
+Define("ExternalInt32", "T_Int32FieldType_");
+Define("ExternalUInt32", "T_UInt32FieldType_");
+Define("ExternalSingle", "T_SingleFieldType_");
+Define("ExternalInt64", "T_Int64FieldType_");
+Define("ExternalUInt64", "T_UInt64FieldType_");
+Define("ExternalDouble", "T_DoubleFieldType_");
+Define("ExternalDateTime", "T_DateTimeFieldType_");
+Define("ExternalTimeSpan", "T_TimeSpanFieldType_");
+Define("ExternalDateTimeOffset", "T_DateTimeZoneFieldType_");
+Define("ExternalDecimal", "T_DecimalFieldType_");
+Define("ExternalGuid", "T_GuidFieldType_");
+Define("ExternalString", "T_StringFieldType_");
+Define("ExternalBinaryFieldType", "T_BinaryFieldType_");
+Define("BinaryFieldType", "ImmutableArray<byte>");
+Define("ConcreteDateTime", "DateTimeValue");
+Define("ExternalDateTime", "DateTime");
+Define("ConcreteDateTimeOffset", "DateTimeOffsetValue");
+Define("ExternalDateTimeOffset", "DateTimeOffset");
+Define("ConcreteDecimal", "DecimalValue");
+Define("ExternalDecimal", "Decimal");
+Define("ConcreteGuid", "GuidValue");
+Define("ExternalGuid", "Guid");
+Define("BaseClassName", "EntityBase");
 Emit("// <auto-generated />");
 Emit("#region Auto-generated");
 Emit("//--------------------------------------------------------------------------------");
@@ -114,15 +114,15 @@ Emit("using T_Namespace_.Contracts;");
 Emit("");
 Emit("namespace T_Namespace_.MessagePack");
 Emit("{");
-            using (Ignored())
-            {
+    using (Ignored())
+    {
 Emit("    using T_ConcreteOtherType_ = System.Int64;");
 Emit("    using T_ExternalOtherType_ = System.Int64;");
 Emit("    using T_IndexType_ = System.String;");
-            }
+    }
 Emit("");
-            using (Ignored())
-            {
+    using (Ignored())
+    {
 Emit("    [MessagePackObject]");
 Emit("    public class T_ModelType_ : EntityBase, IT_ModelType_, IEquatable<T_ModelType_>");
 Emit("    {");
@@ -170,7 +170,7 @@ Emit("    {");
 Emit("        public static T ToExternal<T>(this T value) => value;");
 Emit("        public static T ToInternal<T>(this T value) => value;");
 Emit("    }");
-            }
+    }
 Emit("");
 Emit("    public abstract class EntityBase : IFreezable, IEntityBase, IEquatable<EntityBase>, ICopyFrom<EntityBase>");
 Emit("    {");
@@ -229,8 +229,8 @@ Emit("        public override bool Equals(object? obj) => obj is EntityBase othe
 Emit("        public override int GetHashCode() => 0;");
 Emit("    }");
 Emit("");
-            using (Ignored())
-            {
+    using (Ignored())
+    {
 Emit("    [MessagePackObject]");
 Emit("    public class T_BaseClassName_ : EntityBase, IT_BaseClassName_, IEquatable<T_BaseClassName_>, ICopyFrom<T_BaseClassName_>");
 Emit("    {");
@@ -255,22 +255,22 @@ Emit("        private static readonly T_BaseClassName_ _empty = new T_BaseClassN
 Emit("        public static new T_BaseClassName_ Empty => _empty;");
 Emit("");
 Emit("    }");
-            }
+    }
 Emit("");
-            foreach (var cd in outerScope.ClassDefs)
+    foreach (var cd in outerScope.ClassDefs)
+    {
+        using (NewScope(cd))
+        {
+            var derivedClasses = cd.AllDerivedClasses;
+            if (derivedClasses.Count > 0)
             {
-                using (NewScope(cd))
+                foreach (var derived in derivedClasses)
                 {
-                    var derivedClasses = cd.AllDerivedClasses;
-                    if (derivedClasses.Count > 0)
+                    using (NewScope(derived))
                     {
-                        foreach (var derived in derivedClasses)
-                        {
-                            using (NewScope(derived))
-                            {
 Emit("    [Union(T_ClassName_.ClassTag, typeof(T_ClassName_))]");
-                            }
-                        }
+                    }
+                }
 Emit("    public abstract partial class T_ClassName2_");
 Emit("    {");
 Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
@@ -280,21 +280,21 @@ Emit("            if (source is null) return null;");
 Emit("            int classTag = source.GetEntityTag();");
 Emit("            switch (classTag)");
 Emit("            {");
-                        foreach (var derived in derivedClasses)
-                        {
-                            using (NewScope(derived))
+                            foreach (var derived in derivedClasses)
                             {
+                                using (NewScope(derived))
+                                {
 Emit("                case T_ClassName_.ClassTag: return T_ClassName_.CreateFrom((IT_ClassName_)source);");
+                                }
                             }
-                        }
 Emit("                default:");
 Emit("                    throw new ArgumentOutOfRangeException(nameof(classTag), classTag, null);");
 Emit("            }");
 Emit("        }");
 Emit("    }");
-                    }
-                    else
-                    {
+            }
+            else
+            {
 Emit("    public partial class T_ClassName_");
 Emit("    {");
 Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
@@ -314,7 +314,7 @@ Emit("        private static readonly T_ClassName_ _empty = CreateEmpty();");
 Emit("        public static new T_ClassName_ Empty => _empty;");
 Emit("");
 Emit("    }");
-                    }
+            }
 Emit("    [MessagePackObject]");
 Emit("    public partial class T_ClassName_ : T_BaseClassName_, IT_ClassName_, IEquatable<T_ClassName_>, ICopyFrom<T_ClassName_>");
 Emit("    {");
@@ -355,328 +355,328 @@ Emit("            }");
 Emit("            base.OnFreeze();");
 Emit("        }");
 Emit("");
-                    using (Ignored())
-                    {
+                using (Ignored())
+                {
 Emit("        private const int T_ClassTag_ = 9000;");
 Emit("        private const int T_FieldTag_ = 100;");
-                    }
+                }
 Emit("        public new const int ClassTag = T_ClassTag_;");
 Emit("        protected override int OnGetEntityTag() => ClassTag;");
 Emit("");
 Emit("        // ---------- private fields ----------");
-                    foreach (var fd in cd.FieldDefs)
+                foreach (var fd in cd.FieldDefs)
+                {
+                    using (NewScope(fd))
                     {
-                        using (NewScope(fd))
+                        var fieldInfo = new FieldInfo(fd, _engine.Current);
+                        switch (fieldInfo.Kind)
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
-                            {
-                                case FieldKind.UnaryModel:
+                            case FieldKind.UnaryModel:
 Emit("        private T_ModelType_? field_T_UnaryModelFieldName_;");
-                                    break;
-                                case FieldKind.ArrayModel:
+                                break;
+                            case FieldKind.ArrayModel:
 Emit("        private ImmutableList<T_ModelType_?>? field_T_ArrayModelFieldName_;");
-                                    break;
-                                case FieldKind.IndexModel:
+                                break;
+                            case FieldKind.IndexModel:
 Emit("        private ImmutableDictionary<T_IndexType_, T_ModelType_?>? field_T_IndexModelFieldName_;");
-                                    break;
-                                case FieldKind.UnaryMaybe:
+                                break;
+                            case FieldKind.UnaryMaybe:
 Emit("        private T_ConcreteOtherType_? field_T_UnaryMaybeFieldName_;");
-                                    break;
-                                case FieldKind.ArrayMaybe:
+                                break;
+                            case FieldKind.ArrayMaybe:
 Emit("        private ImmutableList<T_ConcreteOtherType_?>? field_T_ArrayMaybeFieldName_;");
-                                    break;
-                                case FieldKind.IndexMaybe:
+                                break;
+                            case FieldKind.IndexMaybe:
 Emit("        private ImmutableDictionary<T_IndexType_, T_ConcreteOtherType_?>? field_T_IndexMaybeFieldName_;");
-                                    break;
-                                case FieldKind.UnaryOther:
+                                break;
+                            case FieldKind.UnaryOther:
 Emit("        private T_ConcreteOtherType_ field_T_UnaryOtherFieldName_;");
-                                    break;
-                                case FieldKind.ArrayOther:
+                                break;
+                            case FieldKind.ArrayOther:
 Emit("        private ImmutableList<T_ConcreteOtherType_>? field_T_ArrayOtherFieldName_;");
-                                    break;
-                                case FieldKind.IndexOther:
+                                break;
+                            case FieldKind.IndexOther:
 Emit("        private ImmutableDictionary<T_IndexType_, T_ConcreteOtherType_>? field_T_IndexOtherFieldName_;");
-                                    break;
-                                case FieldKind.UnaryBuffer:
+                                break;
+                            case FieldKind.UnaryBuffer:
 Emit("        private ImmutableArray<byte> field_T_UnaryBufferFieldName_;");
-                                    break;
-                                case FieldKind.ArrayBuffer:
+                                break;
+                            case FieldKind.ArrayBuffer:
 Emit("        private ImmutableList<ImmutableArray<byte>>? field_T_ArrayBufferFieldName_;");
-                                    break;
-                                case FieldKind.IndexBuffer:
+                                break;
+                            case FieldKind.IndexBuffer:
 Emit("        private ImmutableDictionary<T_IndexType_, ImmutableArray<byte>>? field_T_IndexBufferFieldName_;");
-                                    break;
-                                case FieldKind.UnaryString:
+                                break;
+                            case FieldKind.UnaryString:
 Emit("        private String? field_T_UnaryStringFieldName_;");
-                                    break;
-                                case FieldKind.ArrayString:
+                                break;
+                            case FieldKind.ArrayString:
 Emit("        private ImmutableList<String?>? field_T_ArrayStringFieldName_;");
-                                    break;
-                                case FieldKind.IndexString:
+                                break;
+                            case FieldKind.IndexString:
 Emit("        private ImmutableDictionary<T_IndexType_, String?>? field_T_IndexStringFieldName_;");
-                                    break;
-                                default:
-                                    throw new ArgumentOutOfRangeException("fieldInfo.Kind", fieldInfo.Kind, $"ordinal={(int)fieldInfo.Kind}");
-                            }
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException("fieldInfo.Kind", fieldInfo.Kind, $"ordinal={(int)fieldInfo.Kind}");
                         }
                     }
+                }
 Emit("");
 Emit("        // ---------- accessors ----------");
-                    foreach (var fd in cd.FieldDefs)
+                foreach (var fd in cd.FieldDefs)
+                {
+                    using (NewScope(fd))
                     {
-                        using (NewScope(fd))
-                        {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
+                        var fieldInfo = new FieldInfo(fd, _engine.Current);
 Emit("        [Key(T_FieldTag_)]");
-                            using (Ignored())
-                            {
+                        using (Ignored())
+                        {
 Emit("        public int IgnoreThisField { get; set; }");
-                            }
-                            switch (fieldInfo.Kind)
-                            {
-                                case FieldKind.UnaryModel:
-                                    using (Ignored())
-                                    {
+                        }
+                        switch (fieldInfo.Kind)
+                        {
+                            case FieldKind.UnaryModel:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 1)]");
-                                    }
+                                }
 Emit("        public T_ModelType_? T_UnaryModelFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryModelFieldName_;");
 Emit("            set => field_T_UnaryModelFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.ArrayModel:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.ArrayModel:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 2)]");
-                                    }
+                                }
 Emit("        public ImmutableList<T_ModelType_?>? T_ArrayModelFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayModelFieldName_;");
 Emit("            set => field_T_ArrayModelFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.IndexModel:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.IndexModel:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 3)]");
-                                    }
+                                }
 Emit("        public ImmutableDictionary<T_IndexType_, T_ModelType_?>? T_IndexModelFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexModelFieldName_;");
 Emit("            set => field_T_IndexModelFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.UnaryMaybe:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.UnaryMaybe:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 4)]");
-                                    }
+                                }
 Emit("        public T_ConcreteOtherType_? T_UnaryMaybeFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryMaybeFieldName_;");
 Emit("            set => field_T_UnaryMaybeFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.ArrayMaybe:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.ArrayMaybe:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 5)]");
-                                    }
+                                }
 Emit("        public ImmutableList<T_ConcreteOtherType_?>? T_ArrayMaybeFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayMaybeFieldName_;");
 Emit("            set => field_T_ArrayMaybeFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.IndexMaybe:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.IndexMaybe:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 6)]");
-                                    }
+                                }
 Emit("        public ImmutableDictionary<T_IndexType_, T_ConcreteOtherType_?>? T_IndexMaybeFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexMaybeFieldName_;");
 Emit("            set => field_T_IndexMaybeFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.UnaryOther:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.UnaryOther:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 7)]");
-                                    }
+                                }
 Emit("        public T_ConcreteOtherType_ T_UnaryOtherFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryOtherFieldName_;");
 Emit("            set => field_T_UnaryOtherFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.ArrayOther:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.ArrayOther:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 8)]");
-                                    }
+                                }
 Emit("        public ImmutableList<T_ConcreteOtherType_>? T_ArrayOtherFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayOtherFieldName_;");
 Emit("            set => field_T_ArrayOtherFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.IndexOther:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.IndexOther:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 9)]");
-                                    }
+                                }
 Emit("        public ImmutableDictionary<T_IndexType_, T_ConcreteOtherType_>? T_IndexOtherFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexOtherFieldName_;");
 Emit("            set => field_T_IndexOtherFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.UnaryBuffer:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.UnaryBuffer:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 10)]");
-                                    }
+                                }
 Emit("        public ImmutableArray<byte> T_UnaryBufferFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryBufferFieldName_;");
 Emit("            set => field_T_UnaryBufferFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.ArrayBuffer:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.ArrayBuffer:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 11)]");
-                                    }
+                                }
 Emit("        public ImmutableList<ImmutableArray<byte>>? T_ArrayBufferFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayBufferFieldName_;");
 Emit("            set => field_T_ArrayBufferFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.IndexBuffer:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.IndexBuffer:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 12)]");
-                                    }
+                                }
 Emit("        public ImmutableDictionary<T_IndexType_, ImmutableArray<byte>>? T_IndexBufferFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexBufferFieldName_;");
 Emit("            set => field_T_IndexBufferFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.UnaryString:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.UnaryString:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 13)]");
-                                    }
+                                }
 Emit("        public String? T_UnaryStringFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryStringFieldName_;");
 Emit("            set => field_T_UnaryStringFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.ArrayString:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.ArrayString:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 14)]");
-                                    }
+                                }
 Emit("        public ImmutableList<String?>? T_ArrayStringFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayStringFieldName_;");
 Emit("            set => field_T_ArrayStringFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                case FieldKind.IndexString:
-                                    using (Ignored())
-                                    {
+                                break;
+                            case FieldKind.IndexString:
+                                using (Ignored())
+                                {
 Emit("        [Key(T_FieldTag_ + 15)]");
-                                    }
+                                }
 Emit("        public ImmutableDictionary<T_IndexType_, String?>? T_IndexStringFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexStringFieldName_;");
 Emit("            set => field_T_IndexStringFieldName_ = CheckNotFrozen(ref value);");
 Emit("        }");
-                                    break;
-                                default:
-                                    throw new ArgumentOutOfRangeException("fieldInfo.Kind", fieldInfo.Kind, $"ordinal={(int)fieldInfo.Kind}");
-                            }
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException("fieldInfo.Kind", fieldInfo.Kind, $"ordinal={(int)fieldInfo.Kind}");
                         }
                     }
+                }
 Emit("");
 Emit("        // ---------- IT_ClassName_ methods ----------");
-                    foreach (var fd in cd.FieldDefs)
+                foreach (var fd in cd.FieldDefs)
+                {
+                    using (NewScope(fd))
                     {
-                        using (NewScope(fd))
+                        var fieldInfo = new FieldInfo(fd, _engine.Current);
+                        switch (fieldInfo.Kind)
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
-                            {
-                                case FieldKind.UnaryModel:
+                            case FieldKind.UnaryModel:
 Emit("        IT_ModelType_? IT_ClassName_.T_UnaryModelFieldName_ => field_T_UnaryModelFieldName_;");
-                                    break;
-                                case FieldKind.ArrayModel:
+                                break;
+                            case FieldKind.ArrayModel:
 Emit("        IReadOnlyList<IT_ModelType_?>? IT_ClassName_.T_ArrayModelFieldName_ => field_T_ArrayModelFieldName_;");
-                                    break;
-                                case FieldKind.IndexModel:
+                                break;
+                            case FieldKind.IndexModel:
 Emit("        IReadOnlyDictionary<T_IndexType_, IT_ModelType_?>? IT_ClassName_.T_IndexModelFieldName_");
 Emit("            => field_T_IndexModelFieldName_ is null ? null");
 Emit("            : new DictionaryFacade<T_IndexType_, IT_ModelType_?, T_ModelType_?>(field_T_IndexModelFieldName_, (x) => x);");
-                                    break;
-                                case FieldKind.UnaryMaybe:
+                                break;
+                            case FieldKind.UnaryMaybe:
 Emit("        T_ExternalOtherType_? IT_ClassName_.T_UnaryMaybeFieldName_ => field_T_UnaryMaybeFieldName_.ToExternal();");
-                                    break;
-                                case FieldKind.ArrayMaybe:
+                                break;
+                            case FieldKind.ArrayMaybe:
 Emit("        IReadOnlyList<T_ExternalOtherType_?>? IT_ClassName_.T_ArrayMaybeFieldName_");
 Emit("            => field_T_ArrayMaybeFieldName_ is null ? null");
 Emit("            : new ListFacade<T_ExternalOtherType_?, T_ConcreteOtherType_?>(field_T_ArrayMaybeFieldName_, (x) => x.ToExternal());");
-                                    break;
-                                case FieldKind.IndexMaybe:
+                                break;
+                            case FieldKind.IndexMaybe:
 Emit("        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_?>? IT_ClassName_.T_IndexMaybeFieldName_");
 Emit("            => field_T_IndexMaybeFieldName_ is null ? null");
 Emit("            : new DictionaryFacade<T_IndexType_, T_ExternalOtherType_?, T_ConcreteOtherType_?>(field_T_IndexMaybeFieldName_, (x) => x.ToExternal());");
-                                    break;
-                                case FieldKind.UnaryOther:
+                                break;
+                            case FieldKind.UnaryOther:
 Emit("        T_ExternalOtherType_ IT_ClassName_.T_UnaryOtherFieldName_ => field_T_UnaryOtherFieldName_.ToExternal();");
-                                    break;
-                                case FieldKind.ArrayOther:
+                                break;
+                            case FieldKind.ArrayOther:
 Emit("        IReadOnlyList<T_ExternalOtherType_>? IT_ClassName_.T_ArrayOtherFieldName_");
 Emit("            => field_T_ArrayOtherFieldName_ is null ? null");
 Emit("            : new ListFacade<T_ExternalOtherType_, T_ConcreteOtherType_>(field_T_ArrayOtherFieldName_, (x) => x.ToExternal());");
-                                    break;
-                                case FieldKind.IndexOther:
+                                break;
+                            case FieldKind.IndexOther:
 Emit("        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_>? IT_ClassName_.T_IndexOtherFieldName_");
 Emit("            => field_T_IndexOtherFieldName_ is null ? null");
 Emit("            : new DictionaryFacade<T_IndexType_, T_ExternalOtherType_, T_ConcreteOtherType_>(field_T_IndexOtherFieldName_, (x) => x.ToExternal());");
-                                    break;
-                                case FieldKind.UnaryBuffer:
+                                break;
+                            case FieldKind.UnaryBuffer:
 Emit("        ReadOnlyMemory<byte> IT_ClassName_.T_UnaryBufferFieldName_ => field_T_UnaryBufferFieldName_.AsMemory();");
-                                    break;
-                                case FieldKind.ArrayBuffer:
+                                break;
+                            case FieldKind.ArrayBuffer:
 Emit("        IReadOnlyList<ReadOnlyMemory<byte>>? IT_ClassName_.T_ArrayBufferFieldName_");
 Emit("            => field_T_ArrayBufferFieldName_ is null ? null");
 Emit("            : new ListFacade<ReadOnlyMemory<byte>, ImmutableArray<byte>>(field_T_ArrayBufferFieldName_, (x) => x.AsMemory());");
-                                    break;
-                                case FieldKind.IndexBuffer:
+                                break;
+                            case FieldKind.IndexBuffer:
 Emit("        IReadOnlyDictionary<T_IndexType_, ReadOnlyMemory<byte>>? IT_ClassName_.T_IndexBufferFieldName_");
 Emit("            => field_T_IndexBufferFieldName_ is null ? null");
 Emit("            : new DictionaryFacade<T_IndexType_, ReadOnlyMemory<byte>, ImmutableArray<byte>>(field_T_IndexBufferFieldName_, (x) => x.AsMemory());");
-                                    break;
-                                case FieldKind.UnaryString:
+                                break;
+                            case FieldKind.UnaryString:
 Emit("        String? IT_ClassName_.T_UnaryStringFieldName_ => field_T_UnaryStringFieldName_;");
-                                    break;
-                                case FieldKind.ArrayString:
+                                break;
+                            case FieldKind.ArrayString:
 Emit("        IReadOnlyList<String?>? IT_ClassName_.T_ArrayStringFieldName_ => field_T_ArrayStringFieldName_;");
-                                    break;
-                                case FieldKind.IndexString:
+                                break;
+                            case FieldKind.IndexString:
 Emit("        IReadOnlyDictionary<T_IndexType_, String?>? IT_ClassName_.T_IndexStringFieldName_ => field_T_IndexStringFieldName_;");
-                                    break;
-                                default: break;
-                            }
+                                break;
+                            default: break;
                         }
                     }
+                }
 Emit("");
 Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_ClassName_()");
@@ -861,21 +861,21 @@ Emit("                    kvp => new KeyValuePair<T_IndexType_, T_ConcreteOtherT
 Emit("            field_T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_.IsEmpty");
 Emit("                ? default");
 Emit("                : ImmutableArray<byte>.Empty.AddRange(source.T_UnaryBufferFieldName_.ToArray()); // todo alloc!");
-                                    break;
-                                case FieldKind.ArrayBuffer:
+                                                                                                                         break;
+                                                                                                                     case FieldKind.ArrayBuffer:
 Emit("            field_T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null");
 Emit("                ? null");
 Emit("                : ImmutableList<ImmutableArray<byte>>.Empty.AddRange(");
 Emit("                    source.T_ArrayBufferFieldName_.Select(x => ImmutableArray<byte>.Empty.AddRange(x.ToArray()))); // todo alloc!");
-                                    break;
-                                case FieldKind.IndexBuffer:
+                                                                                                                                           break;
+                                                                                                                                       case FieldKind.IndexBuffer:
 Emit("            field_T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null");
 Emit("                ? null");
 Emit("                : ImmutableDictionary<T_IndexType_, ImmutableArray<byte>>.Empty.AddRange(");
 Emit("                    source.T_IndexBufferFieldName_.Select(kvp =>");
 Emit("                        new KeyValuePair<T_IndexType_, ImmutableArray<byte>>(kvp.Key, ImmutableArray<byte>.Empty.AddRange(kvp.Value.ToArray())))); // todo alloc!");
-                                    break;
-                                case FieldKind.UnaryString:
+                                                                                                                                                                           break;
+                                                                                                                                                                       case FieldKind.UnaryString:
 Emit("            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;");
                                     break;
                                 case FieldKind.ArrayString:
@@ -1050,8 +1050,8 @@ Emit("        }");
 Emit("");
 Emit("    }");
 Emit("");
-                }
-            }
+        }
+    }
 Emit("");
 Emit("}");
 // |metacode:generator_footer|
