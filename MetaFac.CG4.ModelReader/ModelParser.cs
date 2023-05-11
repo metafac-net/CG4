@@ -17,11 +17,10 @@ namespace MetaFac.CG4.ModelReader
             var entityDefsByName = new Dictionary<string, ModelEntityDef>();
             var entityDefsByTag = new Dictionary<int, ModelEntityDef>();
             Queue<EntityDefInfo> toBeProcessed = new Queue<EntityDefInfo>();
+            Dictionary<string, EntityDefInfo> allModelTypes = new Dictionary<string, EntityDefInfo>();
             var proxyTypes = new ProxyTypeInfoCollection();
 
-            foreach (
-                TypeInfo typeInfo in
-                sourceAssembly.DefinedTypes.Where(t => t.Namespace == sourceNamespace))
+            foreach (TypeInfo typeInfo in sourceAssembly.DefinedTypes.Where(t => t.Namespace == sourceNamespace))
             {
                 bool exclude = false;
                 ProxyAttribute? proxyAttr = null;
@@ -48,9 +47,11 @@ namespace MetaFac.CG4.ModelReader
                         string typeName = typeInfo.Name;
                         proxyTypes.Add(typeName, new ProxyTypeInfo(proxyAttr.ExternalName, proxyAttr.ConcreteName));
                     }
-                    else if (typeInfo.IsClass && entityTag.HasValue)
+                    else if (typeInfo.IsInterface && typeInfo.Name.StartsWith("I") && entityTag.HasValue)
                     {
-                        toBeProcessed.Enqueue(new EntityDefInfo(typeInfo.AsType(), entityTag));
+                        var entityInfo = new EntityDefInfo(typeInfo, entityTag);
+                        toBeProcessed.Enqueue(entityInfo);
+                        allModelTypes.Add(entityInfo.EntityName, entityInfo);
                     }
                 }
             }
@@ -58,13 +59,13 @@ namespace MetaFac.CG4.ModelReader
             while (toBeProcessed.Count > 0)
             {
                 EntityDefInfo entityDefInfo = toBeProcessed.Dequeue();
-                Type entityType = entityDefInfo.Type;
-                var entityName = entityType.Name;
-                bool isAbstract = entityType.IsAbstract;
+                //Type entityType = entityDefInfo.Type;
+                var entityName = entityDefInfo.EntityName;
+                bool isAbstract = entityDefInfo.IsAbstract;
                 int? entityTag = entityDefInfo.Tag;
                 var entityTagName = new TagName(entityTag, entityName);
                 bool exclude = false;
-                foreach (Attribute attr in entityType.GetTypeInfo().GetCustomAttributes(false))
+                foreach (Attribute attr in entityDefInfo.CustomAttributes)
                 {
                     if (attr is EntityAttribute tagAttribute)
                     {
@@ -81,16 +82,16 @@ namespace MetaFac.CG4.ModelReader
                     }
                 }
 
-                List<ModelFieldDef> fieldList = ParseFields(entityDefInfo, sourceNamespace, modelName, entityTagName, proxyTypes);
+                List<ModelFieldDef> fieldList = ParseFields(entityDefInfo, sourceNamespace, modelName, entityTagName, proxyTypes, allModelTypes);
 
                 if (!exclude && entityTag.HasValue)
                 {
                     // ensure parent has been processed first
-                    Type? baseType = entityType.GetTypeInfo().BaseType;
-                    string? parentName = !(baseType is null) && baseType != typeof(object)
-                        ? baseType.Name
-                        : null;
-
+                    //Type? baseType = entityDefInfo.BaseType;
+                    //string? parentName = !(baseType is null) && baseType != typeof(object)
+                    //    ? baseType.Name
+                    //    : null;
+                    string? parentName = entityDefInfo.ParentName;
                     //if (baseType != null && baseType != typeof(Object))
                     //{
                     //    throw new ValidationException(new ValidationError(ValidationErrorCode.ParentNotSupported,
@@ -109,7 +110,7 @@ namespace MetaFac.CG4.ModelReader
             if (toBeProcessed.Count > 0)
             {
                 var entityTypeInfo = toBeProcessed.Dequeue();
-                var entityName = entityTypeInfo.Type.Name;
+                var entityName = entityTypeInfo.EntityName;
 
                 throw new ValidationException(new ValidationError(ValidationErrorCode.UnknownParent, modelName, new TagName(null, entityName), null, null, null));
             }
@@ -164,7 +165,8 @@ namespace MetaFac.CG4.ModelReader
         private static FieldInfo GetFieldInfo(
             string sourceNamespace,
             string modelName, TagName entityTagName, string fieldName, Type fieldType,
-            ProxyTypeInfoCollection proxyTypes)
+            ProxyTypeInfoCollection proxyTypes,
+            Dictionary<string, EntityDefInfo> allModelTypes)
         {
             var result = new FieldInfo();
             // vector types
@@ -194,6 +196,26 @@ namespace MetaFac.CG4.ModelReader
             if (result.nullable)
                 innerType = innerType.GenericTypeArguments[0] ?? typeof(Unknown);
             // unary types
+            if (innerType.Namespace == sourceNamespace && innerType.IsInterface)
+            {
+                // must be a model type
+                string fieldTypeName = innerType.Name.Substring(1);
+                if(allModelTypes.TryGetValue(fieldTypeName, out var entityInfo))
+                {
+                    result.isModelType = true;
+                    result.innerTypeName = entityInfo.EntityName;
+                    result.indexTypeName = ConvertBuiltinTypeName(indexType);
+                    return result;
+                }
+                else
+                {
+                    // erk!
+                    throw new ValidationException(
+                        new ValidationError(
+                            ValidationErrorCode.UnknownFieldType,
+                            modelName, entityTagName, new TagName(null, fieldName, fieldTypeName), null, null));
+                }
+            }
             if (innerType.IsValueType)
             {
                 // value type
@@ -248,11 +270,6 @@ namespace MetaFac.CG4.ModelReader
                 result.innerTypeName = innerType.Name;
                 result.IsProxy = true;
             }
-            else if (innerType.Namespace == sourceNamespace)
-            {
-                // model type
-                result.isModelType = true;
-            }
             else if (innerType == typeof(string))
             {
                 // string type
@@ -292,17 +309,17 @@ namespace MetaFac.CG4.ModelReader
 
         internal static List<ModelFieldDef> ParseFields(
             EntityDefInfo entityDefInfo, string sourceNamespace, string modelName, TagName entityTagName,
-            ProxyTypeInfoCollection proxyTypes)
+            ProxyTypeInfoCollection proxyTypes,
+            Dictionary<string, EntityDefInfo> allModelTypes)
         {
-            var entityType = entityDefInfo.Type;
             var fieldDefsByName = new Dictionary<string, ModelFieldDef>();
             // process fields
-            foreach (var propInfo in entityType.GetRuntimeProperties().Where(p => p.DeclaringType == entityType))
+            foreach (var propInfo in entityDefInfo.RuntimeProperties)
             {
                 int fieldTag = 0;
                 string fieldName = propInfo.Name;
                 Type fieldType = propInfo.PropertyType;
-                var fieldInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, fieldName, fieldType, proxyTypes);
+                var fieldInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, fieldName, fieldType, proxyTypes, allModelTypes);
                 string innerTypeName = fieldInfo.innerTypeName ?? nameof(Unknown);
                 // emit field tokens
 
@@ -335,10 +352,10 @@ namespace MetaFac.CG4.ModelReader
                         proxyDef = new ModelProxyDef(pd.ExternalName, pd.ConcreteName);
                     }
                     var fieldDef = new ModelFieldDef(
-                        fieldName, fieldTag, innerTypeName, 
+                        fieldName, fieldTag, innerTypeName,
                         fieldInfo.nullable,
                         proxyDef,
-                        fieldInfo.ArrayRank, 
+                        fieldInfo.ArrayRank,
                         fieldInfo.indexTypeName,
                         fieldInfo.isModelType);
                     fieldDefsByName.Add(fieldName, fieldDef);

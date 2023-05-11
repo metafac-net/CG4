@@ -61,24 +61,19 @@ namespace Generated.ClassesV2
     }
 
 
-    public partial class BuiltinTypes
+    public abstract partial class BuiltinTypes
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static BuiltinTypes? CreateFrom(IBuiltinTypes? source)
         {
             if (source is null) return null;
-            if (source is BuiltinTypes thisEntity && thisEntity._isFrozen) return thisEntity;
-            return new BuiltinTypes(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(BuiltinTypes)} from {source.GetType().Name}");
+            }
         }
-
-        private static BuiltinTypes CreateEmpty()
-        {
-            var empty = new BuiltinTypes();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly BuiltinTypes _empty = CreateEmpty();
-        public static new BuiltinTypes Empty => _empty;
 
     }
     public partial class BuiltinTypes : EntityBase, IBuiltinTypes, IEquatable<BuiltinTypes>

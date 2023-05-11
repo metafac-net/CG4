@@ -15,7 +15,7 @@ namespace MetaFac.CG4.Generators.UnitTests
     {
         private static string GenerateSourceCode(GeneratorBase generator)
         {
-            string ns = typeof(FlattenedModels.BuiltinTypes).Namespace!;
+            string ns = typeof(FlattenedModels.IBuiltinTypes).Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
             var logger = NullLogger.Instance;
             var options = new GeneratorOptions() { CopyrightInfo = "Copyright (c) 2023 MetaFac" };

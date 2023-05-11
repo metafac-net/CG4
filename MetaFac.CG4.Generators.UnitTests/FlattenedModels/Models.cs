@@ -18,7 +18,7 @@ namespace MetaFac.CG4.Generators.UnitTests.FlattenedModels
     public struct MyDayOfWeek { }
 
     [Entity(1)]
-    public class BuiltinTypes
+    public interface IBuiltinTypes
     {
         [Member(1)] public bool[]? Bools { get; set; }
         [Member(2)] public sbyte[]? SBytes { get; set; }

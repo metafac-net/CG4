@@ -177,24 +177,19 @@ namespace Generated.ClassesV2
         }
     }
 
-    public partial class Int32Node
+    public abstract partial class Int32Node
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int32Node? CreateFrom(IInt32Node? source)
         {
             if (source is null) return null;
-            if (source is Int32Node thisEntity && thisEntity._isFrozen) return thisEntity;
-            return new Int32Node(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(Int32Node)} from {source.GetType().Name}");
+            }
         }
-
-        private static Int32Node CreateEmpty()
-        {
-            var empty = new Int32Node();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Int32Node _empty = CreateEmpty();
-        public static new Int32Node Empty => _empty;
 
     }
     public partial class Int32Node : ValueNode, IInt32Node, IEquatable<Int32Node>
@@ -283,24 +278,19 @@ namespace Generated.ClassesV2
         }
     }
 
-    public partial class StringNode
+    public abstract partial class StringNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringNode? CreateFrom(IStringNode? source)
         {
             if (source is null) return null;
-            if (source is StringNode thisEntity && thisEntity._isFrozen) return thisEntity;
-            return new StringNode(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(StringNode)} from {source.GetType().Name}");
+            }
         }
-
-        private static StringNode CreateEmpty()
-        {
-            var empty = new StringNode();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly StringNode _empty = CreateEmpty();
-        public static new StringNode Empty => _empty;
 
     }
     public partial class StringNode : ValueNode, IStringNode, IEquatable<StringNode>
@@ -389,24 +379,19 @@ namespace Generated.ClassesV2
         }
     }
 
-    public partial class BooleanNode
+    public abstract partial class BooleanNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static BooleanNode? CreateFrom(IBooleanNode? source)
         {
             if (source is null) return null;
-            if (source is BooleanNode thisEntity && thisEntity._isFrozen) return thisEntity;
-            return new BooleanNode(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(BooleanNode)} from {source.GetType().Name}");
+            }
         }
-
-        private static BooleanNode CreateEmpty()
-        {
-            var empty = new BooleanNode();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly BooleanNode _empty = CreateEmpty();
-        public static new BooleanNode Empty => _empty;
 
     }
     public partial class BooleanNode : ValueNode, IBooleanNode, IEquatable<BooleanNode>
@@ -495,24 +480,19 @@ namespace Generated.ClassesV2
         }
     }
 
-    public partial class Tree
+    public abstract partial class Tree
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
-            if (source is Tree thisEntity && thisEntity._isFrozen) return thisEntity;
-            return new Tree(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(Tree)} from {source.GetType().Name}");
+            }
         }
-
-        private static Tree CreateEmpty()
-        {
-            var empty = new Tree();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Tree _empty = CreateEmpty();
-        public static new Tree Empty => _empty;
 
     }
     public partial class Tree : EntityBase, ITree, IEquatable<Tree>

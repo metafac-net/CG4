@@ -7,16 +7,16 @@ using Xunit;
 
 namespace MetaFac.CG4.Schemas.UnitTests
 {
-    [Entity(1)] internal class GoodEntity { }
+    [Entity(1)] internal interface IGoodEntity { }
 
-    [Entity(0)] internal class BadTagEntity { }
+    [Entity(0)] internal interface IBadTagEntity { }
 
     public class AttributeTests
     {
         [Fact]
         public void NormalUsageTest()
         {
-            Attribute[] customAttributes = typeof(GoodEntity).GetCustomAttributes().ToArray();
+            Attribute[] customAttributes = typeof(IGoodEntity).GetCustomAttributes().ToArray();
             customAttributes.Length.Should().Be(1);
 
             Attribute customAttribute = customAttributes[0];
@@ -31,7 +31,7 @@ namespace MetaFac.CG4.Schemas.UnitTests
         {
             var ex = Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                Attribute[] customAttributes = typeof(BadTagEntity).GetCustomAttributes().ToArray();
+                Attribute[] customAttributes = typeof(IBadTagEntity).GetCustomAttributes().ToArray();
             });
             ex.Message.Should().StartWith("Must be > 0");
         }

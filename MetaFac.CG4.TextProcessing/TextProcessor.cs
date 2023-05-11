@@ -13,7 +13,7 @@ namespace MetaFac.CG4.TextProcessing
         private const string EmitCodeSuffix = "\");";
         private const string DirectiveTemplateBegin = "template_begin";
         private const string DirectiveTemplateEnd = "template_end";
-        private const string DirectiveGeneratorHeaderqqq = "generator_header";
+        private const string DirectiveGeneratorHeader = "generator_header";
         private const string DirectiveGeneratorBody = "generator_body";
         private const string DirectiveGeneratorFooter = "generator_footer";
         private const string DirectiveGeneratorEnd = "generator_end";
@@ -61,7 +61,7 @@ namespace MetaFac.CG4.TextProcessing
                     {
                         case DirectiveTemplateBegin: return DirectiveTemplateBegin;
                         case DirectiveTemplateEnd: return DirectiveTemplateEnd;
-                        case DirectiveGeneratorHeaderqqq: return DirectiveGeneratorHeaderqqq;
+                        case DirectiveGeneratorHeader: return DirectiveGeneratorHeader;
                         case DirectiveGeneratorBody: return DirectiveGeneratorBody;
                         case DirectiveGeneratorFooter: return DirectiveGeneratorFooter;
                         case DirectiveGeneratorEnd: return DirectiveGeneratorEnd;
@@ -123,7 +123,7 @@ namespace MetaFac.CG4.TextProcessing
                             }
                             else if (directive == DirectiveTemplateBegin)
                             {
-                                yield return $"{outerIndent}{PrefixCsharpComment} {FormatDirective(DirectiveGeneratorHeaderqqq)}";
+                                yield return $"{outerIndent}{PrefixCsharpComment} {FormatDirective(DirectiveGeneratorHeader)}";
                                 var outerTokens = new Dictionary<string, string>()
                                 {
                                     ["GeneratorNamespace"] = generatorNamespace,
@@ -260,7 +260,7 @@ namespace MetaFac.CG4.TextProcessing
                             {
                                 yield return input;
                             }
-                            else if (directive == DirectiveGeneratorHeaderqqq)
+                            else if (directive == DirectiveGeneratorHeader)
                             {
                                 state = TextState.Header;
                             }

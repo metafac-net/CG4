@@ -8,35 +8,35 @@ using System.Threading.Tasks;
 namespace MetaFac.CG4.Generators.UnitTests.PolymorphicModels
 {
     [Entity(1)]
-    public abstract class ValueNode
+    public interface IValueNode
     {
         [Member(1)] public long Id { get; set; }
         [Member(2)] public string? Name { get; set; }
     }
 
     [Entity(2)]
-    public sealed class Int32Node : ValueNode
+    public interface IInt32Node : IValueNode
     {
         [Member(1)] public int IntValue { get; set; }
     }
 
     [Entity(3)]
-    public sealed class StringNode : ValueNode
+    public interface IStringNode : IValueNode
     {
         [Member(1)] public string? StrValue { get; set; }
     }
 
     [Entity(4)]
-    public sealed class BooleanNode : ValueNode
+    public interface IBooleanNode : IValueNode
     {
         [Member(1)] public bool BoolValue { get; set; }
     }
 
     [Entity(10)]
-    public sealed class Tree
+    public interface ITree
     {
-        [Member(1)] public Tree? Left { get; set; }
-        [Member(2)] public Tree? Right { get; set; }
-        [Member(3)] public ValueNode? Value { get; set; }
+        [Member(1)] public ITree? Left { get; set; }
+        [Member(2)] public ITree? Right { get; set; }
+        [Member(3)] public IValueNode? Value { get; set; }
     }
 }

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="MetaFac.Memory" Version="1.1.4" />
+    <PackageReference Include="MetaFac.Mutability" Version="2.1.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="Verify.Xunit" Version="19.14.1" />
     <PackageReference Include="xunit" Version="2.4.2" />
@@ -32,6 +33,7 @@
     <ProjectReference Include="..\MetaFac.CG4.Generators\MetaFac.CG4.Generators.csproj" />
     <ProjectReference Include="..\MetaFac.CG4.ModelReader\MetaFac.CG4.ModelReader.csproj" />
     <ProjectReference Include="..\MetaFac.CG4.Models\MetaFac.CG4.Models.csproj" />
+    <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
     <ProjectReference Include="..\MetaFac.CG4.Schemas\MetaFac.CG4.Schemas.csproj" />
   </ItemGroup>
 

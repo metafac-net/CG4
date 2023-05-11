@@ -5,36 +5,36 @@ using MetaFac.CG4.Schemas;
 namespace MetaFac.CG4.ModelReader.Tests.TestModel
 {
     [Entity(1)]
-    public class BuiltinTypes
+    public interface IBuiltinTypes
     {
-        [Member(1)] public bool[]? Bools { get; set; }
-        [Member(2)] public sbyte[]? SBytes { get; set; }
-        [Member(3)] public byte[]? Bytes { get; set; }
-        [Member(4)] public short[]? Shorts { get; set; }
-        [Member(5)] public ushort[]? UShorts { get; set; }
-        [Member(6)] public char[]? Chars { get; set; }
-        [Member(7)] public int[]? Ints { get; set; }
-        [Member(8)] public uint[]? UInts { get; set; }
-        [Member(9)] public float[]? Floats { get; set; }
-        [Member(10)] public long[]? Longs { get; set; }
-        [Member(11)] public ulong[]? ULongs { get; set; }
-        [Member(12)] public double[]? Doubles { get; set; }
-        [Member(13)] public DateTime[]? DateTimes { get; set; }
-        [Member(14)] public TimeSpan[]? TimeSpans { get; set; }
-        [Member(15)] public decimal[]? Decimals { get; set; }
-        [Member(16)] public DateTimeOffset[]? DateTimeOffsets { get; set; }
-        [Member(17)] public Guid[]? Guids { get; set; }
-        [Member(18)] public String[]? Strings { get; set; }
-        [Member(19)] public Octets[]? Buffers { get; set; }
+        [Member(1)] public bool[]? Bools { get; }
+        [Member(2)] public sbyte[]? SBytes { get; }
+        [Member(3)] public byte[]? Bytes { get; }
+        [Member(4)] public short[]? Shorts { get; }
+        [Member(5)] public ushort[]? UShorts { get; }
+        [Member(6)] public char[]? Chars { get; }
+        [Member(7)] public int[]? Ints { get; }
+        [Member(8)] public uint[]? UInts { get; }
+        [Member(9)] public float[]? Floats { get; }
+        [Member(10)] public long[]? Longs { get; }
+        [Member(11)] public ulong[]? ULongs { get; }
+        [Member(12)] public double[]? Doubles { get; }
+        [Member(13)] public DateTime[]? DateTimes { get; }
+        [Member(14)] public TimeSpan[]? TimeSpans { get; }
+        [Member(15)] public decimal[]? Decimals { get; }
+        [Member(16)] public DateTimeOffset[]? DateTimeOffsets { get; }
+        [Member(17)] public Guid[]? Guids { get; }
+        [Member(18)] public String[]? Strings { get; }
+        [Member(19)] public Octets[]? Buffers { get; }
     }
 
     [Proxy("LabApps.Units.Quantity", "QuantityValue")]
     public struct Quantity { }
 
     [Entity(2)]
-    public class ExternalTypes
+    public interface IExternalTypes
     {
-        [Member(1)] public Quantity[]? Quantities { get; set; }
+        [Member(1)] public Quantity[]? Quantities { get; }
     }
 
     public enum MyCustomEnum
@@ -52,10 +52,10 @@ namespace MetaFac.CG4.ModelReader.Tests.TestModel
     public struct MyDateTimeKind { }
 
     [Entity(3)]
-    public class EnumeratorTypes
+    public interface IEnumeratorTypes
     {
-        [Member(1)] public DayOfWeek[]? DaysOfWeek { get; set; }
-        [Member(2)] public MyCustomEnum[]? MyCustomEnums { get; set; }
-        [Member(3)] public MyDateTimeKind[]? MyDateTimeKinds { get; set; }
+        [Member(1)] public DayOfWeek[]? DaysOfWeek { get; }
+        [Member(2)] public MyCustomEnum[]? MyCustomEnums { get; }
+        [Member(3)] public MyDateTimeKind[]? MyDateTimeKinds { get; }
     }
 }

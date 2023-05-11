@@ -45,18 +45,19 @@ namespace Generated.RecordsV2
     }
 
 
-    public partial record BuiltinTypes
+    public abstract partial record BuiltinTypes
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static BuiltinTypes? CreateFrom(IBuiltinTypes? source)
         {
             if (source is null) return null;
-            if (source is BuiltinTypes thisEntity) return thisEntity;
-            return new BuiltinTypes(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(BuiltinTypes)} from {source.GetType().Name}");
+            }
         }
-
-        private static readonly BuiltinTypes _empty = new BuiltinTypes();
-        public static new BuiltinTypes Empty => _empty;
 
     }
     public partial record BuiltinTypes : EntityBase, IBuiltinTypes

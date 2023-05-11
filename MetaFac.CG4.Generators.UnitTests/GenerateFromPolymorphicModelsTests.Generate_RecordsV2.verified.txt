@@ -121,18 +121,19 @@ namespace Generated.RecordsV2
         }
     }
 
-    public partial record Int32Node
+    public abstract partial record Int32Node
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int32Node? CreateFrom(IInt32Node? source)
         {
             if (source is null) return null;
-            if (source is Int32Node thisEntity) return thisEntity;
-            return new Int32Node(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(Int32Node)} from {source.GetType().Name}");
+            }
         }
-
-        private static readonly Int32Node _empty = new Int32Node();
-        public static new Int32Node Empty => _empty;
 
     }
     public partial record Int32Node : ValueNode, IInt32Node
@@ -187,18 +188,19 @@ namespace Generated.RecordsV2
         }
     }
 
-    public partial record StringNode
+    public abstract partial record StringNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringNode? CreateFrom(IStringNode? source)
         {
             if (source is null) return null;
-            if (source is StringNode thisEntity) return thisEntity;
-            return new StringNode(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(StringNode)} from {source.GetType().Name}");
+            }
         }
-
-        private static readonly StringNode _empty = new StringNode();
-        public static new StringNode Empty => _empty;
 
     }
     public partial record StringNode : ValueNode, IStringNode
@@ -253,18 +255,19 @@ namespace Generated.RecordsV2
         }
     }
 
-    public partial record BooleanNode
+    public abstract partial record BooleanNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static BooleanNode? CreateFrom(IBooleanNode? source)
         {
             if (source is null) return null;
-            if (source is BooleanNode thisEntity) return thisEntity;
-            return new BooleanNode(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(BooleanNode)} from {source.GetType().Name}");
+            }
         }
-
-        private static readonly BooleanNode _empty = new BooleanNode();
-        public static new BooleanNode Empty => _empty;
 
     }
     public partial record BooleanNode : ValueNode, IBooleanNode
@@ -319,18 +322,19 @@ namespace Generated.RecordsV2
         }
     }
 
-    public partial record Tree
+    public abstract partial record Tree
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
-            if (source is Tree thisEntity) return thisEntity;
-            return new Tree(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(Tree)} from {source.GetType().Name}");
+            }
         }
-
-        private static readonly Tree _empty = new Tree();
-        public static new Tree Empty => _empty;
 
     }
     public partial record Tree : EntityBase, ITree
