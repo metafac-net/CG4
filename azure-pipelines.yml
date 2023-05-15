@@ -24,6 +24,9 @@ steps:
     packageType: 'sdk'
     version: '7.x'
     includePreviewVersions: true
+
+- script: dotnet workload restore
+  displayName: 'dotnet workload restore'
     
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
