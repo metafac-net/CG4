@@ -25,6 +25,9 @@ steps:
     version: '7.x'
     includePreviewVersions: true
 
+- script: dotnet workload install maui
+  displayName: 'dotnet workload install MAUI'
+    
 - script: dotnet workload restore
   displayName: 'dotnet workload restore'
     
