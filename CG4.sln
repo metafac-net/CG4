@@ -38,17 +38,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Template.Record
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Generators", "MetaFac.CG4.Generators\MetaFac.CG4.Generators.csproj", "{65F1A425-D85E-4541-BECE-7A382D136BBB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Generator.RecordsV2", "MetaFac.CG4.Generator.RecordsV2\MetaFac.CG4.Generator.RecordsV2.csproj", "{607A7129-AB75-487D-94BA-9204D159A70D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Generator.Contracts", "MetaFac.CG4.Generator.Contracts\MetaFac.CG4.Generator.Contracts.csproj", "{7614D795-3D96-4EB2-B5BA-647AC008B8F7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Generator.ClassesV2", "MetaFac.CG4.Generator.ClassesV2\MetaFac.CG4.Generator.ClassesV2.csproj", "{FD221B35-8E4B-4C86-A9F7-FDDD02932B18}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.ModelReader", "MetaFac.CG4.ModelReader\MetaFac.CG4.ModelReader.csproj", "{96C35B4E-C758-440C-BF87-73D3B13B190B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.ModelReader.Tests", "MetaFac.CG4.ModelReader.Tests\MetaFac.CG4.ModelReader.Tests.csproj", "{814A6627-9A4A-4A8C-9077-7841693253F8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Generator.MessagePack", "MetaFac.CG4.Generator.MessagePack\MetaFac.CG4.Generator.MessagePack.csproj", "{C8B6422E-C964-4892-AAC9-1AB3CEC2CBC5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Runtime.MessagePack", "MetaFac.CG4.Runtime.MessagePack\MetaFac.CG4.Runtime.MessagePack.csproj", "{D6D6B6F5-F8A7-4124-B811-523D415DD563}"
 EndProject
@@ -116,18 +108,6 @@ Global
 		{65F1A425-D85E-4541-BECE-7A382D136BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65F1A425-D85E-4541-BECE-7A382D136BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65F1A425-D85E-4541-BECE-7A382D136BBB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{607A7129-AB75-487D-94BA-9204D159A70D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{607A7129-AB75-487D-94BA-9204D159A70D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{607A7129-AB75-487D-94BA-9204D159A70D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{607A7129-AB75-487D-94BA-9204D159A70D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7614D795-3D96-4EB2-B5BA-647AC008B8F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7614D795-3D96-4EB2-B5BA-647AC008B8F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7614D795-3D96-4EB2-B5BA-647AC008B8F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7614D795-3D96-4EB2-B5BA-647AC008B8F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD221B35-8E4B-4C86-A9F7-FDDD02932B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD221B35-8E4B-4C86-A9F7-FDDD02932B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD221B35-8E4B-4C86-A9F7-FDDD02932B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD221B35-8E4B-4C86-A9F7-FDDD02932B18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96C35B4E-C758-440C-BF87-73D3B13B190B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96C35B4E-C758-440C-BF87-73D3B13B190B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96C35B4E-C758-440C-BF87-73D3B13B190B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -136,10 +116,6 @@ Global
 		{814A6627-9A4A-4A8C-9077-7841693253F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{814A6627-9A4A-4A8C-9077-7841693253F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{814A6627-9A4A-4A8C-9077-7841693253F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8B6422E-C964-4892-AAC9-1AB3CEC2CBC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8B6422E-C964-4892-AAC9-1AB3CEC2CBC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8B6422E-C964-4892-AAC9-1AB3CEC2CBC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8B6422E-C964-4892-AAC9-1AB3CEC2CBC5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D6D6B6F5-F8A7-4124-B811-523D415DD563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D6D6B6F5-F8A7-4124-B811-523D415DD563}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6D6B6F5-F8A7-4124-B811-523D415DD563}.Release|Any CPU.ActiveCfg = Release|Any CPU

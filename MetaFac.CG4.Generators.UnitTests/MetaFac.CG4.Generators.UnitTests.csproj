@@ -1,40 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors>nullable</WarningsAsErrors>
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <WarningsAsErrors>nullable</WarningsAsErrors>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MetaFac.Memory" Version="1.1.4" />
-    <PackageReference Include="MetaFac.Mutability" Version="2.1.3" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
-    <PackageReference Include="Verify.Xunit" Version="19.14.1" />
-    <PackageReference Include="xunit" Version="2.4.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="coverlet.collector" Version="3.2.0">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MetaFac.Memory" Version="1.1.4" />
+        <PackageReference Include="MetaFac.Mutability" Version="2.1.3" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+        <PackageReference Include="Verify.Xunit" Version="19.14.1" />
+        <PackageReference Include="xunit" Version="2.4.2" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="3.2.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG4.Generator.ClassesV2\MetaFac.CG4.Generator.ClassesV2.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Generator.Contracts\MetaFac.CG4.Generator.Contracts.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Generator.MessagePack\MetaFac.CG4.Generator.MessagePack.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Generator.RecordsV2\MetaFac.CG4.Generator.RecordsV2.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Generators\MetaFac.CG4.Generators.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.ModelReader\MetaFac.CG4.ModelReader.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Models\MetaFac.CG4.Models.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Schemas\MetaFac.CG4.Schemas.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\MetaFac.CG4.Generators\MetaFac.CG4.Generators.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.ModelReader\MetaFac.CG4.ModelReader.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.Models\MetaFac.CG4.Models.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.Schemas\MetaFac.CG4.Schemas.csproj" />
+    </ItemGroup>
 
 </Project>

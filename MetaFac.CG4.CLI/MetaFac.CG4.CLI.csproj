@@ -46,10 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG4.Generator.ClassesV2\MetaFac.CG4.Generator.ClassesV2.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Generator.Contracts\MetaFac.CG4.Generator.Contracts.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Generator.MessagePack\MetaFac.CG4.Generator.MessagePack.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.Generator.RecordsV2\MetaFac.CG4.Generator.RecordsV2.csproj" />
     <ProjectReference Include="..\MetaFac.CG4.Generators\MetaFac.CG4.Generators.csproj" />
     <ProjectReference Include="..\MetaFac.CG4.TextProcessing\MetaFac.CG4.TextProcessing.csproj" />
   </ItemGroup>
