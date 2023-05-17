@@ -2,6 +2,7 @@
 
 namespace MetaFac.CG4.Schemas
 {
+    [AttributeUsage(AttributeTargets.Property)]
     public class MemberAttribute : Attribute
     {
         public readonly int Tag;

@@ -22,7 +22,7 @@ namespace MetaFac.CG4.ModelReader
 
             foreach (TypeInfo typeInfo in sourceAssembly.DefinedTypes.Where(t => t.Namespace == sourceNamespace))
             {
-                bool exclude = false;
+                bool obsolete = false;
                 ProxyAttribute? proxyAttr = null;
                 int? entityTag = null;
                 foreach (Attribute attr in typeInfo.GetCustomAttributes(false))
@@ -35,12 +35,12 @@ namespace MetaFac.CG4.ModelReader
                     {
                         proxyAttr = pa;
                     }
-                    else if (attr is ExcludeAttribute excludeAttribute)
+                    else if (attr is ObsoleteAttribute oa && oa.IsError)
                     {
-                        exclude = true;
+                        obsolete = true;
                     }
                 }
-                if (!exclude)
+                if (!obsolete)
                 {
                     if (proxyAttr is not null)
                     {
@@ -64,7 +64,7 @@ namespace MetaFac.CG4.ModelReader
                 bool isAbstract = entityDefInfo.IsAbstract;
                 int? entityTag = entityDefInfo.Tag;
                 var entityTagName = new TagName(entityTag, entityName);
-                bool exclude = false;
+                bool obsolete = false;
                 foreach (Attribute attr in entityDefInfo.CustomAttributes)
                 {
                     if (attr is EntityAttribute tagAttribute)
@@ -76,15 +76,15 @@ namespace MetaFac.CG4.ModelReader
                         entityTag = tagAttribute.Tag;
                     }
 
-                    if (attr is ExcludeAttribute excludeAttribute)
+                    if (attr is ObsoleteAttribute oa && oa.IsError)
                     {
-                        exclude = true;
+                        obsolete = true;
                     }
                 }
 
                 List<ModelFieldDef> fieldList = ParseFields(entityDefInfo, sourceNamespace, modelName, entityTagName, proxyTypes, allModelTypes);
 
-                if (!exclude && entityTag.HasValue)
+                if (!obsolete && entityTag.HasValue)
                 {
                     // ensure parent has been processed first
                     //Type? baseType = entityDefInfo.BaseType;
@@ -321,26 +321,21 @@ namespace MetaFac.CG4.ModelReader
                 Type fieldType = propInfo.PropertyType;
                 var fieldInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, fieldName, fieldType, proxyTypes, allModelTypes);
                 string innerTypeName = fieldInfo.innerTypeName ?? nameof(Unknown);
-                // emit field tokens
 
-                bool exclude = false;
+                bool obsolete = false;
                 foreach (Attribute attr in propInfo.GetCustomAttributes())
                 {
-                    switch (attr)
+                    if (attr is MemberAttribute ma)
                     {
-                        case MemberAttribute tagAttribute:
-                            fieldTag = tagAttribute.Tag;
-                            break;
-                        case ExcludeAttribute excludeAttribute:
-                            exclude = true;
-                            break;
-                        default:
-                            break;
+                        fieldTag = ma.Tag;
                     }
-
+                    else if (attr is ObsoleteAttribute oa && oa.IsError)
+                    {
+                        obsolete = true;
+                    }
                 }
 
-                if (!exclude)
+                if (!obsolete)
                 {
                     bool isVector = fieldInfo.ArrayRank == 1;
                     string typeDesc = $"{innerTypeName}{(fieldInfo.nullable ? "?" : "")}{(isVector ? "[" : "")}{fieldInfo.indexTypeName}{(isVector ? "]" : "")}";
