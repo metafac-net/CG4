@@ -59,5 +59,13 @@ namespace MetaFac.CG4.Generators.UnitTests
             await Verifier.Verify(sourceCode);
         }
 
+        [Fact]
+        public async Task Generate_JsonNewtonSoft()
+        {
+            var generator = new Generator.JsonNewtonSoft.Generator();
+            string sourceCode = GenerateSourceCode(generator);
+            await Verifier.Verify(sourceCode);
+        }
+
     }
 }
