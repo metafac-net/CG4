@@ -24,7 +24,7 @@
 //>>Define("DecimalFieldType", "Decimal");
 //>>Define("GuidFieldType", "Guid");
 //>>Define("StringFieldType", "String");
-//>>Define("BinaryFieldType", "ImmutableArray<byte>");
+//>>Define("BinaryFieldType", "Octets");
 //>>Define("ConcreteBoolean", "T_BooleanFieldType_");
 //>>Define("ConcreteSByte", "T_SByteFieldType_");
 //>>Define("ConcreteByte", "T_ByteFieldType_");
@@ -63,7 +63,7 @@
 //>>Define("ExternalGuid", "T_GuidFieldType_");
 //>>Define("ExternalString", "T_StringFieldType_");
 //>>Define("ExternalBinaryFieldType", "T_BinaryFieldType_");
-//>>Define("BinaryFieldType", "ImmutableArray<byte>");
+//>>Define("BinaryFieldType", "Octets");
 //>>Define("ConcreteDateTime", "DateTimeValue");
 //>>Define("ExternalDateTime", "DateTime");
 //>>Define("ConcreteDateTimeOffset", "DateTimeOffsetValue");
@@ -89,6 +89,7 @@
 //--------------------------------------------------------------------------------
 #endregion
 #nullable enable
+using MetaFac.Memory;
 using MetaFac.Mutability;
 using MessagePack;
 using MetaFac.CG4.Runtime;
@@ -387,13 +388,13 @@ namespace T_Namespace_.MessagePack
         private ImmutableDictionary<T_IndexType_, T_ConcreteOtherType_>? field_T_IndexOtherFieldName_;
         //>>                        break;
         //>>                    case FieldKind.UnaryBuffer:
-        private ImmutableArray<byte> field_T_UnaryBufferFieldName_;
+        private Octets? field_T_UnaryBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.ArrayBuffer:
-        private ImmutableList<ImmutableArray<byte>>? field_T_ArrayBufferFieldName_;
+        private ImmutableList<Octets?>? field_T_ArrayBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.IndexBuffer:
-        private ImmutableDictionary<T_IndexType_, ImmutableArray<byte>>? field_T_IndexBufferFieldName_;
+        private ImmutableDictionary<T_IndexType_, Octets?>? field_T_IndexBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.UnaryString:
         private String? field_T_UnaryStringFieldName_;
@@ -527,7 +528,7 @@ namespace T_Namespace_.MessagePack
         //>>                        {
         [Key(T_FieldTag_ + 10)]
         //>>                        }
-        public ImmutableArray<byte> T_UnaryBufferFieldName_
+        public Octets? T_UnaryBufferFieldName_
         {
             get => field_T_UnaryBufferFieldName_;
             set => field_T_UnaryBufferFieldName_ = CheckNotFrozen(ref value);
@@ -538,7 +539,7 @@ namespace T_Namespace_.MessagePack
         //>>                        {
         [Key(T_FieldTag_ + 11)]
         //>>                        }
-        public ImmutableList<ImmutableArray<byte>>? T_ArrayBufferFieldName_
+        public ImmutableList<Octets?>? T_ArrayBufferFieldName_
         {
             get => field_T_ArrayBufferFieldName_;
             set => field_T_ArrayBufferFieldName_ = CheckNotFrozen(ref value);
@@ -549,7 +550,7 @@ namespace T_Namespace_.MessagePack
         //>>                        {
         [Key(T_FieldTag_ + 12)]
         //>>                        }
-        public ImmutableDictionary<T_IndexType_, ImmutableArray<byte>>? T_IndexBufferFieldName_
+        public ImmutableDictionary<T_IndexType_, Octets?>? T_IndexBufferFieldName_
         {
             get => field_T_IndexBufferFieldName_;
             set => field_T_IndexBufferFieldName_ = CheckNotFrozen(ref value);
@@ -640,17 +641,13 @@ namespace T_Namespace_.MessagePack
             : new DictionaryFacade<T_IndexType_, T_ExternalOtherType_, T_ConcreteOtherType_>(field_T_IndexOtherFieldName_, (x) => x.ToExternal());
         //>>                        break;
         //>>                    case FieldKind.UnaryBuffer:
-        ReadOnlyMemory<byte> IT_EntityName_.T_UnaryBufferFieldName_ => field_T_UnaryBufferFieldName_.AsMemory();
+        Octets? IT_EntityName_.T_UnaryBufferFieldName_ => field_T_UnaryBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.ArrayBuffer:
-        IReadOnlyList<ReadOnlyMemory<byte>>? IT_EntityName_.T_ArrayBufferFieldName_
-            => field_T_ArrayBufferFieldName_ is null ? null
-            : new ListFacade<ReadOnlyMemory<byte>, ImmutableArray<byte>>(field_T_ArrayBufferFieldName_, (x) => x.AsMemory());
+        IReadOnlyList<Octets?>? IT_EntityName_.T_ArrayBufferFieldName_ => field_T_ArrayBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.IndexBuffer:
-        IReadOnlyDictionary<T_IndexType_, ReadOnlyMemory<byte>>? IT_EntityName_.T_IndexBufferFieldName_
-            => field_T_IndexBufferFieldName_ is null ? null
-            : new DictionaryFacade<T_IndexType_, ReadOnlyMemory<byte>, ImmutableArray<byte>>(field_T_IndexBufferFieldName_, (x) => x.AsMemory());
+        IReadOnlyDictionary<T_IndexType_, Octets?>? IT_EntityName_.T_IndexBufferFieldName_ => field_T_IndexBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.UnaryString:
         String? IT_EntityName_.T_UnaryStringFieldName_ => field_T_UnaryStringFieldName_;
@@ -846,24 +843,20 @@ namespace T_Namespace_.MessagePack
                     kvp => new KeyValuePair<T_IndexType_, T_ConcreteOtherType_>(kvp.Key, kvp.Value.ToInternal())));
             //>>                        break;
             //>>                    case FieldKind.UnaryBuffer:
-            field_T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_.IsEmpty
-                ? default
-                : ImmutableArray<byte>.Empty.AddRange(source.T_UnaryBufferFieldName_.ToArray()); // todo alloc!
-                                                                                                 //>>                        break;
-                                                                                                 //>>                    case FieldKind.ArrayBuffer:
+            field_T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_;
+            //>>                        break;
+            //>>                    case FieldKind.ArrayBuffer:
             field_T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null
                 ? null
-                : ImmutableList<ImmutableArray<byte>>.Empty.AddRange(
-                    source.T_ArrayBufferFieldName_.Select(x => ImmutableArray<byte>.Empty.AddRange(x.ToArray()))); // todo alloc!
-                                                                                                                   //>>                        break;
-                                                                                                                   //>>                    case FieldKind.IndexBuffer:
+                : ImmutableList<Octets?>.Empty.AddRange(source.T_ArrayBufferFieldName_);
+            //>>                        break;
+            //>>                    case FieldKind.IndexBuffer:
             field_T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null
                 ? null
-                : ImmutableDictionary<T_IndexType_, ImmutableArray<byte>>.Empty.AddRange(
-                    source.T_IndexBufferFieldName_.Select(kvp =>
-                        new KeyValuePair<T_IndexType_, ImmutableArray<byte>>(kvp.Key, ImmutableArray<byte>.Empty.AddRange(kvp.Value.ToArray())))); // todo alloc!
-                                                                                                                                                   //>>                        break;
-                                                                                                                                                   //>>                    case FieldKind.UnaryString:
+                : ImmutableDictionary<T_IndexType_, Octets?>.Empty.AddRange(
+                    source.T_IndexBufferFieldName_.Select(kvp => new KeyValuePair<T_IndexType_, Octets?>(kvp.Key, kvp.Value)));
+            //>>                        break;
+            //>>                    case FieldKind.UnaryString:
             field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;
             //>>                        break;
             //>>                    case FieldKind.ArrayString:

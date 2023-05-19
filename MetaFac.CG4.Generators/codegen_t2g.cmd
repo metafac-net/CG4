@@ -11,6 +11,7 @@ call :runt2g Contracts cs
 call :runt2g ClassesV2 cs
 call :runt2g RecordsV2 cs
 call :runt2g MessagePack cs
+call :runt2g JsonNewtonSoft cs
 
 goto :eof
 

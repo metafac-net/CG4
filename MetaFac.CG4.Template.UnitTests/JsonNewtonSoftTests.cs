@@ -1,15 +1,12 @@
 ﻿using FluentAssertions;
-using MessagePack;
-using MessagePack.Formatters;
-using MessagePack.Resolvers;
 using MetaFac.CG4.Runtime;
-using MetaFac.Memory;
+using Newtonsoft.Json;
 using System;
-using System.Buffers;
+using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Reflection.Metadata;
+using System.IO;
 using T_Namespace_.Contracts;
-using T_Namespace_.MessagePack;
+using T_Namespace_.JsonNewtonSoft;
 using Xunit;
 
 namespace MetaFac.CG4.Template.UnitTests
@@ -17,47 +14,7 @@ namespace MetaFac.CG4.Template.UnitTests
     using T_ExternalOtherType_ = Int64;
     using T_IndexType_ = String;
 
-    public sealed class OctetsFormatter : IMessagePackFormatter<Octets>
-    {
-        public static readonly OctetsFormatter Instance = new OctetsFormatter();
-
-        public void Serialize(ref MessagePackWriter writer, Octets value, MessagePackSerializerOptions options)
-        {
-            if (value is null)
-                writer.WriteNil();
-            else
-            {
-                writer.WriteInt32(value.Length);
-                writer.WriteRaw(value.Memory.Span);
-            }
-        }
-
-        public Octets Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
-        {
-            if (reader.TryReadNil()) return null!;
-
-            long length = reader.ReadInt32();
-            var sequence = reader.ReadRaw(length);
-            return new Octets(sequence);
-        }
-    }
-
-    public sealed class OctetsMessagePackResolver : IFormatterResolver
-    {
-        public static readonly OctetsMessagePackResolver Instance = new OctetsMessagePackResolver();
-
-        public IMessagePackFormatter<T>? GetFormatter<T>()
-        {
-            if (typeof(T) == typeof(Octets))
-            {
-                return OctetsFormatter.Instance as IMessagePackFormatter<T>;
-            }
-            else
-                return null;
-        }
-    }
-
-    public class MessagePackTests
+    public class JsonNewtonSoftTests
     {
         [Fact]
         public void ImmutableBufferRoundtrip()
@@ -81,7 +38,8 @@ namespace MetaFac.CG4.Template.UnitTests
         public void Create_Empty()
         {
             var concrete = T_EntityName_.Empty;
-            concrete.IsFrozen().Should().BeTrue();
+            concrete.IsFreezable().Should().BeFalse();
+            concrete.IsFrozen().Should().BeFalse();
             concrete.T_UnaryModelFieldName_.Should().BeNull();
             concrete.T_ArrayModelFieldName_.Should().BeNull();
             concrete.T_IndexModelFieldName_.Should().BeNull();
@@ -116,14 +74,15 @@ namespace MetaFac.CG4.Template.UnitTests
             external.T_IndexStringFieldName_.Should().BeNull();
 
             var duplicate = new T_EntityName_(external);
+            duplicate.IsFreezable().Should().BeFalse();
             duplicate.IsFrozen().Should().BeFalse();
             duplicate.Freeze();
-            duplicate.IsFrozen().Should().BeTrue();
+            duplicate.IsFrozen().Should().BeFalse();
 
             duplicate.T_UnaryModelFieldName_.Should().Be(concrete.T_UnaryModelFieldName_);
             duplicate.T_UnaryMaybeFieldName_.Should().Be(concrete.T_UnaryMaybeFieldName_);
             duplicate.T_UnaryOtherFieldName_.Should().Be(concrete.T_UnaryOtherFieldName_);
-            (duplicate.T_UnaryBufferFieldName_ == concrete.T_UnaryBufferFieldName_).Should().BeTrue();
+            duplicate.T_UnaryBufferFieldName_.Should().BeEquivalentTo(concrete.T_UnaryBufferFieldName_);
             duplicate.T_UnaryStringFieldName_.Should().Be(concrete.T_UnaryStringFieldName_);
             duplicate.T_ArrayModelFieldName_.Should().BeEquivalentTo(concrete.T_ArrayModelFieldName_);
             duplicate.T_ArrayMaybeFieldName_.Should().BeEquivalentTo(concrete.T_ArrayMaybeFieldName_);
@@ -140,30 +99,32 @@ namespace MetaFac.CG4.Template.UnitTests
             duplicate.Equals(concrete).Should().BeTrue();
         }
 
-        [Theory]
-        [InlineData(MessagePackCompression.None, 119)]
-        //[InlineData(MessagePackCompression.Lz4Block, 30)] // fails! MessagePack bug? todo
-        //[InlineData(MessagePackCompression.Lz4BlockArray, 32)] // fails! MessagePack bug? todo
-        public void Roundtrip_Empty(MessagePackCompression compression, int compressedSize)
+        private static readonly JsonSerializer serializer = new JsonSerializer();
+
+        private static string SerializeToJson<T>(T value)
         {
-            var resolver = CompositeResolver.Create(
-                new IFormatterResolver[]
-                {
-                    BuiltinResolver.Instance,
-                    OctetsMessagePackResolver.Instance,
-                    AttributeFormatterResolver.Instance,
-                    DynamicEnumAsStringResolver.Instance,
-                    ContractlessStandardResolver.Instance,
-                });
+            using (var writer = new StringWriter())
+            {
+                serializer.Serialize(writer, value);
+                return writer.ToString();
+            }
+        }
 
-            var options = MessagePackSerializerOptions.Standard
-                .WithResolver(resolver)
-                .WithCompression(compression);
+        private static T DeserializeFromJson<T>(string buffer)
+        {
+            using var tr = new StringReader(buffer);
+            using var reader = new JsonTextReader(tr);
+            return serializer.Deserialize<T>(reader) ?? throw new JsonSerializationException();
+        }
 
-            var original = new T_EntityName_();
-            byte[] buffer = MessagePackSerializer.Serialize(original, options);
-            buffer.Length.Should().Be(compressedSize);
-            var duplicate = MessagePackSerializer.Deserialize<T_EntityName_>(buffer, options);
+        [Fact]
+        public void Roundtrip_Empty()
+        {
+            T_EntityName_ original = new T_EntityName_();
+            string buffer = SerializeToJson(original);
+            buffer.Length.Should().Be(490);
+
+            T_EntityName_ duplicate = DeserializeFromJson<T_EntityName_>(buffer);
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -188,13 +149,17 @@ namespace MetaFac.CG4.Template.UnitTests
                 T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty
                     .Add("987", 456L)
                     .Add("876", default),
-                T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
-                T_ArrayBufferFieldName_ = ImmutableList<Octets?>.Empty
-                    .Add(new Octets(new byte[] { 1, 2, 3, 4 }))
-                    .Add(new Octets(new byte[] { 5, 6, 7, 8 })),
-                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, Octets?>.Empty
-                    .Add("a", new Octets(new byte[] { 1, 2, 3, 4 }))
-                    .Add("b", new Octets(new byte[] { 5, 6, 7, 8 })),
+                T_UnaryBufferFieldName_ = new byte[] { 1, 2, 3, 4 },
+                T_ArrayBufferFieldName_ = new byte[]?[]
+                {
+                    new byte[] { 1, 2, 3, 4 },
+                    new byte[] { 5, 6, 7, 8 },
+                },
+                T_IndexBufferFieldName_ = new Dictionary<T_IndexType_, byte[]?>()
+                {
+                    ["a"] = new byte[] { 1, 2, 3, 4 },
+                    ["b"] = new byte[] { 5, 6, 7, 8 },
+                },
             };
             original.Freeze();
 
@@ -252,13 +217,17 @@ namespace MetaFac.CG4.Template.UnitTests
                 T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty
                     .Add("987", 456L)
                     .Add("876", default),
-                T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
-                T_ArrayBufferFieldName_ = ImmutableList<Octets?>.Empty
-                    .Add(new Octets(new byte[] { 1, 2, 3, 4 }))
-                    .Add(new Octets(new byte[] { 5, 6, 7, 8 })),
-                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, Octets?>.Empty
-                    .Add("a", new Octets(new byte[] { 1, 2, 3, 4 }))
-                    .Add("b", new Octets(new byte[] { 5, 6, 7, 8 })),
+                T_UnaryBufferFieldName_ = new byte[] { 1, 2, 3, 4 },
+                T_ArrayBufferFieldName_ = new byte[]?[]
+                {
+                    new byte[] { 1, 2, 3, 4 },
+                    new byte[] { 5, 6, 7, 8 },
+                },
+                T_IndexBufferFieldName_ = new Dictionary<T_IndexType_, byte[]?>()
+                {
+                    ["a"] = new byte[] { 1, 2, 3, 4 },
+                    ["b"] = new byte[] { 5, 6, 7, 8 },
+                },
             };
             original.Freeze();
 
@@ -303,13 +272,17 @@ namespace MetaFac.CG4.Template.UnitTests
                 T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty
                     .Add("987", 456L)
                     .Add("876", default),
-                T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
-                T_ArrayBufferFieldName_ = ImmutableList<Octets?>.Empty
-                    .Add(new Octets(new byte[] { 1, 2, 3, 4 }))
-                    .Add(new Octets(new byte[] { 5, 6, 7, 8 })),
-                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, Octets?>.Empty
-                    .Add("a", new Octets(new byte[] { 1, 2, 3, 4 }))
-                    .Add("b", new Octets(new byte[] { 5, 6, 7, 8 })),
+                T_UnaryBufferFieldName_ = new byte[] { 1, 2, 3, 4 },
+                T_ArrayBufferFieldName_ = new byte[]?[]
+                {
+                    new byte[] { 1, 2, 3, 4 },
+                    new byte[] { 5, 6, 7, 8 },
+                },
+                T_IndexBufferFieldName_ = new Dictionary<T_IndexType_, byte[]?>()
+                {
+                    ["a"] = new byte[] { 1, 2, 3, 4 },
+                    ["b"] = new byte[] { 5, 6, 7, 8 },
+                },
             };
             original.Freeze();
 
@@ -335,26 +308,9 @@ namespace MetaFac.CG4.Template.UnitTests
             duplicate.Should().Be(original);
         }
 
-        [Theory]
-        [InlineData(MessagePackCompression.None)]
-        //[InlineData(MessagePackCompression.Lz4Block)] fails! todo bug?
-        //[InlineData(MessagePackCompression.Lz4BlockArray)] fails! todo bug?
-        public void Roundtrip_NonEmpty(MessagePackCompression compression)
+        [Fact]
+        public void Roundtrip_NonEmpty()
         {
-            var resolver = CompositeResolver.Create(
-                new IFormatterResolver[]
-                {
-                    BuiltinResolver.Instance,
-                    OctetsMessagePackResolver.Instance,
-                    AttributeFormatterResolver.Instance,
-                    DynamicEnumAsStringResolver.Instance,
-                    ContractlessStandardResolver.Instance,
-                });
-
-            var options = MessagePackSerializerOptions.Standard
-                .WithResolver(resolver)
-                .WithCompression(compression);
-
             var original = new T_EntityName_()
             {
                 T_UnaryModelFieldName_ = new T_ModelType_(123),
@@ -372,18 +328,21 @@ namespace MetaFac.CG4.Template.UnitTests
                 T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty
                     .Add("987", 456L)
                     .Add("876", default),
-                T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
-                T_ArrayBufferFieldName_ = ImmutableList<Octets?>.Empty
-                    .Add(new Octets(new byte[] { 1, 2, 3, 4 }))
-                    .Add(new Octets(new byte[] { 5, 6, 7, 8 })),
-                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, Octets?>.Empty
-                    .Add("a", new Octets(new byte[] { 1, 2, 3, 4 }))
-                    .Add("b", new Octets(new byte[] { 5, 6, 7, 8 })),
+                T_UnaryBufferFieldName_ = new byte[] { 1, 2, 3, 4 },
+                T_ArrayBufferFieldName_ = new byte[]?[]
+                {
+                    new byte[] { 1, 2, 3, 4 },
+                    new byte[] { 5, 6, 7, 8 },
+                },
+                T_IndexBufferFieldName_ = new Dictionary<T_IndexType_, byte[]?>()
+                {
+                    ["a"] = new byte[] { 1, 2, 3, 4 },
+                    ["b"] = new byte[] { 5, 6, 7, 8 },
+                },
             };
 
-            byte[] buffer = MessagePackSerializer.Serialize(original, options);
-            //buffer.Length.Should().Be(compressedSize);
-            var duplicate = MessagePackSerializer.Deserialize<T_EntityName_>(buffer, options);
+            var buffer = SerializeToJson(original);
+            var duplicate = DeserializeFromJson<T_EntityName_>(buffer);
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }

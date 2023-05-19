@@ -29,7 +29,7 @@ namespace MetaFac.CG4.Template.UnitTests
             original.T_UnaryMaybeFieldName_.Should().BeNull();
             original.T_ArrayMaybeFieldName_.Should().BeNull();
             original.T_IndexMaybeFieldName_.Should().BeNull();
-            original.T_UnaryBufferFieldName_.Should().Be(ReadOnlyMemory<byte>.Empty);
+            original.T_UnaryBufferFieldName_.Should().BeNull();
             original.T_ArrayBufferFieldName_.Should().BeNull();
             original.T_IndexBufferFieldName_.Should().BeNull();
             original.T_UnaryStringFieldName_.Should().BeNull();
@@ -46,7 +46,7 @@ namespace MetaFac.CG4.Template.UnitTests
             external.T_UnaryMaybeFieldName_.Should().BeNull();
             external.T_ArrayMaybeFieldName_.Should().BeNull();
             external.T_IndexMaybeFieldName_.Should().BeNull();
-            external.T_UnaryBufferFieldName_.Should().Be(ReadOnlyMemory<byte>.Empty);
+            external.T_UnaryBufferFieldName_.Should().BeNull();
             external.T_ArrayBufferFieldName_.Should().BeNull();
             external.T_IndexBufferFieldName_.Should().BeNull();
             external.T_UnaryStringFieldName_.Should().BeNull();
@@ -63,7 +63,7 @@ namespace MetaFac.CG4.Template.UnitTests
             duplicate.T_UnaryMaybeFieldName_.Should().BeNull();
             duplicate.T_ArrayMaybeFieldName_.Should().BeNull();
             duplicate.T_IndexMaybeFieldName_.Should().BeNull();
-            duplicate.T_UnaryBufferFieldName_.Should().Be(ReadOnlyMemory<byte>.Empty);
+            duplicate.T_UnaryBufferFieldName_.Should().BeNull();
             duplicate.T_ArrayBufferFieldName_.Should().BeNull();
             duplicate.T_IndexBufferFieldName_.Should().BeNull();
             duplicate.T_UnaryStringFieldName_.Should().BeNull();
@@ -123,7 +123,7 @@ namespace MetaFac.CG4.Template.UnitTests
             duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
             duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
             duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);
-            duplicate.T_UnaryBufferFieldName_.Should().Be(original.T_UnaryBufferFieldName_);
+            duplicate.T_UnaryBufferFieldName_.Should().BeEquivalentTo(original.T_UnaryBufferFieldName_);
             duplicate.T_UnaryStringFieldName_.Should().Be(original.T_UnaryStringFieldName_);
             duplicate.T_ArrayModelFieldName_.Should().BeEquivalentTo(original.T_ArrayModelFieldName_);
             duplicate.T_ArrayMaybeFieldName_.Should().BeEquivalentTo(original.T_ArrayMaybeFieldName_);

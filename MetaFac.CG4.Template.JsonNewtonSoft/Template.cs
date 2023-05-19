@@ -62,7 +62,6 @@
 //--------------------------------------------------------------------------------
 #endregion
 #nullable enable
-using MetaFac.Memory;
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
 using System;
@@ -71,8 +70,9 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using T_Namespace_.Contracts;
+using MetaFac.Memory;
 
-namespace T_Namespace_.RecordsV2
+namespace T_Namespace_.JsonNewtonSoft
 {
     //>>using (Ignored())
     //>>{
@@ -82,7 +82,7 @@ namespace T_Namespace_.RecordsV2
 
     //>>using (Ignored())
     //>>{
-    public record T_ModelType_ : EntityBase, IT_ModelType_
+    public class T_ModelType_ : EntityBase, IT_ModelType_, IEquatable<T_ModelType_>
     {
         public static T_ModelType_? CreateFrom(IT_ModelType_? source)
         {
@@ -93,51 +93,65 @@ namespace T_Namespace_.RecordsV2
 
         protected override int OnGetEntityTag() => 0;
 
-        public int TestData { get; init; }
+        public int TestData { get; set; }
 
         public T_ModelType_() { }
         public T_ModelType_(int testData)
         {
             TestData = testData;
         }
-        public T_ModelType_(IT_ModelType_ source) : base(source)
+        public T_ModelType_(IT_ModelType_ source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             TestData = source.TestData;
         }
+
+        public virtual bool Equals(T_ModelType_? other) => true;
+        public override int GetHashCode() => 0;
+        public override bool Equals(object? obj) => obj is T_ModelType_ other && Equals(other);
     }
     //>>}
 
-    public abstract record EntityBase : IFreezable, IEntityBase
+    public abstract class EntityBase : IFreezable, IEntityBase
     {
+        public static EntityBase Empty => throw new NotSupportedException();
+        public const int EntityTag = 0;
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        public const int EntityTag = 0;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
-        public static EntityBase Empty => throw new NotSupportedException();
+
         public bool IsFreezable() => false;
-        public bool IsFrozen() => true;
+        public bool IsFrozen() => false;
         public void Freeze() { }
-        public bool TryFreeze() => false;
+        public bool TryFreeze() => true;
     }
 
     //>>using (Ignored())
     //>>{
-    public record T_ParentName_ : EntityBase, IT_ParentName_
+    public class T_ParentName_ : EntityBase, IT_ParentName_
     {
+        private static readonly T_ParentName_ _empty = new T_ParentName_();
+        public static new T_ParentName_ Empty => _empty;
+
+        public new const int EntityTag = 999;
         public T_ParentName_() { }
         public T_ParentName_(T_ParentName_? source) : base(source) { }
         public T_ParentName_(IT_ParentName_? source) : base(source) { }
-        public new const int EntityTag = 0;
-        protected override int OnGetEntityTag() => EntityTag;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IT_ParentName_? source)
+        {
+            base.CopyFrom(source);
+        }
+
+        protected override int OnGetEntityTag() => 0;
         public virtual bool Equals(T_ParentName_? other) => true;
         public override int GetHashCode() => 0;
-        private static T_ParentName_ _empty => new T_ParentName_();
-        public static new T_ParentName_ Empty => _empty;
     }
     //>>}
 
@@ -147,7 +161,7 @@ namespace T_Namespace_.RecordsV2
     //>>    {
     //>>        if (cd.IsAbstract)
     //>>        {
-    public abstract partial record T_EntityName2_
+    public abstract partial class T_EntityName2_
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T_EntityName_? CreateFrom(IT_EntityName_? source)
@@ -172,22 +186,27 @@ namespace T_Namespace_.RecordsV2
     //>>        }
     //>>        else
     //>>        {
-    public partial record T_EntityName_
+    public partial class T_EntityName_
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T_EntityName_? CreateFrom(IT_EntityName_? source)
         {
             if (source is null) return null;
-            if (source is T_EntityName_ thisEntity) return thisEntity;
             return new T_EntityName_(source);
         }
 
-        private static readonly T_EntityName_ _empty = new T_EntityName_();
+        private static T_EntityName_ CreateEmpty()
+        {
+            var empty = new T_EntityName_();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly T_EntityName_ _empty = CreateEmpty();
         public static new T_EntityName_ Empty => _empty;
 
     }
     //>>        }
-    public partial record T_EntityName_ : T_ParentName_, IT_EntityName_
+    public partial class T_EntityName_ : T_ParentName_, IT_EntityName_, IEquatable<T_EntityName_>
     {
         //>>        using (Ignored())
         //>>        {
@@ -204,66 +223,130 @@ namespace T_Namespace_.RecordsV2
         //>>                switch (fieldInfo.Kind)
         //>>                {
         //>>                    case FieldKind.UnaryModel:
-        public T_ModelType_? T_UnaryModelFieldName_ { get; init; }
-        IT_ModelType_? IT_EntityName_.T_UnaryModelFieldName_ => T_UnaryModelFieldName_;
+        private T_ModelType_? field_T_UnaryModelFieldName_;
+        IT_ModelType_? IT_EntityName_.T_UnaryModelFieldName_ => field_T_UnaryModelFieldName_;
+        public T_ModelType_? T_UnaryModelFieldName_
+        {
+            get => field_T_UnaryModelFieldName_;
+            set => field_T_UnaryModelFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.ArrayModel:
-        public ImmutableList<T_ModelType_?>? T_ArrayModelFieldName_ { get; init; }
-        IReadOnlyList<IT_ModelType_?>? IT_EntityName_.T_ArrayModelFieldName_ => T_ArrayModelFieldName_;
+        public ImmutableList<T_ModelType_?>? field_T_ArrayModelFieldName_;
+        IReadOnlyList<IT_ModelType_?>? IT_EntityName_.T_ArrayModelFieldName_ => field_T_ArrayModelFieldName_;
+        public ImmutableList<T_ModelType_?>? T_ArrayModelFieldName_
+        {
+            get => field_T_ArrayModelFieldName_;
+            set => field_T_ArrayModelFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.IndexModel:
-        public ImmutableDictionary<T_IndexType_, T_ModelType_?>? T_IndexModelFieldName_ { get; init; }
+        private ImmutableDictionary<T_IndexType_, T_ModelType_?>? field_T_IndexModelFieldName_;
         IReadOnlyDictionary<T_IndexType_, IT_ModelType_?>? IT_EntityName_.T_IndexModelFieldName_
-            => T_IndexModelFieldName_ is null ? null
-            : new DictionaryFacade<T_IndexType_, IT_ModelType_?, T_ModelType_?>(T_IndexModelFieldName_, (x) => x);
+            => field_T_IndexModelFieldName_ is null ? null
+            : new DictionaryFacade<T_IndexType_, IT_ModelType_?, T_ModelType_?>(field_T_IndexModelFieldName_, (x) => x);
+        public ImmutableDictionary<T_IndexType_, T_ModelType_?>? T_IndexModelFieldName_
+        {
+            get => field_T_IndexModelFieldName_;
+            set => field_T_IndexModelFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.UnaryMaybe:
-        public T_ExternalOtherType_? T_UnaryMaybeFieldName_ { get; init; }
-        T_ExternalOtherType_? IT_EntityName_.T_UnaryMaybeFieldName_ => T_UnaryMaybeFieldName_;
+        private T_ExternalOtherType_? field_T_UnaryMaybeFieldName_;
+        T_ExternalOtherType_? IT_EntityName_.T_UnaryMaybeFieldName_ => field_T_UnaryMaybeFieldName_;
+        public T_ExternalOtherType_? T_UnaryMaybeFieldName_
+        {
+            get => field_T_UnaryMaybeFieldName_;
+            set => field_T_UnaryMaybeFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.ArrayMaybe:
-        public ImmutableList<T_ExternalOtherType_?>? T_ArrayMaybeFieldName_ { get; init; }
-        IReadOnlyList<T_ExternalOtherType_?>? IT_EntityName_.T_ArrayMaybeFieldName_ => T_ArrayMaybeFieldName_;
+        private ImmutableList<T_ExternalOtherType_?>? field_T_ArrayMaybeFieldName_;
+        IReadOnlyList<T_ExternalOtherType_?>? IT_EntityName_.T_ArrayMaybeFieldName_ => field_T_ArrayMaybeFieldName_;
+        public ImmutableList<T_ExternalOtherType_?>? T_ArrayMaybeFieldName_
+        {
+            get => field_T_ArrayMaybeFieldName_;
+            set => field_T_ArrayMaybeFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.IndexMaybe:
-        public ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>? T_IndexMaybeFieldName_ { get; init; }
-        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_?>? IT_EntityName_.T_IndexMaybeFieldName_ => T_IndexMaybeFieldName_;
+        private ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>? field_T_IndexMaybeFieldName_;
+        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_?>? IT_EntityName_.T_IndexMaybeFieldName_ => field_T_IndexMaybeFieldName_;
+        public ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>? T_IndexMaybeFieldName_
+        {
+            get => field_T_IndexMaybeFieldName_;
+            set => field_T_IndexMaybeFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.UnaryOther:
-        public T_ExternalOtherType_ T_UnaryOtherFieldName_ { get; init; }
-        T_ExternalOtherType_ IT_EntityName_.T_UnaryOtherFieldName_ => T_UnaryOtherFieldName_;
+        private T_ExternalOtherType_ field_T_UnaryOtherFieldName_;
+        T_ExternalOtherType_ IT_EntityName_.T_UnaryOtherFieldName_ => field_T_UnaryOtherFieldName_;
+        public T_ExternalOtherType_ T_UnaryOtherFieldName_
+        {
+            get => field_T_UnaryOtherFieldName_;
+            set => field_T_UnaryOtherFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.ArrayOther:
-        public ImmutableList<T_ExternalOtherType_>? T_ArrayOtherFieldName_ { get; init; }
-        IReadOnlyList<T_ExternalOtherType_>? IT_EntityName_.T_ArrayOtherFieldName_ => T_ArrayOtherFieldName_;
+        private ImmutableList<T_ExternalOtherType_>? field_T_ArrayOtherFieldName_;
+        IReadOnlyList<T_ExternalOtherType_>? IT_EntityName_.T_ArrayOtherFieldName_ => field_T_ArrayOtherFieldName_;
+        public ImmutableList<T_ExternalOtherType_>? T_ArrayOtherFieldName_
+        {
+            get => field_T_ArrayOtherFieldName_;
+            set => field_T_ArrayOtherFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.IndexOther:
-        public ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>? T_IndexOtherFieldName_ { get; init; }
+        private ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>? field_T_IndexOtherFieldName_;
         IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_>? IT_EntityName_.T_IndexOtherFieldName_ => T_IndexOtherFieldName_;
+        public ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>? T_IndexOtherFieldName_
+        {
+            get => field_T_IndexOtherFieldName_;
+            set => field_T_IndexOtherFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.UnaryBuffer:
-        public Octets? T_UnaryBufferFieldName_ { get; init; }
-        Octets? IT_EntityName_.T_UnaryBufferFieldName_ => T_UnaryBufferFieldName_;
+        Octets? IT_EntityName_.T_UnaryBufferFieldName_ => T_UnaryBufferFieldName_ is null ? null : new Octets(T_UnaryBufferFieldName_);
+        public byte[]? T_UnaryBufferFieldName_ { get; set; }
         //>>                        break;
         //>>                    case FieldKind.ArrayBuffer:
-        public ImmutableList<Octets?>? T_ArrayBufferFieldName_ { get; init; }
-        IReadOnlyList<Octets?>? IT_EntityName_.T_ArrayBufferFieldName_ => T_ArrayBufferFieldName_;
+        IReadOnlyList<Octets?>? IT_EntityName_.T_ArrayBufferFieldName_ => T_ArrayBufferFieldName_ is null
+            ? null
+            : new List<Octets?>(T_ArrayBufferFieldName_.Select(x => x is null ? null : new Octets(x)));
+        public byte[]?[]? T_ArrayBufferFieldName_ { get; set; }
         //>>                        break;
         //>>                    case FieldKind.IndexBuffer:
-        public ImmutableDictionary<T_IndexType_, Octets?>? T_IndexBufferFieldName_ { get; init; }
-        IReadOnlyDictionary<T_IndexType_, Octets?>? IT_EntityName_.T_IndexBufferFieldName_ => T_IndexBufferFieldName_;
+        IReadOnlyDictionary<T_IndexType_, Octets?>? IT_EntityName_.T_IndexBufferFieldName_ => T_IndexBufferFieldName_ is null
+            ? null
+            : T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : new Octets(x.Value));
+        public Dictionary<T_IndexType_, byte[]?>? T_IndexBufferFieldName_ { get; set; }
         //>>                        break;
         //>>                    case FieldKind.UnaryString:
-        public String? T_UnaryStringFieldName_ { get; init; }
-        String? IT_EntityName_.T_UnaryStringFieldName_ => T_UnaryStringFieldName_;
+        private String? field_T_UnaryStringFieldName_;
+        String? IT_EntityName_.T_UnaryStringFieldName_ => field_T_UnaryStringFieldName_;
+        public String? T_UnaryStringFieldName_
+        {
+            get => field_T_UnaryStringFieldName_;
+            set => field_T_UnaryStringFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.ArrayString:
-        public ImmutableList<String?>? T_ArrayStringFieldName_ { get; init; }
-        IReadOnlyList<String?>? IT_EntityName_.T_ArrayStringFieldName_ => T_ArrayStringFieldName_;
+        private ImmutableList<String?>? field_T_ArrayStringFieldName_;
+        IReadOnlyList<String?>? IT_EntityName_.T_ArrayStringFieldName_ => field_T_ArrayStringFieldName_;
+        public ImmutableList<String?>? T_ArrayStringFieldName_
+        {
+            get => field_T_ArrayStringFieldName_;
+            set => field_T_ArrayStringFieldName_ = value;
+        }
         //>>                        break;
         //>>                    case FieldKind.IndexString:
-        public ImmutableDictionary<T_IndexType_, String?>? T_IndexStringFieldName_ { get; init; }
-        IReadOnlyDictionary<T_IndexType_, String?>? IT_EntityName_.T_IndexStringFieldName_ => T_IndexStringFieldName_;
+        private ImmutableDictionary<T_IndexType_, String?>? field_T_IndexStringFieldName_;
+        IReadOnlyDictionary<T_IndexType_, String?>? IT_EntityName_.T_IndexStringFieldName_ => field_T_IndexStringFieldName_;
+        public ImmutableDictionary<T_IndexType_, String?>? T_IndexStringFieldName_
+        {
+            get => field_T_IndexStringFieldName_;
+            set => field_T_IndexStringFieldName_ = value;
+        }
         //>>                        break;
         //>>                    default: break;
         //>>                }
@@ -287,49 +370,49 @@ namespace T_Namespace_.RecordsV2
             //>>                switch (fieldInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
-            T_UnaryModelFieldName_ = source.T_UnaryModelFieldName_;
+            field_T_UnaryModelFieldName_ = source.T_UnaryModelFieldName_;
             //>>                        break;
             //>>                    case FieldKind.ArrayModel:
-            T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_;
+            field_T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_;
             //>>                        break;
             //>>                    case FieldKind.IndexModel:
-            T_IndexModelFieldName_ = source.T_IndexModelFieldName_;
+            field_T_IndexModelFieldName_ = source.T_IndexModelFieldName_;
             //>>                        break;
             //>>                    case FieldKind.UnaryMaybe:
-            T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;
+            field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;
             //>>                        break;
             //>>                    case FieldKind.ArrayMaybe:
-            T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_;
+            field_T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_;
             //>>                        break;
             //>>                    case FieldKind.IndexMaybe:
-            T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_;
+            field_T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_;
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
-            T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;
+            field_T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;
             //>>                        break;
             //>>                    case FieldKind.ArrayOther:
-            T_ArrayOtherFieldName_ = source.T_ArrayOtherFieldName_;
+            field_T_ArrayOtherFieldName_ = source.T_ArrayOtherFieldName_;
             //>>                        break;
             //>>                    case FieldKind.IndexOther:
-            T_IndexOtherFieldName_ = source.T_IndexOtherFieldName_;
+            field_T_IndexOtherFieldName_ = source.T_IndexOtherFieldName_;
             //>>                        break;
             //>>                    case FieldKind.UnaryBuffer:
-            T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_;
+            this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_;
             //>>                        break;
             //>>                    case FieldKind.ArrayBuffer:
-            T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_;
+            this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_;
             //>>                        break;
             //>>                    case FieldKind.IndexBuffer:
-            T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_;
+            this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_;
             //>>                        break;
             //>>                    case FieldKind.UnaryString:
-            T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;
+            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;
             //>>                        break;
             //>>                    case FieldKind.ArrayString:
-            T_ArrayStringFieldName_ = source.T_ArrayStringFieldName_;
+            field_T_ArrayStringFieldName_ = source.T_ArrayStringFieldName_;
             //>>                        break;
             //>>                    case FieldKind.IndexString:
-            T_IndexStringFieldName_ = source.T_IndexStringFieldName_;
+            field_T_IndexStringFieldName_ = source.T_IndexStringFieldName_;
             //>>                        break;
             //>>                    default: break;
             //>>                }
@@ -349,70 +432,156 @@ namespace T_Namespace_.RecordsV2
             //>>                switch (fieldInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
-            T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
+            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
             //>>                        break;
             //>>                    case FieldKind.ArrayModel:
-            T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null
+            field_T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null
                 ? default
                 : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType_.CreateFrom(x)));
             //>>                        break;
             //>>                    case FieldKind.IndexModel:
-            T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null
+            field_T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null
                 ? default
                 : ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty.AddRange(
                     source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType_.CreateFrom(x.Value))));
             //>>                        break;
             //>>                    case FieldKind.UnaryMaybe:
-            T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;
+            field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;
             //>>                        break;
             //>>                    case FieldKind.ArrayMaybe:
-            T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_ is null
+            field_T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_ is null
                 ? default
                 : ImmutableList<T_ExternalOtherType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);
             //>>                        break;
             //>>                    case FieldKind.IndexMaybe:
-            T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_ is null
+            field_T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_ is null
                 ? default
                 : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
-            T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;
+            field_T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;
             //>>                        break;
             //>>                    case FieldKind.ArrayOther:
-            T_ArrayOtherFieldName_ = source.T_ArrayOtherFieldName_ is null
+            field_T_ArrayOtherFieldName_ = source.T_ArrayOtherFieldName_ is null
                 ? default
                 : ImmutableList<T_ExternalOtherType_>.Empty.AddRange(source.T_ArrayOtherFieldName_);
             //>>                        break;
             //>>                    case FieldKind.IndexOther:
-            T_IndexOtherFieldName_ = source.T_IndexOtherFieldName_ is null
+            field_T_IndexOtherFieldName_ = source.T_IndexOtherFieldName_ is null
                 ? default
                 : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty.AddRange(source.T_IndexOtherFieldName_);
             //>>                        break;
             //>>                    case FieldKind.UnaryBuffer:
-            T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_;
+            this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_ is null
+                ? default
+                : source.T_UnaryBufferFieldName_.Memory.ToArray();
             //>>                        break;
             //>>                    case FieldKind.ArrayBuffer:
-            T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null
+            this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null
                 ? default
-                : ImmutableList<Octets?>.Empty.AddRange(source.T_ArrayBufferFieldName_
-                    .Select(x => (Octets?)x));
+                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
             //>>                        break;
             //>>                    case FieldKind.IndexBuffer:
-            T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null
+            this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null
                 ? default
-                : ImmutableDictionary<T_IndexType_, Octets?>.Empty.AddRange(source.T_IndexBufferFieldName_
-                    .Select(x => new KeyValuePair<T_IndexType_, Octets?>(x.Key, x.Value)));
+                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
             //>>                        break;
             //>>                    case FieldKind.UnaryString:
-            T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;
+            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;
             //>>                        break;
             //>>                    case FieldKind.ArrayString:
-            T_ArrayStringFieldName_ = source.T_ArrayStringFieldName_ is null
+            field_T_ArrayStringFieldName_ = source.T_ArrayStringFieldName_ is null
                 ? default
                 : ImmutableList<String?>.Empty.AddRange(source.T_ArrayStringFieldName_);
             //>>                        break;
             //>>                    case FieldKind.IndexString:
-            T_IndexStringFieldName_ = source.T_IndexStringFieldName_ is null
+            field_T_IndexStringFieldName_ = source.T_IndexStringFieldName_ is null
+                ? default
+                : ImmutableDictionary<T_IndexType_, String?>.Empty.AddRange(source.T_IndexStringFieldName_);
+            //>>                        break;
+            //>>                    default: break;
+            //>>                }
+            //>>            }
+            //>>        }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IT_EntityName_? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        {
+            //>>            using (NewScope(fd))
+            //>>            {
+            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
+            //>>                switch (fieldInfo.Kind)
+            //>>                {
+            //>>                    case FieldKind.UnaryModel:
+            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
+            //>>                        break;
+            //>>                    case FieldKind.ArrayModel:
+            field_T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null
+                ? default
+                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType_.CreateFrom(x)));
+            //>>                        break;
+            //>>                    case FieldKind.IndexModel:
+            field_T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null
+                ? default
+                : ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty.AddRange(
+                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType_.CreateFrom(x.Value))));
+            //>>                        break;
+            //>>                    case FieldKind.UnaryMaybe:
+            field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;
+            //>>                        break;
+            //>>                    case FieldKind.ArrayMaybe:
+            field_T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_ is null
+                ? default
+                : ImmutableList<T_ExternalOtherType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);
+            //>>                        break;
+            //>>                    case FieldKind.IndexMaybe:
+            field_T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_ is null
+                ? default
+                : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);
+            //>>                        break;
+            //>>                    case FieldKind.UnaryOther:
+            field_T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;
+            //>>                        break;
+            //>>                    case FieldKind.ArrayOther:
+            field_T_ArrayOtherFieldName_ = source.T_ArrayOtherFieldName_ is null
+                ? default
+                : ImmutableList<T_ExternalOtherType_>.Empty.AddRange(source.T_ArrayOtherFieldName_);
+            //>>                        break;
+            //>>                    case FieldKind.IndexOther:
+            field_T_IndexOtherFieldName_ = source.T_IndexOtherFieldName_ is null
+                ? default
+                : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty.AddRange(source.T_IndexOtherFieldName_);
+            //>>                        break;
+            //>>                    case FieldKind.UnaryBuffer:
+            this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_ is null
+                ? default
+                : source.T_UnaryBufferFieldName_.Memory.ToArray();
+            //>>                        break;
+            //>>                    case FieldKind.ArrayBuffer:
+            this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null
+                ? default
+                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+            //>>                        break;
+            //>>                    case FieldKind.IndexBuffer:
+            this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null
+                ? default
+                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
+            //>>                        break;
+            //>>                    case FieldKind.UnaryString:
+            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;
+            //>>                        break;
+            //>>                    case FieldKind.ArrayString:
+            field_T_ArrayStringFieldName_ = source.T_ArrayStringFieldName_ is null
+                ? default
+                : ImmutableList<String?>.Empty.AddRange(source.T_ArrayStringFieldName_);
+            //>>                        break;
+            //>>                    case FieldKind.IndexString:
+            field_T_IndexStringFieldName_ = source.T_IndexStringFieldName_ is null
                 ? default
                 : ImmutableDictionary<T_IndexType_, String?>.Empty.AddRange(source.T_IndexStringFieldName_);
             //>>                        break;
@@ -484,6 +653,8 @@ namespace T_Namespace_.RecordsV2
             //>>        }
             return base.Equals(other);
         }
+
+        public override bool Equals(object? obj) => obj is T_EntityName_ other && Equals(other);
 
         private int CalcHashCode()
         {
@@ -562,7 +733,7 @@ namespace T_Namespace_.RecordsV2
 
     //>>using (Ignored())
     //>>{
-    public record T_DerivedName_ : T_EntityName_, IT_DerivedName_
+    public class T_DerivedName_ : T_EntityName_, IT_DerivedName_
     {
         public T_DerivedName_() { }
         public T_DerivedName_(T_DerivedName_? source) : base(source) { }
@@ -571,6 +742,5 @@ namespace T_Namespace_.RecordsV2
         public override int GetHashCode() => 0;
     }
     //>>}
-
 }
 // |metacode:template_end|
