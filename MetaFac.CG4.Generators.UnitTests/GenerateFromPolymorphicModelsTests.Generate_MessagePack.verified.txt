@@ -14,6 +14,7 @@
 //--------------------------------------------------------------------------------
 #endregion
 #nullable enable
+using MetaFac.Memory;
 using MetaFac.Mutability;
 using MessagePack;
 using MetaFac.CG4.Runtime;

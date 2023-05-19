@@ -10,11 +10,11 @@ using System;
 using System.Linq;
 using MetaFac.CG4.Generators;
 using MetaFac.CG4.Models;
-namespace MetaFac.CG4.Generator.ClassesV2
+namespace MetaFac.CG4.Generator.JsonNewtonSoft
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaFac.CG4.ClassesV2") { }
+        public Generator() : base("MetaFac.CG4.JsonNewtonSoft") { }
         protected override void OnGenerate(ModelDefinition outerScope)
         {
 // |metacode:generator_body|
@@ -74,7 +74,6 @@ Emit("// mfcg4 g2c --help");
 Emit("//--------------------------------------------------------------------------------");
 Emit("#endregion");
 Emit("#nullable enable");
-Emit("using MetaFac.Memory;");
 Emit("using MetaFac.Mutability;");
 Emit("using MetaFac.CG4.Runtime;");
 Emit("using System;");
@@ -83,8 +82,9 @@ Emit("using System.Collections.Immutable;");
 Emit("using System.Linq;");
 Emit("using System.Runtime.CompilerServices;");
 Emit("using T_Namespace_.Contracts;");
+Emit("using MetaFac.Memory;");
 Emit("");
-Emit("namespace T_Namespace_.ClassesV2");
+Emit("namespace T_Namespace_.JsonNewtonSoft");
 Emit("{");
     using (Ignored())
     {
@@ -103,37 +103,19 @@ Emit("            if (source is T_ModelType_ concrete) return concrete;");
 Emit("            return new T_ModelType_(source);");
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.NoInlining)]");
-Emit("        private static void ThrowIsReadonly()");
-Emit("        {");
-Emit("            throw new InvalidOperationException(\"Cannot set properties when frozen\");");
-Emit("        }");
-Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-Emit("        private ref T CheckNotFrozen<T>(ref T value)");
-Emit("        {");
-Emit("            if (_isFrozen) ThrowIsReadonly();");
-Emit("            return ref value;");
-Emit("        }");
-Emit("");
 Emit("        protected override int OnGetEntityTag() => 0;");
 Emit("");
-Emit("        private int _testData;");
-Emit("        public int TestData");
-Emit("        {");
-Emit("            get => _testData;");
-Emit("            set => _testData = CheckNotFrozen(ref value);");
-Emit("        }");
+Emit("        public int TestData { get; set; }");
 Emit("");
 Emit("        public T_ModelType_() { }");
 Emit("        public T_ModelType_(int testData)");
 Emit("        {");
-Emit("            _testData = testData;");
+Emit("            TestData = testData;");
 Emit("        }");
 Emit("        public T_ModelType_(IT_ModelType_ source)");
 Emit("        {");
 Emit("            if (source is null) throw new ArgumentNullException(nameof(source));");
-Emit("            _testData = source.TestData;");
+Emit("            TestData = source.TestData;");
 Emit("        }");
 Emit("");
 Emit("        public virtual bool Equals(T_ModelType_? other) => true;");
@@ -156,23 +138,10 @@ Emit("        public int GetEntityTag() => OnGetEntityTag();");
 Emit("        public virtual bool Equals(EntityBase? other) => true;");
 Emit("        public override int GetHashCode() => 0;");
 Emit("");
-Emit("        protected volatile bool _isFrozen = false;");
-Emit("        public bool IsFreezable() => true;");
-Emit("        public bool IsFrozen() => _isFrozen;");
-Emit("        protected virtual void OnFreeze() { }");
-Emit("        public void Freeze()");
-Emit("        {");
-Emit("            if (_isFrozen) return;");
-Emit("            OnFreeze();");
-Emit("            _isFrozen = true;");
-Emit("        }");
-Emit("        public bool TryFreeze()");
-Emit("        {");
-Emit("            if (_isFrozen) return false;");
-Emit("            OnFreeze();");
-Emit("            _isFrozen = true;");
-Emit("            return true;");
-Emit("        }");
+Emit("        public bool IsFreezable() => false;");
+Emit("        public bool IsFrozen() => false;");
+Emit("        public void Freeze() { }");
+Emit("        public bool TryFreeze() => true;");
 Emit("    }");
 Emit("");
     using (Ignored())
@@ -235,7 +204,6 @@ Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
-Emit("            if (source is T_EntityName_ thisEntity && thisEntity._isFrozen) return thisEntity;");
 Emit("            return new T_EntityName_(source);");
 Emit("        }");
 Emit("");
@@ -252,56 +220,6 @@ Emit("    }");
             }
 Emit("    public partial class T_EntityName_ : T_ParentName_, IT_EntityName_, IEquatable<T_EntityName_>");
 Emit("    {");
-Emit("        [MethodImpl(MethodImplOptions.NoInlining)]");
-Emit("        private static void ThrowIsReadonly()");
-Emit("        {");
-Emit("            throw new InvalidOperationException(\"Cannot set properties when frozen\");");
-Emit("        }");
-Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-Emit("        private ref T CheckNotFrozen<T>(ref T value)");
-Emit("        {");
-Emit("            if (_isFrozen) ThrowIsReadonly();");
-Emit("            return ref value;");
-Emit("        }");
-Emit("");
-Emit("        protected override void OnFreeze()");
-Emit("        {");
-                    foreach (var fd in cd.FieldDefs)
-                    {
-                        using (NewScope(fd))
-                        {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
-                            {
-                                case FieldKind.UnaryModel:
-Emit("            field_T_UnaryModelFieldName_?.Freeze();");
-                                    break;
-                                case FieldKind.ArrayModel:
-Emit("            if (!(field_T_ArrayModelFieldName_ is null))");
-Emit("            {");
-Emit("                foreach (var element in field_T_ArrayModelFieldName_)");
-Emit("                {");
-Emit("                    element?.Freeze();");
-Emit("                }");
-Emit("            }");
-                                    break;
-                                case FieldKind.IndexModel:
-Emit("            if (!(field_T_IndexModelFieldName_ is null))");
-Emit("            {");
-Emit("                foreach (var element in field_T_IndexModelFieldName_.Values)");
-Emit("                {");
-Emit("                    element?.Freeze();");
-Emit("                }");
-Emit("            }");
-                                    break;
-                                default: break;
-                            }
-                        }
-                    }
-Emit("            base.OnFreeze();");
-Emit("        }");
-Emit("");
                 using (Ignored())
                 {
 Emit("        private const int T_EntityTag_ = 99;");
@@ -322,7 +240,7 @@ Emit("        IT_ModelType_? IT_EntityName_.T_UnaryModelFieldName_ => field_T_Un
 Emit("        public T_ModelType_? T_UnaryModelFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryModelFieldName_;");
-Emit("            set => field_T_UnaryModelFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_UnaryModelFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.ArrayModel:
@@ -331,7 +249,7 @@ Emit("        IReadOnlyList<IT_ModelType_?>? IT_EntityName_.T_ArrayModelFieldNam
 Emit("        public ImmutableList<T_ModelType_?>? T_ArrayModelFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayModelFieldName_;");
-Emit("            set => field_T_ArrayModelFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_ArrayModelFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.IndexModel:
@@ -342,7 +260,7 @@ Emit("            : new DictionaryFacade<T_IndexType_, IT_ModelType_?, T_ModelTy
 Emit("        public ImmutableDictionary<T_IndexType_, T_ModelType_?>? T_IndexModelFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexModelFieldName_;");
-Emit("            set => field_T_IndexModelFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_IndexModelFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.UnaryMaybe:
@@ -351,7 +269,7 @@ Emit("        T_ExternalOtherType_? IT_EntityName_.T_UnaryMaybeFieldName_ => fie
 Emit("        public T_ExternalOtherType_? T_UnaryMaybeFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryMaybeFieldName_;");
-Emit("            set => field_T_UnaryMaybeFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_UnaryMaybeFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.ArrayMaybe:
@@ -360,7 +278,7 @@ Emit("        IReadOnlyList<T_ExternalOtherType_?>? IT_EntityName_.T_ArrayMaybeF
 Emit("        public ImmutableList<T_ExternalOtherType_?>? T_ArrayMaybeFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayMaybeFieldName_;");
-Emit("            set => field_T_ArrayMaybeFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_ArrayMaybeFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.IndexMaybe:
@@ -369,7 +287,7 @@ Emit("        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_?>? IT_Entit
 Emit("        public ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>? T_IndexMaybeFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexMaybeFieldName_;");
-Emit("            set => field_T_IndexMaybeFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_IndexMaybeFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.UnaryOther:
@@ -378,7 +296,7 @@ Emit("        T_ExternalOtherType_ IT_EntityName_.T_UnaryOtherFieldName_ => fiel
 Emit("        public T_ExternalOtherType_ T_UnaryOtherFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryOtherFieldName_;");
-Emit("            set => field_T_UnaryOtherFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_UnaryOtherFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.ArrayOther:
@@ -387,7 +305,7 @@ Emit("        IReadOnlyList<T_ExternalOtherType_>? IT_EntityName_.T_ArrayOtherFi
 Emit("        public ImmutableList<T_ExternalOtherType_>? T_ArrayOtherFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayOtherFieldName_;");
-Emit("            set => field_T_ArrayOtherFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_ArrayOtherFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.IndexOther:
@@ -396,35 +314,24 @@ Emit("        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_>? IT_Entity
 Emit("        public ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>? T_IndexOtherFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexOtherFieldName_;");
-Emit("            set => field_T_IndexOtherFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_IndexOtherFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.UnaryBuffer:
-Emit("        private Octets? field_T_UnaryBufferFieldName_;");
-Emit("        Octets? IT_EntityName_.T_UnaryBufferFieldName_ => field_T_UnaryBufferFieldName_;");
-Emit("        public Octets? T_UnaryBufferFieldName_");
-Emit("        {");
-Emit("            get => field_T_UnaryBufferFieldName_;");
-Emit("            set => field_T_UnaryBufferFieldName_ = CheckNotFrozen(ref value);");
-Emit("        }");
+Emit("        Octets? IT_EntityName_.T_UnaryBufferFieldName_ => T_UnaryBufferFieldName_ is null ? null : new Octets(T_UnaryBufferFieldName_);");
+Emit("        public byte[]? T_UnaryBufferFieldName_ { get; set; }");
                                 break;
                             case FieldKind.ArrayBuffer:
-Emit("        private ImmutableList<Octets?>? field_T_ArrayBufferFieldName_;");
-Emit("        IReadOnlyList<Octets?>? IT_EntityName_.T_ArrayBufferFieldName_ => field_T_ArrayBufferFieldName_;");
-Emit("        public ImmutableList<Octets?>? T_ArrayBufferFieldName_");
-Emit("        {");
-Emit("            get => field_T_ArrayBufferFieldName_;");
-Emit("            set => field_T_ArrayBufferFieldName_ = CheckNotFrozen(ref value);");
-Emit("        }");
+Emit("        IReadOnlyList<Octets?>? IT_EntityName_.T_ArrayBufferFieldName_ => T_ArrayBufferFieldName_ is null");
+Emit("            ? null");
+Emit("            : new List<Octets?>(T_ArrayBufferFieldName_.Select(x => x is null ? null : new Octets(x)));");
+Emit("        public byte[]?[]? T_ArrayBufferFieldName_ { get; set; }");
                                 break;
                             case FieldKind.IndexBuffer:
-Emit("        private ImmutableDictionary<T_IndexType_, Octets?>? field_T_IndexBufferFieldName_;");
-Emit("        IReadOnlyDictionary<T_IndexType_, Octets?>? IT_EntityName_.T_IndexBufferFieldName_ => field_T_IndexBufferFieldName_;");
-Emit("        public ImmutableDictionary<T_IndexType_, Octets?>? T_IndexBufferFieldName_");
-Emit("        {");
-Emit("            get => field_T_IndexBufferFieldName_;");
-Emit("            set => field_T_IndexBufferFieldName_ = CheckNotFrozen(ref value);");
-Emit("        }");
+Emit("        IReadOnlyDictionary<T_IndexType_, Octets?>? IT_EntityName_.T_IndexBufferFieldName_ => T_IndexBufferFieldName_ is null");
+Emit("            ? null");
+Emit("            : T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : new Octets(x.Value));");
+Emit("        public Dictionary<T_IndexType_, byte[]?>? T_IndexBufferFieldName_ { get; set; }");
                                 break;
                             case FieldKind.UnaryString:
 Emit("        private String? field_T_UnaryStringFieldName_;");
@@ -432,7 +339,7 @@ Emit("        String? IT_EntityName_.T_UnaryStringFieldName_ => field_T_UnaryStr
 Emit("        public String? T_UnaryStringFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryStringFieldName_;");
-Emit("            set => field_T_UnaryStringFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_UnaryStringFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.ArrayString:
@@ -441,7 +348,7 @@ Emit("        IReadOnlyList<String?>? IT_EntityName_.T_ArrayStringFieldName_ => 
 Emit("        public ImmutableList<String?>? T_ArrayStringFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayStringFieldName_;");
-Emit("            set => field_T_ArrayStringFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_ArrayStringFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.IndexString:
@@ -450,7 +357,7 @@ Emit("        IReadOnlyDictionary<T_IndexType_, String?>? IT_EntityName_.T_Index
 Emit("        public ImmutableDictionary<T_IndexType_, String?>? T_IndexStringFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexStringFieldName_;");
-Emit("            set => field_T_IndexStringFieldName_ = CheckNotFrozen(ref value);");
+Emit("            set => field_T_IndexStringFieldName_ = value;");
 Emit("        }");
                                 break;
                             default: break;
@@ -502,13 +409,13 @@ Emit("            field_T_ArrayOtherFieldName_ = source.T_ArrayOtherFieldName_;"
 Emit("            field_T_IndexOtherFieldName_ = source.T_IndexOtherFieldName_;");
                                     break;
                                 case FieldKind.UnaryBuffer:
-Emit("            field_T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_;");
+Emit("            this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_;");
                                     break;
                                 case FieldKind.ArrayBuffer:
-Emit("            field_T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_;");
+Emit("            this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_;");
                                     break;
                                 case FieldKind.IndexBuffer:
-Emit("            field_T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_;");
+Emit("            this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_;");
                                     break;
                                 case FieldKind.UnaryString:
 Emit("            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;");
@@ -577,17 +484,19 @@ Emit("                ? default");
 Emit("                : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty.AddRange(source.T_IndexOtherFieldName_);");
                                     break;
                                 case FieldKind.UnaryBuffer:
-Emit("            field_T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_;");
+Emit("            this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_ is null");
+Emit("                ? default");
+Emit("                : source.T_UnaryBufferFieldName_.Memory.ToArray();");
                                     break;
                                 case FieldKind.ArrayBuffer:
-Emit("            field_T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null");
+Emit("            this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableList<Octets?>.Empty.AddRange(source.T_ArrayBufferFieldName_);");
+Emit("                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();");
                                     break;
                                 case FieldKind.IndexBuffer:
-Emit("            field_T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null");
+Emit("            this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableDictionary<T_IndexType_, Octets?>.Empty.AddRange(source.T_IndexBufferFieldName_);");
+Emit("                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());");
                                     break;
                                 case FieldKind.UnaryString:
 Emit("            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;");
@@ -612,7 +521,6 @@ Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public void CopyFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return;");
-Emit("            if (_isFrozen) ThrowIsReadonly();");
 Emit("            base.CopyFrom(source);");
                     foreach (var fd in cd.FieldDefs)
                     {
@@ -662,17 +570,19 @@ Emit("                ? default");
 Emit("                : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty.AddRange(source.T_IndexOtherFieldName_);");
                                     break;
                                 case FieldKind.UnaryBuffer:
-Emit("            field_T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_;");
+Emit("            this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_ is null");
+Emit("                ? default");
+Emit("                : source.T_UnaryBufferFieldName_.Memory.ToArray();");
                                     break;
                                 case FieldKind.ArrayBuffer:
-Emit("            field_T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null");
+Emit("            this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableList<Octets?>.Empty.AddRange(source.T_ArrayBufferFieldName_);");
+Emit("                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();");
                                     break;
                                 case FieldKind.IndexBuffer:
-Emit("            field_T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null");
+Emit("            this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableDictionary<T_IndexType_, Octets?>.Empty.AddRange(source.T_IndexBufferFieldName_);");
+Emit("                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());");
                                     break;
                                 case FieldKind.UnaryString:
 Emit("            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;");

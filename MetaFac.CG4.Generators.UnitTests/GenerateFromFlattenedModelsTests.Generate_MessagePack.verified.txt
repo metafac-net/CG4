@@ -14,6 +14,7 @@
 //--------------------------------------------------------------------------------
 #endregion
 #nullable enable
+using MetaFac.Memory;
 using MetaFac.Mutability;
 using MessagePack;
 using MetaFac.CG4.Runtime;
@@ -136,7 +137,7 @@ namespace Generated.MessagePack
         private ImmutableList<DateTimeOffsetValue>? field_DateTimeOffsets;
         private ImmutableList<GuidValue>? field_Guids;
         private ImmutableList<String?>? field_Strings;
-        private ImmutableList<ImmutableArray<byte>>? field_Buffers;
+        private ImmutableList<Octets?>? field_Buffers;
         private ImmutableList<QuantityValue>? field_Quantities;
         private ImmutableList<MyDayOfWeekValue>? field_MyDaysOfWeek;
         private ImmutableList<MyDateTimeKindValue>? field_MyDateTimeKinds;
@@ -251,7 +252,7 @@ namespace Generated.MessagePack
             set => field_Strings = CheckNotFrozen(ref value);
         }
         [Key(19)]
-        public ImmutableList<ImmutableArray<byte>>? Buffers
+        public ImmutableList<Octets?>? Buffers
         {
             get => field_Buffers;
             set => field_Buffers = CheckNotFrozen(ref value);
@@ -328,9 +329,7 @@ namespace Generated.MessagePack
             => field_Guids is null ? null
             : new ListFacade<Guid, GuidValue>(field_Guids, (x) => x.ToExternal());
         IReadOnlyList<String?>? IBuiltinTypes.Strings => field_Strings;
-        IReadOnlyList<ReadOnlyMemory<byte>>? IBuiltinTypes.Buffers
-            => field_Buffers is null ? null
-            : new ListFacade<ReadOnlyMemory<byte>, ImmutableArray<byte>>(field_Buffers, (x) => x.AsMemory());
+        IReadOnlyList<Octets?>? IBuiltinTypes.Buffers => field_Buffers;
         IReadOnlyList<LabApps.Units.Quantity>? IBuiltinTypes.Quantities
             => field_Quantities is null ? null
             : new ListFacade<LabApps.Units.Quantity, QuantityValue>(field_Quantities, (x) => x.ToExternal());
@@ -459,8 +458,7 @@ namespace Generated.MessagePack
                 : ImmutableList<String?>.Empty.AddRange(source.Strings);
             field_Buffers = source.Buffers is null
                 ? null
-                : ImmutableList<ImmutableArray<byte>>.Empty.AddRange(
-                    source.Buffers.Select(x => ImmutableArray<byte>.Empty.AddRange(x.ToArray()))); // todo alloc!
+                : ImmutableList<Octets?>.Empty.AddRange(source.Buffers);
             field_Quantities = source.Quantities is null
                 ? null
                 : ImmutableList<QuantityValue>.Empty.AddRange(source.Quantities.Select(x => x.ToInternal()));

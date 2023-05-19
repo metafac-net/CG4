@@ -14,6 +14,7 @@
 //--------------------------------------------------------------------------------
 #endregion
 #nullable enable
+using MetaFac.Memory;
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
 using System;
@@ -101,10 +102,8 @@ namespace Generated.RecordsV2
         IReadOnlyList<Guid>? IBuiltinTypes.Guids => Guids;
         public ImmutableList<String?>? Strings { get; init; }
         IReadOnlyList<String?>? IBuiltinTypes.Strings => Strings;
-        public ImmutableList<ReadOnlyMemory<byte>>? Buffers { get; init; }
-        IReadOnlyList<ReadOnlyMemory<byte>>? IBuiltinTypes.Buffers => Buffers is null
-            ? null
-            : new ListFacade<ReadOnlyMemory<byte>, ReadOnlyMemory<byte>>(Buffers, (x) => x);
+        public ImmutableList<Octets?>? Buffers { get; init; }
+        IReadOnlyList<Octets?>? IBuiltinTypes.Buffers => Buffers;
         public ImmutableList<LabApps.Units.Quantity>? Quantities { get; init; }
         IReadOnlyList<LabApps.Units.Quantity>? IBuiltinTypes.Quantities => Quantities;
         public ImmutableList<System.DayOfWeek>? MyDaysOfWeek { get; init; }
@@ -205,8 +204,8 @@ namespace Generated.RecordsV2
                 : ImmutableList<String?>.Empty.AddRange(source.Strings);
             Buffers = source.Buffers is null
                 ? default
-                : ImmutableList<ReadOnlyMemory<byte>>.Empty.AddRange(source.Buffers
-                    .Select(x => (ReadOnlyMemory<byte>)x));
+                : ImmutableList<Octets?>.Empty.AddRange(source.Buffers
+                    .Select(x => (Octets?)x));
             Quantities = source.Quantities is null
                 ? default
                 : ImmutableList<LabApps.Units.Quantity>.Empty.AddRange(source.Quantities);
