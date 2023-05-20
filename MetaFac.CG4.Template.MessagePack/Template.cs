@@ -24,7 +24,6 @@
 //>>Define("DecimalFieldType", "Decimal");
 //>>Define("GuidFieldType", "Guid");
 //>>Define("StringFieldType", "String");
-//>>Define("BinaryFieldType", "Octets");
 //>>Define("ConcreteBoolean", "T_BooleanFieldType_");
 //>>Define("ConcreteSByte", "T_SByteFieldType_");
 //>>Define("ConcreteByte", "T_ByteFieldType_");
@@ -43,7 +42,6 @@
 //>>Define("ConcreteDecimal", "T_DecimalFieldType_");
 //>>Define("ConcreteGuid", "T_GuidFieldType_");
 //>>Define("ConcreteString", "T_StringFieldType_");
-//>>Define("ConcreteBinaryFieldType", "T_BinaryFieldType_");
 //>>Define("ExternalBoolean", "T_BooleanFieldType_");
 //>>Define("ExternalSByte", "T_SByteFieldType_");
 //>>Define("ExternalByte", "T_ByteFieldType_");
@@ -62,8 +60,6 @@
 //>>Define("ExternalDecimal", "T_DecimalFieldType_");
 //>>Define("ExternalGuid", "T_GuidFieldType_");
 //>>Define("ExternalString", "T_StringFieldType_");
-//>>Define("ExternalBinaryFieldType", "T_BinaryFieldType_");
-//>>Define("BinaryFieldType", "Octets");
 //>>Define("ConcreteDateTime", "DateTimeValue");
 //>>Define("ExternalDateTime", "DateTime");
 //>>Define("ConcreteDateTimeOffset", "DateTimeOffsetValue");

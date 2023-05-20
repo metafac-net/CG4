@@ -88,7 +88,6 @@ namespace MetaFac.CG4.Generators
                 "decimal" => "T_DecimalFieldType_",
                 "guid" => "T_GuidFieldType_",
                 "string" => "T_StringFieldType_",
-                "binary" => "T_BinaryFieldType_",
                 _ => innerType,
             };
         }
