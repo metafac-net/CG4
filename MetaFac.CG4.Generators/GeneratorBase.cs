@@ -103,10 +103,6 @@ namespace MetaFac.CG4.Generators
                 tokens["ModelType"] = innerType;
             if (fieldDef.IndexType != null)
                 tokens["IndexType"] = fieldDef.IndexType;
-            if (fieldDef.IsBufferType)
-                tokens["BufferType"] = true.ToString();
-            if (fieldDef.IsStringType)
-                tokens["StringType"] = true.ToString();
             if (fieldDef.ProxyDef is not null)
             {
                 tokens[$"External{fieldDef.InnerType}"] = fieldDef.ProxyDef.ExternalName ?? "Unknown_Proxy_ExternalName";
