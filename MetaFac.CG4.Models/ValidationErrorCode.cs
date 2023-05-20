@@ -15,5 +15,6 @@
         UnknownParent,
         ParentNotSupported,
         NonAbstractParent,
+        InvalidArrayRank,
     }
 }

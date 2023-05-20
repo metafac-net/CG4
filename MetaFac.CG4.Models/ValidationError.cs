@@ -28,6 +28,7 @@
                     ValidationErrorCode.RedefinedEntityTag => $"{ModelName}.{ModelEntityDef.Name}: Entity tag ({ModelEntityDef.Tag}) redefined by: {OtherEntityDef}",
                     ValidationErrorCode.ParentNotSupported => $"{ModelName}.{ModelEntityDef} parent not supported: {OtherEntityDef}",
                     ValidationErrorCode.NonAbstractParent => $"{ModelName}.{ModelEntityDef?.Name}({ModelEntityDef?.Tag}): Non-abstract parent: {OtherEntityDef?.Name}({OtherEntityDef?.Tag})",
+                    ValidationErrorCode.InvalidArrayRank => $"{ModelName}.{ModelEntityDef?.Name}.{FieldDef?.Name}({FieldDef?.Tag}): Invalid array rank",
                     _ => $"{ModelName}.{ModelEntityDef?.Name}.{FieldDef?.Name}: Error: {ErrorCode}.",
                 };
             }

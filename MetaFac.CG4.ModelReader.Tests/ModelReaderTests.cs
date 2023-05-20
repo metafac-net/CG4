@@ -12,7 +12,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         public void RoundtripModelViaJson()
         {
             // arrange
-            string ns = typeof(TestModel.IBuiltinTypes).Namespace!;
+            string ns = typeof(GoodModels.IBuiltinTypes).Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
@@ -34,7 +34,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadBuiltinTypes()
         {
-            string ns = typeof(TestModel.IBuiltinTypes).Namespace!;
+            string ns = typeof(GoodModels.IBuiltinTypes).Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
@@ -48,7 +48,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadExternalTypes()
         {
-            string ns = typeof(TestModel.IExternalTypes).Namespace!;
+            string ns = typeof(GoodModels.IExternalTypes).Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
@@ -70,7 +70,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadEnumeratorTypes()
         {
-            string ns = typeof(TestModel.IExternalTypes).Namespace!;
+            string ns = typeof(GoodModels.IExternalTypes).Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
@@ -93,7 +93,7 @@ namespace MetaFac.CG4.ModelReader.Tests
                 fieldDef.Name.Should().Be("MyCustomEnums");
                 fieldDef.ProxyDef.Should().BeNull();
                 fieldDef.ArrayRank.Should().Be(1);
-                fieldDef.InnerType.Should().Be("MetaFac.CG4.ModelReader.Tests.TestModel.MyCustomEnum");
+                fieldDef.InnerType.Should().Be("MetaFac.CG4.ModelReader.Tests.GoodModels.MyCustomEnum");
             }
             {
                 var fieldDef = entityDef.FieldDefs[2];

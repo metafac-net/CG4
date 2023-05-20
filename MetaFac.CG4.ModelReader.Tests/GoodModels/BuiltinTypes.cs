@@ -1,8 +1,8 @@
-﻿using MetaFac.Memory;
-using System;
+﻿using System;
 using MetaFac.CG4.Schemas;
+using MetaFac.Memory;
 
-namespace MetaFac.CG4.ModelReader.Tests.TestModel
+namespace MetaFac.CG4.ModelReader.Tests.GoodModels
 {
     [Entity(1)]
     public interface IBuiltinTypes
@@ -24,7 +24,7 @@ namespace MetaFac.CG4.ModelReader.Tests.TestModel
         [Member(15)] public decimal[]? Decimals { get; }
         [Member(16)] public DateTimeOffset[]? DateTimeOffsets { get; }
         [Member(17)] public Guid[]? Guids { get; }
-        [Member(18)] public String[]? Strings { get; }
+        [Member(18)] public string[]? Strings { get; }
         [Member(19)] public Octets[]? Buffers { get; }
     }
 

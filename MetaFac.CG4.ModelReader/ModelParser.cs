@@ -173,18 +173,33 @@ namespace MetaFac.CG4.ModelReader
             Type? indexType = null;
             // collection types
             Type innerType = fieldType;
-            if (innerType.IsArray && innerType.GetArrayRank() == 1)
+            if (innerType.IsArray)
             {
-                result.ArrayRank = 1;
-                innerType = innerType.GetElementType() ?? typeof(Unknown);
+                if (innerType.GetArrayRank() == 1)
+                {
+                    result.ArrayRank = 1;
+                    innerType = innerType.GetElementType() ?? typeof(Unknown);
+                }
+                else
+                {
+                    // erk!
+                    throw new ValidationException(
+                        new ValidationError(
+                            ValidationErrorCode.InvalidArrayRank,
+                            modelName, entityTagName, new TagName(null, fieldName, null), null, null));
+                }
             }
-            else if (innerType.IsConstructedGenericType && (innerType.GetGenericTypeDefinition() == typeof(ImmutableList<>) ||
+            else if (innerType.IsConstructedGenericType
+                && innerType.GenericTypeArguments.Length == 1
+                && (innerType.GetGenericTypeDefinition() == typeof(ImmutableList<>) ||
                                                             innerType.GetGenericTypeDefinition() == typeof(List<>)))
             {
                 result.ArrayRank = 1;
                 innerType = innerType.GenericTypeArguments[0] ?? typeof(Unknown);
             }
-            else if (innerType.IsConstructedGenericType && (innerType.GetGenericTypeDefinition() == typeof(ImmutableDictionary<,>) ||
+            else if (innerType.IsConstructedGenericType
+                && innerType.GenericTypeArguments.Length == 2
+                && (innerType.GetGenericTypeDefinition() == typeof(ImmutableDictionary<,>) ||
                                                             innerType.GetGenericTypeDefinition() == typeof(Dictionary<,>)))
             {
                 result.ArrayRank = 1;
