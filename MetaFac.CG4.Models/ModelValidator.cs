@@ -277,9 +277,6 @@ namespace MetaFac.CG4.Models
                     return result;
             }
 
-            // ---------- check field data types
-            // todo
-
             // ---------- check circular refs
             foreach (var entityDef in model.EntityDefs)
             {

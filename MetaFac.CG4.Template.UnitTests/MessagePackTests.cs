@@ -143,8 +143,8 @@ namespace MetaFac.CG4.Template.UnitTests
 
         [Theory]
         [InlineData(MessagePackCompression.None, 119)]
-        [InlineData(MessagePackCompression.Lz4Block, 31)] // fails! MessagePack bug? todo
-        [InlineData(MessagePackCompression.Lz4BlockArray, 32)] // fails! MessagePack bug? todo
+        [InlineData(MessagePackCompression.Lz4Block, 31)]
+        [InlineData(MessagePackCompression.Lz4BlockArray, 32)]
         public void Roundtrip_Empty(MessagePackCompression compression, int compressedSize)
         {
             var options = MessagePackSerializerOptions.Standard.WithCompression(compression);
@@ -326,8 +326,8 @@ namespace MetaFac.CG4.Template.UnitTests
 
         [Theory]
         [InlineData(MessagePackCompression.None)]
-        //[InlineData(MessagePackCompression.Lz4Block)] fails! todo bug?
-        //[InlineData(MessagePackCompression.Lz4BlockArray)] fails! todo bug?
+        [InlineData(MessagePackCompression.Lz4Block)]
+        [InlineData(MessagePackCompression.Lz4BlockArray)]
         public void Roundtrip_NonEmpty(MessagePackCompression compression)
         {
             var options = MessagePackSerializerOptions.Standard.WithCompression(compression);
