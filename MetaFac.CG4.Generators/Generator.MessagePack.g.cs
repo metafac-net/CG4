@@ -400,13 +400,13 @@ Emit("        private ImmutableList<T_ConcreteOtherType_>? field_T_ArrayOtherFie
 Emit("        private ImmutableDictionary<T_IndexType_, T_ConcreteOtherType_>? field_T_IndexOtherFieldName_;");
                                 break;
                             case FieldKind.UnaryBuffer:
-Emit("        private Octets? field_T_UnaryBufferFieldName_;");
+Emit("        private BinaryValue? field_T_UnaryBufferFieldName_;");
                                 break;
                             case FieldKind.ArrayBuffer:
-Emit("        private ImmutableList<Octets?>? field_T_ArrayBufferFieldName_;");
+Emit("        private ImmutableList<BinaryValue?>? field_T_ArrayBufferFieldName_;");
                                 break;
                             case FieldKind.IndexBuffer:
-Emit("        private ImmutableDictionary<T_IndexType_, Octets?>? field_T_IndexBufferFieldName_;");
+Emit("        private ImmutableDictionary<T_IndexType_, BinaryValue?>? field_T_IndexBufferFieldName_;");
                                 break;
                             case FieldKind.UnaryString:
 Emit("        private String? field_T_UnaryStringFieldName_;");
@@ -540,7 +540,7 @@ Emit("        }");
                                 {
 Emit("        [Key(T_FieldTag_ + 10)]");
                                 }
-Emit("        public Octets? T_UnaryBufferFieldName_");
+Emit("        public BinaryValue? T_UnaryBufferFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryBufferFieldName_;");
 Emit("            set => field_T_UnaryBufferFieldName_ = CheckNotFrozen(ref value);");
@@ -551,7 +551,7 @@ Emit("        }");
                                 {
 Emit("        [Key(T_FieldTag_ + 11)]");
                                 }
-Emit("        public ImmutableList<Octets?>? T_ArrayBufferFieldName_");
+Emit("        public ImmutableList<BinaryValue?>? T_ArrayBufferFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayBufferFieldName_;");
 Emit("            set => field_T_ArrayBufferFieldName_ = CheckNotFrozen(ref value);");
@@ -562,7 +562,7 @@ Emit("        }");
                                 {
 Emit("        [Key(T_FieldTag_ + 12)]");
                                 }
-Emit("        public ImmutableDictionary<T_IndexType_, Octets?>? T_IndexBufferFieldName_");
+Emit("        public ImmutableDictionary<T_IndexType_, BinaryValue?>? T_IndexBufferFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexBufferFieldName_;");
 Emit("            set => field_T_IndexBufferFieldName_ = CheckNotFrozen(ref value);");
@@ -656,10 +656,14 @@ Emit("            : new DictionaryFacade<T_IndexType_, T_ExternalOtherType_, T_C
 Emit("        Octets? IT_EntityName_.T_UnaryBufferFieldName_ => field_T_UnaryBufferFieldName_;");
                                 break;
                             case FieldKind.ArrayBuffer:
-Emit("        IReadOnlyList<Octets?>? IT_EntityName_.T_ArrayBufferFieldName_ => field_T_ArrayBufferFieldName_;");
+Emit("        IReadOnlyList<Octets?>? IT_EntityName_.T_ArrayBufferFieldName_ => field_T_ArrayBufferFieldName_ is null");
+Emit("            ? null");
+Emit("            : new ListFacade<Octets, BinaryValue>(field_T_ArrayBufferFieldName_, x => (Octets?)x);");
                                 break;
                             case FieldKind.IndexBuffer:
-Emit("        IReadOnlyDictionary<T_IndexType_, Octets?>? IT_EntityName_.T_IndexBufferFieldName_ => field_T_IndexBufferFieldName_;");
+Emit("        IReadOnlyDictionary<T_IndexType_, Octets?>? IT_EntityName_.T_IndexBufferFieldName_ => field_T_IndexBufferFieldName_ is null");
+Emit("            ? null");
+Emit("            : new DictionaryFacade<T_IndexType_, Octets?, BinaryValue?>(field_T_IndexBufferFieldName_, x => (Octets?)x);");
                                 break;
                             case FieldKind.UnaryString:
 Emit("        String? IT_EntityName_.T_UnaryStringFieldName_ => field_T_UnaryStringFieldName_;");
@@ -860,13 +864,13 @@ Emit("            field_T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_
                                 case FieldKind.ArrayBuffer:
 Emit("            field_T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null");
 Emit("                ? null");
-Emit("                : ImmutableList<Octets?>.Empty.AddRange(source.T_ArrayBufferFieldName_);");
+Emit("                : ImmutableList<BinaryValue?>.Empty.AddRange(source.T_ArrayBufferFieldName_.Select(x => (BinaryValue?)x));");
                                     break;
                                 case FieldKind.IndexBuffer:
 Emit("            field_T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null");
 Emit("                ? null");
-Emit("                : ImmutableDictionary<T_IndexType_, Octets?>.Empty.AddRange(");
-Emit("                    source.T_IndexBufferFieldName_.Select(kvp => new KeyValuePair<T_IndexType_, Octets?>(kvp.Key, kvp.Value)));");
+Emit("                : ImmutableDictionary<T_IndexType_, BinaryValue?>.Empty.AddRange(");
+Emit("                    source.T_IndexBufferFieldName_.Select(kvp => new KeyValuePair<T_IndexType_, BinaryValue?>(kvp.Key, kvp.Value)));");
                                     break;
                                 case FieldKind.UnaryString:
 Emit("            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;");
