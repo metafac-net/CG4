@@ -107,5 +107,33 @@ namespace MetaFac.CG4.ModelReader.Tests
             }
         }
 
+        [Fact]
+        public void ReadInvalidTypes1()
+        {
+            string ns = typeof(InvalidModel1.IInvalidEntity1).Namespace!;
+
+            var ex = Assert.ThrowsAny<ValidationException>(() =>
+            {
+                ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
+            });
+            ex.Should().NotBeNull();
+            ex.Should().BeOfType<ValidationException>();
+            ex.Message.Should().Be("Model1.InvalidEntity1.Grid(): Invalid array rank");
+        }
+
+        [Fact]
+        public void ReadInvalidTypes2()
+        {
+            string ns = typeof(InvalidModel2.IInvalidEntity2).Namespace!;
+
+            var ex = Assert.ThrowsAny<ValidationException>(() =>
+            {
+                ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
+            });
+            ex.Should().NotBeNull();
+            ex.Should().BeOfType<ValidationException>();
+            ex.Message.Should().Be("Model1.InvalidEntity2.MyVersion(): Unknown field type: System.Version");
+        }
+
     }
 }
