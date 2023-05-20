@@ -87,7 +87,6 @@ namespace MetaFac.CG4.Generators
                 "datetimezone" => "T_DateTimeZoneFieldType_",
                 "decimal" => "T_DecimalFieldType_",
                 "guid" => "T_GuidFieldType_",
-                "string" => "T_StringFieldType_",
                 _ => innerType,
             };
         }
