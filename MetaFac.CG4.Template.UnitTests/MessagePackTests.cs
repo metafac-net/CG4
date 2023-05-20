@@ -3,6 +3,7 @@ using MessagePack;
 using MessagePack.Formatters;
 using MessagePack.Resolvers;
 using MetaFac.CG4.Runtime;
+using MetaFac.CG4.Runtime.MessagePack;
 using MetaFac.Memory;
 using System;
 using System.Buffers;
@@ -142,23 +143,11 @@ namespace MetaFac.CG4.Template.UnitTests
 
         [Theory]
         [InlineData(MessagePackCompression.None, 119)]
-        //[InlineData(MessagePackCompression.Lz4Block, 30)] // fails! MessagePack bug? todo
-        //[InlineData(MessagePackCompression.Lz4BlockArray, 32)] // fails! MessagePack bug? todo
+        [InlineData(MessagePackCompression.Lz4Block, 31)] // fails! MessagePack bug? todo
+        [InlineData(MessagePackCompression.Lz4BlockArray, 32)] // fails! MessagePack bug? todo
         public void Roundtrip_Empty(MessagePackCompression compression, int compressedSize)
         {
-            var resolver = CompositeResolver.Create(
-                new IFormatterResolver[]
-                {
-                    BuiltinResolver.Instance,
-                    OctetsMessagePackResolver.Instance,
-                    AttributeFormatterResolver.Instance,
-                    DynamicEnumAsStringResolver.Instance,
-                    ContractlessStandardResolver.Instance,
-                });
-
-            var options = MessagePackSerializerOptions.Standard
-                .WithResolver(resolver)
-                .WithCompression(compression);
+            var options = MessagePackSerializerOptions.Standard.WithCompression(compression);
 
             var original = new T_EntityName_();
             byte[] buffer = MessagePackSerializer.Serialize(original, options);
@@ -189,10 +178,10 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
-                T_ArrayBufferFieldName_ = ImmutableList<Octets?>.Empty
+                T_ArrayBufferFieldName_ = ImmutableList<BinaryValue?>.Empty
                     .Add(new Octets(new byte[] { 1, 2, 3, 4 }))
                     .Add(new Octets(new byte[] { 5, 6, 7, 8 })),
-                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, Octets?>.Empty
+                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, BinaryValue?>.Empty
                     .Add("a", new Octets(new byte[] { 1, 2, 3, 4 }))
                     .Add("b", new Octets(new byte[] { 5, 6, 7, 8 })),
             };
@@ -215,7 +204,7 @@ namespace MetaFac.CG4.Template.UnitTests
             duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
             duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
             duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);
-            duplicate.T_UnaryBufferFieldName_.ArrayEquals(original.T_UnaryBufferFieldName_).Should().BeTrue();
+            duplicate.T_UnaryBufferFieldName_.Should().Be(original.T_UnaryBufferFieldName_);
             duplicate.T_UnaryStringFieldName_.Should().Be(original.T_UnaryStringFieldName_);
             duplicate.T_ArrayModelFieldName_.Should().BeEquivalentTo(original.T_ArrayModelFieldName_);
             duplicate.T_ArrayMaybeFieldName_.Should().BeEquivalentTo(original.T_ArrayMaybeFieldName_);
@@ -253,10 +242,10 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
-                T_ArrayBufferFieldName_ = ImmutableList<Octets?>.Empty
+                T_ArrayBufferFieldName_ = ImmutableList<BinaryValue?>.Empty
                     .Add(new Octets(new byte[] { 1, 2, 3, 4 }))
                     .Add(new Octets(new byte[] { 5, 6, 7, 8 })),
-                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, Octets?>.Empty
+                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, BinaryValue?>.Empty
                     .Add("a", new Octets(new byte[] { 1, 2, 3, 4 }))
                     .Add("b", new Octets(new byte[] { 5, 6, 7, 8 })),
             };
@@ -266,7 +255,7 @@ namespace MetaFac.CG4.Template.UnitTests
             duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
             duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
             duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);
-            duplicate.T_UnaryBufferFieldName_.ArrayEquals(original.T_UnaryBufferFieldName_).Should().BeTrue();
+            duplicate.T_UnaryBufferFieldName_.Should().Be(original.T_UnaryBufferFieldName_);
             duplicate.T_UnaryStringFieldName_.Should().Be(original.T_UnaryStringFieldName_);
             duplicate.T_ArrayModelFieldName_.Should().BeEquivalentTo(original.T_ArrayModelFieldName_);
             duplicate.T_ArrayMaybeFieldName_.Should().BeEquivalentTo(original.T_ArrayMaybeFieldName_);
@@ -304,10 +293,10 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
-                T_ArrayBufferFieldName_ = ImmutableList<Octets?>.Empty
+                T_ArrayBufferFieldName_ = ImmutableList<BinaryValue?>.Empty
                     .Add(new Octets(new byte[] { 1, 2, 3, 4 }))
                     .Add(new Octets(new byte[] { 5, 6, 7, 8 })),
-                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, Octets?>.Empty
+                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, BinaryValue?>.Empty
                     .Add("a", new Octets(new byte[] { 1, 2, 3, 4 }))
                     .Add("b", new Octets(new byte[] { 5, 6, 7, 8 })),
             };
@@ -318,7 +307,7 @@ namespace MetaFac.CG4.Template.UnitTests
             duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
             duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
             duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);
-            duplicate.T_UnaryBufferFieldName_.ArrayEquals(original.T_UnaryBufferFieldName_).Should().BeTrue();
+            duplicate.T_UnaryBufferFieldName_.Should().Be(original.T_UnaryBufferFieldName_);
             duplicate.T_UnaryStringFieldName_.Should().Be(original.T_UnaryStringFieldName_);
             duplicate.T_ArrayModelFieldName_.Should().BeEquivalentTo(original.T_ArrayModelFieldName_);
             duplicate.T_ArrayMaybeFieldName_.Should().BeEquivalentTo(original.T_ArrayMaybeFieldName_);
@@ -341,19 +330,7 @@ namespace MetaFac.CG4.Template.UnitTests
         //[InlineData(MessagePackCompression.Lz4BlockArray)] fails! todo bug?
         public void Roundtrip_NonEmpty(MessagePackCompression compression)
         {
-            var resolver = CompositeResolver.Create(
-                new IFormatterResolver[]
-                {
-                    BuiltinResolver.Instance,
-                    OctetsMessagePackResolver.Instance,
-                    AttributeFormatterResolver.Instance,
-                    DynamicEnumAsStringResolver.Instance,
-                    ContractlessStandardResolver.Instance,
-                });
-
-            var options = MessagePackSerializerOptions.Standard
-                .WithResolver(resolver)
-                .WithCompression(compression);
+            var options = MessagePackSerializerOptions.Standard.WithCompression(compression);
 
             var original = new T_EntityName_()
             {
@@ -373,10 +350,10 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
-                T_ArrayBufferFieldName_ = ImmutableList<Octets?>.Empty
+                T_ArrayBufferFieldName_ = ImmutableList<BinaryValue?>.Empty
                     .Add(new Octets(new byte[] { 1, 2, 3, 4 }))
                     .Add(new Octets(new byte[] { 5, 6, 7, 8 })),
-                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, Octets?>.Empty
+                T_IndexBufferFieldName_ = ImmutableDictionary<T_IndexType_, BinaryValue?>.Empty
                     .Add("a", new Octets(new byte[] { 1, 2, 3, 4 }))
                     .Add("b", new Octets(new byte[] { 5, 6, 7, 8 })),
             };

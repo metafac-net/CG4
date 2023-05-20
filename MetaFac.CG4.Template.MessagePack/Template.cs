@@ -388,13 +388,13 @@ namespace T_Namespace_.MessagePack
         private ImmutableDictionary<T_IndexType_, T_ConcreteOtherType_>? field_T_IndexOtherFieldName_;
         //>>                        break;
         //>>                    case FieldKind.UnaryBuffer:
-        private Octets? field_T_UnaryBufferFieldName_;
+        private BinaryValue? field_T_UnaryBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.ArrayBuffer:
-        private ImmutableList<Octets?>? field_T_ArrayBufferFieldName_;
+        private ImmutableList<BinaryValue?>? field_T_ArrayBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.IndexBuffer:
-        private ImmutableDictionary<T_IndexType_, Octets?>? field_T_IndexBufferFieldName_;
+        private ImmutableDictionary<T_IndexType_, BinaryValue?>? field_T_IndexBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.UnaryString:
         private String? field_T_UnaryStringFieldName_;
@@ -528,7 +528,7 @@ namespace T_Namespace_.MessagePack
         //>>                        {
         [Key(T_FieldTag_ + 10)]
         //>>                        }
-        public Octets? T_UnaryBufferFieldName_
+        public BinaryValue? T_UnaryBufferFieldName_
         {
             get => field_T_UnaryBufferFieldName_;
             set => field_T_UnaryBufferFieldName_ = CheckNotFrozen(ref value);
@@ -539,7 +539,7 @@ namespace T_Namespace_.MessagePack
         //>>                        {
         [Key(T_FieldTag_ + 11)]
         //>>                        }
-        public ImmutableList<Octets?>? T_ArrayBufferFieldName_
+        public ImmutableList<BinaryValue?>? T_ArrayBufferFieldName_
         {
             get => field_T_ArrayBufferFieldName_;
             set => field_T_ArrayBufferFieldName_ = CheckNotFrozen(ref value);
@@ -550,7 +550,7 @@ namespace T_Namespace_.MessagePack
         //>>                        {
         [Key(T_FieldTag_ + 12)]
         //>>                        }
-        public ImmutableDictionary<T_IndexType_, Octets?>? T_IndexBufferFieldName_
+        public ImmutableDictionary<T_IndexType_, BinaryValue?>? T_IndexBufferFieldName_
         {
             get => field_T_IndexBufferFieldName_;
             set => field_T_IndexBufferFieldName_ = CheckNotFrozen(ref value);
@@ -644,10 +644,14 @@ namespace T_Namespace_.MessagePack
         Octets? IT_EntityName_.T_UnaryBufferFieldName_ => field_T_UnaryBufferFieldName_;
         //>>                        break;
         //>>                    case FieldKind.ArrayBuffer:
-        IReadOnlyList<Octets?>? IT_EntityName_.T_ArrayBufferFieldName_ => field_T_ArrayBufferFieldName_;
+        IReadOnlyList<Octets?>? IT_EntityName_.T_ArrayBufferFieldName_ => field_T_ArrayBufferFieldName_ is null
+            ? null
+            : new ListFacade<Octets, BinaryValue>(field_T_ArrayBufferFieldName_, x => (Octets?)x);
         //>>                        break;
         //>>                    case FieldKind.IndexBuffer:
-        IReadOnlyDictionary<T_IndexType_, Octets?>? IT_EntityName_.T_IndexBufferFieldName_ => field_T_IndexBufferFieldName_;
+        IReadOnlyDictionary<T_IndexType_, Octets?>? IT_EntityName_.T_IndexBufferFieldName_ => field_T_IndexBufferFieldName_ is null
+            ? null
+            : new DictionaryFacade<T_IndexType_, Octets?, BinaryValue?>(field_T_IndexBufferFieldName_, x => (Octets?)x);
         //>>                        break;
         //>>                    case FieldKind.UnaryString:
         String? IT_EntityName_.T_UnaryStringFieldName_ => field_T_UnaryStringFieldName_;
@@ -848,13 +852,13 @@ namespace T_Namespace_.MessagePack
             //>>                    case FieldKind.ArrayBuffer:
             field_T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null
                 ? null
-                : ImmutableList<Octets?>.Empty.AddRange(source.T_ArrayBufferFieldName_);
+                : ImmutableList<BinaryValue?>.Empty.AddRange(source.T_ArrayBufferFieldName_.Select(x => (BinaryValue?)x));
             //>>                        break;
             //>>                    case FieldKind.IndexBuffer:
             field_T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null
                 ? null
-                : ImmutableDictionary<T_IndexType_, Octets?>.Empty.AddRange(
-                    source.T_IndexBufferFieldName_.Select(kvp => new KeyValuePair<T_IndexType_, Octets?>(kvp.Key, kvp.Value)));
+                : ImmutableDictionary<T_IndexType_, BinaryValue?>.Empty.AddRange(
+                    source.T_IndexBufferFieldName_.Select(kvp => new KeyValuePair<T_IndexType_, BinaryValue?>(kvp.Key, kvp.Value)));
             //>>                        break;
             //>>                    case FieldKind.UnaryString:
             field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;

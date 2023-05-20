@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MetaFac.CG4.Runtime
 {
-    public class ListFacade<TExternal, TInternal> : IReadOnlyList<TExternal?>
+    public sealed class ListFacade<TExternal, TInternal> : IReadOnlyList<TExternal?>
     {
         private readonly IReadOnlyList<TInternal?> _list;
         private readonly Func<TInternal?, TExternal?> _map;
