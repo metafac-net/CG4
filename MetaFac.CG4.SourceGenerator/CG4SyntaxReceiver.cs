@@ -34,9 +34,9 @@ namespace MetaFac.CG4.SourceGenerator
     }
     internal sealed class GenerateCommand : BaseCommand
     {
-        public readonly Type SchemaAnchorType;
+        public readonly string SchemaAnchorType;
         public readonly string SchemaNamespace;
-        public GenerateCommand(string generatorName, string targetNamespace, Type schemaAnchorType, string schemaNamespace)
+        public GenerateCommand(string generatorName, string targetNamespace, string schemaAnchorType, string schemaNamespace)
             : base(generatorName, targetNamespace)
         {
             SchemaAnchorType = schemaAnchorType;
@@ -75,13 +75,14 @@ namespace MetaFac.CG4.SourceGenerator
                     {
                         string targetNamespace = sns.ToString();
                         // todo how to get the attribute object?
-                        var symbol = context.SemanticModel.GetSymbolInfo(attributeSyntax.Name);
+                        var symbol = context.SemanticModel.GetSymbolInfo(attributeSyntax);
 
-                        //CG4GenerateAttribute attr = todo;
-                        //ImmutableInterlocked.Enqueue(ref _modelsToGenerate, 
-                        //    new ModelGenerationInfo(attr.SchemaAnchorType, attr.SchemaNamespace, attr.GeneratorName, targetNamespace));
+                        string schemaAnchorTypeFullName = "MetaFac.CG4.TestOrg.Schema.Personel.IPerson";
+                        string schemaNamespace = "MetaFac.CG4.TestOrg.Schema.Personel.IPerson";
                         ImmutableInterlocked.Enqueue(ref _modelsToGenerate, 
-                            new DebugCommand("Contracts", "Generated", $"TargetNamespace: {targetNamespace}"));
+                            new GenerateCommand("BasicGeneratorId.Contracts", targetNamespace, schemaAnchorTypeFullName, schemaNamespace));
+                        //ImmutableInterlocked.Enqueue(ref _modelsToGenerate, 
+                        //    new DebugCommand(, "Generated", $"TargetNamespace: {targetNamespace}"));
                         break;
                     }
                 }

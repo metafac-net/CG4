@@ -1,6 +1,6 @@
-﻿using MetaFac.CG4.ModelReader;
+﻿using MetaFac.CG4.Attributes;
+using MetaFac.CG4.ModelReader;
 using MetaFac.CG4.Models;
-using MetaFac.Platform;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,30 +13,30 @@ namespace MetaFac.CG4.Generators
 {
     public static class GeneratorHelper
     {
-        private static readonly GeneratorBase[] _generators = new GeneratorBase[]
+        public static BasicGeneratorId GetGeneratorId(string generatorId)
         {
-                new MetaFac.CG4.Generator.Contracts.Generator(),
-                new MetaFac.CG4.Generator.ClassesV2.Generator(),
-                new MetaFac.CG4.Generator.RecordsV2.Generator(),
-                new MetaFac.CG4.Generator.JsonNewtonSoft.Generator(),
-                new MetaFac.CG4.Generator.MessagePack.Generator(),
-        };
+            if (generatorId is null) throw new ArgumentNullException(nameof(generatorId));
+            string prefix = $"{nameof(BasicGeneratorId)}.";
+            if (generatorId.StartsWith(prefix))
+            {
+                string suffix = generatorId.Substring(prefix.Length);
+                if (Enum.TryParse<BasicGeneratorId>(suffix, out var parsedGeneratorId))
+                {
+                    return parsedGeneratorId;
+                }
+            }
+            throw new ArgumentOutOfRangeException(nameof(generatorId), generatorId, null);
+        }
 
-        /// <summary>
-        /// Rteurns the named built-in generator.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static GeneratorBase GetGeneratorByName(string name)
+        public static GeneratorBase CreateBasicGenerator(BasicGeneratorId generatorId)
         {
-            var candidates = _generators.Where(g => g.GetType().Name.Contains(name)).ToArray();
-            if (candidates.Length == 0)
-                throw new ArgumentException($"Name does not match any of the generators", nameof(name));
-            if (candidates.Length > 1)
-                throw new ArgumentException($"Name matches multiple generators", nameof(name));
-            GeneratorBase generator = candidates[0];
-            return generator;
+            switch (generatorId)
+            {
+                case BasicGeneratorId.Contracts:
+                    return new MetaFac.CG4.Generator.Contracts.Generator();
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(generatorId), generatorId, null);
+            }
         }
 
         public static GeneratorBase GetGeneratorByName(string name, GeneratorBase[] generators)

@@ -1,14 +1,14 @@
 ﻿using MetaFac.CG4.Attributes;
 
-namespace MetaFac.CG4.TestOrg.Schema
+namespace MetaFac.CG4.TestOrg.Schema.Invalid
 {
     [Entity(1)]
-    public interface IPerson
+    public interface IBadPerson
     {
         [Member(1)]
         string FamilyName { get; }
 
-        [Member(2)]
+        [Member(1)]
         string FirstName { get; }
     }
 }
