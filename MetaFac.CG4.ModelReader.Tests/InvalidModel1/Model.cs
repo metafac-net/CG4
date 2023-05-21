@@ -1,4 +1,4 @@
-﻿using MetaFac.CG4.Schemas;
+﻿using MetaFac.CG4.Attributes;
 
 namespace MetaFac.CG4.ModelReader.Tests.InvalidModel1
 {

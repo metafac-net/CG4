@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetaFac.CG4.Schemas
+namespace MetaFac.CG4.Attributes
 {
     /// <summary>
     /// Marks a type in the model as a proxy for an external type.
@@ -16,5 +16,4 @@ namespace MetaFac.CG4.Schemas
             ConcreteName = concreteName;
         }
     }
-
 }

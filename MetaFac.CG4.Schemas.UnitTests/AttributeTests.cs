@@ -1,4 +1,5 @@
 using FluentAssertions;
+using MetaFac.CG4.Attributes;
 using MetaFac.CG4.Schemas;
 using System;
 using System.Linq;

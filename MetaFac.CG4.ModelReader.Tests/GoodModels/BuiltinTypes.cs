@@ -1,5 +1,5 @@
 ﻿using System;
-using MetaFac.CG4.Schemas;
+using MetaFac.CG4.Attributes;
 using MetaFac.Memory;
 
 namespace MetaFac.CG4.ModelReader.Tests.GoodModels

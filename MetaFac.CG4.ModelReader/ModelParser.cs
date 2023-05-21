@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
 using MetaFac.CG4.Models;
-using MetaFac.CG4.Schemas;
+using MetaFac.CG4.Attributes;
 
 namespace MetaFac.CG4.ModelReader
 {

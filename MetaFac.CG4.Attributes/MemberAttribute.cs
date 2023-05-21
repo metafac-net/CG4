@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetaFac.CG4.Schemas
+namespace MetaFac.CG4.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class MemberAttribute : Attribute

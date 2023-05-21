@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MetaFac.CG4.Schemas\MetaFac.CG4.Schemas.csproj" />
+      <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
     </ItemGroup>
 
 </Project>

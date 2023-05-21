@@ -13,6 +13,32 @@ namespace MetaFac.CG4.Generators
 {
     public static class GeneratorHelper
     {
+        private static readonly GeneratorBase[] _generators = new GeneratorBase[]
+        {
+                new MetaFac.CG4.Generator.Contracts.Generator(),
+                new MetaFac.CG4.Generator.ClassesV2.Generator(),
+                new MetaFac.CG4.Generator.RecordsV2.Generator(),
+                new MetaFac.CG4.Generator.JsonNewtonSoft.Generator(),
+                new MetaFac.CG4.Generator.MessagePack.Generator(),
+        };
+
+        /// <summary>
+        /// Rteurns the named built-in generator.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static GeneratorBase GetGeneratorByName(string name)
+        {
+            var candidates = _generators.Where(g => g.GetType().Name.Contains(name)).ToArray();
+            if (candidates.Length == 0)
+                throw new ArgumentException($"Name does not match any of the generators", nameof(name));
+            if (candidates.Length > 1)
+                throw new ArgumentException($"Name matches multiple generators", nameof(name));
+            GeneratorBase generator = candidates[0];
+            return generator;
+        }
+
         public static GeneratorBase GetGeneratorByName(string name, GeneratorBase[] generators)
         {
             if (generators is null || generators.Length == 0)

@@ -30,7 +30,6 @@
         <ProjectReference Include="..\MetaFac.CG4.ModelReader\MetaFac.CG4.ModelReader.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Models\MetaFac.CG4.Models.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
-        <ProjectReference Include="..\MetaFac.CG4.Schemas\MetaFac.CG4.Schemas.csproj" />
     </ItemGroup>
 
 </Project>

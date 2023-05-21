@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetaFac.CG4.Schemas
+namespace MetaFac.CG4.Attributes
 {
     [AttributeUsage(AttributeTargets.Interface)]
     public class EntityAttribute : Attribute
@@ -13,5 +13,4 @@ namespace MetaFac.CG4.Schemas
             Tag = tag;
         }
     }
-
 }
