@@ -3,11 +3,40 @@
     {
       "Tag": 1,
       "Name": "Model1",
-      "EntityDefs": []
+      "EntityDefs": [
+        {
+          "Tag": 1,
+          "Name": "Person",
+          "IsAbstract": true,
+          "ParentName": null,
+          "FieldDefs": [
+            {
+              "Tag": 1,
+              "Name": "FamilyName",
+              "InnerType": "string",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 0,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 2,
+              "Name": "FirstName",
+              "InnerType": "string",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 0,
+              "IndexType": null,
+              "IsModelType": false
+            }
+          ]
+        }
+      ]
     }
   ],
   "Tokens": {
-    "MetadataSource": "MetaFac.CG4.Attributes.dll",
-    "MetadataVersion": "0.1.42.19196"
+    "MetadataSource": "MetaFac.CG4.TestOrg.Schema.dll",
+    "MetadataVersion": "1.0.0.0"
   }
 }
