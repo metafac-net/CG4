@@ -1,0 +1,13 @@
+{
+  "ModelDefs": [
+    {
+      "Tag": 1,
+      "Name": "Model1",
+      "EntityDefs": []
+    }
+  ],
+  "Tokens": {
+    "MetadataSource": "MetaFac.CG4.TestOrg.Schema.dll",
+    "MetadataVersion": "1.0.0.0"
+  }
+}

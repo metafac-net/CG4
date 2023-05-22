@@ -23,33 +23,38 @@ namespace MetaFac.CG4.SourceGenerator
 
     internal abstract class BaseCommand
     {
-        public readonly string GeneratorName;
+        public readonly BasicGeneratorId GeneratorId;
         public readonly string TargetNamespace;
 
-        protected BaseCommand(string generatorName, string targetNamespace)
+        protected BaseCommand(BasicGeneratorId generatorId, string targetNamespace)
         {
-            GeneratorName = generatorName;
+            GeneratorId = generatorId;
             TargetNamespace = targetNamespace;
         }
     }
     internal sealed class GenerateCommand : BaseCommand
     {
-        public readonly string SchemaAnchorType;
-        public readonly string SchemaNamespace;
-        public GenerateCommand(string generatorName, string targetNamespace, string schemaAnchorType, string schemaNamespace)
-            : base(generatorName, targetNamespace)
+        public readonly string JsonMetadataFilename;
+        public GenerateCommand(string jsonMetadataFilename, BasicGeneratorId generatorId, string targetNamespace)
+            : base(generatorId, targetNamespace)
         {
-            SchemaAnchorType = schemaAnchorType;
-            SchemaNamespace = schemaNamespace;
+            JsonMetadataFilename= jsonMetadataFilename;
         }
     }
-    internal sealed class DebugCommand : BaseCommand
+
+    internal static class SyntaxReceiverHelpers
     {
-        public readonly string Message;
-        public DebugCommand(string generatorName, string targetNamespace, string message)
-            : base(generatorName, targetNamespace)
+        public static bool HasAttributeNamed(this ClassDeclarationSyntax cds, string attributeName)
         {
-            Message = message;
+            foreach (AttributeSyntax attributeSyntax in cds.AttributeLists.SelectMany(al => al.Attributes))
+            {
+                if (attributeSyntax.Name is IdentifierNameSyntax ins
+                    && ins.IsIdentifierForAttributeName(nameof(CG4GenerateAttribute)))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -58,33 +63,29 @@ namespace MetaFac.CG4.SourceGenerator
         private ImmutableQueue<BaseCommand> _modelsToGenerate = ImmutableQueue<BaseCommand>.Empty;
         public ImmutableQueue<BaseCommand> ModelsToGenerate => _modelsToGenerate;
 
+        private static T GetValue<T>(object? input, T defaultValue) => input is T value ? value : defaultValue;
+        private static T GetValue<T>(object? input) => input is T value ? value : throw new ArgumentNullException(nameof(input));
+
         public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
         {
             if (context.Node is not ClassDeclarationSyntax cds) return;
             if (cds.AttributeLists.Count == 0) return;
             if (cds.Parent is not NamespaceDeclarationSyntax nds) return;
-            if (nds.Name is not NameSyntax sns) return;
 
             if (cds.Modifiers.Any(SyntaxKind.PartialKeyword)
                 && cds.Modifiers.Any(SyntaxKind.InternalKeyword)
-                && cds.Modifiers.Any(SyntaxKind.StaticKeyword))
+                && cds.Modifiers.Any(SyntaxKind.StaticKeyword)
+                && cds.HasAttributeNamed(nameof(CG4GenerateAttribute)))
             {
-                foreach (AttributeSyntax attributeSyntax in cds.AttributeLists.SelectMany(al => al.Attributes))
+                if (context.SemanticModel.GetDeclaredSymbol(cds) is INamedTypeSymbol classSymbol)
                 {
-                    if (attributeSyntax.Name is IdentifierNameSyntax ins && ins.IsIdentifierForAttributeName(nameof(CG4GenerateAttribute)))
-                    {
-                        string targetNamespace = sns.ToString();
-                        // todo how to get the attribute object?
-                        var symbol = context.SemanticModel.GetSymbolInfo(attributeSyntax);
+                    var attributes = classSymbol.GetAttributes();
+                    var attribute = attributes[0];
 
-                        string schemaAnchorTypeFullName = "MetaFac.CG4.TestOrg.Schema.Personel.IPerson";
-                        string schemaNamespace = "MetaFac.CG4.TestOrg.Schema.Personel.IPerson";
-                        ImmutableInterlocked.Enqueue(ref _modelsToGenerate, 
-                            new GenerateCommand("BasicGeneratorId.Contracts", targetNamespace, schemaAnchorTypeFullName, schemaNamespace));
-                        //ImmutableInterlocked.Enqueue(ref _modelsToGenerate, 
-                        //    new DebugCommand(, "Generated", $"TargetNamespace: {targetNamespace}"));
-                        break;
-                    }
+                    BasicGeneratorId generatorId = (BasicGeneratorId)GetValue<int>(attribute.ConstructorArguments[0].Value, 0);
+                    string jsonMetadaFilename = GetValue<string?>(attribute.ConstructorArguments[1].Value, null) ?? "MetaFac.CG4.Schema.json";
+                    string targetNamespace = nds.Name.ToString();
+                    ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new GenerateCommand(jsonMetadaFilename, generatorId, targetNamespace));
                 }
             }
         }

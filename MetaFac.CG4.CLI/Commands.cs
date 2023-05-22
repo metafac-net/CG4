@@ -76,6 +76,12 @@ namespace MetaFac.CG4.CLI
                 new Arg<string>("on", "output-namespace", "The target namespace for the output.", s => s),
                 new Arg<string>("oj", "output-json", "The metadata file (JSON) to emit.", s => s, ""),
                 g2cHandler);
+
+            AddCommand("a2j", "Generates metadata (JSON) from an assembly.",
+                new Arg<string>("am", "assm-metadata", "The metadata file (DLL) to process.", s => s),
+                new Arg<string>("an", "assm-namespace", "The namespace within the assembly to search.", s => s, ""),
+                new Arg<string>("oj", "output-json", "The metadata (JSON) filename to write.", s => s),
+                a2jHandler);
         }
 
         private static IEnumerable<string> ReadLines(string filename)
@@ -135,6 +141,62 @@ namespace MetaFac.CG4.CLI
             var sourceLines = ReadLines(generatorRelPath);
             var outputLines = TextProcessor.ConvertGeneratorToTemplate(sourceLines);
             WriteLinesToFile(outputLines, templateRelPath);
+            await Task.Delay(0);
+            return 0;
+        }
+
+        internal async ValueTask<int> a2jHandler(
+            string assmFilename,
+            string assmNamespace,
+            string outputJsonFilename)
+        {
+            if (string.IsNullOrEmpty(assmFilename)) throw new ArgumentException($"metadata-filename not specified.");
+            if (string.IsNullOrEmpty(assmNamespace)) throw new ArgumentException($"assembly-namespace not specified.");
+            if (string.IsNullOrEmpty(outputJsonFilename)) throw new ArgumentException($"output-json not specified.");
+
+            if (!File.Exists(assmFilename)) throw new FileNotFoundException($"Metadata file (DLL) not found", assmFilename);
+
+            var assembly = Assembly.LoadFrom(assmFilename);
+            ModelContainer metadata = ModelParser.ParseAssembly(assembly, assmNamespace);
+            string metadataSource = Path.GetFileName(assmFilename);
+            string metadataVersion = $"{FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion}";
+
+            Logger.LogInformation($"  Source: {metadataSource}");
+            Logger.LogInformation($"  Output: {outputJsonFilename}");
+
+            // validate metadata before generation
+            var validationResult = new ModelValidator().Validate(metadata, ValidationErrorHandling.Default);
+            if (validationResult.HasErrors)
+            {
+                Logger.LogError($"  Metadata errors:");
+                foreach (var ve in validationResult.Errors)
+                {
+                    Logger.LogError($"    {ve.ErrorCode}: {ve.Message}");
+                }
+                return 1;
+            }
+            if (validationResult.HasWarnings)
+            {
+                Logger.LogWarning($"  Metadata warnings:");
+                foreach (var ve in validationResult.Warnings)
+                {
+                    Logger.LogWarning($"    {ve.ErrorCode}: {ve.Message}");
+                }
+            }
+
+            metadata = metadata
+                .SetToken("MetadataSource", metadataSource)
+                .SetToken("MetadataVersion", metadataVersion)
+                ;
+
+            // generate!
+            Logger.LogInformation($"  Generating...");
+
+            using var jsw = new StreamWriter(outputJsonFilename);
+            jsw.WriteLine(metadata.ToJson(true));
+
+            Logger.LogInformation($"  Complete.");
+
             await Task.Delay(0);
             return 0;
         }

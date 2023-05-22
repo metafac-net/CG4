@@ -11,15 +11,13 @@ namespace MetaFac.CG4.Attributes
     [AttributeUsage(AttributeTargets.Class)]
     public class CG4GenerateAttribute : Attribute
     {
-        public readonly string GeneratorName;
-        public readonly string SchemaAnchorType;
-        public readonly string SchemaNamespace;
+        public BasicGeneratorId GeneratorId { get; }
+        public string JsonMetadataFilename { get; }
 
-        public CG4GenerateAttribute(BasicGeneratorId generatorId, Type schemaAnchorType, string? schemaNamespace = null)
+        public CG4GenerateAttribute(BasicGeneratorId generatorId, string jsonMetadataFilename)
         {
-            GeneratorName = $"{nameof(BasicGeneratorId)}.{generatorId}";
-            SchemaAnchorType = schemaAnchorType.FullName ?? throw new ArgumentNullException(nameof(schemaAnchorType));
-            SchemaNamespace = schemaNamespace ?? schemaAnchorType.Namespace ?? throw new ArgumentNullException(nameof(SchemaNamespace));
+            GeneratorId = generatorId;
+            JsonMetadataFilename = jsonMetadataFilename;
         }
     }
 }
