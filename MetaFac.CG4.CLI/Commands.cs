@@ -67,21 +67,27 @@ namespace MetaFac.CG4.CLI
                 new Arg<string>("tf", "target", "The template file to produce", s => s),
                 ConvertGeneratorToTemplate);
 
-            AddCommand("g2c", "Generates source code using the named generator and supplied metadata.",
-                new Arg<string>("jm", "json-metadata", "The metadata file (JSON) to process.", s => s, ""),
-                new Arg<string>("am", "assm-metadata", "The metadata file (DLL) to process.", s => s, ""),
-                new Arg<string>("an", "assm-namespace", "The namespace within the assembly to search.", s => s, ""),
+            AddCommand("a2c", "Generates source code using the named generator and supplied metadata.",
+                new Arg<string>("am", "assm-metadata", "The metadata file (DLL) to process.", s => s),
+                new Arg<string>("an", "assm-namespace", "The namespace within the assembly to search.", s => s),
                 new Arg<string>("g", "generator", $"The id of the generator: {string.Join(", ", GetGeneratorIds())}", s => s),
                 new Arg<string>("o", "output-filename", "The implementation file to create.", s => s),
                 new Arg<string>("on", "output-namespace", "The target namespace for the output.", s => s),
-                new Arg<string>("oj", "output-json", "The metadata file (JSON) to emit.", s => s, ""),
-                g2cHandler);
+                a2cHandler);
 
             AddCommand("a2j", "Generates metadata (JSON) from an assembly.",
                 new Arg<string>("am", "assm-metadata", "The metadata file (DLL) to process.", s => s),
                 new Arg<string>("an", "assm-namespace", "The namespace within the assembly to search.", s => s, ""),
                 new Arg<string>("oj", "output-json", "The metadata (JSON) filename to write.", s => s),
                 a2jHandler);
+
+            AddCommand("j2c", "Generates source code from JSON metadata.",
+                new Arg<string>("jm", "json-metadata", "The metadata file (JSON) to process.", s => s),
+                new Arg<string>("g", "generator", $"The id of the generator: {string.Join(", ", GetGeneratorIds())}", s => s),
+                new Arg<string>("o", "output-filename", "The implementation file to create.", s => s),
+                new Arg<string>("on", "output-namespace", "The target namespace for the output.", s => s),
+                j2cHandler);
+
         }
 
         private static IEnumerable<string> ReadLines(string filename)
@@ -148,11 +154,11 @@ namespace MetaFac.CG4.CLI
         internal async ValueTask<int> a2jHandler(
             string assmFilename,
             string assmNamespace,
-            string outputJsonFilename)
+            string outputFilename)
         {
-            if (string.IsNullOrEmpty(assmFilename)) throw new ArgumentException($"metadata-filename not specified.");
-            if (string.IsNullOrEmpty(assmNamespace)) throw new ArgumentException($"assembly-namespace not specified.");
-            if (string.IsNullOrEmpty(outputJsonFilename)) throw new ArgumentException($"output-json not specified.");
+            if (string.IsNullOrEmpty(assmFilename)) throw new ArgumentException($"assm-metadata not specified.");
+            if (string.IsNullOrEmpty(assmNamespace)) throw new ArgumentException($"assm-namespace not specified.");
+            if (string.IsNullOrEmpty(outputFilename)) throw new ArgumentException($"output-json not specified.");
 
             if (!File.Exists(assmFilename)) throw new FileNotFoundException($"Metadata file (DLL) not found", assmFilename);
 
@@ -162,7 +168,7 @@ namespace MetaFac.CG4.CLI
             string metadataVersion = $"{FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion}";
 
             Logger.LogInformation($"  Source: {metadataSource}");
-            Logger.LogInformation($"  Output: {outputJsonFilename}");
+            Logger.LogInformation($"  Output: {outputFilename}");
 
             // validate metadata before generation
             var validationResult = new ModelValidator().Validate(metadata, ValidationErrorHandling.Default);
@@ -192,7 +198,7 @@ namespace MetaFac.CG4.CLI
             // generate!
             Logger.LogInformation($"  Generating...");
 
-            using var jsw = new StreamWriter(outputJsonFilename);
+            using var jsw = new StreamWriter(outputFilename);
             jsw.WriteLine(metadata.ToJson(true));
 
             Logger.LogInformation($"  Complete.");
@@ -201,50 +207,15 @@ namespace MetaFac.CG4.CLI
             return 0;
         }
 
-        internal async ValueTask<int> g2cHandler(
-            string jsonFilename, string assmFilename, string assmNamespace,
-            string generatorName, string outputCodeFilename, string outputNamespace,
-            string outputJsonFilename)
+        private static ModelContainer ReadMetadataFromJsonFile(string jsonFilename)
         {
-            string metadataSource;
-            string metadataVersion;
-            string? sourceNamespace = null;
-            ModelContainer metadata;
-            if (!string.IsNullOrEmpty(jsonFilename))
-            {
-                if (!File.Exists(jsonFilename))
-                    throw new FileNotFoundException($"Metadata file (JSON) not found", jsonFilename);
-                using (StreamReader mr = new StreamReader(jsonFilename))
-                {
-                    metadata = ModelContainer.FromJson(mr.ReadToEnd());
-                }
-                metadataSource = Path.GetFileName(jsonFilename);
-                metadataVersion = $"(updated {new FileInfo(jsonFilename).LastWriteTimeUtc:O})";
-            }
-            else if (!string.IsNullOrEmpty(assmFilename))
-            {
-                if (!File.Exists(assmFilename))
-                    throw new FileNotFoundException($"Metadata file (DLL) not found", assmFilename);
-                if (string.IsNullOrEmpty(assmNamespace))
-                    throw new ArgumentException($"assembly-namespace not specified.");
-                var assembly = Assembly.LoadFrom(assmFilename);
-                metadata = ModelParser.ParseAssembly(assembly, assmNamespace);
-                sourceNamespace = assmNamespace;
-                metadataSource = Path.GetFileName(assmFilename);
-                metadataVersion = $"(version {FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion})";
-            }
-            else
-            {
-                throw new ArgumentException($"metadata-filename not specified.");
-            }
+            if (!File.Exists(jsonFilename)) throw new FileNotFoundException($"Metadata file (JSON) not found", jsonFilename);
+            using StreamReader mr = new StreamReader(jsonFilename);
+            return ModelContainer.FromJson(mr.ReadToEnd());
+        }
 
-            var generator = GetGenerator(ParseGeneratorId(generatorName));
-
-            string fileVersion = ThisAssembly.AssemblyFileVersion;
-            Logger.LogInformation($"  Source: {metadataSource} ({sourceNamespace ?? "*"})");
-            Logger.LogInformation($"  Output: {outputCodeFilename}");
-
-            // validate metadata before generation
+        private bool CheckMetadata(ModelContainer metadata)
+        {
             var validationResult = new ModelValidator().Validate(metadata, ValidationErrorHandling.Default);
             if (validationResult.HasErrors)
             {
@@ -253,7 +224,6 @@ namespace MetaFac.CG4.CLI
                 {
                     Logger.LogError($"    {ve.ErrorCode}: {ve.Message}");
                 }
-                return 1;
             }
             if (validationResult.HasWarnings)
             {
@@ -263,11 +233,79 @@ namespace MetaFac.CG4.CLI
                     Logger.LogWarning($"    {ve.ErrorCode}: {ve.Message}");
                 }
             }
+            return !validationResult.HasErrors;
+        }
+
+        internal async ValueTask<int> j2cHandler(
+            string jsonFilename,
+            string generatorName, 
+            string outputFilename, 
+            string outputNamespace)
+        {
+            if (string.IsNullOrEmpty(jsonFilename)) throw new ArgumentException($"json-metadata not specified.");
+
+            ModelContainer metadata = ReadMetadataFromJsonFile(jsonFilename);
+
+            var generator = GetGenerator(ParseGeneratorId(generatorName));
+
+            string fileVersion = ThisAssembly.AssemblyFileVersion;
+            Logger.LogInformation($"  Source: {jsonFilename}");
+            Logger.LogInformation($"  Output: {outputFilename}");
+
+            // validate metadata before generation
+            if (!CheckMetadata(metadata)) { return 1; }
 
             metadata = metadata
                 .SetToken("Namespace", outputNamespace)
                 .SetToken("GeneratorId", generator.ShortName)
-                .SetToken("GeneratorVersion", $"(version {fileVersion})")
+                .SetToken("GeneratorVersion", fileVersion)
+                ;
+
+            // generate!
+            Logger.LogInformation($"  Generating...");
+            var outputText = generator.Generate(metadata);
+            using var csw = new StreamWriter(outputFilename);
+            foreach (var line in outputText)
+            {
+                csw.WriteLine(line);
+            }
+
+            Logger.LogInformation($"  Complete.");
+
+            await Task.Delay(0);
+            return 0;
+        }
+
+        internal async ValueTask<int> a2cHandler(
+            string assmFilename, 
+            string assmNamespace,
+            string generatorName, 
+            string outputCodeFilename, 
+            string outputNamespace)
+        {
+            if (string.IsNullOrEmpty(assmFilename)) throw new ArgumentException($"assm-metadata not specified.");
+            if (string.IsNullOrEmpty(assmNamespace)) throw new ArgumentException($"assm-namespace not specified.");
+            if (!File.Exists(assmFilename)) throw new FileNotFoundException($"Metadata file (DLL) not found", assmFilename);
+
+            var assembly = Assembly.LoadFrom(assmFilename);
+            ModelContainer metadata = ModelParser.ParseAssembly(assembly, assmNamespace);
+            string sourceNamespace = assmNamespace;
+            string metadataSource = Path.GetFileName(assmFilename);
+            string metadataVersion = FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion ?? "Unknown";
+
+            var generator = GetGenerator(ParseGeneratorId(generatorName));
+
+            string generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "Unknown";
+            Logger.LogInformation($"  Source: {metadataSource} ({sourceNamespace ?? "*"})");
+            Logger.LogInformation($"  Output: {outputCodeFilename}");
+
+            // validate metadata before generation
+            if (!CheckMetadata(metadata)) { return 1; }
+
+            metadata = metadata
+                .SetToken("Namespace", outputNamespace)
+                .SetToken("GeneratorId", generator.ShortName)
+                .SetToken("GeneratorVersion", $"(version {generatorVersion})")
                 .SetToken("MetadataSource", metadataSource)
                 .SetToken("MetadataVersion", metadataVersion)
                 ;
@@ -279,11 +317,6 @@ namespace MetaFac.CG4.CLI
             foreach (var line in outputText)
             {
                 csw.WriteLine(line);
-            }
-            if (!string.IsNullOrEmpty(outputJsonFilename))
-            {
-                using var jsw = new StreamWriter(outputJsonFilename);
-                jsw.WriteLine(metadata.ToJson(true));
             }
 
             Logger.LogInformation($"  Complete.");

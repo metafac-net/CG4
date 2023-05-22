@@ -67,7 +67,7 @@ namespace MetaFac.CG4.SourceGenerator
                             var source = generator.Generate(metadata);
                             foreach (var line in source)
                             {
-                                builder.Append(line);
+                                builder.AppendLine(line);
                             }
                         }
                     }

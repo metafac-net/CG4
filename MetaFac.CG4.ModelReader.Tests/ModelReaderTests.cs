@@ -1,5 +1,6 @@
 using FluentAssertions;
 using MetaFac.CG4.Models;
+using System;
 using System.Linq;
 using System.Reflection;
 using Xunit;
@@ -12,8 +13,9 @@ namespace MetaFac.CG4.ModelReader.Tests
         public void RoundtripModelViaJson()
         {
             // arrange
-            string ns = typeof(GoodModels.IBuiltinTypes).Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
+            Type anchorType = typeof(GoodModels.IBuiltinTypes);
+            string ns = anchorType.Namespace!;
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
             string originalJson = metadata.ToJson(true);
@@ -34,8 +36,9 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadBuiltinTypes()
         {
-            string ns = typeof(GoodModels.IBuiltinTypes).Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
+            Type anchorType = typeof(GoodModels.IBuiltinTypes);
+            string ns = anchorType.Namespace!;
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
@@ -48,8 +51,9 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadExternalTypes()
         {
-            string ns = typeof(GoodModels.IExternalTypes).Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
+            Type anchorType = typeof(GoodModels.IExternalTypes);
+            string ns = anchorType.Namespace!;
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
@@ -70,8 +74,9 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadEnumeratorTypes()
         {
-            string ns = typeof(GoodModels.IExternalTypes).Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
+            Type anchorType = typeof(GoodModels.IExternalTypes);
+            string ns = anchorType.Namespace!;
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
@@ -110,11 +115,12 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadInvalidTypes1()
         {
-            string ns = typeof(InvalidModel1.IInvalidEntity1).Namespace!;
+            Type anchorType = typeof(InvalidModel1.IInvalidEntity1);
+            string ns = anchorType.Namespace!;
 
             var ex = Assert.ThrowsAny<ValidationException>(() =>
             {
-                ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
+                ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
             });
             ex.Should().NotBeNull();
             ex.Should().BeOfType<ValidationException>();
@@ -124,11 +130,12 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadInvalidTypes2()
         {
-            string ns = typeof(InvalidModel2.IInvalidEntity2).Namespace!;
+            Type anchorType = typeof(InvalidModel2.IInvalidEntity2);
+            string ns = anchorType.Namespace!;
 
             var ex = Assert.ThrowsAny<ValidationException>(() =>
             {
-                ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
+                ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
             });
             ex.Should().NotBeNull();
             ex.Should().BeOfType<ValidationException>();

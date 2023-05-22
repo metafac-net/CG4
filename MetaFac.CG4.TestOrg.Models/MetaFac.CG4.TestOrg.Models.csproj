@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG4.SourceGenerator\MetaFac.CG4.SourceGenerator.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.TestOrg.Schema\MetaFac.CG4.TestOrg.Schema.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\MetaFac.CG4.SourceGenerator\MetaFac.CG4.SourceGenerator.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.TestOrg.Schema\MetaFac.CG4.TestOrg.Schema.csproj" />
+    </ItemGroup>
 
 </Project>
