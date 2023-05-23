@@ -82,6 +82,7 @@
 //--------------------------------------------------------------------------------
 #endregion
 #nullable enable
+#pragma warning disable CS8019 // Unnecessary using directive
 using MetaFac.Memory;
 using MetaFac.Mutability;
 using MessagePack;

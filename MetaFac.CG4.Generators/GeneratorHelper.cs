@@ -34,6 +34,8 @@ namespace MetaFac.CG4.Generators
             {
                 case BasicGeneratorId.Contracts:
                     return new MetaFac.CG4.Generator.Contracts.Generator();
+                case BasicGeneratorId.MessagePack:
+                    return new MetaFac.CG4.Generator.MessagePack.Generator();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(generatorId), generatorId, null);
             }

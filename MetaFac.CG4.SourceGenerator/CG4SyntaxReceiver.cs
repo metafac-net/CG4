@@ -35,26 +35,30 @@ namespace MetaFac.CG4.SourceGenerator
     internal sealed class GenerateCommand : BaseCommand
     {
         public readonly string JsonMetadataFilename;
-        public GenerateCommand(string jsonMetadataFilename, BasicGeneratorId generatorId, string targetNamespace)
+        public GenerateCommand(BasicGeneratorId generatorId, string targetNamespace, string jsonMetadataFilename)
             : base(generatorId, targetNamespace)
         {
-            JsonMetadataFilename= jsonMetadataFilename;
+            JsonMetadataFilename = jsonMetadataFilename;
+        }
+    }
+    internal sealed class SyntaxVisitError : BaseCommand
+    {
+        public readonly string ErrorMessage;
+        public SyntaxVisitError(BasicGeneratorId generatorId, string targetNamespace, string errorMessage)
+            : base(generatorId, targetNamespace)
+        {
+            ErrorMessage = errorMessage;
         }
     }
 
     internal static class SyntaxReceiverHelpers
     {
-        public static bool HasAttributeNamed(this ClassDeclarationSyntax cds, string attributeName)
+        public static bool HasOneAttributeNamed(this ClassDeclarationSyntax cds, string attributeName)
         {
-            foreach (AttributeSyntax attributeSyntax in cds.AttributeLists.SelectMany(al => al.Attributes))
-            {
-                if (attributeSyntax.Name is IdentifierNameSyntax ins
-                    && ins.IsIdentifierForAttributeName(nameof(CG4GenerateAttribute)))
-                {
-                    return true;
-                }
-            }
-            return false;
+            var allAttributes = cds.AttributeLists.SelectMany(al => al.Attributes).ToArray();
+            if (allAttributes.Length != 1) return false;
+
+            return allAttributes[0].Name is IdentifierNameSyntax ins && ins.IsIdentifierForAttributeName(nameof(CG4GenerateAttribute));
         }
     }
 
@@ -75,17 +79,40 @@ namespace MetaFac.CG4.SourceGenerator
             if (cds.Modifiers.Any(SyntaxKind.PartialKeyword)
                 && cds.Modifiers.Any(SyntaxKind.InternalKeyword)
                 && cds.Modifiers.Any(SyntaxKind.StaticKeyword)
-                && cds.HasAttributeNamed(nameof(CG4GenerateAttribute)))
+                && cds.HasOneAttributeNamed(nameof(CG4GenerateAttribute)))
             {
-                if (context.SemanticModel.GetDeclaredSymbol(cds) is INamedTypeSymbol classSymbol)
+                string targetNamespace = nds.Name.ToString();
+                BasicGeneratorId generatorId = BasicGeneratorId.None;
+                try
                 {
-                    var attributes = classSymbol.GetAttributes();
-                    var attribute = attributes[0];
+                    if (context.SemanticModel.GetDeclaredSymbol(cds) is INamedTypeSymbol classSymbol)
+                    {
+                        var attributes = classSymbol.GetAttributes();
+                        var attribute = attributes[0];
 
-                    BasicGeneratorId generatorId = (BasicGeneratorId)GetValue<int>(attribute.ConstructorArguments[0].Value, 0);
-                    string jsonMetadaFilename = GetValue<string?>(attribute.ConstructorArguments[1].Value, null) ?? "MetaFac.CG4.Schema.json";
-                    string targetNamespace = nds.Name.ToString();
-                    ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new GenerateCommand(jsonMetadaFilename, generatorId, targetNamespace));
+                        var attributeArguments = attribute.ConstructorArguments;
+                        if (attributeArguments.Length == 2)
+                        {
+                            generatorId = (BasicGeneratorId)GetValue<int>(attributeArguments[0].Value);
+                            string jsonMetadaFilename = GetValue<string>(attributeArguments[1].Value);
+                            ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new GenerateCommand(generatorId, targetNamespace, jsonMetadaFilename));
+                        }
+                        else
+                        {
+                            ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new SyntaxVisitError(generatorId, targetNamespace,
+                                $"Expected {nameof(CG4GenerateAttribute)} attribute to have 2 arguments, but it has {attributeArguments.Length}"));
+                        }
+                    }
+                    else
+                    {
+                        ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new SyntaxVisitError(generatorId, targetNamespace,
+                            $"Cannot get class symbol from semantic model for: {cds.Identifier}"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new SyntaxVisitError(generatorId, targetNamespace, 
+                        $"Exception: {ex.GetType().Name}: {ex.Message}"));
                 }
             }
         }

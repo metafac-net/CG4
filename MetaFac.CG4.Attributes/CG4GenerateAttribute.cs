@@ -2,12 +2,6 @@
 
 namespace MetaFac.CG4.Attributes
 {
-    public enum BasicGeneratorId
-    {
-        None,
-        Contracts,
-    }
-
     [AttributeUsage(AttributeTargets.Class)]
     public class CG4GenerateAttribute : Attribute
     {
