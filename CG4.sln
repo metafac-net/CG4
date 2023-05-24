@@ -49,8 +49,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Template.UnitTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Generators.UnitTests", "MetaFac.CG4.Generators.UnitTests\MetaFac.CG4.Generators.UnitTests.csproj", "{83AC5A99-8821-416F-A3AC-CAAD8905635E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Attributes.UnitTests", "MetaFac.CG4.Schemas.UnitTests\MetaFac.CG4.Attributes.UnitTests.csproj", "{C213B03F-CD91-46E2-BDCB-E9BB2C1C0A53}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Template.JsonNewtonSoft", "MetaFac.CG4.Template.JsonNewtonSoft\MetaFac.CG4.Template.JsonNewtonSoft.csproj", "{9FAE7263-A98D-4E45-A83B-C5DD5821D21F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.SourceGenerator", "MetaFac.CG4.SourceGenerator\MetaFac.CG4.SourceGenerator.csproj", "{46E18BA5-DED9-470B-B6A9-F7542FB78285}"
@@ -62,6 +60,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.SourceGenerator.UnitTests", "MetaFac.CG4.SourceGenerator.UnitTests\MetaFac.CG4.SourceGenerator.UnitTests.csproj", "{C7FCA815-6F87-49FE-89E6-60A593386EF9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Attributes", "MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj", "{F36A7D78-BB87-4094-888C-4F04A164F6B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Attributes.UnitTests", "MetaFac.CG4.Attributes.UnitTests\MetaFac.CG4.Attributes.UnitTests.csproj", "{FDBD0277-79AA-4525-871E-47FE3D422789}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,10 +141,6 @@ Global
 		{83AC5A99-8821-416F-A3AC-CAAD8905635E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83AC5A99-8821-416F-A3AC-CAAD8905635E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83AC5A99-8821-416F-A3AC-CAAD8905635E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C213B03F-CD91-46E2-BDCB-E9BB2C1C0A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C213B03F-CD91-46E2-BDCB-E9BB2C1C0A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C213B03F-CD91-46E2-BDCB-E9BB2C1C0A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C213B03F-CD91-46E2-BDCB-E9BB2C1C0A53}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9FAE7263-A98D-4E45-A83B-C5DD5821D21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FAE7263-A98D-4E45-A83B-C5DD5821D21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FAE7263-A98D-4E45-A83B-C5DD5821D21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -169,6 +165,10 @@ Global
 		{F36A7D78-BB87-4094-888C-4F04A164F6B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F36A7D78-BB87-4094-888C-4F04A164F6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F36A7D78-BB87-4094-888C-4F04A164F6B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDBD0277-79AA-4525-871E-47FE3D422789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDBD0277-79AA-4525-871E-47FE3D422789}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDBD0277-79AA-4525-871E-47FE3D422789}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDBD0277-79AA-4525-871E-47FE3D422789}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
