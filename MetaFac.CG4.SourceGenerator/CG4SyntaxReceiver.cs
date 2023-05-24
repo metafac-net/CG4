@@ -43,11 +43,13 @@ namespace MetaFac.CG4.SourceGenerator
     }
     internal sealed class SyntaxVisitError : BaseCommand
     {
-        public readonly string ErrorMessage;
-        public SyntaxVisitError(BasicGeneratorId generatorId, string targetNamespace, string errorMessage)
+        public readonly Location Location;
+        public readonly string Message;
+        public SyntaxVisitError(BasicGeneratorId generatorId, string targetNamespace, Location location, string message)
             : base(generatorId, targetNamespace)
         {
-            ErrorMessage = errorMessage;
+            Location = location;
+            Message = message;
         }
     }
 
@@ -81,6 +83,7 @@ namespace MetaFac.CG4.SourceGenerator
                 && cds.Modifiers.Any(SyntaxKind.StaticKeyword)
                 && cds.HasOneAttributeNamed(nameof(CG4GenerateAttribute)))
             {
+                Location location = Location.Create(cds.SyntaxTree, cds.Span);
                 string targetNamespace = nds.Name.ToString();
                 BasicGeneratorId generatorId = BasicGeneratorId.None;
                 try
@@ -99,19 +102,22 @@ namespace MetaFac.CG4.SourceGenerator
                         }
                         else
                         {
-                            ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new SyntaxVisitError(generatorId, targetNamespace,
+                            ImmutableInterlocked.Enqueue(ref _modelsToGenerate, 
+                                new SyntaxVisitError(generatorId, targetNamespace, location,
                                 $"Expected {nameof(CG4GenerateAttribute)} attribute to have 2 arguments, but it has {attributeArguments.Length}"));
                         }
                     }
                     else
                     {
-                        ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new SyntaxVisitError(generatorId, targetNamespace,
+                        ImmutableInterlocked.Enqueue(ref _modelsToGenerate, 
+                            new SyntaxVisitError(generatorId, targetNamespace, location,
                             $"Cannot get class symbol from semantic model for: {cds.Identifier}"));
                     }
                 }
                 catch (Exception ex)
                 {
-                    ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new SyntaxVisitError(generatorId, targetNamespace, 
+                    ImmutableInterlocked.Enqueue(ref _modelsToGenerate, 
+                        new SyntaxVisitError(generatorId, targetNamespace, location,
                         $"Exception: {ex.GetType().Name}: {ex.Message}"));
                 }
             }
