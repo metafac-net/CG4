@@ -37,6 +37,11 @@ namespace MetaFac.CG4.Generators
             _engine.Current.SetToken(name, value);
         }
 
+        protected bool IsDefined(string name)
+        {
+            return _engine.Current.Scope.Tokens.ContainsKey(name);
+        }
+
         protected IDisposable Ignored()
         {
             return _engine.Ignore();
