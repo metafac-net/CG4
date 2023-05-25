@@ -1,0 +1,272 @@
+﻿{
+  "ModelDefs": [
+    {
+      "Tag": 1,
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Tag": 1,
+          "Name": "BuiltinTypes",
+          "IsAbstract": true,
+          "ParentName": null,
+          "FieldDefs": [
+            {
+              "Tag": 1,
+              "Name": "Bools",
+              "InnerType": "bool",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 2,
+              "Name": "SBytes",
+              "InnerType": "int8",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 3,
+              "Name": "Bytes",
+              "InnerType": "uint8",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 4,
+              "Name": "Shorts",
+              "InnerType": "int16",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 5,
+              "Name": "UShorts",
+              "InnerType": "uint16",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 6,
+              "Name": "Chars",
+              "InnerType": "char",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 7,
+              "Name": "Ints",
+              "InnerType": "int32",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 8,
+              "Name": "UInts",
+              "InnerType": "uint32",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 9,
+              "Name": "Floats",
+              "InnerType": "single",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 10,
+              "Name": "Longs",
+              "InnerType": "int64",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 11,
+              "Name": "ULongs",
+              "InnerType": "uint64",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 12,
+              "Name": "Doubles",
+              "InnerType": "double",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 13,
+              "Name": "DateTimes",
+              "InnerType": "datetime",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 14,
+              "Name": "TimeSpans",
+              "InnerType": "timespan",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 15,
+              "Name": "Decimals",
+              "InnerType": "decimal",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 16,
+              "Name": "DateTimeOffsets",
+              "InnerType": "datetimezone",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 17,
+              "Name": "Guids",
+              "InnerType": "guid",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 18,
+              "Name": "Strings",
+              "InnerType": "string",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 19,
+              "Name": "Buffers",
+              "InnerType": "binary",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            }
+          ]
+        },
+        {
+          "Tag": 2,
+          "Name": "ExternalTypes",
+          "IsAbstract": true,
+          "ParentName": null,
+          "FieldDefs": [
+            {
+              "Tag": 1,
+              "Name": "Quantities",
+              "InnerType": "Quantity",
+              "Nullable": false,
+              "ProxyDef": {
+                "ExternalName": "LabApps.Units.Quantity",
+                "ConcreteName": "QuantityValue"
+              },
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            }
+          ]
+        },
+        {
+          "Tag": 3,
+          "Name": "EnumeratorTypes",
+          "IsAbstract": true,
+          "ParentName": null,
+          "FieldDefs": [
+            {
+              "Tag": 1,
+              "Name": "DaysOfWeek",
+              "InnerType": "System.DayOfWeek",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 2,
+              "Name": "MyCustomEnums",
+              "InnerType": "MetaFac.CG4.ModelReader.Tests.GoodModels.MyCustomEnum",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 3,
+              "Name": "MyDateTimeKinds",
+              "InnerType": "MyDateTimeKind",
+              "Nullable": false,
+              "ProxyDef": {
+                "ExternalName": "System.DateTimeKind",
+                "ConcreteName": "MyDateTimeKindValue"
+              },
+              "ArrayRank": 1,
+              "IndexType": null,
+              "IsModelType": false
+            }
+          ]
+        }
+      ],
+      "EnumTypeDefs": []
+    }
+  ],
+  "Tokens": {}
+}

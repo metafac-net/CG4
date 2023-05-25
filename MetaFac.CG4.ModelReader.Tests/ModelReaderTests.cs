@@ -1,8 +1,10 @@
 using FluentAssertions;
 using MetaFac.CG4.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MetaFac.CG4.ModelReader.Tests
@@ -10,12 +12,54 @@ namespace MetaFac.CG4.ModelReader.Tests
     public class ModelReaderTests
     {
         [Fact]
-        public void RoundtripModelViaJson()
+        public void RoundtripModelViaJson1()
         {
-            // arrange
+            // arrange - get model from assembly
             Type anchorType = typeof(GoodModels.IBuiltinTypes);
             string ns = anchorType.Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
+            metadata.Tokens.Count.Should().Be(0);
+            metadata.ModelDefs.Count.Should().Be(1);
+            string originalJson = metadata.ToJson(true);
+
+            // act
+            var metadata2 = ModelContainer.FromJson(originalJson);
+
+            // assert
+            metadata2.Should().Be(metadata);
+
+            // act again
+            string duplicateJson = metadata2.ToJson(true);
+
+            // assert
+            duplicateJson.Should().Be(originalJson);
+        }
+
+        [Fact]
+        public void RoundtripModelViaJson2()
+        {
+            // arrange - construct model
+            List<ModelFieldDef> memberDefs = new List<ModelFieldDef>
+            {
+                new ModelFieldDef("Field1", 1, "long", false, null, 0, null, false),
+                new ModelFieldDef("Field2", 2, "string", true, null, 0, null, false)
+            };
+            List<ModelEntityDef> entityDefs = new List<ModelEntityDef>
+            {
+                new ModelEntityDef("Entity1", 1, false, null, memberDefs)
+            };
+            List<ModelEnumItemDef> enumItemDefs = new List<ModelEnumItemDef>
+            {
+                new ModelEnumItemDef("Item1", 1),
+                new ModelEnumItemDef("Item2", 3),
+                new ModelEnumItemDef("Item3", 3)
+            };
+            List<ModelEnumTypeDef> enumTypeDefs = new List<ModelEnumTypeDef>
+            {
+                new ModelEnumTypeDef("Enum1", enumItemDefs)
+            };
+            ModelDefinition modelDef = new ModelDefinition("Model1", 1, entityDefs, enumTypeDefs);
+            ModelContainer metadata = new ModelContainer(modelDef);
             metadata.Tokens.Count.Should().Be(0);
             metadata.ModelDefs.Count.Should().Be(1);
             string originalJson = metadata.ToJson(true);

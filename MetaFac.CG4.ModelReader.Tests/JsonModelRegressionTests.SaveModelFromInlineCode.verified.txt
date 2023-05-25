@@ -1,0 +1,60 @@
+﻿{
+  "ModelDefs": [
+    {
+      "Tag": 1,
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Tag": 1,
+          "Name": "Entity1",
+          "IsAbstract": false,
+          "ParentName": null,
+          "FieldDefs": [
+            {
+              "Tag": 1,
+              "Name": "Field1",
+              "InnerType": "long",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 0,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Tag": 2,
+              "Name": "Field2",
+              "InnerType": "string",
+              "Nullable": true,
+              "ProxyDef": null,
+              "ArrayRank": 0,
+              "IndexType": null,
+              "IsModelType": false
+            }
+          ]
+        }
+      ],
+      "EnumTypeDefs": [
+        {
+          "Name": "Enum1",
+          "EnumItemDefs": [
+            {
+              "Name": "Item1",
+              "Value": 1
+            },
+            {
+              "Name": "Item2",
+              "Value": 3
+            },
+            {
+              "Name": "Item3",
+              "Value": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Tokens": {
+    "Token1": "Value1"
+  }
+}

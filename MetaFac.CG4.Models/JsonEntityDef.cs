@@ -48,13 +48,13 @@ namespace MetaFac.CG4.Models
                 hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
                 hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
                 hashCode = hashCode * 397 ^ (ParentName?.GetHashCode() ?? 0);
-                // order sensitive
+                // ordered
                 if (FieldDefs != null)
                 {
-                    hashCode = hashCode * 397 ^ FieldDefs.Count.GetHashCode();
-                    for (int i = 0; i < FieldDefs.Count; i++)
+                    hashCode = hashCode * 397 ^ FieldDefs.Count;
+                    foreach (var fd in FieldDefs)
                     {
-                        hashCode = hashCode * 397 ^ FieldDefs[i].GetHashCode();
+                        hashCode = hashCode * 397 ^ fd.GetHashCode();
                     }
                 }
                 return hashCode;

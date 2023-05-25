@@ -379,9 +379,8 @@ namespace MetaFac.CG4.ModelReader
             List<ModelDefinition> modelDefinitions = new List<ModelDefinition>();
             int modelTag = 1;
             string modelName = "Model1";
-            var modelTokens = new Dictionary<string, string>();
             List<ModelEntityDef> entityListA = ParseEntities(modelName, sourceAssembly, sourceNamespace);
-            var modelDefinition = new ModelDefinition(modelName, modelTag, entityListA, modelTokens);
+            var modelDefinition = new ModelDefinition(modelName, modelTag, entityListA);
 
             // derive class hierarchy
             var entityListB = new List<ModelEntityDef>();
@@ -392,7 +391,7 @@ namespace MetaFac.CG4.ModelReader
                 entityListB.Add(updatedEntityDef);
             }
 
-            modelDefinition = new ModelDefinition(modelName, modelTag, entityListB, modelTokens);
+            modelDefinition = new ModelDefinition(modelName, modelTag, entityListB);
             modelDefinitions.Add(modelDefinition);
             return new ModelContainer(modelDefinitions);
         }

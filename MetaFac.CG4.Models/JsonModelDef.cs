@@ -9,6 +9,7 @@ namespace MetaFac.CG4.Models
         public int? Tag { get; set; }
         public string? Name { get; set; }
         public List<JsonEntityDef>? EntityDefs { get; set; }
+        public List<JsonEnumTypeDef>? EnumTypeDefs { get; set; }
 
         public JsonModelDef() { }
 
@@ -18,6 +19,7 @@ namespace MetaFac.CG4.Models
             Tag = source.Tag;
             Name = source.Name;
             EntityDefs = source.EntityDefs.Select(cd => new JsonEntityDef(cd)).ToList();
+            EnumTypeDefs = source.EnumTypeDefs.Select(cd => new JsonEnumTypeDef(cd)).ToList();
         }
 
         public bool Equals(JsonModelDef? other)
@@ -26,7 +28,9 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
-                   && EntityDefs.IsEqualTo(other.EntityDefs);
+                   && EntityDefs.IsEqualTo(other.EntityDefs)
+                   && EnumTypeDefs.IsEqualTo(other.EnumTypeDefs)
+                   ;
         }
 
         public override bool Equals(object? obj)
@@ -40,13 +44,21 @@ namespace MetaFac.CG4.Models
             {
                 int hashCode = Tag?.GetHashCode() ?? 0;
                 hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
-                // order sensitive
+                // ordered
                 if (EntityDefs != null)
                 {
-                    hashCode = hashCode * 397 ^ EntityDefs.Count.GetHashCode();
-                    for (int i = 0; i < EntityDefs.Count; i++)
+                    hashCode = hashCode * 397 ^ EntityDefs.Count;
+                    foreach (var cd in EntityDefs)
                     {
-                        hashCode = hashCode * 397 ^ EntityDefs[i].GetHashCode();
+                        hashCode = hashCode * 397 ^ cd.GetHashCode();
+                    }
+                }
+                if (EnumTypeDefs != null)
+                {
+                    hashCode = hashCode * 397 ^ EnumTypeDefs.Count;
+                    foreach (var cd in EnumTypeDefs)
+                    {
+                        hashCode = hashCode * 397 ^ cd.GetHashCode();
                     }
                 }
                 return hashCode;

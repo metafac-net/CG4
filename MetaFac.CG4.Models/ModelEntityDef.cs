@@ -96,7 +96,7 @@ namespace MetaFac.CG4.Models
                 hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
                 hashCode = hashCode * 397 ^ (ParentName != null ? ParentName.GetHashCode() : 0);
                 // ordered
-                hashCode = hashCode * 397 ^ FieldDefs.Count.GetHashCode();
+                hashCode = hashCode * 397 ^ FieldDefs.Count;
                 foreach (var field in FieldDefs)
                 {
                     hashCode = hashCode * 397 ^ field.GetHashCode();

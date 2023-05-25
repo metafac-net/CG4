@@ -49,16 +49,20 @@ namespace MetaFac.CG4.Generators
 
         protected IDisposable NewScope(ModelDefinition modelDef)
         {
-            var tokens = new Dictionary<string, string>();
-            tokens["ModelName"] = modelDef.Name;
+            var tokens = new Dictionary<string, string>
+            {
+                ["ModelName"] = modelDef.Name
+            };
             return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
         }
 
         protected IDisposable NewScope(ModelEntityDef entityDef)
         {
-            var tokens = new Dictionary<string, string>();
-            tokens["EntityName"] = entityDef.Name;
-            tokens["EntityName2"] = entityDef.Name;
+            var tokens = new Dictionary<string, string>
+            {
+                ["EntityName"] = entityDef.Name,
+                ["EntityName2"] = entityDef.Name
+            };
             if (entityDef.Tag.HasValue)
                 tokens["EntityTag"] = entityDef.Tag.Value.ToString();
             if (entityDef.ParentName is not null)
@@ -93,12 +97,14 @@ namespace MetaFac.CG4.Generators
 
         protected IDisposable NewScope(ModelFieldDef fieldDef)
         {
-            var tokens = new Dictionary<string, string>();
-            tokens["FieldName"] = fieldDef.Name;
+            string innerType = GetFieldTypeToken(fieldDef.InnerType);
+            var tokens = new Dictionary<string, string>
+            {
+                ["FieldName"] = fieldDef.Name,
+                ["InnerType"] = innerType,
+        };
             if (fieldDef.Tag.HasValue)
                 tokens["FieldTag"] = fieldDef.Tag.Value.ToString();
-            string innerType = GetFieldTypeToken(fieldDef.InnerType);
-            tokens["InnerType"] = innerType;
             if (fieldDef.IsModelType)
                 tokens["ModelType"] = innerType;
             if (fieldDef.IndexType != null)
@@ -111,14 +117,23 @@ namespace MetaFac.CG4.Generators
             return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
         }
 
-        protected void DumpTokens()
+        protected IDisposable NewScope(ModelEnumTypeDef enumTypeDef)
         {
-            _output.Add("//dump: ---------- begin ----------");
-            foreach (var kvp in _engine.Current.Scope.Tokens)
+            var tokens = new Dictionary<string, string>
             {
-                _output.Add($"//dump: {kvp.Key}='{kvp.Value}'");
-            }
-            _output.Add("//dump: ----------- end -----------");
+                ["EnumTypeName"] = enumTypeDef.Name
+            };
+            return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
+        }
+
+        protected IDisposable NewScope(ModelEnumItemDef enumItemDef)
+        {
+            var tokens = new Dictionary<string, string>
+            {
+                ["EnumItemName"] = enumItemDef.Name,
+                ["EnumItemValue"] = enumItemDef.Value.ToString()
+            };
+            return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
         }
 
         protected abstract void OnGenerate(ModelDefinition outerScope);
