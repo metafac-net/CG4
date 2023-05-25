@@ -7,6 +7,8 @@ namespace MetaFac.CG4.Models
     public class JsonEnumTypeDef : IEquatable<JsonEnumTypeDef>
     {
         public string? Name { get; set; }
+        public string? Summary { get; set; }
+        public string? ObsoleteMessage { get; set; }
         public List<JsonEnumItemDef>? EnumItemDefs { get; set; }
 
         public JsonEnumTypeDef() { }
@@ -15,6 +17,8 @@ namespace MetaFac.CG4.Models
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name;
+            Summary = source.Summary;
+            ObsoleteMessage = source.ObsoleteMessage;
             EnumItemDefs = source.EnumItemDefs.Select(fd => new JsonEnumItemDef(fd)).ToList();
         }
 
@@ -23,6 +27,8 @@ namespace MetaFac.CG4.Models
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return string.Equals(Name, other.Name)
+                   && string.Equals(Summary, other.Summary)
+                   && string.Equals(ObsoleteMessage, other.ObsoleteMessage)
                    && EnumItemDefs.IsEqualTo(other.EnumItemDefs)
                    ;
         }
@@ -37,6 +43,8 @@ namespace MetaFac.CG4.Models
             unchecked
             {
                 int hashCode = Name?.GetHashCode() ?? 0;
+                hashCode = hashCode * 397 ^ (Summary?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (ObsoleteMessage?.GetHashCode() ?? 0);
                 // ordered
                 if (EnumItemDefs != null)
                 {

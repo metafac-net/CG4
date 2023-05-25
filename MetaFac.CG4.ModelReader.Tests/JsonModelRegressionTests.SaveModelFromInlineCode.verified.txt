@@ -36,18 +36,26 @@
       "EnumTypeDefs": [
         {
           "Name": "Enum1",
+          "Summary": "Enumeration 1",
+          "ObsoleteMessage": null,
           "EnumItemDefs": [
             {
               "Name": "Item1",
-              "Value": 1
+              "Value": 1,
+              "Summary": "Summary of item 1",
+              "ObsoleteMessage": null
             },
             {
               "Name": "Item2",
-              "Value": 3
+              "Value": 2,
+              "Summary": null,
+              "ObsoleteMessage": null
             },
             {
               "Name": "Item3",
-              "Value": 3
+              "Value": 3,
+              "Summary": null,
+              "ObsoleteMessage": "Not used anymore"
             }
           ]
         }

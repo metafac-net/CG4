@@ -41,13 +41,13 @@ namespace MetaFac.CG4.ModelReader.Tests
             };
             var enumItemDefs = new List<ModelEnumItemDef>
             {
-                new ModelEnumItemDef("Item1", 1),
-                new ModelEnumItemDef("Item2", 3),
-                new ModelEnumItemDef("Item3", 3)
+                new ModelEnumItemDef("Item1", 1, "Summary of item 1", null),
+                new ModelEnumItemDef("Item2", 2, null, null),
+                new ModelEnumItemDef("Item3", 3, null, "Not used anymore"),
             };
             var enumTypeDefs = new List<ModelEnumTypeDef>
             {
-                new ModelEnumTypeDef("Enum1", enumItemDefs)
+                new ModelEnumTypeDef("Enum1", "Enumeration 1", null, enumItemDefs)
             };
             var modelDef = new ModelDefinition("Model1", 1, entityDefs, enumTypeDefs);
             var tokens = new Dictionary<string, string>

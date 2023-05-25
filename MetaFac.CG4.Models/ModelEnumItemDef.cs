@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
-using System.Collections.Immutable;
-using System.IO;
+﻿using System;
 using System.Text.Json;
-using System.Linq;
 
 namespace MetaFac.CG4.Models
 {
@@ -11,18 +7,24 @@ namespace MetaFac.CG4.Models
     {
         public readonly string Name;
         public readonly int Value;
+        public readonly string? Summary;
+        public readonly string? ObsoleteMessage;
 
-        public ModelEnumItemDef(string name, int value)
+        public ModelEnumItemDef(string name, int value, string? summary, string? obsoleteMessage)
         {
             Name = name;
             Value = value;
+            Summary = summary;
+            ObsoleteMessage = obsoleteMessage;
         }
 
         public ModelEnumItemDef(JsonEnumItemDef? source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Name = source.Name ?? "Unknown_Field";
+            Name = source.Name ?? throw new ArgumentNullException(nameof(source.Name));
             Value = source.Value;
+            Summary = source.Summary;
+            ObsoleteMessage = source.ObsoleteMessage;
         }
 
         public string ToJson()
@@ -43,6 +45,8 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return string.Equals(Name, other.Name)
                    && Value == other.Value
+                   && string.Equals(Summary, other.Summary)
+                   && string.Equals(ObsoleteMessage, other.ObsoleteMessage)
                    ;
         }
 
@@ -53,12 +57,7 @@ namespace MetaFac.CG4.Models
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                var hashCode = Name?.GetHashCode() ?? 0;
-                hashCode = hashCode * 397 ^ Value.GetHashCode();
-                return hashCode;
-            }
+            return HashCode.Combine(Name, Value, Summary, ObsoleteMessage);
         }
     }
 }

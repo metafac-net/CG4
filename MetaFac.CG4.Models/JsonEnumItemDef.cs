@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
 
 namespace MetaFac.CG4.Models
 {
@@ -7,6 +6,8 @@ namespace MetaFac.CG4.Models
     {
         public string? Name { get; set; }
         public int Value { get; set; }
+        public string? Summary { get; set; }
+        public string? ObsoleteMessage { get; set; }
 
         public JsonEnumItemDef() { }
 
@@ -15,6 +16,8 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name;
             Value = source.Value;
+            Summary = source.Summary;
+            ObsoleteMessage = source.ObsoleteMessage;
         }
 
         public bool Equals(JsonEnumItemDef? other)
@@ -23,6 +26,8 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return string.Equals(Name, other.Name)
                    && Value == other.Value
+                   && string.Equals(Summary, other.Summary)
+                   && string.Equals(ObsoleteMessage, other.ObsoleteMessage)
                    ;
         }
 
@@ -33,12 +38,7 @@ namespace MetaFac.CG4.Models
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                int hashCode = Name?.GetHashCode() ?? 0;
-                hashCode = hashCode * 397 ^ Value.GetHashCode();
-                return hashCode;
-            }
+            return HashCode.Combine(Name, Value, Summary, ObsoleteMessage);
         }
     }
 }

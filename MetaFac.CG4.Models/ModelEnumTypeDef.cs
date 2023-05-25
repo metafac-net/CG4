@@ -9,6 +9,8 @@ namespace MetaFac.CG4.Models
     public class ModelEnumTypeDef : IEquatable<ModelEnumTypeDef>
     {
         public readonly string Name;
+        public readonly string? Summary;
+        public readonly string? ObsoleteMessage;
         public readonly ImmutableList<ModelEnumItemDef> EnumItemDefs;
 
         private ModelEnumTypeDef(string name,
@@ -18,17 +20,21 @@ namespace MetaFac.CG4.Models
             EnumItemDefs = enumItemDefs;
         }
 
-        public ModelEnumTypeDef(string name,
+        public ModelEnumTypeDef(string name, string? summary, string? obsoleteMessage,
             IEnumerable<ModelEnumItemDef> enumItemDefs)
         {
             Name = name;
+            Summary = summary;
+            ObsoleteMessage = obsoleteMessage;
             EnumItemDefs = ImmutableList<ModelEnumItemDef>.Empty.AddRange(enumItemDefs);
         }
 
         public ModelEnumTypeDef(JsonEnumTypeDef? source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Name = source.Name ?? "Unknown_Enum";
+            Name = source.Name ?? throw new ArgumentNullException(nameof(source.Name));
+            Summary = source.Summary;
+            ObsoleteMessage = source.ObsoleteMessage;
             EnumItemDefs = source.EnumItemDefs != null
                 ? ImmutableList<ModelEnumItemDef>.Empty.AddRange(source.EnumItemDefs.Where(fd => fd != null).Select(fd => new ModelEnumItemDef(fd)))
                 : ImmutableList<ModelEnumItemDef>.Empty;
@@ -51,6 +57,8 @@ namespace MetaFac.CG4.Models
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return string.Equals(Name, other.Name)
+                   && string.Equals(Summary, other.Summary)
+                   && string.Equals(ObsoleteMessage, other.ObsoleteMessage)
                    && EnumItemDefs.IsEqualTo(other.EnumItemDefs)
                    ;
         }
@@ -64,7 +72,9 @@ namespace MetaFac.CG4.Models
         {
             unchecked
             {
-                var hashCode = Name is null ? 0 : Name.GetHashCode();
+                var hashCode = Name?.GetHashCode() ?? 0;
+                hashCode = hashCode * 397 ^ (Summary?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (ObsoleteMessage?.GetHashCode() ?? 0);
                 // ordered
                 hashCode = hashCode * 397 ^ EnumItemDefs.Count;
                 foreach (var field in EnumItemDefs)
