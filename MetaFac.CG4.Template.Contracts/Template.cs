@@ -63,9 +63,12 @@
 // Warning: This file was automatically generated. Changes to this file may
 // cause incorrect behavior and will be lost when this file is regenerated.
 // </auto-generated>
+//>>if (IsDefined("CopyrightInfo"))
+//>>{
 // <copyright>
-// Copyright details go here.
+//     T_CopyrightInfo_
 // </copyright>
+//>>}
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
 // Generator: qqq
