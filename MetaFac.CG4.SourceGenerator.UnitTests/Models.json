@@ -32,12 +32,13 @@
             }
           ]
         }
-      ]
+      ],
+      "EnumTypeDefs": []
     }
   ],
   "Tokens": {
     "CopyrightInfo": "Copyright (c) 2023 MetaFac",
-    "MetadataSource": "MetaFac.CG4.TestOrg.Schema.dll",
-    "MetadataVersion": "1.0.0.0"
+    "MetadataVersion": "1.0.0.0",
+    "MetadataSource": "MetaFac.CG4.TestOrg.Schema.dll"
   }
 }
