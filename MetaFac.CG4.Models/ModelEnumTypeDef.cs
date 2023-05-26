@@ -9,23 +9,16 @@ namespace MetaFac.CG4.Models
     public class ModelEnumTypeDef : IEquatable<ModelEnumTypeDef>
     {
         public readonly string Name;
-        public readonly string? Summary;
-        public readonly string? ObsoleteMessage;
+        public readonly ModelItemInfo? Info;
+        public readonly ModelItemState? State;
         public readonly ImmutableList<ModelEnumItemDef> EnumItemDefs;
 
-        private ModelEnumTypeDef(string name,
-            ImmutableList<ModelEnumItemDef> enumItemDefs)
-        {
-            Name = name;
-            EnumItemDefs = enumItemDefs;
-        }
-
-        public ModelEnumTypeDef(string name, string? summary, string? obsoleteMessage,
+        public ModelEnumTypeDef(string name, ModelItemInfo? info, ModelItemState? state,
             IEnumerable<ModelEnumItemDef> enumItemDefs)
         {
             Name = name;
-            Summary = summary;
-            ObsoleteMessage = obsoleteMessage;
+            Info = info;
+            State = state;
             EnumItemDefs = ImmutableList<ModelEnumItemDef>.Empty.AddRange(enumItemDefs);
         }
 
@@ -33,8 +26,8 @@ namespace MetaFac.CG4.Models
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name ?? throw new ArgumentNullException(nameof(source.Name));
-            Summary = source.Summary;
-            ObsoleteMessage = source.ObsoleteMessage;
+            Info = source.Info is null ? null : new ModelItemInfo(source.Info);
+            State = source.State is null ? null : new ModelItemState(source.State);
             EnumItemDefs = source.EnumItemDefs != null
                 ? ImmutableList<ModelEnumItemDef>.Empty.AddRange(source.EnumItemDefs.Where(fd => fd != null).Select(fd => new ModelEnumItemDef(fd)))
                 : ImmutableList<ModelEnumItemDef>.Empty;
@@ -57,8 +50,8 @@ namespace MetaFac.CG4.Models
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return string.Equals(Name, other.Name)
-                   && string.Equals(Summary, other.Summary)
-                   && string.Equals(ObsoleteMessage, other.ObsoleteMessage)
+                   && Equals(Info, other.Info)
+                   && Equals(State, other.State)
                    && EnumItemDefs.IsEqualTo(other.EnumItemDefs)
                    ;
         }
@@ -72,9 +65,9 @@ namespace MetaFac.CG4.Models
         {
             unchecked
             {
-                var hashCode = Name?.GetHashCode() ?? 0;
-                hashCode = hashCode * 397 ^ (Summary?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ (ObsoleteMessage?.GetHashCode() ?? 0);
+                var hashCode = Name.GetHashCode();
+                hashCode = hashCode * 397 ^ (Info?.GetHashCode() ?? 0);
+                hashCode = hashCode * 397 ^ (State?.GetHashCode() ?? 0);
                 // ordered
                 hashCode = hashCode * 397 ^ EnumItemDefs.Count;
                 foreach (var field in EnumItemDefs)

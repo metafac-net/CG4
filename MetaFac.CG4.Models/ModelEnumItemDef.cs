@@ -7,15 +7,15 @@ namespace MetaFac.CG4.Models
     {
         public readonly string Name;
         public readonly int Value;
-        public readonly string? Summary;
-        public readonly string? ObsoleteMessage;
+        public readonly ModelItemInfo? Info;
+        public readonly ModelItemState? State;
 
-        public ModelEnumItemDef(string name, int value, string? summary, string? obsoleteMessage)
+        public ModelEnumItemDef(string name, int value, ModelItemInfo? info, ModelItemState? state = null)
         {
             Name = name;
             Value = value;
-            Summary = summary;
-            ObsoleteMessage = obsoleteMessage;
+            Info = info;
+            State = state;
         }
 
         public ModelEnumItemDef(JsonEnumItemDef? source)
@@ -23,8 +23,8 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name ?? throw new ArgumentNullException(nameof(source.Name));
             Value = source.Value;
-            Summary = source.Summary;
-            ObsoleteMessage = source.ObsoleteMessage;
+            Info = source.Info is null ? null : new ModelItemInfo(source.Info);
+            State = source.State is null ? null : new ModelItemState(source.State);
         }
 
         public string ToJson()
@@ -45,19 +45,13 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return string.Equals(Name, other.Name)
                    && Value == other.Value
-                   && string.Equals(Summary, other.Summary)
-                   && string.Equals(ObsoleteMessage, other.ObsoleteMessage)
+                   && Equals(Info, other.Info)
+                   && Equals(State, other.State)
                    ;
         }
 
-        public override bool Equals(object? obj)
-        {
-            return obj is ModelEnumItemDef other && Equals(other);
-        }
+        public override bool Equals(object? obj) => obj is ModelEnumItemDef other && Equals(other);
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Name, Value, Summary, ObsoleteMessage);
-        }
+        public override int GetHashCode() => HashCode.Combine(Name, Value, Info, State);
     }
 }

@@ -104,6 +104,16 @@ namespace T_Namespace_.Contracts
         //>>    {
         //>>        using (NewScope(id))
         //>>        {
+        //>>            if (IsDefined("ItemSummary"))
+        //>>            {
+        // <summary>
+        // T_ItemSummary_
+        // </summary>
+        //>>            }
+        //>>            if (IsDefined("ObsoleteReason"))
+        //>>            {
+        [Obsolete("T_ObsoleteReason_")]
+        //>>            }
         T_EnumItemName_ = T_EnumItemValue_,
         //>>        }
         //>>    }
