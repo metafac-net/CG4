@@ -52,7 +52,7 @@ namespace MetaFac.CG4.ModelReader.Tests
             {
                 new ModelEnumItemDef("Item1", 1, new ModelItemInfo("Summary of item 1"), null),
                 new ModelEnumItemDef("Item2", 2, null, null),
-                new ModelEnumItemDef("Item3", 3, null, new ModelItemState("Not used anymore")),
+                new ModelEnumItemDef("Item3", 3, null, new ModelItemState(true, "Not used anymore")),
             };
             List<ModelEnumTypeDef> enumTypeDefs = new List<ModelEnumTypeDef>
             {

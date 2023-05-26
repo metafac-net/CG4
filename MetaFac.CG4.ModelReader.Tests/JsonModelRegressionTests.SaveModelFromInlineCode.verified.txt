@@ -60,6 +60,7 @@
               "Value": 3,
               "Info": null,
               "State": {
+                "IsObsolete": true,
                 "Reason": "Not used anymore",
                 "IsError": false
               }
