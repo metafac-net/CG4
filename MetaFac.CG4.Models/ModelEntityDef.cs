@@ -46,17 +46,16 @@ namespace MetaFac.CG4.Models
                 ImmutableList<ModelEntityDef>.Empty.AddRange(derivedEntities));
         }
 
-        public ModelEntityDef(JsonEntityDef? source)
+        public static ModelEntityDef? From(JsonEntityDef? source)
         {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            Tag = source.Tag;
-            Name = source.Name ?? "Unknown_Entity";
-            IsAbstract = source.IsAbstract;
-            ParentName = source.ParentName;
-            FieldDefs = source.FieldDefs != null
-                ? ImmutableList<ModelFieldDef>.Empty.AddRange(source.FieldDefs.Where(fd => fd != null).Select(fd => new ModelFieldDef(fd)))
-                : ImmutableList<ModelFieldDef>.Empty;
-            DerivedEntities = ImmutableList<ModelEntityDef>.Empty;
+            if (source is null) return null;
+            return new ModelEntityDef(
+                source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
+                source.Tag,
+                source.IsAbstract,
+                source.ParentName,
+                ImmutableList<ModelFieldDef>.Empty.AddRange(source.FieldDefs.NotNullRange(ModelFieldDef.From)),
+                ImmutableList<ModelEntityDef>.Empty);
         }
 
         public string ToJson()
@@ -65,10 +64,10 @@ namespace MetaFac.CG4.Models
             return JsonSerializer.Serialize(cd);
         }
 
-        public static ModelEntityDef FromJson(string json)
+        public static ModelEntityDef? FromJson(string json)
         {
             var cd = JsonSerializer.Deserialize<JsonEntityDef>(json);
-            return new ModelEntityDef(cd);
+            return ModelEntityDef.From(cd);
         }
 
         public bool Equals(ModelEntityDef? other)

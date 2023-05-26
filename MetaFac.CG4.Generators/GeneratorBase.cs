@@ -58,7 +58,7 @@ namespace MetaFac.CG4.Generators
             {
                 ["ModelName"] = modelDef.Name
             };
-            return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
+            return _engine.NewScope(tokens);
         }
 
         protected IDisposable NewScope(ModelEntityDef entityDef)
@@ -72,7 +72,7 @@ namespace MetaFac.CG4.Generators
                 tokens["EntityTag"] = entityDef.Tag.Value.ToString();
             if (entityDef.ParentName is not null)
                 tokens["ParentName"] = entityDef.ParentName;
-            return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
+            return _engine.NewScope(tokens);
         }
 
         private static string GetFieldTypeToken(string innerType)
@@ -119,7 +119,7 @@ namespace MetaFac.CG4.Generators
                 tokens[$"External{fieldDef.InnerType}"] = fieldDef.ProxyDef.ExternalName ?? "Unknown_Proxy_ExternalName";
                 tokens[$"Concrete{fieldDef.InnerType}"] = fieldDef.ProxyDef.ConcreteName ?? "Unknown_Proxy_ConcreteName";
             }
-            return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
+            return _engine.NewScope(tokens);
         }
 
         protected IDisposable NewScope(ModelEnumTypeDef enumTypeDef)
@@ -128,7 +128,7 @@ namespace MetaFac.CG4.Generators
             {
                 ["EnumTypeName"] = enumTypeDef.Name
             };
-            return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
+            return _engine.NewScope(tokens);
         }
 
         protected IDisposable NewScope(ModelEnumItemDef enumItemDef)
@@ -138,7 +138,16 @@ namespace MetaFac.CG4.Generators
                 ["EnumItemName"] = enumItemDef.Name,
                 ["EnumItemValue"] = enumItemDef.Value.ToString()
             };
-            return _engine.NewScope(ImmutableDictionary<string, string>.Empty.AddRange(tokens));
+            if (enumItemDef.TryGetSummary(out string summary))
+            {
+                tokens["ItemSummary"] = summary;
+            }
+            if (enumItemDef.IsObsolete(out string reason, out bool isError))
+            {
+                tokens["ObsoleteReason"] = reason;
+                // todo isError
+            }
+            return _engine.NewScope(tokens);
         }
 
         protected abstract void OnGenerate(ModelDefinition outerScope);

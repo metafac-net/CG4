@@ -11,10 +11,10 @@ namespace MetaFac.CG4.Models
             Summary = summary;
         }
 
-        public ModelItemInfo(JsonItemInfo source)
+        public static ModelItemInfo? From(JsonItemInfo? source)
         {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            Summary = source.Summary;
+            if (source is null) return null;
+            return new ModelItemInfo(source.Summary);
         }
 
         public bool Equals(ModelItemInfo? other)

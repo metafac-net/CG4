@@ -62,12 +62,8 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
             Name = source.Name ?? "Unknown_Model";
-            EntityDefs = source.EntityDefs != null
-                ? ImmutableList<ModelEntityDef>.Empty.AddRange(source.EntityDefs.Where(cd => cd != null).Select(cd => new ModelEntityDef(cd)))
-                : ImmutableList<ModelEntityDef>.Empty;
-            EnumTypeDefs = source.EnumTypeDefs != null
-                ? ImmutableList<ModelEnumTypeDef>.Empty.AddRange(source.EnumTypeDefs.Where(ed => ed != null).Select(ed => new ModelEnumTypeDef(ed)))
-                : ImmutableList<ModelEnumTypeDef>.Empty;
+            EntityDefs = ImmutableList<ModelEntityDef>.Empty.AddRange(source.EntityDefs.NotNullRange(ModelEntityDef.From));
+            EnumTypeDefs = ImmutableList<ModelEnumTypeDef>.Empty.AddRange(source.EnumTypeDefs.NotNullRange(ModelEnumTypeDef.From));
         }
 
         public string ToJson()

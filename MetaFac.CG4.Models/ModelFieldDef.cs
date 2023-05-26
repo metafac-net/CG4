@@ -38,17 +38,18 @@ namespace MetaFac.CG4.Models
             IsModelType = isModelType;
         }
 
-        public ModelFieldDef(JsonFieldDef? source)
+        public static ModelFieldDef? From(JsonFieldDef? source)
         {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            Tag = source.Tag;
-            Name = source.Name ?? "Unknown_Field";
-            InnerType = source.InnerType ?? nameof(Unknown);
-            Nullable = source.Nullable;
-            ProxyDef = source.ProxyDef is null ? null : new ModelProxyDef(source.ProxyDef);
-            ArrayRank = source.ArrayRank;
-            IndexType = source.IndexType;
-            IsModelType = source.IsModelType;
+            if (source is null) return null;
+            return new ModelFieldDef(
+                source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
+                source.Tag,
+                source.InnerType ?? throw new ArgumentNullException(nameof(source.InnerType)),
+                source.Nullable,
+                ModelProxyDef.From(source.ProxyDef),
+                source.ArrayRank,
+                source.IndexType,
+                source.IsModelType);
         }
 
         public string ToJson()
@@ -57,10 +58,10 @@ namespace MetaFac.CG4.Models
             return JsonSerializer.Serialize(member);
         }
 
-        public static ModelFieldDef FromJson(string json)
+        public static ModelFieldDef? FromJson(string json)
         {
             var member = JsonSerializer.Deserialize<JsonFieldDef>(json);
-            return new ModelFieldDef(member);
+            return ModelFieldDef.From(member);
         }
 
         public bool Equals(ModelFieldDef? other)

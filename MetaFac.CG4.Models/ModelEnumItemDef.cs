@@ -18,13 +18,34 @@ namespace MetaFac.CG4.Models
             State = state;
         }
 
-        public ModelEnumItemDef(JsonEnumItemDef? source)
+        public static ModelEnumItemDef? From(JsonEnumItemDef? source)
         {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            Name = source.Name ?? throw new ArgumentNullException(nameof(source.Name));
-            Value = source.Value;
-            Info = source.Info is null ? null : new ModelItemInfo(source.Info);
-            State = source.State is null ? null : new ModelItemState(source.State);
+            if (source is null) return null;
+            return new ModelEnumItemDef(
+                source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
+                source.Value,
+                ModelItemInfo.From(source.Info),
+                ModelItemState.From(source.State));
+        }
+
+        public bool TryGetSummary(out string summary)
+        {
+            summary = string.Empty;
+            if (Info is null) return false;
+            if (Info.Summary is null) return false;
+            summary = Info.Summary;
+            return true;
+        }
+
+        public bool IsObsolete(out string reason, out bool isError)
+        {
+            reason = string.Empty;
+            isError = false;
+            if (State is null) return false;
+            if (!State.IsObsolete) return false;
+            reason = State.Reason ?? "Deprecated";
+            isError = State.IsError;
+            return true;
         }
 
         public string ToJson()
@@ -33,10 +54,10 @@ namespace MetaFac.CG4.Models
             return JsonSerializer.Serialize(member);
         }
 
-        public static ModelEnumItemDef FromJson(string json)
+        public static ModelEnumItemDef? FromJson(string json)
         {
             var member = JsonSerializer.Deserialize<JsonEnumItemDef>(json);
-            return new ModelEnumItemDef(member);
+            return ModelEnumItemDef.From(member);
         }
 
         public bool Equals(ModelEnumItemDef? other)

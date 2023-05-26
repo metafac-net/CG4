@@ -21,7 +21,7 @@ namespace MetaFac.CG4.Generators
             _scopeStack.Push(new EngineScope(ignored: true));
             return new ScopePopper(this);
         }
-        public IDisposable NewScope(ImmutableDictionary<string, string> tokens)
+        public IDisposable NewScope(IEnumerable<KeyValuePair<string, string>> tokens)
         {
             var oldTop = _scopeStack.Peek();
             var newTop = new TemplateScope(oldTop.Scope.Tokens.SetItems(tokens));

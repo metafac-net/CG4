@@ -13,10 +13,12 @@ namespace MetaFac.CG4.Models
             ConcreteName = concreteName;
         }
 
-        public ModelProxyDef(JsonProxyDef source)
+        public static ModelProxyDef? From(JsonProxyDef? source)
         {
-            ExternalName = source.ExternalName ?? throw new ArgumentNullException(nameof(source.ExternalName));
-            ConcreteName = source.ConcreteName ?? throw new ArgumentNullException(nameof(source.ConcreteName));
+            if (source is null) return null;
+            return new ModelProxyDef(
+                source.ExternalName ?? throw new ArgumentNullException(nameof(source.ExternalName)),
+                source.ConcreteName ?? throw new ArgumentNullException(nameof(source.ConcreteName)));
         }
 
         public bool Equals(ModelProxyDef? other)

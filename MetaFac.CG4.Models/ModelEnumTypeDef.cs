@@ -3,9 +3,28 @@ using System;
 using System.Collections.Immutable;
 using System.Text.Json;
 using System.Linq;
+using System.Diagnostics;
 
 namespace MetaFac.CG4.Models
 {
+    internal static class ModelHelpers
+    {
+        public static IEnumerable<TTarget> NotNullRange<TSource, TTarget>(this IEnumerable<TSource>? source, Func<TSource, TTarget?> converter)
+        {
+            if (source is not null)
+            {
+                foreach (var item in source)
+                {
+                    TTarget? target = converter(item);
+                    if (target is not null)
+                    {
+                        yield return target;
+                    }
+                }
+            }
+        }
+    }
+
     public class ModelEnumTypeDef : IEquatable<ModelEnumTypeDef>
     {
         public readonly string Name;
@@ -22,15 +41,14 @@ namespace MetaFac.CG4.Models
             EnumItemDefs = ImmutableList<ModelEnumItemDef>.Empty.AddRange(enumItemDefs);
         }
 
-        public ModelEnumTypeDef(JsonEnumTypeDef? source)
+        public static ModelEnumTypeDef? From(JsonEnumTypeDef? source)
         {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            Name = source.Name ?? throw new ArgumentNullException(nameof(source.Name));
-            Info = source.Info is null ? null : new ModelItemInfo(source.Info);
-            State = source.State is null ? null : new ModelItemState(source.State);
-            EnumItemDefs = source.EnumItemDefs != null
-                ? ImmutableList<ModelEnumItemDef>.Empty.AddRange(source.EnumItemDefs.Where(fd => fd != null).Select(fd => new ModelEnumItemDef(fd)))
-                : ImmutableList<ModelEnumItemDef>.Empty;
+            if (source is null) return null;
+            return new ModelEnumTypeDef(
+                source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
+                ModelItemInfo.From(source.Info),
+                ModelItemState.From(source.State),
+                source.EnumItemDefs.NotNullRange(ModelEnumItemDef.From));
         }
 
         public string ToJson()
@@ -39,10 +57,10 @@ namespace MetaFac.CG4.Models
             return JsonSerializer.Serialize(ed);
         }
 
-        public static ModelEnumTypeDef FromJson(string json)
+        public static ModelEnumTypeDef? FromJson(string json)
         {
             var cd = JsonSerializer.Deserialize<JsonEnumTypeDef>(json);
-            return new ModelEnumTypeDef(cd);
+            return ModelEnumTypeDef.From(cd);
         }
 
         public bool Equals(ModelEnumTypeDef? other)
