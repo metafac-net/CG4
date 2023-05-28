@@ -18,7 +18,7 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name;
             Summary = source.Summary;
-            State = source.State is null ? null : new JsonItemState(source.State);
+            State = JsonItemState.From(source.State);
             EnumItemDefs = source.EnumItemDefs.Select(fd => new JsonEnumItemDef(fd)).ToList();
         }
 

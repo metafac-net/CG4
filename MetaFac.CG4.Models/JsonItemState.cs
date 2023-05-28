@@ -10,12 +10,15 @@ namespace MetaFac.CG4.Models
 
         public JsonItemState() { }
 
-        public JsonItemState(ModelItemState source)
+        public static JsonItemState? From(ModelItemState? source)
         {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            IsObsolete = source.IsObsolete;
-            Reason = source.Reason;
-            IsError = source.IsError;
+            if (source is null) return null;
+            return new JsonItemState()
+            {
+                IsObsolete = source.IsObsolete,
+                Reason = source.Reason,
+                IsError = source.IsError
+            };
         }
 
         public bool Equals(JsonItemState? other)

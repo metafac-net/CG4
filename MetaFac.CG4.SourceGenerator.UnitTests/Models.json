@@ -5,8 +5,10 @@
       "Name": "Model1",
       "EntityDefs": [
         {
-          "Tag": 1,
           "Name": "Person",
+          "Tag": 1,
+          "Summary": null,
+          "State": null,
           "IsAbstract": true,
           "ParentName": null,
           "MemberDefs": [

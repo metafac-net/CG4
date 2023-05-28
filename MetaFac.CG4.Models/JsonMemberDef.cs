@@ -25,11 +25,11 @@ namespace MetaFac.CG4.Models
             Summary = source.Summary;
             InnerType = source.InnerType;
             Nullable = source.Nullable;
-            ProxyDef = source.ProxyDef is null ? null : new JsonProxyDef(source.ProxyDef);
+            ProxyDef = JsonProxyDef.From(source.ProxyDef);
             ArrayRank = source.ArrayRank;
             IsModelType = source.IsModelType;
             IndexType = source.IndexType;
-            State = source.State is null ? null : new JsonItemState(source.State);
+            State = JsonItemState.From(source.State);
         }
 
         public bool Equals(JsonMemberDef? other)

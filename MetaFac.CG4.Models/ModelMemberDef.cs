@@ -68,14 +68,14 @@ namespace MetaFac.CG4.Models
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
-            return Tag == other.Tag
-                   && string.Equals(Name, other.Name)
+            return base.Equals(other)
                    && string.Equals(InnerType, other.InnerType)
                    && Nullable == other.Nullable
                    && Equals(ProxyDef, other.ProxyDef)
                    && ArrayRank == other.ArrayRank
+                   && IsModelType == other.IsModelType
                    && string.Equals(IndexType, other.IndexType)
-                   && IsModelType == other.IsModelType;
+                   && Equals(State, other.State);
         }
 
         public override bool Equals(object? obj)
@@ -85,18 +85,16 @@ namespace MetaFac.CG4.Models
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                var hashCode = Tag.GetHashCode();
-                hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ (InnerType?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ Nullable.GetHashCode();
-                hashCode = hashCode * 397 ^ (ProxyDef?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ ArrayRank.GetHashCode();
-                hashCode = hashCode * 397 ^ (IndexType?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ IsModelType.GetHashCode();
-                return hashCode;
-            }
+            var hashCode = new HashCode();
+            hashCode.Add(base.GetHashCode());
+            hashCode.Add(State);
+            hashCode.Add(InnerType);
+            hashCode.Add(Nullable);
+            hashCode.Add(ProxyDef);
+            hashCode.Add(ArrayRank);
+            hashCode.Add(IndexType);
+            hashCode.Add(IsModelType);
+            return hashCode.ToHashCode();
         }
     }
 }

@@ -12,33 +12,41 @@ namespace MetaFac.CG4.Models
         public readonly string? ParentName;
         public readonly ImmutableList<ModelMemberDef> MemberDefs;
         public readonly ImmutableList<ModelEntityDef> DerivedEntities;
+        public readonly ModelItemState? State;
 
-        private ModelEntityDef(string name, int? tag, string? summary, bool isAbstract, string? parentName,
+        private ModelEntityDef(string name, int? tag, string? summary, 
+            bool isAbstract, string? parentName,
             ImmutableList<ModelMemberDef> memberDefs,
-            ImmutableList<ModelEntityDef> derivedEntities)
+            ImmutableList<ModelEntityDef> derivedEntities,
+            ModelItemState? state)
             : base(name, tag, summary)
         {
             IsAbstract = isAbstract;
             ParentName = parentName;
             MemberDefs = memberDefs;
             DerivedEntities = derivedEntities;
+            State = state;
         }
 
-        public ModelEntityDef(string name, int? tag, string? summary, bool isAbstract, string? parentName,
-            IEnumerable<ModelMemberDef> memberDefs)
+        public ModelEntityDef(string name, int? tag, string? summary,
+            bool isAbstract, string? parentName,
+            IEnumerable<ModelMemberDef> memberDefs,
+            ModelItemState? state = null)
             : base(name, tag, summary)
         {
             IsAbstract = isAbstract;
             ParentName = parentName;
             MemberDefs = ImmutableList<ModelMemberDef>.Empty.AddRange(memberDefs);
             DerivedEntities = ImmutableList<ModelEntityDef>.Empty;
+            State = state;
         }
 
         public ModelEntityDef SetDerivedEntities(IEnumerable<ModelEntityDef> derivedEntities)
         {
             return new ModelEntityDef(
                 Name, Tag, Summary, IsAbstract, ParentName, MemberDefs,
-                ImmutableList<ModelEntityDef>.Empty.AddRange(derivedEntities));
+                ImmutableList<ModelEntityDef>.Empty.AddRange(derivedEntities),
+                State);
         }
 
         public static ModelEntityDef? From(JsonEntityDef? source)
@@ -51,7 +59,8 @@ namespace MetaFac.CG4.Models
                 source.IsAbstract,
                 source.ParentName,
                 ImmutableList<ModelMemberDef>.Empty.AddRange(source.MemberDefs.NotNullRange(ModelMemberDef.From)),
-                ImmutableList<ModelEntityDef>.Empty);
+                ImmutableList<ModelEntityDef>.Empty,
+                ModelItemState.From(source.State));
         }
 
         public string ToJson()
@@ -70,11 +79,12 @@ namespace MetaFac.CG4.Models
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
-            return Tag == other.Tag
-                   && string.Equals(Name, other.Name)
-                   && IsAbstract == other.IsAbstract
-                   && string.Equals(ParentName, other.ParentName)
-                   && MemberDefs.IsEqualTo(other.MemberDefs);
+            return base.Equals(other)
+                && IsAbstract == other.IsAbstract
+                && string.Equals(ParentName, other.ParentName)
+                && MemberDefs.IsEqualTo(other.MemberDefs)
+                && Equals(State, other.State)
+                ;
         }
 
         public override bool Equals(object? obj)
@@ -84,20 +94,20 @@ namespace MetaFac.CG4.Models
 
         public override int GetHashCode()
         {
-            unchecked
+            var hashCode = new HashCode();
+            hashCode.Add(base.GetHashCode());
+            hashCode.Add(IsAbstract);
+            hashCode.Add(ParentName);
+            if(MemberDefs is not null)
             {
-                var hashCode = Tag.GetHashCode();
-                hashCode = hashCode * 397 ^ (Name != null ? Name.GetHashCode() : 0);
-                hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
-                hashCode = hashCode * 397 ^ (ParentName != null ? ParentName.GetHashCode() : 0);
-                // ordered
-                hashCode = hashCode * 397 ^ MemberDefs.Count;
-                foreach (var field in MemberDefs)
+                hashCode.Add(MemberDefs.Count);
+                foreach (var md in MemberDefs)
                 {
-                    hashCode = hashCode * 397 ^ field.GetHashCode();
+                    hashCode.Add(md);
                 }
-                return hashCode;
             }
+            hashCode.Add(State);
+            return hashCode.ToHashCode();
         }
     }
 }

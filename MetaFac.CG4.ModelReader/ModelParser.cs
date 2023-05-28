@@ -62,6 +62,7 @@ namespace MetaFac.CG4.ModelReader
                 var entityName = entityDefInfo.EntityName;
                 int? entityTag = entityDefInfo.Tag;
                 string? entityDesc = null;
+                ModelItemState? entityState = null;
                 bool isAbstract = entityDefInfo.IsAbstract;
                 var entityTagName = new TagName(entityTag, entityName);
                 bool obsolete = false;
@@ -99,7 +100,7 @@ namespace MetaFac.CG4.ModelReader
                     //        new ModelEntityDef(null, baseType.Name, null), null));
                     //}
 
-                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, entityDesc, isAbstract, parentName, fieldList);
+                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, entityDesc, isAbstract, parentName, fieldList, entityState);
                     entityDefsByName.Add(entityName, entityDef);
                     entityDefsByTag.Add(entityTag.Value, entityDef);
                 }

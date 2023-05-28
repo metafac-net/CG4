@@ -17,7 +17,7 @@ namespace MetaFac.CG4.Models
             Name = source.Name;
             Value = source.Value;
             Summary = source.Summary;
-            State = source.State is null ? null : new JsonItemState(source.State);
+            State = JsonItemState.From(source.State);
         }
 
         public bool Equals(JsonEnumItemDef? other)

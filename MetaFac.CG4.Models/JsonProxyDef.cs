@@ -9,10 +9,14 @@ namespace MetaFac.CG4.Models
 
         public JsonProxyDef() { }
 
-        public JsonProxyDef(ModelProxyDef source)
+        public static JsonProxyDef? From(ModelProxyDef? source)
         {
-            ExternalName = source.ExternalName;
-            ConcreteName = source.ConcreteName;
+            if (source is null) return null;
+            return new JsonProxyDef()
+            {
+                ExternalName = source.ExternalName,
+                ConcreteName = source.ConcreteName
+            };
         }
 
         public bool Equals(JsonProxyDef? other)
