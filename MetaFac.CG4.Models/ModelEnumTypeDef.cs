@@ -7,36 +7,14 @@ using System.Diagnostics;
 
 namespace MetaFac.CG4.Models
 {
-    internal static class ModelHelpers
+    public class ModelEnumTypeDef : ModelItemBase, IEquatable<ModelEnumTypeDef>
     {
-        public static IEnumerable<TTarget> NotNullRange<TSource, TTarget>(this IEnumerable<TSource>? source, Func<TSource, TTarget?> converter)
-        {
-            if (source is not null)
-            {
-                foreach (var item in source)
-                {
-                    TTarget? target = converter(item);
-                    if (target is not null)
-                    {
-                        yield return target;
-                    }
-                }
-            }
-        }
-    }
-
-    public class ModelEnumTypeDef : IEquatable<ModelEnumTypeDef>
-    {
-        public readonly string Name;
-        public readonly ModelItemInfo? Info;
         public readonly ModelItemState? State;
         public readonly ImmutableList<ModelEnumItemDef> EnumItemDefs;
 
-        public ModelEnumTypeDef(string name, ModelItemInfo? info, ModelItemState? state,
-            IEnumerable<ModelEnumItemDef> enumItemDefs)
+        public ModelEnumTypeDef(string name, string? summary, ModelItemState? state, IEnumerable<ModelEnumItemDef> enumItemDefs)
+            : base(name, null, summary)
         {
-            Name = name;
-            Info = info;
             State = state;
             EnumItemDefs = ImmutableList<ModelEnumItemDef>.Empty.AddRange(enumItemDefs);
         }
@@ -46,7 +24,7 @@ namespace MetaFac.CG4.Models
             if (source is null) return null;
             return new ModelEnumTypeDef(
                 source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
-                ModelItemInfo.From(source.Info),
+                source.Summary,
                 ModelItemState.From(source.State),
                 source.EnumItemDefs.NotNullRange(ModelEnumItemDef.From));
         }
@@ -67,8 +45,7 @@ namespace MetaFac.CG4.Models
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
-            return string.Equals(Name, other.Name)
-                   && Equals(Info, other.Info)
+            return base.Equals(other)
                    && Equals(State, other.State)
                    && EnumItemDefs.IsEqualTo(other.EnumItemDefs)
                    ;
@@ -83,16 +60,16 @@ namespace MetaFac.CG4.Models
         {
             unchecked
             {
-                var hashCode = Name.GetHashCode();
-                hashCode = hashCode * 397 ^ (Info?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ (State?.GetHashCode() ?? 0);
+                var hashCode = new HashCode();
+                hashCode.Add(base.GetHashCode());
+                hashCode.Add(State);
                 // ordered
-                hashCode = hashCode * 397 ^ EnumItemDefs.Count;
+                hashCode.Add(EnumItemDefs.Count);
                 foreach (var field in EnumItemDefs)
                 {
-                    hashCode = hashCode * 397 ^ field.GetHashCode();
+                    hashCode.Add(field);
                 }
-                return hashCode;
+                return hashCode.ToHashCode();
             }
         }
     }

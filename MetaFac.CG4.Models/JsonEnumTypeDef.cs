@@ -7,7 +7,7 @@ namespace MetaFac.CG4.Models
     public class JsonEnumTypeDef : IEquatable<JsonEnumTypeDef>
     {
         public string? Name { get; set; }
-        public JsonItemInfo? Info { get; set; }
+        public string? Summary { get; set; }
         public JsonItemState? State { get; set; }
         public List<JsonEnumItemDef>? EnumItemDefs { get; set; }
 
@@ -17,7 +17,7 @@ namespace MetaFac.CG4.Models
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name;
-            Info = source.Info is null ? null : new JsonItemInfo(source.Info);
+            Summary = source.Summary;
             State = source.State is null ? null : new JsonItemState(source.State);
             EnumItemDefs = source.EnumItemDefs.Select(fd => new JsonEnumItemDef(fd)).ToList();
         }
@@ -27,7 +27,7 @@ namespace MetaFac.CG4.Models
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return string.Equals(Name, other.Name)
-                   && Equals(Info, other.Info)
+                   && string.Equals(Summary, other.Summary)
                    && Equals(State, other.State)
                    && EnumItemDefs.IsEqualTo(other.EnumItemDefs)
                    ;
@@ -40,22 +40,19 @@ namespace MetaFac.CG4.Models
 
         public override int GetHashCode()
         {
-            unchecked
+            var hashCode = new HashCode();
+            hashCode.Add(Name);
+            hashCode.Add(Summary);
+            hashCode.Add(State);
+            if (EnumItemDefs is not null)
             {
-                int hashCode = Name?.GetHashCode() ?? 0;
-                hashCode = hashCode * 397 ^ (Info?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ (State?.GetHashCode() ?? 0);
-                // ordered
-                if (EnumItemDefs != null)
+                hashCode.Add(EnumItemDefs.Count);
+                foreach (var fd in EnumItemDefs)
                 {
-                    hashCode = hashCode * 397 ^ EnumItemDefs.Count;
-                    foreach (var fd in EnumItemDefs)
-                    {
-                        hashCode = hashCode * 397 ^ fd.GetHashCode();
-                    }
+                    hashCode.Add(fd);
                 }
-                return hashCode;
             }
+            return hashCode.ToHashCode();
         }
     }
 }

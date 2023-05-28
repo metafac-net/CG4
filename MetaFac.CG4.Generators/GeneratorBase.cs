@@ -138,9 +138,9 @@ namespace MetaFac.CG4.Generators
                 ["EnumItemName"] = enumItemDef.Name,
                 ["EnumItemValue"] = enumItemDef.Value.ToString()
             };
-            if (enumItemDef.TryGetSummary(out string summary))
+            if (enumItemDef.Summary is not null)
             {
-                tokens["ItemSummary"] = summary;
+                tokens["ItemSummary"] = enumItemDef.Summary;
             }
             if (enumItemDef.IsObsolete(out string reason, out bool isError))
             {

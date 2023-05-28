@@ -6,7 +6,7 @@ namespace MetaFac.CG4.Models
     {
         public string? Name { get; set; }
         public int Value { get; set; }
-        public JsonItemInfo? Info { get; set; }
+        public string? Summary { get; set; }
         public JsonItemState? State { get; set; }
 
         public JsonEnumItemDef() { }
@@ -16,7 +16,7 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name;
             Value = source.Value;
-            Info = source.Info is null ? null : new JsonItemInfo(source.Info);
+            Summary = source.Summary;
             State = source.State is null ? null : new JsonItemState(source.State);
         }
 
@@ -26,7 +26,7 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return string.Equals(Name, other.Name)
                    && Value == other.Value
-                   && Equals(Info, other.Info)
+                   && string.Equals(Summary, other.Summary)
                    && Equals(State, other.State)
                    ;
         }
@@ -38,7 +38,7 @@ namespace MetaFac.CG4.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Name, Value, Info, State);
+            return HashCode.Combine(Name, Value, Summary, State);
         }
     }
 }

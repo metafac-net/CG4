@@ -11,8 +11,10 @@
           "ParentName": null,
           "FieldDefs": [
             {
-              "Tag": 1,
               "Name": "FamilyName",
+              "Tag": 1,
+              "Summary": null,
+              "State": null,
               "InnerType": "string",
               "Nullable": false,
               "ProxyDef": null,
@@ -21,8 +23,10 @@
               "IsModelType": false
             },
             {
-              "Tag": 2,
               "Name": "FirstName",
+              "Tag": 2,
+              "Summary": null,
+              "State": null,
               "InnerType": "string",
               "Nullable": false,
               "ProxyDef": null,
@@ -38,7 +42,7 @@
   ],
   "Tokens": {
     "CopyrightInfo": "Copyright (c) 2023 MetaFac",
-    "MetadataVersion": "1.0.0.0",
-    "MetadataSource": "MetaFac.CG4.TestOrg.Schema.dll"
+    "MetadataSource": "MetaFac.CG4.TestOrg.Schema.dll",
+    "MetadataVersion": "1.0.0.0"
   }
 }

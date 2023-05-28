@@ -3,18 +3,15 @@ using System.Text.Json;
 
 namespace MetaFac.CG4.Models
 {
-    public class ModelEnumItemDef : IEquatable<ModelEnumItemDef>
+    public class ModelEnumItemDef : ModelItemBase, IEquatable<ModelEnumItemDef>
     {
-        public readonly string Name;
         public readonly int Value;
-        public readonly ModelItemInfo? Info;
         public readonly ModelItemState? State;
 
-        public ModelEnumItemDef(string name, int value, ModelItemInfo? info, ModelItemState? state = null)
+        public ModelEnumItemDef(string name, string? summary, int value, ModelItemState? state = null)
+            : base(name, null, summary)
         {
-            Name = name;
             Value = value;
-            Info = info;
             State = state;
         }
 
@@ -23,18 +20,9 @@ namespace MetaFac.CG4.Models
             if (source is null) return null;
             return new ModelEnumItemDef(
                 source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
+                source.Summary,
                 source.Value,
-                ModelItemInfo.From(source.Info),
                 ModelItemState.From(source.State));
-        }
-
-        public bool TryGetSummary(out string summary)
-        {
-            summary = string.Empty;
-            if (Info is null) return false;
-            if (Info.Summary is null) return false;
-            summary = Info.Summary;
-            return true;
         }
 
         public bool IsObsolete(out string reason, out bool isError)
@@ -64,15 +52,21 @@ namespace MetaFac.CG4.Models
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
-            return string.Equals(Name, other.Name)
-                   && Value == other.Value
-                   && Equals(Info, other.Info)
-                   && Equals(State, other.State)
-                   ;
+            return  base.Equals(other)
+                && Value == other.Value
+                && Equals(State, other.State)
+                ;
         }
 
         public override bool Equals(object? obj) => obj is ModelEnumItemDef other && Equals(other);
 
-        public override int GetHashCode() => HashCode.Combine(Name, Value, Info, State);
+        public override int GetHashCode()
+        {
+            var hashCode = new HashCode();
+            hashCode.Add(base.GetHashCode());
+            hashCode.Add(Value);
+            hashCode.Add(State);
+            return hashCode.ToHashCode();
+        }
     }
 }

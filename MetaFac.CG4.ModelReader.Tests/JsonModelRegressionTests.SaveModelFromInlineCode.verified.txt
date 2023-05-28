@@ -11,8 +11,10 @@
           "ParentName": null,
           "FieldDefs": [
             {
-              "Tag": 1,
               "Name": "Field1",
+              "Tag": 1,
+              "Summary": "Field 1",
+              "State": null,
               "InnerType": "long",
               "Nullable": false,
               "ProxyDef": null,
@@ -21,8 +23,10 @@
               "IsModelType": false
             },
             {
-              "Tag": 2,
               "Name": "Field2",
+              "Tag": 2,
+              "Summary": "Field 2",
+              "State": null,
               "InnerType": "string",
               "Nullable": true,
               "ProxyDef": null,
@@ -36,29 +40,25 @@
       "EnumTypeDefs": [
         {
           "Name": "Enum1",
-          "Info": {
-            "Summary": "Enumeration 1"
-          },
+          "Summary": "Enumeration 1",
           "State": null,
           "EnumItemDefs": [
             {
               "Name": "Item1",
               "Value": 1,
-              "Info": {
-                "Summary": "Summary of item 1"
-              },
+              "Summary": "Summary of item 1",
               "State": null
             },
             {
               "Name": "Item2",
               "Value": 2,
-              "Info": null,
+              "Summary": null,
               "State": null
             },
             {
               "Name": "Item3",
               "Value": 3,
-              "Info": null,
+              "Summary": null,
               "State": {
                 "IsObsolete": true,
                 "Reason": "Not used anymore",

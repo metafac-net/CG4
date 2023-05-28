@@ -331,8 +331,10 @@ namespace MetaFac.CG4.ModelReader
             // process fields
             foreach (var propInfo in entityDefInfo.RuntimeProperties)
             {
-                int fieldTag = 0;
                 string fieldName = propInfo.Name;
+                int fieldTag = 0;
+                string? fieldDesc = null;
+                ModelItemState? fieldState = null;
                 Type fieldType = propInfo.PropertyType;
                 var fieldInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, fieldName, fieldType, proxyTypes, allModelTypes);
                 string innerTypeName = fieldInfo.innerTypeName ?? nameof(Unknown);
@@ -362,12 +364,14 @@ namespace MetaFac.CG4.ModelReader
                         proxyDef = new ModelProxyDef(pd.ExternalName, pd.ConcreteName);
                     }
                     var fieldDef = new ModelFieldDef(
-                        fieldName, fieldTag, innerTypeName,
+                        fieldName, fieldTag, fieldDesc, 
+                        innerTypeName,
                         fieldInfo.nullable,
                         proxyDef,
                         fieldInfo.ArrayRank,
                         fieldInfo.indexTypeName,
-                        fieldInfo.isModelType);
+                        fieldInfo.isModelType,
+                        fieldState);
                     fieldDefsByName.Add(fieldName, fieldDef);
                 }
             } // foreach field

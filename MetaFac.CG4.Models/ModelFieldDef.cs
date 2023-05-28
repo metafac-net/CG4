@@ -7,35 +7,36 @@ using System.Linq;
 
 namespace MetaFac.CG4.Models
 {
-    public class ModelFieldDef : IEquatable<ModelFieldDef>
+    public class ModelFieldDef : ModelItemBase, IEquatable<ModelFieldDef>
     {
-        public readonly int? Tag;
-        public readonly string Name;
         public readonly string InnerType;
         public readonly bool Nullable;
         public readonly ModelProxyDef? ProxyDef;
         public readonly int ArrayRank;
         public readonly string? IndexType;
         public readonly bool IsModelType;
+        public readonly ModelItemState? State;
 
         public bool IsBufferType => InnerType == "binary";
         public bool IsStringType => InnerType == "string";
 
-        public ModelFieldDef(string fieldName, int? tag, string innerType,
+        public ModelFieldDef(string fieldName, int? tag, string? summary, 
+            string innerType,
             bool nullable,
             ModelProxyDef? proxyDef,
             int arrayRank,
             string? indexType,
-            bool isModelType)
+            bool isModelType, 
+            ModelItemState? state = null)
+            : base(fieldName, tag, summary)
         {
-            Tag = tag;
-            Name = fieldName;
             InnerType = innerType ?? throw new ArgumentNullException(nameof(innerType));
             Nullable = nullable;
             ProxyDef = proxyDef;
             ArrayRank = arrayRank;
             IndexType = indexType;
             IsModelType = isModelType;
+            State = state;
         }
 
         public static ModelFieldDef? From(JsonFieldDef? source)
@@ -44,12 +45,15 @@ namespace MetaFac.CG4.Models
             return new ModelFieldDef(
                 source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
                 source.Tag,
+                source.Summary,
                 source.InnerType ?? throw new ArgumentNullException(nameof(source.InnerType)),
                 source.Nullable,
                 ModelProxyDef.From(source.ProxyDef),
                 source.ArrayRank,
                 source.IndexType,
-                source.IsModelType);
+                source.IsModelType,
+                ModelItemState.From(source.State)
+                );
         }
 
         public string ToJson()
