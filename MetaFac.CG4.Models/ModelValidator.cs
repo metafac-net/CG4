@@ -231,8 +231,8 @@ namespace MetaFac.CG4.Models
                         return result;
 
                     //---------- check field name is unique
-                    var fieldName = memberDef.Name;
-                    if (fieldNameMap.TryGetValue(fieldName, out var other2))
+                    var memberName = memberDef.Name;
+                    if (fieldNameMap.TryGetValue(memberName, out var other2))
                     {
                         result = result.AddError(new ValidationError(
                             ValidationErrorCode.DuplicateFieldName,
@@ -240,7 +240,7 @@ namespace MetaFac.CG4.Models
                     }
                     else
                     {
-                        fieldNameMap[fieldName] = memberDef;
+                        fieldNameMap[memberName] = memberDef;
                     }
 
                     if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)

@@ -16,7 +16,7 @@ namespace MetaFac.CG4.Models
         public bool IsBufferType => InnerType == "binary";
         public bool IsStringType => InnerType == "string";
 
-        public ModelMemberDef(string fieldName, int? tag, string? summary, 
+        public ModelMemberDef(string name, int? tag, string? summary, 
             string innerType,
             bool nullable,
             ModelProxyDef? proxyDef,
@@ -24,7 +24,7 @@ namespace MetaFac.CG4.Models
             string? indexType,
             bool isModelType, 
             ModelItemState? state = null)
-            : base(fieldName, tag, summary)
+            : base(name, tag, summary)
         {
             InnerType = innerType ?? throw new ArgumentNullException(nameof(innerType));
             Nullable = nullable;

@@ -164,7 +164,7 @@ namespace MetaFac.CG4.ModelReader
 
         private static FieldInfo GetFieldInfo(
             string sourceNamespace,
-            string modelName, TagName entityTagName, string fieldName, Type fieldType,
+            string modelName, TagName entityTagName, string memberName, Type fieldType,
             ProxyTypeInfoCollection proxyTypes,
             Dictionary<string, EntityDefInfo> allModelTypes)
         {
@@ -186,7 +186,7 @@ namespace MetaFac.CG4.ModelReader
                     throw new ValidationException(
                         new ValidationError(
                             ValidationErrorCode.InvalidArrayRank,
-                            modelName, entityTagName, new TagName(null, fieldName, null), null, null));
+                            modelName, entityTagName, new TagName(null, memberName, null), null, null));
                 }
             }
             else if (innerType.IsConstructedGenericType
@@ -228,7 +228,7 @@ namespace MetaFac.CG4.ModelReader
                     throw new ValidationException(
                         new ValidationError(
                             ValidationErrorCode.UnknownFieldType,
-                            modelName, entityTagName, new TagName(null, fieldName, fieldTypeName), null, null));
+                            modelName, entityTagName, new TagName(null, memberName, fieldTypeName), null, null));
                 }
             }
             if (innerType.IsValueType)
@@ -275,7 +275,7 @@ namespace MetaFac.CG4.ModelReader
                             throw new ValidationException(
                                 new ValidationError(
                                     ValidationErrorCode.UnknownFieldType,
-                                    modelName, entityTagName, new TagName(null, fieldName, fieldType.FullName), null, null));
+                                    modelName, entityTagName, new TagName(null, memberName, fieldType.FullName), null, null));
                 }
 
             }
@@ -308,7 +308,7 @@ namespace MetaFac.CG4.ModelReader
                 throw new ValidationException(
                     new ValidationError(
                         ValidationErrorCode.UnknownFieldType,
-                        modelName, entityTagName, new TagName(null, fieldName, fieldType.FullName), null, null));
+                        modelName, entityTagName, new TagName(null, memberName, fieldType.FullName), null, null));
             }
 
             // convert built-in type names
@@ -331,12 +331,12 @@ namespace MetaFac.CG4.ModelReader
             // process fields
             foreach (var propInfo in entityDefInfo.RuntimeProperties)
             {
-                string fieldName = propInfo.Name;
+                string memberName = propInfo.Name;
                 int fieldTag = 0;
                 string? fieldDesc = null;
                 ModelItemState? fieldState = null;
                 Type fieldType = propInfo.PropertyType;
-                var fieldInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, fieldName, fieldType, proxyTypes, allModelTypes);
+                var fieldInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, memberName, fieldType, proxyTypes, allModelTypes);
                 string innerTypeName = fieldInfo.innerTypeName ?? nameof(Unknown);
 
                 bool obsolete = false;
@@ -364,7 +364,7 @@ namespace MetaFac.CG4.ModelReader
                         proxyDef = new ModelProxyDef(pd.ExternalName, pd.ConcreteName);
                     }
                     var memberDef = new ModelMemberDef(
-                        fieldName, fieldTag, fieldDesc, 
+                        memberName, fieldTag, fieldDesc, 
                         innerTypeName,
                         fieldInfo.nullable,
                         proxyDef,
@@ -372,7 +372,7 @@ namespace MetaFac.CG4.ModelReader
                         fieldInfo.indexTypeName,
                         fieldInfo.isModelType,
                         fieldState);
-                    memberDefsByName.Add(fieldName, memberDef);
+                    memberDefsByName.Add(memberName, memberDef);
                 }
             } // foreach field
             return memberDefsByName.Values.OrderBy(x => x.Tag).ToList();
