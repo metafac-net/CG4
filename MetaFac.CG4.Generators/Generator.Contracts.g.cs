@@ -143,7 +143,7 @@ Emit("    public interface IT_ModelType_ : IFreezable, IEntityBase { int TestDat
         {
 Emit("    public partial interface IT_EntityName_ : IT_ParentName_");
 Emit("    {");
-                foreach (var fd in cd.FieldDefs)
+                foreach (var fd in cd.MemberDefs)
                 {
                     using (NewScope(fd))
                     {

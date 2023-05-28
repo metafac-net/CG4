@@ -131,7 +131,7 @@ namespace T_Namespace_.Contracts
     //>>    {
     public partial interface IT_EntityName_ : IT_ParentName_
     {
-        //>>        foreach (var fd in cd.FieldDefs)
+        //>>        foreach (var fd in cd.MemberDefs)
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {

@@ -100,24 +100,24 @@ namespace MetaFac.CG4.Generators
             };
         }
 
-        protected IDisposable NewScope(ModelFieldDef fieldDef)
+        protected IDisposable NewScope(ModelMemberDef memberDef)
         {
-            string innerType = GetFieldTypeToken(fieldDef.InnerType);
+            string innerType = GetFieldTypeToken(memberDef.InnerType);
             var tokens = new Dictionary<string, string>
             {
-                ["FieldName"] = fieldDef.Name,
+                ["FieldName"] = memberDef.Name,
                 ["InnerType"] = innerType,
         };
-            if (fieldDef.Tag.HasValue)
-                tokens["FieldTag"] = fieldDef.Tag.Value.ToString();
-            if (fieldDef.IsModelType)
+            if (memberDef.Tag.HasValue)
+                tokens["FieldTag"] = memberDef.Tag.Value.ToString();
+            if (memberDef.IsModelType)
                 tokens["ModelType"] = innerType;
-            if (fieldDef.IndexType != null)
-                tokens["IndexType"] = fieldDef.IndexType;
-            if (fieldDef.ProxyDef is not null)
+            if (memberDef.IndexType != null)
+                tokens["IndexType"] = memberDef.IndexType;
+            if (memberDef.ProxyDef is not null)
             {
-                tokens[$"External{fieldDef.InnerType}"] = fieldDef.ProxyDef.ExternalName ?? "Unknown_Proxy_ExternalName";
-                tokens[$"Concrete{fieldDef.InnerType}"] = fieldDef.ProxyDef.ConcreteName ?? "Unknown_Proxy_ConcreteName";
+                tokens[$"External{memberDef.InnerType}"] = memberDef.ProxyDef.ExternalName ?? "Unknown_Proxy_ExternalName";
+                tokens[$"Concrete{memberDef.InnerType}"] = memberDef.ProxyDef.ConcreteName ?? "Unknown_Proxy_ConcreteName";
             }
             return _engine.NewScope(tokens);
         }

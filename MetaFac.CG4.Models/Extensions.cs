@@ -6,9 +6,9 @@
         {
             return new TagName(entityDef.Tag, entityDef.Name);
         }
-        public static TagName ToTagName(this ModelFieldDef fieldDef)
+        public static TagName ToTagName(this ModelMemberDef memberDef)
         {
-            return new TagName(fieldDef.Tag, fieldDef.Name, fieldDef.InnerType);
+            return new TagName(memberDef.Tag, memberDef.Name, memberDef.InnerType);
         }
     }
 }

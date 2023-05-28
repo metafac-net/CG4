@@ -30,10 +30,10 @@ namespace MetaFac.CG4.ModelReader.Tests
         public async Task SaveModelFromInlineCode()
         {
             // arrange - construct model
-            var memberDefs = new List<ModelFieldDef>
+            var memberDefs = new List<ModelMemberDef>
             {
-                new ModelFieldDef("Field1", 1, "Field 1", "long", false, null, 0, null, false),
-                new ModelFieldDef("Field2", 2, "Field 2", "string", true, null, 0, null, false)
+                new ModelMemberDef("Field1", 1, "Field 1", "long", false, null, 0, null, false),
+                new ModelMemberDef("Field2", 2, "Field 2", "string", true, null, 0, null, false)
             };
             var entityDefs = new List<ModelEntityDef>
             {

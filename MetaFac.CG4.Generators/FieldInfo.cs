@@ -23,17 +23,17 @@ namespace MetaFac.CG4.Generators
             else
                 Define($"Unary{kind}FieldName", "T_FieldName_");
         }
-        public FieldInfo(ModelFieldDef fieldDef, EngineScope engineScope)
+        public FieldInfo(ModelMemberDef memberDef, EngineScope engineScope)
         {
             _engineScope = engineScope ?? throw new ArgumentNullException(nameof(engineScope));
 
             Kind = default;
-            if (fieldDef.IsModelType) Kind = Kind | FieldKind.IsModelType;
-            if (fieldDef.IndexType is not null) Kind = Kind | FieldKind.IsIndexType;
-            if (fieldDef.ArrayRank > 0) Kind = Kind | FieldKind.IsArrayType;
-            if (fieldDef.IsBufferType) Kind = Kind | FieldKind.IsBufferType;
-            if (fieldDef.IsStringType) Kind = Kind | FieldKind.IsStringType;
-            if (fieldDef.Nullable) Kind = Kind | FieldKind.IsNullable;
+            if (memberDef.IsModelType) Kind = Kind | FieldKind.IsModelType;
+            if (memberDef.IndexType is not null) Kind = Kind | FieldKind.IsIndexType;
+            if (memberDef.ArrayRank > 0) Kind = Kind | FieldKind.IsArrayType;
+            if (memberDef.IsBufferType) Kind = Kind | FieldKind.IsBufferType;
+            if (memberDef.IsStringType) Kind = Kind | FieldKind.IsStringType;
+            if (memberDef.Nullable) Kind = Kind | FieldKind.IsNullable;
             if (Kind.IsModelType())
             {
                 DefineFieldName("Model");

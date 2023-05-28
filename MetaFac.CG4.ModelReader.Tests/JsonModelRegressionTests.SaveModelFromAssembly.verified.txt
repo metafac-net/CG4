@@ -9,7 +9,7 @@
           "Name": "BuiltinTypes",
           "IsAbstract": true,
           "ParentName": null,
-          "FieldDefs": [
+          "MemberDefs": [
             {
               "Name": "Bools",
               "Tag": 1,
@@ -245,7 +245,7 @@
           "Name": "ExternalTypes",
           "IsAbstract": true,
           "ParentName": null,
-          "FieldDefs": [
+          "MemberDefs": [
             {
               "Name": "Quantities",
               "Tag": 1,
@@ -268,7 +268,7 @@
           "Name": "EnumeratorTypes",
           "IsAbstract": true,
           "ParentName": null,
-          "FieldDefs": [
+          "MemberDefs": [
             {
               "Name": "DaysOfWeek",
               "Tag": 1,

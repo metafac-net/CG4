@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MetaFac.CG4.Models
 {
-    public class ModelFieldDef : ModelItemBase, IEquatable<ModelFieldDef>
+    public class ModelMemberDef : ModelItemBase, IEquatable<ModelMemberDef>
     {
         public readonly string InnerType;
         public readonly bool Nullable;
@@ -20,7 +20,7 @@ namespace MetaFac.CG4.Models
         public bool IsBufferType => InnerType == "binary";
         public bool IsStringType => InnerType == "string";
 
-        public ModelFieldDef(string fieldName, int? tag, string? summary, 
+        public ModelMemberDef(string fieldName, int? tag, string? summary, 
             string innerType,
             bool nullable,
             ModelProxyDef? proxyDef,
@@ -39,10 +39,10 @@ namespace MetaFac.CG4.Models
             State = state;
         }
 
-        public static ModelFieldDef? From(JsonFieldDef? source)
+        public static ModelMemberDef? From(JsonMemberDef? source)
         {
             if (source is null) return null;
-            return new ModelFieldDef(
+            return new ModelMemberDef(
                 source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
                 source.Tag,
                 source.Summary,
@@ -58,17 +58,17 @@ namespace MetaFac.CG4.Models
 
         public string ToJson()
         {
-            var member = new JsonFieldDef(this);
+            var member = new JsonMemberDef(this);
             return JsonSerializer.Serialize(member);
         }
 
-        public static ModelFieldDef? FromJson(string json)
+        public static ModelMemberDef? FromJson(string json)
         {
-            var member = JsonSerializer.Deserialize<JsonFieldDef>(json);
-            return ModelFieldDef.From(member);
+            var member = JsonSerializer.Deserialize<JsonMemberDef>(json);
+            return ModelMemberDef.From(member);
         }
 
-        public bool Equals(ModelFieldDef? other)
+        public bool Equals(ModelMemberDef? other)
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
@@ -84,7 +84,7 @@ namespace MetaFac.CG4.Models
 
         public override bool Equals(object? obj)
         {
-            return obj is ModelFieldDef other && Equals(other);
+            return obj is ModelMemberDef other && Equals(other);
         }
 
         public override int GetHashCode()

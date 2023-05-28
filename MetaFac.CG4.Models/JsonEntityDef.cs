@@ -10,7 +10,7 @@ namespace MetaFac.CG4.Models
         public string? Name { get; set; }
         public bool IsAbstract { get; set; }
         public string? ParentName { get; set; }
-        public List<JsonFieldDef>? FieldDefs { get; set; }
+        public List<JsonMemberDef>? MemberDefs { get; set; }
 
         public JsonEntityDef() { }
 
@@ -21,7 +21,7 @@ namespace MetaFac.CG4.Models
             Name = source.Name;
             IsAbstract = source.IsAbstract;
             ParentName = source.ParentName;
-            FieldDefs = source.FieldDefs.Select(fd => new JsonFieldDef(fd)).ToList();
+            MemberDefs = source.MemberDefs.Select(fd => new JsonMemberDef(fd)).ToList();
         }
 
         public bool Equals(JsonEntityDef? other)
@@ -32,7 +32,7 @@ namespace MetaFac.CG4.Models
                    && string.Equals(Name, other.Name)
                    && IsAbstract == other.IsAbstract
                    && string.Equals(ParentName, other.ParentName)
-                   && FieldDefs.IsEqualTo(other.FieldDefs);
+                   && MemberDefs.IsEqualTo(other.MemberDefs);
         }
 
         public override bool Equals(object? obj)
@@ -49,10 +49,10 @@ namespace MetaFac.CG4.Models
                 hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
                 hashCode = hashCode * 397 ^ (ParentName?.GetHashCode() ?? 0);
                 // ordered
-                if (FieldDefs != null)
+                if (MemberDefs != null)
                 {
-                    hashCode = hashCode * 397 ^ FieldDefs.Count;
-                    foreach (var fd in FieldDefs)
+                    hashCode = hashCode * 397 ^ MemberDefs.Count;
+                    foreach (var fd in MemberDefs)
                     {
                         hashCode = hashCode * 397 ^ fd.GetHashCode();
                     }

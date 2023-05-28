@@ -303,7 +303,7 @@ namespace T_Namespace_.MessagePack
     {
         protected override void OnFreeze()
         {
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
@@ -347,7 +347,7 @@ namespace T_Namespace_.MessagePack
         protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
-        //>>        foreach (var fd in cd.FieldDefs)
+        //>>        foreach (var fd in cd.MemberDefs)
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {
@@ -406,7 +406,7 @@ namespace T_Namespace_.MessagePack
         //>>        }
 
         // ---------- accessors ----------
-        //>>        foreach (var fd in cd.FieldDefs)
+        //>>        foreach (var fd in cd.MemberDefs)
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {
@@ -590,7 +590,7 @@ namespace T_Namespace_.MessagePack
         //>>        }
 
         // ---------- IT_EntityName_ methods ----------
-        //>>        foreach (var fd in cd.FieldDefs)
+        //>>        foreach (var fd in cd.MemberDefs)
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {
@@ -669,7 +669,7 @@ namespace T_Namespace_.MessagePack
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(T_EntityName_ source) : base(source)
         {
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
@@ -730,7 +730,7 @@ namespace T_Namespace_.MessagePack
         public void CopyFrom(T_EntityName_ source)
         {
             base.CopyFrom(source);
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
@@ -791,7 +791,7 @@ namespace T_Namespace_.MessagePack
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(IT_EntityName_ source) : base(source)
         {
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
@@ -877,7 +877,7 @@ namespace T_Namespace_.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
@@ -959,7 +959,7 @@ namespace T_Namespace_.MessagePack
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {

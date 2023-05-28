@@ -210,7 +210,7 @@ namespace T_Namespace_.JsonNewtonSoft
         public new const int EntityTag = T_EntityTag_;
         protected override int OnGetEntityTag() => EntityTag;
 
-        //>>        foreach (var fd in cd.FieldDefs)
+        //>>        foreach (var fd in cd.MemberDefs)
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {
@@ -357,7 +357,7 @@ namespace T_Namespace_.JsonNewtonSoft
         public T_EntityName_(T_EntityName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
@@ -419,7 +419,7 @@ namespace T_Namespace_.JsonNewtonSoft
         public T_EntityName_(IT_EntityName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
@@ -505,7 +505,7 @@ namespace T_Namespace_.JsonNewtonSoft
         {
             if (source is null) return;
             base.CopyFrom(source);
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
@@ -590,7 +590,7 @@ namespace T_Namespace_.JsonNewtonSoft
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
@@ -654,7 +654,7 @@ namespace T_Namespace_.JsonNewtonSoft
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            //>>        foreach (var fd in cd.FieldDefs)
+            //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {

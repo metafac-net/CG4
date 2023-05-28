@@ -203,7 +203,7 @@ Emit("        private const int T_EntityTag_ = 99;");
 Emit("        public new const int EntityTag = T_EntityTag_;");
 Emit("        protected override int OnGetEntityTag() => EntityTag;");
 Emit("");
-                foreach (var fd in cd.FieldDefs)
+                foreach (var fd in cd.MemberDefs)
                 {
                     using (NewScope(fd))
                     {
@@ -286,7 +286,7 @@ Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(T_EntityName_? source) : base(source)");
 Emit("        {");
 Emit("            if (source is null) throw new ArgumentNullException(nameof(source));");
-                    foreach (var fd in cd.FieldDefs)
+                    foreach (var fd in cd.MemberDefs)
                     {
                         using (NewScope(fd))
                         {
@@ -348,7 +348,7 @@ Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(IT_EntityName_? source) : base(source)");
 Emit("        {");
 Emit("            if (source is null) throw new ArgumentNullException(nameof(source));");
-                    foreach (var fd in cd.FieldDefs)
+                    foreach (var fd in cd.MemberDefs)
                     {
                         using (NewScope(fd))
                         {
@@ -433,7 +433,7 @@ Emit("        public virtual bool Equals(T_EntityName_? other)");
 Emit("        {");
 Emit("            if (other is null) return false;");
 Emit("            if (ReferenceEquals(other, this)) return true;");
-                    foreach (var fd in cd.FieldDefs)
+                    foreach (var fd in cd.MemberDefs)
                     {
                         using (NewScope(fd))
                         {
@@ -495,7 +495,7 @@ Emit("");
 Emit("        private int CalcHashCode()");
 Emit("        {");
 Emit("            HashCode hc = new HashCode();");
-                    foreach (var fd in cd.FieldDefs)
+                    foreach (var fd in cd.MemberDefs)
                     {
                         using (NewScope(fd))
                         {

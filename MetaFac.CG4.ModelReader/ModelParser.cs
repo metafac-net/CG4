@@ -82,7 +82,7 @@ namespace MetaFac.CG4.ModelReader
                     }
                 }
 
-                List<ModelFieldDef> fieldList = ParseFields(entityDefInfo, sourceNamespace, modelName, entityTagName, proxyTypes, allModelTypes);
+                List<ModelMemberDef> fieldList = ParseFields(entityDefInfo, sourceNamespace, modelName, entityTagName, proxyTypes, allModelTypes);
 
                 if (!obsolete && entityTag.HasValue)
                 {
@@ -322,12 +322,12 @@ namespace MetaFac.CG4.ModelReader
             return result;
         }
 
-        internal static List<ModelFieldDef> ParseFields(
+        internal static List<ModelMemberDef> ParseFields(
             EntityDefInfo entityDefInfo, string sourceNamespace, string modelName, TagName entityTagName,
             ProxyTypeInfoCollection proxyTypes,
             Dictionary<string, EntityDefInfo> allModelTypes)
         {
-            var fieldDefsByName = new Dictionary<string, ModelFieldDef>();
+            var memberDefsByName = new Dictionary<string, ModelMemberDef>();
             // process fields
             foreach (var propInfo in entityDefInfo.RuntimeProperties)
             {
@@ -363,7 +363,7 @@ namespace MetaFac.CG4.ModelReader
                     {
                         proxyDef = new ModelProxyDef(pd.ExternalName, pd.ConcreteName);
                     }
-                    var fieldDef = new ModelFieldDef(
+                    var memberDef = new ModelMemberDef(
                         fieldName, fieldTag, fieldDesc, 
                         innerTypeName,
                         fieldInfo.nullable,
@@ -372,10 +372,10 @@ namespace MetaFac.CG4.ModelReader
                         fieldInfo.indexTypeName,
                         fieldInfo.isModelType,
                         fieldState);
-                    fieldDefsByName.Add(fieldName, fieldDef);
+                    memberDefsByName.Add(fieldName, memberDef);
                 }
             } // foreach field
-            return fieldDefsByName.Values.OrderBy(x => x.Tag).ToList();
+            return memberDefsByName.Values.OrderBy(x => x.Tag).ToList();
         }
 
         public static ModelContainer ParseAssembly(Assembly sourceAssembly, string sourceNamespace)

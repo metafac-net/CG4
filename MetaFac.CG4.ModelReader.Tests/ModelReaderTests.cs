@@ -39,10 +39,10 @@ namespace MetaFac.CG4.ModelReader.Tests
         public void RoundtripModelViaJson2()
         {
             // arrange - construct model
-            var memberDefs = new List<ModelFieldDef>
+            var memberDefs = new List<ModelMemberDef>
             {
-                new ModelFieldDef("Field1", 1, "Field 1", "long", false, null, 0, null, false),
-                new ModelFieldDef("Field2", 2, "Field 2", "string", true, null, 0, null, false)
+                new ModelMemberDef("Field1", 1, "Field 1", "long", false, null, 0, null, false),
+                new ModelMemberDef("Field2", 2, "Field 2", "string", true, null, 0, null, false)
             };
             var entityDefs = new List<ModelEntityDef>
             {
@@ -89,7 +89,7 @@ namespace MetaFac.CG4.ModelReader.Tests
             modelDef.EntityDefs.Count.Should().Be(3);
             var entityDef = modelDef.EntityDefs[0];
             entityDef.Name.Should().Be("BuiltinTypes");
-            entityDef.FieldDefs.Count.Should().Be(19);
+            entityDef.MemberDefs.Count.Should().Be(19);
         }
 
         [Fact]
@@ -102,10 +102,10 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
             var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "ExternalTypes").Single();
-            entityDef.FieldDefs.Count.Should().Be(1);
+            entityDef.MemberDefs.Count.Should().Be(1);
 
             // external type
-            var field0 = entityDef.FieldDefs[0];
+            var field0 = entityDef.MemberDefs[0];
             field0.Tag.Should().Be(1);
             field0.Name.Should().Be("Quantities");
             field0.ProxyDef.Should().NotBeNull();
@@ -125,34 +125,34 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
             var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "EnumeratorTypes").Single();
-            entityDef.FieldDefs.Count.Should().Be(3);
+            entityDef.MemberDefs.Count.Should().Be(3);
 
             // enumerator types
             {
-                var fieldDef = entityDef.FieldDefs[0];
-                fieldDef.Tag.Should().Be(1);
-                fieldDef.Name.Should().Be("DaysOfWeek");
-                fieldDef.ProxyDef.Should().BeNull();
-                fieldDef.ArrayRank.Should().Be(1);
-                fieldDef.InnerType.Should().Be("System.DayOfWeek");
+                var memberDef = entityDef.MemberDefs[0];
+                memberDef.Tag.Should().Be(1);
+                memberDef.Name.Should().Be("DaysOfWeek");
+                memberDef.ProxyDef.Should().BeNull();
+                memberDef.ArrayRank.Should().Be(1);
+                memberDef.InnerType.Should().Be("System.DayOfWeek");
             }
             {
-                var fieldDef = entityDef.FieldDefs[1];
-                fieldDef.Tag.Should().Be(2);
-                fieldDef.Name.Should().Be("MyCustomEnums");
-                fieldDef.ProxyDef.Should().BeNull();
-                fieldDef.ArrayRank.Should().Be(1);
-                fieldDef.InnerType.Should().Be("MetaFac.CG4.ModelReader.Tests.GoodModels.MyCustomEnum");
+                var memberDef = entityDef.MemberDefs[1];
+                memberDef.Tag.Should().Be(2);
+                memberDef.Name.Should().Be("MyCustomEnums");
+                memberDef.ProxyDef.Should().BeNull();
+                memberDef.ArrayRank.Should().Be(1);
+                memberDef.InnerType.Should().Be("MetaFac.CG4.ModelReader.Tests.GoodModels.MyCustomEnum");
             }
             {
-                var fieldDef = entityDef.FieldDefs[2];
-                fieldDef.Tag.Should().Be(3);
-                fieldDef.Name.Should().Be("MyDateTimeKinds");
-                fieldDef.ProxyDef.Should().NotBeNull();
-                fieldDef.ProxyDef!.ExternalName.Should().Be("System.DateTimeKind");
-                fieldDef.ProxyDef.ConcreteName.Should().Be("MyDateTimeKindValue");
-                fieldDef.ArrayRank.Should().Be(1);
-                fieldDef.InnerType.Should().Be("MyDateTimeKind");
+                var memberDef = entityDef.MemberDefs[2];
+                memberDef.Tag.Should().Be(3);
+                memberDef.Name.Should().Be("MyDateTimeKinds");
+                memberDef.ProxyDef.Should().NotBeNull();
+                memberDef.ProxyDef!.ExternalName.Should().Be("System.DateTimeKind");
+                memberDef.ProxyDef.ConcreteName.Should().Be("MyDateTimeKindValue");
+                memberDef.ArrayRank.Should().Be(1);
+                memberDef.InnerType.Should().Be("MyDateTimeKind");
             }
         }
 

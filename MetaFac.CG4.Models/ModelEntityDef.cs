@@ -13,36 +13,36 @@ namespace MetaFac.CG4.Models
         public readonly string Name;
         public readonly bool IsAbstract;
         public readonly string? ParentName;
-        public readonly ImmutableList<ModelFieldDef> FieldDefs;
+        public readonly ImmutableList<ModelMemberDef> MemberDefs;
         public readonly ImmutableList<ModelEntityDef> DerivedEntities;
 
         private ModelEntityDef(string entityName, int? tag, bool isAbstract, string? parentName,
-            ImmutableList<ModelFieldDef> fieldDefs,
+            ImmutableList<ModelMemberDef> memberDefs,
             ImmutableList<ModelEntityDef> derivedEntities)
         {
             Tag = tag;
             Name = entityName;
             IsAbstract = isAbstract;
             ParentName = parentName;
-            FieldDefs = fieldDefs;
+            MemberDefs = memberDefs;
             DerivedEntities = derivedEntities;
         }
 
         public ModelEntityDef(string entityName, int? tag, bool isAbstract, string? parentName,
-            IEnumerable<ModelFieldDef> fieldDefs)
+            IEnumerable<ModelMemberDef> memberDefs)
         {
             Tag = tag;
             Name = entityName;
             IsAbstract = isAbstract;
             ParentName = parentName;
-            FieldDefs = ImmutableList<ModelFieldDef>.Empty.AddRange(fieldDefs);
+            MemberDefs = ImmutableList<ModelMemberDef>.Empty.AddRange(memberDefs);
             DerivedEntities = ImmutableList<ModelEntityDef>.Empty;
         }
 
         public ModelEntityDef SetDerivedEntities(IEnumerable<ModelEntityDef> derivedEntities)
         {
             return new ModelEntityDef(
-                Name, Tag, IsAbstract, ParentName, FieldDefs,
+                Name, Tag, IsAbstract, ParentName, MemberDefs,
                 ImmutableList<ModelEntityDef>.Empty.AddRange(derivedEntities));
         }
 
@@ -54,7 +54,7 @@ namespace MetaFac.CG4.Models
                 source.Tag,
                 source.IsAbstract,
                 source.ParentName,
-                ImmutableList<ModelFieldDef>.Empty.AddRange(source.FieldDefs.NotNullRange(ModelFieldDef.From)),
+                ImmutableList<ModelMemberDef>.Empty.AddRange(source.MemberDefs.NotNullRange(ModelMemberDef.From)),
                 ImmutableList<ModelEntityDef>.Empty);
         }
 
@@ -78,7 +78,7 @@ namespace MetaFac.CG4.Models
                    && string.Equals(Name, other.Name)
                    && IsAbstract == other.IsAbstract
                    && string.Equals(ParentName, other.ParentName)
-                   && FieldDefs.IsEqualTo(other.FieldDefs);
+                   && MemberDefs.IsEqualTo(other.MemberDefs);
         }
 
         public override bool Equals(object? obj)
@@ -95,8 +95,8 @@ namespace MetaFac.CG4.Models
                 hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
                 hashCode = hashCode * 397 ^ (ParentName != null ? ParentName.GetHashCode() : 0);
                 // ordered
-                hashCode = hashCode * 397 ^ FieldDefs.Count;
-                foreach (var field in FieldDefs)
+                hashCode = hashCode * 397 ^ MemberDefs.Count;
+                foreach (var field in MemberDefs)
                 {
                     hashCode = hashCode * 397 ^ field.GetHashCode();
                 }

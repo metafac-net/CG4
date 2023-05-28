@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace MetaFac.CG4.Models
 {
-    public class JsonFieldDef : IEquatable<JsonFieldDef>
+    public class JsonMemberDef : IEquatable<JsonMemberDef>
     {
         public string? Name { get; set; }
         public int? Tag { get; set; }
@@ -17,9 +17,9 @@ namespace MetaFac.CG4.Models
         public string? IndexType { get; set; }
         public bool IsModelType { get; set; }
 
-        public JsonFieldDef() { }
+        public JsonMemberDef() { }
 
-        public JsonFieldDef(ModelFieldDef source)
+        public JsonMemberDef(ModelMemberDef source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name;
@@ -34,7 +34,7 @@ namespace MetaFac.CG4.Models
             State = source.State is null ? null : new JsonItemState(source.State);
         }
 
-        public bool Equals(JsonFieldDef? other)
+        public bool Equals(JsonMemberDef? other)
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
@@ -52,7 +52,7 @@ namespace MetaFac.CG4.Models
 
         public override bool Equals(object? obj)
         {
-            return obj is JsonFieldDef other && Equals(other);
+            return obj is JsonMemberDef other && Equals(other);
         }
 
         public override int GetHashCode()

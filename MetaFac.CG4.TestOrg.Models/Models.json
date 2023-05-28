@@ -9,7 +9,7 @@
           "Name": "Person",
           "IsAbstract": true,
           "ParentName": null,
-          "FieldDefs": [
+          "MemberDefs": [
             {
               "Tag": 1,
               "Name": "FamilyName",

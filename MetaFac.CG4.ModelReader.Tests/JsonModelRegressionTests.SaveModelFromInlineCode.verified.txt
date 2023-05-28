@@ -9,7 +9,7 @@
           "Name": "Entity1",
           "IsAbstract": false,
           "ParentName": null,
-          "FieldDefs": [
+          "MemberDefs": [
             {
               "Name": "Field1",
               "Tag": 1,
