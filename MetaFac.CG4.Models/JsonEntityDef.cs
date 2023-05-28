@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace MetaFac.CG4.Models
 {
     public class JsonEntityDef : IEquatable<JsonEntityDef>
     {
-        public int? Tag { get; set; }
         public string? Name { get; set; }
+        public int? Tag { get; set; }
+        public string? Summary { get; set; }
+        public JsonItemState? State { get; set; }
         public bool IsAbstract { get; set; }
         public string? ParentName { get; set; }
         public List<JsonMemberDef>? MemberDefs { get; set; }
@@ -17,8 +20,9 @@ namespace MetaFac.CG4.Models
         public JsonEntityDef(ModelEntityDef source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Tag = source.Tag;
             Name = source.Name;
+            Tag = source.Tag;
+            Summary = source.Summary;
             IsAbstract = source.IsAbstract;
             ParentName = source.ParentName;
             MemberDefs = source.MemberDefs.Select(fd => new JsonMemberDef(fd)).ToList();
@@ -28,8 +32,9 @@ namespace MetaFac.CG4.Models
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
-            return Tag == other.Tag
-                   && string.Equals(Name, other.Name)
+            return string.Equals(Name, other.Name)
+                   && Tag == other.Tag
+                   && string.Equals(Summary, other.Summary)
                    && IsAbstract == other.IsAbstract
                    && string.Equals(ParentName, other.ParentName)
                    && MemberDefs.IsEqualTo(other.MemberDefs);
@@ -42,23 +47,21 @@ namespace MetaFac.CG4.Models
 
         public override int GetHashCode()
         {
-            unchecked
+            var hashCode = new HashCode();
+            hashCode.Add(Name);
+            hashCode.Add(Tag);
+            hashCode.Add(Summary);
+            hashCode.Add(IsAbstract);
+            hashCode.Add(ParentName);
+            if (MemberDefs is not null)
             {
-                int hashCode = Tag?.GetHashCode() ?? 0;
-                hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
-                hashCode = hashCode * 397 ^ IsAbstract.GetHashCode();
-                hashCode = hashCode * 397 ^ (ParentName?.GetHashCode() ?? 0);
-                // ordered
-                if (MemberDefs != null)
+                hashCode.Add(MemberDefs.Count);
+                foreach (var fd in MemberDefs)
                 {
-                    hashCode = hashCode * 397 ^ MemberDefs.Count;
-                    foreach (var fd in MemberDefs)
-                    {
-                        hashCode = hashCode * 397 ^ fd.GetHashCode();
-                    }
+                    hashCode.Add(fd);
                 }
-                return hashCode;
             }
+            return hashCode.ToHashCode();
         }
     }
 }

@@ -2,35 +2,32 @@
 using System;
 using System.Collections.Immutable;
 using System.Text.Json;
+using System.Xml.Linq;
 
 namespace MetaFac.CG4.Models
 {
-    public class ModelEntityDef : IEquatable<ModelEntityDef>
+    public class ModelEntityDef : ModelItemBase, IEquatable<ModelEntityDef>
     {
-        public readonly int? Tag;
-        public readonly string Name;
         public readonly bool IsAbstract;
         public readonly string? ParentName;
         public readonly ImmutableList<ModelMemberDef> MemberDefs;
         public readonly ImmutableList<ModelEntityDef> DerivedEntities;
 
-        private ModelEntityDef(string entityName, int? tag, bool isAbstract, string? parentName,
+        private ModelEntityDef(string name, int? tag, string? summary, bool isAbstract, string? parentName,
             ImmutableList<ModelMemberDef> memberDefs,
             ImmutableList<ModelEntityDef> derivedEntities)
+            : base(name, tag, summary)
         {
-            Tag = tag;
-            Name = entityName;
             IsAbstract = isAbstract;
             ParentName = parentName;
             MemberDefs = memberDefs;
             DerivedEntities = derivedEntities;
         }
 
-        public ModelEntityDef(string entityName, int? tag, bool isAbstract, string? parentName,
+        public ModelEntityDef(string name, int? tag, string? summary, bool isAbstract, string? parentName,
             IEnumerable<ModelMemberDef> memberDefs)
+            : base(name, tag, summary)
         {
-            Tag = tag;
-            Name = entityName;
             IsAbstract = isAbstract;
             ParentName = parentName;
             MemberDefs = ImmutableList<ModelMemberDef>.Empty.AddRange(memberDefs);
@@ -40,7 +37,7 @@ namespace MetaFac.CG4.Models
         public ModelEntityDef SetDerivedEntities(IEnumerable<ModelEntityDef> derivedEntities)
         {
             return new ModelEntityDef(
-                Name, Tag, IsAbstract, ParentName, MemberDefs,
+                Name, Tag, Summary, IsAbstract, ParentName, MemberDefs,
                 ImmutableList<ModelEntityDef>.Empty.AddRange(derivedEntities));
         }
 
@@ -50,6 +47,7 @@ namespace MetaFac.CG4.Models
             return new ModelEntityDef(
                 source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
                 source.Tag,
+                source.Summary,
                 source.IsAbstract,
                 source.ParentName,
                 ImmutableList<ModelMemberDef>.Empty.AddRange(source.MemberDefs.NotNullRange(ModelMemberDef.From)),

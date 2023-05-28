@@ -5,8 +5,10 @@
       "Name": "Model1",
       "EntityDefs": [
         {
-          "Tag": 1,
           "Name": "BuiltinTypes",
+          "Tag": 1,
+          "Summary": null,
+          "State": null,
           "IsAbstract": true,
           "ParentName": null,
           "MemberDefs": [
@@ -241,8 +243,10 @@
           ]
         },
         {
-          "Tag": 2,
           "Name": "ExternalTypes",
+          "Tag": 2,
+          "Summary": null,
+          "State": null,
           "IsAbstract": true,
           "ParentName": null,
           "MemberDefs": [
@@ -264,8 +268,10 @@
           ]
         },
         {
-          "Tag": 3,
           "Name": "EnumeratorTypes",
+          "Tag": 3,
+          "Summary": null,
+          "State": null,
           "IsAbstract": true,
           "ParentName": null,
           "MemberDefs": [

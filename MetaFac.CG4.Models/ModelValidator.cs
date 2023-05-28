@@ -74,7 +74,7 @@ namespace MetaFac.CG4.Models
                     if (newEntityTag == 0)
                         newEntityTag = ++maxEntityTag;
                     mergedEntityDefsByTag.Add(newEntityTag,
-                        new ModelEntityDef(ncd.Name, newEntityTag, ncd.IsAbstract, ncd.ParentName, ncd.MemberDefs));
+                        new ModelEntityDef(ncd.Name, newEntityTag, ncd.Summary, ncd.IsAbstract, ncd.ParentName, ncd.MemberDefs));
                     mergedEntityNameToTagMap.Add(ncd.Name, newEntityTag);
                     newEntityDefs.Remove(newEntityName);
                 }
@@ -102,7 +102,7 @@ namespace MetaFac.CG4.Models
                     {
                         // update class
                         mergedEntityDefsByTag.Add(oldEntityTag,
-                            new ModelEntityDef(ncd.Name, oldEntityTag, ncd.IsAbstract, ncd.ParentName, ncd.MemberDefs));
+                            new ModelEntityDef(ncd.Name, oldEntityTag, ncd.Summary, ncd.IsAbstract, ncd.ParentName, ncd.MemberDefs));
                         mergedEntityNameToTagMap.Add(ncd.Name, oldEntityTag);
                         newEntityDefs.Remove(newEntityName);
                         oldEntityNameToTagMap.Remove(oldEntityDef.Name);
@@ -266,7 +266,7 @@ namespace MetaFac.CG4.Models
                     else
                     {
                         // unknown parent
-                        parent = new ModelEntityDef(entityDef.ParentName, null, false, null, new List<ModelMemberDef>());
+                        parent = new ModelEntityDef(entityDef.ParentName, null, null, false, null, new List<ModelMemberDef>());
                         result = result.AddError(new ValidationError(
                             ValidationErrorCode.UnknownParent,
                             model.Name, entityDef.ToTagName(), null, parent.ToTagName(), null));

@@ -59,10 +59,10 @@ namespace MetaFac.CG4.ModelReader
             while (toBeProcessed.Count > 0)
             {
                 EntityDefInfo entityDefInfo = toBeProcessed.Dequeue();
-                //Type entityType = entityDefInfo.Type;
                 var entityName = entityDefInfo.EntityName;
-                bool isAbstract = entityDefInfo.IsAbstract;
                 int? entityTag = entityDefInfo.Tag;
+                string? entityDesc = null;
+                bool isAbstract = entityDefInfo.IsAbstract;
                 var entityTagName = new TagName(entityTag, entityName);
                 bool obsolete = false;
                 foreach (Attribute attr in entityDefInfo.CustomAttributes)
@@ -99,7 +99,7 @@ namespace MetaFac.CG4.ModelReader
                     //        new ModelEntityDef(null, baseType.Name, null), null));
                     //}
 
-                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, isAbstract, parentName, fieldList);
+                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, entityDesc, isAbstract, parentName, fieldList);
                     entityDefsByName.Add(entityName, entityDef);
                     entityDefsByTag.Add(entityTag.Value, entityDef);
                 }
