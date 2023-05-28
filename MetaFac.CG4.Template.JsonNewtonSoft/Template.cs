@@ -214,8 +214,8 @@ namespace T_Namespace_.JsonNewtonSoft
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {
-        //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-        //>>                switch (fieldInfo.Kind)
+        //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+        //>>                switch (memberInfo.Kind)
         //>>                {
         //>>                    case FieldKind.UnaryModel:
         private T_ModelType_? field_T_UnaryModelFieldName_;
@@ -361,8 +361,8 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             field_T_UnaryModelFieldName_ = source.T_UnaryModelFieldName_;
@@ -423,8 +423,8 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
@@ -509,8 +509,8 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
@@ -594,8 +594,8 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             if (!T_UnaryModelFieldName_.ValueEquals(other.T_UnaryModelFieldName_)) return false;
@@ -658,8 +658,8 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             hc.Add(T_UnaryModelFieldName_.CalcHashUnary());

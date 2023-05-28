@@ -135,8 +135,8 @@ namespace T_Namespace_.Contracts
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {
-        //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-        //>>                switch (fieldInfo.Kind)
+        //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+        //>>                switch (memberInfo.Kind)
         //>>                {
         //>>                    case FieldKind.UnaryModel:
         IT_ModelType_? T_UnaryModelFieldName_ { get; }

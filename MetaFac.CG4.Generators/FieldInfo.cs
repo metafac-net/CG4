@@ -3,7 +3,8 @@ using System;
 
 namespace MetaFac.CG4.Generators
 {
-    public class FieldInfo
+    public class MemberInfo
+
     {
         private readonly EngineScope _engineScope;
 
@@ -23,7 +24,7 @@ namespace MetaFac.CG4.Generators
             else
                 Define($"Unary{kind}FieldName", "T_FieldName_");
         }
-        public FieldInfo(ModelMemberDef memberDef, EngineScope engineScope)
+        public MemberInfo(ModelMemberDef memberDef, EngineScope engineScope)
         {
             _engineScope = engineScope ?? throw new ArgumentNullException(nameof(engineScope));
 

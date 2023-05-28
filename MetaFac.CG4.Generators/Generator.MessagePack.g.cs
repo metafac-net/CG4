@@ -319,8 +319,8 @@ Emit("        {");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            field_T_UnaryModelFieldName_?.Freeze();");
@@ -363,8 +363,8 @@ Emit("        // ---------- private fields ----------");
                 {
                     using (NewScope(fd))
                     {
-                        var fieldInfo = new FieldInfo(fd, _engine.Current);
-                        switch (fieldInfo.Kind)
+                        var memberInfo = new MemberInfo(fd, _engine.Current);
+                        switch (memberInfo.Kind)
                         {
                             case FieldKind.UnaryModel:
 Emit("        private T_ModelType_? field_T_UnaryModelFieldName_;");
@@ -412,7 +412,7 @@ Emit("        private ImmutableList<String?>? field_T_ArrayStringFieldName_;");
 Emit("        private ImmutableDictionary<T_IndexType_, String?>? field_T_IndexStringFieldName_;");
                                 break;
                             default:
-                                throw new ArgumentOutOfRangeException("fieldInfo.Kind", fieldInfo.Kind, $"ordinal={(int)fieldInfo.Kind}");
+                                throw new ArgumentOutOfRangeException("memberInfo.Kind", memberInfo.Kind, $"ordinal={(int)memberInfo.Kind}");
                         }
                     }
                 }
@@ -422,13 +422,13 @@ Emit("        // ---------- accessors ----------");
                 {
                     using (NewScope(fd))
                     {
-                        var fieldInfo = new FieldInfo(fd, _engine.Current);
+                        var memberInfo = new MemberInfo(fd, _engine.Current);
 Emit("        [Key(T_FieldTag_)]");
                         using (Ignored())
                         {
 Emit("        public int IgnoreThisField { get; set; }");
                         }
-                        switch (fieldInfo.Kind)
+                        switch (memberInfo.Kind)
                         {
                             case FieldKind.UnaryModel:
                                 using (Ignored())
@@ -596,7 +596,7 @@ Emit("            set => field_T_IndexStringFieldName_ = CheckNotFrozen(ref valu
 Emit("        }");
                                 break;
                             default:
-                                throw new ArgumentOutOfRangeException("fieldInfo.Kind", fieldInfo.Kind, $"ordinal={(int)fieldInfo.Kind}");
+                                throw new ArgumentOutOfRangeException("memberInfo.Kind", memberInfo.Kind, $"ordinal={(int)memberInfo.Kind}");
                         }
                     }
                 }
@@ -606,8 +606,8 @@ Emit("        // ---------- IT_EntityName_ methods ----------");
                 {
                     using (NewScope(fd))
                     {
-                        var fieldInfo = new FieldInfo(fd, _engine.Current);
-                        switch (fieldInfo.Kind)
+                        var memberInfo = new MemberInfo(fd, _engine.Current);
+                        switch (memberInfo.Kind)
                         {
                             case FieldKind.UnaryModel:
 Emit("        IT_ModelType_? IT_EntityName_.T_UnaryModelFieldName_ => field_T_UnaryModelFieldName_;");
@@ -685,8 +685,8 @@ Emit("        {");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            field_T_UnaryModelFieldName_ = source.field_T_UnaryModelFieldName_;");
@@ -746,8 +746,8 @@ Emit("            base.CopyFrom(source);");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            field_T_UnaryModelFieldName_ = source.field_T_UnaryModelFieldName_;");
@@ -807,8 +807,8 @@ Emit("        {");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);");
@@ -893,8 +893,8 @@ Emit("            if (ReferenceEquals(other, this)) return true;");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            if (!field_T_UnaryModelFieldName_.ValueEquals(other.field_T_UnaryModelFieldName_)) return false;");
@@ -975,8 +975,8 @@ Emit("            HashCode hc = new HashCode();");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            hc.Add(field_T_UnaryModelFieldName_.CalcHashUnary());");

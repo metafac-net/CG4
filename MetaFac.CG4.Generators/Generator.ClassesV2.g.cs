@@ -266,8 +266,8 @@ Emit("        {");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            field_T_UnaryModelFieldName_?.Freeze();");
@@ -308,8 +308,8 @@ Emit("");
                 {
                     using (NewScope(fd))
                     {
-                        var fieldInfo = new FieldInfo(fd, _engine.Current);
-                        switch (fieldInfo.Kind)
+                        var memberInfo = new MemberInfo(fd, _engine.Current);
+                        switch (memberInfo.Kind)
                         {
                             case FieldKind.UnaryModel:
 Emit("        private T_ModelType_? field_T_UnaryModelFieldName_;");
@@ -466,8 +466,8 @@ Emit("            if (source is null) throw new ArgumentNullException(nameof(sou
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            field_T_UnaryModelFieldName_ = source.T_UnaryModelFieldName_;");
@@ -528,8 +528,8 @@ Emit("            if (source is null) throw new ArgumentNullException(nameof(sou
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);");
@@ -613,8 +613,8 @@ Emit("            base.CopyFrom(source);");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);");
@@ -696,8 +696,8 @@ Emit("            if (ReferenceEquals(other, this)) return true;");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            if (!T_UnaryModelFieldName_.ValueEquals(other.T_UnaryModelFieldName_)) return false;");
@@ -760,8 +760,8 @@ Emit("            HashCode hc = new HashCode();");
                     {
                         using (NewScope(fd))
                         {
-                            var fieldInfo = new FieldInfo(fd, _engine.Current);
-                            switch (fieldInfo.Kind)
+                            var memberInfo = new MemberInfo(fd, _engine.Current);
+                            switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
 Emit("            hc.Add(T_UnaryModelFieldName_.CalcHashUnary());");

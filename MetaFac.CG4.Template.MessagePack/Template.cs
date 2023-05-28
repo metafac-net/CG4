@@ -307,8 +307,8 @@ namespace T_Namespace_.MessagePack
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             field_T_UnaryModelFieldName_?.Freeze();
@@ -351,8 +351,8 @@ namespace T_Namespace_.MessagePack
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {
-        //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-        //>>                switch (fieldInfo.Kind)
+        //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+        //>>                switch (memberInfo.Kind)
         //>>                {
         //>>                    case FieldKind.UnaryModel:
         private T_ModelType_? field_T_UnaryModelFieldName_;
@@ -400,7 +400,7 @@ namespace T_Namespace_.MessagePack
         private ImmutableDictionary<T_IndexType_, String?>? field_T_IndexStringFieldName_;
         //>>                        break;
         //>>                    default:
-        //>>                        throw new ArgumentOutOfRangeException("fieldInfo.Kind", fieldInfo.Kind, $"ordinal={(int)fieldInfo.Kind}");
+        //>>                        throw new ArgumentOutOfRangeException("memberInfo.Kind", memberInfo.Kind, $"ordinal={(int)memberInfo.Kind}");
         //>>                }
         //>>            }
         //>>        }
@@ -410,13 +410,13 @@ namespace T_Namespace_.MessagePack
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {
-        //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
+        //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
         [Key(T_FieldTag_)]
         //>>                using (Ignored())
         //>>                {
         public int IgnoreThisField { get; set; }
         //>>                }
-        //>>                switch (fieldInfo.Kind)
+        //>>                switch (memberInfo.Kind)
         //>>                {
         //>>                    case FieldKind.UnaryModel:
         //>>                        using (Ignored())
@@ -584,7 +584,7 @@ namespace T_Namespace_.MessagePack
         }
         //>>                        break;
         //>>                    default:
-        //>>                        throw new ArgumentOutOfRangeException("fieldInfo.Kind", fieldInfo.Kind, $"ordinal={(int)fieldInfo.Kind}");
+        //>>                        throw new ArgumentOutOfRangeException("memberInfo.Kind", memberInfo.Kind, $"ordinal={(int)memberInfo.Kind}");
         //>>                }
         //>>            }
         //>>        }
@@ -594,8 +594,8 @@ namespace T_Namespace_.MessagePack
         //>>        {
         //>>            using (NewScope(fd))
         //>>            {
-        //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-        //>>                switch (fieldInfo.Kind)
+        //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+        //>>                switch (memberInfo.Kind)
         //>>                {
         //>>                    case FieldKind.UnaryModel:
         IT_ModelType_? IT_EntityName_.T_UnaryModelFieldName_ => field_T_UnaryModelFieldName_;
@@ -673,8 +673,8 @@ namespace T_Namespace_.MessagePack
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             field_T_UnaryModelFieldName_ = source.field_T_UnaryModelFieldName_;
@@ -734,8 +734,8 @@ namespace T_Namespace_.MessagePack
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             field_T_UnaryModelFieldName_ = source.field_T_UnaryModelFieldName_;
@@ -795,8 +795,8 @@ namespace T_Namespace_.MessagePack
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
@@ -881,8 +881,8 @@ namespace T_Namespace_.MessagePack
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             if (!field_T_UnaryModelFieldName_.ValueEquals(other.field_T_UnaryModelFieldName_)) return false;
@@ -963,8 +963,8 @@ namespace T_Namespace_.MessagePack
             //>>        {
             //>>            using (NewScope(fd))
             //>>            {
-            //>>                var fieldInfo = new FieldInfo(fd, _engine.Current);
-            //>>                switch (fieldInfo.Kind)
+            //>>                var memberInfo = new MemberInfo(fd, _engine.Current);
+            //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
             hc.Add(field_T_UnaryModelFieldName_.CalcHashUnary());

@@ -147,8 +147,8 @@ Emit("    {");
                 {
                     using (NewScope(fd))
                     {
-                        var fieldInfo = new FieldInfo(fd, _engine.Current);
-                        switch (fieldInfo.Kind)
+                        var memberInfo = new MemberInfo(fd, _engine.Current);
+                        switch (memberInfo.Kind)
                         {
                             case FieldKind.UnaryModel:
 Emit("        IT_ModelType_? T_UnaryModelFieldName_ { get; }");

@@ -149,7 +149,7 @@ namespace MetaFac.CG4.ModelReader
             return dataType.FullName;
         }
 
-        private class FieldInfo
+        private class MemberInfo
         {
             public bool nullable = false;
             public bool IsProxy = false;
@@ -162,13 +162,13 @@ namespace MetaFac.CG4.ModelReader
             public string? indexTypeName = null;
         }
 
-        private static FieldInfo GetFieldInfo(
+        private static MemberInfo GetFieldInfo(
             string sourceNamespace,
             string modelName, TagName entityTagName, string memberName, Type fieldType,
             ProxyTypeInfoCollection proxyTypes,
             Dictionary<string, EntityDefInfo> allModelTypes)
         {
-            var result = new FieldInfo();
+            var result = new MemberInfo();
             // vector types
             Type? indexType = null;
             // collection types
@@ -336,8 +336,8 @@ namespace MetaFac.CG4.ModelReader
                 string? fieldDesc = null;
                 ModelItemState? fieldState = null;
                 Type fieldType = propInfo.PropertyType;
-                var fieldInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, memberName, fieldType, proxyTypes, allModelTypes);
-                string innerTypeName = fieldInfo.innerTypeName ?? nameof(Unknown);
+                var memberInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, memberName, fieldType, proxyTypes, allModelTypes);
+                string innerTypeName = memberInfo.innerTypeName ?? nameof(Unknown);
 
                 bool obsolete = false;
                 foreach (Attribute attr in propInfo.GetCustomAttributes())
@@ -354,10 +354,10 @@ namespace MetaFac.CG4.ModelReader
 
                 if (!obsolete)
                 {
-                    bool isVector = fieldInfo.ArrayRank == 1;
-                    string typeDesc = $"{innerTypeName}{(fieldInfo.nullable ? "?" : "")}{(isVector ? "[" : "")}{fieldInfo.indexTypeName}{(isVector ? "]" : "")}";
+                    bool isVector = memberInfo.ArrayRank == 1;
+                    string typeDesc = $"{innerTypeName}{(memberInfo.nullable ? "?" : "")}{(isVector ? "[" : "")}{memberInfo.indexTypeName}{(isVector ? "]" : "")}";
                     ModelProxyDef? proxyDef = null;
-                    if (fieldInfo.IsProxy
+                    if (memberInfo.IsProxy
                         && proxyTypes.TryGetValue(innerTypeName, out var pd)
                         && pd is not null)
                     {
@@ -366,11 +366,11 @@ namespace MetaFac.CG4.ModelReader
                     var memberDef = new ModelMemberDef(
                         memberName, fieldTag, fieldDesc, 
                         innerTypeName,
-                        fieldInfo.nullable,
+                        memberInfo.nullable,
                         proxyDef,
-                        fieldInfo.ArrayRank,
-                        fieldInfo.indexTypeName,
-                        fieldInfo.isModelType,
+                        memberInfo.ArrayRank,
+                        memberInfo.indexTypeName,
+                        memberInfo.isModelType,
                         fieldState);
                     memberDefsByName.Add(memberName, memberDef);
                 }
