@@ -34,11 +34,12 @@ namespace MetaFac.CG4.SourceGenerator
                         string jsonModel = jsonSourceText is not null ? jsonSourceText.ToString() : throw new FileNotFoundException("File is empty", jsonModelFile.Path);
 
                         var generator = GeneratorHelper.CreateBasicGenerator(command.GeneratorId);
-                        string generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "unknown";
+                        var gvi = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location);
+
                         var metadata = ModelContainer.FromJson(jsonModel);
                         metadata = metadata
                             .SetToken("Namespace", generateCmd.TargetNamespace)
-                            .SetToken("Generator", $"{generator.ShortName}.{generatorVersion}")
+                            .SetToken("Generator", $"{generator.ShortName}.{gvi?.FileMajorPart}.{gvi?.FileMinorPart}")
                             ;
 
                         // validate metadata and emit diagnostics

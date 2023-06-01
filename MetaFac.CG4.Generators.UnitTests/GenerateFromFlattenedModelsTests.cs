@@ -11,7 +11,7 @@ using Xunit;
 
 namespace MetaFac.CG4.Generators.UnitTests
 {
-    internal static class GeneratorHelper
+    internal static class GeneratorTestsHelper
     {
         /// <summary>
         /// A helper method to generate source file.
@@ -33,11 +33,12 @@ namespace MetaFac.CG4.Generators.UnitTests
             ModelContainer metadata = ModelParser.ParseAssembly(sourceAssembly, sourceNamespace);
 
             var options = new GeneratorOptions(usersOptions);
-            string generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "unknown";
+            var gvi = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location);
+
             metadata = metadata
                 .SetToken("Namespace", outputNamespace)
-                .SetToken("Generator", $"{generator.ShortName}.{generatorVersion}")
-                .SetToken("Metadata", $"{sourceAssembly.GetName().Name}({sourceNamespace})")
+                .SetToken("Generator", $"{generator.ShortName}.{gvi?.FileMajorPart}.{gvi?.FileMinorPart}")
+                .SetToken("Metadata", GeneratorHelper.GetMetadataSourceDisplayString(sourceAssembly, sourceNamespace))
                 ;
             if (options.CopyrightInfo is not null)
             {
@@ -55,7 +56,7 @@ namespace MetaFac.CG4.Generators.UnitTests
         {
             var anchorType = typeof(FlattenedModels.IBuiltinTypes);
             var options = new GeneratorOptions() { CopyrightInfo = "Copyright (c) 2023 MetaFac" };
-            var sourceLines = GeneratorHelper.GenerateSource(anchorType, "Generated", options, generator)
+            var sourceLines = GeneratorTestsHelper.GenerateSource(anchorType, "Generated", options, generator)
                 .ToArray();
             string sourceCode = string.Join(Environment.NewLine, sourceLines);
             return sourceCode;

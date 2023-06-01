@@ -10,14 +10,30 @@ namespace MetaFac.CG4.Generators
 {
     public static class GeneratorHelper
     {
-        public static InternalGeneratorId GetGeneratorId(string generatorId)
+        public static string GetMetadataSourceDisplayString(Assembly sourceAssembly, string? sourceNamespace)
+        {
+            string assemblyName = sourceAssembly.GetName().Name;
+            if (sourceNamespace is null || string.IsNullOrWhiteSpace(sourceNamespace))
+                return $"{assemblyName}";
+            else
+            {
+                if (sourceNamespace.StartsWith(assemblyName))
+                {
+                    return $"{assemblyName}({sourceNamespace.Substring(assemblyName.Length)})";
+                }
+                else
+                    return $"{assemblyName}({sourceNamespace})";
+            }
+        }
+
+        public static GeneratorId GetGeneratorId(string generatorId)
         {
             if (generatorId is null) throw new ArgumentNullException(nameof(generatorId));
-            string prefix = $"{nameof(InternalGeneratorId)}.";
+            string prefix = $"{nameof(GeneratorId)}.";
             if (generatorId.StartsWith(prefix))
             {
                 string suffix = generatorId.Substring(prefix.Length);
-                if (Enum.TryParse<InternalGeneratorId>(suffix, out var parsedGeneratorId))
+                if (Enum.TryParse<GeneratorId>(suffix, out var parsedGeneratorId))
                 {
                     return parsedGeneratorId;
                 }
@@ -25,14 +41,18 @@ namespace MetaFac.CG4.Generators
             throw new ArgumentOutOfRangeException(nameof(generatorId), generatorId, null);
         }
 
-        public static GeneratorBase CreateBasicGenerator(InternalGeneratorId generatorId)
+        public static GeneratorBase CreateBasicGenerator(GeneratorId generatorId)
         {
             switch (generatorId)
             {
-                case InternalGeneratorId.Contracts:
+                case GeneratorId.Contracts:
                     return new MetaFac.CG4.Generator.Contracts.Generator();
-                case InternalGeneratorId.MessagePack:
+                case GeneratorId.MessagePack:
                     return new MetaFac.CG4.Generator.MessagePack.Generator();
+                case GeneratorId.ClassesV2:
+                    return new MetaFac.CG4.Generator.ClassesV2.Generator();
+                case GeneratorId.RecordsV2:
+                    return new MetaFac.CG4.Generator.RecordsV2.Generator();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(generatorId), generatorId, null);
             }

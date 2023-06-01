@@ -1,9 +1,11 @@
 ﻿namespace MetaFac.CG4.Generators
 {
-    public enum InternalGeneratorId
+    public enum GeneratorId
     {
         None = 0,
         Contracts = 1,
         MessagePack = 2,
+        ClassesV2 = 3,
+        RecordsV2 = 4,
     }
 }

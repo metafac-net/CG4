@@ -23,10 +23,10 @@ namespace MetaFac.CG4.SourceGenerator
 
     internal abstract class BaseCommand
     {
-        public readonly InternalGeneratorId GeneratorId;
+        public readonly GeneratorId GeneratorId;
         public readonly string TargetNamespace;
 
-        protected BaseCommand(InternalGeneratorId generatorId, string targetNamespace)
+        protected BaseCommand(GeneratorId generatorId, string targetNamespace)
         {
             GeneratorId = generatorId;
             TargetNamespace = targetNamespace;
@@ -35,7 +35,7 @@ namespace MetaFac.CG4.SourceGenerator
     internal sealed class GenerateCommand : BaseCommand
     {
         public readonly string JsonMetadataFilename;
-        public GenerateCommand(InternalGeneratorId generatorId, string targetNamespace, string jsonMetadataFilename)
+        public GenerateCommand(GeneratorId generatorId, string targetNamespace, string jsonMetadataFilename)
             : base(generatorId, targetNamespace)
         {
             JsonMetadataFilename = jsonMetadataFilename;
@@ -45,7 +45,7 @@ namespace MetaFac.CG4.SourceGenerator
     {
         public readonly Location Location;
         public readonly string Message;
-        public SyntaxVisitError(InternalGeneratorId generatorId, string targetNamespace, Location location, string message)
+        public SyntaxVisitError(GeneratorId generatorId, string targetNamespace, Location location, string message)
             : base(generatorId, targetNamespace)
         {
             Location = location;
@@ -85,7 +85,7 @@ namespace MetaFac.CG4.SourceGenerator
             {
                 Location location = Location.Create(cds.SyntaxTree, cds.Span);
                 string targetNamespace = nds.Name.ToString();
-                InternalGeneratorId generatorId = InternalGeneratorId.None;
+                GeneratorId generatorId = GeneratorId.None;
                 try
                 {
                     if (context.SemanticModel.GetDeclaredSymbol(cds) is INamedTypeSymbol classSymbol)
@@ -96,7 +96,7 @@ namespace MetaFac.CG4.SourceGenerator
                         var attributeArguments = attribute.ConstructorArguments;
                         if (attributeArguments.Length == 2)
                         {
-                            generatorId = (InternalGeneratorId)GetValue<int>(attributeArguments[0].Value);
+                            generatorId = (GeneratorId)GetValue<int>(attributeArguments[0].Value);
                             string jsonMetadaFilename = GetValue<string>(attributeArguments[1].Value);
                             ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new GenerateCommand(generatorId, targetNamespace, jsonMetadaFilename));
                         }

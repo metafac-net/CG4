@@ -8,8 +8,8 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: MetaFac.CG4.Contracts.0.1.69.56196
-// Metadata : MetaFac.CG4.Generators.UnitTests(MetaFac.CG4.Generators.UnitTests.TinyModels)
+// Generator: MetaFac.CG4.Contracts.0.1
+// Metadata : MetaFac.CG4.Generators.UnitTests(.TinyModels)
 // </information>
 #endregion
 #nullable enable
