@@ -1,7 +1,4 @@
-﻿using MetaFac.CG4.Attributes;
-using MetaFac.CG4.ModelReader;
-using MetaFac.CG4.Models;
-using Microsoft.Extensions.Logging;
+﻿using MetaFac.CG4.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,14 +10,14 @@ namespace MetaFac.CG4.Generators
 {
     public static class GeneratorHelper
     {
-        public static BasicGeneratorId GetGeneratorId(string generatorId)
+        public static InternalGeneratorId GetGeneratorId(string generatorId)
         {
             if (generatorId is null) throw new ArgumentNullException(nameof(generatorId));
-            string prefix = $"{nameof(BasicGeneratorId)}.";
+            string prefix = $"{nameof(InternalGeneratorId)}.";
             if (generatorId.StartsWith(prefix))
             {
                 string suffix = generatorId.Substring(prefix.Length);
-                if (Enum.TryParse<BasicGeneratorId>(suffix, out var parsedGeneratorId))
+                if (Enum.TryParse<InternalGeneratorId>(suffix, out var parsedGeneratorId))
                 {
                     return parsedGeneratorId;
                 }
@@ -28,13 +25,13 @@ namespace MetaFac.CG4.Generators
             throw new ArgumentOutOfRangeException(nameof(generatorId), generatorId, null);
         }
 
-        public static GeneratorBase CreateBasicGenerator(BasicGeneratorId generatorId)
+        public static GeneratorBase CreateBasicGenerator(InternalGeneratorId generatorId)
         {
             switch (generatorId)
             {
-                case BasicGeneratorId.Contracts:
+                case InternalGeneratorId.Contracts:
                     return new MetaFac.CG4.Generator.Contracts.Generator();
-                case BasicGeneratorId.MessagePack:
+                case InternalGeneratorId.MessagePack:
                     return new MetaFac.CG4.Generator.MessagePack.Generator();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(generatorId), generatorId, null);
@@ -61,95 +58,6 @@ namespace MetaFac.CG4.Generators
             {
                 sw.WriteLine(line);
             }
-        }
-
-        /// <summary>
-        /// Generates metadata from attributed code in an assembly.
-        /// </summary>
-        /// <param name="logger">The event logger.</param>
-        /// <param name="modelAnchorType">An anchor type in the assembly used to find all other model types.</param>
-        public static ModelContainer GenerateMetadata(
-            ILogger logger,
-            Type modelAnchorType)
-        {
-            string fileVersion = FileVersionInfo.GetVersionInfo(typeof(GeneratorHelper).Assembly.Location).FileVersion ?? "unknown";
-            using var scope1 = logger.BeginScope(nameof(GeneratorHelper));
-
-            Assembly modelAssembly = modelAnchorType.Assembly;
-            string modelNamespace = modelAnchorType.Namespace ?? "Unknown_Namespace";
-            logger.LogInformation("Generator version: {version}", fileVersion);
-            logger.LogInformation("Model source     : {modelAssembly} ({modelNamespace})", modelAssembly.GetName().Name, modelNamespace);
-            var metadata = ModelParser.ParseAssembly(modelAssembly, modelNamespace);
-            string metadataSource = Path.GetFileName(modelAssembly.Location);
-            string metadataVersion = $"(version {FileVersionInfo.GetVersionInfo(modelAssembly.Location).FileVersion})";
-
-            // validate metadata
-            var validationResult = new ModelValidator().Validate(metadata, ValidationErrorHandling.ThrowOnFirst);
-            if (validationResult.HasWarnings)
-            {
-                using (var scope2 = logger.BeginScope("Metadata warnings"))
-                {
-                    foreach (var ve in validationResult.Warnings)
-                    {
-                        logger.LogWarning("{errorCode} {errorMessage}", ve.ErrorCode, ve.Message);
-                    }
-                }
-            }
-            return metadata;
-        }
-
-        /// <summary>
-        /// A helper method to generate source file.
-        /// </summary>
-        /// <param name="logger">The event logger.</param>
-        /// <param name="metadata">The model(s).</param>
-        /// <param name="outputNamespace">The output namespace for the generated source files.</param>
-        /// <param name="usersOptions">The optional users' options.</param>
-        /// <param name="generators">The generators to be run in the order given.</param>
-        public static IEnumerable<string> GenerateSource(
-            ILogger logger,
-            ModelContainer metadata,
-            string outputNamespace,
-            GeneratorOptions? usersOptions,
-            GeneratorBase generator)
-        {
-            if (string.IsNullOrWhiteSpace(outputNamespace))
-            {
-                throw new ArgumentException($"'{nameof(outputNamespace)}' cannot be null or whitespace.", nameof(outputNamespace));
-            }
-
-            var options = new GeneratorOptions(usersOptions);
-            string fileVersion = FileVersionInfo.GetVersionInfo(typeof(GeneratorHelper).Assembly.Location).FileVersion ?? "unknown";
-            using var scope1 = logger.BeginScope(nameof(GeneratorHelper));
-
-            logger.LogInformation("Generator version: {version}", fileVersion);
-            logger.LogInformation("Model source     : Metadata");
-
-            // validate metadata
-            var validationResult = new ModelValidator().Validate(metadata, ValidationErrorHandling.ThrowOnFirst);
-            if (validationResult.HasWarnings)
-            {
-                using (var scope2 = logger.BeginScope("Metadata warnings"))
-                {
-                    foreach (var ve in validationResult.Warnings)
-                    {
-                        logger.LogWarning("{errorCode} {errorMessage}", ve.ErrorCode, ve.Message);
-                    }
-                }
-            }
-
-            string generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "unknown";
-
-            metadata = metadata
-                .SetToken("Namespace", outputNamespace)
-                .SetToken("GeneratorId", generator.GetType().FullName ?? "Unknown_Generator")
-                .SetToken("GeneratorVersion", $"(version {generatorVersion})");
-            if (options.CopyrightInfo is not null)
-            {
-                metadata = metadata.SetToken("CopyrightInfo", options.CopyrightInfo);
-            }
-            var source = generator.Generate(metadata).ToList();
-            return source;
         }
 
     }

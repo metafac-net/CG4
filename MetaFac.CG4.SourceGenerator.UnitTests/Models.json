@@ -44,7 +44,6 @@
   ],
   "Tokens": {
     "CopyrightInfo": "Copyright (c) 2023 MetaFac",
-    "MetadataSource": "MetaFac.CG4.TestOrg.Schema.dll",
-    "MetadataVersion": "1.0.0.0"
+    "Metadata": "MetaFac.CG4.TestOrg.Schema(MetaFac.CG4.TestOrg.Schema.Personel)"
   }
 }

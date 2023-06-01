@@ -1,7 +1,8 @@
 ﻿using MetaFac.CG4.ModelReader;
 using MetaFac.CG4.Models;
-using Microsoft.Extensions.Logging.Abstractions;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -10,16 +11,51 @@ using Xunit;
 
 namespace MetaFac.CG4.Generators.UnitTests
 {
+    internal static class GeneratorHelper
+    {
+        /// <summary>
+        /// A helper method to generate source file.
+        /// </summary>
+        /// <param name="metadata">The model(s).</param>
+        /// <param name="outputNamespace">The output namespace for the generated source files.</param>
+        /// <param name="usersOptions">The optional users' options.</param>
+        /// <param name="generators">The generators to be run in the order given.</param>
+        public static IEnumerable<string> GenerateSource(
+            Type anchorType,
+            string outputNamespace,
+            GeneratorOptions? usersOptions,
+            GeneratorBase generator)
+        {
+            if (string.IsNullOrWhiteSpace(outputNamespace)) throw new ArgumentException($"'{nameof(outputNamespace)}' cannot be null or whitespace.", nameof(outputNamespace));
+
+            var sourceAssembly = anchorType.Assembly;
+            var sourceNamespace = anchorType.Namespace!;
+            ModelContainer metadata = ModelParser.ParseAssembly(sourceAssembly, sourceNamespace);
+
+            var options = new GeneratorOptions(usersOptions);
+            string generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "unknown";
+            metadata = metadata
+                .SetToken("Namespace", outputNamespace)
+                .SetToken("Generator", $"{generator.ShortName}.{generatorVersion}")
+                .SetToken("Metadata", $"{sourceAssembly.GetName().Name}({sourceNamespace})")
+                ;
+            if (options.CopyrightInfo is not null)
+            {
+                metadata = metadata.SetToken("CopyrightInfo", options.CopyrightInfo);
+            }
+            return generator.Generate(metadata).ToList();
+        }
+
+    }
+
     [UsesVerify]
     public class GenerateFromFlattenedModelsTests
     {
         private static string GenerateSourceCode(GeneratorBase generator)
         {
-            string ns = typeof(FlattenedModels.IBuiltinTypes).Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
-            var logger = NullLogger.Instance;
+            var anchorType = typeof(FlattenedModels.IBuiltinTypes);
             var options = new GeneratorOptions() { CopyrightInfo = "Copyright (c) 2023 MetaFac" };
-            var sourceLines = GeneratorHelper.GenerateSource(logger, metadata, "Generated", options, generator)
+            var sourceLines = GeneratorHelper.GenerateSource(anchorType, "Generated", options, generator)
                 .ToArray();
             string sourceCode = string.Join(Environment.NewLine, sourceLines);
             return sourceCode;

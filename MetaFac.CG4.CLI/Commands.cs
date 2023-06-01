@@ -162,12 +162,10 @@ namespace MetaFac.CG4.CLI
 
             if (!File.Exists(assmFilename)) throw new FileNotFoundException($"Metadata file (DLL) not found", assmFilename);
 
-            var assembly = Assembly.LoadFrom(assmFilename);
-            ModelContainer metadata = ModelParser.ParseAssembly(assembly, assmNamespace);
-            string metadataSource = Path.GetFileName(assmFilename);
-            string metadataVersion = $"{FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion}";
+            var sourceAssembly = Assembly.LoadFrom(assmFilename);
+            ModelContainer metadata = ModelParser.ParseAssembly(sourceAssembly, assmNamespace);
 
-            Logger.LogInformation($"  Source: {metadataSource}");
+            Logger.LogInformation($"  Source: {assmFilename}");
             Logger.LogInformation($"  Output: {outputFilename}");
 
             // validate metadata before generation
@@ -191,8 +189,7 @@ namespace MetaFac.CG4.CLI
             }
 
             metadata = metadata
-                .SetToken("MetadataSource", metadataSource)
-                .SetToken("MetadataVersion", metadataVersion)
+                .SetToken("Metadata", $"{sourceAssembly.GetName().Name}({assmNamespace})")
                 ;
 
             // generate!
@@ -247,8 +244,8 @@ namespace MetaFac.CG4.CLI
             ModelContainer metadata = ReadMetadataFromJsonFile(jsonFilename);
 
             var generator = GetGenerator(ParseGeneratorId(generatorName));
+            var generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "Unknown";
 
-            string fileVersion = ThisAssembly.AssemblyFileVersion;
             Logger.LogInformation($"  Source: {jsonFilename}");
             Logger.LogInformation($"  Output: {outputFilename}");
 
@@ -257,8 +254,7 @@ namespace MetaFac.CG4.CLI
 
             metadata = metadata
                 .SetToken("Namespace", outputNamespace)
-                .SetToken("GeneratorId", generator.ShortName)
-                .SetToken("GeneratorVersion", fileVersion)
+                .SetToken("Generator", $"{generator.ShortName}.{generatorVersion}")
                 ;
 
             // generate!
@@ -287,16 +283,13 @@ namespace MetaFac.CG4.CLI
             if (string.IsNullOrEmpty(assmNamespace)) throw new ArgumentException($"assm-namespace not specified.");
             if (!File.Exists(assmFilename)) throw new FileNotFoundException($"Metadata file (DLL) not found", assmFilename);
 
-            var assembly = Assembly.LoadFrom(assmFilename);
-            ModelContainer metadata = ModelParser.ParseAssembly(assembly, assmNamespace);
+            var sourceAssembly = Assembly.LoadFrom(assmFilename);
+            ModelContainer metadata = ModelParser.ParseAssembly(sourceAssembly, assmNamespace);
             string sourceNamespace = assmNamespace;
-            string metadataSource = Path.GetFileName(assmFilename);
-            string metadataVersion = FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion ?? "Unknown";
 
             var generator = GetGenerator(ParseGeneratorId(generatorName));
-
-            string generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "Unknown";
-            Logger.LogInformation($"  Source: {metadataSource} ({sourceNamespace ?? "*"})");
+            var generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "Unknown";
+            Logger.LogInformation($"  Source: {assmFilename} ({sourceNamespace ?? "*"})");
             Logger.LogInformation($"  Output: {outputCodeFilename}");
 
             // validate metadata before generation
@@ -304,10 +297,8 @@ namespace MetaFac.CG4.CLI
 
             metadata = metadata
                 .SetToken("Namespace", outputNamespace)
-                .SetToken("GeneratorId", generator.ShortName)
-                .SetToken("GeneratorVersion", $"(version {generatorVersion})")
-                .SetToken("MetadataSource", metadataSource)
-                .SetToken("MetadataVersion", metadataVersion)
+                .SetToken("Generator", $"{generator.ShortName}.{generatorVersion}")
+                .SetToken("Metadata", $"{sourceAssembly.GetName().Name}({sourceNamespace})")
                 ;
 
             // generate!

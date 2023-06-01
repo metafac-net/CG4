@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <WarningsAsErrors>nullable</WarningsAsErrors>
@@ -17,7 +17,7 @@
         <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
         <PackageTags>MetaFac, CG4, meta-programming, source-generator, model-first, code-first, template engine</PackageTags>
         <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG4</RepositoryUrl>
-        <Description>Attributes for creating CG4 models in code.</Description>
+        <Description>Attributes for defining source generation.</Description>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>..\SigningKey.snk</AssemblyOriginatorKeyFile>
         <PackageReadmeFile>README.md</PackageReadmeFile>

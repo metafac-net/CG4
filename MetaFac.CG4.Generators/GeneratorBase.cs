@@ -1,7 +1,5 @@
 ﻿using MetaFac.CG4.Models;
 using MetaFac.CG4.TextProcessing;
-using MetaFac.Platform;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;

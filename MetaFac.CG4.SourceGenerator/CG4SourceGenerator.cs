@@ -1,9 +1,6 @@
-﻿using MetaFac.CG4.Attributes;
-using MetaFac.CG4.Generators;
-using MetaFac.CG4.ModelReader;
+﻿using MetaFac.CG4.Generators;
 using MetaFac.CG4.Models;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Immutable;
@@ -14,15 +11,9 @@ using System.Text;
 
 namespace MetaFac.CG4.SourceGenerator
 {
+    [Generator]
     public class CG4SourceGenerator : ISourceGenerator
     {
-        private static ModelContainer ReadMetadataFromJsonFile(string jsonFilename)
-        {
-            if (!File.Exists(jsonFilename)) throw new FileNotFoundException($"Metadata file (JSON) not found", jsonFilename);
-            using StreamReader mr = new StreamReader(jsonFilename);
-            return ModelContainer.FromJson(mr.ReadToEnd());
-        }
-
         public void Execute(GeneratorExecutionContext context)
         {
             if (context.SyntaxContextReceiver is not CG4SyntaxReceiver syntaxReceiver) return;
@@ -38,13 +29,17 @@ namespace MetaFac.CG4.SourceGenerator
                 {
                     if (command is GenerateCommand generateCmd)
                     {
+                        AdditionalText jsonModelFile = jsonFiles.FirstOrDefault() ?? throw new FileNotFoundException("No JSON model file supplied");
+                        SourceText? jsonSourceText = jsonModelFile.GetText();
+                        string jsonModel = jsonSourceText is not null ? jsonSourceText.ToString() : throw new FileNotFoundException("File is empty", jsonModelFile.Path);
+
                         var generator = GeneratorHelper.CreateBasicGenerator(command.GeneratorId);
                         string generatorVersion = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location).FileVersion ?? "unknown";
-                        var metadata = ReadMetadataFromJsonFile(generateCmd.JsonMetadataFilename);
+                        var metadata = ModelContainer.FromJson(jsonModel);
                         metadata = metadata
                             .SetToken("Namespace", generateCmd.TargetNamespace)
-                            .SetToken("GeneratorId", $"{nameof(BasicGeneratorId)}.{command.GeneratorId}")
-                            .SetToken("GeneratorVersion", $"(version {generatorVersion})");
+                            .SetToken("Generator", $"{generator.ShortName}.{generatorVersion}")
+                            ;
 
                         // validate metadata and emit diagnostics
                         var validationResult = new ModelValidator().Validate(metadata);

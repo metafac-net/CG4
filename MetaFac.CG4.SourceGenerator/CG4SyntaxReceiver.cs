@@ -1,4 +1,4 @@
-﻿using MetaFac.CG4.Attributes;
+﻿using MetaFac.CG4.Generators;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -23,10 +23,10 @@ namespace MetaFac.CG4.SourceGenerator
 
     internal abstract class BaseCommand
     {
-        public readonly BasicGeneratorId GeneratorId;
+        public readonly InternalGeneratorId GeneratorId;
         public readonly string TargetNamespace;
 
-        protected BaseCommand(BasicGeneratorId generatorId, string targetNamespace)
+        protected BaseCommand(InternalGeneratorId generatorId, string targetNamespace)
         {
             GeneratorId = generatorId;
             TargetNamespace = targetNamespace;
@@ -35,7 +35,7 @@ namespace MetaFac.CG4.SourceGenerator
     internal sealed class GenerateCommand : BaseCommand
     {
         public readonly string JsonMetadataFilename;
-        public GenerateCommand(BasicGeneratorId generatorId, string targetNamespace, string jsonMetadataFilename)
+        public GenerateCommand(InternalGeneratorId generatorId, string targetNamespace, string jsonMetadataFilename)
             : base(generatorId, targetNamespace)
         {
             JsonMetadataFilename = jsonMetadataFilename;
@@ -45,7 +45,7 @@ namespace MetaFac.CG4.SourceGenerator
     {
         public readonly Location Location;
         public readonly string Message;
-        public SyntaxVisitError(BasicGeneratorId generatorId, string targetNamespace, Location location, string message)
+        public SyntaxVisitError(InternalGeneratorId generatorId, string targetNamespace, Location location, string message)
             : base(generatorId, targetNamespace)
         {
             Location = location;
@@ -60,7 +60,7 @@ namespace MetaFac.CG4.SourceGenerator
             var allAttributes = cds.AttributeLists.SelectMany(al => al.Attributes).ToArray();
             if (allAttributes.Length != 1) return false;
 
-            return allAttributes[0].Name is IdentifierNameSyntax ins && ins.IsIdentifierForAttributeName(nameof(CG4GenerateAttribute));
+            return allAttributes[0].Name is IdentifierNameSyntax ins && ins.IsIdentifierForAttributeName(attributeName);
         }
     }
 
@@ -81,11 +81,11 @@ namespace MetaFac.CG4.SourceGenerator
             if (cds.Modifiers.Any(SyntaxKind.PartialKeyword)
                 && cds.Modifiers.Any(SyntaxKind.InternalKeyword)
                 && cds.Modifiers.Any(SyntaxKind.StaticKeyword)
-                && cds.HasOneAttributeNamed(nameof(CG4GenerateAttribute)))
+                && cds.HasOneAttributeNamed("CG4GenerateAttribute"))
             {
                 Location location = Location.Create(cds.SyntaxTree, cds.Span);
                 string targetNamespace = nds.Name.ToString();
-                BasicGeneratorId generatorId = BasicGeneratorId.None;
+                InternalGeneratorId generatorId = InternalGeneratorId.None;
                 try
                 {
                     if (context.SemanticModel.GetDeclaredSymbol(cds) is INamedTypeSymbol classSymbol)
@@ -96,7 +96,7 @@ namespace MetaFac.CG4.SourceGenerator
                         var attributeArguments = attribute.ConstructorArguments;
                         if (attributeArguments.Length == 2)
                         {
-                            generatorId = (BasicGeneratorId)GetValue<int>(attributeArguments[0].Value);
+                            generatorId = (InternalGeneratorId)GetValue<int>(attributeArguments[0].Value);
                             string jsonMetadaFilename = GetValue<string>(attributeArguments[1].Value);
                             ImmutableInterlocked.Enqueue(ref _modelsToGenerate, new GenerateCommand(generatorId, targetNamespace, jsonMetadaFilename));
                         }
@@ -104,7 +104,7 @@ namespace MetaFac.CG4.SourceGenerator
                         {
                             ImmutableInterlocked.Enqueue(ref _modelsToGenerate, 
                                 new SyntaxVisitError(generatorId, targetNamespace, location,
-                                $"Expected {nameof(CG4GenerateAttribute)} attribute to have 2 arguments, but it has {attributeArguments.Length}"));
+                                $"Expected CG4Generate attribute to have 2 arguments, but it has {attributeArguments.Length}"));
                         }
                     }
                     else

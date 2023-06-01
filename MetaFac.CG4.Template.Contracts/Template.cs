@@ -71,8 +71,8 @@
 //>>}
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: qqq
-// Metadata : qqq
+// Generator: T_Generator_
+// Metadata : T_Metadata_
 // </information>
 #endregion
 #nullable enable

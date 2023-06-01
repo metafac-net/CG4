@@ -19,13 +19,13 @@ namespace MetaFac.CG4.SourceGenerator.UnitTests
         {
             var inputSource =
                 """
-                using MetaFac.CG4.Attributes;
+                using MetaFac.CG4.SrcGenAttributes;
                 namespace MetaFac.CG4.TestOrg.Models
                 {
-                    [CG4Generate(BasicGeneratorId.Contracts, "Models.json")]
+                    [CG4Generate(CG4GeneratorId.Contracts, "Models.json")]
                     internal static partial class Marker_Contracts { }
 
-                    [CG4Generate(BasicGeneratorId.MessagePack, "Models.json")]
+                    [CG4Generate(CG4GeneratorId.MessagePack, "Models.json")]
                     internal static partial class Marker_MessagePack { }
                 }
                 """;

@@ -1,16 +1,38 @@
 using FluentAssertions;
-using MetaFac.CG4.Attributes;
-using MetaFac.CG4.Runtime;
-using MetaFac.Memory;
-using MetaFac.Mutability;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Text;
 using System;
+using System.Collections.Immutable;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 
 namespace MetaFac.CG4.SourceGenerator.UnitTests
 {
+    internal class AdditionalTextFile : AdditionalText
+    {
+        private static string ReadTextFromFile(string filename)
+        {
+            if (!File.Exists(filename)) throw new FileNotFoundException("File does not exist", filename);
+            using StreamReader sr = new StreamReader(filename);
+            return sr.ReadToEnd();
+        }
+
+        private readonly string _path;
+        private readonly string _text;
+
+        public AdditionalTextFile(string path)
+        {
+            _path = path;
+            _text = ReadTextFromFile(path);
+        }
+
+        public override string Path => _path;
+        public override SourceText GetText(CancellationToken cancellationToken = default) => SourceText.From(_text);
+    }
+
     internal static class GeneratorTestHelper
     {
         private static Compilation CreateCompilation(string source, params PortableExecutableReference[] additionalReferences)
@@ -24,10 +46,11 @@ namespace MetaFac.CG4.SourceGenerator.UnitTests
                             MetadataReference.CreateFromFile(runtimeAssm.Location),
                             MetadataReference.CreateFromFile(typeof(Enum).GetTypeInfo().Assembly.Location),
                             MetadataReference.CreateFromFile(typeof(Attribute).GetTypeInfo().Assembly.Location),
-                            MetadataReference.CreateFromFile(typeof(EntityAttribute).GetTypeInfo().Assembly.Location),
-                            MetadataReference.CreateFromFile(typeof(Octets).GetTypeInfo().Assembly.Location),
-                            MetadataReference.CreateFromFile(typeof(IFreezable).GetTypeInfo().Assembly.Location),
-                            MetadataReference.CreateFromFile(typeof(IEntityBase).GetTypeInfo().Assembly.Location),
+                            MetadataReference.CreateFromFile(typeof(MetaFac.CG4.SrcGenAttributes.CG4GenerateAttribute).GetTypeInfo().Assembly.Location),
+                            //MetadataReference.CreateFromFile(typeof(MetaFac.CG4.Generator.Contracts.Generator).GetTypeInfo().Assembly.Location),
+                            MetadataReference.CreateFromFile(typeof(MetaFac.Memory.Octets).GetTypeInfo().Assembly.Location),
+                            MetadataReference.CreateFromFile(typeof(MetaFac.Mutability.IFreezable).GetTypeInfo().Assembly.Location),
+                            MetadataReference.CreateFromFile(typeof(MetaFac.CG4.Runtime. IEntityBase).GetTypeInfo().Assembly.Location),
                         };
 
             PortableExecutableReference[] metadataReferences = commonReferences.Concat(additionalReferences).ToArray();
@@ -48,8 +71,13 @@ namespace MetaFac.CG4.SourceGenerator.UnitTests
             // (Note: in the compiler this is loaded from an assembly, and created via reflection at runtime)
             var generator = new CG4SourceGenerator();
 
+            var additionalText = new AdditionalTextFile("Models.json");
+
             // Create the driver that will control the generation, passing in our generator
-            GeneratorDriver driver = CSharpGeneratorDriver.Create(generator);
+            GeneratorDriver driver = CSharpGeneratorDriver.Create(
+                new ISourceGenerator[] { generator },
+                new AdditionalText[] { additionalText }
+                );
 
             // Run the generation pass
             // (Note: the generator driver itself is immutable, and all calls return an updated version of the driver that you should use for subsequent calls)

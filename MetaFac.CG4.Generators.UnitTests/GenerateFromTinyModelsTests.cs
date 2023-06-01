@@ -1,9 +1,5 @@
-﻿using MetaFac.CG4.ModelReader;
-using MetaFac.CG4.Models;
-using Microsoft.Extensions.Logging.Abstractions;
-using System;
+﻿using System;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
@@ -15,11 +11,8 @@ namespace MetaFac.CG4.Generators.UnitTests
     {
         private static string GenerateSourceCode(GeneratorBase generator)
         {
-            string ns = typeof(TinyModels.IBase).Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(Assembly.GetExecutingAssembly(), ns);
-            var logger = NullLogger.Instance;
             var options = new GeneratorOptions() { CopyrightInfo = "Copyright (c) 2023 MetaFac" };
-            var sourceLines = GeneratorHelper.GenerateSource(logger, metadata, "Generated", options, generator)
+            var sourceLines = GeneratorHelper.GenerateSource(typeof(TinyModels.IBase), "Generated", options, generator)
                 .ToArray();
             string sourceCode = string.Join(Environment.NewLine, sourceLines);
             return sourceCode;

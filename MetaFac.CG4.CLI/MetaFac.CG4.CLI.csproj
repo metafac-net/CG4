@@ -47,6 +47,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MetaFac.CG4.Generators\MetaFac.CG4.Generators.csproj" />
+    <ProjectReference Include="..\MetaFac.CG4.ModelReader\MetaFac.CG4.ModelReader.csproj" />
     <ProjectReference Include="..\MetaFac.CG4.TextProcessing\MetaFac.CG4.TextProcessing.csproj" />
   </ItemGroup>
 

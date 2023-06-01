@@ -83,8 +83,8 @@ Emit("// </copyright>");
 }
 Emit("// <information>");
 Emit("// This file was generated using MetaFac.CG4 tools and user supplied metadata.");
-Emit("// Generator: qqq");
-Emit("// Metadata : qqq");
+Emit("// Generator: T_Generator_");
+Emit("// Metadata : T_Metadata_");
 Emit("// </information>");
 Emit("#endregion");
 Emit("#nullable enable");

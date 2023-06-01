@@ -5,14 +5,18 @@
       "Name": "Model1",
       "EntityDefs": [
         {
-          "Tag": 1,
           "Name": "Person",
+          "Tag": 1,
+          "Summary": null,
+          "State": null,
           "IsAbstract": true,
           "ParentName": null,
           "MemberDefs": [
             {
-              "Tag": 1,
               "Name": "FamilyName",
+              "Tag": 1,
+              "Summary": null,
+              "State": null,
               "InnerType": "string",
               "Nullable": false,
               "ProxyDef": null,
@@ -21,8 +25,10 @@
               "IsModelType": false
             },
             {
-              "Tag": 2,
               "Name": "FirstName",
+              "Tag": 2,
+              "Summary": null,
+              "State": null,
               "InnerType": "string",
               "Nullable": false,
               "ProxyDef": null,
@@ -32,11 +38,12 @@
             }
           ]
         }
-      ]
+      ],
+      "EnumTypeDefs": []
     }
   ],
   "Tokens": {
-    "MetadataSource": "MetaFac.CG4.TestOrg.Schema.dll",
-    "MetadataVersion": "1.0.0.0"
+    "CopyrightInfo": "Copyright (c) 2023 MetaFac",
+    "Metadata": "MetaFac.CG4.TestOrg.Schema(MetaFac.CG4.TestOrg.Schema.Personel)"
   }
 }
