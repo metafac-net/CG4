@@ -9,7 +9,7 @@
     <Import_RootNamespace>Code.Shared.Attributes</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Class1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CG4GenerateAttribute.cs" />
     <Compile Include="..\Code.Shared.Attributes\GeneratorId.cs" />
   </ItemGroup>
 </Project>
