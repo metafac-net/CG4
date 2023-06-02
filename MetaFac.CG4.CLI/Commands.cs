@@ -74,6 +74,7 @@ namespace MetaFac.CG4.CLI
                 new Arg<string>("g", "generator", $"The id of the generator: {string.Join(", ", GetGeneratorIds())}", s => s),
                 new Arg<string>("o", "output-filename", "The implementation file to create.", s => s),
                 new Arg<string>("on", "output-namespace", "The target namespace for the output.", s => s),
+                new Arg<bool>("ie", "ignore-errors", "Ignore metadata validation errors.", bool.Parse, false),
                 a2cHandler);
 
             AddCommand("a2j", "Generates metadata (JSON) from an assembly.",
@@ -87,6 +88,7 @@ namespace MetaFac.CG4.CLI
                 new Arg<string>("g", "generator", $"The id of the generator: {string.Join(", ", GetGeneratorIds())}", s => s),
                 new Arg<string>("o", "output-filename", "The implementation file to create.", s => s),
                 new Arg<string>("on", "output-namespace", "The target namespace for the output.", s => s),
+                new Arg<bool>("ie", "ignore-errors", "Ignore metadata validation errors.", bool.Parse, false),
                 j2cHandler);
 
         }
@@ -208,7 +210,7 @@ namespace MetaFac.CG4.CLI
             return ModelContainer.FromJson(mr.ReadToEnd());
         }
 
-        private bool CheckMetadata(ModelContainer metadata)
+        private bool CheckMetadata(ModelContainer metadata, bool ignoreValidationErrors)
         {
             var validationResult = new ModelValidator().Validate(metadata, ValidationErrorHandling.Default);
             if (validationResult.HasErrors)
@@ -227,14 +229,15 @@ namespace MetaFac.CG4.CLI
                     Logger.LogWarning($"    {ve.ErrorCode}: {ve.Message}");
                 }
             }
-            return !validationResult.HasErrors;
+            return ignoreValidationErrors ? true : !validationResult.HasErrors;
         }
 
         internal async ValueTask<int> j2cHandler(
             string jsonFilename,
             string generatorName, 
             string outputFilename, 
-            string outputNamespace)
+            string outputNamespace,
+            bool ignoreErrors)
         {
             if (string.IsNullOrEmpty(jsonFilename)) throw new ArgumentException($"json-metadata not specified.");
 
@@ -246,7 +249,7 @@ namespace MetaFac.CG4.CLI
             Logger.LogInformation($"  Output: {outputFilename}");
 
             // validate metadata before generation
-            if (!CheckMetadata(metadata)) { return 1; }
+            if (!CheckMetadata(metadata, ignoreErrors)) { return 1; }
 
             metadata = metadata
                 .SetToken("Namespace", outputNamespace)
@@ -273,7 +276,8 @@ namespace MetaFac.CG4.CLI
             string assmNamespace,
             string generatorName, 
             string outputCodeFilename, 
-            string outputNamespace)
+            string outputNamespace,
+            bool ignoreErrors)
         {
             if (string.IsNullOrEmpty(assmFilename)) throw new ArgumentException($"assm-metadata not specified.");
             if (string.IsNullOrEmpty(assmNamespace)) throw new ArgumentException($"assm-namespace not specified.");
@@ -288,7 +292,7 @@ namespace MetaFac.CG4.CLI
             Logger.LogInformation($"  Output: {outputCodeFilename}");
 
             // validate metadata before generation
-            if (!CheckMetadata(metadata)) { return 1; }
+            if (!CheckMetadata(metadata, ignoreErrors)) { return 1; }
 
             metadata = metadata
                 .SetToken("Namespace", outputNamespace)
