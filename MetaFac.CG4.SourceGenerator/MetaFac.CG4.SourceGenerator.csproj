@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <WarningsAsErrors>nullable</WarningsAsErrors>
@@ -17,21 +17,18 @@
         <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
         <PackageTags>MetaFac, CG4, meta-programming, source-generator, model-first, code-first, template engine</PackageTags>
         <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG4</RepositoryUrl>
-        <Description>Metadata types used to define models</Description>
+        <Description>Source generator for consuming CG4 models.</Description>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>..\SigningKey.snk</AssemblyOriginatorKeyFile>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="..\README.md">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-        </None>
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
+        <PackageReference Include="Microsoft.CodeAnalysis" Version="4.6.0" PrivateAssets="all" />
         <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -40,6 +37,17 @@
         <PackageReference Include="System.Text.Json" Version="7.0.2" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <Import Project="..\Code.Shared.Attributes\Code.Shared.Attributes.projitems" Label="Shared" />
+
     <Import Project="..\Code.Shared.Models\Code.Shared.Models.projitems" Label="Shared" />
+
+    <Import Project="..\Code.Shared.Generators\Code.Shared.Generators.projitems" Label="Shared" />
 
 </Project>

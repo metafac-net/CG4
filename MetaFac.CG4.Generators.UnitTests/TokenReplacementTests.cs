@@ -1,8 +1,10 @@
 ﻿using FluentAssertions;
+using MetaFac.CG4.TextProcessing;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
-namespace MetaFac.CG4.TextProcessing.UnitTests
+namespace MetaFac.CG4.Generators.UnitTests
 {
     public class TokenReplacementTests
     {

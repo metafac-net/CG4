@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>7ceb34b3-e4ad-484f-8376-d2baad6970e7</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Code.Shared.Generators</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)EngineScope.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FieldKind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FieldKindExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Generator.ClassesV2.g.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Generator.Contracts.g.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Generator.JsonNewtonSoft.g.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Generator.MessagePack.g.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Generator.RecordsV2.g.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GeneratorBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GeneratorHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GeneratorOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MemberInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ProxyDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ScopePopper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateScope.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TextProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TokenReplacer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)codegen_g2t.cmd" />
+    <None Include="$(MSBuildThisFileDirectory)codegen_t2g.cmd" />
+  </ItemGroup>
+</Project>

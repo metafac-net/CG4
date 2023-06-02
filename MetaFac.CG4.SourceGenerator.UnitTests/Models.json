@@ -1,0 +1,49 @@
+{
+  "ModelDefs": [
+    {
+      "Tag": 1,
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "Person",
+          "Tag": 1,
+          "Summary": null,
+          "State": null,
+          "IsAbstract": true,
+          "ParentName": null,
+          "MemberDefs": [
+            {
+              "Name": "FamilyName",
+              "Tag": 1,
+              "Summary": null,
+              "State": null,
+              "InnerType": "string",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 0,
+              "IndexType": null,
+              "IsModelType": false
+            },
+            {
+              "Name": "FirstName",
+              "Tag": 2,
+              "Summary": null,
+              "State": null,
+              "InnerType": "string",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 0,
+              "IndexType": null,
+              "IsModelType": false
+            }
+          ]
+        }
+      ],
+      "EnumTypeDefs": []
+    }
+  ],
+  "Tokens": {
+    "CopyrightInfo": "Copyright (c) 2023 MetaFac",
+    "Metadata": "MetaFac.CG4.TestOrg.Schema(.Personel)"
+  }
+}

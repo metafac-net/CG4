@@ -8,7 +8,7 @@
         public string? CopyrightInfo { get; set; }
 
         /// <summary>
-        /// If true, emits a copy of the model to a JSON file.
+        /// todo remove this If true, emits a copy of the model to a JSON file.
         /// </summary>
         public bool EmitModelAsJson { get; set; }
 

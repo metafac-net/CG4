@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>3dcd3902-e4c6-4e6e-a253-742b8a0849f8</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Code.Shared.Models</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonEntityDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonEnumItemDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonEnumTypeDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonItemState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonMemberDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonModelDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonProxyDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelEntityDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelEnumItemDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelEnumTypeDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelEqualityHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelItemBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelItemState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelMemberDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelProxyDef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TagName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unknown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValidationError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValidationErrorCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValidationErrorHandling.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValidationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValidationResult.cs" />
+  </ItemGroup>
+</Project>

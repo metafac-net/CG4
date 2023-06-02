@@ -38,8 +38,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
     <ProjectReference Include="..\MetaFac.CG4.Models\MetaFac.CG4.Models.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.TextProcessing\MetaFac.CG4.TextProcessing.csproj" />
   </ItemGroup>
+
+  <Import Project="..\Code.Shared.Generators\Code.Shared.Generators.projitems" Label="Shared" />
 
 </Project>
