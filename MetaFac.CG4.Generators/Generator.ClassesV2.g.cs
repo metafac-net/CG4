@@ -14,7 +14,7 @@ namespace MetaFac.CG4.Generator.ClassesV2
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaFac.CG4.ClassesV2") { }
+        public Generator() : base("ClassesV2") { }
         protected override void OnGenerate(ModelDefinition outerScope)
         {
 // |metacode:generator_body|

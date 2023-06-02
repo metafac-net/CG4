@@ -15,9 +15,14 @@ namespace MetaFac.CG4.Generators
         private readonly string _shortName;
         public string ShortName => _shortName;
 
-        protected GeneratorBase(string shortName)
+        private readonly string _fullName;
+        public string FullName => _fullName;
+
+        protected GeneratorBase(string generatorId)
         {
-            _shortName = shortName;
+            Version av = new Version(ThisAssembly.AssemblyFileVersion);
+            _shortName = $"{generatorId}.{av.Major}.{av.Minor}";
+            _fullName = $"{ThisAssembly.AssemblyName}.{generatorId}.{av.Major}.{av.Minor}.{av.Revision}.{av.Build}";
         }
 
         protected void Emit(string encodedOutput)

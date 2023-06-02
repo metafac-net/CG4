@@ -379,6 +379,19 @@ namespace MetaFac.CG4.ModelReader
             return memberDefsByName.Values.OrderBy(x => x.Tag).ToList();
         }
 
+        private static string GetMetadataSourceDisplayString(Assembly sourceAssembly, string? sourceNamespace)
+        {
+            string assemblyName = sourceAssembly.GetName().Name ?? "Unknown";
+            if (sourceNamespace is null
+                || string.IsNullOrWhiteSpace(sourceNamespace)
+                || string.Equals(sourceNamespace, assemblyName))
+                return assemblyName;
+
+            return sourceNamespace.StartsWith(assemblyName)
+                ? $"{assemblyName}({sourceNamespace.Substring(assemblyName.Length)})"
+                : $"{assemblyName}({sourceNamespace})";
+        }
+
         public static ModelContainer ParseAssembly(Assembly sourceAssembly, string sourceNamespace)
         {
             List<ModelDefinition> modelDefinitions = new List<ModelDefinition>();
@@ -398,7 +411,9 @@ namespace MetaFac.CG4.ModelReader
 
             modelDefinition = new ModelDefinition(modelName, modelTag, entityListB);
             modelDefinitions.Add(modelDefinition);
-            return new ModelContainer(modelDefinitions);
+            var tokens = new Dictionary<string, string>();
+            tokens["Metadata"] = GetMetadataSourceDisplayString(sourceAssembly, sourceNamespace);
+            return new ModelContainer(modelDefinitions, tokens);
         }
     }
 }

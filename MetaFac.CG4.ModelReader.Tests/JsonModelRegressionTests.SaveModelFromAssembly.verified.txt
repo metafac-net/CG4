@@ -320,5 +320,7 @@
       "EnumTypeDefs": []
     }
   ],
-  "Tokens": {}
+  "Tokens": {
+    "Metadata": "MetaFac.CG4.ModelReader.Tests(.GoodModels)"
+  }
 }

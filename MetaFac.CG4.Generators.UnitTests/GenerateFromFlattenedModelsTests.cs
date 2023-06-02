@@ -33,12 +33,10 @@ namespace MetaFac.CG4.Generators.UnitTests
             ModelContainer metadata = ModelParser.ParseAssembly(sourceAssembly, sourceNamespace);
 
             var options = new GeneratorOptions(usersOptions);
-            var gvi = FileVersionInfo.GetVersionInfo(generator.GetType().Assembly.Location);
 
             metadata = metadata
                 .SetToken("Namespace", outputNamespace)
-                .SetToken("Generator", $"{generator.ShortName}.{gvi?.FileMajorPart}.{gvi?.FileMinorPart}")
-                .SetToken("Metadata", GeneratorHelper.GetMetadataSourceDisplayString(sourceAssembly, sourceNamespace))
+                .SetToken("Generator", $"{generator.ShortName}")
                 ;
             if (options.CopyrightInfo is not null)
             {

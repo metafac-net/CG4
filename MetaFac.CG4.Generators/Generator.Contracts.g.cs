@@ -14,7 +14,7 @@ namespace MetaFac.CG4.Generator.Contracts
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaFac.CG4.Contracts") { }
+        public Generator() : base("Contracts") { }
         protected override void OnGenerate(ModelDefinition outerScope)
         {
 // |metacode:generator_body|

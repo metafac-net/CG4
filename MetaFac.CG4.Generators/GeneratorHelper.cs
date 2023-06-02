@@ -10,19 +10,6 @@ namespace MetaFac.CG4.Generators
 {
     public static class GeneratorHelper
     {
-        public static string GetMetadataSourceDisplayString(Assembly sourceAssembly, string? sourceNamespace)
-        {
-            string assemblyName = sourceAssembly.GetName().Name ?? "Unknown";
-            if (sourceNamespace is null 
-                || string.IsNullOrWhiteSpace(sourceNamespace)
-                || string.Equals(sourceNamespace, assemblyName))
-                return assemblyName;
-
-            return sourceNamespace.StartsWith(assemblyName)
-                ? $"{assemblyName}({sourceNamespace.Substring(assemblyName.Length)})"
-                : $"{assemblyName}({sourceNamespace})";
-        }
-
         public static GeneratorId GetGeneratorId(string generatorId)
         {
             if (generatorId is null) throw new ArgumentNullException(nameof(generatorId));

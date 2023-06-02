@@ -14,7 +14,7 @@ namespace MetaFac.CG4.Generator.JsonNewtonSoft
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaFac.CG4.JsonNewtonSoft") { }
+        public Generator() : base("JsonNewtonSoft") { }
         protected override void OnGenerate(ModelDefinition outerScope)
         {
 // |metacode:generator_body|

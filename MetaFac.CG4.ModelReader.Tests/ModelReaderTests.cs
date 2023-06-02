@@ -18,7 +18,8 @@ namespace MetaFac.CG4.ModelReader.Tests
             Type anchorType = typeof(GoodModels.IBuiltinTypes);
             string ns = anchorType.Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
-            metadata.Tokens.Count.Should().Be(0);
+            metadata.Tokens.Count.Should().Be(1);
+            metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
             string originalJson = metadata.ToJson(true);
 
@@ -83,7 +84,8 @@ namespace MetaFac.CG4.ModelReader.Tests
             Type anchorType = typeof(GoodModels.IBuiltinTypes);
             string ns = anchorType.Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
-            metadata.Tokens.Count.Should().Be(0);
+            metadata.Tokens.Count.Should().Be(1);
+            metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
             modelDef.EntityDefs.Count.Should().Be(3);
@@ -98,7 +100,8 @@ namespace MetaFac.CG4.ModelReader.Tests
             Type anchorType = typeof(GoodModels.IExternalTypes);
             string ns = anchorType.Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
-            metadata.Tokens.Count.Should().Be(0);
+            metadata.Tokens.Count.Should().Be(1);
+            metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
             var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "ExternalTypes").Single();
@@ -121,7 +124,8 @@ namespace MetaFac.CG4.ModelReader.Tests
             Type anchorType = typeof(GoodModels.IExternalTypes);
             string ns = anchorType.Namespace!;
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
-            metadata.Tokens.Count.Should().Be(0);
+            metadata.Tokens.Count.Should().Be(1);
+            metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
             var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "EnumeratorTypes").Single();

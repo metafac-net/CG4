@@ -14,7 +14,7 @@ namespace MetaFac.CG4.Generator.MessagePack
 {
     public partial class Generator : GeneratorBase
     {
-        public Generator() : base("MetaFac.CG4.MessagePack") { }
+        public Generator() : base("MessagePack") { }
         protected override void OnGenerate(ModelDefinition outerScope)
         {
 // |metacode:generator_body|

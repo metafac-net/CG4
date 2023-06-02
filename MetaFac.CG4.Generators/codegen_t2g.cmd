@@ -16,5 +16,5 @@ call :runt2g JsonNewtonSoft cs
 goto :eof
 
 :runt2g
-%_cmd% t2g -tf ..\%_prefix%.Template.%1\Template.%2 -gf .\Generator.%1.g.cs -gn %_prefix%.Generator.%1 -gs %_prefix%.%1
+%_cmd% t2g -tf ..\%_prefix%.Template.%1\Template.%2 -gf .\Generator.%1.g.cs -gn %_prefix%.Generator.%1 -gs %1
 goto :eof
