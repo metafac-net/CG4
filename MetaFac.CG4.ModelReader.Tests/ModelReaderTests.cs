@@ -16,8 +16,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         {
             // arrange - get model from assembly
             Type anchorType = typeof(GoodModels.IBuiltinTypes);
-            string ns = anchorType.Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
@@ -82,8 +81,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         public void ReadBuiltinTypes()
         {
             Type anchorType = typeof(GoodModels.IBuiltinTypes);
-            string ns = anchorType.Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
@@ -98,8 +96,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         public void ReadExternalTypes()
         {
             Type anchorType = typeof(GoodModels.IExternalTypes);
-            string ns = anchorType.Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
@@ -122,8 +119,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         public void ReadEnumeratorTypes()
         {
             Type anchorType = typeof(GoodModels.IExternalTypes);
-            string ns = anchorType.Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
@@ -164,11 +160,10 @@ namespace MetaFac.CG4.ModelReader.Tests
         public void ReadInvalidTypes1()
         {
             Type anchorType = typeof(InvalidModel1.IInvalidEntity1);
-            string ns = anchorType.Namespace!;
 
             var ex = Assert.ThrowsAny<ValidationException>(() =>
             {
-                ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
+                ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             });
             ex.Should().NotBeNull();
             ex.Should().BeOfType<ValidationException>();
@@ -179,11 +174,10 @@ namespace MetaFac.CG4.ModelReader.Tests
         public void ReadInvalidTypes2()
         {
             Type anchorType = typeof(InvalidModel2.IInvalidEntity2);
-            string ns = anchorType.Namespace!;
 
             var ex = Assert.ThrowsAny<ValidationException>(() =>
             {
-                ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
+                ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             });
             ex.Should().NotBeNull();
             ex.Should().BeOfType<ValidationException>();

@@ -30,7 +30,7 @@ namespace MetaFac.CG4.Generators.UnitTests
 
             var sourceAssembly = anchorType.Assembly;
             var sourceNamespace = anchorType.Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(sourceAssembly, sourceNamespace);
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
 
             var options = new GeneratorOptions(usersOptions);
 

@@ -392,6 +392,23 @@ namespace MetaFac.CG4.ModelReader
                 : $"{assemblyName}({sourceNamespace})";
         }
 
+        /// <summary>
+        /// Scans the assembly namespace containing the source type for CG4 models.
+        /// </summary>
+        /// <param name="sourceType"></param>
+        /// <param name="sourceNamespace"></param>
+        /// <returns></returns>
+        public static ModelContainer ParseAssembly(Type sourceType, string? sourceNamespace = null)
+        {
+            return ParseAssembly(sourceType.Assembly, sourceNamespace ?? sourceType.Namespace!);
+        }
+
+        /// <summary>
+        /// Scans the assembly namespace for CG4 models.
+        /// </summary>
+        /// <param name="sourceAssembly"></param>
+        /// <param name="sourceNamespace"></param>
+        /// <returns></returns>
         public static ModelContainer ParseAssembly(Assembly sourceAssembly, string sourceNamespace)
         {
             List<ModelDefinition> modelDefinitions = new List<ModelDefinition>();

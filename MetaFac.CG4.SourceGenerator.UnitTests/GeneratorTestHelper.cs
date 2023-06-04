@@ -51,7 +51,7 @@ namespace MetaFac.CG4.SourceGenerator.UnitTests
                             //MetadataReference.CreateFromFile(typeof(MetaFac.CG4.Generator.Contracts.Generator).GetTypeInfo().Assembly.Location),
                             MetadataReference.CreateFromFile(typeof(MetaFac.Memory.Octets).GetTypeInfo().Assembly.Location),
                             MetadataReference.CreateFromFile(typeof(MetaFac.Mutability.IFreezable).GetTypeInfo().Assembly.Location),
-                            MetadataReference.CreateFromFile(typeof(MetaFac.CG4.Runtime. IEntityBase).GetTypeInfo().Assembly.Location),
+                            MetadataReference.CreateFromFile(typeof(MetaFac.CG4.Runtime.IEntityBase).GetTypeInfo().Assembly.Location),
                         };
 
             PortableExecutableReference[] metadataReferences = commonReferences.Concat(additionalReferences).ToArray();

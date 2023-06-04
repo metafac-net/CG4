@@ -16,8 +16,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         {
             // arrange - get model from assembly
             Type anchorType = typeof(GoodModels.IBuiltinTypes);
-            string ns = anchorType.Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(anchorType.Assembly, ns);
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
 
             // act
             string json = metadata.ToJson(true);
