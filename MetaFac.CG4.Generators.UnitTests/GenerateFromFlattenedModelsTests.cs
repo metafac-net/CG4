@@ -28,16 +28,11 @@ namespace MetaFac.CG4.Generators.UnitTests
         {
             if (string.IsNullOrWhiteSpace(outputNamespace)) throw new ArgumentException($"'{nameof(outputNamespace)}' cannot be null or whitespace.", nameof(outputNamespace));
 
-            var sourceAssembly = anchorType.Assembly;
-            var sourceNamespace = anchorType.Namespace!;
-            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType)
+                .SetToken("Namespace", outputNamespace);
 
             var options = new GeneratorOptions(usersOptions);
 
-            metadata = metadata
-                .SetToken("Namespace", outputNamespace)
-                .SetToken("Generator", $"{generator.ShortName}")
-                ;
             if (options.CopyrightInfo is not null)
             {
                 metadata = metadata.SetToken("CopyrightInfo", options.CopyrightInfo);

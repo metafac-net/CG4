@@ -241,7 +241,8 @@ namespace MetaFac.CG4.CLI
         {
             if (string.IsNullOrEmpty(jsonFilename)) throw new ArgumentException($"json-metadata not specified.");
 
-            ModelContainer metadata = ReadMetadataFromJsonFile(jsonFilename);
+            ModelContainer metadata = ReadMetadataFromJsonFile(jsonFilename)
+                .SetToken("Namespace", outputNamespace);
 
             var generator = GetGenerator(ParseGeneratorId(generatorName));
 
@@ -250,11 +251,6 @@ namespace MetaFac.CG4.CLI
 
             // validate metadata before generation
             if (!CheckMetadata(metadata, ignoreErrors)) { return 1; }
-
-            metadata = metadata
-                .SetToken("Namespace", outputNamespace)
-                .SetToken("Generator", $"{generator.ShortName}")
-                ;
 
             // generate!
             Logger.LogInformation($"  Generating...");
@@ -284,7 +280,9 @@ namespace MetaFac.CG4.CLI
             if (!File.Exists(assmFilename)) throw new FileNotFoundException($"Metadata file (DLL) not found", assmFilename);
 
             var sourceAssembly = Assembly.LoadFrom(assmFilename);
-            ModelContainer metadata = ModelParser.ParseAssembly(sourceAssembly, assmNamespace);
+            ModelContainer metadata = ModelParser.ParseAssembly(sourceAssembly, assmNamespace)
+                .SetToken("Namespace", outputNamespace);
+
             string sourceNamespace = assmNamespace;
 
             var generator = GetGenerator(ParseGeneratorId(generatorName));
@@ -294,10 +292,6 @@ namespace MetaFac.CG4.CLI
             // validate metadata before generation
             if (!CheckMetadata(metadata, ignoreErrors)) { return 1; }
 
-            metadata = metadata
-                .SetToken("Namespace", outputNamespace)
-                .SetToken("Generator", $"{generator.ShortName}")
-                ;
 
             // generate!
             Logger.LogInformation($"  Generating...");

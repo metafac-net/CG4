@@ -35,11 +35,8 @@ namespace MetaFac.CG4.SourceGenerator
 
                         var generator = GeneratorHelper.CreateBasicGenerator(command.GeneratorId);
 
-                        var metadata = ModelContainer.FromJson(jsonModel);
-                        metadata = metadata
-                            .SetToken("Namespace", generateCmd.TargetNamespace)
-                            .SetToken("Generator", generator.ShortName)
-                            ;
+                        var metadata = ModelContainer.FromJson(jsonModel)
+                            .SetToken("Namespace", generateCmd.TargetNamespace);
 
                         // validate metadata and emit diagnostics
                         var validationResult = new ModelValidator().Validate(metadata);

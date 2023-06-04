@@ -171,9 +171,10 @@ namespace MetaFac.CG4.Generators
             if (metadata is null) throw new ArgumentNullException(nameof(metadata));
             if (metadata.ModelDefs.Count != 1)
                 throw new NotSupportedException("Metadata with multiple models!");
+
             var modelDef = metadata.ModelDefs[0];
 
-            using (NewScope(metadata))
+            using (NewScope(metadata.SetToken("Generator", _shortName)))
             using (NewScope(modelDef))
             {
                 OnGenerate(modelDef);
