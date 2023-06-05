@@ -78,6 +78,21 @@ namespace MetaFac.CG4.ModelReader.Tests
         }
 
         [Fact]
+        public void ReadComplexModel()
+        {
+            Type anchorType = typeof(ComplexModel1.IBaseMessage);
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
+            metadata.Tokens.Count.Should().Be(1);
+            metadata.Tokens.Should().ContainKey("Metadata");
+            metadata.ModelDefs.Count.Should().Be(1);
+            var modelDef = metadata.ModelDefs[0];
+            modelDef.EntityDefs.Count.Should().Be(28);
+            var entityDef = modelDef.EntityDefs[0];
+            entityDef.Name.Should().Be("BaseMessage");
+            entityDef.MemberDefs.Count.Should().Be(1);
+        }
+
+        [Fact]
         public void ReadBuiltinTypes()
         {
             Type anchorType = typeof(GoodModels.IBuiltinTypes);
