@@ -12,33 +12,30 @@ namespace MetaFac.CG4.Models
         public readonly string? ParentName;
         public readonly ImmutableList<ModelMemberDef> MemberDefs;
         public readonly ImmutableList<ModelEntityDef> DerivedEntities;
-        public readonly ModelItemState? State;
 
         private ModelEntityDef(string name, int? tag, string? summary, 
             bool isAbstract, string? parentName,
             ImmutableList<ModelMemberDef> memberDefs,
             ImmutableList<ModelEntityDef> derivedEntities,
             ModelItemState? state)
-            : base(name, tag, summary)
+            : base(name, tag, summary, state)
         {
             IsAbstract = isAbstract;
             ParentName = parentName;
             MemberDefs = memberDefs;
             DerivedEntities = derivedEntities;
-            State = state;
         }
 
         public ModelEntityDef(string name, int? tag, string? summary,
             bool isAbstract, string? parentName,
             IEnumerable<ModelMemberDef> memberDefs,
             ModelItemState? state = null)
-            : base(name, tag, summary)
+            : base(name, tag, summary, state)
         {
             IsAbstract = isAbstract;
             ParentName = parentName;
             MemberDefs = ImmutableList<ModelMemberDef>.Empty.AddRange(memberDefs);
             DerivedEntities = ImmutableList<ModelEntityDef>.Empty;
-            State = state;
         }
 
         public ModelEntityDef SetDerivedEntities(IEnumerable<ModelEntityDef> derivedEntities)
@@ -83,7 +80,6 @@ namespace MetaFac.CG4.Models
                 && IsAbstract == other.IsAbstract
                 && string.Equals(ParentName, other.ParentName)
                 && MemberDefs.IsEqualTo(other.MemberDefs)
-                && Equals(State, other.State)
                 ;
         }
 

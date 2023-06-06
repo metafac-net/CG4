@@ -145,10 +145,9 @@ namespace MetaFac.CG4.Generators
             {
                 tokens["ItemSummary"] = enumItemDef.Summary;
             }
-            if (enumItemDef.IsObsolete(out string reason, out bool isError))
+            if (enumItemDef.State is not null && enumItemDef.State.IsInactive)
             {
-                tokens["ObsoleteReason"] = reason;
-                // todo isError
+                tokens["ObsoleteReason"] = enumItemDef.State.Reason ?? "Deprecated";
             }
             return _engine.NewScope(tokens);
         }

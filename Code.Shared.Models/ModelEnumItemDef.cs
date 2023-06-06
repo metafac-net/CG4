@@ -6,13 +6,11 @@ namespace MetaFac.CG4.Models
     public class ModelEnumItemDef : ModelItemBase, IEquatable<ModelEnumItemDef>
     {
         public readonly int Value;
-        public readonly ModelItemState? State;
 
         public ModelEnumItemDef(string name, string? summary, int value, ModelItemState? state = null)
-            : base(name, null, summary)
+            : base(name, null, summary, state)
         {
             Value = value;
-            State = state;
         }
 
         public static ModelEnumItemDef? From(JsonEnumItemDef? source)
@@ -23,17 +21,6 @@ namespace MetaFac.CG4.Models
                 source.Summary,
                 source.Value,
                 ModelItemState.From(source.State));
-        }
-
-        public bool IsObsolete(out string reason, out bool isError)
-        {
-            reason = string.Empty;
-            isError = false;
-            if (State is null) return false;
-            if (!State.IsObsolete) return false;
-            reason = State.Reason ?? "Deprecated";
-            isError = State.IsError;
-            return true;
         }
 
         public string ToJson()
@@ -54,7 +41,6 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return  base.Equals(other)
                 && Value == other.Value
-                && Equals(State, other.State)
                 ;
         }
 

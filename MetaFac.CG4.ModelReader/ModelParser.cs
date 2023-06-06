@@ -22,26 +22,23 @@ namespace MetaFac.CG4.ModelReader
 
             foreach (TypeInfo typeInfo in sourceAssembly.DefinedTypes.Where(t => t.Namespace == sourceNamespace))
             {
-                bool obsolete = false;
+                //bool isEmitted = true;
                 ProxyAttribute? proxyAttr = null;
                 int? entityTag = null;
                 foreach (Attribute attr in typeInfo.GetCustomAttributes(false))
                 {
-                    if (attr is EntityAttribute tagAttribute)
+                    if (attr is EntityAttribute ea)
                     {
-                        entityTag = tagAttribute.Tag;
+                        entityTag = ea.Tag;
+                        //isEmitted = ea.IsEmitted();
                     }
                     else if (attr is ProxyAttribute pa)
                     {
                         proxyAttr = pa;
                     }
-                    else if (attr is ObsoleteAttribute oa && oa.IsError)
-                    {
-                        obsolete = true;
-                    }
                 }
-                if (!obsolete)
-                {
+                //if (isEmitted)
+                //{
                     if (proxyAttr is not null)
                     {
                         string typeName = typeInfo.Name;
@@ -53,7 +50,7 @@ namespace MetaFac.CG4.ModelReader
                         toBeProcessed.Enqueue(entityInfo);
                         allModelTypes.Add(entityInfo.EntityName, entityInfo);
                     }
-                }
+                //}
             }
 
             while (toBeProcessed.Count > 0)
@@ -65,27 +62,24 @@ namespace MetaFac.CG4.ModelReader
                 ModelItemState? entityState = null;
                 bool isAbstract = entityDefInfo.IsAbstract;
                 var entityTagName = new TagName(entityTag, entityName);
-                bool obsolete = false;
+                //bool isEmitted = true;
                 foreach (Attribute attr in entityDefInfo.CustomAttributes)
                 {
-                    if (attr is EntityAttribute tagAttribute)
+                    if (attr is EntityAttribute ea)
                     {
-                        if (entityTag.HasValue && tagAttribute.Tag != entityTag.Value)
+                        if (entityTag.HasValue && ea.Tag != entityTag.Value)
                             throw new ValidationException(
                                 new ValidationError(ValidationErrorCode.RedefinedEntityTag, modelName,
-                                entityTagName, null, new TagName(tagAttribute.Tag, entityName), null));
-                        entityTag = tagAttribute.Tag;
-                    }
-
-                    if (attr is ObsoleteAttribute oa && oa.IsError)
-                    {
-                        obsolete = true;
+                                entityTagName, null, new TagName(ea.Tag, entityName), null));
+                        entityTag = ea.Tag;
+                        //isEmitted = ea.IsEmitted();
+                        entityState = ModelItemState.Create(ea.IsInActive, ea.IsRedacted, ea.Reason);
                     }
                 }
 
                 List<ModelMemberDef> fieldList = ParseFields(entityDefInfo, sourceNamespace, modelName, entityTagName, proxyTypes, allModelTypes);
 
-                if (!obsolete && entityTag.HasValue)
+                if (entityTag.HasValue)
                 {
                     // ensure parent has been processed first
                     //Type? baseType = entityDefInfo.BaseType;
@@ -340,21 +334,19 @@ namespace MetaFac.CG4.ModelReader
                 var memberInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, memberName, fieldType, proxyTypes, allModelTypes);
                 string innerTypeName = memberInfo.innerTypeName ?? nameof(Unknown);
 
-                bool obsolete = false;
+                //bool isEmitted = true;
                 foreach (Attribute attr in propInfo.GetCustomAttributes())
                 {
                     if (attr is MemberAttribute ma)
                     {
                         fieldTag = ma.Tag;
-                    }
-                    else if (attr is ObsoleteAttribute oa && oa.IsError)
-                    {
-                        obsolete = true;
+                        //isEmitted = ma.IsEmitted();
+                        fieldState = ModelItemState.Create(ma.IsInActive, ma.IsRedacted, ma.Reason);
                     }
                 }
 
-                if (!obsolete)
-                {
+                //if (isEmitted)
+                //{
                     bool isVector = memberInfo.ArrayRank == 1;
                     string typeDesc = $"{innerTypeName}{(memberInfo.nullable ? "?" : "")}{(isVector ? "[" : "")}{memberInfo.indexTypeName}{(isVector ? "]" : "")}";
                     ModelProxyDef? proxyDef = null;
@@ -374,7 +366,7 @@ namespace MetaFac.CG4.ModelReader
                         memberInfo.isModelType,
                         fieldState);
                     memberDefsByName.Add(memberName, memberDef);
-                }
+                //}
             } // foreach field
             return memberDefsByName.Values.OrderBy(x => x.Tag).ToList();
         }

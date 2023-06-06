@@ -62,9 +62,9 @@
               "Value": 3,
               "Summary": null,
               "State": {
-                "IsObsolete": true,
-                "Reason": "Not used anymore",
-                "IsError": false
+                "IsInactive": true,
+                "IsRedacted": false,
+                "Reason": "Not used anymore"
               }
             }
           ]

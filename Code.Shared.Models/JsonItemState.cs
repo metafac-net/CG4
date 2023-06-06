@@ -4,9 +4,9 @@ namespace MetaFac.CG4.Models
 {
     public class JsonItemState : IEquatable<JsonItemState>
     {
-        public bool IsObsolete { get; set; }
+        public bool IsInactive { get; set; }
+        public bool IsRedacted { get; set; }
         public string? Reason { get; set; }
-        public bool IsError { get; set; }
 
         public JsonItemState() { }
 
@@ -15,9 +15,9 @@ namespace MetaFac.CG4.Models
             if (source is null) return null;
             return new JsonItemState()
             {
-                IsObsolete = source.IsObsolete,
+                IsInactive = source.IsInactive,
+                IsRedacted = source.IsRedacted,
                 Reason = source.Reason,
-                IsError = source.IsError
             };
         }
 
@@ -25,14 +25,14 @@ namespace MetaFac.CG4.Models
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
-            return IsObsolete == other.IsObsolete
+            return IsInactive == other.IsInactive
+                && IsRedacted == other.IsRedacted
                 && string.Equals(Reason, other.Reason)
-                && IsError == other.IsError
                 ;
         }
 
         public override bool Equals(object? obj) => obj is JsonItemState other && Equals(other);
 
-        public override int GetHashCode() => HashCode.Combine(IsObsolete, Reason, IsError);
+        public override int GetHashCode() => HashCode.Combine(IsInactive, IsRedacted, Reason);
     }
 }

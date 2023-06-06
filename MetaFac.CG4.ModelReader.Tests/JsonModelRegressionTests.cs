@@ -40,9 +40,9 @@ namespace MetaFac.CG4.ModelReader.Tests
             };
             var enumItemDefs = new List<ModelEnumItemDef>
             {
-                new ModelEnumItemDef("Item1", "Summary of item 1", 1, null),
-                new ModelEnumItemDef("Item2", null, 2, null),
-                new ModelEnumItemDef("Item3", null, 3, new ModelItemState(true, "Not used anymore")),
+                new ModelEnumItemDef("Item1", "Summary of item 1", 1),
+                new ModelEnumItemDef("Item2", null, 2),
+                new ModelEnumItemDef("Item3", null, 3, ModelItemState.Create(true, false, "Not used anymore")),
             };
             var enumTypeDefs = new List<ModelEnumTypeDef>
             {

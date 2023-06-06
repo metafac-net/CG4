@@ -11,7 +11,6 @@ namespace MetaFac.CG4.Models
         public readonly int ArrayRank;
         public readonly string? IndexType;
         public readonly bool IsModelType;
-        public readonly ModelItemState? State;
 
         public bool IsBufferType => InnerType == "binary";
         public bool IsStringType => InnerType == "string";
@@ -24,7 +23,7 @@ namespace MetaFac.CG4.Models
             string? indexType,
             bool isModelType, 
             ModelItemState? state = null)
-            : base(name, tag, summary)
+            : base(name, tag, summary, state)
         {
             InnerType = innerType ?? throw new ArgumentNullException(nameof(innerType));
             Nullable = nullable;
@@ -32,7 +31,6 @@ namespace MetaFac.CG4.Models
             ArrayRank = arrayRank;
             IndexType = indexType;
             IsModelType = isModelType;
-            State = state;
         }
 
         public static ModelMemberDef? From(JsonMemberDef? source)
@@ -75,7 +73,7 @@ namespace MetaFac.CG4.Models
                    && ArrayRank == other.ArrayRank
                    && IsModelType == other.IsModelType
                    && string.Equals(IndexType, other.IndexType)
-                   && Equals(State, other.State);
+                   ;
         }
 
         public override bool Equals(object? obj)

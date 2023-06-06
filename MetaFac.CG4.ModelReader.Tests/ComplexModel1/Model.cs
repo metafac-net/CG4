@@ -49,8 +49,8 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     [Entity(12)]
     public interface IGetServerInfoResponse : IBaseResponse
     {
-        [Obsolete]
-        [Member(11)] string? obsolete01 { get; } // was ServerInfo
+        [Member(11, ModelState.Deprecated, "Deprecated")] 
+        string? Obsolete01 { get; } // was ServerInfo
 
         [Member(12)] INameValuePair[]? ServerProperties { get; }
     }

@@ -39,13 +39,14 @@ namespace MetaFac.CG4.Models
             return string.Equals(Name, other.Name)
                    && Tag == other.Tag
                    && string.Equals(Summary, other.Summary)
+                   && Equals(State, other.State)
                    && string.Equals(InnerType, other.InnerType)
                    && Nullable == other.Nullable
                    && Equals(ProxyDef, other.ProxyDef)
                    && ArrayRank == other.ArrayRank
                    && IsModelType == other.IsModelType
                    && string.Equals(IndexType, other.IndexType)
-                   && Equals(State, other.State);
+                   ;
         }
 
         public override bool Equals(object? obj)

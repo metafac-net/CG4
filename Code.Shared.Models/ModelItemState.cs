@@ -4,35 +4,41 @@ namespace MetaFac.CG4.Models
 {
     public class ModelItemState : IEquatable<ModelItemState>
     {
-        public readonly bool IsObsolete;
+        public readonly bool IsInactive;
+        public readonly bool IsRedacted;
         public readonly string? Reason;
-        public readonly bool IsError;
 
-        public ModelItemState(bool isObsolete, string? reason, bool isError = false)
+        private ModelItemState(bool isInactive, bool isRedacted, string? reason)
         {
-            IsObsolete = isObsolete;
+            IsInactive = isInactive;
+            IsRedacted = isRedacted;
             Reason = reason;
-            IsError = isError;
+        }
+
+        public static ModelItemState? Create(bool isInactive, bool isRedacted, string? reason)
+        {
+            if (!isInactive && !isRedacted && reason is null) return null;
+            return new ModelItemState(isInactive, isRedacted, reason);
         }
 
         public static ModelItemState? From(JsonItemState? source)
         {
             if (source is null) return null;
-            return new ModelItemState(source.IsObsolete, source.Reason, source.IsError);
+            return new ModelItemState(source.IsInactive, source.IsRedacted, source.Reason);
         }
 
         public bool Equals(ModelItemState? other)
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
-            return IsObsolete == other.IsObsolete 
+            return IsInactive == other.IsInactive 
+                && IsRedacted == other.IsRedacted
                 && string.Equals(Reason, other.Reason)
-                && IsError == other.IsError
                 ;
         }
 
         public override bool Equals(object? obj) => obj is ModelItemState other && Equals(other);
 
-        public override int GetHashCode() => HashCode.Combine(IsObsolete, Reason, IsError);
+        public override int GetHashCode() => HashCode.Combine(IsInactive, IsRedacted, Reason);
     }
 }

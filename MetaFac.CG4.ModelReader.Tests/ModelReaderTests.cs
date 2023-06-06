@@ -50,9 +50,9 @@ namespace MetaFac.CG4.ModelReader.Tests
             };
             var enumItemDefs = new List<ModelEnumItemDef>
             {
-                new ModelEnumItemDef("Item1", "Summary of item 1", 1, null),
-                new ModelEnumItemDef("Item2", null, 2, null),
-                new ModelEnumItemDef("Item3", null, 3, new ModelItemState(true, "Not used anymore")),
+                new ModelEnumItemDef("Item1", "Summary of item 1", 1),
+                new ModelEnumItemDef("Item2", null, 2),
+                new ModelEnumItemDef("Item3", null, 3, ModelItemState.Create(true, false, "Not used anymore")),
             };
             var enumTypeDefs = new List<ModelEnumTypeDef>
             {
@@ -197,6 +197,92 @@ namespace MetaFac.CG4.ModelReader.Tests
             ex.Should().NotBeNull();
             ex.Should().BeOfType<ValidationException>();
             ex.Message.Should().Be("Model1.InvalidEntity2.MyVersion(): Unknown field type: System.Version");
+        }
+
+        [Fact]
+        public void ReadMemberLifeCycles()
+        {
+            Type anchorType = typeof(LifeCycle.IEntity1);
+
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
+            metadata.Tokens.Count.Should().Be(1);
+            metadata.Tokens.Should().ContainKey("Metadata");
+            metadata.ModelDefs.Count.Should().Be(1);
+            var modelDef = metadata.ModelDefs[0];
+            var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "Entity1").Single();
+            entityDef.MemberDefs.Count.Should().Be(4);
+
+            // active member
+            {
+                var member = entityDef.MemberDefs[0];
+                member.Name.Should().Be("State0_Active");
+                member.Tag.Should().Be(1);
+                member.State.Should().BeNull();
+                member.IsInactive.Should().BeFalse();
+                member.IsRedacted.Should().BeFalse();
+                //member.State!.Reason.Should().BeNull();
+                member.InnerType.Should().Be("bool");
+                member.Nullable.Should().BeFalse();
+                member.ArrayRank.Should().Be(0);
+                member.IsModelType.Should().BeFalse();
+                member.IsStringType.Should().BeFalse();
+                member.IsBufferType.Should().BeFalse();
+                member.ProxyDef.Should().BeNull();
+            }
+
+            // reserved member
+            {
+                var member = entityDef.MemberDefs[1];
+                member.Name.Should().Be("State1_Reserved");
+                member.Tag.Should().Be(2);
+                member.State.Should().NotBeNull();
+                member.IsInactive.Should().BeFalse();
+                member.IsRedacted.Should().BeTrue();
+                member.State!.Reason.Should().Be("For future use");
+                member.InnerType.Should().Be("bool");
+                member.Nullable.Should().BeFalse();
+                member.ArrayRank.Should().Be(0);
+                member.IsModelType.Should().BeFalse();
+                member.IsStringType.Should().BeFalse();
+                member.IsBufferType.Should().BeFalse();
+                member.ProxyDef.Should().BeNull();
+            }
+
+            // deprecated member
+            {
+                var member = entityDef.MemberDefs[2];
+                member.Name.Should().Be("State2_Deprecated");
+                member.Tag.Should().Be(3);
+                member.State.Should().NotBeNull();
+                member.IsInactive.Should().BeTrue();
+                member.IsRedacted.Should().BeFalse();
+                member.State!.Reason.Should().Be("Not used anymore");
+                member.InnerType.Should().Be("bool");
+                member.Nullable.Should().BeFalse();
+                member.ArrayRank.Should().Be(0);
+                member.IsModelType.Should().BeFalse();
+                member.IsStringType.Should().BeFalse();
+                member.IsBufferType.Should().BeFalse();
+                member.ProxyDef.Should().BeNull();
+            }
+
+            // deleted member
+            {
+                var member = entityDef.MemberDefs[3];
+                member.Name.Should().Be("State3_Deleted");
+                member.Tag.Should().Be(4);
+                member.State.Should().NotBeNull();
+                member.IsInactive.Should().BeTrue();
+                member.IsRedacted.Should().BeTrue();
+                member.State!.Reason.Should().Be("RIP");
+                member.InnerType.Should().Be("bool");
+                member.Nullable.Should().BeFalse();
+                member.ArrayRank.Should().Be(0);
+                member.IsModelType.Should().BeFalse();
+                member.IsStringType.Should().BeFalse();
+                member.IsBufferType.Should().BeFalse();
+                member.ProxyDef.Should().BeNull();
+            }
         }
 
     }

@@ -7,13 +7,11 @@ namespace MetaFac.CG4.Models
 {
     public class ModelEnumTypeDef : ModelItemBase, IEquatable<ModelEnumTypeDef>
     {
-        public readonly ModelItemState? State;
         public readonly ImmutableList<ModelEnumItemDef> EnumItemDefs;
 
         public ModelEnumTypeDef(string name, string? summary, ModelItemState? state, IEnumerable<ModelEnumItemDef> enumItemDefs)
-            : base(name, null, summary)
+            : base(name, null, summary, state)
         {
-            State = state;
             EnumItemDefs = ImmutableList<ModelEnumItemDef>.Empty.AddRange(enumItemDefs);
         }
 
@@ -44,7 +42,6 @@ namespace MetaFac.CG4.Models
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return base.Equals(other)
-                   && Equals(State, other.State)
                    && EnumItemDefs.IsEqualTo(other.EnumItemDefs)
                    ;
         }
