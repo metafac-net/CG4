@@ -86,10 +86,10 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
-            modelDef.EntityDefs.Count.Should().Be(28);
-            var entityDef = modelDef.EntityDefs[0];
+            modelDef.AllEntityDefs.Count.Should().Be(28);
+            var entityDef = modelDef.AllEntityDefs[0];
             entityDef.Name.Should().Be("BaseMessage");
-            entityDef.MemberDefs.Count.Should().Be(1);
+            entityDef.AllMemberDefs.Count.Should().Be(1);
         }
 
         [Fact]
@@ -101,10 +101,10 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
-            modelDef.EntityDefs.Count.Should().Be(3);
-            var entityDef = modelDef.EntityDefs[0];
+            modelDef.AllEntityDefs.Count.Should().Be(3);
+            var entityDef = modelDef.AllEntityDefs[0];
             entityDef.Name.Should().Be("BuiltinTypes");
-            entityDef.MemberDefs.Count.Should().Be(19);
+            entityDef.AllMemberDefs.Count.Should().Be(19);
         }
 
         [Fact]
@@ -116,11 +116,11 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
-            var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "ExternalTypes").Single();
-            entityDef.MemberDefs.Count.Should().Be(1);
+            var entityDef = modelDef.AllEntityDefs.Where(cd => cd.Name == "ExternalTypes").Single();
+            entityDef.AllMemberDefs.Count.Should().Be(1);
 
             // external type
-            var field0 = entityDef.MemberDefs[0];
+            var field0 = entityDef.AllMemberDefs[0];
             field0.Tag.Should().Be(1);
             field0.Name.Should().Be("Quantities");
             field0.ProxyDef.Should().NotBeNull();
@@ -139,12 +139,12 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
-            var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "EnumeratorTypes").Single();
-            entityDef.MemberDefs.Count.Should().Be(3);
+            var entityDef = modelDef.AllEntityDefs.Where(cd => cd.Name == "EnumeratorTypes").Single();
+            entityDef.AllMemberDefs.Count.Should().Be(3);
 
             // enumerator types
             {
-                var memberDef = entityDef.MemberDefs[0];
+                var memberDef = entityDef.AllMemberDefs[0];
                 memberDef.Tag.Should().Be(1);
                 memberDef.Name.Should().Be("DaysOfWeek");
                 memberDef.ProxyDef.Should().BeNull();
@@ -152,7 +152,7 @@ namespace MetaFac.CG4.ModelReader.Tests
                 memberDef.InnerType.Should().Be("System.DayOfWeek");
             }
             {
-                var memberDef = entityDef.MemberDefs[1];
+                var memberDef = entityDef.AllMemberDefs[1];
                 memberDef.Tag.Should().Be(2);
                 memberDef.Name.Should().Be("MyCustomEnums");
                 memberDef.ProxyDef.Should().BeNull();
@@ -160,7 +160,7 @@ namespace MetaFac.CG4.ModelReader.Tests
                 memberDef.InnerType.Should().Be("MetaFac.CG4.ModelReader.Tests.GoodModels.MyCustomEnum");
             }
             {
-                var memberDef = entityDef.MemberDefs[2];
+                var memberDef = entityDef.AllMemberDefs[2];
                 memberDef.Tag.Should().Be(3);
                 memberDef.Name.Should().Be("MyDateTimeKinds");
                 memberDef.ProxyDef.Should().NotBeNull();
@@ -209,12 +209,12 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
             var modelDef = metadata.ModelDefs[0];
-            var entityDef = modelDef.EntityDefs.Where(cd => cd.Name == "Entity1").Single();
-            entityDef.MemberDefs.Count.Should().Be(4);
+            var entityDef = modelDef.AllEntityDefs.Where(cd => cd.Name == "Entity1").Single();
+            entityDef.AllMemberDefs.Count.Should().Be(4);
 
             // active member
             {
-                var member = entityDef.MemberDefs[0];
+                var member = entityDef.AllMemberDefs[0];
                 member.Name.Should().Be("State0_Active");
                 member.Tag.Should().Be(1);
                 member.State.Should().BeNull();
@@ -232,7 +232,7 @@ namespace MetaFac.CG4.ModelReader.Tests
 
             // reserved member
             {
-                var member = entityDef.MemberDefs[1];
+                var member = entityDef.AllMemberDefs[1];
                 member.Name.Should().Be("State1_Reserved");
                 member.Tag.Should().Be(2);
                 member.State.Should().NotBeNull();
@@ -250,7 +250,7 @@ namespace MetaFac.CG4.ModelReader.Tests
 
             // deprecated member
             {
-                var member = entityDef.MemberDefs[2];
+                var member = entityDef.AllMemberDefs[2];
                 member.Name.Should().Be("State2_Deprecated");
                 member.Tag.Should().Be(3);
                 member.State.Should().NotBeNull();
@@ -268,7 +268,7 @@ namespace MetaFac.CG4.ModelReader.Tests
 
             // deleted member
             {
-                var member = entityDef.MemberDefs[3];
+                var member = entityDef.AllMemberDefs[3];
                 member.Name.Should().Be("State3_Deleted");
                 member.Tag.Should().Be(4);
                 member.State.Should().NotBeNull();

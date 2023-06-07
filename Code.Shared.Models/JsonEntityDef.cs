@@ -26,7 +26,7 @@ namespace MetaFac.CG4.Models
             State = JsonItemState.From(source.State);
             IsAbstract = source.IsAbstract;
             ParentName = source.ParentName;
-            MemberDefs = source.MemberDefs.Select(fd => new JsonMemberDef(fd)).ToList();
+            MemberDefs = source.AllMemberDefs.Select(fd => new JsonMemberDef(fd)).ToList();
         }
 
         public bool Equals(JsonEntityDef? other)

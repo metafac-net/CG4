@@ -33,14 +33,14 @@ namespace MetaFac.CG4.Models
                 modelTag = newMetadata.ModelDefs[0].Tag;
 
             Dictionary<string, ModelEntityDef> newEntityDefs = new Dictionary<string, ModelEntityDef>();
-            foreach (var ncd in newMetadata.ModelDefs[0].EntityDefs)
+            foreach (var ncd in newMetadata.ModelDefs[0].AllEntityDefs)
             {
                 newEntityDefs.Add(ncd.Name, ncd);
             }
 
             Dictionary<int, ModelEntityDef> oldEntityDefsByTag = new Dictionary<int, ModelEntityDef>();
             Dictionary<string, int> oldEntityNameToTagMap = new Dictionary<string, int>();
-            foreach (var ocd in oldMetadata.ModelDefs[0].EntityDefs)
+            foreach (var ocd in oldMetadata.ModelDefs[0].AllEntityDefs)
             {
                 if (ocd.Tag.HasValue)
                 {
@@ -74,7 +74,7 @@ namespace MetaFac.CG4.Models
                     if (newEntityTag == 0)
                         newEntityTag = ++maxEntityTag;
                     mergedEntityDefsByTag.Add(newEntityTag,
-                        new ModelEntityDef(ncd.Name, newEntityTag, ncd.Summary, ncd.IsAbstract, ncd.ParentName, ncd.MemberDefs, ncd.State));
+                        new ModelEntityDef(ncd.Name, newEntityTag, ncd.Summary, ncd.IsAbstract, ncd.ParentName, ncd.AllMemberDefs, ncd.State));
                     mergedEntityNameToTagMap.Add(ncd.Name, newEntityTag);
                     newEntityDefs.Remove(newEntityName);
                 }
@@ -102,7 +102,7 @@ namespace MetaFac.CG4.Models
                     {
                         // update class
                         mergedEntityDefsByTag.Add(oldEntityTag,
-                            new ModelEntityDef(ncd.Name, oldEntityTag, ncd.Summary, ncd.IsAbstract, ncd.ParentName, ncd.MemberDefs, ncd.State));
+                            new ModelEntityDef(ncd.Name, oldEntityTag, ncd.Summary, ncd.IsAbstract, ncd.ParentName, ncd.AllMemberDefs, ncd.State));
                         mergedEntityNameToTagMap.Add(ncd.Name, oldEntityTag);
                         newEntityDefs.Remove(newEntityName);
                         oldEntityNameToTagMap.Remove(oldEntityDef.Name);
@@ -141,7 +141,7 @@ namespace MetaFac.CG4.Models
             ImmutableDictionary<int, ModelEntityDef> entityTagMap = ImmutableDictionary<int, ModelEntityDef>.Empty;
             ImmutableDictionary<string, ModelEntityDef> entityNameMap = ImmutableDictionary<string, ModelEntityDef>.Empty;
 
-            foreach (var entityDef in model.EntityDefs)
+            foreach (var entityDef in model.AllEntityDefs)
             {
                 //---------- check entity tag not missing
                 if (!entityDef.Tag.HasValue)
@@ -201,7 +201,7 @@ namespace MetaFac.CG4.Models
                 Dictionary<int, ModelMemberDef> fieldTagMap = new Dictionary<int, ModelMemberDef>();
                 Dictionary<string, ModelMemberDef> fieldNameMap = new Dictionary<string, ModelMemberDef>();
 
-                foreach (var memberDef in entityDef.MemberDefs)
+                foreach (var memberDef in entityDef.AllMemberDefs)
                 {
                     //---------- check field tag is not missing
                     if (!memberDef.Tag.HasValue)
@@ -249,7 +249,7 @@ namespace MetaFac.CG4.Models
             }
 
             // ---------- check missing parents
-            foreach (var entityDef in model.EntityDefs)
+            foreach (var entityDef in model.AllEntityDefs)
             {
                 if (entityDef.ParentName != null)
                 {
@@ -278,7 +278,7 @@ namespace MetaFac.CG4.Models
             }
 
             // ---------- check circular refs
-            foreach (var entityDef in model.EntityDefs)
+            foreach (var entityDef in model.AllEntityDefs)
             {
                 ImmutableDictionary<string, ModelEntityDef> visitedEntityDefs =
                     ImmutableDictionary<string, ModelEntityDef>.Empty.Add(entityDef.Name, entityDef);
@@ -309,7 +309,7 @@ namespace MetaFac.CG4.Models
                 throw new NotSupportedException("Metadata with multiple models!");
             var model = metadata.ModelDefs[0];
 
-            foreach (var memberDef in entityDef.MemberDefs)
+            foreach (var memberDef in entityDef.AllMemberDefs)
             {
                 if (memberDef.ProxyDef is not null)
                     continue;

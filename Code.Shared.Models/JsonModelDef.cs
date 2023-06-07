@@ -18,8 +18,8 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
             Name = source.Name;
-            EntityDefs = source.EntityDefs.Select(cd => new JsonEntityDef(cd)).ToList();
-            EnumTypeDefs = source.EnumTypeDefs.Select(cd => new JsonEnumTypeDef(cd)).ToList();
+            EntityDefs = source.AllEntityDefs.Select(cd => new JsonEntityDef(cd)).ToList();
+            EnumTypeDefs = source.AllEnumTypeDefs.Select(cd => new JsonEnumTypeDef(cd)).ToList();
         }
 
         public bool Equals(JsonModelDef? other)

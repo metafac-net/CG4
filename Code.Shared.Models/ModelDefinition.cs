@@ -10,20 +10,26 @@ namespace MetaFac.CG4.Models
     {
         public readonly string Name;
         public readonly int? Tag;
-        public readonly ImmutableList<ModelEntityDef> EntityDefs;
-        public readonly ImmutableList<ModelEnumTypeDef> EnumTypeDefs;
+        private readonly ImmutableList<ModelEntityDef> _entityDefs;
+        private readonly ImmutableList<ModelEnumTypeDef> _enumTypeDefs;
+
+        public ImmutableList<ModelEntityDef> AllEntityDefs => _entityDefs;
+        public IEnumerable<ModelEntityDef> EntityDefs => _entityDefs.Where(ed => !ed.IsRedacted);
+
+        public ImmutableList<ModelEnumTypeDef> AllEnumTypeDefs => _enumTypeDefs;
+        public IEnumerable<ModelEnumTypeDef> EnumTypeDefs => _enumTypeDefs.Where(etd => !etd.IsRedacted);
 
         private ModelDefinition(string name, int? tag, ImmutableList<ModelEntityDef> entityDefs, ImmutableList<ModelEnumTypeDef> enumTypeDefs)
         {
             Name = name;
             Tag = tag;
-            EntityDefs = entityDefs;
-            EnumTypeDefs = enumTypeDefs;
+            _entityDefs = entityDefs;
+            _enumTypeDefs = enumTypeDefs;
         }
 
         public IEnumerable<ModelEntityDef> DescendentsOf(string entityName)
         {
-            foreach (var entityDef in EntityDefs)
+            foreach (var entityDef in _entityDefs)
             {
                 if (entityDef.ParentName == entityName)
                     yield return entityDef;
@@ -48,10 +54,10 @@ namespace MetaFac.CG4.Models
         {
             Name = modelName;
             Tag = tag;
-            EntityDefs = entityDefs != null
+            _entityDefs = entityDefs != null
                 ? ImmutableList<ModelEntityDef>.Empty.AddRange(entityDefs.Where(cd => cd != null))
                 : ImmutableList<ModelEntityDef>.Empty;
-            EnumTypeDefs = enumTypeDefs != null
+            _enumTypeDefs = enumTypeDefs != null
                 ? ImmutableList<ModelEnumTypeDef>.Empty.AddRange(enumTypeDefs.Where(cd => cd != null))
                 : ImmutableList<ModelEnumTypeDef>.Empty;
         }
@@ -61,8 +67,8 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
             Name = source.Name ?? "Unknown_Model";
-            EntityDefs = ImmutableList<ModelEntityDef>.Empty.AddRange(source.EntityDefs.NotNullRange(ModelEntityDef.From));
-            EnumTypeDefs = ImmutableList<ModelEnumTypeDef>.Empty.AddRange(source.EnumTypeDefs.NotNullRange(ModelEnumTypeDef.From));
+            _entityDefs = ImmutableList<ModelEntityDef>.Empty.AddRange(source.EntityDefs.NotNullRange(ModelEntityDef.From));
+            _enumTypeDefs = ImmutableList<ModelEnumTypeDef>.Empty.AddRange(source.EnumTypeDefs.NotNullRange(ModelEnumTypeDef.From));
         }
 
         public string ToJson()
@@ -83,8 +89,8 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return Tag == other.Tag
                    && string.Equals(Name, other.Name)
-                   && EntityDefs.IsEqualTo(other.EntityDefs)
-                   && EnumTypeDefs.IsEqualTo(other.EnumTypeDefs)
+                   && _entityDefs.IsEqualTo(other._entityDefs)
+                   && _enumTypeDefs.IsEqualTo(other._enumTypeDefs)
                    ;
         }
 
@@ -101,13 +107,13 @@ namespace MetaFac.CG4.Models
                 hashCode = hashCode * 397 ^ (Name != null ? Name.GetHashCode() : 0);
                 hashCode = hashCode * 397 ^ (Tag != null ? Tag.GetHashCode() : 0);
                 // ordered
-                hashCode = hashCode * 397 ^ EntityDefs.Count;
-                foreach (var cd in EntityDefs)
+                hashCode = hashCode * 397 ^ _entityDefs.Count;
+                foreach (var cd in _entityDefs)
                 {
                     hashCode = hashCode * 397 ^ cd.GetHashCode();
                 }
-                hashCode = hashCode * 397 ^ EnumTypeDefs.Count;
-                foreach (var ed in EnumTypeDefs)
+                hashCode = hashCode * 397 ^ _enumTypeDefs.Count;
+                foreach (var ed in _enumTypeDefs)
                 {
                     hashCode = hashCode * 397 ^ ed.GetHashCode();
                 }
