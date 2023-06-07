@@ -10,5 +10,8 @@ namespace MetaFac.CG4.TestOrg.Schema.Personel
 
         [Member(2)]
         string FirstName { get; }
+
+        [Member(3, ModelState.Reserved)]
+        string OtherNames { get; }
     }
 }

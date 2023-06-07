@@ -35,6 +35,22 @@
               "ArrayRank": 0,
               "IndexType": null,
               "IsModelType": false
+            },
+            {
+              "Name": "OtherNames",
+              "Tag": 3,
+              "Summary": null,
+              "State": {
+                "IsInactive": false,
+                "IsRedacted": true,
+                "Reason": null
+              },
+              "InnerType": "string",
+              "Nullable": false,
+              "ProxyDef": null,
+              "ArrayRank": 0,
+              "IndexType": null,
+              "IsModelType": false
             }
           ]
         }
