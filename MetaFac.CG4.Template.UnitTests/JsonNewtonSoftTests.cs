@@ -122,7 +122,7 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             T_EntityName_ original = new T_EntityName_();
             string buffer = SerializeToJson(original);
-            buffer.Length.Should().Be(490);
+            buffer.Length.Should().Be(454);
 
             T_EntityName_ duplicate = DeserializeFromJson<T_EntityName_>(buffer);
             duplicate.Should().Be(original);

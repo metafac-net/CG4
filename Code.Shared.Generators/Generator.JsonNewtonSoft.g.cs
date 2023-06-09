@@ -239,7 +239,7 @@ Emit("            set => field_T_UnaryModelFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.ArrayModel:
-Emit("        public ImmutableList<T_ModelType_?>? field_T_ArrayModelFieldName_;");
+Emit("        private ImmutableList<T_ModelType_?>? field_T_ArrayModelFieldName_;");
 Emit("        IReadOnlyList<IT_ModelType_?>? IT_EntityName_.T_ArrayModelFieldName_ => field_T_ArrayModelFieldName_;");
 Emit("        public ImmutableList<T_ModelType_?>? T_ArrayModelFieldName_");
 Emit("        {");

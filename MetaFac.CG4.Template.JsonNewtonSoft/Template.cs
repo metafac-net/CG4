@@ -227,7 +227,7 @@ namespace T_Namespace_.JsonNewtonSoft
         }
         //>>                        break;
         //>>                    case FieldKind.ArrayModel:
-        public ImmutableList<T_ModelType_?>? field_T_ArrayModelFieldName_;
+        private ImmutableList<T_ModelType_?>? field_T_ArrayModelFieldName_;
         IReadOnlyList<IT_ModelType_?>? IT_EntityName_.T_ArrayModelFieldName_ => field_T_ArrayModelFieldName_;
         public ImmutableList<T_ModelType_?>? T_ArrayModelFieldName_
         {

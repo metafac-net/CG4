@@ -1,5 +1,4 @@
 using FluentAssertions;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using Xunit;
 
@@ -33,7 +32,7 @@ namespace MetaFac.CG4.Template.UnitTests
             var m1 = new T_Namespace_.ClassesV2.T_EntityName_()
             {
                 T_UnaryModelFieldName_ = new T_Namespace_.ClassesV2.T_ModelType_() { TestData = 123 },
-                T_ArrayModelFieldName_ = ImmutableList<T_Namespace_.ClassesV2.T_ModelType_?>.Empty.Add(new T_Namespace_.ClassesV2.T_ModelType_() { TestData = 234 } ),
+                T_ArrayModelFieldName_ = ImmutableList<T_Namespace_.ClassesV2.T_ModelType_?>.Empty.Add(new T_Namespace_.ClassesV2.T_ModelType_() { TestData = 234 }),
                 T_IndexModelFieldName_ = ImmutableDictionary<T_IndexType_, T_Namespace_.ClassesV2.T_ModelType_?>.Empty
                     .Add("987", new T_Namespace_.ClassesV2.T_ModelType_() { TestData = 456 })
                     .Add("876", null),
@@ -52,5 +51,6 @@ namespace MetaFac.CG4.Template.UnitTests
             f2.Equals(f1).Should().BeTrue();
             f2.GetHashCode().Should().Be(f1.GetHashCode());
         }
+
     }
 }
