@@ -3,6 +3,7 @@ using MessagePack;
 using MetaFac.Memory;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,7 @@ namespace MetaFac.CG4.Template.UnitTests
             UnaryModel,
             UnaryChars,
             UnaryBytes,
+            ArrayOther,
         }
 
         private static readonly JsonSerializer jsonSerializer = new JsonSerializer()
@@ -114,6 +116,7 @@ namespace MetaFac.CG4.Template.UnitTests
                 case TestFieldId.UnaryModel: return original with { T_UnaryModelFieldName_ = new T_Namespace_.RecordsV2.T_ModelType_() { TestData = 123 } };
                 case TestFieldId.UnaryChars: return original with { T_UnaryStringFieldName_ = "abc" };
                 case TestFieldId.UnaryBytes: return original with { T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3 }) };
+                case TestFieldId.ArrayOther: return original with { T_ArrayOtherFieldName_ = ImmutableList.Create(-1L, 0L, 1L) };
                 default: return original;
             }
         }
@@ -147,6 +150,8 @@ namespace MetaFac.CG4.Template.UnitTests
             "C7-1C-63-D2-00-00-00-7A-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-02-07-00-60-A3-61-62-63-C0-C0")]
         [InlineData(WireFormat.MessagePack, TestFieldId.UnaryBytes,
             "C7-21-63-D2-00-00-00-7C-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-E0-00-C0-C0-91-C4-03-01-02-03-C0-C0-C0-C0-C0")]
+        [InlineData(WireFormat.MessagePack, TestFieldId.ArrayOther,
+            "C7-1F-63-D2-00-00-00-7A-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-C0-00-93-FF-00-01-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.UnaryOther,
             """
             {
@@ -177,6 +182,16 @@ namespace MetaFac.CG4.Template.UnitTests
             """
             {
               "T_UnaryBufferFieldName_": "AQID"
+            }
+            """)]
+        [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.ArrayOther,
+            """
+            {
+              "T_ArrayOtherFieldName_": [
+                -1,
+                0,
+                1
+              ]
             }
             """)]
         public void RoundTrip_MultiFormat_NonEmpty(WireFormat wf, TestFieldId fieldId, string expected)
