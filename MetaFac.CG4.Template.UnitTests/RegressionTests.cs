@@ -22,6 +22,7 @@ namespace MetaFac.CG4.Template.UnitTests
             None,
             UnaryOther,
             UnaryMaybe,
+            UnaryModel,
         }
 
         private static readonly JsonSerializer jsonSerializer = new JsonSerializer()
@@ -107,6 +108,7 @@ namespace MetaFac.CG4.Template.UnitTests
             {
                 case TestFieldId.UnaryOther: return original with { T_UnaryOtherFieldName_ = 1L };
                 case TestFieldId.UnaryMaybe: return original with { T_UnaryMaybeFieldName_ = 2L };
+                case TestFieldId.UnaryModel: return original with { T_UnaryModelFieldName_ = new T_Namespace_.RecordsV2.T_ModelType_() { TestData = 123 } };
                 default: return original;
             }
         }
@@ -130,8 +132,12 @@ namespace MetaFac.CG4.Template.UnitTests
         }
 
         [Theory]
-        [InlineData(WireFormat.MessagePack, TestFieldId.UnaryOther, "C7-1C-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-90-01-C0-C0-C0-C0-C0-C0-C0-C0")]
-        [InlineData(WireFormat.MessagePack, TestFieldId.UnaryMaybe, "C7-1F-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-00-63-00-C0-02-C0-C0-00-C0-C0-C0-C0-C0-C0-C0-C0")]
+        [InlineData(WireFormat.MessagePack, TestFieldId.UnaryOther, 
+            "C7-1C-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-90-01-C0-C0-C0-C0-C0-C0-C0-C0")]
+        [InlineData(WireFormat.MessagePack, TestFieldId.UnaryMaybe, 
+            "C7-1F-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-00-63-00-C0-02-C0-C0-00-C0-C0-C0-C0-C0-C0-C0-C0")]
+        [InlineData(WireFormat.MessagePack, TestFieldId.UnaryModel, 
+            "C7-20-63-D2-00-00-00-79-6F-DC-00-74-C0-00-C0-01-00-4E-41-00-92-C0-7B-65-00-90-00-C0-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.UnaryOther,
             """
             {
@@ -142,6 +148,14 @@ namespace MetaFac.CG4.Template.UnitTests
             """
             {
               "T_UnaryMaybeFieldName_": 2
+            }
+            """)]
+        [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.UnaryModel,
+            """
+            {
+              "T_UnaryModelFieldName_": {
+                "TestData": 123
+              }
             }
             """)]
         public void RoundTrip_MultiFormat_NonEmpty(WireFormat wf, TestFieldId fieldId, string expected)
