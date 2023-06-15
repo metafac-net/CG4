@@ -17,6 +17,9 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             MessagePack,
             JsonNewtonSoft,
+            // todo JsonSystemText,
+            // todo JsonMessagePack,
+            // todo ProtobufNet3
         }
 
         public enum TestFieldId
@@ -29,6 +32,9 @@ namespace MetaFac.CG4.Template.UnitTests
             UnaryBytes,
             ArrayOther,
             ArrayMaybe,
+            ArrayModel,
+            ArrayChars,
+            ArrayBytes,
         }
 
         private static readonly JsonSerializer jsonSerializer = new JsonSerializer()
@@ -112,14 +118,32 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             switch (fieldId)
             {
-                case TestFieldId.UnaryOther: return original with { T_UnaryOtherFieldName_ = 1L };
-                case TestFieldId.UnaryMaybe: return original with { T_UnaryMaybeFieldName_ = 2L };
-                case TestFieldId.UnaryModel: return original with { T_UnaryModelFieldName_ = new T_Namespace_.RecordsV2.T_ModelType_() { TestData = 123 } };
-                case TestFieldId.UnaryChars: return original with { T_UnaryStringFieldName_ = "abc" };
-                case TestFieldId.UnaryBytes: return original with { T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3 }) };
-                case TestFieldId.ArrayOther: return original with { T_ArrayOtherFieldName_ = ImmutableList.Create(-1L, 0L, 1L) };
-                case TestFieldId.ArrayMaybe: return original with { T_ArrayMaybeFieldName_ = ImmutableList.Create<long?>(-1L, null, 1L) };
-                default: return original;
+                case TestFieldId.UnaryOther:
+                    return original with { T_UnaryOtherFieldName_ = 1L };
+                case TestFieldId.UnaryMaybe:
+                    return original with { T_UnaryMaybeFieldName_ = 2L };
+                case TestFieldId.UnaryModel:
+                    return original with { T_UnaryModelFieldName_ = new T_Namespace_.RecordsV2.T_ModelType_() { TestData = 123 } };
+                case TestFieldId.UnaryChars:
+                    return original with { T_UnaryStringFieldName_ = "abc" };
+                case TestFieldId.UnaryBytes:
+                    return original with { T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3 }) };
+                case TestFieldId.ArrayOther:
+                    return original with { T_ArrayOtherFieldName_ = ImmutableList.Create(-1L, 0L, 1L) };
+                case TestFieldId.ArrayMaybe:
+                    return original with { T_ArrayMaybeFieldName_ = ImmutableList.Create<long?>(-1L, null, 1L) };
+                case TestFieldId.ArrayModel:
+                    return original with
+                    {
+                        T_ArrayModelFieldName_ = ImmutableList.Create<T_Namespace_.RecordsV2.T_ModelType_?>(
+                            new T_Namespace_.RecordsV2.T_ModelType_() { TestData = 123 }, null, new T_Namespace_.RecordsV2.T_ModelType_() { TestData = 456 })
+                    };
+                case TestFieldId.ArrayChars:
+                    return original with { T_ArrayStringFieldName_ = ImmutableList.Create<string?>("abc", null, "def") };
+                case TestFieldId.ArrayBytes:
+                    return original with { T_ArrayBufferFieldName_ = ImmutableList.Create<Octets?>(new Octets(new byte[] { 1, 2, 3 }), null, new Octets(new byte[] { 4, 5, 6 })) };
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(fieldId), fieldId, null);
             }
         }
 
@@ -156,6 +180,12 @@ namespace MetaFac.CG4.Template.UnitTests
             "C7-1F-63-D2-00-00-00-7A-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-C0-00-93-FF-00-01-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.MessagePack, TestFieldId.ArrayMaybe,
             "C7-21-63-D2-00-00-00-7A-6F-DC-00-74-C0-00-C0-01-00-4E-01-63-00-E0-93-FF-C0-01-C0-00-C0-C0-C0-C0-C0-C0-C0-C0")]
+        [InlineData(WireFormat.MessagePack, TestFieldId.ArrayModel,
+            "C7-28-63-D2-00-00-00-80-6F-DC-00-74-C0-00-C0-01-00-4E-C0-00-C0-93-92-C0-7B-C0-92-C0-CD-01-C8-6D-00-90-00-C0-C0-C0-C0-C0-C0-C0-C0")]
+        [InlineData(WireFormat.MessagePack, TestFieldId.ArrayChars,
+            "C7-21-63-D2-00-00-00-80-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-03-07-00-B0-93-A3-61-62-63-C0-A3-64-65-66-C0")]
+        [InlineData(WireFormat.MessagePack, TestFieldId.ArrayBytes,
+            "C7-29-63-D2-00-00-00-84-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-00-07-00-F0-03-93-91-C4-03-01-02-03-C0-91-C4-03-04-05-06-C0-C0-C0-C0")]
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.UnaryOther,
             """
             {
@@ -205,6 +235,40 @@ namespace MetaFac.CG4.Template.UnitTests
                 -1,
                 null,
                 1
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.ArrayModel,
+            """
+            {
+              "T_ArrayModelFieldName_": [
+                {
+                  "TestData": 123
+                },
+                null,
+                {
+                  "TestData": 456
+                }
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.ArrayChars,
+            """
+            {
+              "T_ArrayStringFieldName_": [
+                "abc",
+                null,
+                "def"
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.ArrayBytes,
+            """
+            {
+              "T_ArrayBufferFieldName_": [
+                "AQID",
+                null,
+                "BAUG"
               ]
             }
             """)]
