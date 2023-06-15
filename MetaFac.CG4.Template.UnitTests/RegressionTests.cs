@@ -28,6 +28,7 @@ namespace MetaFac.CG4.Template.UnitTests
             UnaryChars,
             UnaryBytes,
             ArrayOther,
+            ArrayMaybe,
         }
 
         private static readonly JsonSerializer jsonSerializer = new JsonSerializer()
@@ -117,6 +118,7 @@ namespace MetaFac.CG4.Template.UnitTests
                 case TestFieldId.UnaryChars: return original with { T_UnaryStringFieldName_ = "abc" };
                 case TestFieldId.UnaryBytes: return original with { T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3 }) };
                 case TestFieldId.ArrayOther: return original with { T_ArrayOtherFieldName_ = ImmutableList.Create(-1L, 0L, 1L) };
+                case TestFieldId.ArrayMaybe: return original with { T_ArrayMaybeFieldName_ = ImmutableList.Create<long?>(-1L, null, 1L) };
                 default: return original;
             }
         }
@@ -152,6 +154,8 @@ namespace MetaFac.CG4.Template.UnitTests
             "C7-21-63-D2-00-00-00-7C-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-E0-00-C0-C0-91-C4-03-01-02-03-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.MessagePack, TestFieldId.ArrayOther,
             "C7-1F-63-D2-00-00-00-7A-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-C0-00-93-FF-00-01-C0-C0-C0-C0-C0-C0-C0")]
+        [InlineData(WireFormat.MessagePack, TestFieldId.ArrayMaybe,
+            "C7-21-63-D2-00-00-00-7A-6F-DC-00-74-C0-00-C0-01-00-4E-01-63-00-E0-93-FF-C0-01-C0-00-C0-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.UnaryOther,
             """
             {
@@ -190,6 +194,16 @@ namespace MetaFac.CG4.Template.UnitTests
               "T_ArrayOtherFieldName_": [
                 -1,
                 0,
+                1
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.ArrayMaybe,
+            """
+            {
+              "T_ArrayMaybeFieldName_": [
+                -1,
+                null,
                 1
               ]
             }
