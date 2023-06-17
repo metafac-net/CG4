@@ -8,33 +8,19 @@
           "Name": "Entity1",
           "Tag": 1,
           "Summary": "Entity 1",
-          "State": null,
-          "IsAbstract": false,
-          "ParentName": null,
           "MemberDefs": [
             {
               "Name": "Field1",
               "Tag": 1,
               "Summary": "Field 1",
-              "State": null,
-              "InnerType": "long",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 0,
-              "IndexType": null,
-              "IsModelType": false
+              "InnerType": "long"
             },
             {
               "Name": "Field2",
               "Tag": 2,
               "Summary": "Field 2",
-              "State": null,
               "InnerType": "string",
-              "Nullable": true,
-              "ProxyDef": null,
-              "ArrayRank": 0,
-              "IndexType": null,
-              "IsModelType": false
+              "Nullable": true
             }
           ]
         }
@@ -43,27 +29,21 @@
         {
           "Name": "Enum1",
           "Summary": "Enumeration 1",
-          "State": null,
           "EnumItemDefs": [
             {
               "Name": "Item1",
               "Value": 1,
-              "Summary": "Summary of item 1",
-              "State": null
+              "Summary": "Summary of item 1"
             },
             {
               "Name": "Item2",
-              "Value": 2,
-              "Summary": null,
-              "State": null
+              "Value": 2
             },
             {
               "Name": "Item3",
               "Value": 3,
-              "Summary": null,
               "State": {
                 "IsInactive": true,
-                "IsRedacted": false,
                 "Reason": "Not used anymore"
               }
             }

@@ -71,18 +71,6 @@ namespace MetaFac.CG4.Models
             _enumTypeDefs = ImmutableList<ModelEnumTypeDef>.Empty.AddRange(source.EnumTypeDefs.NotNullRange(ModelEnumTypeDef.From));
         }
 
-        public string ToJson()
-        {
-            var md = new JsonModelDef(this);
-            return JsonSerializer.Serialize(md);
-        }
-
-        public static ModelDefinition FromJson(string json)
-        {
-            var md = JsonSerializer.Deserialize<JsonModelDef>(json);
-            return new ModelDefinition(md);
-        }
-
         public bool Equals(ModelDefinition? other)
         {
             if (ReferenceEquals(this, other)) return true;

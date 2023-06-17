@@ -23,18 +23,6 @@ namespace MetaFac.CG4.Models
                 ModelItemState.From(source.State));
         }
 
-        public string ToJson()
-        {
-            var member = new JsonEnumItemDef(this);
-            return JsonSerializer.Serialize(member);
-        }
-
-        public static ModelEnumItemDef? FromJson(string json)
-        {
-            var member = JsonSerializer.Deserialize<JsonEnumItemDef>(json);
-            return ModelEnumItemDef.From(member);
-        }
-
         public bool Equals(ModelEnumItemDef? other)
         {
             if (ReferenceEquals(this, other)) return true;

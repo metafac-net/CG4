@@ -99,7 +99,12 @@ namespace MetaFac.CG4.Template.UnitTests
             duplicate.Equals(concrete).Should().BeTrue();
         }
 
-        private static readonly JsonSerializer serializer = new JsonSerializer();
+        private static readonly JsonSerializer serializer = new JsonSerializer()
+        {
+            Formatting = Formatting.Indented,
+            //NullValueHandling = NullValueHandling.Ignore,
+            DefaultValueHandling = DefaultValueHandling.Ignore
+        };
 
         private static string SerializeToJson<T>(T value)
         {
@@ -122,7 +127,7 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             T_EntityName_ original = new T_EntityName_();
             string buffer = SerializeToJson(original);
-            buffer.Length.Should().Be(454);
+            buffer.Length.Should().Be(2);
 
             T_EntityName_ duplicate = DeserializeFromJson<T_EntityName_>(buffer);
             duplicate.Should().Be(original);

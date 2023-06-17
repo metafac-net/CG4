@@ -7,312 +7,167 @@
         {
           "Name": "BuiltinTypes",
           "Tag": 1,
-          "Summary": null,
-          "State": null,
           "IsAbstract": true,
-          "ParentName": null,
           "MemberDefs": [
             {
               "Name": "Bools",
               "Tag": 1,
-              "Summary": null,
-              "State": null,
               "InnerType": "bool",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "SBytes",
               "Tag": 2,
-              "Summary": null,
-              "State": null,
               "InnerType": "int8",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Bytes",
               "Tag": 3,
-              "Summary": null,
-              "State": null,
               "InnerType": "uint8",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Shorts",
               "Tag": 4,
-              "Summary": null,
-              "State": null,
               "InnerType": "int16",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "UShorts",
               "Tag": 5,
-              "Summary": null,
-              "State": null,
               "InnerType": "uint16",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Chars",
               "Tag": 6,
-              "Summary": null,
-              "State": null,
               "InnerType": "char",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Ints",
               "Tag": 7,
-              "Summary": null,
-              "State": null,
               "InnerType": "int32",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "UInts",
               "Tag": 8,
-              "Summary": null,
-              "State": null,
               "InnerType": "uint32",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Floats",
               "Tag": 9,
-              "Summary": null,
-              "State": null,
               "InnerType": "single",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Longs",
               "Tag": 10,
-              "Summary": null,
-              "State": null,
               "InnerType": "int64",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "ULongs",
               "Tag": 11,
-              "Summary": null,
-              "State": null,
               "InnerType": "uint64",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Doubles",
               "Tag": 12,
-              "Summary": null,
-              "State": null,
               "InnerType": "double",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "DateTimes",
               "Tag": 13,
-              "Summary": null,
-              "State": null,
               "InnerType": "datetime",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "TimeSpans",
               "Tag": 14,
-              "Summary": null,
-              "State": null,
               "InnerType": "timespan",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Decimals",
               "Tag": 15,
-              "Summary": null,
-              "State": null,
               "InnerType": "decimal",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "DateTimeOffsets",
               "Tag": 16,
-              "Summary": null,
-              "State": null,
               "InnerType": "datetimezone",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Guids",
               "Tag": 17,
-              "Summary": null,
-              "State": null,
               "InnerType": "guid",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Strings",
               "Tag": 18,
-              "Summary": null,
-              "State": null,
               "InnerType": "string",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "Buffers",
               "Tag": 19,
-              "Summary": null,
-              "State": null,
               "InnerType": "binary",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             }
           ]
         },
         {
           "Name": "ExternalTypes",
           "Tag": 2,
-          "Summary": null,
-          "State": null,
           "IsAbstract": true,
-          "ParentName": null,
           "MemberDefs": [
             {
               "Name": "Quantities",
               "Tag": 1,
-              "Summary": null,
-              "State": null,
               "InnerType": "Quantity",
-              "Nullable": false,
               "ProxyDef": {
                 "ExternalName": "LabApps.Units.Quantity",
                 "ConcreteName": "QuantityValue"
               },
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             }
           ]
         },
         {
           "Name": "EnumeratorTypes",
           "Tag": 3,
-          "Summary": null,
-          "State": null,
           "IsAbstract": true,
-          "ParentName": null,
           "MemberDefs": [
             {
               "Name": "DaysOfWeek",
               "Tag": 1,
-              "Summary": null,
-              "State": null,
               "InnerType": "System.DayOfWeek",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "MyCustomEnums",
               "Tag": 2,
-              "Summary": null,
-              "State": null,
               "InnerType": "MetaFac.CG4.ModelReader.Tests.GoodModels.MyCustomEnum",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             },
             {
               "Name": "MyDateTimeKinds",
               "Tag": 3,
-              "Summary": null,
-              "State": null,
               "InnerType": "MyDateTimeKind",
-              "Nullable": false,
               "ProxyDef": {
                 "ExternalName": "System.DateTimeKind",
                 "ConcreteName": "MyDateTimeKindValue"
               },
-              "ArrayRank": 1,
-              "IndexType": null,
-              "IsModelType": false
+              "ArrayRank": 1
             }
           ]
         }
@@ -320,32 +175,21 @@
       "EnumTypeDefs": [
         {
           "Name": "MyCustomEnum",
-          "Summary": null,
-          "State": null,
           "EnumItemDefs": [
             {
-              "Name": "DefaultValue",
-              "Value": 0,
-              "Summary": null,
-              "State": null
+              "Name": "DefaultValue"
             },
             {
               "Name": "FirstValue",
-              "Value": 1,
-              "Summary": null,
-              "State": null
+              "Value": 1
             },
             {
               "Name": "SomeValue",
-              "Value": 2,
-              "Summary": null,
-              "State": null
+              "Value": 2
             },
             {
               "Name": "LastValue",
-              "Value": 99,
-              "Summary": null,
-              "State": null
+              "Value": 99
             }
           ]
         }

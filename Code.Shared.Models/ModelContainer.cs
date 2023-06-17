@@ -3,6 +3,8 @@ using System;
 using System.Collections.Immutable;
 using System.Text.Json;
 using System.Linq;
+using System.Xml;
+using System.Text.Json.Serialization;
 
 namespace MetaFac.CG4.Models
 {
@@ -88,7 +90,11 @@ namespace MetaFac.CG4.Models
         public string ToJson(bool writeIndented = false)
         {
             var md = new JsonMetadata(this);
-            var options = new JsonSerializerOptions() { WriteIndented = writeIndented };
+            var options = new JsonSerializerOptions()
+            {
+                WriteIndented = writeIndented,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
+            };
             return JsonSerializer.Serialize(md, options);
         }
 

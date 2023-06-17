@@ -65,18 +65,6 @@ namespace MetaFac.CG4.Models
                 ModelItemState.From(source.State));
         }
 
-        public string ToJson()
-        {
-            var cd = new JsonEntityDef(this);
-            return JsonSerializer.Serialize(cd);
-        }
-
-        public static ModelEntityDef? FromJson(string json)
-        {
-            var cd = JsonSerializer.Deserialize<JsonEntityDef>(json);
-            return ModelEntityDef.From(cd);
-        }
-
         public bool Equals(ModelEntityDef? other)
         {
             if (ReferenceEquals(this, other)) return true;

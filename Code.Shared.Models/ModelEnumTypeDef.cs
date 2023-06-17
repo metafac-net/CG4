@@ -25,18 +25,6 @@ namespace MetaFac.CG4.Models
                 source.EnumItemDefs.NotNullRange(ModelEnumItemDef.From));
         }
 
-        public string ToJson()
-        {
-            var ed = new JsonEnumTypeDef(this);
-            return JsonSerializer.Serialize(ed);
-        }
-
-        public static ModelEnumTypeDef? FromJson(string json)
-        {
-            var cd = JsonSerializer.Deserialize<JsonEnumTypeDef>(json);
-            return ModelEnumTypeDef.From(cd);
-        }
-
         public bool Equals(ModelEnumTypeDef? other)
         {
             if (ReferenceEquals(this, other)) return true;

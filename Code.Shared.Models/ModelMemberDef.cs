@@ -50,18 +50,6 @@ namespace MetaFac.CG4.Models
                 );
         }
 
-        public string ToJson()
-        {
-            var member = new JsonMemberDef(this);
-            return JsonSerializer.Serialize(member);
-        }
-
-        public static ModelMemberDef? FromJson(string json)
-        {
-            var member = JsonSerializer.Deserialize<JsonMemberDef>(json);
-            return ModelMemberDef.From(member);
-        }
-
         public bool Equals(ModelMemberDef? other)
         {
             if (ReferenceEquals(this, other)) return true;
