@@ -158,13 +158,8 @@ namespace MetaFac.CG4.Generators
         /// Generates output using the supplied metadata and options.
         /// </summary>
         /// <param name="metadata">The metadata.</param>
-        /// <param name="options">The options.</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        /// metadata
-        /// or
-        /// options
-        /// </exception>
+        /// <exception cref="ArgumentNullException">metadata</exception>
         public IEnumerable<string> Generate(ModelContainer metadata)
         {
             if (metadata is null) throw new ArgumentNullException(nameof(metadata));

@@ -12,6 +12,27 @@ namespace MetaFac.CG4.ModelReader
 {
     public static class ModelParser
     {
+        internal static List<ModelEnumTypeDef> ParseEnumerations(string modelName, Assembly sourceAssembly, string sourceNamespace)
+        {
+            List<ModelEnumTypeDef> enumTypeDefs = new List<ModelEnumTypeDef>();
+            foreach (TypeInfo typeInfo in sourceAssembly.DefinedTypes.Where(t => t.Namespace == sourceNamespace && t.IsEnum))
+            {
+                string enumTypeName = typeInfo.Name;
+                List<ModelEnumItemDef> enumItemsDefs = new List<ModelEnumItemDef>();
+                foreach (var fieldInfo in typeInfo.DeclaredFields.Where(fi => fi.IsLiteral))
+                {
+                    object? enumItemValue = fieldInfo.GetValue(fieldInfo);
+                    if (enumItemValue is not null)
+                    {
+                        int enumItemAsInt = (int)enumItemValue;
+                        enumItemsDefs.Add(new ModelEnumItemDef(fieldInfo.Name, null, enumItemAsInt, null));
+                    }
+                }
+                enumTypeDefs.Add(new ModelEnumTypeDef(enumTypeName, null, null, enumItemsDefs));
+            }
+            return enumTypeDefs;
+        }
+
         internal static List<ModelEntityDef> ParseEntities(string modelName, Assembly sourceAssembly, string sourceNamespace)
         {
             var entityDefsByName = new Dictionary<string, ModelEntityDef>();
@@ -403,23 +424,24 @@ namespace MetaFac.CG4.ModelReader
         /// <returns></returns>
         public static ModelContainer ParseAssembly(Assembly sourceAssembly, string sourceNamespace)
         {
-            List<ModelDefinition> modelDefinitions = new List<ModelDefinition>();
             int modelTag = 1;
             string modelName = "Model1";
-            List<ModelEntityDef> entityListA = ParseEntities(modelName, sourceAssembly, sourceNamespace);
-            var modelDefinition = new ModelDefinition(modelName, modelTag, entityListA);
+            var entityListA = ParseEntities(modelName, sourceAssembly, sourceNamespace);
+            var modelDefinition1 = new ModelDefinition(modelName, modelTag, entityListA);
 
             // derive class hierarchy
             var entityListB = new List<ModelEntityDef>();
             foreach (var entityDef in entityListA)
             {
-                var allDescendents = modelDefinition.AllDescendentsOf(entityDef.Name);
+                var allDescendents = modelDefinition1.AllDescendentsOf(entityDef.Name);
                 var updatedEntityDef = entityDef.SetDerivedEntities(allDescendents);
                 entityListB.Add(updatedEntityDef);
             }
 
-            modelDefinition = new ModelDefinition(modelName, modelTag, entityListB);
-            modelDefinitions.Add(modelDefinition);
+            var modelDefinitions = new List<ModelDefinition>();
+            var enumTypesList = ParseEnumerations(modelName, sourceAssembly, sourceNamespace);
+            var modelDefinition2 = new ModelDefinition(modelName, modelTag, entityListB, enumTypesList);
+            modelDefinitions.Add(modelDefinition2);
             var tokens = new Dictionary<string, string>();
             tokens["Metadata"] = GetMetadataSourceDisplayString(sourceAssembly, sourceNamespace);
             return new ModelContainer(modelDefinitions, tokens);

@@ -142,6 +142,24 @@ namespace MetaFac.CG4.ModelReader.Tests
             var entityDef = modelDef.AllEntityDefs.Where(cd => cd.Name == "EnumeratorTypes").Single();
             entityDef.AllMemberDefs.Count.Should().Be(3);
 
+            // enumeration definitions
+            modelDef.AllEnumTypeDefs.Count.Should().Be(1);
+            {
+                var enumTypeDef = modelDef.AllEnumTypeDefs[0];
+                enumTypeDef.Tag.Should().BeNull();
+                enumTypeDef.Name.Should().Be("MyCustomEnum");
+                enumTypeDef.IsRedacted.Should().BeFalse();
+                enumTypeDef.IsInactive.Should().BeFalse();
+                enumTypeDef.EnumItemDefs.Count.Should().Be(4);
+                enumTypeDef.EnumItemDefs[0].Name.Should().Be("DefaultValue");
+                enumTypeDef.EnumItemDefs[0].Value.Should().Be(0);
+                enumTypeDef.EnumItemDefs[1].Name.Should().Be("FirstValue");
+                enumTypeDef.EnumItemDefs[1].Value.Should().Be(1);
+                enumTypeDef.EnumItemDefs[2].Name.Should().Be("SomeValue");
+                enumTypeDef.EnumItemDefs[2].Value.Should().Be(2);
+                enumTypeDef.EnumItemDefs[3].Name.Should().Be("LastValue");
+                enumTypeDef.EnumItemDefs[3].Value.Should().Be(99);
+            }
             // enumerator types
             {
                 var memberDef = entityDef.AllMemberDefs[0];

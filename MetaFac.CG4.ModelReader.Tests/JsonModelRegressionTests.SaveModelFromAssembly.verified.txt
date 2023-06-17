@@ -317,7 +317,39 @@
           ]
         }
       ],
-      "EnumTypeDefs": []
+      "EnumTypeDefs": [
+        {
+          "Name": "MyCustomEnum",
+          "Summary": null,
+          "State": null,
+          "EnumItemDefs": [
+            {
+              "Name": "DefaultValue",
+              "Value": 0,
+              "Summary": null,
+              "State": null
+            },
+            {
+              "Name": "FirstValue",
+              "Value": 1,
+              "Summary": null,
+              "State": null
+            },
+            {
+              "Name": "SomeValue",
+              "Value": 2,
+              "Summary": null,
+              "State": null
+            },
+            {
+              "Name": "LastValue",
+              "Value": 99,
+              "Summary": null,
+              "State": null
+            }
+          ]
+        }
+      ]
     }
   ],
   "Tokens": {

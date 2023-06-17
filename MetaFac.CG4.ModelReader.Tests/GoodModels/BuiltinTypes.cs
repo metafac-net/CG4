@@ -42,7 +42,7 @@ namespace MetaFac.CG4.ModelReader.Tests.GoodModels
         DefaultValue,
         FirstValue,
         SomeValue,
-        LastValue,
+        LastValue = 99,
     }
 
     //[Proxy(nameof(MyEnumKind), "MyEnumValue")]
