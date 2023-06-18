@@ -240,12 +240,12 @@ namespace Generated.ClassesV2
             get => field_Quantities;
             set => field_Quantities = CheckNotFrozen(ref value);
         }
-        private ImmutableList<System.DayOfWeek>? field_MyDaysOfWeek;
-        IReadOnlyList<System.DayOfWeek>? IBuiltinTypes.MyDaysOfWeek => field_MyDaysOfWeek;
-        public ImmutableList<System.DayOfWeek>? MyDaysOfWeek
+        private ImmutableList<System.DayOfWeek>? field_DaysOfWeek;
+        IReadOnlyList<System.DayOfWeek>? IBuiltinTypes.DaysOfWeek => field_DaysOfWeek;
+        public ImmutableList<System.DayOfWeek>? DaysOfWeek
         {
-            get => field_MyDaysOfWeek;
-            set => field_MyDaysOfWeek = CheckNotFrozen(ref value);
+            get => field_DaysOfWeek;
+            set => field_DaysOfWeek = CheckNotFrozen(ref value);
         }
         private ImmutableList<System.DateTimeKind>? field_MyDateTimeKinds;
         IReadOnlyList<System.DateTimeKind>? IBuiltinTypes.MyDateTimeKinds => field_MyDateTimeKinds;
@@ -253,6 +253,13 @@ namespace Generated.ClassesV2
         {
             get => field_MyDateTimeKinds;
             set => field_MyDateTimeKinds = CheckNotFrozen(ref value);
+        }
+        private ImmutableList<MyCustomEnum>? field_MyCustomEnums;
+        IReadOnlyList<MyCustomEnum>? IBuiltinTypes.MyCustomEnums => field_MyCustomEnums;
+        public ImmutableList<MyCustomEnum>? MyCustomEnums
+        {
+            get => field_MyCustomEnums;
+            set => field_MyCustomEnums = CheckNotFrozen(ref value);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -284,8 +291,9 @@ namespace Generated.ClassesV2
             field_Strings = source.Strings;
             field_Buffers = source.Buffers;
             field_Quantities = source.Quantities;
-            field_MyDaysOfWeek = source.MyDaysOfWeek;
+            field_DaysOfWeek = source.DaysOfWeek;
             field_MyDateTimeKinds = source.MyDateTimeKinds;
+            field_MyCustomEnums = source.MyCustomEnums;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -352,12 +360,15 @@ namespace Generated.ClassesV2
             field_Quantities = source.Quantities is null
                 ? default
                 : ImmutableList<LabApps.Units.Quantity>.Empty.AddRange(source.Quantities);
-            field_MyDaysOfWeek = source.MyDaysOfWeek is null
+            field_DaysOfWeek = source.DaysOfWeek is null
                 ? default
-                : ImmutableList<System.DayOfWeek>.Empty.AddRange(source.MyDaysOfWeek);
+                : ImmutableList<System.DayOfWeek>.Empty.AddRange(source.DaysOfWeek);
             field_MyDateTimeKinds = source.MyDateTimeKinds is null
                 ? default
                 : ImmutableList<System.DateTimeKind>.Empty.AddRange(source.MyDateTimeKinds);
+            field_MyCustomEnums = source.MyCustomEnums is null
+                ? default
+                : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -426,40 +437,44 @@ namespace Generated.ClassesV2
             field_Quantities = source.Quantities is null
                 ? default
                 : ImmutableList<LabApps.Units.Quantity>.Empty.AddRange(source.Quantities);
-            field_MyDaysOfWeek = source.MyDaysOfWeek is null
+            field_DaysOfWeek = source.DaysOfWeek is null
                 ? default
-                : ImmutableList<System.DayOfWeek>.Empty.AddRange(source.MyDaysOfWeek);
+                : ImmutableList<System.DayOfWeek>.Empty.AddRange(source.DaysOfWeek);
             field_MyDateTimeKinds = source.MyDateTimeKinds is null
                 ? default
                 : ImmutableList<System.DateTimeKind>.Empty.AddRange(source.MyDateTimeKinds);
+            field_MyCustomEnums = source.MyCustomEnums is null
+                ? default
+                : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums);
         }
 
         public virtual bool Equals(BuiltinTypes? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!Bools.ArrayEquals(other.Bools)) return false;
-            if (!SBytes.ArrayEquals(other.SBytes)) return false;
-            if (!Bytes.ArrayEquals(other.Bytes)) return false;
-            if (!Shorts.ArrayEquals(other.Shorts)) return false;
-            if (!UShorts.ArrayEquals(other.UShorts)) return false;
-            if (!Chars.ArrayEquals(other.Chars)) return false;
-            if (!Ints.ArrayEquals(other.Ints)) return false;
-            if (!UInts.ArrayEquals(other.UInts)) return false;
-            if (!Floats.ArrayEquals(other.Floats)) return false;
-            if (!Longs.ArrayEquals(other.Longs)) return false;
-            if (!ULongs.ArrayEquals(other.ULongs)) return false;
-            if (!Doubles.ArrayEquals(other.Doubles)) return false;
-            if (!DateTimes.ArrayEquals(other.DateTimes)) return false;
-            if (!TimeSpans.ArrayEquals(other.TimeSpans)) return false;
-            if (!Decimals.ArrayEquals(other.Decimals)) return false;
-            if (!DateTimeOffsets.ArrayEquals(other.DateTimeOffsets)) return false;
-            if (!Guids.ArrayEquals(other.Guids)) return false;
+            if (!Bools.ArrayEquals(other.Bools, (a, b) => a == b)) return false;
+            if (!SBytes.ArrayEquals(other.SBytes, (a, b) => a == b)) return false;
+            if (!Bytes.ArrayEquals(other.Bytes, (a, b) => a == b)) return false;
+            if (!Shorts.ArrayEquals(other.Shorts, (a, b) => a == b)) return false;
+            if (!UShorts.ArrayEquals(other.UShorts, (a, b) => a == b)) return false;
+            if (!Chars.ArrayEquals(other.Chars, (a, b) => a == b)) return false;
+            if (!Ints.ArrayEquals(other.Ints, (a, b) => a == b)) return false;
+            if (!UInts.ArrayEquals(other.UInts, (a, b) => a == b)) return false;
+            if (!Floats.ArrayEquals(other.Floats, (a, b) => a == b)) return false;
+            if (!Longs.ArrayEquals(other.Longs, (a, b) => a == b)) return false;
+            if (!ULongs.ArrayEquals(other.ULongs, (a, b) => a == b)) return false;
+            if (!Doubles.ArrayEquals(other.Doubles, (a, b) => a == b)) return false;
+            if (!DateTimes.ArrayEquals(other.DateTimes, (a, b) => a == b)) return false;
+            if (!TimeSpans.ArrayEquals(other.TimeSpans, (a, b) => a == b)) return false;
+            if (!Decimals.ArrayEquals(other.Decimals, (a, b) => a == b)) return false;
+            if (!DateTimeOffsets.ArrayEquals(other.DateTimeOffsets, (a, b) => a == b)) return false;
+            if (!Guids.ArrayEquals(other.Guids, (a, b) => a == b)) return false;
             if (!Strings.ArrayEquals(other.Strings)) return false;
             if (!Buffers.ArrayEquals(other.Buffers)) return false;
-            if (!Quantities.ArrayEquals(other.Quantities)) return false;
-            if (!MyDaysOfWeek.ArrayEquals(other.MyDaysOfWeek)) return false;
-            if (!MyDateTimeKinds.ArrayEquals(other.MyDateTimeKinds)) return false;
+            if (!Quantities.ArrayEquals(other.Quantities, (a, b) => a == b)) return false;
+            if (!DaysOfWeek.ArrayEquals(other.DaysOfWeek, (a, b) => a == b)) return false;
+            if (!MyDateTimeKinds.ArrayEquals(other.MyDateTimeKinds, (a, b) => a == b)) return false;
+            if (!MyCustomEnums.ArrayEquals(other.MyCustomEnums, (a, b) => a == b)) return false;
             return base.Equals(other);
         }
 
@@ -488,8 +503,9 @@ namespace Generated.ClassesV2
             hc.Add(Strings.CalcHashArray());
             hc.Add(Buffers.CalcHashArray());
             hc.Add(Quantities.CalcHashArray());
-            hc.Add(MyDaysOfWeek.CalcHashArray());
+            hc.Add(DaysOfWeek.CalcHashArray());
             hc.Add(MyDateTimeKinds.CalcHashArray());
+            hc.Add(MyCustomEnums.CalcHashArray());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

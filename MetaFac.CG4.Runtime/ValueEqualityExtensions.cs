@@ -132,6 +132,25 @@ namespace MetaFac.CG4.Runtime
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ArrayEquals<T>(this IReadOnlyList<T?>? self, in IReadOnlyList<T?>? other, Func<T, T, bool> equalsFunc)
+        {
+            if (ReferenceEquals(self, other)) return true;
+            if (self is null) return false;
+            if (other is null) return false;
+            if (self.Count != other.Count) return false;
+            for (int i = 0; i < self.Count; i++)
+            {
+                T? selfItem = self[i];
+                T? otherItem = other[i];
+                if (selfItem is null && otherItem is null) continue;
+                if (selfItem is null) return false;
+                if (otherItem is null) return false;
+                if (!equalsFunc(selfItem, otherItem)) return false;
+            }
+            return true;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ArrayEquals<T>(this IReadOnlyList<T?>? self, in IReadOnlyList<T?>? other) where T : IEquatable<T>
         {
             if (self is null) return other is null;
@@ -179,6 +198,24 @@ namespace MetaFac.CG4.Runtime
             for (int i = 0; i < self.Count; i++)
             {
                 if (!self[i].ValueEquals(other[i])) return false;
+            }
+            return true;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IndexEquals<TKey, T>(this IReadOnlyDictionary<TKey, T?>? self, in IReadOnlyDictionary<TKey, T?>? other, Func<T, T, bool> equalsFunc)
+        {
+            if (self is null) return other is null;
+            if (other is null) return false;
+            if (self.Count != other.Count) return false;
+            foreach (var kvp in self)
+            {
+                if (!self.TryGetValue(kvp.Key, out T? otherItem)) return false;
+                T? selfItem = kvp.Value;
+                if (selfItem is null && otherItem is null) continue;
+                if (selfItem is null) return false;
+                if (otherItem is null) return false;
+                if (!equalsFunc(selfItem, otherItem)) return false;
             }
             return true;
         }

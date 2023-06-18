@@ -37,7 +37,7 @@ namespace MetaFac.CG4.Generators.UnitTests
             {
                 metadata = metadata.SetToken("CopyrightInfo", options.CopyrightInfo);
             }
-            return generator.Generate(metadata).ToList();
+            return generator.Generate(metadata);
         }
 
     }

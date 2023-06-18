@@ -23,6 +23,12 @@ using System.Collections.Generic;
 
 namespace Generated.Contracts
 {
+    public enum MyCustomEnum
+    {
+        DefaultValue = 0,
+        AValue = 1,
+        AnotherValue = 2,
+    }
     public partial interface IBuiltinTypes : IEntityBase
     {
         IReadOnlyList<Boolean>? Bools { get; }
@@ -45,7 +51,8 @@ namespace Generated.Contracts
         IReadOnlyList<String?>? Strings { get; }
         IReadOnlyList<Octets?>? Buffers { get; }
         IReadOnlyList<LabApps.Units.Quantity>? Quantities { get; }
-        IReadOnlyList<System.DayOfWeek>? MyDaysOfWeek { get; }
+        IReadOnlyList<System.DayOfWeek>? DaysOfWeek { get; }
         IReadOnlyList<System.DateTimeKind>? MyDateTimeKinds { get; }
+        IReadOnlyList<MyCustomEnum>? MyCustomEnums { get; }
     }
 }

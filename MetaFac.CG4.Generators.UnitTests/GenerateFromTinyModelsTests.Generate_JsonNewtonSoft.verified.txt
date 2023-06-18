@@ -108,7 +108,7 @@ namespace Generated.JsonNewtonSoft
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!Id.ValueEquals(other.Id)) return false;
+            if (Id != other.Id) return false;
             return base.Equals(other);
         }
 

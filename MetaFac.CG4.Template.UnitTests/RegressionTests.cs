@@ -121,7 +121,7 @@ namespace MetaFac.CG4.Template.UnitTests
                 case TestFieldId.UnaryOther:
                     return original with { T_UnaryOtherFieldName_ = 1L };
                 case TestFieldId.UnaryMaybe:
-                    return original with { T_UnaryMaybeFieldName_ = 2L };
+                    return original with { T_UnaryMaybeFieldName_ = DayOfWeek.Monday };
                 case TestFieldId.UnaryModel:
                     return original with { T_UnaryModelFieldName_ = new T_Namespace_.RecordsV2.T_ModelType_() { TestData = 123 } };
                 case TestFieldId.UnaryChars:
@@ -131,7 +131,7 @@ namespace MetaFac.CG4.Template.UnitTests
                 case TestFieldId.ArrayOther:
                     return original with { T_ArrayOtherFieldName_ = ImmutableList.Create(-1L, 0L, 1L) };
                 case TestFieldId.ArrayMaybe:
-                    return original with { T_ArrayMaybeFieldName_ = ImmutableList.Create<long?>(-1L, null, 1L) };
+                    return original with { T_ArrayMaybeFieldName_ = ImmutableList.Create<DayOfWeek?>(DayOfWeek.Monday, null, DayOfWeek.Tuesday) };
                 case TestFieldId.ArrayModel:
                     return original with
                     {
@@ -168,8 +168,8 @@ namespace MetaFac.CG4.Template.UnitTests
         [Theory]
         [InlineData(WireFormat.MessagePack, TestFieldId.UnaryOther, 
             "C7-1C-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-90-01-C0-C0-C0-C0-C0-C0-C0-C0")]
-        [InlineData(WireFormat.MessagePack, TestFieldId.UnaryMaybe, 
-            "C7-1F-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-00-63-00-C0-02-C0-C0-00-C0-C0-C0-C0-C0-C0-C0-C0")]
+        [InlineData(WireFormat.MessagePack, TestFieldId.UnaryMaybe,
+            "C7-1F-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-00-63-00-C0-01-C0-C0-00-C0-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.MessagePack, TestFieldId.UnaryModel,
             "C7-20-63-D2-00-00-00-79-6F-DC-00-74-C0-00-C0-01-00-4E-41-00-92-C0-7B-65-00-90-00-C0-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.MessagePack, TestFieldId.UnaryChars,
@@ -179,7 +179,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [InlineData(WireFormat.MessagePack, TestFieldId.ArrayOther,
             "C7-1F-63-D2-00-00-00-7A-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-C0-00-93-FF-00-01-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.MessagePack, TestFieldId.ArrayMaybe,
-            "C7-21-63-D2-00-00-00-7A-6F-DC-00-74-C0-00-C0-01-00-4E-01-63-00-E0-93-FF-C0-01-C0-00-C0-C0-C0-C0-C0-C0-C0-C0")]
+            "C7-21-63-D2-00-00-00-7A-6F-DC-00-74-C0-00-C0-01-00-4E-01-63-00-E0-93-01-C0-02-C0-00-C0-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.MessagePack, TestFieldId.ArrayModel,
             "C7-28-63-D2-00-00-00-80-6F-DC-00-74-C0-00-C0-01-00-4E-C0-00-C0-93-92-C0-7B-C0-92-C0-CD-01-C8-6D-00-90-00-C0-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.MessagePack, TestFieldId.ArrayChars,
@@ -195,7 +195,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.UnaryMaybe,
             """
             {
-              "T_UnaryMaybeFieldName_": 2
+              "T_UnaryMaybeFieldName_": 1
             }
             """)]
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.UnaryModel,
@@ -232,9 +232,9 @@ namespace MetaFac.CG4.Template.UnitTests
             """
             {
               "T_ArrayMaybeFieldName_": [
-                -1,
+                1,
                 null,
-                1
+                2
               ]
             }
             """)]

@@ -8,6 +8,7 @@ using Xunit;
 
 namespace MetaFac.CG4.Template.UnitTests
 {
+    using T_ConcreteMaybeType_ = System.DayOfWeek;
     using T_ConcreteOtherType_ = Int64;
     using T_IndexType_ = String;
 
@@ -92,11 +93,11 @@ namespace MetaFac.CG4.Template.UnitTests
                     new KeyValuePair<T_IndexType_, T_ConcreteOtherType_>("876", default)
                 }),
                 T_UnaryMaybeFieldName_ = null,
-                T_ArrayMaybeFieldName_ = ImmutableList<T_ConcreteOtherType_?>.Empty.AddRange(new T_ConcreteOtherType_?[] { 234L }),
-                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ConcreteOtherType_?>.Empty.AddRange(new[]
+                T_ArrayMaybeFieldName_ = ImmutableList<T_ConcreteMaybeType_?>.Empty.AddRange(new T_ConcreteMaybeType_?[] { T_ConcreteMaybeType_.Monday }),
+                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ConcreteMaybeType_?>.Empty.AddRange(new[]
                 {
-                    new KeyValuePair<T_IndexType_, T_ConcreteOtherType_?>("987", 456L),
-                    new KeyValuePair<T_IndexType_, T_ConcreteOtherType_?>("876", default)
+                    new KeyValuePair<T_IndexType_, T_ConcreteMaybeType_?>("987",  T_ConcreteMaybeType_.Tuesday),
+                    new KeyValuePair<T_IndexType_, T_ConcreteMaybeType_?>("876", default)
                 }),
             };
 

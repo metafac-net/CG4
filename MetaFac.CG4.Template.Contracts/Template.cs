@@ -89,6 +89,7 @@ namespace T_Namespace_.Contracts
     //>>using (Ignored())
     //>>{
     using T_ExternalOtherType_ = System.Int64;
+    using T_ExternalMaybeType_ = System.DayOfWeek;
     using T_IndexType_ = System.String;
     //>>}
     //>>foreach (var ed in outerScope.EnumTypeDefs)
@@ -149,13 +150,13 @@ namespace T_Namespace_.Contracts
         IReadOnlyDictionary<T_IndexType_, IT_ModelType_?>? T_IndexModelFieldName_ { get; }
         //>>                        break;
         //>>                    case FieldKind.UnaryMaybe:
-        T_ExternalOtherType_? T_UnaryMaybeFieldName_ { get; }
+        T_ExternalMaybeType_? T_UnaryMaybeFieldName_ { get; }
         //>>                        break;
         //>>                    case FieldKind.ArrayMaybe:
-        IReadOnlyList<T_ExternalOtherType_?>? T_ArrayMaybeFieldName_ { get; }
+        IReadOnlyList<T_ExternalMaybeType_?>? T_ArrayMaybeFieldName_ { get; }
         //>>                        break;
         //>>                    case FieldKind.IndexMaybe:
-        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_?>? T_IndexMaybeFieldName_ { get; }
+        IReadOnlyDictionary<T_IndexType_, T_ExternalMaybeType_?>? T_IndexMaybeFieldName_ { get; }
         //>>                        break;
         //>>                    case FieldKind.UnaryOther:
         T_ExternalOtherType_ T_UnaryOtherFieldName_ { get; }

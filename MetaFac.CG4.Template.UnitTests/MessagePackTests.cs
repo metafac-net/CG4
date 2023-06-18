@@ -15,6 +15,7 @@ using Xunit;
 
 namespace MetaFac.CG4.Template.UnitTests
 {
+    using T_ExternalMaybeType_ = DayOfWeek;
     using T_ExternalOtherType_ = Int64;
     using T_IndexType_ = String;
 
@@ -173,9 +174,9 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryMaybeFieldName_ = null,
-                T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalOtherType_?>.Empty.Add(null).Add(234L),
-                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty
-                    .Add("987", 456L)
+                T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalMaybeType_?>.Empty.Add(null).Add(T_ExternalMaybeType_.Monday),
+                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty
+                    .Add("987", T_ExternalMaybeType_.Tuesday)
                     .Add("876", default),
                 T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
                 T_ArrayBufferFieldName_ = ImmutableList<BinaryValue?>.Empty
@@ -237,9 +238,9 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryMaybeFieldName_ = null,
-                T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalOtherType_?>.Empty.Add(null).Add(234L),
-                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty
-                    .Add("987", 456L)
+                T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalMaybeType_?>.Empty.Add(null).Add(T_ExternalMaybeType_.Monday),
+                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty
+                    .Add("987", T_ExternalMaybeType_.Tuesday)
                     .Add("876", default),
                 T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
                 T_ArrayBufferFieldName_ = ImmutableList<BinaryValue?>.Empty
@@ -288,9 +289,9 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryMaybeFieldName_ = null,
-                T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalOtherType_?>.Empty.Add(null).Add(234L),
-                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty
-                    .Add("987", 456L)
+                T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalMaybeType_?>.Empty.Add(null).Add(T_ExternalMaybeType_.Monday),
+                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty
+                    .Add("987", T_ExternalMaybeType_.Tuesday)
                     .Add("876", default),
                 T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
                 T_ArrayBufferFieldName_ = ImmutableList<BinaryValue?>.Empty
@@ -345,9 +346,9 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryMaybeFieldName_ = null,
-                T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalOtherType_?>.Empty.Add(null).Add(234L),
-                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty
-                    .Add("987", 456L)
+                T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalMaybeType_?>.Empty.Add(null).Add(T_ExternalMaybeType_.Monday),
+                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty
+                    .Add("987", T_ExternalMaybeType_.Tuesday)
                     .Add("876", default),
                 T_UnaryBufferFieldName_ = new Octets(new byte[] { 1, 2, 3, 4 }),
                 T_ArrayBufferFieldName_ = ImmutableList<BinaryValue?>.Empty

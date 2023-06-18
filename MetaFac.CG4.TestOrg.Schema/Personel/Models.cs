@@ -16,5 +16,6 @@ namespace MetaFac.CG4.TestOrg.Schema.Personel
         [Member(2)] string FirstName { get; }
         [Member(3, ModelState.Reserved)] string OtherNames { get; }
         [Member(4)] GenderEnum Gender { get; }
+        [Member(5)] System.DayOfWeek DayOfBirth { get; }
     }
 }

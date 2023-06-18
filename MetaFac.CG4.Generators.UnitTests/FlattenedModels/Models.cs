@@ -1,10 +1,6 @@
 ﻿using MetaFac.CG4.Attributes;
 using MetaFac.Memory;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MetaFac.CG4.Generators.UnitTests.FlattenedModels
 {
@@ -14,33 +10,38 @@ namespace MetaFac.CG4.Generators.UnitTests.FlattenedModels
     [Proxy("System.DateTimeKind", "MyDateTimeKindValue")]
     public struct MyDateTimeKind { }
 
-    [Proxy("System.DayOfWeek", "MyDayOfWeekValue")]
-    public struct MyDayOfWeek { }
+    public enum MyCustomEnum
+    {
+        DefaultValue,
+        AValue,
+        AnotherValue,
+    }
 
     [Entity(1)]
     public interface IBuiltinTypes
     {
-        [Member(1)] public bool[]? Bools { get; set; }
-        [Member(2)] public sbyte[]? SBytes { get; set; }
-        [Member(3)] public byte[]? Bytes { get; set; }
-        [Member(4)] public short[]? Shorts { get; set; }
-        [Member(5)] public ushort[]? UShorts { get; set; }
-        [Member(6)] public char[]? Chars { get; set; }
-        [Member(7)] public int[]? Ints { get; set; }
-        [Member(8)] public uint[]? UInts { get; set; }
-        [Member(9)] public float[]? Floats { get; set; }
-        [Member(10)] public long[]? Longs { get; set; }
-        [Member(11)] public ulong[]? ULongs { get; set; }
-        [Member(12)] public double[]? Doubles { get; set; }
-        [Member(13)] public DateTime[]? DateTimes { get; set; }
-        [Member(14)] public TimeSpan[]? TimeSpans { get; set; }
-        [Member(15)] public decimal[]? Decimals { get; set; }
-        [Member(16)] public DateTimeOffset[]? DateTimeOffsets { get; set; }
-        [Member(17)] public Guid[]? Guids { get; set; }
-        [Member(18)] public String[]? Strings { get; set; }
-        [Member(19)] public Octets[]? Buffers { get; set; }
-        [Member(20)] public Quantity[]? Quantities { get; set; }
-        [Member(21)] public MyDayOfWeek[]? MyDaysOfWeek { get; set; }
-        [Member(22)] public MyDateTimeKind[]? MyDateTimeKinds { get; set; }
+        [Member(1)] bool[]? Bools { get; }
+        [Member(2)] sbyte[]? SBytes { get; }
+        [Member(3)] byte[]? Bytes { get; }
+        [Member(4)] short[]? Shorts { get; }
+        [Member(5)] ushort[]? UShorts { get; }
+        [Member(6)] char[]? Chars { get; }
+        [Member(7)] int[]? Ints { get; }
+        [Member(8)] uint[]? UInts { get; }
+        [Member(9)] float[]? Floats { get; }
+        [Member(10)] long[]? Longs { get; }
+        [Member(11)] ulong[]? ULongs { get; }
+        [Member(12)] double[]? Doubles { get; }
+        [Member(13)] DateTime[]? DateTimes { get; }
+        [Member(14)] TimeSpan[]? TimeSpans { get; }
+        [Member(15)] decimal[]? Decimals { get; }
+        [Member(16)] DateTimeOffset[]? DateTimeOffsets { get; }
+        [Member(17)] Guid[]? Guids { get; }
+        [Member(18)] string[]? Strings { get; }
+        [Member(19)] Octets[]? Buffers { get; }
+        [Member(20)] Quantity[]? Quantities { get; }
+        [Member(21)] DayOfWeek[]? DaysOfWeek { get; }
+        [Member(22)] MyDateTimeKind[]? MyDateTimeKinds { get; }
+        [Member(23)] MyCustomEnum[]? MyCustomEnums { get; }
     }
 }

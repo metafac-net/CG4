@@ -101,6 +101,7 @@ Emit("{");
     using (Ignored())
     {
 Emit("    using T_ExternalOtherType_ = System.Int64;");
+Emit("    using T_ExternalMaybeType_ = System.DayOfWeek;");
 Emit("    using T_IndexType_ = System.String;");
     }
     foreach (var ed in outerScope.EnumTypeDefs)
@@ -161,13 +162,13 @@ Emit("        IReadOnlyList<IT_ModelType_?>? T_ArrayModelFieldName_ { get; }");
 Emit("        IReadOnlyDictionary<T_IndexType_, IT_ModelType_?>? T_IndexModelFieldName_ { get; }");
                                 break;
                             case FieldKind.UnaryMaybe:
-Emit("        T_ExternalOtherType_? T_UnaryMaybeFieldName_ { get; }");
+Emit("        T_ExternalMaybeType_? T_UnaryMaybeFieldName_ { get; }");
                                 break;
                             case FieldKind.ArrayMaybe:
-Emit("        IReadOnlyList<T_ExternalOtherType_?>? T_ArrayMaybeFieldName_ { get; }");
+Emit("        IReadOnlyList<T_ExternalMaybeType_?>? T_ArrayMaybeFieldName_ { get; }");
                                 break;
                             case FieldKind.IndexMaybe:
-Emit("        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_?>? T_IndexMaybeFieldName_ { get; }");
+Emit("        IReadOnlyDictionary<T_IndexType_, T_ExternalMaybeType_?>? T_IndexMaybeFieldName_ { get; }");
                                 break;
                             case FieldKind.UnaryOther:
 Emit("        T_ExternalOtherType_ T_UnaryOtherFieldName_ { get; }");

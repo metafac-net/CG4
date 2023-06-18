@@ -84,6 +84,7 @@ Emit("{");
     using (Ignored())
     {
 Emit("    using T_ExternalOtherType_ = System.Int64;");
+Emit("    using T_ExternalMaybeType_ = System.DayOfWeek;");
 Emit("    using T_IndexType_ = System.String;");
     }
 Emit("");
@@ -259,27 +260,27 @@ Emit("            set => field_T_IndexModelFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.UnaryMaybe:
-Emit("        private T_ExternalOtherType_? field_T_UnaryMaybeFieldName_;");
-Emit("        T_ExternalOtherType_? IT_EntityName_.T_UnaryMaybeFieldName_ => field_T_UnaryMaybeFieldName_;");
-Emit("        public T_ExternalOtherType_? T_UnaryMaybeFieldName_");
+Emit("        private T_ExternalMaybeType_? field_T_UnaryMaybeFieldName_;");
+Emit("        T_ExternalMaybeType_? IT_EntityName_.T_UnaryMaybeFieldName_ => field_T_UnaryMaybeFieldName_;");
+Emit("        public T_ExternalMaybeType_? T_UnaryMaybeFieldName_");
 Emit("        {");
 Emit("            get => field_T_UnaryMaybeFieldName_;");
 Emit("            set => field_T_UnaryMaybeFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.ArrayMaybe:
-Emit("        private ImmutableList<T_ExternalOtherType_?>? field_T_ArrayMaybeFieldName_;");
-Emit("        IReadOnlyList<T_ExternalOtherType_?>? IT_EntityName_.T_ArrayMaybeFieldName_ => field_T_ArrayMaybeFieldName_;");
-Emit("        public ImmutableList<T_ExternalOtherType_?>? T_ArrayMaybeFieldName_");
+Emit("        private ImmutableList<T_ExternalMaybeType_?>? field_T_ArrayMaybeFieldName_;");
+Emit("        IReadOnlyList<T_ExternalMaybeType_?>? IT_EntityName_.T_ArrayMaybeFieldName_ => field_T_ArrayMaybeFieldName_;");
+Emit("        public ImmutableList<T_ExternalMaybeType_?>? T_ArrayMaybeFieldName_");
 Emit("        {");
 Emit("            get => field_T_ArrayMaybeFieldName_;");
 Emit("            set => field_T_ArrayMaybeFieldName_ = value;");
 Emit("        }");
                                 break;
                             case FieldKind.IndexMaybe:
-Emit("        private ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>? field_T_IndexMaybeFieldName_;");
-Emit("        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_?>? IT_EntityName_.T_IndexMaybeFieldName_ => field_T_IndexMaybeFieldName_;");
-Emit("        public ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>? T_IndexMaybeFieldName_");
+Emit("        private ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>? field_T_IndexMaybeFieldName_;");
+Emit("        IReadOnlyDictionary<T_IndexType_, T_ExternalMaybeType_?>? IT_EntityName_.T_IndexMaybeFieldName_ => field_T_IndexMaybeFieldName_;");
+Emit("        public ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>? T_IndexMaybeFieldName_");
 Emit("        {");
 Emit("            get => field_T_IndexMaybeFieldName_;");
 Emit("            set => field_T_IndexMaybeFieldName_ = value;");
@@ -458,12 +459,12 @@ Emit("            field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;"
                                 case FieldKind.ArrayMaybe:
 Emit("            field_T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableList<T_ExternalOtherType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);");
+Emit("                : ImmutableList<T_ExternalMaybeType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);");
                                     break;
                                 case FieldKind.IndexMaybe:
 Emit("            field_T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);");
+Emit("                : ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);");
                                     break;
                                 case FieldKind.UnaryOther:
 Emit("            field_T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;");
@@ -544,12 +545,12 @@ Emit("            field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;"
                                 case FieldKind.ArrayMaybe:
 Emit("            field_T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableList<T_ExternalOtherType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);");
+Emit("                : ImmutableList<T_ExternalMaybeType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);");
                                     break;
                                 case FieldKind.IndexMaybe:
 Emit("            field_T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);");
+Emit("                : ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);");
                                     break;
                                 case FieldKind.UnaryOther:
 Emit("            field_T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;");
@@ -619,22 +620,22 @@ Emit("            if (!T_ArrayModelFieldName_.ArrayEquals(other.T_ArrayModelFiel
 Emit("            if (!T_IndexModelFieldName_.IndexEquals(other.T_IndexModelFieldName_)) return false;");
                                     break;
                                 case FieldKind.UnaryMaybe:
-Emit("            if (!T_UnaryMaybeFieldName_.ValueEquals(other.T_UnaryMaybeFieldName_)) return false;");
+Emit("            if (T_UnaryMaybeFieldName_ != other.T_UnaryMaybeFieldName_) return false;");
                                     break;
                                 case FieldKind.ArrayMaybe:
-Emit("            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_)) return false;");
+Emit("            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_, (a, b) => a == b)) return false;");
                                     break;
                                 case FieldKind.IndexMaybe:
-Emit("            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_)) return false;");
+Emit("            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_, (a, b) => a == b)) return false;");
                                     break;
                                 case FieldKind.UnaryOther:
-Emit("            if (!T_UnaryOtherFieldName_.ValueEquals(other.T_UnaryOtherFieldName_)) return false;");
+Emit("            if (T_UnaryOtherFieldName_ != other.T_UnaryOtherFieldName_) return false;");
                                     break;
                                 case FieldKind.ArrayOther:
-Emit("            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_)) return false;");
+Emit("            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_, (a, b) => a == b)) return false;");
                                     break;
                                 case FieldKind.IndexOther:
-Emit("            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_)) return false;");
+Emit("            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_, (a, b) => a == b)) return false;");
                                     break;
                                 case FieldKind.UnaryBuffer:
 Emit("            if (!T_UnaryBufferFieldName_.ValueEquals(other.T_UnaryBufferFieldName_)) return false;");

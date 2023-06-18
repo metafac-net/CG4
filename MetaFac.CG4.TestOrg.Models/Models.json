@@ -7,43 +7,60 @@
         {
           "Name": "Person",
           "Tag": 1,
-          "Summary": null,
-          "State": null,
           "IsAbstract": true,
-          "ParentName": null,
           "MemberDefs": [
             {
               "Name": "FamilyName",
               "Tag": 1,
-              "Summary": null,
-              "State": null,
-              "InnerType": "string",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 0,
-              "IndexType": null,
-              "IsModelType": false
+              "InnerType": "string"
             },
             {
               "Name": "FirstName",
               "Tag": 2,
-              "Summary": null,
-              "State": null,
-              "InnerType": "string",
-              "Nullable": false,
-              "ProxyDef": null,
-              "ArrayRank": 0,
-              "IndexType": null,
-              "IsModelType": false
+              "InnerType": "string"
+            },
+            {
+              "Name": "OtherNames",
+              "Tag": 3,
+              "State": {
+                "IsRedacted": true
+              },
+              "InnerType": "string"
+            },
+            {
+              "Name": "Gender",
+              "Tag": 4,
+              "InnerType": "GenderEnum"
+            },
+            {
+              "Name": "DayOfBirth",
+              "Tag": 5,
+              "InnerType": "System.DayOfWeek"
             }
           ]
         }
       ],
-      "EnumTypeDefs": []
+      "EnumTypeDefs": [
+        {
+          "Name": "GenderEnum",
+          "EnumItemDefs": [
+            {
+              "Name": "Undefined"
+            },
+            {
+              "Name": "Male",
+              "Value": 1
+            },
+            {
+              "Name": "Female",
+              "Value": 2
+            }
+          ]
+        }
+      ]
     }
   ],
   "Tokens": {
-    "CopyrightInfo": "Copyright (c) 2023 MetaFac",
-    "Metadata": "MetaFac.CG4.TestOrg.Schema(MetaFac.CG4.TestOrg.Schema.Personel)"
+    "Metadata": "MetaFac.CG4.TestOrg.Schema(.Personel)"
   }
 }

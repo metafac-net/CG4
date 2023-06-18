@@ -72,6 +72,7 @@ namespace T_Namespace_.JsonNewtonSoft
     //>>using (Ignored())
     //>>{
     using T_ExternalOtherType_ = System.Int64;
+    using T_ExternalMaybeType_ = System.DayOfWeek;
     using T_IndexType_ = System.String;
     //>>}
 
@@ -247,27 +248,27 @@ namespace T_Namespace_.JsonNewtonSoft
         }
         //>>                        break;
         //>>                    case FieldKind.UnaryMaybe:
-        private T_ExternalOtherType_? field_T_UnaryMaybeFieldName_;
-        T_ExternalOtherType_? IT_EntityName_.T_UnaryMaybeFieldName_ => field_T_UnaryMaybeFieldName_;
-        public T_ExternalOtherType_? T_UnaryMaybeFieldName_
+        private T_ExternalMaybeType_? field_T_UnaryMaybeFieldName_;
+        T_ExternalMaybeType_? IT_EntityName_.T_UnaryMaybeFieldName_ => field_T_UnaryMaybeFieldName_;
+        public T_ExternalMaybeType_? T_UnaryMaybeFieldName_
         {
             get => field_T_UnaryMaybeFieldName_;
             set => field_T_UnaryMaybeFieldName_ = value;
         }
         //>>                        break;
         //>>                    case FieldKind.ArrayMaybe:
-        private ImmutableList<T_ExternalOtherType_?>? field_T_ArrayMaybeFieldName_;
-        IReadOnlyList<T_ExternalOtherType_?>? IT_EntityName_.T_ArrayMaybeFieldName_ => field_T_ArrayMaybeFieldName_;
-        public ImmutableList<T_ExternalOtherType_?>? T_ArrayMaybeFieldName_
+        private ImmutableList<T_ExternalMaybeType_?>? field_T_ArrayMaybeFieldName_;
+        IReadOnlyList<T_ExternalMaybeType_?>? IT_EntityName_.T_ArrayMaybeFieldName_ => field_T_ArrayMaybeFieldName_;
+        public ImmutableList<T_ExternalMaybeType_?>? T_ArrayMaybeFieldName_
         {
             get => field_T_ArrayMaybeFieldName_;
             set => field_T_ArrayMaybeFieldName_ = value;
         }
         //>>                        break;
         //>>                    case FieldKind.IndexMaybe:
-        private ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>? field_T_IndexMaybeFieldName_;
-        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_?>? IT_EntityName_.T_IndexMaybeFieldName_ => field_T_IndexMaybeFieldName_;
-        public ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>? T_IndexMaybeFieldName_
+        private ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>? field_T_IndexMaybeFieldName_;
+        IReadOnlyDictionary<T_IndexType_, T_ExternalMaybeType_?>? IT_EntityName_.T_IndexMaybeFieldName_ => field_T_IndexMaybeFieldName_;
+        public ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>? T_IndexMaybeFieldName_
         {
             get => field_T_IndexMaybeFieldName_;
             set => field_T_IndexMaybeFieldName_ = value;
@@ -446,12 +447,12 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>                    case FieldKind.ArrayMaybe:
             field_T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_ is null
                 ? default
-                : ImmutableList<T_ExternalOtherType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);
+                : ImmutableList<T_ExternalMaybeType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);
             //>>                        break;
             //>>                    case FieldKind.IndexMaybe:
             field_T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_ is null
                 ? default
-                : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);
+                : ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
             field_T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;
@@ -532,12 +533,12 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>                    case FieldKind.ArrayMaybe:
             field_T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_ is null
                 ? default
-                : ImmutableList<T_ExternalOtherType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);
+                : ImmutableList<T_ExternalMaybeType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);
             //>>                        break;
             //>>                    case FieldKind.IndexMaybe:
             field_T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_ is null
                 ? default
-                : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);
+                : ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
             field_T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;
@@ -607,22 +608,22 @@ namespace T_Namespace_.JsonNewtonSoft
             if (!T_IndexModelFieldName_.IndexEquals(other.T_IndexModelFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryMaybe:
-            if (!T_UnaryMaybeFieldName_.ValueEquals(other.T_UnaryMaybeFieldName_)) return false;
+            if (T_UnaryMaybeFieldName_ != other.T_UnaryMaybeFieldName_) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayMaybe:
-            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_)) return false;
+            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_, (a, b) => a == b)) return false;
             //>>                        break;
             //>>                    case FieldKind.IndexMaybe:
-            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_)) return false;
+            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_, (a, b) => a == b)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
-            if (!T_UnaryOtherFieldName_.ValueEquals(other.T_UnaryOtherFieldName_)) return false;
+            if (T_UnaryOtherFieldName_ != other.T_UnaryOtherFieldName_) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayOther:
-            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_)) return false;
+            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_, (a, b) => a == b)) return false;
             //>>                        break;
             //>>                    case FieldKind.IndexOther:
-            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_)) return false;
+            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_, (a, b) => a == b)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryBuffer:
             if (!T_UnaryBufferFieldName_.ValueEquals(other.T_UnaryBufferFieldName_)) return false;

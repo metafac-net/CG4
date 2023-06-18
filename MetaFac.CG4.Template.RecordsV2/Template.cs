@@ -72,6 +72,7 @@ namespace T_Namespace_.RecordsV2
     //>>using (Ignored())
     //>>{
     using T_ExternalOtherType_ = System.Int64;
+    using T_ExternalMaybeType_ = System.DayOfWeek;
     using T_IndexType_ = System.String;
     //>>}
 
@@ -213,16 +214,16 @@ namespace T_Namespace_.RecordsV2
             : new DictionaryFacade<T_IndexType_, IT_ModelType_?, T_ModelType_?>(T_IndexModelFieldName_, (x) => x);
         //>>                        break;
         //>>                    case FieldKind.UnaryMaybe:
-        public T_ExternalOtherType_? T_UnaryMaybeFieldName_ { get; init; }
-        T_ExternalOtherType_? IT_EntityName_.T_UnaryMaybeFieldName_ => T_UnaryMaybeFieldName_;
+        public T_ExternalMaybeType_? T_UnaryMaybeFieldName_ { get; init; }
+        T_ExternalMaybeType_? IT_EntityName_.T_UnaryMaybeFieldName_ => T_UnaryMaybeFieldName_;
         //>>                        break;
         //>>                    case FieldKind.ArrayMaybe:
-        public ImmutableList<T_ExternalOtherType_?>? T_ArrayMaybeFieldName_ { get; init; }
-        IReadOnlyList<T_ExternalOtherType_?>? IT_EntityName_.T_ArrayMaybeFieldName_ => T_ArrayMaybeFieldName_;
+        public ImmutableList<T_ExternalMaybeType_?>? T_ArrayMaybeFieldName_ { get; init; }
+        IReadOnlyList<T_ExternalMaybeType_?>? IT_EntityName_.T_ArrayMaybeFieldName_ => T_ArrayMaybeFieldName_;
         //>>                        break;
         //>>                    case FieldKind.IndexMaybe:
-        public ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>? T_IndexMaybeFieldName_ { get; init; }
-        IReadOnlyDictionary<T_IndexType_, T_ExternalOtherType_?>? IT_EntityName_.T_IndexMaybeFieldName_ => T_IndexMaybeFieldName_;
+        public ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>? T_IndexMaybeFieldName_ { get; init; }
+        IReadOnlyDictionary<T_IndexType_, T_ExternalMaybeType_?>? IT_EntityName_.T_IndexMaybeFieldName_ => T_IndexMaybeFieldName_;
         //>>                        break;
         //>>                    case FieldKind.UnaryOther:
         public T_ExternalOtherType_ T_UnaryOtherFieldName_ { get; init; }
@@ -363,12 +364,12 @@ namespace T_Namespace_.RecordsV2
             //>>                    case FieldKind.ArrayMaybe:
             T_ArrayMaybeFieldName_ = source.T_ArrayMaybeFieldName_ is null
                 ? default
-                : ImmutableList<T_ExternalOtherType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);
+                : ImmutableList<T_ExternalMaybeType_?>.Empty.AddRange(source.T_ArrayMaybeFieldName_);
             //>>                        break;
             //>>                    case FieldKind.IndexMaybe:
             T_IndexMaybeFieldName_ = source.T_IndexMaybeFieldName_ is null
                 ? default
-                : ImmutableDictionary<T_IndexType_, T_ExternalOtherType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);
+                : ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty.AddRange(source.T_IndexMaybeFieldName_);
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
             T_UnaryOtherFieldName_ = source.T_UnaryOtherFieldName_;
@@ -438,22 +439,22 @@ namespace T_Namespace_.RecordsV2
             if (!T_IndexModelFieldName_.IndexEquals(other.T_IndexModelFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryMaybe:
-            if (!T_UnaryMaybeFieldName_.ValueEquals(other.T_UnaryMaybeFieldName_)) return false;
+            if (T_UnaryMaybeFieldName_ != other.T_UnaryMaybeFieldName_) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayMaybe:
-            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_)) return false;
+            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_, (a, b) => a == b)) return false;
             //>>                        break;
             //>>                    case FieldKind.IndexMaybe:
-            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_)) return false;
+            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_, (a, b) => a == b)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
-            if (!T_UnaryOtherFieldName_.ValueEquals(other.T_UnaryOtherFieldName_)) return false;
+            if (T_UnaryOtherFieldName_ != other.T_UnaryOtherFieldName_) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayOther:
-            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_)) return false;
+            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_, (a, b) => a == b)) return false;
             //>>                        break;
             //>>                    case FieldKind.IndexOther:
-            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_)) return false;
+            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_, (a, b) => a == b)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryBuffer:
             if (!T_UnaryBufferFieldName_.ValueEquals(other.T_UnaryBufferFieldName_)) return false;

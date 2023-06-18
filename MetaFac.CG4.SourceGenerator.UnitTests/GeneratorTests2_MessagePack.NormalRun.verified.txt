@@ -122,6 +122,8 @@ namespace MetaFac.CG4.TestOrg.Models.MessagePack
         // ---------- private fields ----------
         private String? field_FamilyName;
         private String? field_FirstName;
+        private GenderEnum field_Gender;
+        private System.DayOfWeek field_DayOfBirth;
 
         // ---------- accessors ----------
         [Key(1)]
@@ -136,10 +138,24 @@ namespace MetaFac.CG4.TestOrg.Models.MessagePack
             get => field_FirstName;
             set => field_FirstName = CheckNotFrozen(ref value);
         }
+        [Key(4)]
+        public GenderEnum Gender
+        {
+            get => field_Gender;
+            set => field_Gender = CheckNotFrozen(ref value);
+        }
+        [Key(5)]
+        public System.DayOfWeek DayOfBirth
+        {
+            get => field_DayOfBirth;
+            set => field_DayOfBirth = CheckNotFrozen(ref value);
+        }
 
         // ---------- IPerson methods ----------
         String? IPerson.FamilyName => field_FamilyName;
         String? IPerson.FirstName => field_FirstName;
+        GenderEnum IPerson.Gender => field_Gender.ToExternal();
+        System.DayOfWeek IPerson.DayOfBirth => field_DayOfBirth.ToExternal();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person()
@@ -151,6 +167,8 @@ namespace MetaFac.CG4.TestOrg.Models.MessagePack
         {
             field_FamilyName = source.field_FamilyName;
             field_FirstName = source.field_FirstName;
+            field_Gender = source.field_Gender;
+            field_DayOfBirth = source.field_DayOfBirth;
         }
 
         public void CopyFrom(Person source)
@@ -158,6 +176,8 @@ namespace MetaFac.CG4.TestOrg.Models.MessagePack
             base.CopyFrom(source);
             field_FamilyName = source.field_FamilyName;
             field_FirstName = source.field_FirstName;
+            field_Gender = source.field_Gender;
+            field_DayOfBirth = source.field_DayOfBirth;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -165,6 +185,8 @@ namespace MetaFac.CG4.TestOrg.Models.MessagePack
         {
             field_FamilyName = source.FamilyName;
             field_FirstName = source.FirstName;
+            field_Gender = source.Gender.ToInternal();
+            field_DayOfBirth = source.DayOfBirth.ToInternal();
         }
 
         public bool Equals(Person? other)
@@ -173,6 +195,8 @@ namespace MetaFac.CG4.TestOrg.Models.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_FamilyName.ValueEquals(other.field_FamilyName)) return false;
             if (!field_FirstName.ValueEquals(other.field_FirstName)) return false;
+            if (field_Gender != other.field_Gender) return false;
+            if (field_DayOfBirth != other.field_DayOfBirth) return false;
             return base.Equals(other);
         }
 
@@ -201,6 +225,8 @@ namespace MetaFac.CG4.TestOrg.Models.MessagePack
             HashCode hc = new HashCode();
             hc.Add(field_FamilyName.CalcHashUnary());
             hc.Add(field_FirstName.CalcHashUnary());
+            hc.Add(field_Gender.CalcHashUnary());
+            hc.Add(field_DayOfBirth.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <WarningsAsErrors>nullable</WarningsAsErrors>
@@ -10,6 +10,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.SourceGenerator\MetaFac.CG4.SourceGenerator.csproj" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
@@ -17,6 +18,10 @@
         <AdditionalFiles Include="Models.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </AdditionalFiles>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MetaFac.Mutability" Version="2.1.4" />
     </ItemGroup>
 
 </Project>

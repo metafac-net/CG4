@@ -117,6 +117,8 @@ namespace MetaFac.CG4.Generators
                 tokens["ModelType"] = innerType;
             if (memberDef.IndexType != null)
                 tokens["IndexType"] = memberDef.IndexType;
+            tokens[$"External{memberDef.InnerType}"] = innerType;
+            tokens[$"Concrete{memberDef.InnerType}"] = innerType;
             if (memberDef.ProxyDef is not null)
             {
                 tokens[$"External{memberDef.InnerType}"] = memberDef.ProxyDef.ExternalName ?? "Unknown_Proxy_ExternalName";
