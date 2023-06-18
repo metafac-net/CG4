@@ -20,9 +20,14 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
-            string originalJson = metadata.ToJson(true);
+
+            var validator = new ModelValidator();
+            var validationResult = validator.Validate(metadata);
+            validationResult.Errors.Should().BeEmpty();
+            validationResult.Warnings.Should().BeEmpty();
 
             // act
+            string originalJson = metadata.ToJson(true);
             var metadata2 = ModelContainer.FromJson(originalJson);
 
             // assert
@@ -41,7 +46,7 @@ namespace MetaFac.CG4.ModelReader.Tests
             // arrange - construct model
             var memberDefs = new List<ModelMemberDef>
             {
-                new ModelMemberDef("Field1", 1, "Field 1", "long", false, null, 0, null, false),
+                new ModelMemberDef("Field1", 1, "Field 1", "int64", false, null, 0, null, false),
                 new ModelMemberDef("Field2", 2, "Field 2", "string", true, null, 0, null, false)
             };
             var entityDefs = new List<ModelEntityDef>
@@ -64,6 +69,11 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.ModelDefs.Count.Should().Be(1);
             string originalJson = metadata.ToJson(true);
 
+            var validator = new ModelValidator();
+            var validationResult = validator.Validate(metadata);
+            validationResult.Errors.Should().BeEmpty();
+            validationResult.Warnings.Should().BeEmpty();
+
             // act
             var metadata2 = ModelContainer.FromJson(originalJson);
 
@@ -85,6 +95,12 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
+
+            var validator = new ModelValidator();
+            var validationResult = validator.Validate(metadata);
+            validationResult.Errors.Should().BeEmpty();
+            validationResult.Warnings.Should().BeEmpty();
+
             var modelDef = metadata.ModelDefs[0];
             modelDef.AllEntityDefs.Count.Should().Be(28);
             var entityDef = modelDef.AllEntityDefs[0];
@@ -100,6 +116,12 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
+
+            var validator = new ModelValidator();
+            var validationResult = validator.Validate(metadata);
+            validationResult.Errors.Should().BeEmpty();
+            validationResult.Warnings.Should().BeEmpty();
+
             var modelDef = metadata.ModelDefs[0];
             modelDef.AllEntityDefs.Count.Should().Be(3);
             var entityDef = modelDef.AllEntityDefs[0];
@@ -115,6 +137,12 @@ namespace MetaFac.CG4.ModelReader.Tests
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
             metadata.ModelDefs.Count.Should().Be(1);
+
+            var validator = new ModelValidator();
+            var validationResult = validator.Validate(metadata);
+            validationResult.Errors.Should().BeEmpty();
+            validationResult.Warnings.Should().BeEmpty();
+
             var modelDef = metadata.ModelDefs[0];
             var entityDef = modelDef.AllEntityDefs.Where(cd => cd.Name == "ExternalTypes").Single();
             entityDef.AllMemberDefs.Count.Should().Be(1);
@@ -175,7 +203,7 @@ namespace MetaFac.CG4.ModelReader.Tests
                 memberDef.Name.Should().Be("MyCustomEnums");
                 memberDef.ProxyDef.Should().BeNull();
                 memberDef.ArrayRank.Should().Be(1);
-                memberDef.InnerType.Should().Be("MetaFac.CG4.ModelReader.Tests.GoodModels.MyCustomEnum");
+                memberDef.InnerType.Should().Be("MyCustomEnum");
             }
             {
                 var memberDef = entityDef.AllMemberDefs[2];

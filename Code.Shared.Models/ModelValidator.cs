@@ -33,14 +33,14 @@ namespace MetaFac.CG4.Models
                 modelTag = newMetadata.ModelDefs[0].Tag;
 
             Dictionary<string, ModelEntityDef> newEntityDefs = new Dictionary<string, ModelEntityDef>();
-            foreach (var ncd in newMetadata.ModelDefs[0].AllEntityDefs)
+            foreach (var ncd in newMetadata.ModelDefs[0].EntityDefs)
             {
                 newEntityDefs.Add(ncd.Name, ncd);
             }
 
             Dictionary<int, ModelEntityDef> oldEntityDefsByTag = new Dictionary<int, ModelEntityDef>();
             Dictionary<string, int> oldEntityNameToTagMap = new Dictionary<string, int>();
-            foreach (var ocd in oldMetadata.ModelDefs[0].AllEntityDefs)
+            foreach (var ocd in oldMetadata.ModelDefs[0].EntityDefs)
             {
                 if (ocd.Tag.HasValue)
                 {
@@ -141,7 +141,7 @@ namespace MetaFac.CG4.Models
             ImmutableDictionary<int, ModelEntityDef> entityTagMap = ImmutableDictionary<int, ModelEntityDef>.Empty;
             ImmutableDictionary<string, ModelEntityDef> entityNameMap = ImmutableDictionary<string, ModelEntityDef>.Empty;
 
-            foreach (var entityDef in model.AllEntityDefs)
+            foreach (var entityDef in model.EntityDefs)
             {
                 //---------- check entity tag not missing
                 if (!entityDef.Tag.HasValue)
@@ -249,7 +249,7 @@ namespace MetaFac.CG4.Models
             }
 
             // ---------- check missing parents
-            foreach (var entityDef in model.AllEntityDefs)
+            foreach (var entityDef in model.EntityDefs)
             {
                 if (entityDef.ParentName != null)
                 {
@@ -278,11 +278,11 @@ namespace MetaFac.CG4.Models
             }
 
             // ---------- check circular refs
-            foreach (var entityDef in model.AllEntityDefs)
+            foreach (var entityDef in model.EntityDefs)
             {
                 ImmutableDictionary<string, ModelEntityDef> visitedEntityDefs =
                     ImmutableDictionary<string, ModelEntityDef>.Empty.Add(entityDef.Name, entityDef);
-                result = CheckFieldRecursion(result, errorHandling, metadata, entityDef, entityNameMap, visitedEntityDefs);
+                result = CheckFieldRecursion(result, errorHandling, model, entityDef, entityNameMap, visitedEntityDefs);
 
                 if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)
                     return result;
@@ -299,26 +299,15 @@ namespace MetaFac.CG4.Models
         private ValidationResult CheckFieldRecursion(
             ValidationResult result,
             ValidationErrorHandling errorHandling,
-            ModelContainer metadata,
+            ModelDefinition model,
             ModelEntityDef entityDef,
             ImmutableDictionary<string, ModelEntityDef> allEntities,
             ImmutableDictionary<string, ModelEntityDef> visitedEntities
         )
         {
-            if (metadata.ModelDefs.Count != 1)
-                throw new NotSupportedException("Metadata with multiple models!");
-            var model = metadata.ModelDefs[0];
-
             foreach (var memberDef in entityDef.AllMemberDefs)
             {
-                if (memberDef.ProxyDef is not null)
-                    continue;
-
-                if (IsNativeDataType(memberDef.InnerType))
-                    continue;
-
-                ModelEntityDef? otherEntity;
-                if (allEntities.TryGetValue(memberDef.InnerType, out otherEntity))
+                if (memberDef.IsModelType && allEntities.TryGetValue(memberDef.InnerType, out var otherEntity))
                 {
                     // known type - check recursion
                     if (visitedEntities.ContainsKey(memberDef.InnerType))
@@ -331,16 +320,9 @@ namespace MetaFac.CG4.Models
                     else
                     {
                         // recurse
-                        result = CheckFieldRecursion(result, errorHandling, metadata,
+                        result = CheckFieldRecursion(result, errorHandling, model,
                             otherEntity, allEntities, visitedEntities.Add(otherEntity.Name, otherEntity));
                     }
-                }
-                else
-                {
-                    // unknown field type
-                    result = result.AddError(new ValidationError(
-                        ValidationErrorCode.UnknownFieldType,
-                        model.Name, entityDef.ToTagName(), memberDef.ToTagName(), null, null));
                 }
 
                 if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)

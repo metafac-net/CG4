@@ -156,7 +156,7 @@
             {
               "Name": "MyCustomEnums",
               "Tag": 2,
-              "InnerType": "MetaFac.CG4.ModelReader.Tests.GoodModels.MyCustomEnum",
+              "InnerType": "MyCustomEnum",
               "ArrayRank": 1
             },
             {

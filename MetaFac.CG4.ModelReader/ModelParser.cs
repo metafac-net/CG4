@@ -12,38 +12,19 @@ namespace MetaFac.CG4.ModelReader
 {
     public static class ModelParser
     {
-        internal static List<ModelEnumTypeDef> ParseEnumerations(string modelName, Assembly sourceAssembly, string sourceNamespace)
+        internal static ModelDefinition ParseEntities(Assembly sourceAssembly, string sourceNamespace)
         {
-            List<ModelEnumTypeDef> enumTypeDefs = new List<ModelEnumTypeDef>();
-            foreach (TypeInfo typeInfo in sourceAssembly.DefinedTypes.Where(t => t.Namespace == sourceNamespace && t.IsEnum))
-            {
-                string enumTypeName = typeInfo.Name;
-                List<ModelEnumItemDef> enumItemsDefs = new List<ModelEnumItemDef>();
-                foreach (var fieldInfo in typeInfo.DeclaredFields.Where(fi => fi.IsLiteral))
-                {
-                    object? enumItemValue = fieldInfo.GetValue(fieldInfo);
-                    if (enumItemValue is not null)
-                    {
-                        int enumItemAsInt = (int)enumItemValue;
-                        enumItemsDefs.Add(new ModelEnumItemDef(fieldInfo.Name, null, enumItemAsInt, null));
-                    }
-                }
-                enumTypeDefs.Add(new ModelEnumTypeDef(enumTypeName, null, null, enumItemsDefs));
-            }
-            return enumTypeDefs;
-        }
-
-        internal static List<ModelEntityDef> ParseEntities(string modelName, Assembly sourceAssembly, string sourceNamespace)
-        {
+            string modelName = "Model1";
+            int modelTag = 1;
             var entityDefsByName = new Dictionary<string, ModelEntityDef>();
             var entityDefsByTag = new Dictionary<int, ModelEntityDef>();
-            Queue<EntityDefInfo> toBeProcessed = new Queue<EntityDefInfo>();
-            Dictionary<string, EntityDefInfo> allModelTypes = new Dictionary<string, EntityDefInfo>();
+            var toBeProcessed = new Queue<EntityDefInfo>();
+            var allModelTypes = new Dictionary<string, EntityDefInfo>();
             var proxyTypes = new ProxyTypeInfoCollection();
+            var enumTypeDefs = new List<ModelEnumTypeDef>();
 
             foreach (TypeInfo typeInfo in sourceAssembly.DefinedTypes.Where(t => t.Namespace == sourceNamespace))
             {
-                //bool isEmitted = true;
                 ProxyAttribute? proxyAttr = null;
                 int? entityTag = null;
                 foreach (Attribute attr in typeInfo.GetCustomAttributes(false))
@@ -51,27 +32,37 @@ namespace MetaFac.CG4.ModelReader
                     if (attr is EntityAttribute ea)
                     {
                         entityTag = ea.Tag;
-                        //isEmitted = ea.IsEmitted();
                     }
                     else if (attr is ProxyAttribute pa)
                     {
                         proxyAttr = pa;
                     }
                 }
-                //if (isEmitted)
-                //{
-                    if (proxyAttr is not null)
+                if (proxyAttr is not null)
+                {
+                    string typeName = typeInfo.Name;
+                    proxyTypes.Add(typeName, new ProxyTypeInfo(proxyAttr.ExternalName, proxyAttr.ConcreteName));
+                }
+                else if (typeInfo.IsInterface && typeInfo.Name.StartsWith("I") && entityTag.HasValue)
+                {
+                    var entityInfo = new EntityDefInfo(typeInfo, entityTag);
+                    toBeProcessed.Enqueue(entityInfo);
+                    allModelTypes.Add(entityInfo.EntityName, entityInfo);
+                }
+                else if (typeInfo.IsEnum)
+                {
+                    List<ModelEnumItemDef> enumItemsDefs = new List<ModelEnumItemDef>();
+                    foreach (var fieldInfo in typeInfo.DeclaredFields.Where(fi => fi.IsLiteral))
                     {
-                        string typeName = typeInfo.Name;
-                        proxyTypes.Add(typeName, new ProxyTypeInfo(proxyAttr.ExternalName, proxyAttr.ConcreteName));
+                        object? enumItemValue = fieldInfo.GetValue(fieldInfo);
+                        if (enumItemValue is not null)
+                        {
+                            int enumItemAsInt = (int)enumItemValue;
+                            enumItemsDefs.Add(new ModelEnumItemDef(fieldInfo.Name, null, enumItemAsInt, null));
+                        }
                     }
-                    else if (typeInfo.IsInterface && typeInfo.Name.StartsWith("I") && entityTag.HasValue)
-                    {
-                        var entityInfo = new EntityDefInfo(typeInfo, entityTag);
-                        toBeProcessed.Enqueue(entityInfo);
-                        allModelTypes.Add(entityInfo.EntityName, entityInfo);
-                    }
-                //}
+                    enumTypeDefs.Add(new ModelEnumTypeDef(typeInfo.Name, null, null, enumItemsDefs));
+                }
             }
 
             while (toBeProcessed.Count > 0)
@@ -131,7 +122,7 @@ namespace MetaFac.CG4.ModelReader
                 throw new ValidationException(new ValidationError(ValidationErrorCode.UnknownParent, modelName, new TagName(null, entityName), null, null, null));
             }
 
-            return entityDefsByName.Values.ToList();
+            return new ModelDefinition(modelName, modelTag, entityDefsByName.Values, enumTypeDefs);
 
         }
 
@@ -182,7 +173,7 @@ namespace MetaFac.CG4.ModelReader
             string sourceNamespace,
             string modelName, TagName entityTagName, string memberName, Type fieldType,
             ProxyTypeInfoCollection proxyTypes,
-            Dictionary<string, EntityDefInfo> allModelTypes)
+            Dictionary<string, EntityDefInfo> allEntityDefs)
         {
             var result = new MemberInfo();
             // vector types
@@ -207,16 +198,16 @@ namespace MetaFac.CG4.ModelReader
             }
             else if (innerType.IsConstructedGenericType
                 && innerType.GenericTypeArguments.Length == 1
-                && (innerType.GetGenericTypeDefinition() == typeof(ImmutableList<>) ||
-                                                            innerType.GetGenericTypeDefinition() == typeof(List<>)))
+                && (innerType.GetGenericTypeDefinition() == typeof(ImmutableList<>)
+                    || innerType.GetGenericTypeDefinition() == typeof(List<>)))
             {
                 result.ArrayRank = 1;
                 innerType = innerType.GenericTypeArguments[0] ?? typeof(Unknown);
             }
             else if (innerType.IsConstructedGenericType
                 && innerType.GenericTypeArguments.Length == 2
-                && (innerType.GetGenericTypeDefinition() == typeof(ImmutableDictionary<,>) ||
-                                                            innerType.GetGenericTypeDefinition() == typeof(Dictionary<,>)))
+                && (innerType.GetGenericTypeDefinition() == typeof(ImmutableDictionary<,>) 
+                    || innerType.GetGenericTypeDefinition() == typeof(Dictionary<,>)))
             {
                 result.ArrayRank = 1;
                 indexType = innerType.GenericTypeArguments[0];
@@ -231,7 +222,7 @@ namespace MetaFac.CG4.ModelReader
             {
                 // must be a model type
                 string fieldTypeName = innerType.Name.Substring(1);
-                if(allModelTypes.TryGetValue(fieldTypeName, out var entityInfo))
+                if(allEntityDefs.TryGetValue(fieldTypeName, out var entityInfo))
                 {
                     result.isModelType = true;
                     result.innerTypeName = entityInfo.EntityName;
@@ -247,7 +238,15 @@ namespace MetaFac.CG4.ModelReader
                             modelName, entityTagName, new TagName(null, memberName, fieldTypeName), null, null));
                 }
             }
-            if (innerType.IsValueType)
+            if (innerType.Namespace == sourceNamespace && innerType.IsEnum)
+            {
+                // must be a model enum
+                result.isValueType = true;
+                result.innerTypeName = innerType.Name;
+                result.indexTypeName = ConvertBuiltinTypeName(indexType);
+                return result;
+            }
+            else if (innerType.IsValueType)
             {
                 // value type
                 result.isValueType = true;
@@ -341,7 +340,7 @@ namespace MetaFac.CG4.ModelReader
         internal static List<ModelMemberDef> ParseFields(
             EntityDefInfo entityDefInfo, string sourceNamespace, string modelName, TagName entityTagName,
             ProxyTypeInfoCollection proxyTypes,
-            Dictionary<string, EntityDefInfo> allModelTypes)
+            Dictionary<string, EntityDefInfo> allEntityDefs)
         {
             var memberDefsByName = new Dictionary<string, ModelMemberDef>();
             // process fields
@@ -352,7 +351,7 @@ namespace MetaFac.CG4.ModelReader
                 string? fieldDesc = null;
                 ModelItemState? fieldState = null;
                 Type fieldType = propInfo.PropertyType;
-                var memberInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, memberName, fieldType, proxyTypes, allModelTypes);
+                var memberInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, memberName, fieldType, proxyTypes, allEntityDefs);
                 string innerTypeName = memberInfo.innerTypeName ?? nameof(Unknown);
 
                 //bool isEmitted = true;
@@ -424,27 +423,23 @@ namespace MetaFac.CG4.ModelReader
         /// <returns></returns>
         public static ModelContainer ParseAssembly(Assembly sourceAssembly, string sourceNamespace)
         {
-            int modelTag = 1;
-            string modelName = "Model1";
-            var entityListA = ParseEntities(modelName, sourceAssembly, sourceNamespace);
-            var modelDefinition1 = new ModelDefinition(modelName, modelTag, entityListA);
+            var model1 = ParseEntities(sourceAssembly, sourceNamespace);
 
             // derive class hierarchy
             var entityListB = new List<ModelEntityDef>();
-            foreach (var entityDef in entityListA)
+            foreach (var entityDef in model1.AllEntityDefs)
             {
-                var allDescendents = modelDefinition1.AllDescendentsOf(entityDef.Name);
+                var allDescendents = model1.AllDescendentsOf(entityDef.Name);
                 var updatedEntityDef = entityDef.SetDerivedEntities(allDescendents);
                 entityListB.Add(updatedEntityDef);
             }
 
-            var modelDefinitions = new List<ModelDefinition>();
-            var enumTypesList = ParseEnumerations(modelName, sourceAssembly, sourceNamespace);
-            var modelDefinition2 = new ModelDefinition(modelName, modelTag, entityListB, enumTypesList);
-            modelDefinitions.Add(modelDefinition2);
+            var models = new List<ModelDefinition>();
+            var model2 = new ModelDefinition(model1.Name, model1.Tag, entityListB, model1.AllEnumTypeDefs);
+            models.Add(model2);
             var tokens = new Dictionary<string, string>();
             tokens["Metadata"] = GetMetadataSourceDisplayString(sourceAssembly, sourceNamespace);
-            return new ModelContainer(modelDefinitions, tokens);
+            return new ModelContainer(models, tokens);
         }
     }
 }
