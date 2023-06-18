@@ -234,6 +234,7 @@ namespace Generated.MessagePack
 
         // ---------- private fields ----------
         private String? field_Name;
+        private Int64? field_Number;
 
         // ---------- accessors ----------
         [Key(1)]
@@ -242,9 +243,16 @@ namespace Generated.MessagePack
             get => field_Name;
             set => field_Name = CheckNotFrozen(ref value);
         }
+        [Key(3)]
+        public Int64? Number
+        {
+            get => field_Number;
+            set => field_Number = CheckNotFrozen(ref value);
+        }
 
         // ---------- IDerived methods ----------
         String? IDerived.Name => field_Name;
+        Int64? IDerived.Number => field_Number.ToExternal();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived()
@@ -255,18 +263,21 @@ namespace Generated.MessagePack
         public Derived(Derived source) : base(source)
         {
             field_Name = source.field_Name;
+            field_Number = source.field_Number;
         }
 
         public void CopyFrom(Derived source)
         {
             base.CopyFrom(source);
             field_Name = source.field_Name;
+            field_Number = source.field_Number;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived(IDerived source) : base(source)
         {
             field_Name = source.Name;
+            field_Number = source.Number.ToInternal();
         }
 
         public bool Equals(Derived? other)
@@ -274,6 +285,7 @@ namespace Generated.MessagePack
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!field_Name.ValueEquals(other.field_Name)) return false;
+            if (field_Number != other.field_Number) return false;
             return base.Equals(other);
         }
 
@@ -301,6 +313,7 @@ namespace Generated.MessagePack
         {
             HashCode hc = new HashCode();
             hc.Add(field_Name.CalcHashUnary());
+            hc.Add(field_Number.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

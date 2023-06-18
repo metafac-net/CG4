@@ -49,14 +49,16 @@ namespace MetaFac.CG4.Generators
             }
             else
             {
-                Define("ExternalOtherType", "T_ExternalT_InnerType__");
-                Define("ConcreteOtherType", "T_ConcreteT_InnerType__");
                 if (Kind.IsNullable())
                 {
+                    Define("ExternalMaybeType", "T_ExternalT_InnerType__");
+                    Define("ConcreteMaybeType", "T_ConcreteT_InnerType__");
                     DefineFieldName("Maybe");
                 }
                 else
                 {
+                    Define("ExternalOtherType", "T_ExternalT_InnerType__");
+                    Define("ConcreteOtherType", "T_ConcreteT_InnerType__");
                     DefineFieldName("Other");
                 }
             }

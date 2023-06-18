@@ -158,6 +158,13 @@ namespace Generated.JsonNewtonSoft
             get => field_Name;
             set => field_Name = value;
         }
+        private Int64? field_Number;
+        Int64? IDerived.Number => field_Number;
+        public Int64? Number
+        {
+            get => field_Number;
+            set => field_Number = value;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived() : base()
@@ -169,6 +176,7 @@ namespace Generated.JsonNewtonSoft
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Name = source.Name;
+            field_Number = source.Number;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -176,6 +184,7 @@ namespace Generated.JsonNewtonSoft
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Name = source.Name;
+            field_Number = source.Number;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -184,6 +193,7 @@ namespace Generated.JsonNewtonSoft
             if (source is null) return;
             base.CopyFrom(source);
             field_Name = source.Name;
+            field_Number = source.Number;
         }
 
         public virtual bool Equals(Derived? other)
@@ -191,6 +201,7 @@ namespace Generated.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!Name.ValueEquals(other.Name)) return false;
+            if (Number != other.Number) return false;
             return base.Equals(other);
         }
 
@@ -200,6 +211,7 @@ namespace Generated.JsonNewtonSoft
         {
             HashCode hc = new HashCode();
             hc.Add(Name.CalcHashUnary());
+            hc.Add(Number.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

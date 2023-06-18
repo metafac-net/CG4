@@ -135,6 +135,8 @@ namespace Generated.RecordsV2
 
         public String? Name { get; init; }
         String? IDerived.Name => Name;
+        public Int64? Number { get; init; }
+        Int64? IDerived.Number => Number;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived() : base()
@@ -146,6 +148,7 @@ namespace Generated.RecordsV2
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name;
+            Number = source.Number;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -153,6 +156,7 @@ namespace Generated.RecordsV2
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Name = source.Name;
+            Number = source.Number;
         }
 
         public virtual bool Equals(Derived? other)
@@ -160,6 +164,7 @@ namespace Generated.RecordsV2
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!Name.ValueEquals(other.Name)) return false;
+            if (Number != other.Number) return false;
             return base.Equals(other);
         }
 
@@ -167,6 +172,7 @@ namespace Generated.RecordsV2
         {
             HashCode hc = new HashCode();
             hc.Add(Name.CalcHashUnary());
+            hc.Add(Number.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

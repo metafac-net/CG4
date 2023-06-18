@@ -12,5 +12,6 @@ namespace MetaFac.CG4.Generators.UnitTests.TinyModels
     {
         [Member(1)] string Name { get; }
         [Member(2, ModelState.Reserved)] int ReservedField { get; }
+        [Member(3)] long? Number { get; }
     }
 }

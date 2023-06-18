@@ -208,6 +208,13 @@ namespace Generated.ClassesV2
             get => field_Name;
             set => field_Name = CheckNotFrozen(ref value);
         }
+        private Int64? field_Number;
+        Int64? IDerived.Number => field_Number;
+        public Int64? Number
+        {
+            get => field_Number;
+            set => field_Number = CheckNotFrozen(ref value);
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived() : base()
@@ -219,6 +226,7 @@ namespace Generated.ClassesV2
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Name = source.Name;
+            field_Number = source.Number;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -226,6 +234,7 @@ namespace Generated.ClassesV2
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Name = source.Name;
+            field_Number = source.Number;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -235,6 +244,7 @@ namespace Generated.ClassesV2
             if (_isFrozen) ThrowIsReadonly();
             base.CopyFrom(source);
             field_Name = source.Name;
+            field_Number = source.Number;
         }
 
         public virtual bool Equals(Derived? other)
@@ -242,6 +252,7 @@ namespace Generated.ClassesV2
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!Name.ValueEquals(other.Name)) return false;
+            if (this.Number != other.Number) return false;
             return base.Equals(other);
         }
 
@@ -251,6 +262,7 @@ namespace Generated.ClassesV2
         {
             HashCode hc = new HashCode();
             hc.Add(Name.CalcHashUnary());
+            hc.Add(Number.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
