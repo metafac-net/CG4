@@ -1,5 +1,4 @@
-﻿using MetaFac.Memory;
-using System;
+﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -7,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using MetaFac.CG4.Models;
 using MetaFac.CG4.Attributes;
+using MetaFac.Memory;
 
 namespace MetaFac.CG4.ModelReader
 {
@@ -74,7 +74,6 @@ namespace MetaFac.CG4.ModelReader
                 ModelItemState? entityState = null;
                 bool isAbstract = entityDefInfo.IsAbstract;
                 var entityTagName = new TagName(entityTag, entityName);
-                //bool isEmitted = true;
                 foreach (Attribute attr in entityDefInfo.CustomAttributes)
                 {
                     if (attr is EntityAttribute ea)
@@ -84,7 +83,6 @@ namespace MetaFac.CG4.ModelReader
                                 new ValidationError(ValidationErrorCode.RedefinedEntityTag, modelName,
                                 entityTagName, null, new TagName(ea.Tag, entityName), null));
                         entityTag = ea.Tag;
-                        //isEmitted = ea.IsEmitted();
                         entityState = ModelItemState.Create(ea.IsInActive, ea.IsRedacted, ea.Reason);
                     }
                 }
@@ -93,19 +91,7 @@ namespace MetaFac.CG4.ModelReader
 
                 if (entityTag.HasValue)
                 {
-                    // ensure parent has been processed first
-                    //Type? baseType = entityDefInfo.BaseType;
-                    //string? parentName = !(baseType is null) && baseType != typeof(object)
-                    //    ? baseType.Name
-                    //    : null;
                     string? parentName = entityDefInfo.ParentName;
-                    //if (baseType != null && baseType != typeof(Object))
-                    //{
-                    //    throw new ValidationException(new ValidationError(ValidationErrorCode.ParentNotSupported,
-                    //        modelName, new ModelEntityDef(entityTag, entityName, null), null,
-                    //        new ModelEntityDef(null, baseType.Name, null), null));
-                    //}
-
                     var entityDef = new ModelEntityDef(entityName, entityTag.Value, entityDesc, isAbstract, parentName, fieldList, entityState);
                     entityDefsByName.Add(entityName, entityDef);
                     entityDefsByTag.Add(entityTag.Value, entityDef);
