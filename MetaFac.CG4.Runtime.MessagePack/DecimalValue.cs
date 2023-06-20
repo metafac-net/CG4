@@ -57,6 +57,9 @@ namespace MetaFac.CG4.Runtime.MessagePack
                 ;
         }
 
+        public static bool operator ==(DecimalValue left, DecimalValue right) => left.Equals(right);
+        public static bool operator !=(DecimalValue left, DecimalValue right) => !left.Equals(right);
+
         public static implicit operator DecimalValue(decimal value)
         {
             return new DecimalValue(value);

@@ -46,12 +46,19 @@ namespace MetaFac.CG4.Runtime.MessagePack
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
 
-            ReadOnlySpan<byte> thisSpan = Value.Span;
-            ReadOnlySpan<byte> thatSpan = other.Value.Span;
+            var thisSpan = Value.Span;
+            var thatSpan = other.Value.Span;
             if (thatSpan.Length != thisSpan.Length) return false;
             if (other!.GetHashCode() != GetHashCode()) return false;
             return thatSpan.SequenceEqual(thisSpan);
         }
+
+        public static bool operator ==(BinaryValue? left, BinaryValue? right)
+        {
+            return left is null ? right is null : left.Equals(right);
+        }
+
+        public static bool operator !=(BinaryValue? left, BinaryValue? right) => !(left == right);
 
         public static implicit operator BinaryValue?(Octets? octets)
         {

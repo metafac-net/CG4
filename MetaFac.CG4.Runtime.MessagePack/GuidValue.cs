@@ -1,6 +1,5 @@
 ﻿using MessagePack;
 using System;
-using System.Runtime.CompilerServices;
 
 namespace MetaFac.CG4.Runtime.MessagePack
 {
@@ -21,7 +20,12 @@ namespace MetaFac.CG4.Runtime.MessagePack
 
         public GuidValue(Guid value)
         {
+#if NET5_0_OR_GREATER
+            Span<byte> bytes = stackalloc byte[16];
+            if (!value.TryWriteBytes(bytes)) throw new ArgumentException($"Could not write to span", nameof(value));
+#else
             byte[] bytes = value.ToByteArray();
+#endif
             unchecked
             {
                 Bits0 =
@@ -67,14 +71,14 @@ namespace MetaFac.CG4.Runtime.MessagePack
                 ;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(GuidValue left, GuidValue right) => left.Equals(right);
+        public static bool operator !=(GuidValue left, GuidValue right) => !left.Equals(right);
+
         public static implicit operator GuidValue(Guid value)
         {
-
             return new GuidValue(value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Guid(GuidValue value)
         {
             ulong lo = value.Bits0;
@@ -102,5 +106,6 @@ namespace MetaFac.CG4.Runtime.MessagePack
             }
             return new Guid(bytes);
         }
+
     }
 }

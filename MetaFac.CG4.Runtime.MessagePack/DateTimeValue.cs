@@ -40,6 +40,9 @@ namespace MetaFac.CG4.Runtime.MessagePack
                 && other.Kind.Equals(Kind);
         }
 
+        public static bool operator ==(DateTimeValue left, DateTimeValue right) => left.Equals(right);
+        public static bool operator !=(DateTimeValue left, DateTimeValue right) => !left.Equals(right);
+
         public static implicit operator DateTimeValue(DateTime value)
         {
             return new DateTimeValue(value);

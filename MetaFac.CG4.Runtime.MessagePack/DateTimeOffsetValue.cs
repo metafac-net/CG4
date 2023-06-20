@@ -40,6 +40,9 @@ namespace MetaFac.CG4.Runtime.MessagePack
                 && other.TimeSpanTicks.Equals(TimeSpanTicks);
         }
 
+        public static bool operator ==(DateTimeOffsetValue left, DateTimeOffsetValue right) => left.Equals(right);
+        public static bool operator !=(DateTimeOffsetValue left, DateTimeOffsetValue right) => !left.Equals(right);
+
         public static implicit operator DateTimeOffsetValue(DateTimeOffset value)
         {
             return new DateTimeOffsetValue(value);
