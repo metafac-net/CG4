@@ -52,8 +52,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Attributes.Unit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Attributes", "MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj", "{7665FE9D-FF2D-434A-B136-77B945BDEEEA}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Code.Shared.Attributes", "Code.Shared.Attributes\Code.Shared.Attributes.shproj", "{C38399AC-C482-437A-9CEB-ACCEDDA9A5D6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TestOrg.Schema", "MetaFac.CG4.TestOrg.Schema\MetaFac.CG4.TestOrg.Schema.csproj", "{C21FCC6A-3D5C-40C1-A047-72BE1B4F1341}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TestOrg.Models", "MetaFac.CG4.TestOrg.Models\MetaFac.CG4.TestOrg.Models.csproj", "{79B91CC7-761B-4A1E-B810-2E23FF8B1C04}"
@@ -163,8 +161,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Code.Shared.Generators\Code.Shared.Generators.projitems*{65f1a425-d85e-4541-bece-7a382d136bbb}*SharedItemsImports = 5
-		Code.Shared.Attributes\Code.Shared.Attributes.projitems*{7665fe9d-ff2d-434a-b136-77b945bdeeea}*SharedItemsImports = 5
 		Code.Shared.Generators\Code.Shared.Generators.projitems*{7ceb34b3-e4ad-484f-8376-d2baad6970e7}*SharedItemsImports = 13
-		Code.Shared.Attributes\Code.Shared.Attributes.projitems*{c38399ac-c482-437a-9ceb-accedda9a5d6}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
