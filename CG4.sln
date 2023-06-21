@@ -56,8 +56,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TestOrg.Schema"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TestOrg.Models", "MetaFac.CG4.TestOrg.Models\MetaFac.CG4.TestOrg.Models.csproj", "{79B91CC7-761B-4A1E-B810-2E23FF8B1C04}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Code.Shared.Generators", "Code.Shared.Generators\Code.Shared.Generators.shproj", "{7CEB34B3-E4AD-484F-8376-D2BAAD6970E7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,9 +156,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {085DA3C0-B202-462E-A599-41E7AC777AB4}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Code.Shared.Generators\Code.Shared.Generators.projitems*{65f1a425-d85e-4541-bece-7a382d136bbb}*SharedItemsImports = 5
-		Code.Shared.Generators\Code.Shared.Generators.projitems*{7ceb34b3-e4ad-484f-8376-d2baad6970e7}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
