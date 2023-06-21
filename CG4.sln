@@ -58,12 +58,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TestOrg.Schema"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TestOrg.Models", "MetaFac.CG4.TestOrg.Models\MetaFac.CG4.TestOrg.Models.csproj", "{79B91CC7-761B-4A1E-B810-2E23FF8B1C04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.SourceGenerator", "MetaFac.CG4.SourceGenerator\MetaFac.CG4.SourceGenerator.csproj", "{29B3DDF2-BF6B-4765-9B76-9560EEAD1008}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.SourceGenerator.UnitTests", "MetaFac.CG4.SourceGenerator.UnitTests\MetaFac.CG4.SourceGenerator.UnitTests.csproj", "{C414AC80-9539-4B9D-8206-0346D2FDA7A1}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Code.Shared.Models", "Code.Shared.Models\Code.Shared.Models.shproj", "{3DCD3902-E4C6-4E6E-A253-742B8A0849F8}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Code.Shared.Generators", "Code.Shared.Generators\Code.Shared.Generators.shproj", "{7CEB34B3-E4AD-484F-8376-D2BAAD6970E7}"
 EndProject
 Global
@@ -160,14 +154,6 @@ Global
 		{79B91CC7-761B-4A1E-B810-2E23FF8B1C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79B91CC7-761B-4A1E-B810-2E23FF8B1C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79B91CC7-761B-4A1E-B810-2E23FF8B1C04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29B3DDF2-BF6B-4765-9B76-9560EEAD1008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29B3DDF2-BF6B-4765-9B76-9560EEAD1008}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29B3DDF2-BF6B-4765-9B76-9560EEAD1008}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29B3DDF2-BF6B-4765-9B76-9560EEAD1008}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C414AC80-9539-4B9D-8206-0346D2FDA7A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C414AC80-9539-4B9D-8206-0346D2FDA7A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C414AC80-9539-4B9D-8206-0346D2FDA7A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C414AC80-9539-4B9D-8206-0346D2FDA7A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -176,11 +162,6 @@ Global
 		SolutionGuid = {085DA3C0-B202-462E-A599-41E7AC777AB4}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Code.Shared.Attributes\Code.Shared.Attributes.projitems*{29b3ddf2-bf6b-4765-9b76-9560eead1008}*SharedItemsImports = 5
-		Code.Shared.Generators\Code.Shared.Generators.projitems*{29b3ddf2-bf6b-4765-9b76-9560eead1008}*SharedItemsImports = 5
-		Code.Shared.Models\Code.Shared.Models.projitems*{29b3ddf2-bf6b-4765-9b76-9560eead1008}*SharedItemsImports = 5
-		Code.Shared.Models\Code.Shared.Models.projitems*{2b5cf0fd-a47b-44c3-874b-52d919e1a468}*SharedItemsImports = 5
-		Code.Shared.Models\Code.Shared.Models.projitems*{3dcd3902-e4c6-4e6e-a253-742b8a0849f8}*SharedItemsImports = 13
 		Code.Shared.Generators\Code.Shared.Generators.projitems*{65f1a425-d85e-4541-bece-7a382d136bbb}*SharedItemsImports = 5
 		Code.Shared.Attributes\Code.Shared.Attributes.projitems*{7665fe9d-ff2d-434a-b136-77b945bdeeea}*SharedItemsImports = 5
 		Code.Shared.Generators\Code.Shared.Generators.projitems*{7ceb34b3-e4ad-484f-8376-d2baad6970e7}*SharedItemsImports = 13
