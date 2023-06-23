@@ -15,12 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="Models.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </AdditionalFiles>
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="MetaFac.Mutability" Version="2.1.4" />
     </ItemGroup>
 

@@ -18,7 +18,7 @@ using MetaFac.Mutability;
 using System;
 using System.Collections.Generic;
 
-namespace MetaFac.CG4.TestOrg.Models.Contracts
+namespace MetaFac.CG4.TestOrg.Models.Personel.Contracts
 {
     public enum GenderEnum
     {

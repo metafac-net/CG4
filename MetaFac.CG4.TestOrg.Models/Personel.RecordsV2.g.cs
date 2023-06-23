@@ -22,47 +22,31 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using MetaFac.CG4.TestOrg.Models.Contracts;
+using MetaFac.CG4.TestOrg.Models.Personel.Contracts;
 
-namespace MetaFac.CG4.TestOrg.Models.ClassesV2
+namespace MetaFac.CG4.TestOrg.Models.Personel.RecordsV2
 {
 
 
-    public abstract class EntityBase : IFreezable, IEntityBase
+    public abstract record EntityBase : IFreezable, IEntityBase
     {
-        public static EntityBase Empty => throw new NotSupportedException();
-        public const int EntityTag = 0;
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void CopyFrom(IEntityBase? source) { }
+        public const int EntityTag = 0;
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
-
-        protected volatile bool _isFrozen = false;
-        public bool IsFreezable() => true;
-        public bool IsFrozen() => _isFrozen;
-        protected virtual void OnFreeze() { }
-        public void Freeze()
-        {
-            if (_isFrozen) return;
-            OnFreeze();
-            _isFrozen = true;
-        }
-        public bool TryFreeze()
-        {
-            if (_isFrozen) return false;
-            OnFreeze();
-            _isFrozen = true;
-            return true;
-        }
+        public static EntityBase Empty => throw new NotSupportedException();
+        public bool IsFreezable() => false;
+        public bool IsFrozen() => true;
+        public void Freeze() { }
+        public bool TryFreeze() => false;
     }
 
 
-    public abstract partial class Person
+    public abstract partial record Person
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Person? CreateFrom(IPerson? source)
@@ -77,57 +61,19 @@ namespace MetaFac.CG4.TestOrg.Models.ClassesV2
         }
 
     }
-    public partial class Person : EntityBase, IPerson, IEquatable<Person>
+    public partial record Person : EntityBase, IPerson
     {
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        private static void ThrowIsReadonly()
-        {
-            throw new InvalidOperationException("Cannot set properties when frozen");
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private ref T CheckNotFrozen<T>(ref T value)
-        {
-            if (_isFrozen) ThrowIsReadonly();
-            return ref value;
-        }
-
-        protected override void OnFreeze()
-        {
-            base.OnFreeze();
-        }
-
         public new const int EntityTag = 1;
         protected override int OnGetEntityTag() => EntityTag;
 
-        private String? field_FamilyName;
-        String? IPerson.FamilyName => field_FamilyName;
-        public String? FamilyName
-        {
-            get => field_FamilyName;
-            set => field_FamilyName = CheckNotFrozen(ref value);
-        }
-        private String? field_FirstName;
-        String? IPerson.FirstName => field_FirstName;
-        public String? FirstName
-        {
-            get => field_FirstName;
-            set => field_FirstName = CheckNotFrozen(ref value);
-        }
-        private GenderEnum field_Gender;
-        GenderEnum IPerson.Gender => field_Gender;
-        public GenderEnum Gender
-        {
-            get => field_Gender;
-            set => field_Gender = CheckNotFrozen(ref value);
-        }
-        private System.DayOfWeek field_DayOfBirth;
-        System.DayOfWeek IPerson.DayOfBirth => field_DayOfBirth;
-        public System.DayOfWeek DayOfBirth
-        {
-            get => field_DayOfBirth;
-            set => field_DayOfBirth = CheckNotFrozen(ref value);
-        }
+        public String? FamilyName { get; init; }
+        String? IPerson.FamilyName => FamilyName;
+        public String? FirstName { get; init; }
+        String? IPerson.FirstName => FirstName;
+        public GenderEnum Gender { get; init; }
+        GenderEnum IPerson.Gender => Gender;
+        public System.DayOfWeek DayOfBirth { get; init; }
+        System.DayOfWeek IPerson.DayOfBirth => DayOfBirth;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person() : base()
@@ -138,32 +84,20 @@ namespace MetaFac.CG4.TestOrg.Models.ClassesV2
         public Person(Person? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_FamilyName = source.FamilyName;
-            field_FirstName = source.FirstName;
-            field_Gender = source.Gender;
-            field_DayOfBirth = source.DayOfBirth;
+            FamilyName = source.FamilyName;
+            FirstName = source.FirstName;
+            Gender = source.Gender;
+            DayOfBirth = source.DayOfBirth;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person(IPerson? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_FamilyName = source.FamilyName;
-            field_FirstName = source.FirstName;
-            field_Gender = source.Gender;
-            field_DayOfBirth = source.DayOfBirth;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void CopyFrom(IPerson? source)
-        {
-            if (source is null) return;
-            if (_isFrozen) ThrowIsReadonly();
-            base.CopyFrom(source);
-            field_FamilyName = source.FamilyName;
-            field_FirstName = source.FirstName;
-            field_Gender = source.Gender;
-            field_DayOfBirth = source.DayOfBirth;
+            FamilyName = source.FamilyName;
+            FirstName = source.FirstName;
+            Gender = source.Gender;
+            DayOfBirth = source.DayOfBirth;
         }
 
         public virtual bool Equals(Person? other)
@@ -176,8 +110,6 @@ namespace MetaFac.CG4.TestOrg.Models.ClassesV2
             if (DayOfBirth != other.DayOfBirth) return false;
             return base.Equals(other);
         }
-
-        public override bool Equals(object? obj) => obj is Person other && Equals(other);
 
         private int CalcHashCode()
         {
@@ -198,6 +130,7 @@ namespace MetaFac.CG4.TestOrg.Models.ClassesV2
             return _hashCode.Value;
         }
     }
+
 
 
 }
