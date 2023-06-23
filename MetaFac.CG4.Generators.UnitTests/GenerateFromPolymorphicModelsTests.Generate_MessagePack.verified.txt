@@ -89,9 +89,12 @@ namespace Generated.MessagePack
     }
 
 
+    [Union(NumericNode.EntityTag, typeof(NumericNode))]
     [Union(Int32Node.EntityTag, typeof(Int32Node))]
+    [Union(Int64Node.EntityTag, typeof(Int64Node))]
     [Union(StringNode.EntityTag, typeof(StringNode))]
     [Union(BooleanNode.EntityTag, typeof(BooleanNode))]
+    [Union(CustomNode.EntityTag, typeof(CustomNode))]
     public abstract partial class ValueNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -101,9 +104,12 @@ namespace Generated.MessagePack
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
+                case NumericNode.EntityTag: return NumericNode.CreateFrom((INumericNode)source);
                 case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
                 case StringNode.EntityTag: return StringNode.CreateFrom((IStringNode)source);
                 case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
+                case CustomNode.EntityTag: return CustomNode.CreateFrom((ICustomNode)source);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(entityTag), entityTag, null);
             }
@@ -216,27 +222,26 @@ namespace Generated.MessagePack
 
     }
 
-    public partial class Int32Node
+    [Union(Int32Node.EntityTag, typeof(Int32Node))]
+    [Union(Int64Node.EntityTag, typeof(Int64Node))]
+    public abstract partial class NumericNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Int32Node? CreateFrom(IInt32Node? source)
+        public static NumericNode? CreateFrom(INumericNode? source)
         {
             if (source is null) return null;
-            return new Int32Node(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(entityTag), entityTag, null);
+            }
         }
-
-        private static Int32Node CreateEmpty()
-        {
-            var empty = new Int32Node();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Int32Node _empty = CreateEmpty();
-        public static new Int32Node Empty => _empty;
-
     }
     [MessagePackObject]
-    public partial class Int32Node : ValueNode, IInt32Node, IEquatable<Int32Node>, ICopyFrom<Int32Node>
+    public partial class NumericNode : ValueNode, INumericNode, IEquatable<NumericNode>, ICopyFrom<NumericNode>
     {
         protected override void OnFreeze()
         {
@@ -247,59 +252,47 @@ namespace Generated.MessagePack
         protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
-        private Int32 field_IntValue;
 
         // ---------- accessors ----------
-        [Key(1)]
-        public Int32 IntValue
-        {
-            get => field_IntValue;
-            set => field_IntValue = CheckNotFrozen(ref value);
-        }
 
-        // ---------- IInt32Node methods ----------
-        Int32 IInt32Node.IntValue => field_IntValue.ToExternal();
+        // ---------- INumericNode methods ----------
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Int32Node()
+        public NumericNode()
         {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Int32Node(Int32Node source) : base(source)
+        public NumericNode(NumericNode source) : base(source)
         {
-            field_IntValue = source.field_IntValue;
         }
 
-        public void CopyFrom(Int32Node source)
+        public void CopyFrom(NumericNode source)
         {
             base.CopyFrom(source);
-            field_IntValue = source.field_IntValue;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Int32Node(IInt32Node source) : base(source)
+        public NumericNode(INumericNode source) : base(source)
         {
-            field_IntValue = source.IntValue.ToInternal();
         }
 
-        public bool Equals(Int32Node? other)
+        public bool Equals(NumericNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_IntValue != other.field_IntValue) return false;
             return base.Equals(other);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(Int32Node left, Int32Node right)
+        public static bool operator ==(NumericNode left, NumericNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(Int32Node left, Int32Node right)
+        public static bool operator !=(NumericNode left, NumericNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
@@ -308,13 +301,12 @@ namespace Generated.MessagePack
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
-            return obj is Int32Node other && Equals(other);
+            return obj is NumericNode other && Equals(other);
         }
 
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(field_IntValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
@@ -541,6 +533,345 @@ namespace Generated.MessagePack
         {
             HashCode hc = new HashCode();
             hc.Add(field_BoolValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public partial class CustomNode
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static CustomNode? CreateFrom(ICustomNode? source)
+        {
+            if (source is null) return null;
+            return new CustomNode(source);
+        }
+
+        private static CustomNode CreateEmpty()
+        {
+            var empty = new CustomNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly CustomNode _empty = CreateEmpty();
+        public static new CustomNode Empty => _empty;
+
+    }
+    [MessagePackObject]
+    public partial class CustomNode : ValueNode, ICustomNode, IEquatable<CustomNode>, ICopyFrom<CustomNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 5;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private CustomEnum field_CustomValue;
+
+        // ---------- accessors ----------
+        [Key(1)]
+        public CustomEnum CustomValue
+        {
+            get => field_CustomValue;
+            set => field_CustomValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- ICustomNode methods ----------
+        CustomEnum ICustomNode.CustomValue => field_CustomValue.ToExternal();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public CustomNode()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public CustomNode(CustomNode source) : base(source)
+        {
+            field_CustomValue = source.field_CustomValue;
+        }
+
+        public void CopyFrom(CustomNode source)
+        {
+            base.CopyFrom(source);
+            field_CustomValue = source.field_CustomValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public CustomNode(ICustomNode source) : base(source)
+        {
+            field_CustomValue = source.CustomValue.ToInternal();
+        }
+
+        public bool Equals(CustomNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (field_CustomValue != other.field_CustomValue) return false;
+            return base.Equals(other);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(CustomNode left, CustomNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(CustomNode left, CustomNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override bool Equals(object? obj)
+        {
+            return obj is CustomNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_CustomValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public partial class Int32Node
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Int32Node? CreateFrom(IInt32Node? source)
+        {
+            if (source is null) return null;
+            return new Int32Node(source);
+        }
+
+        private static Int32Node CreateEmpty()
+        {
+            var empty = new Int32Node();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Int32Node _empty = CreateEmpty();
+        public static new Int32Node Empty => _empty;
+
+    }
+    [MessagePackObject]
+    public partial class Int32Node : NumericNode, IInt32Node, IEquatable<Int32Node>, ICopyFrom<Int32Node>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 6;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Int32 field_IntValue;
+
+        // ---------- accessors ----------
+        [Key(1)]
+        public Int32 IntValue
+        {
+            get => field_IntValue;
+            set => field_IntValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IInt32Node methods ----------
+        Int32 IInt32Node.IntValue => field_IntValue.ToExternal();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int32Node()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int32Node(Int32Node source) : base(source)
+        {
+            field_IntValue = source.field_IntValue;
+        }
+
+        public void CopyFrom(Int32Node source)
+        {
+            base.CopyFrom(source);
+            field_IntValue = source.field_IntValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int32Node(IInt32Node source) : base(source)
+        {
+            field_IntValue = source.IntValue.ToInternal();
+        }
+
+        public bool Equals(Int32Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (field_IntValue != other.field_IntValue) return false;
+            return base.Equals(other);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(Int32Node left, Int32Node right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(Int32Node left, Int32Node right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override bool Equals(object? obj)
+        {
+            return obj is Int32Node other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_IntValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public partial class Int64Node
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Int64Node? CreateFrom(IInt64Node? source)
+        {
+            if (source is null) return null;
+            return new Int64Node(source);
+        }
+
+        private static Int64Node CreateEmpty()
+        {
+            var empty = new Int64Node();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Int64Node _empty = CreateEmpty();
+        public static new Int64Node Empty => _empty;
+
+    }
+    [MessagePackObject]
+    public partial class Int64Node : NumericNode, IInt64Node, IEquatable<Int64Node>, ICopyFrom<Int64Node>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 7;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Int64 field_LongValue;
+
+        // ---------- accessors ----------
+        [Key(1)]
+        public Int64 LongValue
+        {
+            get => field_LongValue;
+            set => field_LongValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IInt64Node methods ----------
+        Int64 IInt64Node.LongValue => field_LongValue.ToExternal();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int64Node()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int64Node(Int64Node source) : base(source)
+        {
+            field_LongValue = source.field_LongValue;
+        }
+
+        public void CopyFrom(Int64Node source)
+        {
+            base.CopyFrom(source);
+            field_LongValue = source.field_LongValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int64Node(IInt64Node source) : base(source)
+        {
+            field_LongValue = source.LongValue.ToInternal();
+        }
+
+        public bool Equals(Int64Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (field_LongValue != other.field_LongValue) return false;
+            return base.Equals(other);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(Int64Node left, Int64Node right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(Int64Node left, Int64Node right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override bool Equals(object? obj)
+        {
+            return obj is Int64Node other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_LongValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

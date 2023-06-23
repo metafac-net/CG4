@@ -23,14 +23,18 @@ using System.Collections.Generic;
 
 namespace Generated.Contracts
 {
+    public enum CustomEnum
+    {
+        Value0 = 0,
+        Value1 = 1,
+    }
     public partial interface IValueNode : IEntityBase
     {
         Int64 Id { get; }
         String? Name { get; }
     }
-    public partial interface IInt32Node : IValueNode
+    public partial interface INumericNode : IValueNode
     {
-        Int32 IntValue { get; }
     }
     public partial interface IStringNode : IValueNode
     {
@@ -39,6 +43,18 @@ namespace Generated.Contracts
     public partial interface IBooleanNode : IValueNode
     {
         Boolean BoolValue { get; }
+    }
+    public partial interface ICustomNode : IValueNode
+    {
+        CustomEnum CustomValue { get; }
+    }
+    public partial interface IInt32Node : INumericNode
+    {
+        Int32 IntValue { get; }
+    }
+    public partial interface IInt64Node : INumericNode
+    {
+        Int64 LongValue { get; }
     }
     public partial interface ITree : IEntityBase
     {

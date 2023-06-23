@@ -71,9 +71,12 @@ namespace Generated.ClassesV2
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
+                case NumericNode.EntityTag: return NumericNode.CreateFrom((INumericNode)source);
                 case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
                 case StringNode.EntityTag: return StringNode.CreateFrom((IStringNode)source);
                 case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
+                case CustomNode.EntityTag: return CustomNode.CreateFrom((ICustomNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -178,22 +181,24 @@ namespace Generated.ClassesV2
         }
     }
 
-    public abstract partial class Int32Node
+    public abstract partial class NumericNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Int32Node? CreateFrom(IInt32Node? source)
+        public static NumericNode? CreateFrom(INumericNode? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
+                case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
                 default:
-                    throw new InvalidOperationException($"Unable to create {typeof(Int32Node)} from {source.GetType().Name}");
+                    throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
         }
 
     }
-    public partial class Int32Node : ValueNode, IInt32Node, IEquatable<Int32Node>
+    public partial class NumericNode : ValueNode, INumericNode, IEquatable<NumericNode>
     {
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static void ThrowIsReadonly()
@@ -216,56 +221,44 @@ namespace Generated.ClassesV2
         public new const int EntityTag = 2;
         protected override int OnGetEntityTag() => EntityTag;
 
-        private Int32 field_IntValue;
-        Int32 IInt32Node.IntValue => field_IntValue;
-        public Int32 IntValue
-        {
-            get => field_IntValue;
-            set => field_IntValue = CheckNotFrozen(ref value);
-        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Int32Node() : base()
+        public NumericNode() : base()
         {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Int32Node(Int32Node? source) : base(source)
+        public NumericNode(NumericNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_IntValue = source.IntValue;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Int32Node(IInt32Node? source) : base(source)
+        public NumericNode(INumericNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_IntValue = source.IntValue;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void CopyFrom(IInt32Node? source)
+        public void CopyFrom(INumericNode? source)
         {
             if (source is null) return;
             if (_isFrozen) ThrowIsReadonly();
             base.CopyFrom(source);
-            field_IntValue = source.IntValue;
         }
 
-        public virtual bool Equals(Int32Node? other)
+        public virtual bool Equals(NumericNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (IntValue != other.IntValue) return false;
             return base.Equals(other);
         }
 
-        public override bool Equals(object? obj) => obj is Int32Node other && Equals(other);
+        public override bool Equals(object? obj) => obj is NumericNode other && Equals(other);
 
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(IntValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
@@ -468,6 +461,309 @@ namespace Generated.ClassesV2
         {
             HashCode hc = new HashCode();
             hc.Add(BoolValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public abstract partial class CustomNode
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static CustomNode? CreateFrom(ICustomNode? source)
+        {
+            if (source is null) return null;
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(CustomNode)} from {source.GetType().Name}");
+            }
+        }
+
+    }
+    public partial class CustomNode : ValueNode, ICustomNode, IEquatable<CustomNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 5;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private CustomEnum field_CustomValue;
+        CustomEnum ICustomNode.CustomValue => field_CustomValue;
+        public CustomEnum CustomValue
+        {
+            get => field_CustomValue;
+            set => field_CustomValue = CheckNotFrozen(ref value);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public CustomNode() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public CustomNode(CustomNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_CustomValue = source.CustomValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public CustomNode(ICustomNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_CustomValue = source.CustomValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(ICustomNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_CustomValue = source.CustomValue;
+        }
+
+        public virtual bool Equals(CustomNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (CustomValue != other.CustomValue) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is CustomNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(CustomValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public abstract partial class Int32Node
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Int32Node? CreateFrom(IInt32Node? source)
+        {
+            if (source is null) return null;
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(Int32Node)} from {source.GetType().Name}");
+            }
+        }
+
+    }
+    public partial class Int32Node : NumericNode, IInt32Node, IEquatable<Int32Node>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 6;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Int32 field_IntValue;
+        Int32 IInt32Node.IntValue => field_IntValue;
+        public Int32 IntValue
+        {
+            get => field_IntValue;
+            set => field_IntValue = CheckNotFrozen(ref value);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int32Node() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int32Node(Int32Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_IntValue = source.IntValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int32Node(IInt32Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_IntValue = source.IntValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IInt32Node? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_IntValue = source.IntValue;
+        }
+
+        public virtual bool Equals(Int32Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (IntValue != other.IntValue) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is Int32Node other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(IntValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public abstract partial class Int64Node
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Int64Node? CreateFrom(IInt64Node? source)
+        {
+            if (source is null) return null;
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(Int64Node)} from {source.GetType().Name}");
+            }
+        }
+
+    }
+    public partial class Int64Node : NumericNode, IInt64Node, IEquatable<Int64Node>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 7;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Int64 field_LongValue;
+        Int64 IInt64Node.LongValue => field_LongValue;
+        public Int64 LongValue
+        {
+            get => field_LongValue;
+            set => field_LongValue = CheckNotFrozen(ref value);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int64Node() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int64Node(Int64Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_LongValue = source.LongValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int64Node(IInt64Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_LongValue = source.LongValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IInt64Node? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_LongValue = source.LongValue;
+        }
+
+        public virtual bool Equals(Int64Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (LongValue != other.LongValue) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is Int64Node other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(LongValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

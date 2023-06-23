@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace MetaFac.CG4.Generators.UnitTests.PolymorphicModels
 {
+    public enum CustomEnum
+    {
+        Value0,
+        Value1,
+    }
+
     [Entity(1)]
     public interface IValueNode
     {
@@ -15,9 +21,8 @@ namespace MetaFac.CG4.Generators.UnitTests.PolymorphicModels
     }
 
     [Entity(2)]
-    public interface IInt32Node : IValueNode
+    public interface INumericNode : IValueNode
     {
-        [Member(1)] public int IntValue { get; set; }
     }
 
     [Entity(3)]
@@ -30,6 +35,24 @@ namespace MetaFac.CG4.Generators.UnitTests.PolymorphicModels
     public interface IBooleanNode : IValueNode
     {
         [Member(1)] public bool BoolValue { get; set; }
+    }
+
+    [Entity(5)]
+    public interface ICustomNode : IValueNode
+    {
+        [Member(1)] public CustomEnum CustomValue { get; set; }
+    }
+
+    [Entity(6)]
+    public interface IInt32Node : INumericNode
+    {
+        [Member(1)] public int IntValue { get; set; }
+    }
+
+    [Entity(7)]
+    public interface IInt64Node : INumericNode
+    {
+        [Member(1)] public long LongValue { get; set; }
     }
 
     [Entity(10)]

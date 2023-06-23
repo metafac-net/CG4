@@ -55,9 +55,12 @@ namespace Generated.RecordsV2
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
+                case NumericNode.EntityTag: return NumericNode.CreateFrom((INumericNode)source);
                 case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
                 case StringNode.EntityTag: return StringNode.CreateFrom((IStringNode)source);
                 case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
+                case CustomNode.EntityTag: return CustomNode.CreateFrom((ICustomNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -122,60 +125,56 @@ namespace Generated.RecordsV2
         }
     }
 
-    public abstract partial record Int32Node
+    public abstract partial record NumericNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Int32Node? CreateFrom(IInt32Node? source)
+        public static NumericNode? CreateFrom(INumericNode? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
+                case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
                 default:
-                    throw new InvalidOperationException($"Unable to create {typeof(Int32Node)} from {source.GetType().Name}");
+                    throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
         }
 
     }
-    public partial record Int32Node : ValueNode, IInt32Node
+    public partial record NumericNode : ValueNode, INumericNode
     {
         public new const int EntityTag = 2;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Int32 IntValue { get; init; }
-        Int32 IInt32Node.IntValue => IntValue;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Int32Node() : base()
+        public NumericNode() : base()
         {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Int32Node(Int32Node? source) : base(source)
+        public NumericNode(NumericNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            IntValue = source.IntValue;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Int32Node(IInt32Node? source) : base(source)
+        public NumericNode(INumericNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            IntValue = source.IntValue;
         }
 
-        public virtual bool Equals(Int32Node? other)
+        public virtual bool Equals(NumericNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (IntValue != other.IntValue) return false;
             return base.Equals(other);
         }
 
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(IntValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
@@ -310,6 +309,207 @@ namespace Generated.RecordsV2
         {
             HashCode hc = new HashCode();
             hc.Add(BoolValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public abstract partial record CustomNode
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static CustomNode? CreateFrom(ICustomNode? source)
+        {
+            if (source is null) return null;
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(CustomNode)} from {source.GetType().Name}");
+            }
+        }
+
+    }
+    public partial record CustomNode : ValueNode, ICustomNode
+    {
+        public new const int EntityTag = 5;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public CustomEnum CustomValue { get; init; }
+        CustomEnum ICustomNode.CustomValue => CustomValue;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public CustomNode() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public CustomNode(CustomNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            CustomValue = source.CustomValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public CustomNode(ICustomNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            CustomValue = source.CustomValue;
+        }
+
+        public virtual bool Equals(CustomNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (CustomValue != other.CustomValue) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(CustomValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public abstract partial record Int32Node
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Int32Node? CreateFrom(IInt32Node? source)
+        {
+            if (source is null) return null;
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(Int32Node)} from {source.GetType().Name}");
+            }
+        }
+
+    }
+    public partial record Int32Node : NumericNode, IInt32Node
+    {
+        public new const int EntityTag = 6;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Int32 IntValue { get; init; }
+        Int32 IInt32Node.IntValue => IntValue;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int32Node() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int32Node(Int32Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            IntValue = source.IntValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int32Node(IInt32Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            IntValue = source.IntValue;
+        }
+
+        public virtual bool Equals(Int32Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (IntValue != other.IntValue) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(IntValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public abstract partial record Int64Node
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Int64Node? CreateFrom(IInt64Node? source)
+        {
+            if (source is null) return null;
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(Int64Node)} from {source.GetType().Name}");
+            }
+        }
+
+    }
+    public partial record Int64Node : NumericNode, IInt64Node
+    {
+        public new const int EntityTag = 7;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Int64 LongValue { get; init; }
+        Int64 IInt64Node.LongValue => LongValue;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int64Node() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int64Node(Int64Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            LongValue = source.LongValue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Int64Node(IInt64Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            LongValue = source.LongValue;
+        }
+
+        public virtual bool Equals(Int64Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (LongValue != other.LongValue) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(LongValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
