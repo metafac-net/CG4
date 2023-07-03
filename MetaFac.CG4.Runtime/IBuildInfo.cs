@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MetaFac.CG4.Runtime
+﻿namespace MetaFac.CG4.Runtime
 {
     public interface IBuildInfo
     {
@@ -10,6 +8,6 @@ namespace MetaFac.CG4.Runtime
         string AssemblyFileVersion { get; }
         string AssemblyInformationalVersion { get; }
         string GitCommitId { get; }
-        DateTime GitCommitDate { get; }
+        string GitCommitDate { get; }
     }
 }

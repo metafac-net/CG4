@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MetaFac.CG4.Runtime
+﻿namespace MetaFac.CG4.Runtime
 {
     public class BuildInfo : IBuildInfo
     {
@@ -13,6 +11,8 @@ namespace MetaFac.CG4.Runtime
         string IBuildInfo.AssemblyFileVersion => ThisAssembly.AssemblyFileVersion;
         string IBuildInfo.AssemblyInformationalVersion => ThisAssembly.AssemblyInformationalVersion;
         string IBuildInfo.GitCommitId => ThisAssembly.GitCommitId;
-        DateTime IBuildInfo.GitCommitDate => ThisAssembly.GitCommitDate;
+
+        private readonly string _gitCommitDate = ThisAssembly.GitCommitDate.ToString("O");
+        string IBuildInfo.GitCommitDate => _gitCommitDate;
     }
 }
