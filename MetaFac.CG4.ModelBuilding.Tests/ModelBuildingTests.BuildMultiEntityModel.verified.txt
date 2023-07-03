@@ -1,0 +1,19 @@
+﻿{
+  "ModelDefs": [
+    {
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "Entity1",
+          "MemberDefs": []
+        },
+        {
+          "Name": "Entity2",
+          "MemberDefs": []
+        }
+      ],
+      "EnumTypeDefs": []
+    }
+  ],
+  "Tokens": {}
+}
