@@ -1,0 +1,8 @@
+﻿namespace MetaFac.CG4.ModelReader
+{
+    public static class ModelParser
+    {
+        public static MetaFac.CG4.Models.ModelContainer ParseAssembly(System.Reflection.Assembly sourceAssembly, string sourceNamespace) { }
+        public static MetaFac.CG4.Models.ModelContainer ParseAssembly(System.Type sourceType, string? sourceNamespace = null) { }
+    }
+}

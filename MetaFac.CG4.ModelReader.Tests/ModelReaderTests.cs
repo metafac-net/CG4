@@ -3,8 +3,6 @@ using MetaFac.CG4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace MetaFac.CG4.ModelReader.Tests

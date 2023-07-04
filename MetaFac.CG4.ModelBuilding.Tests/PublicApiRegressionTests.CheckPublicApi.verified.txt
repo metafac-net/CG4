@@ -1,0 +1,17 @@
+﻿namespace MetaFac.CG4.ModelBuilding
+{
+    public interface IModelContainerBuilder
+    {
+        MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag);
+        MetaFac.CG4.Models.ModelContainer Build();
+    }
+    public interface IModelDefinitionBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder
+    {
+        MetaFac.CG4.ModelBuilding.IModelEntityDefBuilder AddEntityDef(string entityName, int? entityTag);
+    }
+    public interface IModelEntityDefBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder { }
+    public static class ModelBuilder
+    {
+        public static MetaFac.CG4.ModelBuilding.IModelContainerBuilder Create() { }
+    }
+}

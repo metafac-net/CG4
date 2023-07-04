@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using MetaFac.CG4.Models;
+﻿using MetaFac.CG4.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
