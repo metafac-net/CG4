@@ -2,6 +2,13 @@
 
 namespace MetaFac.CG4.Models
 {
+    public enum ItemState
+    {
+        Active = 0,
+        Reserved = 1,
+        Retired = 2,
+        Deleted = 3
+    }
     public class ModelItemState : IEquatable<ModelItemState>
     {
         public readonly bool IsInactive;
@@ -19,6 +26,17 @@ namespace MetaFac.CG4.Models
         {
             if (!isInactive && !isRedacted && reason is null) return null;
             return new ModelItemState(isInactive, isRedacted, reason);
+        }
+
+        public static ModelItemState? Create(ItemState itemState, string? reason)
+        {
+            return itemState switch
+            {
+                ItemState.Reserved => new ModelItemState(false, true, reason),
+                ItemState.Retired => new ModelItemState(true, false, reason),
+                ItemState.Deleted => new ModelItemState(true, true, reason),
+                _ => null,
+            };
         }
 
         public static ModelItemState? From(JsonItemState? source)

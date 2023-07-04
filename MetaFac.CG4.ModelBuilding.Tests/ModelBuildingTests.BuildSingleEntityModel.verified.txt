@@ -5,6 +5,7 @@
       "EntityDefs": [
         {
           "Name": "Entity1",
+          "Summary": "Description for Entity1",
           "MemberDefs": []
         }
       ],

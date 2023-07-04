@@ -1,0 +1,52 @@
+﻿{
+  "ModelDefs": [
+    {
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "Entity1",
+          "Summary": "Description for Entity1",
+          "MemberDefs": [
+            {
+              "Name": "Member1",
+              "Summary": "Description of Member1",
+              "InnerType": "in64",
+              "ProxyDef": {
+                "ExternalName": "ExternalType",
+                "ConcreteName": "ConcreteType"
+              }
+            },
+            {
+              "Name": "Member2",
+              "Summary": "Description of Member2",
+              "State": {
+                "IsRedacted": true
+              },
+              "InnerType": "in64"
+            },
+            {
+              "Name": "Member3",
+              "Summary": "Description of Member3",
+              "State": {
+                "IsInactive": true,
+                "Reason": "Deprecated"
+              },
+              "InnerType": "in64"
+            },
+            {
+              "Name": "Member4",
+              "Summary": "Description of Member4",
+              "State": {
+                "IsInactive": true,
+                "IsRedacted": true
+              },
+              "InnerType": "in64"
+            }
+          ]
+        }
+      ],
+      "EnumTypeDefs": []
+    }
+  ],
+  "Tokens": {}
+}

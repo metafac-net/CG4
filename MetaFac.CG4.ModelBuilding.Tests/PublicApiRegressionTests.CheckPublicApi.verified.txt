@@ -1,5 +1,13 @@
 ﻿namespace MetaFac.CG4.ModelBuilding
 {
+    public interface IEntityBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder
+    {
+        MetaFac.CG4.ModelBuilding.IMemberBuilder AddMember(string memberName, int? memberTag, string innerType, bool nullable, int arrayRank, string? indexType, bool isModelType, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
+    }
+    public interface IMemberBuilder : MetaFac.CG4.ModelBuilding.IEntityBuilder, MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder
+    {
+        MetaFac.CG4.ModelBuilding.IMemberBuilder SetProxyTypes(string externalName, string concreteName);
+    }
     public interface IModelContainerBuilder
     {
         MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag);
@@ -7,9 +15,14 @@
     }
     public interface IModelDefinitionBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder
     {
-        MetaFac.CG4.ModelBuilding.IModelEntityDefBuilder AddEntityDef(string entityName, int? entityTag);
+        MetaFac.CG4.ModelBuilding.IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
+        MetaFac.CG4.ModelBuilding.IModelEnumTypeDefBuilder AddEnumTypeDef(string enumName);
     }
-    public interface IModelEntityDefBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder { }
+    public interface IModelEnumItemDefBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder, MetaFac.CG4.ModelBuilding.IModelEnumTypeDefBuilder { }
+    public interface IModelEnumTypeDefBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder
+    {
+        MetaFac.CG4.ModelBuilding.IModelEnumItemDefBuilder AddEnumItemDef(string itemName);
+    }
     public static class ModelBuilder
     {
         public static MetaFac.CG4.ModelBuilding.IModelContainerBuilder Create() { }
