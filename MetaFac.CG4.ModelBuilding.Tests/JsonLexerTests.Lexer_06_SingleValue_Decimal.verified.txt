@@ -1,0 +1,5 @@
+﻿[StartObject]
+"Name"
+[Colon]
+-123.456
+[EndObject]

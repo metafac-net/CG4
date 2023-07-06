@@ -1,0 +1,13 @@
+﻿[StartObject]
+"Items"
+[Colon]
+[StartArray]
+123
+[Comma]
+"abc"
+[Comma]
+[Null]
+[Comma]
+[True]
+[EndArray]
+[EndObject]

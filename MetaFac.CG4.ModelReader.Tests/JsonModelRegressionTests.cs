@@ -1,12 +1,15 @@
 ﻿using MetaFac.CG4.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
 
 namespace MetaFac.CG4.ModelReader.Tests
 {
+
     [UsesVerify]
     public class JsonModelRegressionTests
     {

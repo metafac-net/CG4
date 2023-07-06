@@ -30,8 +30,11 @@
         get => _json;
         set
         {
-            _json = value; 
-            JsonRows = Math.Max(2, value.Split(splitChars, StringSplitOptions.RemoveEmptyEntries).Length);
+             string formatted = JsonReformatter.ReformatJson(value);
+            //var formatter = new FracturedJson.Formatter();
+            //string formatted = formatter.Reformat(value);
+            _json = formatted;
+            JsonRows = Math.Max(2, formatted.Split(splitChars, StringSplitOptions.RemoveEmptyEntries).Length);
         }
     }
 
@@ -53,6 +56,8 @@
             = ModelBuilder.Create()
             .AddModelDef("Model1", null)
                 .AddEntity("Entity1", null)
+                    .AddMember("Member1", null, "string", false, 0, null, false, "Summary for Member1")
+                .AddEntity("Entity2", null)
             .Build();
 
         JsonMetadata = metadata.ToJson(true);
@@ -65,13 +70,20 @@
     private void Generate()
     {
         // parse model and generate code
-        var metadata = ModelContainer.FromJson(JsonMetadata)
-            .SetToken("Metadata", "WebUI")
-            .SetToken("Namespace", "MyOrganization.Generated")
-            .SetToken("CopyrightInfo", "Copyright (c) 2023 MyOrganization Inc.");
-        var generator = new Generator.Contracts.Generator();
-        var sourceLines = generator.Generate(metadata);
-        GeneratedCode = string.Join(Environment.NewLine, sourceLines);
+        try
+        {
+            var metadata = ModelContainer.FromJson(JsonMetadata)
+                .SetToken("Metadata", "WebUI")
+                .SetToken("Namespace", "MyOrganization.Generated")
+                .SetToken("CopyrightInfo", "Copyright (c) 2023 MyOrganization Inc.");
+            var generator = new Generator.Contracts.Generator();
+            var sourceLines = generator.Generate(metadata);
+            GeneratedCode = string.Join(Environment.NewLine, sourceLines);
+        }
+        catch (Exception e)
+        {
+            GeneratedCode = $"// Error: {e.GetType()}: {e.Message}";
+        }
     }
 }
 

@@ -5,6 +5,8 @@ using System.Text.Json;
 using System.Linq;
 using System.Xml;
 using System.Text.Json.Serialization;
+using System.Text;
+using System.Data.SqlTypes;
 
 namespace MetaFac.CG4.Models
 {
@@ -53,7 +55,7 @@ namespace MetaFac.CG4.Models
             return new ModelContainer(ModelDefs, Tokens.SetItem(name, value));
         }
 
-        public ModelContainer SetTokens(IEnumerable<KeyValuePair<string,string>> tokens)
+        public ModelContainer SetTokens(IEnumerable<KeyValuePair<string, string>> tokens)
         {
             return new ModelContainer(ModelDefs, Tokens.SetItems(tokens));
         }
