@@ -84,6 +84,10 @@ namespace MetaFac.CG4.ModelReader.Tests
                         var number = reader.GetDouble();
                         tokens.Add(new JsonToken2(depth, tokenType, number));
                         break;
+                    case JsonTokenType.None:
+                        break;
+                    case JsonTokenType.Comment:
+                        break;
                     default:
                         throw new NotImplementedException($"TokenType: {reader.TokenType}");
                 }
@@ -170,6 +174,24 @@ namespace MetaFac.CG4.ModelReader.Tests
                 .Build();
 
             string input = metadata.ToJson(true);
+
+            // act
+            var tokens = ReadTokens(Encoding.UTF8.GetBytes(input));
+            string formatted = string.Join(Environment.NewLine, tokens);
+
+            // assert
+            await Verifier.Verify(formatted);
+        }
+
+        [Fact]
+        public async Task Lexer_06_PropertyArray()
+        {
+            const string input =
+                """
+                { 
+                    "Name": [1, null, "abc", true]
+                }
+                """;
 
             // act
             var tokens = ReadTokens(Encoding.UTF8.GetBytes(input));
