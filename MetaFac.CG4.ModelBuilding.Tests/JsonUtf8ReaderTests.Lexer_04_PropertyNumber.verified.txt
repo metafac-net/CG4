@@ -1,0 +1,4 @@
+﻿[0,StartObject]
+[1,Property(Name)]
+[1,Number(0.000123)]
+[0,EndObject]

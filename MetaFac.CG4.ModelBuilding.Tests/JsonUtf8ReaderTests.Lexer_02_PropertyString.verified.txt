@@ -1,0 +1,4 @@
+﻿[0,StartObject]
+[1,Property(Name)]
+[1,String(abc)]
+[0,EndObject]
