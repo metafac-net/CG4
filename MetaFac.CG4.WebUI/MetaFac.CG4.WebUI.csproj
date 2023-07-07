@@ -1,23 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <WarningsAsErrors>nullable</WarningsAsErrors>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.8" PrivateAssets="all" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.8" PrivateAssets="all" />
+        <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG4.Generators\MetaFac.CG4.Generators.csproj" />
-    <ProjectReference Include="..\MetaFac.CG4.ModelBuilding\MetaFac.CG4.ModelBuilding.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\MetaFac.CG4.Generators\MetaFac.CG4.Generators.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.ModelBuilding\MetaFac.CG4.ModelBuilding.csproj" />
+    </ItemGroup>
 
 </Project>
