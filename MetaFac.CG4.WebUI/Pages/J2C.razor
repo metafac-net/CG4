@@ -1,6 +1,7 @@
 ﻿@page "/j2c"
 @using MetaFac.CG4.ModelBuilding;
 @using MetaFac.CG4.Models;
+@using System.Text.Json;
 
 <PageTitle>J2C</PageTitle>
 
@@ -30,9 +31,8 @@
         get => _json;
         set
         {
-             string formatted = JsonReformatter.ReformatJson(value);
-            //var formatter = new FracturedJson.Formatter();
-            //string formatted = formatter.Reformat(value);
+            var writerOptions = new JsonWriterOptions() { Indented = true };
+            string formatted = JsonReformatter.Reformat(value, default, writerOptions);
             _json = formatted;
             JsonRows = Math.Max(2, formatted.Split(splitChars, StringSplitOptions.RemoveEmptyEntries).Length);
         }

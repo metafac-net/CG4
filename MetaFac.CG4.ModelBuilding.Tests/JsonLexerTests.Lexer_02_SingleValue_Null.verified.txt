@@ -1,5 +1,0 @@
-﻿[StartObject]
-"Name"
-[Colon]
-[Null]
-[EndObject]

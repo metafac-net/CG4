@@ -1,6 +1,0 @@
-﻿[StartObject]
-"Name"
-[Colon]
-"	©
-"
-[EndObject]

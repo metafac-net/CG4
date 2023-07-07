@@ -1,16 +1,19 @@
 ﻿{
-  "ModelDefs": [ {
+  "ModelDefs": [
+    {
       "Name": "Model1",
-      "EntityDefs": [ {
+      "EntityDefs": [
+        {
           "Name": "Entity1",
-          "MemberDefs": [ {
+          "MemberDefs": [
+            {
               "Name": "Member1",
-              "Summary": "Summary for Member1",
               "InnerType": "string",
               "Nullable": true
             }
           ]
-        }, {
+        },
+        {
           "Name": "Entity2",
           "MemberDefs": []
         }

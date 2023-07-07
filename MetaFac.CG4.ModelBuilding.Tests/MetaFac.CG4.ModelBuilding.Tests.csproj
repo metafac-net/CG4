@@ -30,6 +30,24 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Update="JsonReformatterReaderTests.Lexer_01_Empty.verified.txt">
+        <DependentUpon>JsonReformatterReaderTests.cs</DependentUpon>
+      </None>
+      <None Update="JsonReformatterReaderTests.Lexer_02_PropertyString.verified.txt">
+        <DependentUpon>JsonReformatterReaderTests.cs</DependentUpon>
+      </None>
+      <None Update="JsonReformatterReaderTests.Lexer_03_PropertyNull.verified.txt">
+        <DependentUpon>JsonReformatterReaderTests.cs</DependentUpon>
+      </None>
+      <None Update="JsonReformatterReaderTests.Lexer_04_PropertyNumber.verified.txt">
+        <DependentUpon>JsonReformatterReaderTests.cs</DependentUpon>
+      </None>
+      <None Update="JsonReformatterReaderTests.Lexer_05_Complex.verified.txt">
+        <DependentUpon>JsonReformatterReaderTests.cs</DependentUpon>
+      </None>
+      <None Update="JsonReformatterReaderTests.Lexer_06_PropertyArray.verified.txt">
+        <DependentUpon>JsonReformatterReaderTests.cs</DependentUpon>
+      </None>
       <None Update="ModelBuildingTests.BuildEmptyContainer.verified.txt">
         <DependentUpon>ModelBuildingTests.cs</DependentUpon>
       </None>
