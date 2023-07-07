@@ -4,6 +4,11 @@
     {
         MetaFac.CG4.ModelBuilding.IMemberBuilder AddMember(string memberName, int? memberTag, string innerType, bool nullable, int arrayRank, string? indexType, bool isModelType, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
     }
+    public interface IEnumItemBuilder : MetaFac.CG4.ModelBuilding.IEnumTypeBuilder, MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder { }
+    public interface IEnumTypeBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder
+    {
+        MetaFac.CG4.ModelBuilding.IEnumItemBuilder AddEnumItem(string itemName, int code, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
+    }
     public interface IMemberBuilder : MetaFac.CG4.ModelBuilding.IEntityBuilder, MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder
     {
         MetaFac.CG4.ModelBuilding.IMemberBuilder SetProxyTypes(string externalName, string concreteName);
@@ -16,12 +21,7 @@
     public interface IModelDefinitionBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder
     {
         MetaFac.CG4.ModelBuilding.IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
-        MetaFac.CG4.ModelBuilding.IModelEnumTypeDefBuilder AddEnumTypeDef(string enumName);
-    }
-    public interface IModelEnumItemDefBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder, MetaFac.CG4.ModelBuilding.IModelEnumTypeDefBuilder { }
-    public interface IModelEnumTypeDefBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder
-    {
-        MetaFac.CG4.ModelBuilding.IModelEnumItemDefBuilder AddEnumItemDef(string itemName);
+        MetaFac.CG4.ModelBuilding.IEnumTypeBuilder AddEnumType(string enumTypeName, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
     }
     public static class ModelBuilder
     {

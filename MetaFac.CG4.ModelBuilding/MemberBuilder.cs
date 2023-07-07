@@ -47,14 +47,15 @@ namespace MetaFac.CG4.ModelBuilding
             ModelProxyDef? proxyDef = (_proxyExternalType is not null && _proxyConcreteType is not null)
                 ? new ModelProxyDef(_proxyExternalType, _proxyConcreteType)
                 : null;
-            return new ModelMemberDef(_name, _tag, _summary, _innerType,  _nullable, proxyDef, _arrayRank, _indexType, _isModelType, ModelItemState.Create(_itemState, _reason)); // todo
+            return new ModelMemberDef(_name, _tag, _summary, _innerType,  _nullable, proxyDef, _arrayRank, _indexType, _isModelType, ModelItemState.Create(_itemState, _reason));
         }
 
         public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
             => _outer.AddEntity(entityName, entityTag, baseName, summary, itemState, reason);
         public IMemberBuilder AddMember(string memberName, int? memberTag, string innerType, bool nullable, int arrayRank, string? indexType, bool isModelType, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
             => _outer.AddMember(memberName, memberTag, innerType, nullable, arrayRank, indexType, isModelType, summary, itemState, reason);
-        public IModelEnumTypeDefBuilder AddEnumTypeDef(string enumTypeName) => _outer.AddEnumTypeDef(enumTypeName);
+        public IEnumTypeBuilder AddEnumType(string enumTypeName, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
+            => _outer.AddEnumType(enumTypeName, summary, itemState, reason);
         public IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag) => _outer.AddModelDef(modelName, modelTag);
         public ModelContainer Build() => _outer.Build();
     }

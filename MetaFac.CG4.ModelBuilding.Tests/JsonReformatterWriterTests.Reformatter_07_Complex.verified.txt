@@ -18,7 +18,24 @@
           "MemberDefs": []
         }
       ],
-      "EnumTypeDefs": []
+      "EnumTypeDefs": [
+        {
+          "Name": "Enum1",
+          "EnumItemDefs": [
+            {
+              "Name": "None"
+            },
+            {
+              "Name": "Value1",
+              "Value": 1
+            },
+            {
+              "Name": "Value2",
+              "Value": 2
+            }
+          ]
+        }
+      ]
     }
   ],
   "Tokens": {}

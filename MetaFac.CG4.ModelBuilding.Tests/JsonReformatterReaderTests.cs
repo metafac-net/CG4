@@ -87,6 +87,10 @@ namespace MetaFac.CG4.ModelReader.Tests
                     .AddEntity("Entity1", null)
                         .AddMember("Member1", null, "string", true, 0, null, false)
                     .AddEntity("Entity2", null)
+                    .AddEnumType("Enum1")
+                        .AddEnumItem("None", 0)
+                        .AddEnumItem("Value1", 1)
+                        .AddEnumItem("Value2", 2)
                 .Build();
 
             string input = metadata.ToJson(true);

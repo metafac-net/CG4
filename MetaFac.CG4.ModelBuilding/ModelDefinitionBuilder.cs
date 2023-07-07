@@ -10,7 +10,7 @@ namespace MetaFac.CG4.ModelBuilding
         private readonly string _name;
         private readonly int? _tag;
         private readonly Dictionary<string, EntityBuilder> _entityDefBuilders = new Dictionary<string, EntityBuilder>();
-        private readonly Dictionary<string, ModelEnumTypeDefBuilder> _enumTypeDefBuilders = new Dictionary<string, ModelEnumTypeDefBuilder>();
+        private readonly Dictionary<string, EnumTypeBuilder> _enumTypeDefBuilders = new Dictionary<string, EnumTypeBuilder>();
 
         public ModelDefinitionBuilder(ModelContainerBuilder outer, string name, int? tag)
         {
@@ -26,9 +26,9 @@ namespace MetaFac.CG4.ModelBuilding
             return entityDefBuilder;
         }
 
-        public IModelEnumTypeDefBuilder AddEnumTypeDef(string enumTypeName)
+        public IEnumTypeBuilder AddEnumType(string enumTypeName, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
         {
-            var enumTypeDefBuilder = new ModelEnumTypeDefBuilder(this, enumTypeName);
+            var enumTypeDefBuilder = new EnumTypeBuilder(this, enumTypeName, summary, itemState, reason);
             _enumTypeDefBuilders.Add(enumTypeName, enumTypeDefBuilder);
             return enumTypeDefBuilder;
         }
