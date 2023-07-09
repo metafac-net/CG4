@@ -168,6 +168,8 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             {
                 case StrNode.EntityTag: return StrNode.CreateFrom((IStrNode)source);
                 case NumNode.EntityTag: return NumNode.CreateFrom((INumNode)source);
+                case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
+                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(Node)} from {source.GetType().Name}");
             }
@@ -315,23 +317,21 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
         }
     }
 
-    public partial class NumNode
+    public abstract partial class NumNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static NumNode? CreateFrom(INumNode? source)
         {
             if (source is null) return null;
-            return new NumNode(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
+                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(NumNode)} from {source.GetType().Name}");
+            }
         }
-
-        private static NumNode CreateEmpty()
-        {
-            var empty = new NumNode();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly NumNode _empty = CreateEmpty();
-        public static new NumNode Empty => _empty;
 
     }
     public partial class NumNode : Node, INumNode, IEquatable<NumNode>
@@ -339,13 +339,6 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
         public new const int EntityTag = 4;
         protected override int OnGetEntityTag() => EntityTag;
 
-        private Int64 field_NumVal;
-        Int64 INumNode.NumVal => field_NumVal;
-        public Int64 NumVal
-        {
-            get => field_NumVal;
-            set => field_NumVal = value;
-        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode() : base()
@@ -356,14 +349,12 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
         public NumNode(NumNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_NumVal = source.NumVal;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode(INumNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_NumVal = source.NumVal;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -371,14 +362,12 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
         {
             if (source is null) return;
             base.CopyFrom(source);
-            field_NumVal = source.NumVal;
         }
 
         public virtual bool Equals(NumNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (NumVal != other.NumVal) return false;
             return base.Equals(other);
         }
 
@@ -387,7 +376,178 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(NumVal.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class LongNode
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static LongNode? CreateFrom(ILongNode? source)
+        {
+            if (source is null) return null;
+            return new LongNode(source);
+        }
+
+        private static LongNode CreateEmpty()
+        {
+            var empty = new LongNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly LongNode _empty = CreateEmpty();
+        public static new LongNode Empty => _empty;
+
+    }
+    public partial class LongNode : NumNode, ILongNode, IEquatable<LongNode>
+    {
+        public new const int EntityTag = 5;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Int64 field_LongVal;
+        Int64 ILongNode.LongVal => field_LongVal;
+        public Int64 LongVal
+        {
+            get => field_LongVal;
+            set => field_LongVal = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public LongNode() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public LongNode(LongNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_LongVal = source.LongVal;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public LongNode(ILongNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_LongVal = source.LongVal;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(ILongNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_LongVal = source.LongVal;
+        }
+
+        public virtual bool Equals(LongNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (LongVal != other.LongVal) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is LongNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(LongVal.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class ByteNode
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ByteNode? CreateFrom(IByteNode? source)
+        {
+            if (source is null) return null;
+            return new ByteNode(source);
+        }
+
+        private static ByteNode CreateEmpty()
+        {
+            var empty = new ByteNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly ByteNode _empty = CreateEmpty();
+        public static new ByteNode Empty => _empty;
+
+    }
+    public partial class ByteNode : NumNode, IByteNode, IEquatable<ByteNode>
+    {
+        public new const int EntityTag = 6;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Byte field_ByteVal;
+        Byte IByteNode.ByteVal => field_ByteVal;
+        public Byte ByteVal
+        {
+            get => field_ByteVal;
+            set => field_ByteVal = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ByteNode() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ByteNode(ByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ByteVal = source.ByteVal;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ByteNode(IByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ByteVal = source.ByteVal;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IByteNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ByteVal = source.ByteVal;
+        }
+
+        public virtual bool Equals(ByteNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (ByteVal != other.ByteVal) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is ByteNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ByteVal.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

@@ -35,6 +35,13 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.Contracts
     }
     public partial interface INumNode : INode
     {
-        Int64 NumVal { get; }
+    }
+    public partial interface ILongNode : INumNode
+    {
+        Int64 LongVal { get; }
+    }
+    public partial interface IByteNode : INumNode
+    {
+        Byte ByteVal { get; }
     }
 }

@@ -133,6 +133,8 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
             {
                 case StrNode.EntityTag: return StrNode.CreateFrom((IStrNode)source);
                 case NumNode.EntityTag: return NumNode.CreateFrom((INumNode)source);
+                case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
+                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(Node)} from {source.GetType().Name}");
             }
@@ -251,18 +253,21 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         }
     }
 
-    public partial record NumNode
+    public abstract partial record NumNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static NumNode? CreateFrom(INumNode? source)
         {
             if (source is null) return null;
-            if (source is NumNode thisEntity) return thisEntity;
-            return new NumNode(source);
+            int entityTag = source.GetEntityTag();
+            switch (entityTag)
+            {
+                case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
+                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                default:
+                    throw new InvalidOperationException($"Unable to create {typeof(NumNode)} from {source.GetType().Name}");
+            }
         }
-
-        private static readonly NumNode _empty = new NumNode();
-        public static new NumNode Empty => _empty;
 
     }
     public partial record NumNode : Node, INumNode
@@ -270,8 +275,6 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         public new const int EntityTag = 4;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Int64 NumVal { get; init; }
-        Int64 INumNode.NumVal => NumVal;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode() : base()
@@ -282,28 +285,156 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         public NumNode(NumNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            NumVal = source.NumVal;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode(INumNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            NumVal = source.NumVal;
         }
 
         public virtual bool Equals(NumNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (NumVal != other.NumVal) return false;
             return base.Equals(other);
         }
 
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(NumVal.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial record LongNode
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static LongNode? CreateFrom(ILongNode? source)
+        {
+            if (source is null) return null;
+            if (source is LongNode thisEntity) return thisEntity;
+            return new LongNode(source);
+        }
+
+        private static readonly LongNode _empty = new LongNode();
+        public static new LongNode Empty => _empty;
+
+    }
+    public partial record LongNode : NumNode, ILongNode
+    {
+        public new const int EntityTag = 5;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Int64 LongVal { get; init; }
+        Int64 ILongNode.LongVal => LongVal;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public LongNode() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public LongNode(LongNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            LongVal = source.LongVal;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public LongNode(ILongNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            LongVal = source.LongVal;
+        }
+
+        public virtual bool Equals(LongNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (LongVal != other.LongVal) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(LongVal.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial record ByteNode
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ByteNode? CreateFrom(IByteNode? source)
+        {
+            if (source is null) return null;
+            if (source is ByteNode thisEntity) return thisEntity;
+            return new ByteNode(source);
+        }
+
+        private static readonly ByteNode _empty = new ByteNode();
+        public static new ByteNode Empty => _empty;
+
+    }
+    public partial record ByteNode : NumNode, IByteNode
+    {
+        public new const int EntityTag = 6;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Byte ByteVal { get; init; }
+        Byte IByteNode.ByteVal => ByteVal;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ByteNode() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ByteNode(ByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ByteVal = source.ByteVal;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ByteNode(IByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ByteVal = source.ByteVal;
+        }
+
+        public virtual bool Equals(ByteNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (ByteVal != other.ByteVal) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ByteVal.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

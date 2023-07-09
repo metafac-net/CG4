@@ -49,11 +49,29 @@
           "Name": "NumNode",
           "Tag": 4,
           "ParentName": "Node",
+          "MemberDefs": []
+        },
+        {
+          "Name": "LongNode",
+          "Tag": 5,
+          "ParentName": "NumNode",
           "MemberDefs": [
             {
-              "Name": "NumVal",
+              "Name": "LongVal",
               "Tag": 1,
               "InnerType": "int64"
+            }
+          ]
+        },
+        {
+          "Name": "ByteNode",
+          "Tag": 6,
+          "ParentName": "NumNode",
+          "MemberDefs": [
+            {
+              "Name": "ByteVal",
+              "Tag": 1,
+              "InnerType": "uint8"
             }
           ]
         }
