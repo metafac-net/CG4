@@ -49,7 +49,7 @@ namespace MetaFac.CG4.ModelReader.Tests
             };
             var entityDefs = new List<ModelEntityDef>
             {
-                new ModelEntityDef("Entity1", 1, "Entity 1", false, null, memberDefs)
+                new ModelEntityDef("Entity1", 1, "Entity 1", null, memberDefs)
             };
             var enumItemDefs = new List<ModelEnumItemDef>
             {

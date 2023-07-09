@@ -7,7 +7,6 @@
         {
           "Name": "Person",
           "Tag": 1,
-          "IsAbstract": true,
           "MemberDefs": [
             {
               "Name": "FamilyName",

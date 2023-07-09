@@ -2,6 +2,7 @@
 
 namespace MetaFac.CG4.Attributes
 {
+    // todo move to Generators assm
     public enum GeneratorId
     {
         None = 0,
@@ -9,5 +10,6 @@ namespace MetaFac.CG4.Attributes
         MessagePack = 2,
         ClassesV2 = 3,
         RecordsV2 = 4,
+        JsonNewtonSoft = 5,
     }
 }

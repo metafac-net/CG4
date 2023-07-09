@@ -62,6 +62,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.ModelBuilding.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.WebUI", "MetaFac.CG4.WebUI\MetaFac.CG4.WebUI.csproj", "{F1D517D8-47A9-408B-A502-9FA153D9E972}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaFac.CG4.TestOrg.Models.Tests", "MetaFac.CG4.TestOrg.Models.Tests\MetaFac.CG4.TestOrg.Models.Tests.csproj", "{64420B7D-7AA6-4101-AACD-49CE634B2E83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -168,6 +170,10 @@ Global
 		{F1D517D8-47A9-408B-A502-9FA153D9E972}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D517D8-47A9-408B-A502-9FA153D9E972}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D517D8-47A9-408B-A502-9FA153D9E972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64420B7D-7AA6-4101-AACD-49CE634B2E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64420B7D-7AA6-4101-AACD-49CE634B2E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64420B7D-7AA6-4101-AACD-49CE634B2E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64420B7D-7AA6-4101-AACD-49CE634B2E83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

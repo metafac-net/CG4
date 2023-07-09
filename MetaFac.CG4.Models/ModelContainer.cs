@@ -7,6 +7,7 @@ using System.Xml;
 using System.Text.Json.Serialization;
 using System.Text;
 using System.Data.SqlTypes;
+using System.Reflection;
 
 namespace MetaFac.CG4.Models
 {

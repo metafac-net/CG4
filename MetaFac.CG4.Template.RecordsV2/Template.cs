@@ -145,7 +145,7 @@ namespace T_Namespace_.RecordsV2
     //>>{
     //>>    using (NewScope(cd))
     //>>    {
-    //>>        if (cd.IsAbstract)
+    //>>        if (cd.AllDerivedEntities.Count > 0)
     //>>        {
     public abstract partial record T_EntityName2_
     {

@@ -47,19 +47,18 @@ namespace Generated.RecordsV2
     }
 
 
-    public abstract partial record Base
+    public partial record Base
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Base? CreateFrom(IBase? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(Base)} from {source.GetType().Name}");
-            }
+            if (source is Base thisEntity) return thisEntity;
+            return new Base(source);
         }
+
+        private static readonly Base _empty = new Base();
+        public static new Base Empty => _empty;
 
     }
     public partial record Base : EntityBase, IBase
@@ -114,19 +113,18 @@ namespace Generated.RecordsV2
         }
     }
 
-    public abstract partial record Derived
+    public partial record Derived
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Derived? CreateFrom(IDerived? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(Derived)} from {source.GetType().Name}");
-            }
+            if (source is Derived thisEntity) return thisEntity;
+            return new Derived(source);
         }
+
+        private static readonly Derived _empty = new Derived();
+        public static new Derived Empty => _empty;
 
     }
     public partial record Derived : EntityBase, IDerived

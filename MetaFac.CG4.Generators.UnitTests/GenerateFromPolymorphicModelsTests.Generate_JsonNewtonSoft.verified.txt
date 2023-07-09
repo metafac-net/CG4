@@ -222,19 +222,23 @@ namespace Generated.JsonNewtonSoft
         }
     }
 
-    public abstract partial class StringNode
+    public partial class StringNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringNode? CreateFrom(IStringNode? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(StringNode)} from {source.GetType().Name}");
-            }
+            return new StringNode(source);
         }
+
+        private static StringNode CreateEmpty()
+        {
+            var empty = new StringNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly StringNode _empty = CreateEmpty();
+        public static new StringNode Empty => _empty;
 
     }
     public partial class StringNode : ValueNode, IStringNode, IEquatable<StringNode>
@@ -304,19 +308,23 @@ namespace Generated.JsonNewtonSoft
         }
     }
 
-    public abstract partial class BooleanNode
+    public partial class BooleanNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static BooleanNode? CreateFrom(IBooleanNode? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(BooleanNode)} from {source.GetType().Name}");
-            }
+            return new BooleanNode(source);
         }
+
+        private static BooleanNode CreateEmpty()
+        {
+            var empty = new BooleanNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly BooleanNode _empty = CreateEmpty();
+        public static new BooleanNode Empty => _empty;
 
     }
     public partial class BooleanNode : ValueNode, IBooleanNode, IEquatable<BooleanNode>
@@ -386,19 +394,23 @@ namespace Generated.JsonNewtonSoft
         }
     }
 
-    public abstract partial class CustomNode
+    public partial class CustomNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CustomNode? CreateFrom(ICustomNode? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(CustomNode)} from {source.GetType().Name}");
-            }
+            return new CustomNode(source);
         }
+
+        private static CustomNode CreateEmpty()
+        {
+            var empty = new CustomNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly CustomNode _empty = CreateEmpty();
+        public static new CustomNode Empty => _empty;
 
     }
     public partial class CustomNode : ValueNode, ICustomNode, IEquatable<CustomNode>
@@ -468,19 +480,23 @@ namespace Generated.JsonNewtonSoft
         }
     }
 
-    public abstract partial class Int32Node
+    public partial class Int32Node
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int32Node? CreateFrom(IInt32Node? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(Int32Node)} from {source.GetType().Name}");
-            }
+            return new Int32Node(source);
         }
+
+        private static Int32Node CreateEmpty()
+        {
+            var empty = new Int32Node();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Int32Node _empty = CreateEmpty();
+        public static new Int32Node Empty => _empty;
 
     }
     public partial class Int32Node : NumericNode, IInt32Node, IEquatable<Int32Node>
@@ -550,19 +566,23 @@ namespace Generated.JsonNewtonSoft
         }
     }
 
-    public abstract partial class Int64Node
+    public partial class Int64Node
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int64Node? CreateFrom(IInt64Node? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(Int64Node)} from {source.GetType().Name}");
-            }
+            return new Int64Node(source);
         }
+
+        private static Int64Node CreateEmpty()
+        {
+            var empty = new Int64Node();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Int64Node _empty = CreateEmpty();
+        public static new Int64Node Empty => _empty;
 
     }
     public partial class Int64Node : NumericNode, IInt64Node, IEquatable<Int64Node>
@@ -632,19 +652,23 @@ namespace Generated.JsonNewtonSoft
         }
     }
 
-    public abstract partial class Tree
+    public partial class Tree
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(Tree)} from {source.GetType().Name}");
-            }
+            return new Tree(source);
         }
+
+        private static Tree CreateEmpty()
+        {
+            var empty = new Tree();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Tree _empty = CreateEmpty();
+        public static new Tree Empty => _empty;
 
     }
     public partial class Tree : EntityBase, ITree, IEquatable<Tree>

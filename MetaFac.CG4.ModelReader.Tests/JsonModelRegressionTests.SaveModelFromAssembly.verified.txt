@@ -7,7 +7,6 @@
         {
           "Name": "BuiltinTypes",
           "Tag": 1,
-          "IsAbstract": true,
           "MemberDefs": [
             {
               "Name": "Bools",
@@ -128,7 +127,6 @@
         {
           "Name": "ExternalTypes",
           "Tag": 2,
-          "IsAbstract": true,
           "MemberDefs": [
             {
               "Name": "Quantities",
@@ -145,7 +143,6 @@
         {
           "Name": "EnumeratorTypes",
           "Tag": 3,
-          "IsAbstract": true,
           "MemberDefs": [
             {
               "Name": "DaysOfWeek",

@@ -24,6 +24,7 @@
         MessagePack = 2,
         ClassesV2 = 3,
         RecordsV2 = 4,
+        JsonNewtonSoft = 5,
     }
     [System.AttributeUsage(System.AttributeTargets.Property)]
     public class MemberAttribute : System.Attribute

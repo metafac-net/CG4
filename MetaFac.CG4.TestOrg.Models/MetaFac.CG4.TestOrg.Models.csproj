@@ -10,11 +10,17 @@
 
     <ItemGroup>
         <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.Runtime.MessagePack\MetaFac.CG4.Runtime.MessagePack.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.SourceGenerator\MetaFac.CG4.SourceGenerator.csproj" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="MessagePack" Version="2.5.124" />
+      <PackageReference Include="MessagePackAnalyzer" Version="2.5.124">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
       <PackageReference Include="MetaFac.Mutability" Version="2.1.4" />
     </ItemGroup>
 

@@ -262,10 +262,9 @@ Emit("");
     {
         using (NewScope(cd))
         {
-            var derivedEntities = cd.DerivedEntities;
-            if (derivedEntities.Count > 0)
+            if (cd.AllDerivedEntities.Count > 0)
             {
-                foreach (var derived in derivedEntities)
+                foreach (var derived in cd.DerivedEntities)
                 {
                     using (NewScope(derived))
                     {
@@ -281,7 +280,7 @@ Emit("            if (source is null) return null;");
 Emit("            int entityTag = source.GetEntityTag();");
 Emit("            switch (entityTag)");
 Emit("            {");
-                            foreach (var derived in derivedEntities)
+                            foreach (var derived in cd.DerivedEntities)
                             {
                                 using (NewScope(derived))
                                 {

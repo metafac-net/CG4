@@ -190,7 +190,7 @@ namespace T_Namespace_.ClassesV2
     //>>{
     //>>    using (NewScope(cd))
     //>>    {
-    //>>        if (cd.IsAbstract)
+    //>>        if (cd.AllDerivedEntities.Count > 0)
     //>>        {
     public abstract partial class T_EntityName2_
     {

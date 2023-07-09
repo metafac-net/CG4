@@ -50,19 +50,23 @@ namespace Generated.JsonNewtonSoft
     }
 
 
-    public abstract partial class Base
+    public partial class Base
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Base? CreateFrom(IBase? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(Base)} from {source.GetType().Name}");
-            }
+            return new Base(source);
         }
+
+        private static Base CreateEmpty()
+        {
+            var empty = new Base();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Base _empty = CreateEmpty();
+        public static new Base Empty => _empty;
 
     }
     public partial class Base : EntityBase, IBase, IEquatable<Base>
@@ -132,19 +136,23 @@ namespace Generated.JsonNewtonSoft
         }
     }
 
-    public abstract partial class Derived
+    public partial class Derived
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Derived? CreateFrom(IDerived? source)
         {
             if (source is null) return null;
-            int entityTag = source.GetEntityTag();
-            switch (entityTag)
-            {
-                default:
-                    throw new InvalidOperationException($"Unable to create {typeof(Derived)} from {source.GetType().Name}");
-            }
+            return new Derived(source);
         }
+
+        private static Derived CreateEmpty()
+        {
+            var empty = new Derived();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Derived _empty = CreateEmpty();
+        public static new Derived Empty => _empty;
 
     }
     public partial class Derived : EntityBase, IDerived, IEquatable<Derived>

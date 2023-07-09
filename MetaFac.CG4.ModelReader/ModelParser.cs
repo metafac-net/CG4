@@ -72,7 +72,6 @@ namespace MetaFac.CG4.ModelReader
                 int? entityTag = entityDefInfo.Tag;
                 string? entityDesc = null;
                 ModelItemState? entityState = null;
-                bool isAbstract = entityDefInfo.IsAbstract;
                 var entityTagName = new TagName(entityTag, entityName);
                 foreach (Attribute attr in entityDefInfo.CustomAttributes)
                 {
@@ -92,7 +91,7 @@ namespace MetaFac.CG4.ModelReader
                 if (entityTag.HasValue)
                 {
                     string? parentName = entityDefInfo.ParentName;
-                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, entityDesc, isAbstract, parentName, fieldList, entityState);
+                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, entityDesc, parentName, fieldList, entityState);
                     entityDefsByName.Add(entityName, entityDef);
                     entityDefsByTag.Add(entityTag.Value, entityDef);
                 }
@@ -409,23 +408,10 @@ namespace MetaFac.CG4.ModelReader
         /// <returns></returns>
         public static ModelContainer ParseAssembly(Assembly sourceAssembly, string sourceNamespace)
         {
-            var model1 = ParseEntities(sourceAssembly, sourceNamespace);
-
-            // derive class hierarchy
-            var entityListB = new List<ModelEntityDef>();
-            foreach (var entityDef in model1.AllEntityDefs)
-            {
-                var allDescendents = model1.AllDescendentsOf(entityDef.Name);
-                var updatedEntityDef = entityDef.SetDerivedEntities(allDescendents);
-                entityListB.Add(updatedEntityDef);
-            }
-
-            var models = new List<ModelDefinition>();
-            var model2 = new ModelDefinition(model1.Name, model1.Tag, entityListB, model1.AllEnumTypeDefs);
-            models.Add(model2);
+            var model = ParseEntities(sourceAssembly, sourceNamespace);
             var tokens = new Dictionary<string, string>();
             tokens["Metadata"] = GetMetadataSourceDisplayString(sourceAssembly, sourceNamespace);
-            return new ModelContainer(models, tokens);
+            return new ModelContainer(new ModelDefinition[] { model }, tokens);
         }
     }
 }

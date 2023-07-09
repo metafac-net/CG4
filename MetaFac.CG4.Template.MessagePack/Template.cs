@@ -250,10 +250,9 @@ namespace T_Namespace_.MessagePack
     //>>{
     //>>    using (NewScope(cd))
     //>>    {
-    //>>        var derivedEntities = cd.DerivedEntities;
-    //>>        if (derivedEntities.Count > 0)
+    //>>        if (cd.AllDerivedEntities.Count > 0)
     //>>        {
-    //>>            foreach (var derived in derivedEntities)
+    //>>            foreach (var derived in cd.DerivedEntities)
     //>>            {
     //>>                using (NewScope(derived))
     //>>                {
@@ -269,7 +268,7 @@ namespace T_Namespace_.MessagePack
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
-                //>>            foreach (var derived in derivedEntities)
+                //>>            foreach (var derived in cd.DerivedEntities)
                 //>>            {
                 //>>                using (NewScope(derived))
                 //>>                {

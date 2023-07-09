@@ -27,25 +27,39 @@ namespace MetaFac.CG4.Models
             _enumTypeDefs = enumTypeDefs;
         }
 
-        public IEnumerable<ModelEntityDef> DescendentsOf(string entityName)
+        private static IEnumerable<ModelEntityDef> DescendentsOf(string entityName, IImmutableList<ModelEntityDef> entityDefs)
         {
-            foreach (var entityDef in _entityDefs)
+            foreach (var entityDef in entityDefs)
             {
                 if (entityDef.ParentName == entityName)
                     yield return entityDef;
             }
         }
 
-        public IEnumerable<ModelEntityDef> AllDescendentsOf(string entityName)
+        private static IEnumerable<ModelEntityDef> AllDescendentsOf(string entityName, IImmutableList<ModelEntityDef> entityDefs)
         {
-            foreach (var entityDef in DescendentsOf(entityName))
+            foreach (var entityDef in DescendentsOf(entityName, entityDefs))
             {
                 yield return entityDef;
-                foreach (var derived in AllDescendentsOf(entityDef.Name))
+                foreach (var derived in AllDescendentsOf(entityDef.Name, entityDefs))
                 {
                     yield return derived;
                 }
             }
+        }
+
+        private static ImmutableList<ModelEntityDef> FixEntityHierarchy(ImmutableList<ModelEntityDef> sourceEntities)
+        {
+            // derive class hierarchy
+            var updatedEntities = ImmutableList<ModelEntityDef>.Empty.ToBuilder();
+            foreach (var entityDef in sourceEntities)
+            {
+                var allDescendents = AllDescendentsOf(entityDef.Name, sourceEntities);
+                var updatedEntityDef = entityDef.SetAllDescendents(allDescendents);
+                updatedEntities.Add(updatedEntityDef);
+            }
+
+            return updatedEntities.ToImmutable();
         }
 
         public ModelDefinition(string modelName, int? tag,
@@ -54,9 +68,10 @@ namespace MetaFac.CG4.Models
         {
             Name = modelName;
             Tag = tag;
-            _entityDefs = entityDefs != null
+            var newEntityDefs = entityDefs != null
                 ? ImmutableList<ModelEntityDef>.Empty.AddRange(entityDefs.Where(cd => cd != null))
                 : ImmutableList<ModelEntityDef>.Empty;
+            _entityDefs = FixEntityHierarchy(newEntityDefs);
             _enumTypeDefs = enumTypeDefs != null
                 ? ImmutableList<ModelEnumTypeDef>.Empty.AddRange(enumTypeDefs.Where(cd => cd != null))
                 : ImmutableList<ModelEnumTypeDef>.Empty;
@@ -67,7 +82,8 @@ namespace MetaFac.CG4.Models
             if (source is null) throw new ArgumentNullException(nameof(source));
             Tag = source.Tag;
             Name = source.Name ?? "Unknown_Model";
-            _entityDefs = ImmutableList<ModelEntityDef>.Empty.AddRange(source.EntityDefs.NotNullRange(ModelEntityDef.From));
+            var newEntityDefs = ImmutableList<ModelEntityDef>.Empty.AddRange(source.EntityDefs.NotNullRange(ModelEntityDef.From));
+            _entityDefs = FixEntityHierarchy(newEntityDefs);
             _enumTypeDefs = ImmutableList<ModelEnumTypeDef>.Empty.AddRange(source.EnumTypeDefs.NotNullRange(ModelEnumTypeDef.From));
         }
 

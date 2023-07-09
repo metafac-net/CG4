@@ -77,9 +77,6 @@ namespace MetaFac.CG4.ModelReader
             Tag = tag;
         }
 
-        // todo remove IsAbstract - not used
-        public bool IsAbstract => _typeInfo.IsAbstract;
-
         public object[] CustomAttributes => _typeInfo.GetCustomAttributes(false);
 
         public PropertyInfo[] RuntimeProperties

@@ -38,7 +38,7 @@ namespace MetaFac.CG4.ModelBuilding
         public ModelEntityDef GetModelEntityDef()
         {
             var memberDefs = _memberBuilders.Values.Select(mdb => mdb.GetModelMemberDef()).OrderBy(x => x.Name).ToList();
-            return new ModelEntityDef(_name, _tag, _summary, false, _baseName, memberDefs, ModelItemState.Create(_itemState, _reason));
+            return new ModelEntityDef(_name, _tag, _summary, _baseName, memberDefs, ModelItemState.Create(_itemState, _reason));
         }
 
         public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)

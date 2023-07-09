@@ -1,0 +1,109 @@
+{
+  "ModelDefs": [
+    {
+      "Tag": 1,
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "ValueNode",
+          "Tag": 1,
+          "MemberDefs": [
+            {
+              "Name": "Id",
+              "Tag": 1,
+              "InnerType": "int64"
+            },
+            {
+              "Name": "Name",
+              "Tag": 2,
+              "InnerType": "string"
+            }
+          ]
+        },
+        {
+          "Name": "NumericNode",
+          "Tag": 2,
+          "ParentName": "ValueNode",
+          "MemberDefs": []
+        },
+        {
+          "Name": "StringNode",
+          "Tag": 3,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "StrValue",
+              "Tag": 3,
+              "InnerType": "string"
+            }
+          ]
+        },
+        {
+          "Name": "BooleanNode",
+          "Tag": 4,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "BoolValue",
+              "Tag": 3,
+              "InnerType": "bool"
+            }
+          ]
+        },
+        {
+          "Name": "CustomNode",
+          "Tag": 5,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "CustomValue",
+              "Tag": 3,
+              "InnerType": "CustomEnum"
+            }
+          ]
+        },
+        {
+          "Name": "Int32Node",
+          "Tag": 6,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "IntValue",
+              "Tag": 3,
+              "InnerType": "int32"
+            }
+          ]
+        },
+        {
+          "Name": "Int64Node",
+          "Tag": 7,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "LongValue",
+              "Tag": 3,
+              "InnerType": "int64"
+            }
+          ]
+        }
+      ],
+      "EnumTypeDefs": [
+        {
+          "Name": "CustomEnum",
+          "EnumItemDefs": [
+            {
+              "Name": "Value0"
+            },
+            {
+              "Name": "Value1",
+              "Value": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Tokens": {
+    "Metadata": "MetaFac.CG4.TestOrg.Schema(.Polymorphic)"
+  }
+}

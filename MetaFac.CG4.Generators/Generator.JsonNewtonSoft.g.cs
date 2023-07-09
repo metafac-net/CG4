@@ -171,7 +171,7 @@ Emit("");
     {
         using (NewScope(cd))
         {
-            if (cd.IsAbstract)
+            if (cd.AllDerivedEntities.Count > 0)
             {
 Emit("    public abstract partial class T_EntityName2_");
 Emit("    {");

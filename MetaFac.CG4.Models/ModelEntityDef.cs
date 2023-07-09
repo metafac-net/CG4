@@ -8,7 +8,6 @@ namespace MetaFac.CG4.Models
 {
     public class ModelEntityDef : ModelItemBase, IEquatable<ModelEntityDef>
     {
-        public readonly bool IsAbstract;
         public readonly string? ParentName;
         private readonly ImmutableList<ModelMemberDef> _memberDefs;
         private readonly ImmutableList<ModelEntityDef> _derivedEntities;
@@ -19,35 +18,33 @@ namespace MetaFac.CG4.Models
         public IEnumerable<ModelMemberDef> MemberDefs => _memberDefs.Where(md => !md.IsRedacted);
 
         private ModelEntityDef(string name, int? tag, string? summary, 
-            bool isAbstract, string? parentName,
+            string? parentName,
             ImmutableList<ModelMemberDef> memberDefs,
             ImmutableList<ModelEntityDef> derivedEntities,
             ModelItemState? state)
             : base(name, tag, summary, state)
         {
-            IsAbstract = isAbstract;
             ParentName = parentName;
             _memberDefs = memberDefs;
             _derivedEntities = derivedEntities;
         }
 
         public ModelEntityDef(string name, int? tag, string? summary,
-            bool isAbstract, string? parentName,
+            string? parentName,
             IEnumerable<ModelMemberDef> memberDefs,
             ModelItemState? state = null)
             : base(name, tag, summary, state)
         {
-            IsAbstract = isAbstract;
             ParentName = parentName;
             _memberDefs = ImmutableList<ModelMemberDef>.Empty.AddRange(memberDefs);
             _derivedEntities = ImmutableList<ModelEntityDef>.Empty;
         }
 
-        public ModelEntityDef SetDerivedEntities(IEnumerable<ModelEntityDef> derivedEntities)
+        internal ModelEntityDef SetAllDescendents(IEnumerable<ModelEntityDef> descendents)
         {
             return new ModelEntityDef(
-                Name, Tag, Summary, IsAbstract, ParentName, _memberDefs,
-                ImmutableList<ModelEntityDef>.Empty.AddRange(derivedEntities),
+                Name, Tag, Summary, ParentName, _memberDefs,
+                ImmutableList<ModelEntityDef>.Empty.AddRange(descendents),
                 State);
         }
 
@@ -58,7 +55,6 @@ namespace MetaFac.CG4.Models
                 source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
                 source.Tag,
                 source.Summary,
-                source.IsAbstract,
                 source.ParentName,
                 ImmutableList<ModelMemberDef>.Empty.AddRange(source.MemberDefs.NotNullRange(ModelMemberDef.From)),
                 ImmutableList<ModelEntityDef>.Empty,
@@ -70,7 +66,6 @@ namespace MetaFac.CG4.Models
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
             return base.Equals(other)
-                && IsAbstract == other.IsAbstract
                 && string.Equals(ParentName, other.ParentName)
                 && _memberDefs.IsEqualTo(other._memberDefs)
                 ;
@@ -85,7 +80,6 @@ namespace MetaFac.CG4.Models
         {
             var hashCode = new HashCode();
             hashCode.Add(base.GetHashCode());
-            hashCode.Add(IsAbstract);
             hashCode.Add(ParentName);
             if(_memberDefs is not null)
             {

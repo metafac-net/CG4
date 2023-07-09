@@ -3,14 +3,11 @@ using MetaFac.CG4.Generators;
 using MetaFac.CG4.ModelReader;
 using MetaFac.CG4.Models;
 using MetaFac.CG4.TextProcessing;
-using MetaFac.Platform;
 using MetaFac.TinyCLI;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -43,19 +40,16 @@ namespace MetaFac.CG4.CLI
             {
                 GeneratorId.Contracts => new MetaFac.CG4.Generator.Contracts.Generator(),
                 GeneratorId.RecordsV2 => new MetaFac.CG4.Generator.RecordsV2.Generator(),
-                GeneratorId.MessagePack => new MetaFac.CG4.Generator.MessagePack.Generator(),
                 GeneratorId.ClassesV2 => new MetaFac.CG4.Generator.ClassesV2.Generator(),
+                GeneratorId.MessagePack => new MetaFac.CG4.Generator.MessagePack.Generator(),
+                GeneratorId.JsonNewtonSoft => new MetaFac.CG4.Generator.JsonNewtonSoft.Generator(),
                 _ => throw new NotSupportedException($"GeneratorId: {generatorId}"),
             };
             return generator;
         }
 
-        private readonly ITimeOfDayClock clock;
-
-        public Commands(ITimeOfDayClock clock) : base("MFCG4", "MetaFac Code Generator 4 (CG4)")
+        public Commands() : base("MFCG4", "MetaFac Code Generator 4 (CG4)")
         {
-            this.clock = clock;
-
             AddCommand("t2g", "Converts a template to a code generator",
                 new Arg<string>("tf", "template", "The template file to process", s => s),
                 new Arg<string>("gf", "output", "The name of the generated file", s => s),
