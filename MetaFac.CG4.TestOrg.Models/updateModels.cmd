@@ -14,6 +14,7 @@ set _prefix=MetaFac.CG4.TestOrg.Schema
 call :a2c Personel
 call :a2c Polymorphic
 call :a2c Recursive
+call :a2c XtraComplex
 goto :eof
 
 :a2c

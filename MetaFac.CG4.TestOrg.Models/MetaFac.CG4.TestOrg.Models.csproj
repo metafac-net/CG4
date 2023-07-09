@@ -12,7 +12,6 @@
         <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime.MessagePack\MetaFac.CG4.Runtime.MessagePack.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
-        <ProjectReference Include="..\MetaFac.CG4.SourceGenerator\MetaFac.CG4.SourceGenerator.csproj" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
     <ItemGroup>
