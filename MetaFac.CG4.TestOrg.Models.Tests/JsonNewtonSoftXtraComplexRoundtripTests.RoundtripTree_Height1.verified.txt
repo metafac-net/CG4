@@ -1,0 +1,21 @@
+﻿{
+  "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.Tree, MetaFac.CG4.TestOrg.Models",
+  "Value": {
+    "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.StrNode, MetaFac.CG4.TestOrg.Models",
+    "StrVal": "abc"
+  },
+  "A": {
+    "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.Tree, MetaFac.CG4.TestOrg.Models",
+    "Value": {
+      "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.ByteNode, MetaFac.CG4.TestOrg.Models",
+      "ByteVal": 1
+    }
+  },
+  "B": {
+    "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.Tree, MetaFac.CG4.TestOrg.Models",
+    "Value": {
+      "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.LongNode, MetaFac.CG4.TestOrg.Models",
+      "LongVal": -1
+    }
+  }
+}

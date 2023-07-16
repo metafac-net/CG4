@@ -1,0 +1,12 @@
+﻿{
+  "$type": "MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft.Tree, MetaFac.CG4.TestOrg.Models",
+  "Id": 1,
+  "A": {
+    "$type": "MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft.Tree, MetaFac.CG4.TestOrg.Models",
+    "Id": 2
+  },
+  "B": {
+    "$type": "MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft.Tree, MetaFac.CG4.TestOrg.Models",
+    "Id": 3
+  }
+}

@@ -1,0 +1,3 @@
+﻿{
+  "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.Tree, MetaFac.CG4.TestOrg.Models"
+}

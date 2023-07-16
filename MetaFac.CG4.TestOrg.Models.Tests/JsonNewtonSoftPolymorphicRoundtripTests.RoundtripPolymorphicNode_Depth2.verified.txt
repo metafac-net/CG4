@@ -1,0 +1,6 @@
+﻿{
+  "$type": "MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft.Int64Node, MetaFac.CG4.TestOrg.Models",
+  "LongValue": 123456,
+  "Id": 1,
+  "Name": "long"
+}
