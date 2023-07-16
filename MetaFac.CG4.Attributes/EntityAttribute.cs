@@ -2,7 +2,7 @@
 
 namespace MetaFac.CG4.Attributes
 {
-    [AttributeUsage(AttributeTargets.Interface)]
+    [AttributeUsage(AttributeTargets.Class)]
     public class EntityAttribute : Attribute
     {
         public readonly int Tag;

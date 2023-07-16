@@ -3,37 +3,37 @@
 namespace MetaFac.CG4.TestOrg.Schema.XtraComplex
 {
     [Entity(1)]
-    public interface ITree
+    public class Tree
     {
-        [Member(1)] INode Value { get; }
-        [Member(2)] ITree? A { get; }
-        [Member(3)] ITree? B { get; }
+        [Member(1)] Node? Value { get; }
+        [Member(2)] Tree? A { get; }
+        [Member(3)] Tree? B { get; }
     }
 
     [Entity(2)]
-    public interface INode
+    public class Node
     {
     }
 
     [Entity(3)]
-    public interface IStrNode : INode
+    public class StrNode : Node
     {
-        [Member(1)] string StrVal { get; }
+        [Member(1)] string? StrVal { get; }
     }
 
     [Entity(4)]
-    public interface INumNode : INode
+    public class NumNode : Node
     {
     }
 
     [Entity(5)]
-    public interface ILongNode : INumNode
+    public class LongNode : NumNode
     {
         [Member(1)] long LongVal { get; }
     }
 
     [Entity(6)]
-    public interface IByteNode : INumNode
+    public class ByteNode : NumNode
     {
         [Member(1)] byte ByteVal { get; }
     }

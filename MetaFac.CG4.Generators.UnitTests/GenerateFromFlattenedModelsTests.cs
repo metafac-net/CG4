@@ -47,7 +47,7 @@ namespace MetaFac.CG4.Generators.UnitTests
     {
         private static string GenerateSourceCode(GeneratorBase generator)
         {
-            var anchorType = typeof(FlattenedModels.IBuiltinTypes);
+            var anchorType = typeof(FlattenedModels.BuiltinTypes);
             var options = new GeneratorOptions() { CopyrightInfo = "Copyright (c) 2023 MetaFac" };
             var sourceLines = GeneratorTestsHelper.GenerateSource(anchorType, "Generated", options, generator)
                 .ToArray();

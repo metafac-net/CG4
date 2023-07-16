@@ -15,7 +15,7 @@ namespace MetaFac.CG4.Generators.UnitTests
         private static string GenerateSourceCode(GeneratorBase generator)
         {
             var options = new GeneratorOptions() { CopyrightInfo = "Copyright (c) 2023 MetaFac" };
-            var sourceLines = GeneratorTestsHelper.GenerateSource(typeof(TinyModels.IBase), "Generated", options, generator)
+            var sourceLines = GeneratorTestsHelper.GenerateSource(typeof(TinyModels.Base), "Generated", options, generator)
                 .ToArray();
             string sourceCode = string.Join(Environment.NewLine, sourceLines);
             return sourceCode;

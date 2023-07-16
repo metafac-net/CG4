@@ -17,7 +17,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         public async Task SaveModelFromAssembly()
         {
             // arrange - get model from assembly
-            Type anchorType = typeof(GoodModels.IBuiltinTypes);
+            Type anchorType = typeof(GoodModels.BuiltinTypes);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
 
             // act

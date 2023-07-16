@@ -4,8 +4,8 @@ using System;
 namespace MetaFac.CG4.ModelReader.Tests.InvalidModel2
 {
     [Entity(1)]
-    public interface IInvalidEntity2
+    public class InvalidEntity2
     {
-        [Member(1)] public Version MyVersion { get; }
+        [Member(1)] public Version? MyVersion { get; }
     }
 }

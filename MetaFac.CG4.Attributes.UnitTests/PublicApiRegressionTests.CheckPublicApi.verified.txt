@@ -7,7 +7,7 @@
         public MetaFac.CG4.Attributes.GeneratorId GeneratorId { get; }
         public string JsonMetadataFilename { get; }
     }
-    [System.AttributeUsage(System.AttributeTargets.Interface)]
+    [System.AttributeUsage(System.AttributeTargets.Class)]
     public class EntityAttribute : System.Attribute
     {
         public readonly string? Reason;
@@ -46,6 +46,7 @@
         Deprecated = 2,
         Deleted = 3,
     }
+    [System.AttributeUsage(System.AttributeTargets.Struct)]
     public class ProxyAttribute : System.Attribute
     {
         public readonly string ConcreteName;

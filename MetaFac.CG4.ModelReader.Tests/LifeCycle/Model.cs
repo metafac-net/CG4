@@ -3,7 +3,7 @@
 namespace MetaFac.CG4.ModelReader.Tests.LifeCycle
 {
     [Entity(1)]
-    public interface IEntity1
+    public class Entity1
     {
         [Member(1)]
         public bool State0_Active { get; }

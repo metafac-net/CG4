@@ -6,26 +6,26 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     // ==================== Level 0 fields ====================
 
     [Entity(1)]
-    public interface IBaseMessage
+    public class BaseMessage
     {
         [Member(1)] Guid RequestId { get; }
     }
 
     [Entity(2)]
-    public interface IBaseRequest : IBaseMessage
+    public class BaseRequest : BaseMessage
     {
     }
 
     [Entity(3)]
-    public interface IBaseResponse : IBaseMessage
+    public class BaseResponse : BaseMessage
     {
         [Member(2)] bool Succeeded { get; }
         [Member(3)] string? FailReason { get; }
-        [Member(4)] ILogMessage[]? Messages { get; }
+        [Member(4)] LogMessage[]? Messages { get; }
     }
 
     [Entity(4)]
-    public interface ILogMessage
+    public class LogMessage
     {
         [Member(1)] int Severity { get; }
         [Member(2)] string? MessageTemplate { get; }
@@ -33,7 +33,7 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     }
 
     [Entity(5)]
-    public interface INameValuePair
+    public class NameValuePair
     {
         [Member(1)] string? Name { get; }
         [Member(2)] string? Value { get; }
@@ -42,44 +42,44 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     //==================== Level 1 fields ====================
 
     [Entity(11)]
-    public interface IGetServerInfoRequest : IBaseRequest
+    public class GetServerInfoRequest : BaseRequest
     {
     }
 
     [Entity(12)]
-    public interface IGetServerInfoResponse : IBaseResponse
+    public class GetServerInfoResponse : BaseResponse
     {
         [Member(11, ModelState.Deprecated, "Deprecated")] 
         string? Obsolete01 { get; } // was ServerInfo
 
-        [Member(12)] INameValuePair[]? ServerProperties { get; }
+        [Member(12)] NameValuePair[]? ServerProperties { get; }
     }
 
     [Entity(21)]
-    public interface IAccountRequest : IBaseRequest
+    public class AccountRequest : BaseRequest
     {
     }
 
     [Entity(22)]
-    public interface IAccountResponse : IBaseResponse
+    public class AccountResponse : BaseResponse
     {
     }
 
     //==================== Level 2 fields ====================
 
     [Entity(23)]
-    public interface IGetNewAccountIdRequest : IAccountRequest
+    public class GetNewAccountIdRequest : AccountRequest
     {
     }
 
     [Entity(24)]
-    public interface IGetNewAccountIdResponse : IAccountResponse
+    public class GetNewAccountIdResponse : AccountResponse
     {
         [Member(21)] string? CreateToken { get; }
     }
 
     [Entity(25)]
-    public interface ICreateAccountRequest : IAccountRequest
+    public class CreateAccountRequest : AccountRequest
     {
         [Member(21)] string? CreateToken { get; }
         [Member(22)] string? ShortName { get; }
@@ -88,13 +88,13 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     }
 
     [Entity(26)]
-    public interface ICreateAccountResponse : IAccountResponse
+    public class CreateAccountResponse : AccountResponse
     {
         [Member(21)] string? VerifyToken { get; }
     }
 
     [Entity(27)]
-    public interface IVerifyAccountRequest : IAccountRequest
+    public class VerifyAccountRequest : AccountRequest
     {
         [Member(21)] string? VerifyToken { get; }
         [Member(25)] string? PrimaryEmailVerifyCode { get; }
@@ -102,13 +102,13 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     }
 
     [Entity(28)]
-    public interface IVerifyAccountResponse : IAccountResponse
+    public class VerifyAccountResponse : AccountResponse
     {
         [Member(21)] string? AccessToken { get; }
     }
 
     [Entity(29)]
-    public interface IModifyAccountRequest : IAccountRequest
+    public class ModifyAccountRequest : AccountRequest
     {
         [Member(21)] string? AccessToken { get; }
         [Member(22)] string? ShortName { get; }
@@ -117,40 +117,40 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     }
 
     [Entity(30)]
-    public interface IModifyAccountResponse : IAccountResponse
+    public class ModifyAccountResponse : AccountResponse
     {
         [Member(21)] string? VerifyToken { get; }
     }
 
     [Entity(33)]
-    public interface IGetSecretRequest : IAccountRequest
+    public class GetSecretRequest : AccountRequest
     {
         [Member(20)] string? LicenseCode { get; }
         [Member(21)] Guid SecretGuid { get; }
     }
 
     [Entity(34)]
-    public interface IGetSecretResponse : IAccountResponse
+    public class GetSecretResponse : AccountResponse
     {
         [Member(21)] Guid SecretGuid { get; }
         [Member(22)] string? SecretText { get; }
     }
 
     [Entity(35)]
-    public interface IGetAdminTokenRequest : IAccountRequest
+    public class GetAdminTokenRequest : AccountRequest
     {
         [Member(21)] string? AccessToken { get; }
         [Member(22)] string? MasterToken { get; }
     }
 
     [Entity(36)]
-    public interface IGetAdminTokenResponse : IAccountResponse
+    public class GetAdminTokenResponse : AccountResponse
     {
         [Member(21)] string? AdminToken { get; }
     }
 
     [Entity(37)]
-    public interface IAddSecretRequest : IAccountRequest
+    public class AddSecretRequest : AccountRequest
     {
         [Member(20)] string? AdminToken { get; }
         [Member(21)] Guid SecretGuid { get; }
@@ -158,38 +158,38 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     }
 
     [Entity(38)]
-    public interface IAddSecretResponse : IAccountResponse
+    public class AddSecretResponse : AccountResponse
     {
     }
 
     [Entity(41)]
-    public interface ICommencePurchaseRequest : IAccountRequest
+    public class CommencePurchaseRequest : AccountRequest
     {
         [Member(21)] string? AccessToken { get; }
-        [Member(22)] ICreditCardDetails? CreditCard { get; }
+        [Member(22)] CreditCardDetails? CreditCard { get; }
         [Member(23)] string? LicenseTier { get; }
     }
 
     [Entity(42)]
-    public interface ICommencePurchaseResponse : IAccountResponse
+    public class CommencePurchaseResponse : AccountResponse
     {
     }
 
     [Entity(43)]
-    public interface ICompletePurchaseRequest : IAccountRequest
+    public class CompletePurchaseRequest : AccountRequest
     {
         [Member(21)] string? AccessToken { get; }
         [Member(25)] string? VerifyCode { get; }
     }
 
     [Entity(44)]
-    public interface ICompletePurchaseResponse : IAccountResponse
+    public class CompletePurchaseResponse : AccountResponse
     {
         [Member(21)] string? LicenseCode { get; }
     }
 
     [Entity(45)]
-    public interface ICreditCardDetails
+    public class CreditCardDetails
     {
         [Member(1)] string? Number { get; }
         [Member(2)] ushort ExpiryYear { get; } // YYYY

@@ -18,7 +18,7 @@ namespace MetaFac.CG4.Generators.UnitTests.FlattenedModels
     }
 
     [Entity(1)]
-    public interface IBuiltinTypes
+    public class BuiltinTypes
     {
         [Member(1)] bool[]? Bools { get; }
         [Member(2)] sbyte[]? SBytes { get; }

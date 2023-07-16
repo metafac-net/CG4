@@ -13,7 +13,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         public void RoundtripModelViaJson1()
         {
             // arrange - get model from assembly
-            Type anchorType = typeof(GoodModels.IBuiltinTypes);
+            Type anchorType = typeof(GoodModels.BuiltinTypes);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
@@ -88,7 +88,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadComplexModel()
         {
-            Type anchorType = typeof(ComplexModel1.IBaseMessage);
+            Type anchorType = typeof(ComplexModel1.BaseMessage);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
@@ -109,7 +109,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadBuiltinTypes()
         {
-            Type anchorType = typeof(GoodModels.IBuiltinTypes);
+            Type anchorType = typeof(GoodModels.BuiltinTypes);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
@@ -130,7 +130,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadExternalTypes()
         {
-            Type anchorType = typeof(GoodModels.IExternalTypes);
+            Type anchorType = typeof(GoodModels.ExternalTypes);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
@@ -159,7 +159,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadEnumeratorTypes()
         {
-            Type anchorType = typeof(GoodModels.IExternalTypes);
+            Type anchorType = typeof(GoodModels.ExternalTypes);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);
             metadata.Tokens.Should().ContainKey("Metadata");
@@ -218,7 +218,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadInvalidTypes1()
         {
-            Type anchorType = typeof(InvalidModel1.IInvalidEntity1);
+            Type anchorType = typeof(InvalidModel1.InvalidEntity1);
 
             var ex = Assert.ThrowsAny<ValidationException>(() =>
             {
@@ -232,7 +232,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadInvalidTypes2()
         {
-            Type anchorType = typeof(InvalidModel2.IInvalidEntity2);
+            Type anchorType = typeof(InvalidModel2.InvalidEntity2);
 
             var ex = Assert.ThrowsAny<ValidationException>(() =>
             {
@@ -246,7 +246,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public void ReadMemberLifeCycles()
         {
-            Type anchorType = typeof(LifeCycle.IEntity1);
+            Type anchorType = typeof(LifeCycle.Entity1);
 
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             metadata.Tokens.Count.Should().Be(1);

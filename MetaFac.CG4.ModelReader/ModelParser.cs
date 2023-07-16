@@ -43,7 +43,7 @@ namespace MetaFac.CG4.ModelReader
                     string typeName = typeInfo.Name;
                     proxyTypes.Add(typeName, new ProxyTypeInfo(proxyAttr.ExternalName, proxyAttr.ConcreteName));
                 }
-                else if (typeInfo.IsInterface && typeInfo.Name.StartsWith("I") && entityTag.HasValue)
+                else if (typeInfo.IsClass && entityTag.HasValue)
                 {
                     var entityInfo = new EntityDefInfo(typeInfo, entityTag);
                     toBeProcessed.Enqueue(entityInfo);
@@ -203,10 +203,10 @@ namespace MetaFac.CG4.ModelReader
             if (result.nullable)
                 innerType = innerType.GenericTypeArguments[0] ?? typeof(Unknown);
             // unary types
-            if (innerType.Namespace == sourceNamespace && innerType.IsInterface)
+            if (innerType.Namespace == sourceNamespace && innerType.IsClass)
             {
                 // must be a model type
-                string fieldTypeName = innerType.Name.Substring(1);
+                string fieldTypeName = innerType.Name;
                 if(allEntityDefs.TryGetValue(fieldTypeName, out var entityInfo))
                 {
                     result.isModelType = true;

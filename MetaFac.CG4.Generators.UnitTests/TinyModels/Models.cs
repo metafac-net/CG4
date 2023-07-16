@@ -3,14 +3,14 @@
 namespace MetaFac.CG4.Generators.UnitTests.TinyModels
 {
     [Entity(1)]
-    public interface IBase
+    public class Base
     {
         [Member(1)] int Id { get; }
     }
     [Entity(2)]
-    public interface IDerived
+    public class Derived
     {
-        [Member(1)] string Name { get; }
+        [Member(1)] string? Name { get; }
         [Member(2, ModelState.Reserved)] int ReservedField { get; }
         [Member(3)] long? Number { get; }
     }

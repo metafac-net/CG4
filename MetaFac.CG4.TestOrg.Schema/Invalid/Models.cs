@@ -3,12 +3,12 @@
 namespace MetaFac.CG4.TestOrg.Schema.Invalid
 {
     [Entity(1)]
-    public interface IBadPerson
+    public class BadPerson
     {
         [Member(1)]
-        string FamilyName { get; }
+        string? FamilyName { get; }
 
         [Member(1)]
-        string FirstName { get; }
+        string? FirstName { get; }
     }
 }

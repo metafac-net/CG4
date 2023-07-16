@@ -12,7 +12,7 @@ namespace MetaFac.CG4.ModelReader
     {
         private readonly TypeInfo _typeInfo;
         public readonly string EntityName;
-        private readonly Type? BaseType;
+        // private readonly Type? BaseTypeqqq;
         public string? ParentName;
         public readonly int? Tag;
 
@@ -56,24 +56,26 @@ namespace MetaFac.CG4.ModelReader
 
         public EntityDefInfo(TypeInfo typeInfo, int? tag)
         {
-            if (!typeInfo.IsInterface) throw new ArgumentException("Must be an interface type", nameof(typeInfo));
-            if (!typeInfo.Name.StartsWith("I")) throw new ArgumentException("Interface name must start with 'I'", nameof(typeInfo));
+            if (!typeInfo.IsClass) throw new ArgumentException("Must be an class type", nameof(typeInfo));
             _typeInfo = typeInfo ?? throw new ArgumentNullException(nameof(typeInfo));
-            EntityName = _typeInfo.Name.Substring(1);
-            BaseType = null;
-            var uniqueInterfaces = GetUniqueInterfaces(typeInfo.ImplementedInterfaces);
-            foreach (Type implementedInterface in uniqueInterfaces)
-            {
-                if (BaseType is null)
-                {
-                    BaseType = implementedInterface;
-                    ParentName= BaseType.Name.Substring(1);
-                }
-                else
-                {
-                    throw new ArgumentException("Cannot implement more than 1 interface", nameof(typeInfo));
-                }
-            }
+            EntityName = _typeInfo.Name;
+            if (_typeInfo.BaseType is not null && _typeInfo.BaseType != typeof(object))
+                ParentName = _typeInfo.BaseType.Name;
+            else
+                ParentName = null;
+            //var uniqueInterfaces = GetUniqueInterfaces(typeInfo.ImplementedInterfaces);
+            //foreach (Type implementedInterface in uniqueInterfaces)
+            //{
+            //    if (BaseType is null)
+            //    {
+            //        BaseType = implementedInterface;
+            //        ParentName = BaseType.Name;
+            //    }
+            //    else
+            //    {
+            //        throw new ArgumentException("Cannot implement more than 1 interface", nameof(typeInfo));
+            //    }
+            //}
             Tag = tag;
         }
 
@@ -88,7 +90,7 @@ namespace MetaFac.CG4.ModelReader
                     .Where(p => p.DeclaringType == declaringType)
                     .ToArray();
                 return result;
-}
+            }
         }
     }
 }

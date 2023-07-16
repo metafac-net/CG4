@@ -5,7 +5,7 @@ using MetaFac.Memory;
 namespace MetaFac.CG4.ModelReader.Tests.GoodModels
 {
     [Entity(1)]
-    public interface IBuiltinTypes
+    public class BuiltinTypes
     {
         [Member(1)] public bool[]? Bools { get; }
         [Member(2)] public sbyte[]? SBytes { get; }
@@ -32,7 +32,7 @@ namespace MetaFac.CG4.ModelReader.Tests.GoodModels
     public struct Quantity { }
 
     [Entity(2)]
-    public interface IExternalTypes
+    public class ExternalTypes
     {
         [Member(1)] public Quantity[]? Quantities { get; }
     }
@@ -52,7 +52,7 @@ namespace MetaFac.CG4.ModelReader.Tests.GoodModels
     public struct MyDateTimeKind { }
 
     [Entity(3)]
-    public interface IEnumeratorTypes
+    public class EnumeratorTypes
     {
         [Member(1)] public DayOfWeek[]? DaysOfWeek { get; }
         [Member(2)] public MyCustomEnum[]? MyCustomEnums { get; }
