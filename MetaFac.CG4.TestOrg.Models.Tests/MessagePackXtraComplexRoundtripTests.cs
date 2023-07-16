@@ -6,7 +6,7 @@ using Xunit;
 
 namespace MetaFac.CG4.TestOrg.Models.Tests
 {
-    public class XtraComplexRoundtripTests
+    public class MessagePackXtraComplexRoundtripTests
     {
         [Fact]
         public void RoundtripTree_Empty()

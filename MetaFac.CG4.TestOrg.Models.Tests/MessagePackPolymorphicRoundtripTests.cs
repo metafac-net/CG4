@@ -6,7 +6,7 @@ using Xunit;
 
 namespace MetaFac.CG4.TestOrg.Models.Tests
 {
-    public class PolymorphicRoundtripTests
+    public class MessagePackPolymorphicRoundtripTests
     {
         [Fact]
         public void RoundtripPolymorphicNode_Depth1()
