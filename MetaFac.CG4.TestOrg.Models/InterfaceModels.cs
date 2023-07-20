@@ -1,6 +1,4 @@
-﻿using MetaFac.CG4.Attributes;
-
-namespace MetaFac.CG4.TestOrg.Models
+﻿namespace MetaFac.CG4.TestOrg.Models
 {
     /// <summary>
     /// Generates all interfaces for our DTOs.

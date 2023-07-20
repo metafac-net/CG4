@@ -1,8 +1,5 @@
-﻿using MetaFac.CG4.ModelReader;
-using MetaFac.CG4.Models;
-using System;
+﻿using System;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;

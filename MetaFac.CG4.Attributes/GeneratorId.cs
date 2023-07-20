@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MetaFac.CG4.Attributes
+﻿namespace MetaFac.CG4.Attributes
 {
     // todo move to Generators assm
     public enum GeneratorId

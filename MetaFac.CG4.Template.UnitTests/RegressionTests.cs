@@ -6,7 +6,6 @@ using System;
 using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace MetaFac.CG4.Template.UnitTests
