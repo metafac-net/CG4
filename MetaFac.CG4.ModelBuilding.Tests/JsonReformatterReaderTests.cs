@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
 
-namespace MetaFac.CG4.ModelReader.Tests
+namespace MetaFac.CG4.ModelBuilding.Tests
 {
     [UsesVerify]
     public class JsonReformatterReaderTests

@@ -1,9 +1,6 @@
 ﻿using MetaFac.CG4.Models;
-using MetaFac.CG4.TextProcessing;
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Xml.Linq;
 
 namespace MetaFac.CG4.Generators
 {

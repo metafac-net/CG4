@@ -1,7 +1,4 @@
-﻿using FluentAssertions;
-using MetaFac.CG4.TextProcessing;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using VerifyXunit;

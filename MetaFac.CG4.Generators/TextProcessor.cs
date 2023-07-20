@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MetaFac.CG4.TextProcessing
+namespace MetaFac.CG4.Generators
 {
 
     public class TextProcessor

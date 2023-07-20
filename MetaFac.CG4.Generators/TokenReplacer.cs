@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 
-namespace MetaFac.CG4.TextProcessing
+namespace MetaFac.CG4.Generators
 {
     public class TokenReplacer
     {

@@ -2,7 +2,6 @@
 using MetaFac.CG4.Generators;
 using MetaFac.CG4.ModelReader;
 using MetaFac.CG4.Models;
-using MetaFac.CG4.TextProcessing;
 using MetaFac.TinyCLI;
 using Microsoft.Extensions.Logging;
 using System;

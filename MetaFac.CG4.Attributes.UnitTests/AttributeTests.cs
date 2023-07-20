@@ -1,11 +1,10 @@
 using FluentAssertions;
-using MetaFac.CG4.Attributes;
 using System;
 using System.Linq;
 using System.Reflection;
 using Xunit;
 
-namespace MetaFac.CG4.Schemas.UnitTests
+namespace MetaFac.CG4.Attributes.UnitTests
 {
     [Entity(1)] internal class GoodEntity { }
 

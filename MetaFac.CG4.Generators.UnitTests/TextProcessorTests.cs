@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using MetaFac.CG4.TextProcessing;
 using System.Linq;
 using Xunit;
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using VerifyXunit;
 using Xunit;
 
-namespace MetaFac.CG4.ModelReader.Tests
+namespace MetaFac.CG4.ModelBuilding.Tests
 {
     [UsesVerify]
     public class JsonReformatterWriterTests
@@ -67,7 +67,7 @@ namespace MetaFac.CG4.ModelReader.Tests
         [Fact]
         public async Task Reformatter_05_SingleValue_String()
         {
-            const string input = 
+            const string input =
                 """
                 {
                     "Name": "abc\tdef ghi"
