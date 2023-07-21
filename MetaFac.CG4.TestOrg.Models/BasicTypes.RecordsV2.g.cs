@@ -635,6 +635,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         IReadOnlyDictionary<String, MyCustomEnum>? IBasic_MyCustomEnum.MapRequired => MapRequired;
         public ImmutableDictionary<String, MyCustomEnum?>? MapOptional { get; init; }
         IReadOnlyDictionary<String, MyCustomEnum?>? IBasic_MyCustomEnum.MapOptional => MapOptional;
+        public ImmutableDictionary<MyCustomEnum, String?>? MapKey { get; init; }
+        IReadOnlyDictionary<MyCustomEnum, String?>? IBasic_MyCustomEnum.MapKey => MapKey;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum() : base()
@@ -651,6 +653,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             VectorOptional = source.VectorOptional;
             MapRequired = source.MapRequired;
             MapOptional = source.MapOptional;
+            MapKey = source.MapKey;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -671,6 +674,9 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapOptional = source.MapOptional is null
                 ? default
                 : ImmutableDictionary<String, MyCustomEnum?>.Empty.AddRange(source.MapOptional);
+            MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<MyCustomEnum, String?>.Empty.AddRange(source.MapKey);
         }
 
         public virtual bool Equals(Basic_MyCustomEnum? other)
@@ -683,6 +689,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
             if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
             return base.Equals(other);
         }
 
@@ -695,6 +702,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             hc.Add(VectorOptional.CalcHashArray());
             hc.Add(MapRequired.CalcHashIndex());
             hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

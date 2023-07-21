@@ -1135,6 +1135,13 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             get => field_MapOptional;
             set => field_MapOptional = CheckNotFrozen(ref value);
         }
+        private ImmutableDictionary<MyCustomEnum, String?>? field_MapKey;
+        IReadOnlyDictionary<MyCustomEnum, String?>? IBasic_MyCustomEnum.MapKey => field_MapKey;
+        public ImmutableDictionary<MyCustomEnum, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = CheckNotFrozen(ref value);
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum() : base()
@@ -1151,6 +1158,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_VectorOptional = source.VectorOptional;
             field_MapRequired = source.MapRequired;
             field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1171,6 +1179,9 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapOptional = source.MapOptional is null
                 ? default
                 : ImmutableDictionary<String, MyCustomEnum?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<MyCustomEnum, String?>.Empty.AddRange(source.MapKey);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1193,6 +1204,9 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapOptional = source.MapOptional is null
                 ? default
                 : ImmutableDictionary<String, MyCustomEnum?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<MyCustomEnum, String?>.Empty.AddRange(source.MapKey);
         }
 
         public virtual bool Equals(Basic_MyCustomEnum? other)
@@ -1205,6 +1219,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
             if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
             return base.Equals(other);
         }
 
@@ -1219,6 +1234,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             hc.Add(VectorOptional.CalcHashArray());
             hc.Add(MapRequired.CalcHashIndex());
             hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

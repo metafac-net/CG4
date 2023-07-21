@@ -85,6 +85,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts
         IReadOnlyList<MyCustomEnum?>? VectorOptional { get; }
         IReadOnlyDictionary<String, MyCustomEnum>? MapRequired { get; }
         IReadOnlyDictionary<String, MyCustomEnum?>? MapOptional { get; }
+        IReadOnlyDictionary<MyCustomEnum, String?>? MapKey { get; }
     }
     public partial interface IBasic_string : IEntityBase
     {

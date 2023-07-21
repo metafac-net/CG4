@@ -83,7 +83,7 @@ namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
         [Member(4)] public MyCustomEnum?[]? VectorOptional { get; }
         [Member(5)] public Dictionary<string, MyCustomEnum>? MapRequired { get; }
         [Member(6)] public Dictionary<string, MyCustomEnum?>? MapOptional { get; }
-        //todo [Member(7)] public Dictionary<MyCustomEnum, string?>? MapKey { get; }
+        [Member(7)] public Dictionary<MyCustomEnum, string?>? MapKey { get; }
     }
 
     // todo

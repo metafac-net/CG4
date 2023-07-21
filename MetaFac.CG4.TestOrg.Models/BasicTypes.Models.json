@@ -306,6 +306,13 @@
               "Nullable": true,
               "ArrayRank": 1,
               "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "MyCustomEnum"
             }
           ]
         },

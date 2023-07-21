@@ -1179,6 +1179,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         private ImmutableList<MyCustomEnum?>? field_VectorOptional;
         private ImmutableDictionary<String, MyCustomEnum>? field_MapRequired;
         private ImmutableDictionary<String, MyCustomEnum?>? field_MapOptional;
+        private ImmutableDictionary<MyCustomEnum, String?>? field_MapKey;
 
         // ---------- accessors ----------
         [Key(1)]
@@ -1217,6 +1218,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             get => field_MapOptional;
             set => field_MapOptional = CheckNotFrozen(ref value);
         }
+        [Key(7)]
+        public ImmutableDictionary<MyCustomEnum, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = CheckNotFrozen(ref value);
+        }
 
         // ---------- IBasic_MyCustomEnum methods ----------
         MyCustomEnum IBasic_MyCustomEnum.ScalarRequired => field_ScalarRequired.ToExternal();
@@ -1233,6 +1240,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         IReadOnlyDictionary<String, MyCustomEnum?>? IBasic_MyCustomEnum.MapOptional
             => field_MapOptional is null ? null
             : new DictionaryFacade<String, MyCustomEnum?, MyCustomEnum?>(field_MapOptional, (x) => x.ToExternal());
+        IReadOnlyDictionary<MyCustomEnum, String?>? IBasic_MyCustomEnum.MapKey => field_MapKey;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum()
@@ -1248,6 +1256,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_VectorOptional = source.field_VectorOptional;
             field_MapRequired = source.field_MapRequired;
             field_MapOptional = source.field_MapOptional;
+            field_MapKey = source.field_MapKey;
         }
 
         public void CopyFrom(Basic_MyCustomEnum source)
@@ -1259,6 +1268,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_VectorOptional = source.field_VectorOptional;
             field_MapRequired = source.field_MapRequired;
             field_MapOptional = source.field_MapOptional;
+            field_MapKey = source.field_MapKey;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1280,6 +1290,9 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
                 ? null
                 : ImmutableDictionary<String, MyCustomEnum?>.Empty.AddRange(source.MapOptional.Select(
                     kvp => new KeyValuePair<String, MyCustomEnum?>(kvp.Key, kvp.Value.ToInternal())));
+            field_MapKey = source.MapKey is null
+                ? null
+                : ImmutableDictionary<MyCustomEnum, String?>.Empty.AddRange(source.MapKey);
         }
 
         public bool Equals(Basic_MyCustomEnum? other)
@@ -1292,6 +1305,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
             if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
             if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
 
@@ -1324,6 +1338,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             hc.Add(field_VectorOptional.CalcHashArray());
             hc.Add(field_MapRequired.CalcHashIndex());
             hc.Add(field_MapOptional.CalcHashIndex());
+            hc.Add(field_MapKey.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
