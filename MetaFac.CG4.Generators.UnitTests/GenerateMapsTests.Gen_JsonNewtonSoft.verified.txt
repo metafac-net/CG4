@@ -88,6 +88,13 @@ namespace Generated.JsonNewtonSoft
             get => field_Index2;
             set => field_Index2 = value;
         }
+        private ImmutableDictionary<MyCustomEnum, Int64>? field_Index3;
+        IReadOnlyDictionary<MyCustomEnum, Int64>? IIndexTypes.Index3 => Index3;
+        public ImmutableDictionary<MyCustomEnum, Int64>? Index3
+        {
+            get => field_Index3;
+            set => field_Index3 = value;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes() : base()
@@ -100,6 +107,7 @@ namespace Generated.JsonNewtonSoft
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Index1 = source.Index1;
             field_Index2 = source.Index2;
+            field_Index3 = source.Index3;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -112,6 +120,9 @@ namespace Generated.JsonNewtonSoft
             field_Index2 = source.Index2 is null
                 ? default
                 : ImmutableDictionary<Byte, Int64>.Empty.AddRange(source.Index2);
+            field_Index3 = source.Index3 is null
+                ? default
+                : ImmutableDictionary<MyCustomEnum, Int64>.Empty.AddRange(source.Index3);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -125,6 +136,9 @@ namespace Generated.JsonNewtonSoft
             field_Index2 = source.Index2 is null
                 ? default
                 : ImmutableDictionary<Byte, Int64>.Empty.AddRange(source.Index2);
+            field_Index3 = source.Index3 is null
+                ? default
+                : ImmutableDictionary<MyCustomEnum, Int64>.Empty.AddRange(source.Index3);
         }
 
         public virtual bool Equals(IndexTypes? other)
@@ -133,6 +147,7 @@ namespace Generated.JsonNewtonSoft
             if (ReferenceEquals(other, this)) return true;
             if (!Index1.IndexEquals(other.Index1, (a, b) => a == b)) return false;
             if (!Index2.IndexEquals(other.Index2, (a, b) => a == b)) return false;
+            if (!Index3.IndexEquals(other.Index3, (a, b) => a == b)) return false;
             return base.Equals(other);
         }
 
@@ -143,6 +158,7 @@ namespace Generated.JsonNewtonSoft
             HashCode hc = new HashCode();
             hc.Add(Index1.CalcHashIndex());
             hc.Add(Index2.CalcHashIndex());
+            hc.Add(Index3.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

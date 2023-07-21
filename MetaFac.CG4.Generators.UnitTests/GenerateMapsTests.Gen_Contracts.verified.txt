@@ -33,5 +33,6 @@ namespace Generated.Contracts
     {
         IReadOnlyDictionary<String, Int64>? Index1 { get; }
         IReadOnlyDictionary<Byte, Int64>? Index2 { get; }
+        IReadOnlyDictionary<MyCustomEnum, Int64>? Index3 { get; }
     }
 }

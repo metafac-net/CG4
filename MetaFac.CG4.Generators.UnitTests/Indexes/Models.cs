@@ -20,8 +20,8 @@ namespace MetaFac.CG4.Generators.UnitTests.Indexes
     {
         [Member(1)] public Dictionary<string, long>? Index1 { get; }
         [Member(2)] public Dictionary<byte, long>? Index2 { get; }
+        [Member(3)] public Dictionary<MyCustomEnum, long>? Index3 { get; }
 
-        //todo [Member(3)] public Dictionary<byte, Octets>? Index3 { get; }
         //todo [Member(4)] public Dictionary<Octets, Octets>? Index4 { get; }
     }
 }

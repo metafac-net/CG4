@@ -123,6 +123,7 @@ namespace Generated.MessagePack
         // ---------- private fields ----------
         private ImmutableDictionary<String, Int64>? field_Index1;
         private ImmutableDictionary<Byte, Int64>? field_Index2;
+        private ImmutableDictionary<MyCustomEnum, Int64>? field_Index3;
 
         // ---------- accessors ----------
         [Key(1)]
@@ -137,6 +138,12 @@ namespace Generated.MessagePack
             get => field_Index2;
             set => field_Index2 = CheckNotFrozen(ref value);
         }
+        [Key(3)]
+        public ImmutableDictionary<MyCustomEnum, Int64>? Index3
+        {
+            get => field_Index3;
+            set => field_Index3 = CheckNotFrozen(ref value);
+        }
 
         // ---------- IIndexTypes methods ----------
         IReadOnlyDictionary<String, Int64>? IIndexTypes.Index1
@@ -145,6 +152,9 @@ namespace Generated.MessagePack
         IReadOnlyDictionary<Byte, Int64>? IIndexTypes.Index2
             => field_Index2 is null ? null
             : new DictionaryFacade<Byte, Int64, Int64>(field_Index2, (x) => x.ToExternal());
+        IReadOnlyDictionary<MyCustomEnum, Int64>? IIndexTypes.Index3
+            => field_Index3 is null ? null
+            : new DictionaryFacade<MyCustomEnum, Int64, Int64>(field_Index3, (x) => x.ToExternal());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes()
@@ -156,6 +166,7 @@ namespace Generated.MessagePack
         {
             field_Index1 = source.field_Index1;
             field_Index2 = source.field_Index2;
+            field_Index3 = source.field_Index3;
         }
 
         public void CopyFrom(IndexTypes source)
@@ -163,6 +174,7 @@ namespace Generated.MessagePack
             base.CopyFrom(source);
             field_Index1 = source.field_Index1;
             field_Index2 = source.field_Index2;
+            field_Index3 = source.field_Index3;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -176,6 +188,10 @@ namespace Generated.MessagePack
                 ? null
                 : ImmutableDictionary<Byte, Int64>.Empty.AddRange(source.Index2.Select(
                     kvp => new KeyValuePair<Byte, Int64>(kvp.Key, kvp.Value.ToInternal())));
+            field_Index3 = source.Index3 is null
+                ? null
+                : ImmutableDictionary<MyCustomEnum, Int64>.Empty.AddRange(source.Index3.Select(
+                    kvp => new KeyValuePair<MyCustomEnum, Int64>(kvp.Key, kvp.Value.ToInternal())));
         }
 
         public bool Equals(IndexTypes? other)
@@ -184,6 +200,7 @@ namespace Generated.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_Index1.IndexEquals(other.field_Index1, (a, b) => a == b)) return false;
             if (!field_Index2.IndexEquals(other.field_Index2, (a, b) => a == b)) return false;
+            if (!field_Index3.IndexEquals(other.field_Index3, (a, b) => a == b)) return false;
             return base.Equals(other);
         }
 
@@ -212,6 +229,7 @@ namespace Generated.MessagePack
             HashCode hc = new HashCode();
             hc.Add(field_Index1.CalcHashIndex());
             hc.Add(field_Index2.CalcHashIndex());
+            hc.Add(field_Index3.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

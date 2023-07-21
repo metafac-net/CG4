@@ -162,7 +162,6 @@ namespace MetaFac.CG4.ModelReader
         {
             var result = new MemberInfo();
             // vector types
-            Type? indexType = null;
             // collection types
             Type innerType = fieldType;
             if (innerType.IsArray)
@@ -195,7 +194,16 @@ namespace MetaFac.CG4.ModelReader
                     || innerType.GetGenericTypeDefinition() == typeof(Dictionary<,>)))
             {
                 result.ArrayRank = 1;
-                indexType = innerType.GenericTypeArguments[0];
+                var indexType = innerType.GenericTypeArguments[0];
+                if (indexType.Namespace == sourceNamespace && indexType.IsEnum)
+                {
+                    // index type must be a model enum
+                    result.indexTypeName = indexType.Name;
+                }
+                else
+                {
+                    result.indexTypeName = ConvertBuiltinTypeName(indexType);
+                }
                 innerType = innerType.GenericTypeArguments[1];
             }
             // nullable types
@@ -211,7 +219,6 @@ namespace MetaFac.CG4.ModelReader
                 {
                     result.isModelType = true;
                     result.innerTypeName = entityInfo.EntityName;
-                    result.indexTypeName = ConvertBuiltinTypeName(indexType);
                     return result;
                 }
                 else
@@ -228,7 +235,6 @@ namespace MetaFac.CG4.ModelReader
                 // must be a model enum
                 result.isValueType = true;
                 result.innerTypeName = innerType.Name;
-                result.indexTypeName = ConvertBuiltinTypeName(indexType);
                 return result;
             }
             else if (innerType.IsValueType)
@@ -318,7 +324,6 @@ namespace MetaFac.CG4.ModelReader
                     ? innerType.Name
                     : ConvertBuiltinTypeName(innerType);
             }
-            result.indexTypeName = ConvertBuiltinTypeName(indexType);
             return result;
         }
 
@@ -339,7 +344,6 @@ namespace MetaFac.CG4.ModelReader
                 var memberInfo = GetFieldInfo(sourceNamespace, modelName, entityTagName, memberName, fieldType, proxyTypes, allEntityDefs);
                 string innerTypeName = memberInfo.innerTypeName ?? nameof(Unknown);
 
-                //bool isEmitted = true;
                 foreach (Attribute attr in propInfo.GetCustomAttributes())
                 {
                     if (attr is MemberAttribute ma)
@@ -350,28 +354,25 @@ namespace MetaFac.CG4.ModelReader
                     }
                 }
 
-                //if (isEmitted)
-                //{
-                    bool isVector = memberInfo.ArrayRank == 1;
-                    string typeDesc = $"{innerTypeName}{(memberInfo.nullable ? "?" : "")}{(isVector ? "[" : "")}{memberInfo.indexTypeName}{(isVector ? "]" : "")}";
-                    ModelProxyDef? proxyDef = null;
-                    if (memberInfo.IsProxy
-                        && proxyTypes.TryGetValue(innerTypeName, out var pd)
-                        && pd is not null)
-                    {
-                        proxyDef = new ModelProxyDef(pd.ExternalName, pd.ConcreteName);
-                    }
-                    var memberDef = new ModelMemberDef(
-                        memberName, fieldTag, fieldDesc, 
-                        innerTypeName,
-                        memberInfo.nullable,
-                        proxyDef,
-                        memberInfo.ArrayRank,
-                        memberInfo.indexTypeName,
-                        memberInfo.isModelType,
-                        fieldState);
-                    memberDefsByName.Add(memberName, memberDef);
-                //}
+                bool isVector = memberInfo.ArrayRank == 1;
+                string typeDesc = $"{innerTypeName}{(memberInfo.nullable ? "?" : "")}{(isVector ? "[" : "")}{memberInfo.indexTypeName}{(isVector ? "]" : "")}";
+                ModelProxyDef? proxyDef = null;
+                if (memberInfo.IsProxy
+                    && proxyTypes.TryGetValue(innerTypeName, out var pd)
+                    && pd is not null)
+                {
+                    proxyDef = new ModelProxyDef(pd.ExternalName, pd.ConcreteName);
+                }
+                var memberDef = new ModelMemberDef(
+                    memberName, fieldTag, fieldDesc,
+                    innerTypeName,
+                    memberInfo.nullable,
+                    proxyDef,
+                    memberInfo.ArrayRank,
+                    memberInfo.indexTypeName,
+                    memberInfo.isModelType,
+                    fieldState);
+                memberDefsByName.Add(memberName, memberDef);
             } // foreach field
             return memberDefsByName.Values.OrderBy(x => x.Tag).ToList();
         }

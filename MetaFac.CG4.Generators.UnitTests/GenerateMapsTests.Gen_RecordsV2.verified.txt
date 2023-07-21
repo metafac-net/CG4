@@ -70,6 +70,8 @@ namespace Generated.RecordsV2
         IReadOnlyDictionary<String, Int64>? IIndexTypes.Index1 => Index1;
         public ImmutableDictionary<Byte, Int64>? Index2 { get; init; }
         IReadOnlyDictionary<Byte, Int64>? IIndexTypes.Index2 => Index2;
+        public ImmutableDictionary<MyCustomEnum, Int64>? Index3 { get; init; }
+        IReadOnlyDictionary<MyCustomEnum, Int64>? IIndexTypes.Index3 => Index3;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes() : base()
@@ -82,6 +84,7 @@ namespace Generated.RecordsV2
             if (source is null) throw new ArgumentNullException(nameof(source));
             Index1 = source.Index1;
             Index2 = source.Index2;
+            Index3 = source.Index3;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -94,6 +97,9 @@ namespace Generated.RecordsV2
             Index2 = source.Index2 is null
                 ? default
                 : ImmutableDictionary<Byte, Int64>.Empty.AddRange(source.Index2);
+            Index3 = source.Index3 is null
+                ? default
+                : ImmutableDictionary<MyCustomEnum, Int64>.Empty.AddRange(source.Index3);
         }
 
         public virtual bool Equals(IndexTypes? other)
@@ -102,6 +108,7 @@ namespace Generated.RecordsV2
             if (ReferenceEquals(other, this)) return true;
             if (!Index1.IndexEquals(other.Index1, (a, b) => a == b)) return false;
             if (!Index2.IndexEquals(other.Index2, (a, b) => a == b)) return false;
+            if (!Index3.IndexEquals(other.Index3, (a, b) => a == b)) return false;
             return base.Equals(other);
         }
 
@@ -110,6 +117,7 @@ namespace Generated.RecordsV2
             HashCode hc = new HashCode();
             hc.Add(Index1.CalcHashIndex());
             hc.Add(Index2.CalcHashIndex());
+            hc.Add(Index3.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
