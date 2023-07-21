@@ -37,6 +37,90 @@ namespace MetaFac.CG4.Generators
             _engine.Current.SetToken(name, value);
         }
 
+        protected void DefineCSharpTypes()
+        {
+            var tokens = new Dictionary<string, string>()
+            {
+                // Boolean
+                ["BooleanFieldType"] = "Boolean",
+                ["ConcreteBoolean"] = "T_BooleanFieldType_",
+                ["ExternalBoolean"] = "T_BooleanFieldType_",
+                // SByte
+                ["SByteFieldType"] = "SByte",
+                ["ConcreteSByte"] = "T_SByteFieldType_",
+                ["ExternalSByte"] = "T_SByteFieldType_",
+                // Byte
+                ["ByteFieldType"] = "Byte",
+                ["ConcreteByte"] = "T_ByteFieldType_",
+                ["ExternalByte"] = "T_ByteFieldType_",
+                // Int16
+                ["Int16FieldType"] = "Int16",
+                ["ConcreteInt16"] = "T_Int16FieldType_",
+                ["ExternalInt16"] = "T_Int16FieldType_",
+                // UInt16
+                ["UInt16FieldType"] = "UInt16",
+                ["ConcreteUInt16"] = "T_UInt16FieldType_",
+                ["ExternalUInt16"] = "T_UInt16FieldType_",
+                // Char
+                ["CharFieldType"] = "Char",
+                ["ConcreteChar"] = "T_CharFieldType_",
+                ["ExternalChar"] = "T_CharFieldType_",
+                // Int32
+                ["Int32FieldType"] = "Int32",
+                ["ConcreteInt32"] = "T_Int32FieldType_",
+                ["ExternalInt32"] = "T_Int32FieldType_",
+                // UInt32
+                ["UInt32FieldType"] = "UInt32",
+                ["ConcreteUInt32"] = "T_UInt32FieldType_",
+                ["ExternalUInt32"] = "T_UInt32FieldType_",
+                // Single
+                ["SingleFieldType"] = "Single",
+                ["ConcreteSingle"] = "T_SingleFieldType_",
+                ["ExternalSingle"] = "T_SingleFieldType_",
+                // Int64
+                ["Int64FieldType"] = "Int64",
+                ["ConcreteInt64"] = "T_Int64FieldType_",
+                ["ExternalInt64"] = "T_Int64FieldType_",
+                // UInt64
+                ["UInt64FieldType"] = "UInt64",
+                ["ConcreteUInt64"] = "T_UInt64FieldType_",
+                ["ExternalUInt64"] = "T_UInt64FieldType_",
+                // Double
+                ["DoubleFieldType"] = "Double",
+                ["ConcreteDouble"] = "T_DoubleFieldType_",
+                ["ExternalDouble"] = "T_DoubleFieldType_",
+                // DateTime
+                ["DateTimeFieldType"] = "DateTime",
+                ["ConcreteDateTime"] = "T_DateTimeFieldType_",
+                ["ExternalDateTime"] = "T_DateTimeFieldType_",
+                // TimeSpan
+                ["TimeSpanFieldType"] = "TimeSpan",
+                ["ConcreteTimeSpan"] = "T_TimeSpanFieldType_",
+                ["ExternalTimeSpan"] = "T_TimeSpanFieldType_",
+                // Guid
+                ["GuidFieldType"] = "Guid",
+                ["ConcreteGuid"] = "T_GuidFieldType_",
+                ["ExternalGuid"] = "T_GuidFieldType_",
+                // Decimal
+                ["DecimalFieldType"] = "Decimal",
+                ["ConcreteDecimal"] = "T_DecimalFieldType_",
+                ["ExternalDecimal"] = "T_DecimalFieldType_",
+                // DateTimeOffset
+                ["DateTimeOffsetFieldType"] = "DateTimeOffset",
+                ["ConcreteDateTimeOffset"] = "T_DateTimeOffsetFieldType_",
+                ["ExternalDateTimeOffset"] = "T_DateTimeOffsetFieldType_",
+                // String
+                ["StringFieldType"] = "String",
+                ["ConcreteString"] = "T_StringFieldType_",
+                ["ExternalString"] = "T_StringFieldType_",
+                // Binary
+                ["BinaryFieldType"] = "Octets",
+                ["ConcreteBinary"] = "T_BinaryFieldType_",
+                ["ExternalBinary"] = "T_BinaryFieldType_",
+            };
+            _engine.Current.SetTokens(tokens);
+        }
+
         protected bool IsDefined(string name)
         {
             return _engine.Current.Scope.Tokens.ContainsKey(name);
@@ -93,9 +177,11 @@ namespace MetaFac.CG4.Generators
                 "double" => "T_DoubleFieldType_",
                 "datetime" => "T_DateTimeFieldType_",
                 "timespan" => "T_TimeSpanFieldType_",
-                "datetimezone" => "T_DateTimeZoneFieldType_",
+                "datetimezone" => "T_DateTimeOffsetFieldType_",
                 "decimal" => "T_DecimalFieldType_",
                 "guid" => "T_GuidFieldType_",
+                "string" => "T_StringFieldType_",
+                "binary" => "T_BinaryFieldType_",
                 _ => innerType,
             };
         }
@@ -103,6 +189,7 @@ namespace MetaFac.CG4.Generators
         protected IDisposable NewScope(ModelMemberDef memberDef)
         {
             string innerType = GetFieldTypeToken(memberDef.InnerType);
+            string? indexType = memberDef.IndexType is null ? null : GetFieldTypeToken(memberDef.IndexType);
             var tokens = new Dictionary<string, string>
             {
                 ["FieldName"] = memberDef.Name,
@@ -112,10 +199,17 @@ namespace MetaFac.CG4.Generators
                 tokens["FieldTag"] = memberDef.Tag.Value.ToString();
             if (memberDef.IsModelType)
                 tokens["ModelType"] = innerType;
-            if (memberDef.IndexType != null)
-                tokens["IndexType"] = memberDef.IndexType;
-            tokens[$"External{memberDef.InnerType}"] = innerType;
-            tokens[$"Concrete{memberDef.InnerType}"] = innerType;
+            if (indexType is not null)
+                tokens["IndexType"] = indexType;
+#if NET6_0_OR_GREATER
+            tokens.TryAdd($"External{memberDef.InnerType}", innerType);
+            tokens.TryAdd($"Concrete{memberDef.InnerType}", innerType);
+#else
+            string externalInnerType = $"External{memberDef.InnerType}";
+            if (!tokens.ContainsKey(externalInnerType)) tokens.Add(externalInnerType, innerType);
+            string concreteInnerType = $"Concrete{memberDef.InnerType}";
+            if (!tokens.ContainsKey(concreteInnerType)) tokens.Add(concreteInnerType, innerType);
+#endif
             if (memberDef.ProxyDef is not null)
             {
                 tokens[$"External{memberDef.InnerType}"] = memberDef.ProxyDef.ExternalName ?? "Unknown_Proxy_ExternalName";

@@ -4,7 +4,6 @@ using System;
 namespace MetaFac.CG4.Generators
 {
     public class MemberInfo
-
     {
         private readonly EngineScope _engineScope;
 

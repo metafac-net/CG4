@@ -11,6 +11,7 @@ set _cmd=..\MetaFac.CG4.CLI\bin\Debug\net6.0\MetaFac.CG4.CLI.exe
 
 set _prefix=MetaFac.CG4.TestOrg.Schema
 
+call :a2c BasicTypes
 call :a2c Personel
 call :a2c Polymorphic
 call :a2c Recursive

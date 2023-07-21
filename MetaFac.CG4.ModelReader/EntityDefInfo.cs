@@ -5,9 +5,6 @@ using System.Reflection;
 
 namespace MetaFac.CG4.ModelReader
 {
-    internal static class TypeHelpers
-    {
-    }
     internal class EntityDefInfo
     {
         private readonly TypeInfo _typeInfo;

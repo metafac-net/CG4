@@ -4,6 +4,9 @@ using System;
 
 namespace MetaFac.CG4.Runtime.MessagePack
 {
+    //
+    // todo move these helper types into template
+    //
     [MessagePackObject]
     public sealed class BinaryValue : IEquatable<BinaryValue>
     {

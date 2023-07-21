@@ -1,0 +1,395 @@
+{
+  "ModelDefs": [
+    {
+      "Tag": 1,
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "Basic_bool",
+          "Tag": 1,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "bool"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "bool",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "bool",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "bool",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "bool",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "bool",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "bool"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_decimal",
+          "Tag": 17,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "decimal"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "decimal",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "decimal",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "decimal",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "decimal",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "decimal",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "decimal"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_DateTimeOffset",
+          "Tag": 18,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "datetimezone"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "datetimezone",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "datetimezone",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "datetimezone",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "datetimezone",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "datetimezone",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "datetimezone"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_Guid",
+          "Tag": 19,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "guid"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "guid",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "guid",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "guid",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "guid",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "guid",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "guid"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_DayOfWeek",
+          "Tag": 20,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "System.DayOfWeek"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "System.DayOfWeek",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "System.DayOfWeek",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "System.DayOfWeek",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "System.DayOfWeek",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "System.DayOfWeek",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "System.DayOfWeek"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_MyCustomEnum",
+          "Tag": 21,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "MyCustomEnum"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "MyCustomEnum",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "MyCustomEnum",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "MyCustomEnum",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "MyCustomEnum",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "MyCustomEnum",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_string",
+          "Tag": 30,
+          "MemberDefs": [
+            {
+              "Name": "Scalar",
+              "Tag": 1,
+              "InnerType": "string"
+            },
+            {
+              "Name": "Vector",
+              "Tag": 2,
+              "InnerType": "string",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapValue",
+              "Tag": 3,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_Octets",
+          "Tag": 31,
+          "MemberDefs": [
+            {
+              "Name": "Scalar",
+              "Tag": 1,
+              "InnerType": "binary"
+            },
+            {
+              "Name": "Vector",
+              "Tag": 2,
+              "InnerType": "binary",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapValue",
+              "Tag": 3,
+              "InnerType": "binary",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 4,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "binary"
+            }
+          ]
+        }
+      ],
+      "EnumTypeDefs": [
+        {
+          "Name": "MyCustomEnum",
+          "EnumItemDefs": [
+            {
+              "Name": "DefaultValue"
+            },
+            {
+              "Name": "FirstValue",
+              "Value": 1
+            },
+            {
+              "Name": "SomeValue",
+              "Value": 2
+            },
+            {
+              "Name": "LastValue",
+              "Value": 99
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Tokens": {
+    "Metadata": "MetaFac.CG4.TestOrg.Schema(.BasicTypes)"
+  }
+}
