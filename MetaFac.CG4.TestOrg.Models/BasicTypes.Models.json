@@ -317,6 +317,75 @@
           ]
         },
         {
+          "Name": "Basic_Quantity",
+          "Tag": 22,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "Quantity",
+              "ProxyDef": {
+                "ExternalName": "LabApps.Units.Quantity",
+                "ConcreteName": "QuantityValue"
+              }
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "Quantity",
+              "Nullable": true,
+              "ProxyDef": {
+                "ExternalName": "LabApps.Units.Quantity",
+                "ConcreteName": "QuantityValue"
+              }
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "Quantity",
+              "ProxyDef": {
+                "ExternalName": "LabApps.Units.Quantity",
+                "ConcreteName": "QuantityValue"
+              },
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "Quantity",
+              "Nullable": true,
+              "ProxyDef": {
+                "ExternalName": "LabApps.Units.Quantity",
+                "ConcreteName": "QuantityValue"
+              },
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "Quantity",
+              "ProxyDef": {
+                "ExternalName": "LabApps.Units.Quantity",
+                "ConcreteName": "QuantityValue"
+              },
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "Quantity",
+              "Nullable": true,
+              "ProxyDef": {
+                "ExternalName": "LabApps.Units.Quantity",
+                "ConcreteName": "QuantityValue"
+              },
+              "ArrayRank": 1,
+              "IndexType": "string"
+            }
+          ]
+        },
+        {
           "Name": "Basic_string",
           "Tag": 30,
           "MemberDefs": [

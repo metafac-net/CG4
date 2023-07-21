@@ -1353,6 +1353,202 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
 
     }
 
+    public partial class Basic_Quantity
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_Quantity? CreateFrom(IBasic_Quantity? source)
+        {
+            if (source is null) return null;
+            return new Basic_Quantity(source);
+        }
+
+        private static Basic_Quantity CreateEmpty()
+        {
+            var empty = new Basic_Quantity();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_Quantity _empty = CreateEmpty();
+        public static new Basic_Quantity Empty => _empty;
+
+    }
+    [MessagePackObject]
+    public partial class Basic_Quantity : EntityBase, IBasic_Quantity, IEquatable<Basic_Quantity>, ICopyFrom<Basic_Quantity>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 22;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private QuantityValue field_ScalarRequired;
+        private QuantityValue? field_ScalarOptional;
+        private ImmutableList<QuantityValue>? field_VectorRequired;
+        private ImmutableList<QuantityValue?>? field_VectorOptional;
+        private ImmutableDictionary<String, QuantityValue>? field_MapRequired;
+        private ImmutableDictionary<String, QuantityValue?>? field_MapOptional;
+
+        // ---------- accessors ----------
+        [Key(1)]
+        public QuantityValue ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = CheckNotFrozen(ref value);
+        }
+        [Key(2)]
+        public QuantityValue? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = CheckNotFrozen(ref value);
+        }
+        [Key(3)]
+        public ImmutableList<QuantityValue>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = CheckNotFrozen(ref value);
+        }
+        [Key(4)]
+        public ImmutableList<QuantityValue?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = CheckNotFrozen(ref value);
+        }
+        [Key(5)]
+        public ImmutableDictionary<String, QuantityValue>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = CheckNotFrozen(ref value);
+        }
+        [Key(6)]
+        public ImmutableDictionary<String, QuantityValue?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IBasic_Quantity methods ----------
+        LabApps.Units.Quantity IBasic_Quantity.ScalarRequired => field_ScalarRequired.ToExternal();
+        LabApps.Units.Quantity? IBasic_Quantity.ScalarOptional => field_ScalarOptional.ToExternal();
+        IReadOnlyList<LabApps.Units.Quantity>? IBasic_Quantity.VectorRequired
+            => field_VectorRequired is null ? null
+            : new ListFacade<LabApps.Units.Quantity, QuantityValue>(field_VectorRequired, (x) => x.ToExternal());
+        IReadOnlyList<LabApps.Units.Quantity?>? IBasic_Quantity.VectorOptional
+            => field_VectorOptional is null ? null
+            : new ListFacade<LabApps.Units.Quantity?, QuantityValue?>(field_VectorOptional, (x) => x.ToExternal());
+        IReadOnlyDictionary<String, LabApps.Units.Quantity>? IBasic_Quantity.MapRequired
+            => field_MapRequired is null ? null
+            : new DictionaryFacade<String, LabApps.Units.Quantity, QuantityValue>(field_MapRequired, (x) => x.ToExternal());
+        IReadOnlyDictionary<String, LabApps.Units.Quantity?>? IBasic_Quantity.MapOptional
+            => field_MapOptional is null ? null
+            : new DictionaryFacade<String, LabApps.Units.Quantity?, QuantityValue?>(field_MapOptional, (x) => x.ToExternal());
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_Quantity()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_Quantity(Basic_Quantity source) : base(source)
+        {
+            field_ScalarRequired = source.field_ScalarRequired;
+            field_ScalarOptional = source.field_ScalarOptional;
+            field_VectorRequired = source.field_VectorRequired;
+            field_VectorOptional = source.field_VectorOptional;
+            field_MapRequired = source.field_MapRequired;
+            field_MapOptional = source.field_MapOptional;
+        }
+
+        public void CopyFrom(Basic_Quantity source)
+        {
+            base.CopyFrom(source);
+            field_ScalarRequired = source.field_ScalarRequired;
+            field_ScalarOptional = source.field_ScalarOptional;
+            field_VectorRequired = source.field_VectorRequired;
+            field_VectorOptional = source.field_VectorOptional;
+            field_MapRequired = source.field_MapRequired;
+            field_MapOptional = source.field_MapOptional;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_Quantity(IBasic_Quantity source) : base(source)
+        {
+            field_ScalarRequired = source.ScalarRequired.ToInternal();
+            field_ScalarOptional = source.ScalarOptional.ToInternal();
+            field_VectorRequired = source.VectorRequired is null
+                ? null
+                : ImmutableList<QuantityValue>.Empty.AddRange(source.VectorRequired.Select(x => x.ToInternal()));
+            field_VectorOptional = source.VectorOptional is null
+                ? null
+                : ImmutableList<QuantityValue?>.Empty.AddRange(source.VectorOptional.Select(x => x.ToInternal()));
+            field_MapRequired = source.MapRequired is null
+                ? null
+                : ImmutableDictionary<String, QuantityValue>.Empty.AddRange(source.MapRequired.Select(
+                    kvp => new KeyValuePair<String, QuantityValue>(kvp.Key, kvp.Value.ToInternal())));
+            field_MapOptional = source.MapOptional is null
+                ? null
+                : ImmutableDictionary<String, QuantityValue?>.Empty.AddRange(source.MapOptional.Select(
+                    kvp => new KeyValuePair<String, QuantityValue?>(kvp.Key, kvp.Value.ToInternal())));
+        }
+
+        public bool Equals(Basic_Quantity? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (field_ScalarRequired != other.field_ScalarRequired) return false;
+            if (field_ScalarOptional != other.field_ScalarOptional) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            return base.Equals(other);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(Basic_Quantity left, Basic_Quantity right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(Basic_Quantity left, Basic_Quantity right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override bool Equals(object? obj)
+        {
+            return obj is Basic_Quantity other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_ScalarRequired.CalcHashUnary());
+            hc.Add(field_ScalarOptional.CalcHashUnary());
+            hc.Add(field_VectorRequired.CalcHashArray());
+            hc.Add(field_VectorOptional.CalcHashArray());
+            hc.Add(field_MapRequired.CalcHashIndex());
+            hc.Add(field_MapOptional.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
     public partial class Basic_string
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

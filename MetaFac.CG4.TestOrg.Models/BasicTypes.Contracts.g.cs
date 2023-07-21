@@ -87,6 +87,15 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts
         IReadOnlyDictionary<String, MyCustomEnum?>? MapOptional { get; }
         IReadOnlyDictionary<MyCustomEnum, String?>? MapKey { get; }
     }
+    public partial interface IBasic_Quantity : IEntityBase
+    {
+        LabApps.Units.Quantity ScalarRequired { get; }
+        LabApps.Units.Quantity? ScalarOptional { get; }
+        IReadOnlyList<LabApps.Units.Quantity>? VectorRequired { get; }
+        IReadOnlyList<LabApps.Units.Quantity?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, LabApps.Units.Quantity>? MapRequired { get; }
+        IReadOnlyDictionary<String, LabApps.Units.Quantity?>? MapOptional { get; }
+    }
     public partial interface IBasic_string : IEntityBase
     {
         String? Scalar { get; }

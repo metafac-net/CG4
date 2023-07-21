@@ -86,21 +86,20 @@ namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
         [Member(7)] public Dictionary<MyCustomEnum, string?>? MapKey { get; }
     }
 
-    // todo
-    //[Proxy("LabApps.Units.Quantity", "QuantityValue")]
-    //public struct Quantity { }
+    [Proxy("LabApps.Units.Quantity", "QuantityValue")]
+    public struct Quantity { }
 
-    //[Entity(22)]
-    //public class Basic_Quantity
-    //{
-    //    [Member(1)] public Quantity ScalarRequired { get; }
-    //    [Member(2)] public Quantity? ScalarOptional { get; }
-    //    [Member(3)] public Quantity[]? VectorRequired { get; }
-    //    [Member(4)] public Quantity?[]? VectorOptional { get; }
-    //    [Member(5)] public Dictionary<string, Quantity>? MapRequired { get; }
-    //    [Member(6)] public Dictionary<string, Quantity?>? MapOptional { get; }
-    //    // todo [Member(7)] public Dictionary<Quantity, string?>? MapKey { get; }
-    //}
+    [Entity(22)]
+    public class Basic_Quantity
+    {
+        [Member(1)] public Quantity ScalarRequired { get; }
+        [Member(2)] public Quantity? ScalarOptional { get; }
+        [Member(3)] public Quantity[]? VectorRequired { get; }
+        [Member(4)] public Quantity?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, Quantity>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, Quantity?>? MapOptional { get; }
+        // todo [Member(7)] public Dictionary<Quantity, string?>? MapKey { get; }
+    }
 
     [Entity(30)]
     public class Basic_string

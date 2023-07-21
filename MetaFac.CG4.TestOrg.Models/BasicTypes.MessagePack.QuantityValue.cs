@@ -1,6 +1,7 @@
 ﻿using LabApps.Units;
 using MessagePack;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
 {
@@ -57,23 +58,9 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
 
     public static class QuantityValueConverters
     {
-        public static Quantity ToExternal(this QuantityValue value)
-        {
-            return new Quantity(value.Amount, new Unit(value.Code));
-        }
-
-        public static Quantity? ToExternal(this QuantityValue? value)
-        {
-            return value is null ? null : new Quantity(value.Value.Amount, new Unit(value.Value.Code));
-        }
-
-        public static QuantityValue ToInternal(Quantity value)
-        {
-            return new QuantityValue(value);
-        }
-        public static QuantityValue? ToInternal(Quantity? value)
-        {
-            return value is null ? null : new QuantityValue(value.Value);
-        }
+        public static Quantity ToExternal(this QuantityValue value) => new Quantity(value.Amount, new Unit(value.Code));
+        public static Quantity? ToExternal(this QuantityValue? value) => value is null ? null : new Quantity(value.Value.Amount, new Unit(value.Value.Code));
+        public static QuantityValue ToInternal(this Quantity value) => new QuantityValue(value);
+        public static QuantityValue? ToInternal(this Quantity? value) => value is null ? null : new QuantityValue(value.Value);
     }
 }
