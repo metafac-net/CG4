@@ -32,6 +32,7 @@ namespace MetaFac.CG4.ModelReader.Tests.GoodModels
     public struct Quantity { }
 
     [Entity(2)]
+    [Token("Token1", "Value1")]
     public class ExternalTypes
     {
         [Member(1)] public Quantity[]? Quantities { get; }

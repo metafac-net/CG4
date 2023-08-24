@@ -10,6 +10,7 @@ namespace MetaFac.CG4.Models
         public string? Name { get; set; }
         public List<JsonEntityDef>? EntityDefs { get; set; }
         public List<JsonEnumTypeDef>? EnumTypeDefs { get; set; }
+        public Dictionary<string, string>? Tokens { get; set; }
 
         public JsonModelDef() { }
 
@@ -20,6 +21,7 @@ namespace MetaFac.CG4.Models
             Name = source.Name;
             EntityDefs = source.AllEntityDefs.Select(cd => new JsonEntityDef(cd)).ToList();
             EnumTypeDefs = source.AllEnumTypeDefs.Select(cd => new JsonEnumTypeDef(cd)).ToList();
+            Tokens = source.Tokens.Count > 0 ? new Dictionary<string, string>(source.Tokens) : null;
         }
 
         public bool Equals(JsonModelDef? other)
@@ -30,6 +32,7 @@ namespace MetaFac.CG4.Models
                    && string.Equals(Name, other.Name)
                    && EntityDefs.IsEqualTo(other.EntityDefs)
                    && EnumTypeDefs.IsEqualTo(other.EnumTypeDefs)
+                   && Tokens.IsEqualTo(other.Tokens)
                    ;
         }
 
@@ -44,6 +47,16 @@ namespace MetaFac.CG4.Models
             {
                 int hashCode = Tag?.GetHashCode() ?? 0;
                 hashCode = hashCode * 397 ^ (Name?.GetHashCode() ?? 0);
+                // order ignored
+                if (Tokens is not null)
+                {
+                    hashCode = hashCode * 397 ^ Tokens.Count;
+                    foreach (var kvp in Tokens)
+                    {
+                        hashCode = hashCode ^ kvp.Key.GetHashCode();
+                        if (kvp.Value != null) hashCode = hashCode ^ kvp.Value.GetHashCode();
+                    }
+                }
                 // ordered
                 if (EntityDefs != null)
                 {

@@ -22,31 +22,6 @@ namespace MetaFac.CG4.CLI
             }
         }
 
-        private static GeneratorId ParseGeneratorId(string generatorName)
-        {
-            string trimmedName = generatorName?.Trim() ?? throw new ArgumentNullException(nameof(generatorName));
-            foreach (GeneratorId generatorId in Enum.GetValues(typeof(GeneratorId)))
-            {
-                if (string.Equals(generatorId.ToString(), trimmedName, StringComparison.OrdinalIgnoreCase))
-                    return generatorId;
-            }
-            throw new ArgumentOutOfRangeException(nameof(generatorName), generatorName, null);
-        }
-
-        private static GeneratorBase GetGenerator(GeneratorId generatorId)
-        {
-            GeneratorBase generator = generatorId switch
-            {
-                GeneratorId.Contracts => new MetaFac.CG4.Generator.Contracts.Generator(),
-                GeneratorId.RecordsV2 => new MetaFac.CG4.Generator.RecordsV2.Generator(),
-                GeneratorId.ClassesV2 => new MetaFac.CG4.Generator.ClassesV2.Generator(),
-                GeneratorId.MessagePack => new MetaFac.CG4.Generator.MessagePack.Generator(),
-                GeneratorId.JsonNewtonSoft => new MetaFac.CG4.Generator.JsonNewtonSoft.Generator(),
-                _ => throw new NotSupportedException($"GeneratorId: {generatorId}"),
-            };
-            return generator;
-        }
-
         public Commands() : base("MFCG4", "MetaFac Code Generator 4 (CG4)")
         {
             AddCommand("t2g", "Converts a template to a code generator",
@@ -237,7 +212,7 @@ namespace MetaFac.CG4.CLI
             ModelContainer metadata = ReadMetadataFromJsonFile(jsonFilename)
                 .SetToken("Namespace", outputNamespace);
 
-            var generator = GetGenerator(ParseGeneratorId(generatorName));
+            var generator = generatorName.ParseGeneratorId().GetGenerator();
 
             Logger.LogInformation($"  Source: {jsonFilename}");
             Logger.LogInformation($"  Output: {outputFilename}");
@@ -278,7 +253,8 @@ namespace MetaFac.CG4.CLI
 
             string sourceNamespace = assmNamespace;
 
-            var generator = GetGenerator(ParseGeneratorId(generatorName));
+            var generator = generatorName.ParseGeneratorId().GetGenerator();
+
             Logger.LogInformation($"  Source: {assmFilename} ({sourceNamespace ?? "*"})");
             Logger.LogInformation($"  Output: {outputCodeFilename}");
 

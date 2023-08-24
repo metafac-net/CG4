@@ -2,6 +2,7 @@
 {
     public interface IEntityBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder
     {
+        MetaFac.CG4.ModelBuilding.IEntityBuilder AddEntityToken(string name, string value);
         MetaFac.CG4.ModelBuilding.IMemberBuilder AddMember(string memberName, int? memberTag, string innerType, bool nullable, int arrayRank, string? indexType, bool isModelType, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
     }
     public interface IEnumItemBuilder : MetaFac.CG4.ModelBuilding.IEnumTypeBuilder, MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder { }
@@ -16,12 +17,14 @@
     public interface IModelContainerBuilder
     {
         MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag);
+        MetaFac.CG4.ModelBuilding.IModelContainerBuilder AddOuterToken(string name, string value);
         MetaFac.CG4.Models.ModelContainer Build();
     }
     public interface IModelDefinitionBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder
     {
         MetaFac.CG4.ModelBuilding.IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
         MetaFac.CG4.ModelBuilding.IEnumTypeBuilder AddEnumType(string enumTypeName, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
+        MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder AddModelToken(string name, string value);
     }
     public static class ModelBuilder
     {

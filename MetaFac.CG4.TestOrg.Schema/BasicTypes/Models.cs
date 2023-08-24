@@ -109,13 +109,14 @@ namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
         [Member(3)] public Dictionary<string, string?>? MapValue { get; }
     }
 
-    [Entity(31)]
-    public class Basic_Octets
-    {
-        [Member(1)] public Octets? Scalar { get; }
-        [Member(2)] public Octets?[]? Vector { get; }
-        [Member(3)] public Dictionary<string, Octets?>? MapValue { get; }
-        [Member(4)] public Dictionary<Octets, string>? MapKey { get; }
-    }
+    // todo
+    //[Entity(31)]
+    //public class Basic_Octets
+    //{
+    //    [Member(1)] public Octets? Scalar { get; }
+    //    [Member(2)] public Octets?[]? Vector { get; }
+    //    [Member(3)] public Dictionary<string, Octets?>? MapValue { get; }
+    //    [Member(4)] public Dictionary<Octets, string>? MapKey { get; }
+    //}
 
 }

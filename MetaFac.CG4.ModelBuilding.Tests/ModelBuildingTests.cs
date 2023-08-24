@@ -20,6 +20,18 @@ namespace MetaFac.CG4.ModelBuilding.Tests
         }
 
         [Fact]
+        public async Task BuildContainerWithTokens()
+        {
+            ModelContainer metadata
+                = ModelBuilder.Create()
+                .AddOuterToken("Copyright", "2023 MetaFac")
+                .Build();
+
+            string jsonMetaData = metadata.ToJson(true);
+            await Verifier.Verify(jsonMetaData);
+        }
+
+        [Fact]
         public async Task BuildEmptyModel()
         {
             ModelContainer metadata

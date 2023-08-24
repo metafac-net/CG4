@@ -53,4 +53,10 @@
         public readonly string ExternalName;
         public ProxyAttribute(string externalName, string concreteName) { }
     }
+    public class TokenAttribute : System.Attribute
+    {
+        public readonly string Name;
+        public readonly string Value;
+        public TokenAttribute(string name, string value) { }
+    }
 }

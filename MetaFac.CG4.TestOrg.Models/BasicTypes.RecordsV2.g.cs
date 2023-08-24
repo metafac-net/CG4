@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.0
+// Generator: RecordsV2.2.1
 // Metadata : MetaFac.CG4.TestOrg.Schema(.BasicTypes)
 // </information>
 #endregion
@@ -889,98 +889,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             hc.Add(Scalar.CalcHashUnary());
             hc.Add(Vector.CalcHashArray());
             hc.Add(MapValue.CalcHashIndex());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
-        }
-    }
-
-    public partial record Basic_Octets
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_Octets? CreateFrom(IBasic_Octets? source)
-        {
-            if (source is null) return null;
-            if (source is Basic_Octets thisEntity) return thisEntity;
-            return new Basic_Octets(source);
-        }
-
-        private static readonly Basic_Octets _empty = new Basic_Octets();
-        public static new Basic_Octets Empty => _empty;
-
-    }
-    public partial record Basic_Octets : EntityBase, IBasic_Octets
-    {
-        public new const int EntityTag = 31;
-        protected override int OnGetEntityTag() => EntityTag;
-
-        public Octets? Scalar { get; init; }
-        Octets? IBasic_Octets.Scalar => Scalar;
-        public ImmutableList<Octets?>? Vector { get; init; }
-        IReadOnlyList<Octets?>? IBasic_Octets.Vector => Vector;
-        public ImmutableDictionary<String, Octets?>? MapValue { get; init; }
-        IReadOnlyDictionary<String, Octets?>? IBasic_Octets.MapValue => MapValue;
-        public ImmutableDictionary<Octets, String?>? MapKey { get; init; }
-        IReadOnlyDictionary<Octets, String?>? IBasic_Octets.MapKey => MapKey;
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Basic_Octets() : base()
-        {
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Basic_Octets(Basic_Octets? source) : base(source)
-        {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            Scalar = source.Scalar;
-            Vector = source.Vector;
-            MapValue = source.MapValue;
-            MapKey = source.MapKey;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Basic_Octets(IBasic_Octets? source) : base(source)
-        {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            Scalar = source.Scalar;
-            Vector = source.Vector is null
-                ? default
-                : ImmutableList<Octets?>.Empty.AddRange(source.Vector
-                    .Select(x => (Octets?)x));
-            MapValue = source.MapValue is null
-                ? default
-                : ImmutableDictionary<String, Octets?>.Empty.AddRange(source.MapValue
-                    .Select(x => new KeyValuePair<String, Octets?>(x.Key, x.Value)));
-            MapKey = source.MapKey is null
-                ? default
-                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
-        }
-
-        public virtual bool Equals(Basic_Octets? other)
-        {
-            if (other is null) return false;
-            if (ReferenceEquals(other, this)) return true;
-            if (!Scalar.ValueEquals(other.Scalar)) return false;
-            if (!Vector.ArrayEquals(other.Vector)) return false;
-            if (!MapValue.IndexEquals(other.MapValue)) return false;
-            if (!MapKey.IndexEquals(other.MapKey)) return false;
-            return base.Equals(other);
-        }
-
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Scalar.CalcHashUnary());
-            hc.Add(Vector.CalcHashArray());
-            hc.Add(MapValue.CalcHashIndex());
-            hc.Add(MapKey.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

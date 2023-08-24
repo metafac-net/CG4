@@ -34,5 +34,7 @@ namespace MetaFac.CG4.ModelBuilding
             => _outer.AddEnumItem(itemName, code, summary, itemState, reason);
         public IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag) => _outer.AddModelDef(modelName, modelTag);
         public ModelContainer Build() => _outer.Build();
+        public IModelContainerBuilder AddOuterToken(string name, string value) => _outer.AddOuterToken(name, value);
+        public IModelDefinitionBuilder AddModelToken(string name, string value) => _outer.AddModelToken(name, value);
     }
 }

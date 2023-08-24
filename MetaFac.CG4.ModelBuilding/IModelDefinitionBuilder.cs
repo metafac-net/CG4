@@ -4,6 +4,7 @@ namespace MetaFac.CG4.ModelBuilding
 {
     public interface IModelDefinitionBuilder : IModelContainerBuilder
     {
+        IModelDefinitionBuilder AddModelToken(string name, string value);
         IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null);
         IEnumTypeBuilder AddEnumType(string enumTypeName, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null);
     }

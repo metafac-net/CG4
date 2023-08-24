@@ -12,6 +12,7 @@ namespace MetaFac.CG4.Models
         public JsonItemState? State { get; set; }
         public string? ParentName { get; set; }
         public List<JsonMemberDef>? MemberDefs { get; set; }
+        public Dictionary<string, string>? Tokens { get; set; }
 
         public JsonEntityDef() { }
 
@@ -24,6 +25,7 @@ namespace MetaFac.CG4.Models
             State = JsonItemState.From(source.State);
             ParentName = source.ParentName;
             MemberDefs = source.AllMemberDefs.Select(fd => new JsonMemberDef(fd)).ToList();
+            Tokens = source.Tokens.Count > 0 ? new Dictionary<string, string>(source.Tokens) : null;
         }
 
         public bool Equals(JsonEntityDef? other)
@@ -36,6 +38,7 @@ namespace MetaFac.CG4.Models
                    && Equals(State, other.State)
                    && string.Equals(ParentName, other.ParentName)
                    && MemberDefs.IsEqualTo(other.MemberDefs)
+                   && Tokens.IsEqualTo(other.Tokens)
                    ;
         }
 
@@ -58,6 +61,15 @@ namespace MetaFac.CG4.Models
                 foreach (var fd in MemberDefs)
                 {
                     hashCode.Add(fd);
+                }
+            }
+            if (Tokens is not null)
+            {
+                hashCode.Add(Tokens.Count);
+                foreach (var kvp in Tokens)
+                {
+                    hashCode.Add(kvp.Key);
+                    hashCode.Add(kvp.Value);
                 }
             }
             return hashCode.ToHashCode();

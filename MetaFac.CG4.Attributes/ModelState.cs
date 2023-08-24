@@ -10,7 +10,7 @@ namespace MetaFac.CG4.Attributes
         IsInactive = 0x02,
 
         /// <summary>
-        /// Reserved for future use. Is not emitted during generation. This is useful for pre-allocating tags.
+        /// Reserved for future use. Not emitted during generation. Useful for pre-allocating tags.
         /// </summary>
         Reserved = IsRedacted,
 

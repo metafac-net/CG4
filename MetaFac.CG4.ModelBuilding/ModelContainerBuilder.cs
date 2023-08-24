@@ -14,6 +14,13 @@ namespace MetaFac.CG4.ModelBuilding
             _modelDefBuilders.Add(modelName, modelDefBuilder);
             return modelDefBuilder;
         }
+
+        public IModelContainerBuilder AddOuterToken(string name, string value)
+        {
+            _tokens[name] = value;
+            return this;
+        }
+
         public ModelContainer Build()
         {
             List<ModelDefinition> modelDefs = _modelDefBuilders.Values.Select(mdb => mdb.GetModelDefinition()).OrderBy(x => x.Name).ToList();

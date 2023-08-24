@@ -9,6 +9,7 @@ namespace MetaFac.CG4.Models
     {
         public readonly string Name;
         public readonly int? Tag;
+        public readonly ImmutableDictionary<string, string> Tokens;
         private readonly ImmutableList<ModelEntityDef> _entityDefs;
         private readonly ImmutableList<ModelEnumTypeDef> _enumTypeDefs;
 
@@ -18,10 +19,11 @@ namespace MetaFac.CG4.Models
         public ImmutableList<ModelEnumTypeDef> AllEnumTypeDefs => _enumTypeDefs;
         public IEnumerable<ModelEnumTypeDef> EnumTypeDefs => _enumTypeDefs.Where(etd => !etd.IsRedacted);
 
-        private ModelDefinition(string name, int? tag, ImmutableList<ModelEntityDef> entityDefs, ImmutableList<ModelEnumTypeDef> enumTypeDefs)
+        private ModelDefinition(string name, int? tag, ImmutableList<ModelEntityDef> entityDefs, ImmutableList<ModelEnumTypeDef> enumTypeDefs, ImmutableDictionary<string, string> tokens)
         {
             Name = name;
             Tag = tag;
+            Tokens = tokens;
             _entityDefs = entityDefs;
             _enumTypeDefs = enumTypeDefs;
         }
@@ -63,7 +65,8 @@ namespace MetaFac.CG4.Models
 
         public ModelDefinition(string modelName, int? tag,
             IEnumerable<ModelEntityDef>? entityDefs = null,
-            IEnumerable<ModelEnumTypeDef>? enumTypeDefs = null)
+            IEnumerable<ModelEnumTypeDef>? enumTypeDefs = null,
+            IEnumerable<KeyValuePair<string, string>>? tokens = null)
         {
             Name = modelName;
             Tag = tag;
@@ -74,6 +77,9 @@ namespace MetaFac.CG4.Models
             _enumTypeDefs = enumTypeDefs != null
                 ? ImmutableList<ModelEnumTypeDef>.Empty.AddRange(enumTypeDefs.Where(cd => cd != null))
                 : ImmutableList<ModelEnumTypeDef>.Empty;
+            Tokens = tokens is null
+                ? ImmutableDictionary<string, string>.Empty
+                : ImmutableDictionary<string, string>.Empty.AddRange(tokens);
         }
 
         public ModelDefinition(JsonModelDef? source)
@@ -84,6 +90,9 @@ namespace MetaFac.CG4.Models
             var newEntityDefs = ImmutableList<ModelEntityDef>.Empty.AddRange(source.EntityDefs.NotNullRange(ModelEntityDef.From));
             _entityDefs = FixEntityHierarchy(newEntityDefs);
             _enumTypeDefs = ImmutableList<ModelEnumTypeDef>.Empty.AddRange(source.EnumTypeDefs.NotNullRange(ModelEnumTypeDef.From));
+            Tokens = source.Tokens is null
+                ? ImmutableDictionary<string, string>.Empty
+                : ImmutableDictionary<string, string>.Empty.AddRange(source.Tokens);
         }
 
         public bool Equals(ModelDefinition? other)
@@ -94,6 +103,7 @@ namespace MetaFac.CG4.Models
                    && string.Equals(Name, other.Name)
                    && _entityDefs.IsEqualTo(other._entityDefs)
                    && _enumTypeDefs.IsEqualTo(other._enumTypeDefs)
+                   && Tokens.IsEqualTo(other.Tokens)
                    ;
         }
 
@@ -109,6 +119,12 @@ namespace MetaFac.CG4.Models
                 var hashCode = Tag.GetHashCode();
                 hashCode = hashCode * 397 ^ (Name != null ? Name.GetHashCode() : 0);
                 hashCode = hashCode * 397 ^ (Tag != null ? Tag.GetHashCode() : 0);
+                // order ignored
+                foreach (var kvp in Tokens)
+                {
+                    hashCode = hashCode ^ kvp.Key.GetHashCode();
+                    if (kvp.Value != null) hashCode = hashCode ^ kvp.Value.GetHashCode();
+                }
                 // ordered
                 hashCode = hashCode * 397 ^ _entityDefs.Count;
                 foreach (var cd in _entityDefs)

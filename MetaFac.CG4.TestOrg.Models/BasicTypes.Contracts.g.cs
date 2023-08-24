@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: Contracts.2.0
+// Generator: Contracts.2.1
 // Metadata : MetaFac.CG4.TestOrg.Schema(.BasicTypes)
 // </information>
 #endregion
@@ -101,12 +101,5 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts
         String? Scalar { get; }
         IReadOnlyList<String?>? Vector { get; }
         IReadOnlyDictionary<String, String?>? MapValue { get; }
-    }
-    public partial interface IBasic_Octets : IEntityBase
-    {
-        Octets? Scalar { get; }
-        IReadOnlyList<Octets?>? Vector { get; }
-        IReadOnlyDictionary<String, Octets?>? MapValue { get; }
-        IReadOnlyDictionary<Octets, String?>? MapKey { get; }
     }
 }
