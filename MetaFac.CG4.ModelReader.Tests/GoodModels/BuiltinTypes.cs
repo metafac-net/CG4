@@ -5,6 +5,7 @@ using MetaFac.Memory;
 namespace MetaFac.CG4.ModelReader.Tests.GoodModels
 {
     [Entity(1)]
+    [Token("Token1", "Value1")]
     public class BuiltinTypes
     {
         [Member(1)] public bool[]? Bools { get; }
@@ -32,7 +33,7 @@ namespace MetaFac.CG4.ModelReader.Tests.GoodModels
     public struct Quantity { }
 
     [Entity(2)]
-    [Token("Token1", "Value1")]
+    [Token("Token2", "Value2")]
     public class ExternalTypes
     {
         [Member(1)] public Quantity[]? Quantities { get; }

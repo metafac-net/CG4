@@ -122,7 +122,10 @@
               "InnerType": "binary",
               "ArrayRank": 1
             }
-          ]
+          ],
+          "Tokens": {
+            "Token1": "Value1"
+          }
         },
         {
           "Name": "ExternalTypes",
@@ -138,7 +141,10 @@
               },
               "ArrayRank": 1
             }
-          ]
+          ],
+          "Tokens": {
+            "Token2": "Value2"
+          }
         },
         {
           "Name": "EnumeratorTypes",

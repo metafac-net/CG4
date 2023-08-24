@@ -123,7 +123,9 @@ namespace MetaFac.CG4.Generators
 
         protected bool IsDefined(string name)
         {
-            return _engine.Current.Scope.Tokens.ContainsKey(name);
+            return _engine.Current.Scope.Tokens.TryGetValue(name, out string? value)
+                ? !string.IsNullOrEmpty(value)
+                : false;
         }
 
         protected IDisposable Ignored()

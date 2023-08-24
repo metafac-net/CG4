@@ -72,6 +72,7 @@ namespace MetaFac.CG4.ModelReader
                 int? entityTag = entityDefInfo.Tag;
                 string? entityDesc = null;
                 ModelItemState? entityState = null;
+                var entityTokens = new Dictionary<string, string>();
                 var entityTagName = new TagName(entityTag, entityName);
                 foreach (Attribute attr in entityDefInfo.CustomAttributes)
                 {
@@ -84,6 +85,10 @@ namespace MetaFac.CG4.ModelReader
                         entityTag = ea.Tag;
                         entityState = ModelItemState.Create(ea.IsInActive, ea.IsRedacted, ea.Reason);
                     }
+                    else if (attr is TokenAttribute ta)
+                    {
+                        entityTokens[ta.Name] = ta.Value;
+                    }
                 }
 
                 List<ModelMemberDef> fieldList = ParseFields(entityDefInfo, sourceNamespace, modelName, entityTagName, proxyTypes, allModelTypes);
@@ -91,7 +96,7 @@ namespace MetaFac.CG4.ModelReader
                 if (entityTag.HasValue)
                 {
                     string? parentName = entityDefInfo.ParentName;
-                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, entityDesc, parentName, fieldList, entityState);
+                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, entityDesc, parentName, fieldList, entityState, entityTokens);
                     entityDefsByName.Add(entityName, entityDef);
                     entityDefsByTag.Add(entityTag.Value, entityDef);
                 }
