@@ -3,6 +3,10 @@ using System;
 
 namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
 {
+    /// <summary>
+    /// A deep model with one base type.
+    /// </summary>
+
     // ==================== Level 0 fields ====================
 
     [Entity(1)]

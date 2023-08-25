@@ -34,4 +34,27 @@
         <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="GenerateFromMultiBaseModelsTests.Generate_ClassesV2.verified.txt">
+        <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+        <DependentUpon>GenerateFromMultiBaseModelsTests.cs</DependentUpon>
+      </None>
+      <None Update="GenerateFromMultiBaseModelsTests.Generate_Contracts.verified.txt">
+        <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+        <DependentUpon>GenerateFromMultiBaseModelsTests.cs</DependentUpon>
+      </None>
+      <None Update="GenerateFromMultiBaseModelsTests.Generate_JsonNewtonSoft.verified.txt">
+        <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+        <DependentUpon>GenerateFromMultiBaseModelsTests.cs</DependentUpon>
+      </None>
+      <None Update="GenerateFromMultiBaseModelsTests.Generate_MessagePack.verified.txt">
+        <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+        <DependentUpon>GenerateFromMultiBaseModelsTests.cs</DependentUpon>
+      </None>
+      <None Update="GenerateFromMultiBaseModelsTests.Generate_RecordsV2.verified.txt">
+        <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+        <DependentUpon>GenerateFromMultiBaseModelsTests.cs</DependentUpon>
+      </None>
+    </ItemGroup>
+
 </Project>

@@ -107,6 +107,27 @@ namespace MetaFac.CG4.ModelReader.Tests
         }
 
         [Fact]
+        public void ReadComplexModel2()
+        {
+            Type anchorType = typeof(ComplexModel2.AccountType);
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
+            metadata.Tokens.Count.Should().Be(1);
+            metadata.Tokens.Should().ContainKey("Metadata");
+            metadata.ModelDefs.Count.Should().Be(1);
+
+            var validator = new ModelValidator();
+            var validationResult = validator.Validate(metadata);
+            validationResult.Errors.Should().BeEmpty();
+            validationResult.Warnings.Should().BeEmpty();
+
+            var modelDef = metadata.ModelDefs[0];
+            modelDef.AllEntityDefs.Count.Should().Be(4);
+            var entityDef = modelDef.AllEntityDefs[0];
+            entityDef.Name.Should().Be("AccountType");
+            entityDef.AllMemberDefs.Count.Should().Be(1);
+        }
+
+        [Fact]
         public void ReadBuiltinTypes()
         {
             Type anchorType = typeof(GoodModels.BuiltinTypes);

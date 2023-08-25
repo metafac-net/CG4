@@ -33,14 +33,14 @@ namespace MetaFac.CG4.Models
                 modelTag = newMetadata.ModelDefs[0].Tag;
 
             Dictionary<string, ModelEntityDef> newEntityDefs = new Dictionary<string, ModelEntityDef>();
-            foreach (var ncd in newMetadata.ModelDefs[0].EntityDefs)
+            foreach (var ncd in newMetadata.ModelDefs[0].AllEntityDefs)
             {
                 newEntityDefs.Add(ncd.Name, ncd);
             }
 
             Dictionary<int, ModelEntityDef> oldEntityDefsByTag = new Dictionary<int, ModelEntityDef>();
             Dictionary<string, int> oldEntityNameToTagMap = new Dictionary<string, int>();
-            foreach (var ocd in oldMetadata.ModelDefs[0].EntityDefs)
+            foreach (var ocd in oldMetadata.ModelDefs[0].AllEntityDefs)
             {
                 if (ocd.Tag.HasValue)
                 {
@@ -141,7 +141,7 @@ namespace MetaFac.CG4.Models
             ImmutableDictionary<int, ModelEntityDef> entityTagMap = ImmutableDictionary<int, ModelEntityDef>.Empty;
             ImmutableDictionary<string, ModelEntityDef> entityNameMap = ImmutableDictionary<string, ModelEntityDef>.Empty;
 
-            foreach (var entityDef in model.EntityDefs)
+            foreach (var entityDef in model.AllEntityDefs)
             {
                 //---------- check entity tag not missing
                 if (!entityDef.Tag.HasValue)
@@ -249,7 +249,7 @@ namespace MetaFac.CG4.Models
             }
 
             // ---------- check missing parents
-            foreach (var entityDef in model.EntityDefs)
+            foreach (var entityDef in model.AllEntityDefs)
             {
                 if (entityDef.ParentName != null)
                 {
@@ -278,7 +278,7 @@ namespace MetaFac.CG4.Models
             }
 
             // ---------- check circular refs
-            foreach (var entityDef in model.EntityDefs)
+            foreach (var entityDef in model.AllEntityDefs)
             {
                 ImmutableDictionary<string, ModelEntityDef> visitedEntityDefs =
                     ImmutableDictionary<string, ModelEntityDef>.Empty.Add(entityDef.Name, entityDef);
