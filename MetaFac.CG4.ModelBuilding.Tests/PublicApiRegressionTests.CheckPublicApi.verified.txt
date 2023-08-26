@@ -8,7 +8,7 @@
     public interface IEnumItemBuilder : MetaFac.CG4.ModelBuilding.IEnumTypeBuilder, MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder { }
     public interface IEnumTypeBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder
     {
-        MetaFac.CG4.ModelBuilding.IEnumItemBuilder AddEnumItem(string itemName, int code, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
+        MetaFac.CG4.ModelBuilding.IEnumItemBuilder AddEnumItem(string name, int value, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
     }
     public interface IMemberBuilder : MetaFac.CG4.ModelBuilding.IEntityBuilder, MetaFac.CG4.ModelBuilding.IModelContainerBuilder, MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder
     {
