@@ -148,7 +148,7 @@ namespace MetaFac.CG4.Models
                     result = result.AddError(
                         new ValidationError(
                             ValidationErrorCode.MissingEntityTag,
-                            model.Name, entityDef.ToTagName(), null, null, null));
+                            model.Name, entityDef.ToTagName(), null));
 
                 if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)
                     return result;
@@ -157,7 +157,7 @@ namespace MetaFac.CG4.Models
                     result = result.AddError(
                         new ValidationError(
                             ValidationErrorCode.InvalidEntityTag,
-                            model.Name, entityDef.ToTagName(), null, null, null));
+                            model.Name, entityDef.ToTagName(), null));
 
                 if (errorHandling == ValidationErrorHandling.StopOnFirst && result.HasErrors)
                     return result;

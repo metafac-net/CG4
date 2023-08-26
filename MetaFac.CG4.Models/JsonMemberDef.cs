@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MetaFac.CG4.Models
 {
@@ -8,6 +9,7 @@ namespace MetaFac.CG4.Models
         public int? Tag { get; set; }
         public string? Summary { get; set; }
         public JsonItemState? State { get; set; }
+        public Dictionary<string, string>? Tokens { get; set; }
         public string? InnerType { get; set; }
         public bool Nullable { get; set; }
         public JsonProxyDef? ProxyDef { get; set; }
@@ -30,6 +32,7 @@ namespace MetaFac.CG4.Models
             IsModelType = source.IsModelType;
             IndexType = source.IndexType;
             State = JsonItemState.From(source.State);
+            Tokens = source.Tokens.Count > 0 ? new Dictionary<string, string>(source.Tokens) : null;
         }
 
         public bool Equals(JsonMemberDef? other)
@@ -40,6 +43,7 @@ namespace MetaFac.CG4.Models
                    && Tag == other.Tag
                    && string.Equals(Summary, other.Summary)
                    && Equals(State, other.State)
+                   && Tokens.IsEqualTo(other.Tokens)
                    && string.Equals(InnerType, other.InnerType)
                    && Nullable == other.Nullable
                    && Equals(ProxyDef, other.ProxyDef)
@@ -61,6 +65,15 @@ namespace MetaFac.CG4.Models
             hashCode.Add(Tag);
             hashCode.Add(Summary);
             hashCode.Add(State);
+            if (Tokens is not null)
+            {
+                hashCode.Add(Tokens.Count);
+                foreach (var kvp in Tokens)
+                {
+                    hashCode.Add(kvp.Key);
+                    hashCode.Add(kvp.Value);
+                }
+            }
             hashCode.Add(InnerType);
             hashCode.Add(Nullable);
             hashCode.Add(ProxyDef);

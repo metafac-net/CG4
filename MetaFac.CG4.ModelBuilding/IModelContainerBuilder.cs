@@ -6,6 +6,6 @@ namespace MetaFac.CG4.ModelBuilding
     {
         ModelContainer Build();
         IModelContainerBuilder AddOuterToken(string name, string value);
-        IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag);
+        IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag = null);
     }
 }

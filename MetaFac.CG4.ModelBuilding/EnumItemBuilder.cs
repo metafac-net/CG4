@@ -1,10 +1,12 @@
 ﻿using MetaFac.CG4.Models;
+using System.Collections.Generic;
 
 namespace MetaFac.CG4.ModelBuilding
 {
     internal sealed class EnumItemBuilder : IEnumItemBuilder
     {
         private readonly EnumTypeBuilder _outer;
+        private readonly Dictionary<string, string> _tokens = new Dictionary<string, string>();
         private readonly string _name;
         private readonly int _code;
         private readonly string? _summary;
@@ -23,7 +25,7 @@ namespace MetaFac.CG4.ModelBuilding
 
         public ModelEnumItemDef GetEnumItemDef()
         {
-            return new ModelEnumItemDef(_name, _summary, _code, ModelItemState.Create(_itemState, _reason));
+            return new ModelEnumItemDef(_name, _code, _summary, ModelItemState.Create(_itemState, _reason), _tokens);
         }
 
         public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)

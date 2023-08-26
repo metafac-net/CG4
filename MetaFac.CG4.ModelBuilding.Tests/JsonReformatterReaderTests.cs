@@ -82,10 +82,10 @@ namespace MetaFac.CG4.ModelBuilding.Tests
         {
             ModelContainer metadata
                 = ModelBuilder.Create()
-                .AddModelDef("Model1", null)
-                    .AddEntity("Entity1", null)
+                .AddModelDef("Model1")
+                    .AddEntity("Entity1")
                         .AddMember("Member1", null, "string", true, 0, null, false)
-                    .AddEntity("Entity2", null)
+                    .AddEntity("Entity2")
                     .AddEnumType("Enum1")
                         .AddEnumItem("None", 0)
                         .AddEnumItem("Value1", 1)

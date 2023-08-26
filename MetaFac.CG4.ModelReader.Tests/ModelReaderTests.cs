@@ -53,13 +53,13 @@ namespace MetaFac.CG4.ModelReader.Tests
             };
             var enumItemDefs = new List<ModelEnumItemDef>
             {
-                new ModelEnumItemDef("Item1", "Summary of item 1", 1),
-                new ModelEnumItemDef("Item2", null, 2),
-                new ModelEnumItemDef("Item3", null, 3, ModelItemState.Create(true, false, "Not used anymore")),
+                new ModelEnumItemDef("Item1", 1, "Summary of item 1"),
+                new ModelEnumItemDef("Item2", 2),
+                new ModelEnumItemDef("Item3", 3, null, ModelItemState.Create(true, false, "Not used anymore")),
             };
             var enumTypeDefs = new List<ModelEnumTypeDef>
             {
-                new ModelEnumTypeDef("Enum1", "Enumeration 1", null, enumItemDefs)
+                new ModelEnumTypeDef("Enum1", enumItemDefs, "Enumeration 1")
             };
             var modelDef = new ModelDefinition("Model1", 1, entityDefs, enumTypeDefs);
             var metadata = new ModelContainer(modelDef);

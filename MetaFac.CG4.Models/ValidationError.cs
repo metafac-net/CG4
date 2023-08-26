@@ -36,7 +36,7 @@
 
         public ValidationError(ValidationErrorCode errorCode,
             string modelName, TagName entityDef, TagName? memberDef,
-            TagName? otherEntityDef, TagName? otherMemberDef)
+            TagName? otherEntityDef = null, TagName? otherMemberDef = null)
         {
             ErrorCode = errorCode;
             ModelName = modelName;

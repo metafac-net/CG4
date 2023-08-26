@@ -8,7 +8,7 @@ namespace MetaFac.CG4.ModelBuilding
     {
         private readonly ModelContainerBuilder _outer;
         private readonly Dictionary<string, string> _tokens = new Dictionary<string, string>();
-        private readonly string _nameqqq;
+        private readonly string _name;
         private readonly int? _tag;
         private readonly Dictionary<string, EntityBuilder> _entityDefBuilders = new Dictionary<string, EntityBuilder>();
         private readonly Dictionary<string, EnumTypeBuilder> _enumTypeDefBuilders = new Dictionary<string, EnumTypeBuilder>();
@@ -16,7 +16,7 @@ namespace MetaFac.CG4.ModelBuilding
         public ModelDefinitionBuilder(ModelContainerBuilder outer, string name, int? tag)
         {
             _outer = outer;
-            _nameqqq = name;
+            _name = name;
             _tag = tag;
         }
 
@@ -44,7 +44,7 @@ namespace MetaFac.CG4.ModelBuilding
         {
             List<ModelEntityDef> entityDefs = _entityDefBuilders.Values.Select(edb => edb.GetModelEntityDef()).OrderBy(x => x.Name).ToList();
             List<ModelEnumTypeDef> enumTypeDefs = _enumTypeDefBuilders.Values.Select(etdb => etdb.GetModelEnumTypeDef()).OrderBy(x => x.Name).ToList();
-            return new ModelDefinition(_nameqqq, _tag, entityDefs, enumTypeDefs, _tokens);
+            return new ModelDefinition(_name, _tag, entityDefs, enumTypeDefs, _tokens);
         }
 
         public IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag) => _outer.AddModelDef(modelName, modelTag);

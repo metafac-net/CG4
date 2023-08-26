@@ -58,10 +58,10 @@ namespace MetaFac.CG4.ModelReader
                         if (enumItemValue is not null)
                         {
                             int enumItemAsInt = (int)enumItemValue;
-                            enumItemsDefs.Add(new ModelEnumItemDef(fieldInfo.Name, null, enumItemAsInt, null));
+                            enumItemsDefs.Add(new ModelEnumItemDef(fieldInfo.Name, enumItemAsInt));
                         }
                     }
-                    enumTypeDefs.Add(new ModelEnumTypeDef(typeInfo.Name, null, null, enumItemsDefs));
+                    enumTypeDefs.Add(new ModelEnumTypeDef(typeInfo.Name, enumItemsDefs));
                 }
             }
 
@@ -81,7 +81,7 @@ namespace MetaFac.CG4.ModelReader
                         if (entityTag.HasValue && ea.Tag != entityTag.Value)
                             throw new ValidationException(
                                 new ValidationError(ValidationErrorCode.RedefinedEntityTag, modelName,
-                                entityTagName, null, new TagName(ea.Tag, entityName), null));
+                                entityTagName, null, new TagName(ea.Tag, entityName)));
                         entityTag = ea.Tag;
                         entityState = ModelItemState.Create(ea.IsInActive, ea.IsRedacted, ea.Reason);
                     }
@@ -109,7 +109,7 @@ namespace MetaFac.CG4.ModelReader
                 var entityTypeInfo = toBeProcessed.Dequeue();
                 var entityName = entityTypeInfo.EntityName;
 
-                throw new ValidationException(new ValidationError(ValidationErrorCode.UnknownParent, modelName, new TagName(null, entityName), null, null, null));
+                throw new ValidationException(new ValidationError(ValidationErrorCode.UnknownParent, modelName, new TagName(null, entityName), null));
             }
 
             return new ModelDefinition(modelName, modelTag, entityDefsByName.Values, enumTypeDefs);
@@ -182,7 +182,7 @@ namespace MetaFac.CG4.ModelReader
                     throw new ValidationException(
                         new ValidationError(
                             ValidationErrorCode.InvalidArrayRank,
-                            modelName, entityTagName, new TagName(null, memberName, null), null, null));
+                            modelName, entityTagName, new TagName(null, memberName)));
                 }
             }
             else if (innerType.IsConstructedGenericType
@@ -232,7 +232,7 @@ namespace MetaFac.CG4.ModelReader
                     throw new ValidationException(
                         new ValidationError(
                             ValidationErrorCode.UnknownFieldType,
-                            modelName, entityTagName, new TagName(null, memberName, fieldTypeName), null, null));
+                            modelName, entityTagName, new TagName(null, memberName, fieldTypeName)));
                 }
             }
             if (innerType.Namespace == sourceNamespace && innerType.IsEnum)
@@ -286,7 +286,7 @@ namespace MetaFac.CG4.ModelReader
                             throw new ValidationException(
                                 new ValidationError(
                                     ValidationErrorCode.UnknownFieldType,
-                                    modelName, entityTagName, new TagName(null, memberName, fieldType.FullName), null, null));
+                                    modelName, entityTagName, new TagName(null, memberName, fieldType.FullName)));
                 }
 
             }
@@ -319,7 +319,7 @@ namespace MetaFac.CG4.ModelReader
                 throw new ValidationException(
                     new ValidationError(
                         ValidationErrorCode.UnknownFieldType,
-                        modelName, entityTagName, new TagName(null, memberName, fieldType.FullName), null, null));
+                        modelName, entityTagName, new TagName(null, memberName, fieldType.FullName)));
             }
 
             // convert built-in type names

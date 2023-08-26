@@ -16,13 +16,13 @@
     }
     public interface IModelContainerBuilder
     {
-        MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag);
+        MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag = default);
         MetaFac.CG4.ModelBuilding.IModelContainerBuilder AddOuterToken(string name, string value);
         MetaFac.CG4.Models.ModelContainer Build();
     }
     public interface IModelDefinitionBuilder : MetaFac.CG4.ModelBuilding.IModelContainerBuilder
     {
-        MetaFac.CG4.ModelBuilding.IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
+        MetaFac.CG4.ModelBuilding.IEntityBuilder AddEntity(string entityName, int? entityTag = default, string? baseName = null, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
         MetaFac.CG4.ModelBuilding.IEnumTypeBuilder AddEnumType(string enumTypeName, string? summary = null, MetaFac.CG4.Models.ItemState itemState = 0, string? reason = null);
         MetaFac.CG4.ModelBuilding.IModelDefinitionBuilder AddModelToken(string name, string value);
     }

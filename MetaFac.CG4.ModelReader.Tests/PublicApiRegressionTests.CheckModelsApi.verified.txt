@@ -1,0 +1,318 @@
+﻿namespace MetaFac.CG4.Models
+{
+    public enum ItemState
+    {
+        Active = 0,
+        Reserved = 1,
+        Retired = 2,
+        Deleted = 3,
+    }
+    public class JsonEntityDef : System.IEquatable<MetaFac.CG4.Models.JsonEntityDef>
+    {
+        public JsonEntityDef() { }
+        public JsonEntityDef(MetaFac.CG4.Models.ModelEntityDef source) { }
+        public System.Collections.Generic.List<MetaFac.CG4.Models.JsonMemberDef>? MemberDefs { get; set; }
+        public string? Name { get; set; }
+        public string? ParentName { get; set; }
+        public MetaFac.CG4.Models.JsonItemState? State { get; set; }
+        public string? Summary { get; set; }
+        public int? Tag { get; set; }
+        public System.Collections.Generic.Dictionary<string, string>? Tokens { get; set; }
+        public bool Equals(MetaFac.CG4.Models.JsonEntityDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+    }
+    public class JsonEnumItemDef : System.IEquatable<MetaFac.CG4.Models.JsonEnumItemDef>
+    {
+        public JsonEnumItemDef() { }
+        public JsonEnumItemDef(MetaFac.CG4.Models.ModelEnumItemDef source) { }
+        public string? Name { get; set; }
+        public MetaFac.CG4.Models.JsonItemState? State { get; set; }
+        public string? Summary { get; set; }
+        public System.Collections.Generic.Dictionary<string, string>? Tokens { get; set; }
+        public int Value { get; set; }
+        public bool Equals(MetaFac.CG4.Models.JsonEnumItemDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+    }
+    public class JsonEnumTypeDef : System.IEquatable<MetaFac.CG4.Models.JsonEnumTypeDef>
+    {
+        public JsonEnumTypeDef() { }
+        public JsonEnumTypeDef(MetaFac.CG4.Models.ModelEnumTypeDef source) { }
+        public System.Collections.Generic.List<MetaFac.CG4.Models.JsonEnumItemDef>? EnumItemDefs { get; set; }
+        public string? Name { get; set; }
+        public MetaFac.CG4.Models.JsonItemState? State { get; set; }
+        public string? Summary { get; set; }
+        public System.Collections.Generic.Dictionary<string, string>? Tokens { get; set; }
+        public bool Equals(MetaFac.CG4.Models.JsonEnumTypeDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+    }
+    public class JsonItemState : System.IEquatable<MetaFac.CG4.Models.JsonItemState>
+    {
+        public JsonItemState() { }
+        public bool IsInactive { get; set; }
+        public bool IsRedacted { get; set; }
+        public string? Reason { get; set; }
+        public bool Equals(MetaFac.CG4.Models.JsonItemState? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public static MetaFac.CG4.Models.JsonItemState? From(MetaFac.CG4.Models.ModelItemState? source) { }
+    }
+    public class JsonMemberDef : System.IEquatable<MetaFac.CG4.Models.JsonMemberDef>
+    {
+        public JsonMemberDef() { }
+        public JsonMemberDef(MetaFac.CG4.Models.ModelMemberDef source) { }
+        public int ArrayRank { get; set; }
+        public string? IndexType { get; set; }
+        public string? InnerType { get; set; }
+        public bool IsModelType { get; set; }
+        public string? Name { get; set; }
+        public bool Nullable { get; set; }
+        public MetaFac.CG4.Models.JsonProxyDef? ProxyDef { get; set; }
+        public MetaFac.CG4.Models.JsonItemState? State { get; set; }
+        public string? Summary { get; set; }
+        public int? Tag { get; set; }
+        public System.Collections.Generic.Dictionary<string, string>? Tokens { get; set; }
+        public bool Equals(MetaFac.CG4.Models.JsonMemberDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+    }
+    public class JsonMetadata : System.IEquatable<MetaFac.CG4.Models.JsonMetadata>
+    {
+        public JsonMetadata() { }
+        public JsonMetadata(MetaFac.CG4.Models.ModelContainer source) { }
+        public System.Collections.Generic.List<MetaFac.CG4.Models.JsonModelDef>? ModelDefs { get; set; }
+        public System.Collections.Generic.Dictionary<string, string>? Tokens { get; set; }
+        public bool Equals(MetaFac.CG4.Models.JsonMetadata? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+    }
+    public class JsonModelDef : System.IEquatable<MetaFac.CG4.Models.JsonModelDef>
+    {
+        public JsonModelDef() { }
+        public JsonModelDef(MetaFac.CG4.Models.ModelDefinition source) { }
+        public System.Collections.Generic.List<MetaFac.CG4.Models.JsonEntityDef>? EntityDefs { get; set; }
+        public System.Collections.Generic.List<MetaFac.CG4.Models.JsonEnumTypeDef>? EnumTypeDefs { get; set; }
+        public string? Name { get; set; }
+        public int? Tag { get; set; }
+        public System.Collections.Generic.Dictionary<string, string>? Tokens { get; set; }
+        public bool Equals(MetaFac.CG4.Models.JsonModelDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+    }
+    public class JsonProxyDef : System.IEquatable<MetaFac.CG4.Models.JsonProxyDef>
+    {
+        public JsonProxyDef() { }
+        public string? ConcreteName { get; set; }
+        public string? ExternalName { get; set; }
+        public bool Equals(MetaFac.CG4.Models.JsonProxyDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public static MetaFac.CG4.Models.JsonProxyDef? From(MetaFac.CG4.Models.ModelProxyDef? source) { }
+    }
+    public static class JsonReformatter
+    {
+        public static System.Collections.Generic.IReadOnlyList<MetaFac.CG4.Models.JsonReformatterToken> ReadTokens(System.ReadOnlySpan<byte> jsonData) { }
+        public static string Reformat(string input, System.Text.Json.JsonReaderOptions readerOptions = default, System.Text.Json.JsonWriterOptions writerOptions = default) { }
+        public static string WriteTokens(System.Collections.Generic.IReadOnlyList<MetaFac.CG4.Models.JsonReformatterToken> tokens, System.Text.Json.JsonWriterOptions writerOptions = default) { }
+    }
+    public readonly struct JsonReformatterToken
+    {
+        public readonly int Depth;
+        public readonly System.ReadOnlyMemory<byte> RawBytes;
+        public readonly string Text;
+        public readonly System.Text.Json.JsonTokenType TokenType;
+        public JsonReformatterToken(int depth, System.Text.Json.JsonTokenType tokenType) { }
+        public JsonReformatterToken(int depth, System.Text.Json.JsonTokenType tokenType, System.ReadOnlyMemory<byte> rawBytes) { }
+        public JsonReformatterToken(int depth, System.Text.Json.JsonTokenType tokenType, string text) { }
+        public override string ToString() { }
+    }
+    public sealed class ModelContainer : System.IEquatable<MetaFac.CG4.Models.ModelContainer>
+    {
+        public readonly System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelDefinition> ModelDefs;
+        public readonly System.Collections.Immutable.ImmutableDictionary<string, string> Tokens;
+        public ModelContainer(MetaFac.CG4.Models.JsonMetadata? source) { }
+        public ModelContainer(MetaFac.CG4.Models.ModelDefinition modelDef, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens = null) { }
+        public ModelContainer(System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelDefinition>? modelDefs = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens = null) { }
+        public bool Equals(MetaFac.CG4.Models.ModelContainer? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public MetaFac.CG4.Models.ModelContainer SetToken(string name, string value) { }
+        public MetaFac.CG4.Models.ModelContainer SetTokens(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>> tokens) { }
+        public string ToJson(bool writeIndented = false) { }
+        public static MetaFac.CG4.Models.ModelContainer FromJson(string? json) { }
+    }
+    public class ModelDefinition : System.IEquatable<MetaFac.CG4.Models.ModelDefinition>
+    {
+        public readonly string Name;
+        public readonly int? Tag;
+        public readonly System.Collections.Immutable.ImmutableDictionary<string, string> Tokens;
+        public ModelDefinition(MetaFac.CG4.Models.JsonModelDef? source) { }
+        public ModelDefinition(string modelName, int? tag, System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelEntityDef>? entityDefs = null, System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelEnumTypeDef>? enumTypeDefs = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens = null) { }
+        public System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelEntityDef> AllEntityDefs { get; }
+        public System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelEnumTypeDef> AllEnumTypeDefs { get; }
+        public System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelEntityDef> EntityDefs { get; }
+        public System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelEnumTypeDef> EnumTypeDefs { get; }
+        public bool Equals(MetaFac.CG4.Models.ModelDefinition? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+    }
+    public class ModelEntityDef : MetaFac.CG4.Models.ModelItemBase, System.IEquatable<MetaFac.CG4.Models.ModelEntityDef>
+    {
+        public readonly string? ParentName;
+        public ModelEntityDef(string name, int? tag, string? summary, string? parentName, System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelMemberDef> memberDefs, MetaFac.CG4.Models.ModelItemState? state = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens = null) { }
+        public System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelEntityDef> AllDerivedEntities { get; }
+        public System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelMemberDef> AllMemberDefs { get; }
+        public System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelEntityDef> DerivedEntities { get; }
+        public System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelMemberDef> MemberDefs { get; }
+        public bool Equals(MetaFac.CG4.Models.ModelEntityDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public static MetaFac.CG4.Models.ModelEntityDef? From(MetaFac.CG4.Models.JsonEntityDef? source) { }
+    }
+    public class ModelEnumItemDef : MetaFac.CG4.Models.ModelItemBase, System.IEquatable<MetaFac.CG4.Models.ModelEnumItemDef>
+    {
+        public readonly int Value;
+        public ModelEnumItemDef(string name, int value, string? summary = null, MetaFac.CG4.Models.ModelItemState? state = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens = null) { }
+        public bool Equals(MetaFac.CG4.Models.ModelEnumItemDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public static MetaFac.CG4.Models.ModelEnumItemDef? From(MetaFac.CG4.Models.JsonEnumItemDef? source) { }
+    }
+    public class ModelEnumTypeDef : MetaFac.CG4.Models.ModelItemBase, System.IEquatable<MetaFac.CG4.Models.ModelEnumTypeDef>
+    {
+        public readonly System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelEnumItemDef> EnumItemDefs;
+        public ModelEnumTypeDef(string name, System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelEnumItemDef> enumItemDefs, string? summary = null, MetaFac.CG4.Models.ModelItemState? state = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens = null) { }
+        public bool Equals(MetaFac.CG4.Models.ModelEnumTypeDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public static MetaFac.CG4.Models.ModelEnumTypeDef? From(MetaFac.CG4.Models.JsonEnumTypeDef? source) { }
+    }
+    public static class ModelEqualityHelpers
+    {
+        public static bool IsEqualTo<T>(this System.Collections.Generic.IList<T>? self, System.Collections.Generic.IList<T>? other)
+            where T : System.IEquatable<T> { }
+        public static bool IsEqualTo<T>(this T self, T other)
+            where T :  class, System.IEquatable<T> { }
+        public static bool IsEqualTo<TK, TV>(this System.Collections.Generic.IDictionary<TK, TV>? self, System.Collections.Generic.IDictionary<TK, TV>? other)
+            where TV : System.IEquatable<TV> { }
+    }
+    public abstract class ModelItemBase : System.IEquatable<MetaFac.CG4.Models.ModelItemBase>
+    {
+        public readonly string Name;
+        public readonly MetaFac.CG4.Models.ModelItemState? State;
+        public readonly string? Summary;
+        public readonly int? Tag;
+        public readonly System.Collections.Immutable.ImmutableDictionary<string, string> Tokens;
+        protected ModelItemBase(string name, int? tag, string? summary, MetaFac.CG4.Models.ModelItemState? state, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens) { }
+        public bool IsInactive { get; }
+        public bool IsRedacted { get; }
+        public bool Equals(MetaFac.CG4.Models.ModelItemBase? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+    }
+    public class ModelItemState : System.IEquatable<MetaFac.CG4.Models.ModelItemState>
+    {
+        public readonly bool IsInactive;
+        public readonly bool IsRedacted;
+        public readonly string? Reason;
+        public bool Equals(MetaFac.CG4.Models.ModelItemState? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public static MetaFac.CG4.Models.ModelItemState? Create(MetaFac.CG4.Models.ItemState itemState, string? reason) { }
+        public static MetaFac.CG4.Models.ModelItemState? Create(bool isInactive, bool isRedacted, string? reason) { }
+        public static MetaFac.CG4.Models.ModelItemState? From(MetaFac.CG4.Models.JsonItemState? source) { }
+    }
+    public class ModelMemberDef : MetaFac.CG4.Models.ModelItemBase, System.IEquatable<MetaFac.CG4.Models.ModelMemberDef>
+    {
+        public readonly int ArrayRank;
+        public readonly string? IndexType;
+        public readonly string InnerType;
+        public readonly bool IsModelType;
+        public readonly bool Nullable;
+        public readonly MetaFac.CG4.Models.ModelProxyDef? ProxyDef;
+        public ModelMemberDef(string name, int? tag, string? summary, string innerType, bool nullable, MetaFac.CG4.Models.ModelProxyDef? proxyDef, int arrayRank, string? indexType, bool isModelType, MetaFac.CG4.Models.ModelItemState? state = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens = null) { }
+        public bool IsBufferType { get; }
+        public bool IsStringType { get; }
+        public bool Equals(MetaFac.CG4.Models.ModelMemberDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public static MetaFac.CG4.Models.ModelMemberDef? From(MetaFac.CG4.Models.JsonMemberDef? source) { }
+    }
+    public class ModelProxyDef : System.IEquatable<MetaFac.CG4.Models.ModelProxyDef>
+    {
+        public readonly string ConcreteName;
+        public readonly string ExternalName;
+        public ModelProxyDef(string externalName, string concreteName) { }
+        public bool Equals(MetaFac.CG4.Models.ModelProxyDef? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public static MetaFac.CG4.Models.ModelProxyDef? From(MetaFac.CG4.Models.JsonProxyDef? source) { }
+    }
+    public class ModelValidator
+    {
+        public ModelValidator() { }
+        public MetaFac.CG4.Models.ModelContainer MergeMetadata(MetaFac.CG4.Models.ModelContainer oldMetadata, MetaFac.CG4.Models.ModelContainer newMetadata, bool updateModelName = false, bool createEntities = false, bool ignoreNewEntityTags = false, bool updateEntities = false, bool deleteEntities = false) { }
+        public MetaFac.CG4.Models.ValidationResult Validate(MetaFac.CG4.Models.ModelContainer metadata, MetaFac.CG4.Models.ValidationErrorHandling errorHandling = 0) { }
+    }
+    public class TagName
+    {
+        public readonly string? InnerType;
+        public readonly string Name;
+        public readonly int? Tag;
+        public TagName(int? tag, string name, string? innerType = null) { }
+        public override string ToString() { }
+    }
+    public readonly struct Unknown { }
+    public class ValidationError
+    {
+        public readonly MetaFac.CG4.Models.TagName EntityDef;
+        public readonly MetaFac.CG4.Models.ValidationErrorCode ErrorCode;
+        public readonly MetaFac.CG4.Models.TagName? MemberDef;
+        public readonly string ModelName;
+        public readonly MetaFac.CG4.Models.TagName? OtherEntityDef;
+        public readonly MetaFac.CG4.Models.TagName? OtherMemberDef;
+        public ValidationError(MetaFac.CG4.Models.ValidationErrorCode errorCode, string modelName, MetaFac.CG4.Models.TagName entityDef, MetaFac.CG4.Models.TagName? memberDef, MetaFac.CG4.Models.TagName? otherEntityDef = null, MetaFac.CG4.Models.TagName? otherMemberDef = null) { }
+        public string Message { get; }
+    }
+    public enum ValidationErrorCode
+    {
+        MissingEntityTag = 0,
+        InvalidEntityTag = 1,
+        DuplicateEntityTag = 2,
+        RedefinedEntityTag = 3,
+        DuplicateEntityName = 4,
+        MissingFieldTag = 5,
+        DuplicateFieldTag = 6,
+        DuplicateFieldName = 7,
+        UnknownFieldType = 8,
+        CircularReference = 9,
+        UnknownParent = 10,
+        ParentNotSupported = 11,
+        NonAbstractParent = 12,
+        InvalidArrayRank = 13,
+    }
+    public enum ValidationErrorHandling
+    {
+        Default = 0,
+        StopOnFirst = 1,
+        ThrowOnFirst = 2,
+        ThrowAggregate = 3,
+    }
+    public class ValidationException : System.Exception
+    {
+        public ValidationException(MetaFac.CG4.Models.ValidationError error) { }
+    }
+    public class ValidationResult
+    {
+        public readonly MetaFac.CG4.Models.ValidationErrorHandling ErrorHandling;
+        public readonly System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ValidationError> Errors;
+        public readonly System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ValidationError> Warnings;
+        public bool HasErrors { get; }
+        public bool HasWarnings { get; }
+        public MetaFac.CG4.Models.ValidationResult AddError(MetaFac.CG4.Models.ValidationError error) { }
+        public MetaFac.CG4.Models.ValidationResult AddWarning(MetaFac.CG4.Models.ValidationError error) { }
+        public static MetaFac.CG4.Models.ValidationResult Init(MetaFac.CG4.Models.ValidationErrorHandling errorHandling) { }
+    }
+}

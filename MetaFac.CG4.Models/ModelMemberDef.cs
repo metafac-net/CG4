@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MetaFac.CG4.Models
 {
@@ -21,8 +22,9 @@ namespace MetaFac.CG4.Models
             int arrayRank,
             string? indexType,
             bool isModelType, 
-            ModelItemState? state = null)
-            : base(name, tag, summary, state)
+            ModelItemState? state = null,
+            IEnumerable<KeyValuePair<string, string>>? tokens = null)
+            : base(name, tag, summary, state, tokens)
         {
             InnerType = innerType ?? throw new ArgumentNullException(nameof(innerType));
             Nullable = nullable;
@@ -45,7 +47,8 @@ namespace MetaFac.CG4.Models
                 source.ArrayRank,
                 source.IndexType,
                 source.IsModelType,
-                ModelItemState.From(source.State)
+                ModelItemState.From(source.State),
+                source.Tokens
                 );
         }
 

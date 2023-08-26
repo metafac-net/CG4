@@ -8,7 +8,6 @@ namespace MetaFac.CG4.Models
     public class ModelEntityDef : ModelItemBase, IEquatable<ModelEntityDef>
     {
         public readonly string? ParentName;
-        public readonly ImmutableDictionary<string, string> Tokens;
         private readonly ImmutableList<ModelMemberDef> _memberDefs;
         private readonly ImmutableList<ModelEntityDef> _derivedEntities;
         public ImmutableList<ModelEntityDef> AllDerivedEntities => _derivedEntities;
@@ -23,10 +22,9 @@ namespace MetaFac.CG4.Models
             ImmutableList<ModelMemberDef> memberDefs,
             ImmutableList<ModelEntityDef> derivedEntities,
             ModelItemState? state)
-            : base(name, tag, summary, state)
+            : base(name, tag, summary, state, tokens)
         {
             ParentName = parentName;
-            Tokens = tokens;
             _memberDefs = memberDefs;
             _derivedEntities = derivedEntities;
         }
@@ -36,14 +34,11 @@ namespace MetaFac.CG4.Models
             IEnumerable<ModelMemberDef> memberDefs,
             ModelItemState? state = null,
             IEnumerable<KeyValuePair<string, string>>? tokens = null)
-            : base(name, tag, summary, state)
+            : base(name, tag, summary, state, tokens)
         {
             ParentName = parentName;
             _memberDefs = ImmutableList<ModelMemberDef>.Empty.AddRange(memberDefs);
             _derivedEntities = ImmutableList<ModelEntityDef>.Empty;
-            Tokens = tokens is null
-                ? ImmutableDictionary<string, string>.Empty
-                : ImmutableDictionary<string, string>.Empty.AddRange(tokens);
         }
 
         internal ModelEntityDef SetAllDescendents(IEnumerable<ModelEntityDef> descendents)
@@ -77,7 +72,6 @@ namespace MetaFac.CG4.Models
             return base.Equals(other)
                 && string.Equals(ParentName, other.ParentName)
                 && _memberDefs.IsEqualTo(other._memberDefs)
-                && Tokens.IsEqualTo(other.Tokens)
                 ;
         }
 
@@ -95,12 +89,6 @@ namespace MetaFac.CG4.Models
             foreach (var md in _memberDefs)
             {
                 hashCode.Add(md);
-            }
-            hashCode.Add(Tokens.Count);
-            foreach (var kvp in Tokens)
-            {
-                hashCode.Add(kvp.Key);
-                hashCode.Add(kvp.Value);
             }
             hashCode.Add(State);
             return hashCode.ToHashCode();

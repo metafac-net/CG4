@@ -7,6 +7,7 @@ namespace MetaFac.CG4.ModelBuilding
     internal sealed class EnumTypeBuilder : IEnumTypeBuilder
     {
         private readonly ModelDefinitionBuilder _outer;
+        private readonly Dictionary<string, string> _tokens = new Dictionary<string, string>();
         private readonly string _name;
         private readonly string? _summary;
         private readonly ItemState _itemState;
@@ -33,7 +34,7 @@ namespace MetaFac.CG4.ModelBuilding
         public ModelEnumTypeDef GetModelEnumTypeDef()
         {
             List<ModelEnumItemDef> enumItemDefs = _enumItemBuilders.Values.Select(eidb => eidb.GetEnumItemDef()).OrderBy(x => x.Name).ToList();
-            return new ModelEnumTypeDef(_name, _summary, ModelItemState.Create(_itemState, _reason), enumItemDefs);
+            return new ModelEnumTypeDef(_name, enumItemDefs, _summary, ModelItemState.Create(_itemState, _reason), _tokens);
         }
 
         public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)

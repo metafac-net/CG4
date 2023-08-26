@@ -8,8 +8,9 @@ namespace MetaFac.CG4.Models
     {
         public readonly ImmutableList<ModelEnumItemDef> EnumItemDefs;
 
-        public ModelEnumTypeDef(string name, string? summary, ModelItemState? state, IEnumerable<ModelEnumItemDef> enumItemDefs)
-            : base(name, null, summary, state)
+        public ModelEnumTypeDef(string name, IEnumerable<ModelEnumItemDef> enumItemDefs, 
+            string? summary = null, ModelItemState? state = null, IEnumerable<KeyValuePair<string, string>>? tokens = null)
+            : base(name, null, summary, state, tokens)
         {
             EnumItemDefs = ImmutableList<ModelEnumItemDef>.Empty.AddRange(enumItemDefs);
         }
@@ -19,9 +20,10 @@ namespace MetaFac.CG4.Models
             if (source is null) return null;
             return new ModelEnumTypeDef(
                 source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
+                source.EnumItemDefs.NotNullRange(ModelEnumItemDef.From),
                 source.Summary,
                 ModelItemState.From(source.State),
-                source.EnumItemDefs.NotNullRange(ModelEnumItemDef.From));
+                source.Tokens);
         }
 
         public bool Equals(ModelEnumTypeDef? other)

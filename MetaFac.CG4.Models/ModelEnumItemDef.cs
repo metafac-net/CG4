@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MetaFac.CG4.Models
 {
@@ -6,8 +7,9 @@ namespace MetaFac.CG4.Models
     {
         public readonly int Value;
 
-        public ModelEnumItemDef(string name, string? summary, int value, ModelItemState? state = null)
-            : base(name, null, summary, state)
+        public ModelEnumItemDef(string name, int value, 
+            string? summary = null, ModelItemState? state = null, IEnumerable<KeyValuePair<string, string>>? tokens = null)
+            : base(name, null, summary, state, tokens)
         {
             Value = value;
         }
@@ -17,9 +19,10 @@ namespace MetaFac.CG4.Models
             if (source is null) return null;
             return new ModelEnumItemDef(
                 source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
-                source.Summary,
                 source.Value,
-                ModelItemState.From(source.State));
+                source.Summary,
+                ModelItemState.From(source.State),
+                source.Tokens);
         }
 
         public bool Equals(ModelEnumItemDef? other)
