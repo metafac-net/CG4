@@ -1,10 +1,5 @@
 ﻿using MetaFac.CG4.Attributes;
-using MetaFac.Memory;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MetaFac.CG4.Generators.UnitTests.Indexes
 {

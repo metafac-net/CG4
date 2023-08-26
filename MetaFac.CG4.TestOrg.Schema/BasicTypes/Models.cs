@@ -1,8 +1,6 @@
 ﻿using MetaFac.CG4.Attributes;
-using MetaFac.Memory;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
 {
@@ -105,7 +103,7 @@ namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
     public class Basic_string
     {
         [Member(1)] public string? Scalar { get; }
-        [Member(2)] public string?[]? Vector{ get; }
+        [Member(2)] public string?[]? Vector { get; }
         [Member(3)] public Dictionary<string, string?>? MapValue { get; }
     }
 

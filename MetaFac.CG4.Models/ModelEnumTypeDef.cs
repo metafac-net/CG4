@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 
 namespace MetaFac.CG4.Models
@@ -8,7 +8,7 @@ namespace MetaFac.CG4.Models
     {
         public readonly ImmutableList<ModelEnumItemDef> EnumItemDefs;
 
-        public ModelEnumTypeDef(string name, IEnumerable<ModelEnumItemDef> enumItemDefs, 
+        public ModelEnumTypeDef(string name, IEnumerable<ModelEnumItemDef> enumItemDefs,
             string? summary = null, ModelItemState? state = null, IEnumerable<KeyValuePair<string, string>>? tokens = null)
             : base(name, null, summary, state, tokens)
         {

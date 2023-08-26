@@ -202,8 +202,8 @@ namespace MetaFac.CG4.CLI
 
         internal async ValueTask<int> j2cHandler(
             string jsonFilename,
-            string generatorName, 
-            string outputFilename, 
+            string generatorName,
+            string outputFilename,
             string outputNamespace,
             bool ignoreErrors)
         {
@@ -236,10 +236,10 @@ namespace MetaFac.CG4.CLI
         }
 
         internal async ValueTask<int> a2cHandler(
-            string assmFilename, 
+            string assmFilename,
             string assmNamespace,
-            string generatorName, 
-            string outputCodeFilename, 
+            string generatorName,
+            string outputCodeFilename,
             string outputNamespace,
             bool ignoreErrors)
         {

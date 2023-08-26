@@ -1,7 +1,6 @@
 ﻿using LabApps.Units;
 using MessagePack;
 using System;
-using System.Runtime.CompilerServices;
 
 namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
 {

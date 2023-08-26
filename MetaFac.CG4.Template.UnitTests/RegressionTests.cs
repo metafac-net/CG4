@@ -165,7 +165,7 @@ namespace MetaFac.CG4.Template.UnitTests
         }
 
         [Theory]
-        [InlineData(WireFormat.MessagePack, TestFieldId.UnaryOther, 
+        [InlineData(WireFormat.MessagePack, TestFieldId.UnaryOther,
             "C7-1C-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-90-01-C0-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.MessagePack, TestFieldId.UnaryMaybe,
             "C7-1F-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-00-63-00-C0-01-C0-C0-00-C0-C0-C0-C0-C0-C0-C0-C0")]

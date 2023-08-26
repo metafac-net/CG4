@@ -196,7 +196,7 @@ namespace MetaFac.CG4.Generators
             {
                 ["FieldName"] = memberDef.Name,
                 ["InnerType"] = innerType,
-        };
+            };
             if (memberDef.Tag.HasValue)
                 tokens["FieldTag"] = memberDef.Tag.Value.ToString();
             if (memberDef.IsModelType)

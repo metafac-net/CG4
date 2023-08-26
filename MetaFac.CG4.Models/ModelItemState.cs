@@ -49,7 +49,7 @@ namespace MetaFac.CG4.Models
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
-            return IsInactive == other.IsInactive 
+            return IsInactive == other.IsInactive
                 && IsRedacted == other.IsRedacted
                 && string.Equals(Reason, other.Reason)
                 ;

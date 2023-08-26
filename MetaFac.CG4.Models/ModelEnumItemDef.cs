@@ -7,7 +7,7 @@ namespace MetaFac.CG4.Models
     {
         public readonly int Value;
 
-        public ModelEnumItemDef(string name, int value, 
+        public ModelEnumItemDef(string name, int value,
             string? summary = null, ModelItemState? state = null, IEnumerable<KeyValuePair<string, string>>? tokens = null)
             : base(name, null, summary, state, tokens)
         {
@@ -29,7 +29,7 @@ namespace MetaFac.CG4.Models
         {
             if (ReferenceEquals(this, other)) return true;
             if (other is null) return false;
-            return  base.Equals(other)
+            return base.Equals(other)
                 && Value == other.Value
                 ;
         }

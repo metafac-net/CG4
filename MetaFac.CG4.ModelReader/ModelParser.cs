@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MetaFac.CG4.Attributes;
+using MetaFac.CG4.Models;
+using MetaFac.Memory;
+using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
-using MetaFac.CG4.Models;
-using MetaFac.CG4.Attributes;
-using MetaFac.Memory;
 
 namespace MetaFac.CG4.ModelReader
 {
@@ -195,7 +195,7 @@ namespace MetaFac.CG4.ModelReader
             }
             else if (innerType.IsConstructedGenericType
                 && innerType.GenericTypeArguments.Length == 2
-                && (innerType.GetGenericTypeDefinition() == typeof(ImmutableDictionary<,>) 
+                && (innerType.GetGenericTypeDefinition() == typeof(ImmutableDictionary<,>)
                     || innerType.GetGenericTypeDefinition() == typeof(Dictionary<,>)))
             {
                 result.ArrayRank = 1;
@@ -220,7 +220,7 @@ namespace MetaFac.CG4.ModelReader
             {
                 // must be a model type
                 string fieldTypeName = innerType.Name;
-                if(allEntityDefs.TryGetValue(fieldTypeName, out var entityInfo))
+                if (allEntityDefs.TryGetValue(fieldTypeName, out var entityInfo))
                 {
                     result.isModelType = true;
                     result.innerTypeName = entityInfo.EntityName;

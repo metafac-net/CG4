@@ -15,13 +15,13 @@ namespace MetaFac.CG4.Models
         public bool IsBufferType => InnerType == "binary";
         public bool IsStringType => InnerType == "string";
 
-        public ModelMemberDef(string name, int? tag, string? summary, 
+        public ModelMemberDef(string name, int? tag, string? summary,
             string innerType,
             bool nullable,
             ModelProxyDef? proxyDef,
             int arrayRank,
             string? indexType,
-            bool isModelType, 
+            bool isModelType,
             ModelItemState? state = null,
             IEnumerable<KeyValuePair<string, string>>? tokens = null)
             : base(name, tag, summary, state, tokens)

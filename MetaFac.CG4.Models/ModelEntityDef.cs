@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
@@ -16,7 +16,7 @@ namespace MetaFac.CG4.Models
         public ImmutableList<ModelMemberDef> AllMemberDefs => _memberDefs;
         public IEnumerable<ModelMemberDef> MemberDefs => _memberDefs.Where(md => !md.IsRedacted);
 
-        private ModelEntityDef(string name, int? tag, string? summary, 
+        private ModelEntityDef(string name, int? tag, string? summary,
             string? parentName,
             ImmutableDictionary<string, string> tokens,
             ImmutableList<ModelMemberDef> memberDefs,

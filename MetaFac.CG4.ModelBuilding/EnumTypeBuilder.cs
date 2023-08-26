@@ -24,10 +24,10 @@ namespace MetaFac.CG4.ModelBuilding
             _reason = reason;
         }
 
-        public IEnumItemBuilder AddEnumItem(string itemName, int code, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
+        public IEnumItemBuilder AddEnumItem(string name, int value, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
         {
-            var enumItemBuilder = new EnumItemBuilder(this, itemName, code, summary, itemState, reason);
-            _enumItemBuilders.Add(itemName, enumItemBuilder);
+            var enumItemBuilder = new EnumItemBuilder(this, name, value, summary, itemState, reason);
+            _enumItemBuilders.Add(name, enumItemBuilder);
             return enumItemBuilder;
         }
 

@@ -1,6 +1,6 @@
-﻿using System;
-using MetaFac.CG4.Attributes;
+﻿using MetaFac.CG4.Attributes;
 using MetaFac.Memory;
+using System;
 
 namespace MetaFac.CG4.ModelReader.Tests.GoodModels
 {
