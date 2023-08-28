@@ -90,7 +90,7 @@ namespace T_Namespace_.JsonNewtonSoft
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
-        public virtual bool Equals(EntityBase? other) => true;
+        public bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
 
         public bool IsFreezable() => false;
@@ -558,10 +558,11 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>        }
         }
 
-        public virtual bool Equals(T_EntityName_? other)
+        public bool Equals(T_EntityName_? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
@@ -618,14 +619,15 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>                }
             //>>            }
             //>>        }
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is T_EntityName_ other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             //>>        foreach (var fd in cd.MemberDefs)
             //>>        {
             //>>            using (NewScope(fd))
@@ -682,16 +684,7 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>                }
             //>>            }
             //>>        }
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
