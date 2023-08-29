@@ -196,6 +196,7 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.ClassesV2
         private int? _hashCode = null;
         public override int GetHashCode()
         {
+            if (!_isFrozen) return CalcHashCode();
             if (_hashCode is null)
                 _hashCode = CalcHashCode();
             return _hashCode.Value;

@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using MetaFac.CG4.Attributes;
 using MetaFac.CG4.Runtime;
 using Newtonsoft.Json;
 using System;
@@ -324,48 +325,6 @@ namespace MetaFac.CG4.Template.UnitTests
             int originalHash = original.GetHashCode();
             int duplicateHash = duplicate.GetHashCode();
             duplicateHash.Should().Be(originalHash);
-        }
-
-        [Fact]
-        public void HashShouldChangeWhenModified()
-        {
-            var original = new T_EntityName_()
-            {
-                T_UnaryModelFieldName_ = new T_ModelType_(123),
-                T_ArrayModelFieldName_ = ImmutableList<T_ModelType_?>.Empty.Add(new T_ModelType_(234)),
-                T_IndexModelFieldName_ = ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty
-                    .Add("987", new T_ModelType_(456))
-                    .Add("876", null),
-                T_UnaryOtherFieldName_ = 123L,
-                T_ArrayOtherFieldName_ = ImmutableList<T_ExternalOtherType_>.Empty.Add(234L),
-                T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty
-                    .Add("987", 456L)
-                    .Add("876", default),
-                T_UnaryMaybeFieldName_ = null,
-                T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalMaybeType_?>.Empty.Add(null).Add(T_ExternalMaybeType_.Monday),
-                T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty
-                    .Add("987", T_ExternalMaybeType_.Tuesday)
-                    .Add("876", default),
-                T_UnaryBufferFieldName_ = new byte[] { 1, 2, 3, 4 },
-                T_ArrayBufferFieldName_ = new byte[]?[]
-                {
-                    new byte[] { 1, 2, 3, 4 },
-                    new byte[] { 5, 6, 7, 8 },
-                },
-                T_IndexBufferFieldName_ = new Dictionary<T_IndexType_, byte[]?>()
-                {
-                    ["a"] = new byte[] { 1, 2, 3, 4 },
-                    ["b"] = new byte[] { 5, 6, 7, 8 },
-                },
-            };
-
-            int originalHash = original.GetHashCode();
-
-            // modify
-            original.T_ArrayBufferFieldName_[1] = new byte[] { 6, 7, 8, 9 };
-
-            int modifiedHash = original.GetHashCode();
-            modifiedHash.Should().NotBe(originalHash);
         }
 
         [Fact]

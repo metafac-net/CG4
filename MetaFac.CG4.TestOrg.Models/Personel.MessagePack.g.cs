@@ -232,6 +232,7 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.MessagePack
         private int? _hashCode = null;
         public override int GetHashCode()
         {
+            if (!_isFrozen) return CalcHashCode();
             if (_hashCode is null)
                 _hashCode = CalcHashCode();
             return _hashCode.Value;

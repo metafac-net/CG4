@@ -26,11 +26,13 @@ namespace MetaFac.CG4.Runtime.MessagePack
             ReadOnlySpan<byte> span = Value.Span;
             int length = span.Length;
             int num = length;
-            for (int i = 0; i < length; i++)
+            unchecked
             {
-                num = (num * 397) ^ span[i];
+                for (int i = 0; i < length; i++)
+                {
+                    num = (num * 397) ^ span[i];
+                }
             }
-
             return num;
         }
 

@@ -986,6 +986,7 @@ Emit("");
 Emit("        private int? _hashCode = null;");
 Emit("        public override int GetHashCode()");
 Emit("        {");
+Emit("            if (!_isFrozen) return CalcHashCode();");
 Emit("            if (_hashCode is null)");
 Emit("                _hashCode = CalcHashCode();");
 Emit("            return _hashCode.Value;");
