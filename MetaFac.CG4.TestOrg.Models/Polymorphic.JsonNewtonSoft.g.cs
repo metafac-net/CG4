@@ -37,7 +37,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
-        public virtual bool Equals(EntityBase? other) => true;
+        public bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
 
         public bool IsFreezable() => false;
@@ -118,32 +118,25 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             field_Name = source.Name;
         }
 
-        public virtual bool Equals(ValueNode? other)
+        public bool Equals(ValueNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (Id != other.Id) return false;
             if (!Name.ValueEquals(other.Name)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is ValueNode other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Id.CalcHashUnary());
-            hc.Add(Name.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Id.CalcHashUnary());
+            hc.Add(Name.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -194,28 +187,21 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             base.CopyFrom(source);
         }
 
-        public virtual bool Equals(NumericNode? other)
+        public bool Equals(NumericNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            return base.Equals(other);
+            if (!base.Equals(other)) return false;
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is NumericNode other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -278,30 +264,23 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             field_StrValue = source.StrValue;
         }
 
-        public virtual bool Equals(StringNode? other)
+        public bool Equals(StringNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!StrValue.ValueEquals(other.StrValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is StringNode other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(StrValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(StrValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -364,30 +343,23 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             field_BoolValue = source.BoolValue;
         }
 
-        public virtual bool Equals(BooleanNode? other)
+        public bool Equals(BooleanNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (BoolValue != other.BoolValue) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is BooleanNode other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(BoolValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(BoolValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -450,30 +422,23 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             field_CustomValue = source.CustomValue;
         }
 
-        public virtual bool Equals(CustomNode? other)
+        public bool Equals(CustomNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (CustomValue != other.CustomValue) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is CustomNode other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(CustomValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(CustomValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -536,30 +501,23 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             field_IntValue = source.IntValue;
         }
 
-        public virtual bool Equals(Int32Node? other)
+        public bool Equals(Int32Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (IntValue != other.IntValue) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Int32Node other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(IntValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(IntValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -622,30 +580,23 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             field_LongValue = source.LongValue;
         }
 
-        public virtual bool Equals(Int64Node? other)
+        public bool Equals(Int64Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (LongValue != other.LongValue) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Int64Node other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(LongValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(LongValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 

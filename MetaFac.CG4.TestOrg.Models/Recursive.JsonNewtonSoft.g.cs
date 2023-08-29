@@ -37,7 +37,7 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
-        public virtual bool Equals(EntityBase? other) => true;
+        public bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
 
         public bool IsFreezable() => false;
@@ -126,34 +126,27 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft
             field_B = Tree.CreateFrom(source.B);
         }
 
-        public virtual bool Equals(Tree? other)
+        public bool Equals(Tree? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (Id != other.Id) return false;
             if (!A.ValueEquals(other.A)) return false;
             if (!B.ValueEquals(other.B)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Tree other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(Id.CalcHashUnary());
             hc.Add(A.CalcHashUnary());
             hc.Add(B.CalcHashUnary());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 

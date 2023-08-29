@@ -37,7 +37,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
-        public virtual bool Equals(EntityBase? other) => true;
+        public bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
 
         public bool IsFreezable() => false;
@@ -186,10 +186,11 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
                 : ImmutableDictionary<Boolean, String?>.Empty.AddRange(source.MapKey);
         }
 
-        public virtual bool Equals(Basic_bool? other)
+        public bool Equals(Basic_bool? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (ScalarRequired != other.ScalarRequired) return false;
             if (ScalarOptional != other.ScalarOptional) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
@@ -197,14 +198,15 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
             if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Basic_bool other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(ScalarRequired.CalcHashUnary());
             hc.Add(ScalarOptional.CalcHashUnary());
             hc.Add(VectorRequired.CalcHashArray());
@@ -212,16 +214,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             hc.Add(MapRequired.CalcHashIndex());
             hc.Add(MapOptional.CalcHashIndex());
             hc.Add(MapKey.CalcHashIndex());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -364,10 +357,11 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
                 : ImmutableDictionary<Decimal, String?>.Empty.AddRange(source.MapKey);
         }
 
-        public virtual bool Equals(Basic_decimal? other)
+        public bool Equals(Basic_decimal? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (ScalarRequired != other.ScalarRequired) return false;
             if (ScalarOptional != other.ScalarOptional) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
@@ -375,14 +369,15 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
             if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Basic_decimal other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(ScalarRequired.CalcHashUnary());
             hc.Add(ScalarOptional.CalcHashUnary());
             hc.Add(VectorRequired.CalcHashArray());
@@ -390,16 +385,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             hc.Add(MapRequired.CalcHashIndex());
             hc.Add(MapOptional.CalcHashIndex());
             hc.Add(MapKey.CalcHashIndex());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -542,10 +528,11 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
                 : ImmutableDictionary<DateTimeOffset, String?>.Empty.AddRange(source.MapKey);
         }
 
-        public virtual bool Equals(Basic_DateTimeOffset? other)
+        public bool Equals(Basic_DateTimeOffset? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (ScalarRequired != other.ScalarRequired) return false;
             if (ScalarOptional != other.ScalarOptional) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
@@ -553,14 +540,15 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
             if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Basic_DateTimeOffset other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(ScalarRequired.CalcHashUnary());
             hc.Add(ScalarOptional.CalcHashUnary());
             hc.Add(VectorRequired.CalcHashArray());
@@ -568,16 +556,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             hc.Add(MapRequired.CalcHashIndex());
             hc.Add(MapOptional.CalcHashIndex());
             hc.Add(MapKey.CalcHashIndex());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -720,10 +699,11 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
                 : ImmutableDictionary<Guid, String?>.Empty.AddRange(source.MapKey);
         }
 
-        public virtual bool Equals(Basic_Guid? other)
+        public bool Equals(Basic_Guid? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (ScalarRequired != other.ScalarRequired) return false;
             if (ScalarOptional != other.ScalarOptional) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
@@ -731,14 +711,15 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
             if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Basic_Guid other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(ScalarRequired.CalcHashUnary());
             hc.Add(ScalarOptional.CalcHashUnary());
             hc.Add(VectorRequired.CalcHashArray());
@@ -746,16 +727,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             hc.Add(MapRequired.CalcHashIndex());
             hc.Add(MapOptional.CalcHashIndex());
             hc.Add(MapKey.CalcHashIndex());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -898,10 +870,11 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
                 : ImmutableDictionary<System.DayOfWeek, String?>.Empty.AddRange(source.MapKey);
         }
 
-        public virtual bool Equals(Basic_DayOfWeek? other)
+        public bool Equals(Basic_DayOfWeek? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (ScalarRequired != other.ScalarRequired) return false;
             if (ScalarOptional != other.ScalarOptional) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
@@ -909,14 +882,15 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
             if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Basic_DayOfWeek other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(ScalarRequired.CalcHashUnary());
             hc.Add(ScalarOptional.CalcHashUnary());
             hc.Add(VectorRequired.CalcHashArray());
@@ -924,16 +898,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             hc.Add(MapRequired.CalcHashIndex());
             hc.Add(MapOptional.CalcHashIndex());
             hc.Add(MapKey.CalcHashIndex());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -1076,10 +1041,11 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
                 : ImmutableDictionary<MyCustomEnum, String?>.Empty.AddRange(source.MapKey);
         }
 
-        public virtual bool Equals(Basic_MyCustomEnum? other)
+        public bool Equals(Basic_MyCustomEnum? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (ScalarRequired != other.ScalarRequired) return false;
             if (ScalarOptional != other.ScalarOptional) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
@@ -1087,14 +1053,15 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
             if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Basic_MyCustomEnum other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(ScalarRequired.CalcHashUnary());
             hc.Add(ScalarOptional.CalcHashUnary());
             hc.Add(VectorRequired.CalcHashArray());
@@ -1102,16 +1069,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             hc.Add(MapRequired.CalcHashIndex());
             hc.Add(MapOptional.CalcHashIndex());
             hc.Add(MapKey.CalcHashIndex());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -1240,40 +1198,33 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
                 : ImmutableDictionary<String, LabApps.Units.Quantity?>.Empty.AddRange(source.MapOptional);
         }
 
-        public virtual bool Equals(Basic_Quantity? other)
+        public bool Equals(Basic_Quantity? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (ScalarRequired != other.ScalarRequired) return false;
             if (ScalarOptional != other.ScalarOptional) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
             if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Basic_Quantity other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(ScalarRequired.CalcHashUnary());
             hc.Add(ScalarOptional.CalcHashUnary());
             hc.Add(VectorRequired.CalcHashArray());
             hc.Add(VectorOptional.CalcHashArray());
             hc.Add(MapRequired.CalcHashIndex());
             hc.Add(MapOptional.CalcHashIndex());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -1364,34 +1315,27 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
                 : ImmutableDictionary<String, String?>.Empty.AddRange(source.MapValue);
         }
 
-        public virtual bool Equals(Basic_string? other)
+        public bool Equals(Basic_string? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Scalar.ValueEquals(other.Scalar)) return false;
             if (!Vector.ArrayEquals(other.Vector)) return false;
             if (!MapValue.IndexEquals(other.MapValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Basic_string other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(Scalar.CalcHashUnary());
             hc.Add(Vector.CalcHashArray());
             hc.Add(MapValue.CalcHashIndex());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 

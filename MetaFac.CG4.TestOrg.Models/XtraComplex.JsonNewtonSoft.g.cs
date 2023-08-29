@@ -37,7 +37,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
-        public virtual bool Equals(EntityBase? other) => true;
+        public bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
 
         public bool IsFreezable() => false;
@@ -126,34 +126,27 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             field_B = Tree.CreateFrom(source.B);
         }
 
-        public virtual bool Equals(Tree? other)
+        public bool Equals(Tree? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Value.ValueEquals(other.Value)) return false;
             if (!A.ValueEquals(other.A)) return false;
             if (!B.ValueEquals(other.B)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Tree other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(Value.CalcHashUnary());
             hc.Add(A.CalcHashUnary());
             hc.Add(B.CalcHashUnary());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -206,28 +199,21 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             base.CopyFrom(source);
         }
 
-        public virtual bool Equals(Node? other)
+        public bool Equals(Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            return base.Equals(other);
+            if (!base.Equals(other)) return false;
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Node other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -290,30 +276,23 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             field_StrVal = source.StrVal;
         }
 
-        public virtual bool Equals(StrNode? other)
+        public bool Equals(StrNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!StrVal.ValueEquals(other.StrVal)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is StrNode other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(StrVal.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(StrVal.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -364,28 +343,21 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             base.CopyFrom(source);
         }
 
-        public virtual bool Equals(NumNode? other)
+        public bool Equals(NumNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            return base.Equals(other);
+            if (!base.Equals(other)) return false;
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is NumNode other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -448,30 +420,23 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             field_LongVal = source.LongVal;
         }
 
-        public virtual bool Equals(LongNode? other)
+        public bool Equals(LongNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (LongVal != other.LongVal) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is LongNode other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(LongVal.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(LongVal.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -534,30 +499,23 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             field_ByteVal = source.ByteVal;
         }
 
-        public virtual bool Equals(ByteNode? other)
+        public bool Equals(ByteNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (ByteVal != other.ByteVal) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is ByteNode other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(ByteVal.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ByteVal.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 

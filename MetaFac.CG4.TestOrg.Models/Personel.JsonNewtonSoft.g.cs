@@ -37,7 +37,7 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.JsonNewtonSoft
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
-        public virtual bool Equals(EntityBase? other) => true;
+        public bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
 
         public bool IsFreezable() => false;
@@ -136,36 +136,29 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.JsonNewtonSoft
             field_DayOfBirth = source.DayOfBirth;
         }
 
-        public virtual bool Equals(Person? other)
+        public bool Equals(Person? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!FamilyName.ValueEquals(other.FamilyName)) return false;
             if (!FirstName.ValueEquals(other.FirstName)) return false;
             if (Gender != other.Gender) return false;
             if (DayOfBirth != other.DayOfBirth) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Person other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(FamilyName.CalcHashUnary());
             hc.Add(FirstName.CalcHashUnary());
             hc.Add(Gender.CalcHashUnary());
             hc.Add(DayOfBirth.CalcHashUnary());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 

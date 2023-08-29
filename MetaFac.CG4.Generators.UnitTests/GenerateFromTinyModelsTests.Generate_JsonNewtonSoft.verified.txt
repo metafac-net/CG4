@@ -40,7 +40,7 @@ namespace Generated.JsonNewtonSoft
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
-        public virtual bool Equals(EntityBase? other) => true;
+        public bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
 
         public bool IsFreezable() => false;
@@ -109,30 +109,23 @@ namespace Generated.JsonNewtonSoft
             field_Id = source.Id;
         }
 
-        public virtual bool Equals(Base? other)
+        public bool Equals(Base? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (Id != other.Id) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Base other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Id.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Id.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -205,32 +198,25 @@ namespace Generated.JsonNewtonSoft
             field_Number = source.Number;
         }
 
-        public virtual bool Equals(Derived? other)
+        public bool Equals(Derived? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Name.ValueEquals(other.Name)) return false;
             if (Number != other.Number) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is Derived other && Equals(other);
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Name.CalcHashUnary());
-            hc.Add(Number.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Name.CalcHashUnary());
+            hc.Add(Number.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 

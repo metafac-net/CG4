@@ -102,7 +102,7 @@ Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public void CopyFrom(IEntityBase? source) { }");
 Emit("        protected abstract int OnGetEntityTag();");
 Emit("        public int GetEntityTag() => OnGetEntityTag();");
-Emit("        public virtual bool Equals(EntityBase? other) => true;");
+Emit("        public bool Equals(EntityBase? other) => true;");
 Emit("        public override int GetHashCode() => 0;");
 Emit("");
 Emit("        public bool IsFreezable() => false;");
@@ -570,10 +570,11 @@ Emit("                : ImmutableDictionary<T_IndexType_, String?>.Empty.AddRang
                     }
 Emit("        }");
 Emit("");
-Emit("        public virtual bool Equals(T_EntityName_? other)");
+Emit("        public bool Equals(T_EntityName_? other)");
 Emit("        {");
 Emit("            if (other is null) return false;");
 Emit("            if (ReferenceEquals(other, this)) return true;");
+Emit("            if (!base.Equals(other)) return false;");
                     foreach (var fd in cd.MemberDefs)
                     {
                         using (NewScope(fd))
@@ -630,14 +631,15 @@ Emit("            if (!T_IndexStringFieldName_.IndexEquals(other.T_IndexStringFi
                             }
                         }
                     }
-Emit("            return base.Equals(other);");
+Emit("            return true;");
 Emit("        }");
 Emit("");
 Emit("        public override bool Equals(object? obj) => obj is T_EntityName_ other && Equals(other);");
 Emit("");
-Emit("        private int CalcHashCode()");
+Emit("        public override int GetHashCode()");
 Emit("        {");
 Emit("            HashCode hc = new HashCode();");
+Emit("            hc.Add(base.GetHashCode());");
                     foreach (var fd in cd.MemberDefs)
                     {
                         using (NewScope(fd))
@@ -694,16 +696,7 @@ Emit("            hc.Add(T_IndexStringFieldName_.CalcHashIndex());");
                             }
                         }
                     }
-Emit("            hc.Add(base.GetHashCode());");
 Emit("            return hc.ToHashCode();");
-Emit("        }");
-Emit("");
-Emit("        private int? _hashCode = null;");
-Emit("        public override int GetHashCode()");
-Emit("        {");
-Emit("            if (_hashCode is null)");
-Emit("                _hashCode = CalcHashCode();");
-Emit("            return _hashCode.Value;");
 Emit("        }");
 Emit("    }");
 Emit("");

@@ -40,7 +40,7 @@ namespace Generated.JsonNewtonSoft
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
-        public virtual bool Equals(EntityBase? other) => true;
+        public bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
 
         public bool IsFreezable() => false;
@@ -418,10 +418,11 @@ namespace Generated.JsonNewtonSoft
                 : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums);
         }
 
-        public virtual bool Equals(BuiltinTypes? other)
+        public bool Equals(BuiltinTypes? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Bools.ArrayEquals(other.Bools, (a, b) => a == b)) return false;
             if (!SBytes.ArrayEquals(other.SBytes, (a, b) => a == b)) return false;
             if (!Bytes.ArrayEquals(other.Bytes, (a, b) => a == b)) return false;
@@ -445,14 +446,15 @@ namespace Generated.JsonNewtonSoft
             if (!DaysOfWeek.ArrayEquals(other.DaysOfWeek, (a, b) => a == b)) return false;
             if (!MyDateTimeKinds.ArrayEquals(other.MyDateTimeKinds, (a, b) => a == b)) return false;
             if (!MyCustomEnums.ArrayEquals(other.MyCustomEnums, (a, b) => a == b)) return false;
-            return base.Equals(other);
+            return true;
         }
 
         public override bool Equals(object? obj) => obj is BuiltinTypes other && Equals(other);
 
-        private int CalcHashCode()
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
             hc.Add(Bools.CalcHashArray());
             hc.Add(SBytes.CalcHashArray());
             hc.Add(Bytes.CalcHashArray());
@@ -476,16 +478,7 @@ namespace Generated.JsonNewtonSoft
             hc.Add(DaysOfWeek.CalcHashArray());
             hc.Add(MyDateTimeKinds.CalcHashArray());
             hc.Add(MyCustomEnums.CalcHashArray());
-            hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
