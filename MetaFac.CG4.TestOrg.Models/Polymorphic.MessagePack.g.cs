@@ -321,7 +321,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
 
     }
 
-    public partial class StringNode
+    public sealed partial class StringNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringNode? CreateFrom(IStringNode? source)
@@ -435,7 +435,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
 
     }
 
-    public partial class BooleanNode
+    public sealed partial class BooleanNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static BooleanNode? CreateFrom(IBooleanNode? source)
@@ -549,7 +549,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
 
     }
 
-    public partial class CustomNode
+    public sealed partial class CustomNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CustomNode? CreateFrom(ICustomNode? source)
@@ -663,7 +663,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
 
     }
 
-    public partial class Int32Node
+    public sealed partial class Int32Node
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int32Node? CreateFrom(IInt32Node? source)
@@ -777,7 +777,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
 
     }
 
-    public partial class Int64Node
+    public sealed partial class Int64Node
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int64Node? CreateFrom(IInt64Node? source)

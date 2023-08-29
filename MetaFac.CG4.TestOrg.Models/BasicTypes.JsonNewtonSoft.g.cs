@@ -218,6 +218,1374 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
+    public partial class Basic_sbyte
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_sbyte? CreateFrom(IBasic_sbyte? source)
+        {
+            if (source is null) return null;
+            return new Basic_sbyte(source);
+        }
+
+        private static Basic_sbyte CreateEmpty()
+        {
+            var empty = new Basic_sbyte();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_sbyte _empty = CreateEmpty();
+        public static new Basic_sbyte Empty => _empty;
+
+    }
+    public partial class Basic_sbyte : EntityBase, IBasic_sbyte, IEquatable<Basic_sbyte>
+    {
+        public new const int EntityTag = 2;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private SByte field_ScalarRequired;
+        SByte IBasic_sbyte.ScalarRequired => field_ScalarRequired;
+        public SByte ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private SByte? field_ScalarOptional;
+        SByte? IBasic_sbyte.ScalarOptional => field_ScalarOptional;
+        public SByte? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<SByte>? field_VectorRequired;
+        IReadOnlyList<SByte>? IBasic_sbyte.VectorRequired => field_VectorRequired;
+        public ImmutableList<SByte>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<SByte?>? field_VectorOptional;
+        IReadOnlyList<SByte?>? IBasic_sbyte.VectorOptional => field_VectorOptional;
+        public ImmutableList<SByte?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, SByte>? field_MapRequired;
+        IReadOnlyDictionary<String, SByte>? IBasic_sbyte.MapRequired => MapRequired;
+        public ImmutableDictionary<String, SByte>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, SByte?>? field_MapOptional;
+        IReadOnlyDictionary<String, SByte?>? IBasic_sbyte.MapOptional => field_MapOptional;
+        public ImmutableDictionary<String, SByte?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<SByte, String?>? field_MapKey;
+        IReadOnlyDictionary<SByte, String?>? IBasic_sbyte.MapKey => field_MapKey;
+        public ImmutableDictionary<SByte, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_sbyte() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_sbyte(Basic_sbyte? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_sbyte(IBasic_sbyte? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<SByte>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<SByte?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, SByte>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, SByte?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<SByte, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IBasic_sbyte? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<SByte>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<SByte?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, SByte>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, SByte?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<SByte, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_sbyte? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (ScalarRequired != other.ScalarRequired) return false;
+            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_sbyte other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+    public partial class Basic_byte
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_byte? CreateFrom(IBasic_byte? source)
+        {
+            if (source is null) return null;
+            return new Basic_byte(source);
+        }
+
+        private static Basic_byte CreateEmpty()
+        {
+            var empty = new Basic_byte();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_byte _empty = CreateEmpty();
+        public static new Basic_byte Empty => _empty;
+
+    }
+    public partial class Basic_byte : EntityBase, IBasic_byte, IEquatable<Basic_byte>
+    {
+        public new const int EntityTag = 3;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Byte field_ScalarRequired;
+        Byte IBasic_byte.ScalarRequired => field_ScalarRequired;
+        public Byte ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private Byte? field_ScalarOptional;
+        Byte? IBasic_byte.ScalarOptional => field_ScalarOptional;
+        public Byte? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<Byte>? field_VectorRequired;
+        IReadOnlyList<Byte>? IBasic_byte.VectorRequired => field_VectorRequired;
+        public ImmutableList<Byte>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<Byte?>? field_VectorOptional;
+        IReadOnlyList<Byte?>? IBasic_byte.VectorOptional => field_VectorOptional;
+        public ImmutableList<Byte?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, Byte>? field_MapRequired;
+        IReadOnlyDictionary<String, Byte>? IBasic_byte.MapRequired => MapRequired;
+        public ImmutableDictionary<String, Byte>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, Byte?>? field_MapOptional;
+        IReadOnlyDictionary<String, Byte?>? IBasic_byte.MapOptional => field_MapOptional;
+        public ImmutableDictionary<String, Byte?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<Byte, String?>? field_MapKey;
+        IReadOnlyDictionary<Byte, String?>? IBasic_byte.MapKey => field_MapKey;
+        public ImmutableDictionary<Byte, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_byte() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_byte(Basic_byte? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_byte(IBasic_byte? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Byte>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Byte?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Byte>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Byte?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Byte, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IBasic_byte? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Byte>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Byte?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Byte>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Byte?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Byte, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_byte? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (ScalarRequired != other.ScalarRequired) return false;
+            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_byte other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+    public partial class Basic_short
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_short? CreateFrom(IBasic_short? source)
+        {
+            if (source is null) return null;
+            return new Basic_short(source);
+        }
+
+        private static Basic_short CreateEmpty()
+        {
+            var empty = new Basic_short();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_short _empty = CreateEmpty();
+        public static new Basic_short Empty => _empty;
+
+    }
+    public partial class Basic_short : EntityBase, IBasic_short, IEquatable<Basic_short>
+    {
+        public new const int EntityTag = 4;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Int16 field_ScalarRequired;
+        Int16 IBasic_short.ScalarRequired => field_ScalarRequired;
+        public Int16 ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private Int16? field_ScalarOptional;
+        Int16? IBasic_short.ScalarOptional => field_ScalarOptional;
+        public Int16? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<Int16>? field_VectorRequired;
+        IReadOnlyList<Int16>? IBasic_short.VectorRequired => field_VectorRequired;
+        public ImmutableList<Int16>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<Int16?>? field_VectorOptional;
+        IReadOnlyList<Int16?>? IBasic_short.VectorOptional => field_VectorOptional;
+        public ImmutableList<Int16?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, Int16>? field_MapRequired;
+        IReadOnlyDictionary<String, Int16>? IBasic_short.MapRequired => MapRequired;
+        public ImmutableDictionary<String, Int16>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, Int16?>? field_MapOptional;
+        IReadOnlyDictionary<String, Int16?>? IBasic_short.MapOptional => field_MapOptional;
+        public ImmutableDictionary<String, Int16?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<Int16, String?>? field_MapKey;
+        IReadOnlyDictionary<Int16, String?>? IBasic_short.MapKey => field_MapKey;
+        public ImmutableDictionary<Int16, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_short() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_short(Basic_short? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_short(IBasic_short? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Int16>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Int16?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Int16>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Int16?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Int16, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IBasic_short? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Int16>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Int16?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Int16>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Int16?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Int16, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_short? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (ScalarRequired != other.ScalarRequired) return false;
+            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_short other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+    public partial class Basic_ushort
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_ushort? CreateFrom(IBasic_ushort? source)
+        {
+            if (source is null) return null;
+            return new Basic_ushort(source);
+        }
+
+        private static Basic_ushort CreateEmpty()
+        {
+            var empty = new Basic_ushort();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_ushort _empty = CreateEmpty();
+        public static new Basic_ushort Empty => _empty;
+
+    }
+    public partial class Basic_ushort : EntityBase, IBasic_ushort, IEquatable<Basic_ushort>
+    {
+        public new const int EntityTag = 5;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private UInt16 field_ScalarRequired;
+        UInt16 IBasic_ushort.ScalarRequired => field_ScalarRequired;
+        public UInt16 ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private UInt16? field_ScalarOptional;
+        UInt16? IBasic_ushort.ScalarOptional => field_ScalarOptional;
+        public UInt16? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<UInt16>? field_VectorRequired;
+        IReadOnlyList<UInt16>? IBasic_ushort.VectorRequired => field_VectorRequired;
+        public ImmutableList<UInt16>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<UInt16?>? field_VectorOptional;
+        IReadOnlyList<UInt16?>? IBasic_ushort.VectorOptional => field_VectorOptional;
+        public ImmutableList<UInt16?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, UInt16>? field_MapRequired;
+        IReadOnlyDictionary<String, UInt16>? IBasic_ushort.MapRequired => MapRequired;
+        public ImmutableDictionary<String, UInt16>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, UInt16?>? field_MapOptional;
+        IReadOnlyDictionary<String, UInt16?>? IBasic_ushort.MapOptional => field_MapOptional;
+        public ImmutableDictionary<String, UInt16?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<UInt16, String?>? field_MapKey;
+        IReadOnlyDictionary<UInt16, String?>? IBasic_ushort.MapKey => field_MapKey;
+        public ImmutableDictionary<UInt16, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_ushort() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_ushort(Basic_ushort? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_ushort(IBasic_ushort? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<UInt16>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<UInt16?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, UInt16>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, UInt16?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<UInt16, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IBasic_ushort? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<UInt16>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<UInt16?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, UInt16>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, UInt16?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<UInt16, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_ushort? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (ScalarRequired != other.ScalarRequired) return false;
+            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_ushort other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+    public partial class Basic_char
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_char? CreateFrom(IBasic_char? source)
+        {
+            if (source is null) return null;
+            return new Basic_char(source);
+        }
+
+        private static Basic_char CreateEmpty()
+        {
+            var empty = new Basic_char();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_char _empty = CreateEmpty();
+        public static new Basic_char Empty => _empty;
+
+    }
+    public partial class Basic_char : EntityBase, IBasic_char, IEquatable<Basic_char>
+    {
+        public new const int EntityTag = 6;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Char field_ScalarRequired;
+        Char IBasic_char.ScalarRequired => field_ScalarRequired;
+        public Char ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private Char? field_ScalarOptional;
+        Char? IBasic_char.ScalarOptional => field_ScalarOptional;
+        public Char? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<Char>? field_VectorRequired;
+        IReadOnlyList<Char>? IBasic_char.VectorRequired => field_VectorRequired;
+        public ImmutableList<Char>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<Char?>? field_VectorOptional;
+        IReadOnlyList<Char?>? IBasic_char.VectorOptional => field_VectorOptional;
+        public ImmutableList<Char?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, Char>? field_MapRequired;
+        IReadOnlyDictionary<String, Char>? IBasic_char.MapRequired => MapRequired;
+        public ImmutableDictionary<String, Char>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, Char?>? field_MapOptional;
+        IReadOnlyDictionary<String, Char?>? IBasic_char.MapOptional => field_MapOptional;
+        public ImmutableDictionary<String, Char?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<Char, String?>? field_MapKey;
+        IReadOnlyDictionary<Char, String?>? IBasic_char.MapKey => field_MapKey;
+        public ImmutableDictionary<Char, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_char() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_char(Basic_char? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_char(IBasic_char? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Char>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Char?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Char>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Char?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Char, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IBasic_char? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Char>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Char?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Char>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Char?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Char, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_char? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (ScalarRequired != other.ScalarRequired) return false;
+            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_char other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+    public partial class Basic_int
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_int? CreateFrom(IBasic_int? source)
+        {
+            if (source is null) return null;
+            return new Basic_int(source);
+        }
+
+        private static Basic_int CreateEmpty()
+        {
+            var empty = new Basic_int();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_int _empty = CreateEmpty();
+        public static new Basic_int Empty => _empty;
+
+    }
+    public partial class Basic_int : EntityBase, IBasic_int, IEquatable<Basic_int>
+    {
+        public new const int EntityTag = 7;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Int32 field_ScalarRequired;
+        Int32 IBasic_int.ScalarRequired => field_ScalarRequired;
+        public Int32 ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private Int32? field_ScalarOptional;
+        Int32? IBasic_int.ScalarOptional => field_ScalarOptional;
+        public Int32? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<Int32>? field_VectorRequired;
+        IReadOnlyList<Int32>? IBasic_int.VectorRequired => field_VectorRequired;
+        public ImmutableList<Int32>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<Int32?>? field_VectorOptional;
+        IReadOnlyList<Int32?>? IBasic_int.VectorOptional => field_VectorOptional;
+        public ImmutableList<Int32?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, Int32>? field_MapRequired;
+        IReadOnlyDictionary<String, Int32>? IBasic_int.MapRequired => MapRequired;
+        public ImmutableDictionary<String, Int32>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, Int32?>? field_MapOptional;
+        IReadOnlyDictionary<String, Int32?>? IBasic_int.MapOptional => field_MapOptional;
+        public ImmutableDictionary<String, Int32?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<Int32, String?>? field_MapKey;
+        IReadOnlyDictionary<Int32, String?>? IBasic_int.MapKey => field_MapKey;
+        public ImmutableDictionary<Int32, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_int() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_int(Basic_int? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_int(IBasic_int? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Int32>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Int32?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Int32>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Int32?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Int32, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IBasic_int? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Int32>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Int32?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Int32>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Int32?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Int32, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_int? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (ScalarRequired != other.ScalarRequired) return false;
+            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_int other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+    public partial class Basic_uint
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_uint? CreateFrom(IBasic_uint? source)
+        {
+            if (source is null) return null;
+            return new Basic_uint(source);
+        }
+
+        private static Basic_uint CreateEmpty()
+        {
+            var empty = new Basic_uint();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_uint _empty = CreateEmpty();
+        public static new Basic_uint Empty => _empty;
+
+    }
+    public partial class Basic_uint : EntityBase, IBasic_uint, IEquatable<Basic_uint>
+    {
+        public new const int EntityTag = 8;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private UInt32 field_ScalarRequired;
+        UInt32 IBasic_uint.ScalarRequired => field_ScalarRequired;
+        public UInt32 ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private UInt32? field_ScalarOptional;
+        UInt32? IBasic_uint.ScalarOptional => field_ScalarOptional;
+        public UInt32? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<UInt32>? field_VectorRequired;
+        IReadOnlyList<UInt32>? IBasic_uint.VectorRequired => field_VectorRequired;
+        public ImmutableList<UInt32>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<UInt32?>? field_VectorOptional;
+        IReadOnlyList<UInt32?>? IBasic_uint.VectorOptional => field_VectorOptional;
+        public ImmutableList<UInt32?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, UInt32>? field_MapRequired;
+        IReadOnlyDictionary<String, UInt32>? IBasic_uint.MapRequired => MapRequired;
+        public ImmutableDictionary<String, UInt32>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, UInt32?>? field_MapOptional;
+        IReadOnlyDictionary<String, UInt32?>? IBasic_uint.MapOptional => field_MapOptional;
+        public ImmutableDictionary<String, UInt32?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<UInt32, String?>? field_MapKey;
+        IReadOnlyDictionary<UInt32, String?>? IBasic_uint.MapKey => field_MapKey;
+        public ImmutableDictionary<UInt32, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_uint() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_uint(Basic_uint? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_uint(IBasic_uint? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<UInt32>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<UInt32?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, UInt32>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, UInt32?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<UInt32, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IBasic_uint? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<UInt32>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<UInt32?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, UInt32>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, UInt32?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<UInt32, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_uint? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (ScalarRequired != other.ScalarRequired) return false;
+            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_uint other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+    public partial class Basic_float
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_float? CreateFrom(IBasic_float? source)
+        {
+            if (source is null) return null;
+            return new Basic_float(source);
+        }
+
+        private static Basic_float CreateEmpty()
+        {
+            var empty = new Basic_float();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_float _empty = CreateEmpty();
+        public static new Basic_float Empty => _empty;
+
+    }
+    public partial class Basic_float : EntityBase, IBasic_float, IEquatable<Basic_float>
+    {
+        public new const int EntityTag = 9;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Single field_ScalarRequired;
+        Single IBasic_float.ScalarRequired => field_ScalarRequired;
+        public Single ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private Single? field_ScalarOptional;
+        Single? IBasic_float.ScalarOptional => field_ScalarOptional;
+        public Single? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<Single>? field_VectorRequired;
+        IReadOnlyList<Single>? IBasic_float.VectorRequired => field_VectorRequired;
+        public ImmutableList<Single>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<Single?>? field_VectorOptional;
+        IReadOnlyList<Single?>? IBasic_float.VectorOptional => field_VectorOptional;
+        public ImmutableList<Single?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, Single>? field_MapRequired;
+        IReadOnlyDictionary<String, Single>? IBasic_float.MapRequired => MapRequired;
+        public ImmutableDictionary<String, Single>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, Single?>? field_MapOptional;
+        IReadOnlyDictionary<String, Single?>? IBasic_float.MapOptional => field_MapOptional;
+        public ImmutableDictionary<String, Single?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<Single, String?>? field_MapKey;
+        IReadOnlyDictionary<Single, String?>? IBasic_float.MapKey => field_MapKey;
+        public ImmutableDictionary<Single, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_float() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_float(Basic_float? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_float(IBasic_float? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Single>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Single?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Single>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Single?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Single, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IBasic_float? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Single>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Single?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Single>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Single?>.Empty.AddRange(source.MapOptional);
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Single, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_float? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (ScalarRequired != other.ScalarRequired) return false;
+            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_float other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
     public partial class Basic_decimal
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

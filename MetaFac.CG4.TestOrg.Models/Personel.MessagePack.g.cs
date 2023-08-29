@@ -87,7 +87,7 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.MessagePack
     }
 
 
-    public partial class Person
+    public sealed partial class Person
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Person? CreateFrom(IPerson? source)

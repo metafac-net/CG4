@@ -57,6 +57,422 @@
           ]
         },
         {
+          "Name": "Basic_sbyte",
+          "Tag": 2,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "int8"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "int8",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "int8",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "int8",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "int8",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "int8",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "int8"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_byte",
+          "Tag": 3,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "uint8"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "uint8",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "uint8",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "uint8",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "uint8",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "uint8",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "uint8"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_short",
+          "Tag": 4,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "int16"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "int16",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "int16",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "int16",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "int16",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "int16",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "int16"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_ushort",
+          "Tag": 5,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "uint16"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "uint16",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "uint16",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "uint16",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "uint16",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "uint16",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "uint16"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_char",
+          "Tag": 6,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "char"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "char",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "char",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "char",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "char",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "char",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "char"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_int",
+          "Tag": 7,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "int32"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "int32",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "int32",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "int32",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "int32",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "int32",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "int32"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_uint",
+          "Tag": 8,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "uint32"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "uint32",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "uint32",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "uint32",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "uint32",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "uint32",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "uint32"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_float",
+          "Tag": 9,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "single"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "single",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "single",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "single",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "single",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "single",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "single"
+            }
+          ]
+        },
+        {
           "Name": "Basic_decimal",
           "Tag": 17,
           "MemberDefs": [

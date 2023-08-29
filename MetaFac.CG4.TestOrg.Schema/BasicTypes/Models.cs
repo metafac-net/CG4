@@ -16,6 +16,102 @@ namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
         [Member(7)] public Dictionary<bool, string?>? MapKey { get; }
     }
 
+    [Entity(2)]
+    public class Basic_sbyte
+    {
+        [Member(1)] public sbyte ScalarRequired { get; }
+        [Member(2)] public sbyte? ScalarOptional { get; }
+        [Member(3)] public sbyte[]? VectorRequired { get; }
+        [Member(4)] public sbyte?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, sbyte>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, sbyte?>? MapOptional { get; }
+        [Member(7)] public Dictionary<sbyte, string?>? MapKey { get; }
+    }
+
+    [Entity(3)]
+    public class Basic_byte
+    {
+        [Member(1)] public byte ScalarRequired { get; }
+        [Member(2)] public byte? ScalarOptional { get; }
+        [Member(3)] public byte[]? VectorRequired { get; }
+        [Member(4)] public byte?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, byte>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, byte?>? MapOptional { get; }
+        [Member(7)] public Dictionary<byte, string?>? MapKey { get; }
+    }
+
+    [Entity(4)]
+    public class Basic_short
+    {
+        [Member(1)] public short ScalarRequired { get; }
+        [Member(2)] public short? ScalarOptional { get; }
+        [Member(3)] public short[]? VectorRequired { get; }
+        [Member(4)] public short?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, short>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, short?>? MapOptional { get; }
+        [Member(7)] public Dictionary<short, string?>? MapKey { get; }
+    }
+
+    [Entity(5)]
+    public class Basic_ushort
+    {
+        [Member(1)] public ushort ScalarRequired { get; }
+        [Member(2)] public ushort? ScalarOptional { get; }
+        [Member(3)] public ushort[]? VectorRequired { get; }
+        [Member(4)] public ushort?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, ushort>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, ushort?>? MapOptional { get; }
+        [Member(7)] public Dictionary<ushort, string?>? MapKey { get; }
+    }
+
+    [Entity(6)]
+    public class Basic_char
+    {
+        [Member(1)] public char ScalarRequired { get; }
+        [Member(2)] public char? ScalarOptional { get; }
+        [Member(3)] public char[]? VectorRequired { get; }
+        [Member(4)] public char?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, char>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, char?>? MapOptional { get; }
+        [Member(7)] public Dictionary<char, string?>? MapKey { get; }
+    }
+
+    [Entity(7)]
+    public class Basic_int
+    {
+        [Member(1)] public int ScalarRequired { get; }
+        [Member(2)] public int? ScalarOptional { get; }
+        [Member(3)] public int[]? VectorRequired { get; }
+        [Member(4)] public int?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, int>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, int?>? MapOptional { get; }
+        [Member(7)] public Dictionary<int, string?>? MapKey { get; }
+    }
+
+    [Entity(8)]
+    public class Basic_uint
+    {
+        [Member(1)] public uint ScalarRequired { get; }
+        [Member(2)] public uint? ScalarOptional { get; }
+        [Member(3)] public uint[]? VectorRequired { get; }
+        [Member(4)] public uint?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, uint>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, uint?>? MapOptional { get; }
+        [Member(7)] public Dictionary<uint, string?>? MapKey { get; }
+    }
+
+    [Entity(9)]
+    public class Basic_float
+    {
+        [Member(1)] public float ScalarRequired { get; }
+        [Member(2)] public float? ScalarOptional { get; }
+        [Member(3)] public float[]? VectorRequired { get; }
+        [Member(4)] public float?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, float>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, float?>? MapOptional { get; }
+        [Member(7)] public Dictionary<float, string?>? MapKey { get; }
+    }
+
     [Entity(17)]
     public class Basic_decimal
     {

@@ -87,7 +87,7 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
     }
 
 
-    public partial class Tree
+    public sealed partial class Tree
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Tree? CreateFrom(ITree? source)

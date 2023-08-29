@@ -87,7 +87,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
     }
 
 
-    public partial class Tree
+    public sealed partial class Tree
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Tree? CreateFrom(ITree? source)
@@ -334,7 +334,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
 
     }
 
-    public partial class StrNode
+    public sealed partial class StrNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StrNode? CreateFrom(IStrNode? source)
@@ -548,7 +548,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
 
     }
 
-    public partial class LongNode
+    public sealed partial class LongNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static LongNode? CreateFrom(ILongNode? source)
@@ -662,7 +662,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
 
     }
 
-    public partial class ByteNode
+    public sealed partial class ByteNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ByteNode? CreateFrom(IByteNode? source)

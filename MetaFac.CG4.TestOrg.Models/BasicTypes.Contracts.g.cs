@@ -37,6 +37,86 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts
         IReadOnlyDictionary<String, Boolean?>? MapOptional { get; }
         IReadOnlyDictionary<Boolean, String?>? MapKey { get; }
     }
+    public partial interface IBasic_sbyte : IEntityBase
+    {
+        SByte ScalarRequired { get; }
+        SByte? ScalarOptional { get; }
+        IReadOnlyList<SByte>? VectorRequired { get; }
+        IReadOnlyList<SByte?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, SByte>? MapRequired { get; }
+        IReadOnlyDictionary<String, SByte?>? MapOptional { get; }
+        IReadOnlyDictionary<SByte, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_byte : IEntityBase
+    {
+        Byte ScalarRequired { get; }
+        Byte? ScalarOptional { get; }
+        IReadOnlyList<Byte>? VectorRequired { get; }
+        IReadOnlyList<Byte?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, Byte>? MapRequired { get; }
+        IReadOnlyDictionary<String, Byte?>? MapOptional { get; }
+        IReadOnlyDictionary<Byte, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_short : IEntityBase
+    {
+        Int16 ScalarRequired { get; }
+        Int16? ScalarOptional { get; }
+        IReadOnlyList<Int16>? VectorRequired { get; }
+        IReadOnlyList<Int16?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, Int16>? MapRequired { get; }
+        IReadOnlyDictionary<String, Int16?>? MapOptional { get; }
+        IReadOnlyDictionary<Int16, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_ushort : IEntityBase
+    {
+        UInt16 ScalarRequired { get; }
+        UInt16? ScalarOptional { get; }
+        IReadOnlyList<UInt16>? VectorRequired { get; }
+        IReadOnlyList<UInt16?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, UInt16>? MapRequired { get; }
+        IReadOnlyDictionary<String, UInt16?>? MapOptional { get; }
+        IReadOnlyDictionary<UInt16, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_char : IEntityBase
+    {
+        Char ScalarRequired { get; }
+        Char? ScalarOptional { get; }
+        IReadOnlyList<Char>? VectorRequired { get; }
+        IReadOnlyList<Char?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, Char>? MapRequired { get; }
+        IReadOnlyDictionary<String, Char?>? MapOptional { get; }
+        IReadOnlyDictionary<Char, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_int : IEntityBase
+    {
+        Int32 ScalarRequired { get; }
+        Int32? ScalarOptional { get; }
+        IReadOnlyList<Int32>? VectorRequired { get; }
+        IReadOnlyList<Int32?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, Int32>? MapRequired { get; }
+        IReadOnlyDictionary<String, Int32?>? MapOptional { get; }
+        IReadOnlyDictionary<Int32, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_uint : IEntityBase
+    {
+        UInt32 ScalarRequired { get; }
+        UInt32? ScalarOptional { get; }
+        IReadOnlyList<UInt32>? VectorRequired { get; }
+        IReadOnlyList<UInt32?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, UInt32>? MapRequired { get; }
+        IReadOnlyDictionary<String, UInt32?>? MapOptional { get; }
+        IReadOnlyDictionary<UInt32, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_float : IEntityBase
+    {
+        Single ScalarRequired { get; }
+        Single? ScalarOptional { get; }
+        IReadOnlyList<Single>? VectorRequired { get; }
+        IReadOnlyList<Single?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, Single>? MapRequired { get; }
+        IReadOnlyDictionary<String, Single?>? MapOptional { get; }
+        IReadOnlyDictionary<Single, String?>? MapKey { get; }
+    }
     public partial interface IBasic_decimal : IEntityBase
     {
         Decimal ScalarRequired { get; }

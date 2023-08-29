@@ -701,5 +701,4 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.ClassesV2
         }
     }
 
-
 }

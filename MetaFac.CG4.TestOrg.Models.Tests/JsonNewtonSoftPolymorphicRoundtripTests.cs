@@ -1,4 +1,6 @@
 using FluentAssertions;
+using MessagePack;
+using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
 using System;
 using System.Threading.Tasks;
 using VerifyXunit;
@@ -6,6 +8,7 @@ using Xunit;
 
 namespace MetaFac.CG4.TestOrg.Models.Tests
 {
+
     [UsesVerify]
     public class JsonNewtonSoftPolymorphicRoundtripTests
     {
