@@ -800,18 +800,6 @@ Emit("    }");
 Emit("");
         }
     }
-Emit("");
-    using (Ignored())
-    {
-Emit("    public class T_DerivedName_ : T_EntityName_, IT_DerivedName_");
-Emit("    {");
-Emit("        public T_DerivedName_() { }");
-Emit("        public T_DerivedName_(T_DerivedName_? source) : base(source) { }");
-Emit("        public T_DerivedName_(IT_DerivedName_? source) : base(source) { }");
-Emit("        public virtual bool Equals(T_DerivedName_? other) => true;");
-Emit("        public override int GetHashCode() => 0;");
-Emit("    }");
-    }
 Emit("}");
 // |metacode:generator_footer|
         }

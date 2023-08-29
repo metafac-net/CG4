@@ -788,17 +788,5 @@ namespace T_Namespace_.ClassesV2
 
     //>>    }
     //>>}
-
-    //>>using (Ignored())
-    //>>{
-    public class T_DerivedName_ : T_EntityName_, IT_DerivedName_
-    {
-        public T_DerivedName_() { }
-        public T_DerivedName_(T_DerivedName_? source) : base(source) { }
-        public T_DerivedName_(IT_DerivedName_? source) : base(source) { }
-        public virtual bool Equals(T_DerivedName_? other) => true;
-        public override int GetHashCode() => 0;
-    }
-    //>>}
 }
 // |metacode:template_end|

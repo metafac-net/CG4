@@ -90,7 +90,7 @@ namespace Generated.MessagePack
     }
 
 
-    public partial class IndexTypes
+    public sealed partial class IndexTypes
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IndexTypes? CreateFrom(IIndexTypes? source)

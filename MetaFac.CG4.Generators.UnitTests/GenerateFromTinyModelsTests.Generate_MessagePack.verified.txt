@@ -90,7 +90,7 @@ namespace Generated.MessagePack
     }
 
 
-    public partial class Base
+    public sealed partial class Base
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Base? CreateFrom(IBase? source)
@@ -204,7 +204,7 @@ namespace Generated.MessagePack
 
     }
 
-    public partial class Derived
+    public sealed partial class Derived
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Derived? CreateFrom(IDerived? source)

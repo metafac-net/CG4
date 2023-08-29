@@ -230,7 +230,7 @@ namespace T_Namespace_.MessagePack
     //>>        }
     //>>        else
     //>>        {
-    public partial class T_EntityName_
+    public sealed partial class T_EntityName_
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T_EntityName_? CreateFrom(IT_EntityName_? source)

@@ -90,7 +90,7 @@ namespace Generated.MessagePack
     }
 
 
-    public partial class BuiltinTypes
+    public sealed partial class BuiltinTypes
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static BuiltinTypes? CreateFrom(IBuiltinTypes? source)

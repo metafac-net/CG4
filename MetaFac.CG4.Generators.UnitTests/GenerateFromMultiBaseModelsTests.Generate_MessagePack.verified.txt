@@ -90,7 +90,7 @@ namespace Generated.MessagePack
     }
 
 
-    public partial class SavingsAccount
+    public sealed partial class SavingsAccount
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SavingsAccount? CreateFrom(ISavingsAccount? source)
@@ -204,7 +204,7 @@ namespace Generated.MessagePack
 
     }
 
-    public partial class Withdrawl
+    public sealed partial class Withdrawl
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Withdrawl? CreateFrom(IWithdrawl? source)

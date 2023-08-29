@@ -242,7 +242,7 @@ Emit("    }");
             }
             else
             {
-Emit("    public partial class T_EntityName_");
+Emit("    public sealed partial class T_EntityName_");
 Emit("    {");
 Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
