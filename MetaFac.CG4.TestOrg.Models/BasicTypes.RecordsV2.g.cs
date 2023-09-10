@@ -123,8 +123,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -235,8 +235,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -347,8 +347,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -459,8 +459,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -571,8 +571,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -683,8 +683,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -795,8 +795,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -907,8 +907,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -1019,8 +1019,568 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial record Basic_long
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_long? CreateFrom(IBasic_long? source)
+        {
+            if (source is null) return null;
+            if (source is Basic_long thisEntity) return thisEntity;
+            return new Basic_long(source);
+        }
+
+        private static readonly Basic_long _empty = new Basic_long();
+        public static new Basic_long Empty => _empty;
+
+    }
+    public partial record Basic_long : EntityBase, IBasic_long
+    {
+        public new const int EntityTag = 10;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Int64 ScalarRequired { get; init; }
+        Int64 IBasic_long.ScalarRequired => ScalarRequired;
+        public Int64? ScalarOptional { get; init; }
+        Int64? IBasic_long.ScalarOptional => ScalarOptional;
+        public ImmutableList<Int64>? VectorRequired { get; init; }
+        IReadOnlyList<Int64>? IBasic_long.VectorRequired => VectorRequired;
+        public ImmutableList<Int64?>? VectorOptional { get; init; }
+        IReadOnlyList<Int64?>? IBasic_long.VectorOptional => VectorOptional;
+        public ImmutableDictionary<String, Int64>? MapRequired { get; init; }
+        IReadOnlyDictionary<String, Int64>? IBasic_long.MapRequired => MapRequired;
+        public ImmutableDictionary<String, Int64?>? MapOptional { get; init; }
+        IReadOnlyDictionary<String, Int64?>? IBasic_long.MapOptional => MapOptional;
+        public ImmutableDictionary<Int64, String?>? MapKey { get; init; }
+        IReadOnlyDictionary<Int64, String?>? IBasic_long.MapKey => MapKey;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_long() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_long(Basic_long? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired;
+            VectorOptional = source.VectorOptional;
+            MapRequired = source.MapRequired;
+            MapOptional = source.MapOptional;
+            MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_long(IBasic_long? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Int64>.Empty.AddRange(source.VectorRequired);
+            VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Int64?>.Empty.AddRange(source.VectorOptional);
+            MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Int64>.Empty.AddRange(source.MapRequired);
+            MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Int64?>.Empty.AddRange(source.MapOptional);
+            MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Int64, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public virtual bool Equals(Basic_long? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial record Basic_ulong
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_ulong? CreateFrom(IBasic_ulong? source)
+        {
+            if (source is null) return null;
+            if (source is Basic_ulong thisEntity) return thisEntity;
+            return new Basic_ulong(source);
+        }
+
+        private static readonly Basic_ulong _empty = new Basic_ulong();
+        public static new Basic_ulong Empty => _empty;
+
+    }
+    public partial record Basic_ulong : EntityBase, IBasic_ulong
+    {
+        public new const int EntityTag = 11;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public UInt64 ScalarRequired { get; init; }
+        UInt64 IBasic_ulong.ScalarRequired => ScalarRequired;
+        public UInt64? ScalarOptional { get; init; }
+        UInt64? IBasic_ulong.ScalarOptional => ScalarOptional;
+        public ImmutableList<UInt64>? VectorRequired { get; init; }
+        IReadOnlyList<UInt64>? IBasic_ulong.VectorRequired => VectorRequired;
+        public ImmutableList<UInt64?>? VectorOptional { get; init; }
+        IReadOnlyList<UInt64?>? IBasic_ulong.VectorOptional => VectorOptional;
+        public ImmutableDictionary<String, UInt64>? MapRequired { get; init; }
+        IReadOnlyDictionary<String, UInt64>? IBasic_ulong.MapRequired => MapRequired;
+        public ImmutableDictionary<String, UInt64?>? MapOptional { get; init; }
+        IReadOnlyDictionary<String, UInt64?>? IBasic_ulong.MapOptional => MapOptional;
+        public ImmutableDictionary<UInt64, String?>? MapKey { get; init; }
+        IReadOnlyDictionary<UInt64, String?>? IBasic_ulong.MapKey => MapKey;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_ulong() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_ulong(Basic_ulong? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired;
+            VectorOptional = source.VectorOptional;
+            MapRequired = source.MapRequired;
+            MapOptional = source.MapOptional;
+            MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_ulong(IBasic_ulong? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<UInt64>.Empty.AddRange(source.VectorRequired);
+            VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<UInt64?>.Empty.AddRange(source.VectorOptional);
+            MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, UInt64>.Empty.AddRange(source.MapRequired);
+            MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, UInt64?>.Empty.AddRange(source.MapOptional);
+            MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<UInt64, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public virtual bool Equals(Basic_ulong? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial record Basic_double
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_double? CreateFrom(IBasic_double? source)
+        {
+            if (source is null) return null;
+            if (source is Basic_double thisEntity) return thisEntity;
+            return new Basic_double(source);
+        }
+
+        private static readonly Basic_double _empty = new Basic_double();
+        public static new Basic_double Empty => _empty;
+
+    }
+    public partial record Basic_double : EntityBase, IBasic_double
+    {
+        public new const int EntityTag = 12;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Double ScalarRequired { get; init; }
+        Double IBasic_double.ScalarRequired => ScalarRequired;
+        public Double? ScalarOptional { get; init; }
+        Double? IBasic_double.ScalarOptional => ScalarOptional;
+        public ImmutableList<Double>? VectorRequired { get; init; }
+        IReadOnlyList<Double>? IBasic_double.VectorRequired => VectorRequired;
+        public ImmutableList<Double?>? VectorOptional { get; init; }
+        IReadOnlyList<Double?>? IBasic_double.VectorOptional => VectorOptional;
+        public ImmutableDictionary<String, Double>? MapRequired { get; init; }
+        IReadOnlyDictionary<String, Double>? IBasic_double.MapRequired => MapRequired;
+        public ImmutableDictionary<String, Double?>? MapOptional { get; init; }
+        IReadOnlyDictionary<String, Double?>? IBasic_double.MapOptional => MapOptional;
+        public ImmutableDictionary<Double, String?>? MapKey { get; init; }
+        IReadOnlyDictionary<Double, String?>? IBasic_double.MapKey => MapKey;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_double() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_double(Basic_double? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired;
+            VectorOptional = source.VectorOptional;
+            MapRequired = source.MapRequired;
+            MapOptional = source.MapOptional;
+            MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_double(IBasic_double? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Double>.Empty.AddRange(source.VectorRequired);
+            VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Double?>.Empty.AddRange(source.VectorOptional);
+            MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Double>.Empty.AddRange(source.MapRequired);
+            MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Double?>.Empty.AddRange(source.MapOptional);
+            MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Double, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public virtual bool Equals(Basic_double? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial record Basic_DateTime
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_DateTime? CreateFrom(IBasic_DateTime? source)
+        {
+            if (source is null) return null;
+            if (source is Basic_DateTime thisEntity) return thisEntity;
+            return new Basic_DateTime(source);
+        }
+
+        private static readonly Basic_DateTime _empty = new Basic_DateTime();
+        public static new Basic_DateTime Empty => _empty;
+
+    }
+    public partial record Basic_DateTime : EntityBase, IBasic_DateTime
+    {
+        public new const int EntityTag = 13;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public DateTime ScalarRequired { get; init; }
+        DateTime IBasic_DateTime.ScalarRequired => ScalarRequired;
+        public DateTime? ScalarOptional { get; init; }
+        DateTime? IBasic_DateTime.ScalarOptional => ScalarOptional;
+        public ImmutableList<DateTime>? VectorRequired { get; init; }
+        IReadOnlyList<DateTime>? IBasic_DateTime.VectorRequired => VectorRequired;
+        public ImmutableList<DateTime?>? VectorOptional { get; init; }
+        IReadOnlyList<DateTime?>? IBasic_DateTime.VectorOptional => VectorOptional;
+        public ImmutableDictionary<String, DateTime>? MapRequired { get; init; }
+        IReadOnlyDictionary<String, DateTime>? IBasic_DateTime.MapRequired => MapRequired;
+        public ImmutableDictionary<String, DateTime?>? MapOptional { get; init; }
+        IReadOnlyDictionary<String, DateTime?>? IBasic_DateTime.MapOptional => MapOptional;
+        public ImmutableDictionary<DateTime, String?>? MapKey { get; init; }
+        IReadOnlyDictionary<DateTime, String?>? IBasic_DateTime.MapKey => MapKey;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_DateTime() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_DateTime(Basic_DateTime? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired;
+            VectorOptional = source.VectorOptional;
+            MapRequired = source.MapRequired;
+            MapOptional = source.MapOptional;
+            MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_DateTime(IBasic_DateTime? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<DateTime>.Empty.AddRange(source.VectorRequired);
+            VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<DateTime?>.Empty.AddRange(source.VectorOptional);
+            MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, DateTime>.Empty.AddRange(source.MapRequired);
+            MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, DateTime?>.Empty.AddRange(source.MapOptional);
+            MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<DateTime, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public virtual bool Equals(Basic_DateTime? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial record Basic_TimeSpan
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Basic_TimeSpan? CreateFrom(IBasic_TimeSpan? source)
+        {
+            if (source is null) return null;
+            if (source is Basic_TimeSpan thisEntity) return thisEntity;
+            return new Basic_TimeSpan(source);
+        }
+
+        private static readonly Basic_TimeSpan _empty = new Basic_TimeSpan();
+        public static new Basic_TimeSpan Empty => _empty;
+
+    }
+    public partial record Basic_TimeSpan : EntityBase, IBasic_TimeSpan
+    {
+        public new const int EntityTag = 14;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public TimeSpan ScalarRequired { get; init; }
+        TimeSpan IBasic_TimeSpan.ScalarRequired => ScalarRequired;
+        public TimeSpan? ScalarOptional { get; init; }
+        TimeSpan? IBasic_TimeSpan.ScalarOptional => ScalarOptional;
+        public ImmutableList<TimeSpan>? VectorRequired { get; init; }
+        IReadOnlyList<TimeSpan>? IBasic_TimeSpan.VectorRequired => VectorRequired;
+        public ImmutableList<TimeSpan?>? VectorOptional { get; init; }
+        IReadOnlyList<TimeSpan?>? IBasic_TimeSpan.VectorOptional => VectorOptional;
+        public ImmutableDictionary<String, TimeSpan>? MapRequired { get; init; }
+        IReadOnlyDictionary<String, TimeSpan>? IBasic_TimeSpan.MapRequired => MapRequired;
+        public ImmutableDictionary<String, TimeSpan?>? MapOptional { get; init; }
+        IReadOnlyDictionary<String, TimeSpan?>? IBasic_TimeSpan.MapOptional => MapOptional;
+        public ImmutableDictionary<TimeSpan, String?>? MapKey { get; init; }
+        IReadOnlyDictionary<TimeSpan, String?>? IBasic_TimeSpan.MapKey => MapKey;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_TimeSpan() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_TimeSpan(Basic_TimeSpan? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired;
+            VectorOptional = source.VectorOptional;
+            MapRequired = source.MapRequired;
+            MapOptional = source.MapOptional;
+            MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_TimeSpan(IBasic_TimeSpan? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<TimeSpan>.Empty.AddRange(source.VectorRequired);
+            VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<TimeSpan?>.Empty.AddRange(source.VectorOptional);
+            MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, TimeSpan>.Empty.AddRange(source.MapRequired);
+            MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, TimeSpan?>.Empty.AddRange(source.MapOptional);
+            MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<TimeSpan, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public virtual bool Equals(Basic_TimeSpan? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -1131,8 +1691,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -1243,8 +1803,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -1355,8 +1915,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -1467,8 +2027,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -1579,8 +2139,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
@@ -1685,8 +2245,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ScalarRequired != other.ScalarRequired) return false;
-            if (ScalarOptional != other.ScalarOptional) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
             if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
             if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
             if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;

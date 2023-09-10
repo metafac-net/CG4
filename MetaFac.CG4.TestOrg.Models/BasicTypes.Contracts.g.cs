@@ -117,6 +117,56 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts
         IReadOnlyDictionary<String, Single?>? MapOptional { get; }
         IReadOnlyDictionary<Single, String?>? MapKey { get; }
     }
+    public partial interface IBasic_long : IEntityBase
+    {
+        Int64 ScalarRequired { get; }
+        Int64? ScalarOptional { get; }
+        IReadOnlyList<Int64>? VectorRequired { get; }
+        IReadOnlyList<Int64?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, Int64>? MapRequired { get; }
+        IReadOnlyDictionary<String, Int64?>? MapOptional { get; }
+        IReadOnlyDictionary<Int64, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_ulong : IEntityBase
+    {
+        UInt64 ScalarRequired { get; }
+        UInt64? ScalarOptional { get; }
+        IReadOnlyList<UInt64>? VectorRequired { get; }
+        IReadOnlyList<UInt64?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, UInt64>? MapRequired { get; }
+        IReadOnlyDictionary<String, UInt64?>? MapOptional { get; }
+        IReadOnlyDictionary<UInt64, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_double : IEntityBase
+    {
+        Double ScalarRequired { get; }
+        Double? ScalarOptional { get; }
+        IReadOnlyList<Double>? VectorRequired { get; }
+        IReadOnlyList<Double?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, Double>? MapRequired { get; }
+        IReadOnlyDictionary<String, Double?>? MapOptional { get; }
+        IReadOnlyDictionary<Double, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_DateTime : IEntityBase
+    {
+        DateTime ScalarRequired { get; }
+        DateTime? ScalarOptional { get; }
+        IReadOnlyList<DateTime>? VectorRequired { get; }
+        IReadOnlyList<DateTime?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, DateTime>? MapRequired { get; }
+        IReadOnlyDictionary<String, DateTime?>? MapOptional { get; }
+        IReadOnlyDictionary<DateTime, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_TimeSpan : IEntityBase
+    {
+        TimeSpan ScalarRequired { get; }
+        TimeSpan? ScalarOptional { get; }
+        IReadOnlyList<TimeSpan>? VectorRequired { get; }
+        IReadOnlyList<TimeSpan?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, TimeSpan>? MapRequired { get; }
+        IReadOnlyDictionary<String, TimeSpan?>? MapOptional { get; }
+        IReadOnlyDictionary<TimeSpan, String?>? MapKey { get; }
+    }
     public partial interface IBasic_decimal : IEntityBase
     {
         Decimal ScalarRequired { get; }

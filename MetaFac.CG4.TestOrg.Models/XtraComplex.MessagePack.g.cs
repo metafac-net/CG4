@@ -619,7 +619,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_LongVal != other.field_LongVal) return false;
+            if (!field_LongVal.ValueEquals(other.field_LongVal)) return false;
             return base.Equals(other);
         }
 
@@ -733,7 +733,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_ByteVal != other.field_ByteVal) return false;
+            if (!field_ByteVal.ValueEquals(other.field_ByteVal)) return false;
             return base.Equals(other);
         }
 

@@ -146,7 +146,7 @@ namespace Generated.ClassesV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (Id != other.Id) return false;
+            if (!Id.ValueEquals(other.Id)) return false;
             return base.Equals(other);
         }
 
@@ -264,7 +264,7 @@ namespace Generated.ClassesV2
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!Name.ValueEquals(other.Name)) return false;
-            if (this.Number != other.Number) return false;
+            if (!Number.ValueEquals(other.Number)) return false;
             return base.Equals(other);
         }
 

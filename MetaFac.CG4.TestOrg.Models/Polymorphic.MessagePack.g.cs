@@ -176,7 +176,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_Id != other.field_Id) return false;
+            if (!field_Id.ValueEquals(other.field_Id)) return false;
             if (!field_Name.ValueEquals(other.field_Name)) return false;
             return base.Equals(other);
         }
@@ -506,7 +506,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_BoolValue != other.field_BoolValue) return false;
+            if (!field_BoolValue.ValueEquals(other.field_BoolValue)) return false;
             return base.Equals(other);
         }
 
@@ -620,7 +620,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_CustomValue != other.field_CustomValue) return false;
+            if (!field_CustomValue.ValueEquals(other.field_CustomValue)) return false;
             return base.Equals(other);
         }
 
@@ -734,7 +734,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_IntValue != other.field_IntValue) return false;
+            if (!field_IntValue.ValueEquals(other.field_IntValue)) return false;
             return base.Equals(other);
         }
 
@@ -848,7 +848,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_LongValue != other.field_LongValue) return false;
+            if (!field_LongValue.ValueEquals(other.field_LongValue)) return false;
             return base.Equals(other);
         }
 

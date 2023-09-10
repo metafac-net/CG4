@@ -45,6 +45,17 @@ namespace T_Namespace_.ClassesV2
     using T_ExternalOtherType_ = System.Int64;
     using T_ExternalMaybeType_ = System.DayOfWeek;
     using T_IndexType_ = System.String;
+
+    internal static class IgnoredExtensions
+    {
+        public static bool ValueEquals(this DayOfWeek? self, in DayOfWeek? other)
+        {
+            if (self is null) return other is null;
+            if (other is null) return false;
+            return self.Value == other.Value;
+        }
+    }
+
     //>>}
 
     //>>using (Ignored())
@@ -669,7 +680,7 @@ namespace T_Namespace_.ClassesV2
             if (!T_IndexModelFieldName_.IndexEquals(other.T_IndexModelFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryMaybe:
-            if (this.T_UnaryMaybeFieldName_ != other.T_UnaryMaybeFieldName_) return false;
+            if (!T_UnaryMaybeFieldName_.ValueEquals(other.T_UnaryMaybeFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayMaybe:
             if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_, (a, b) => a == b)) return false;
@@ -678,7 +689,7 @@ namespace T_Namespace_.ClassesV2
             if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_, (a, b) => a == b)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
-            if (T_UnaryOtherFieldName_ != other.T_UnaryOtherFieldName_) return false;
+            if (!T_UnaryOtherFieldName_.ValueEquals(other.T_UnaryOtherFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayOther:
             if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_, (a, b) => a == b)) return false;

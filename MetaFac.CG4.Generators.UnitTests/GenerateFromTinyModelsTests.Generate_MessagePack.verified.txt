@@ -161,7 +161,7 @@ namespace Generated.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_Id != other.field_Id) return false;
+            if (!field_Id.ValueEquals(other.field_Id)) return false;
             return base.Equals(other);
         }
 
@@ -287,7 +287,7 @@ namespace Generated.MessagePack
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!field_Name.ValueEquals(other.field_Name)) return false;
-            if (field_Number != other.field_Number) return false;
+            if (!field_Number.ValueEquals(other.field_Number)) return false;
             return base.Equals(other);
         }
 

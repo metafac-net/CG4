@@ -57,6 +57,17 @@ Emit("{");
 Emit("    using T_ExternalOtherType_ = System.Int64;");
 Emit("    using T_ExternalMaybeType_ = System.DayOfWeek;");
 Emit("    using T_IndexType_ = System.String;");
+Emit("");
+Emit("    internal static class IgnoredExtensions");
+Emit("    {");
+Emit("        public static bool ValueEquals(this DayOfWeek? self, in DayOfWeek? other)");
+Emit("        {");
+Emit("            if (self is null) return other is null;");
+Emit("            if (other is null) return false;");
+Emit("            return self.Value == other.Value;");
+Emit("        }");
+Emit("    }");
+Emit("");
     }
 Emit("");
     using (Ignored())
@@ -681,7 +692,7 @@ Emit("            if (!T_ArrayModelFieldName_.ArrayEquals(other.T_ArrayModelFiel
 Emit("            if (!T_IndexModelFieldName_.IndexEquals(other.T_IndexModelFieldName_)) return false;");
                                     break;
                                 case FieldKind.UnaryMaybe:
-Emit("            if (this.T_UnaryMaybeFieldName_ != other.T_UnaryMaybeFieldName_) return false;");
+Emit("            if (!T_UnaryMaybeFieldName_.ValueEquals(other.T_UnaryMaybeFieldName_)) return false;");
                                     break;
                                 case FieldKind.ArrayMaybe:
 Emit("            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_, (a, b) => a == b)) return false;");
@@ -690,7 +701,7 @@ Emit("            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFiel
 Emit("            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_, (a, b) => a == b)) return false;");
                                     break;
                                 case FieldKind.UnaryOther:
-Emit("            if (T_UnaryOtherFieldName_ != other.T_UnaryOtherFieldName_) return false;");
+Emit("            if (!T_UnaryOtherFieldName_.ValueEquals(other.T_UnaryOtherFieldName_)) return false;");
                                     break;
                                 case FieldKind.ArrayOther:
 Emit("            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_, (a, b) => a == b)) return false;");

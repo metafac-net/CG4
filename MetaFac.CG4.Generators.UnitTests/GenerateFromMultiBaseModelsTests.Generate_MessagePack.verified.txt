@@ -310,7 +310,7 @@ namespace Generated.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_SourceAccountId.ValueEquals(other.field_SourceAccountId)) return false;
             if (!field_TargetAccountId.ValueEquals(other.field_TargetAccountId)) return false;
-            if (field_Amount != other.field_Amount) return false;
+            if (!field_Amount.ValueEquals(other.field_Amount)) return false;
             if (!field_CurrencyCode3.ValueEquals(other.field_CurrencyCode3)) return false;
             return base.Equals(other);
         }

@@ -172,7 +172,7 @@ namespace Generated.RecordsV2
             if (ReferenceEquals(other, this)) return true;
             if (!SourceAccountId.ValueEquals(other.SourceAccountId)) return false;
             if (!TargetAccountId.ValueEquals(other.TargetAccountId)) return false;
-            if (Amount != other.Amount) return false;
+            if (!Amount.ValueEquals(other.Amount)) return false;
             if (!CurrencyCode3.ValueEquals(other.CurrencyCode3)) return false;
             return base.Equals(other);
         }

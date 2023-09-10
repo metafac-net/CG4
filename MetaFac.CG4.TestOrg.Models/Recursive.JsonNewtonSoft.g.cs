@@ -131,7 +131,7 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (Id != other.Id) return false;
+            if (!Id .ValueEquals(other.Id)) return false;
             if (!A.ValueEquals(other.A)) return false;
             if (!B.ValueEquals(other.B)) return false;
             return true;

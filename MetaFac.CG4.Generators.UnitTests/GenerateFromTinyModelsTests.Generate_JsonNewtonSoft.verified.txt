@@ -114,7 +114,7 @@ namespace Generated.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (Id != other.Id) return false;
+            if (!Id .ValueEquals(other.Id)) return false;
             return true;
         }
 
@@ -204,7 +204,7 @@ namespace Generated.JsonNewtonSoft
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
             if (!Name.ValueEquals(other.Name)) return false;
-            if (Number != other.Number) return false;
+            if (!Number.ValueEquals(other.Number)) return false;
             return true;
         }
 

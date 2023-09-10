@@ -123,7 +123,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (Id != other.Id) return false;
+            if (!Id .ValueEquals(other.Id)) return false;
             if (!Name.ValueEquals(other.Name)) return false;
             return true;
         }
@@ -348,7 +348,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (BoolValue != other.BoolValue) return false;
+            if (!BoolValue .ValueEquals(other.BoolValue)) return false;
             return true;
         }
 
@@ -427,7 +427,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (CustomValue != other.CustomValue) return false;
+            if (!CustomValue .ValueEquals(other.CustomValue)) return false;
             return true;
         }
 
@@ -506,7 +506,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (IntValue != other.IntValue) return false;
+            if (!IntValue .ValueEquals(other.IntValue)) return false;
             return true;
         }
 
@@ -585,7 +585,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (LongValue != other.LongValue) return false;
+            if (!LongValue .ValueEquals(other.LongValue)) return false;
             return true;
         }
 

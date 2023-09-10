@@ -425,7 +425,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (LongVal != other.LongVal) return false;
+            if (!LongVal .ValueEquals(other.LongVal)) return false;
             return true;
         }
 
@@ -504,7 +504,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (ByteVal != other.ByteVal) return false;
+            if (!ByteVal .ValueEquals(other.ByteVal)) return false;
             return true;
         }
 

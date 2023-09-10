@@ -112,6 +112,66 @@ namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
         [Member(7)] public Dictionary<float, string?>? MapKey { get; }
     }
 
+    [Entity(10)]
+    public class Basic_long
+    {
+        [Member(1)] public long ScalarRequired { get; }
+        [Member(2)] public long? ScalarOptional { get; }
+        [Member(3)] public long[]? VectorRequired { get; }
+        [Member(4)] public long?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, long>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, long?>? MapOptional { get; }
+        [Member(7)] public Dictionary<long, string?>? MapKey { get; }
+    }
+
+    [Entity(11)]
+    public class Basic_ulong
+    {
+        [Member(1)] public ulong ScalarRequired { get; }
+        [Member(2)] public ulong? ScalarOptional { get; }
+        [Member(3)] public ulong[]? VectorRequired { get; }
+        [Member(4)] public ulong?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, ulong>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, ulong?>? MapOptional { get; }
+        [Member(7)] public Dictionary<ulong, string?>? MapKey { get; }
+    }
+
+    [Entity(12)]
+    public class Basic_double
+    {
+        [Member(1)] public double ScalarRequired { get; }
+        [Member(2)] public double? ScalarOptional { get; }
+        [Member(3)] public double[]? VectorRequired { get; }
+        [Member(4)] public double?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, double>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, double?>? MapOptional { get; }
+        [Member(7)] public Dictionary<double, string?>? MapKey { get; }
+    }
+
+    [Entity(13)]
+    public class Basic_DateTime
+    {
+        [Member(1)] public DateTime ScalarRequired { get; }
+        [Member(2)] public DateTime? ScalarOptional { get; }
+        [Member(3)] public DateTime[]? VectorRequired { get; }
+        [Member(4)] public DateTime?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, DateTime>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, DateTime?>? MapOptional { get; }
+        [Member(7)] public Dictionary<DateTime, string?>? MapKey { get; }
+    }
+
+    [Entity(14)]
+    public class Basic_TimeSpan
+    {
+        [Member(1)] public TimeSpan ScalarRequired { get; }
+        [Member(2)] public TimeSpan? ScalarOptional { get; }
+        [Member(3)] public TimeSpan[]? VectorRequired { get; }
+        [Member(4)] public TimeSpan?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, TimeSpan>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, TimeSpan?>? MapOptional { get; }
+        [Member(7)] public Dictionary<TimeSpan, string?>? MapKey { get; }
+    }
+
     [Entity(17)]
     public class Basic_decimal
     {

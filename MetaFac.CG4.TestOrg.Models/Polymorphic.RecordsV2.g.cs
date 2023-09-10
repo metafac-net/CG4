@@ -100,7 +100,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (Id != other.Id) return false;
+            if (!Id.ValueEquals(other.Id)) return false;
             if (!Name.ValueEquals(other.Name)) return false;
             return base.Equals(other);
         }
@@ -297,7 +297,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (BoolValue != other.BoolValue) return false;
+            if (!BoolValue.ValueEquals(other.BoolValue)) return false;
             return base.Equals(other);
         }
 
@@ -363,7 +363,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (CustomValue != other.CustomValue) return false;
+            if (!CustomValue.ValueEquals(other.CustomValue)) return false;
             return base.Equals(other);
         }
 
@@ -429,7 +429,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (IntValue != other.IntValue) return false;
+            if (!IntValue.ValueEquals(other.IntValue)) return false;
             return base.Equals(other);
         }
 
@@ -495,7 +495,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (LongValue != other.LongValue) return false;
+            if (!LongValue.ValueEquals(other.LongValue)) return false;
             return base.Equals(other);
         }
 

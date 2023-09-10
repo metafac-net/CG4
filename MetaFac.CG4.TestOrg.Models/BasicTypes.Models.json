@@ -473,6 +473,266 @@
           ]
         },
         {
+          "Name": "Basic_long",
+          "Tag": 10,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "int64"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "int64",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "int64",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "int64",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "int64",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "int64",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "int64"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_ulong",
+          "Tag": 11,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "uint64"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "uint64",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "uint64",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "uint64",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "uint64",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "uint64",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "uint64"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_double",
+          "Tag": 12,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "double"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "double",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "double",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "double",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "double",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "double",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "double"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_DateTime",
+          "Tag": 13,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "datetime"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "datetime",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "datetime",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "datetime",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "datetime",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "datetime",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "datetime"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_TimeSpan",
+          "Tag": 14,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "timespan"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "timespan",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "timespan",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "timespan",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "timespan",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "timespan",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "timespan"
+            }
+          ]
+        },
+        {
           "Name": "Basic_decimal",
           "Tag": 17,
           "MemberDefs": [

@@ -570,7 +570,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.ClassesV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (LongVal != other.LongVal) return false;
+            if (!LongVal.ValueEquals(other.LongVal)) return false;
             return base.Equals(other);
         }
 
@@ -677,7 +677,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.ClassesV2
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (ByteVal != other.ByteVal) return false;
+            if (!ByteVal.ValueEquals(other.ByteVal)) return false;
             return base.Equals(other);
         }
 

@@ -193,8 +193,8 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_FamilyName.ValueEquals(other.field_FamilyName)) return false;
             if (!field_FirstName.ValueEquals(other.field_FirstName)) return false;
-            if (field_Gender != other.field_Gender) return false;
-            if (field_DayOfBirth != other.field_DayOfBirth) return false;
+            if (!field_Gender.ValueEquals(other.field_Gender)) return false;
+            if (!field_DayOfBirth.ValueEquals(other.field_DayOfBirth)) return false;
             return base.Equals(other);
         }
 

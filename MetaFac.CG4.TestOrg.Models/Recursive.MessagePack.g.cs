@@ -182,7 +182,7 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (field_Id != other.field_Id) return false;
+            if (!field_Id.ValueEquals(other.field_Id)) return false;
             if (!field_A.ValueEquals(other.field_A)) return false;
             if (!field_B.ValueEquals(other.field_B)) return false;
             return base.Equals(other);

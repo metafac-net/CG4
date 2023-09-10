@@ -103,8 +103,8 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.RecordsV2
             if (ReferenceEquals(other, this)) return true;
             if (!FamilyName.ValueEquals(other.FamilyName)) return false;
             if (!FirstName.ValueEquals(other.FirstName)) return false;
-            if (Gender != other.Gender) return false;
-            if (DayOfBirth != other.DayOfBirth) return false;
+            if (!Gender.ValueEquals(other.Gender)) return false;
+            if (!DayOfBirth.ValueEquals(other.DayOfBirth)) return false;
             return base.Equals(other);
         }
 

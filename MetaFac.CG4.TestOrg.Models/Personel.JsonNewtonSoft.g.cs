@@ -143,8 +143,8 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!FamilyName.ValueEquals(other.FamilyName)) return false;
             if (!FirstName.ValueEquals(other.FirstName)) return false;
-            if (Gender != other.Gender) return false;
-            if (DayOfBirth != other.DayOfBirth) return false;
+            if (!Gender .ValueEquals(other.Gender)) return false;
+            if (!DayOfBirth .ValueEquals(other.DayOfBirth)) return false;
             return true;
         }
 
