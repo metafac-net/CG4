@@ -32,11 +32,4 @@ namespace Generated.Contracts
         String? Name { get; }
         Int64? Number { get; }
     }
-
-    /// <summary>
-    /// Equality helpers for enumerations.
-    /// </summary>
-    internal static class EnumerationHelpers
-    {
-    }
 }

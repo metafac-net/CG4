@@ -26,11 +26,4 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.Contracts
         ITree? A { get; }
         ITree? B { get; }
     }
-
-    /// <summary>
-    /// Equality helpers for enumerations.
-    /// </summary>
-    internal static class EnumerationHelpers
-    {
-    }
 }

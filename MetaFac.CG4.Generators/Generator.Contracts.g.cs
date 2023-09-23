@@ -158,22 +158,6 @@ Emit("    }");
     {
 Emit("    public interface IT_DerivedName_ : IT_EntityName_ { }");
     }
-Emit("");
-Emit("    /// <summary>");
-Emit("    /// Equality helpers for enumerations.");
-Emit("    /// </summary>");
-Emit("    internal static class EnumerationHelpers");
-Emit("    {");
-        foreach (var ed in outerScope.EnumTypeDefs)
-        {
-            using (NewScope(ed))
-            {
-Emit("        public static bool ValueEquals(this T_EnumTypeName_ self, in T_EnumTypeName_ other) => self == other;");
-Emit("        public static bool ValueEquals(this T_EnumTypeName_? self, in T_EnumTypeName_? other)");
-Emit("            => (self is null) ? (other is null) : other is null ? false : self.Value == other.Value;");
-            }
-        }
-Emit("    }");
 Emit("}");
 // |metacode:generator_footer|
         }

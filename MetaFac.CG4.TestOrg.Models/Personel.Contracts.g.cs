@@ -33,14 +33,4 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.Contracts
         GenderEnum Gender { get; }
         System.DayOfWeek DayOfBirth { get; }
     }
-
-    /// <summary>
-    /// Equality helpers for enumerations.
-    /// </summary>
-    internal static class EnumerationHelpers
-    {
-        public static bool ValueEquals(this GenderEnum self, in GenderEnum other) => self == other;
-        public static bool ValueEquals(this GenderEnum? self, in GenderEnum? other)
-            => (self is null) ? (other is null) : other is null ? false : self.Value == other.Value;
-    }
 }

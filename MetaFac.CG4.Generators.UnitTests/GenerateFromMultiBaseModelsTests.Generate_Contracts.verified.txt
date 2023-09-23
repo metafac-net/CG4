@@ -34,11 +34,4 @@ namespace Generated.Contracts
         Decimal Amount { get; }
         String? CurrencyCode3 { get; }
     }
-
-    /// <summary>
-    /// Equality helpers for enumerations.
-    /// </summary>
-    internal static class EnumerationHelpers
-    {
-    }
 }

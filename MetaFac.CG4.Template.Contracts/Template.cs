@@ -146,21 +146,5 @@ namespace T_Namespace_.Contracts
     //>>{
     public interface IT_DerivedName_ : IT_EntityName_ { }
     //>>}
-
-    /// <summary>
-    /// Equality helpers for enumerations.
-    /// </summary>
-    internal static class EnumerationHelpers
-    {
-        //>>foreach (var ed in outerScope.EnumTypeDefs)
-        //>>{
-        //>>    using (NewScope(ed))
-        //>>    {
-        public static bool ValueEquals(this T_EnumTypeName_ self, in T_EnumTypeName_ other) => self == other;
-        public static bool ValueEquals(this T_EnumTypeName_? self, in T_EnumTypeName_? other)
-            => (self is null) ? (other is null) : other is null ? false : self.Value == other.Value;
-        //>>    }
-        //>>}
-    }
 }
 // |metacode:template_end|

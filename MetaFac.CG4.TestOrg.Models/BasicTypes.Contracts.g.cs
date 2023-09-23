@@ -232,14 +232,4 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts
         IReadOnlyList<String?>? Vector { get; }
         IReadOnlyDictionary<String, String?>? MapValue { get; }
     }
-
-    /// <summary>
-    /// Equality helpers for enumerations.
-    /// </summary>
-    internal static class EnumerationHelpers
-    {
-        public static bool ValueEquals(this MyCustomEnum self, in MyCustomEnum other) => self == other;
-        public static bool ValueEquals(this MyCustomEnum? self, in MyCustomEnum? other)
-            => (self is null) ? (other is null) : other is null ? false : self.Value == other.Value;
-    }
 }
