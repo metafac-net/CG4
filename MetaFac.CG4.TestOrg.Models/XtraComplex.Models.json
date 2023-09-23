@@ -64,14 +64,14 @@
           ]
         },
         {
-          "Name": "ByteNode",
+          "Name": "DaynNode",
           "Tag": 6,
           "ParentName": "NumNode",
           "MemberDefs": [
             {
-              "Name": "ByteVal",
+              "Name": "DaynVal",
               "Tag": 1,
-              "InnerType": "uint8"
+              "InnerType": "System.DayOfWeek"
             }
           ]
         }

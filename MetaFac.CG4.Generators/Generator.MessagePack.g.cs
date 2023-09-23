@@ -872,19 +872,19 @@ Emit("            if (!field_T_IndexModelFieldName_.IndexEquals(other.field_T_In
 Emit("            if (!field_T_UnaryMaybeFieldName_.ValueEquals(other.field_T_UnaryMaybeFieldName_)) return false;");
                                     break;
                                 case FieldKind.ArrayMaybe:
-Emit("            if (!field_T_ArrayMaybeFieldName_.ArrayEquals(other.field_T_ArrayMaybeFieldName_, (a, b) => a == b)) return false;");
+Emit("            if (!field_T_ArrayMaybeFieldName_.ArrayEquals(other.field_T_ArrayMaybeFieldName_)) return false;");
                                     break;
                                 case FieldKind.IndexMaybe:
-Emit("            if (!field_T_IndexMaybeFieldName_.IndexEquals(other.field_T_IndexMaybeFieldName_, (a, b) => a == b)) return false;");
+Emit("            if (!field_T_IndexMaybeFieldName_.IndexEquals(other.field_T_IndexMaybeFieldName_)) return false;");
                                     break;
                                 case FieldKind.UnaryOther:
 Emit("            if (!field_T_UnaryOtherFieldName_.ValueEquals(other.field_T_UnaryOtherFieldName_)) return false;");
                                     break;
                                 case FieldKind.ArrayOther:
-Emit("            if (!field_T_ArrayOtherFieldName_.ArrayEquals(other.field_T_ArrayOtherFieldName_, (a, b) => a == b)) return false;");
+Emit("            if (!field_T_ArrayOtherFieldName_.ArrayEquals(other.field_T_ArrayOtherFieldName_)) return false;");
                                     break;
                                 case FieldKind.IndexOther:
-Emit("            if (!field_T_IndexOtherFieldName_.IndexEquals(other.field_T_IndexOtherFieldName_, (a, b) => a == b)) return false;");
+Emit("            if (!field_T_IndexOtherFieldName_.IndexEquals(other.field_T_IndexOtherFieldName_)) return false;");
                                     break;
                                 case FieldKind.UnaryBuffer:
 Emit("            if (!field_T_UnaryBufferFieldName_.ValueEquals(other.field_T_UnaryBufferFieldName_)) return false;");

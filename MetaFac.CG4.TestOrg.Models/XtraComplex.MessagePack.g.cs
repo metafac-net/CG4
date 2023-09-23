@@ -233,7 +233,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
     [Union(StrNode.EntityTag, typeof(StrNode))]
     [Union(NumNode.EntityTag, typeof(NumNode))]
     [Union(LongNode.EntityTag, typeof(LongNode))]
-    [Union(ByteNode.EntityTag, typeof(ByteNode))]
+    [Union(DaynNode.EntityTag, typeof(DaynNode))]
     public abstract partial class Node
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -246,7 +246,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
                 case StrNode.EntityTag: return StrNode.CreateFrom((IStrNode)source);
                 case NumNode.EntityTag: return NumNode.CreateFrom((INumNode)source);
                 case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(entityTag), entityTag, null);
             }
@@ -449,7 +449,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
     }
 
     [Union(LongNode.EntityTag, typeof(LongNode))]
-    [Union(ByteNode.EntityTag, typeof(ByteNode))]
+    [Union(DaynNode.EntityTag, typeof(DaynNode))]
     public abstract partial class NumNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -460,7 +460,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
             switch (entityTag)
             {
                 case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(entityTag), entityTag, null);
             }
@@ -662,27 +662,27 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
 
     }
 
-    public sealed partial class ByteNode
+    public sealed partial class DaynNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ByteNode? CreateFrom(IByteNode? source)
+        public static DaynNode? CreateFrom(IDaynNode? source)
         {
             if (source is null) return null;
-            return new ByteNode(source);
+            return new DaynNode(source);
         }
 
-        private static ByteNode CreateEmpty()
+        private static DaynNode CreateEmpty()
         {
-            var empty = new ByteNode();
+            var empty = new DaynNode();
             empty.Freeze();
             return empty;
         }
-        private static readonly ByteNode _empty = CreateEmpty();
-        public static new ByteNode Empty => _empty;
+        private static readonly DaynNode _empty = CreateEmpty();
+        public static new DaynNode Empty => _empty;
 
     }
     [MessagePackObject]
-    public partial class ByteNode : NumNode, IByteNode, IEquatable<ByteNode>, ICopyFrom<ByteNode>
+    public partial class DaynNode : NumNode, IDaynNode, IEquatable<DaynNode>, ICopyFrom<DaynNode>
     {
         protected override void OnFreeze()
         {
@@ -693,59 +693,59 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
         protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
-        private Byte field_ByteVal;
+        private System.DayOfWeek field_DaynVal;
 
         // ---------- accessors ----------
         [Key(1)]
-        public Byte ByteVal
+        public System.DayOfWeek DaynVal
         {
-            get => field_ByteVal;
-            set => field_ByteVal = CheckNotFrozen(ref value);
+            get => field_DaynVal;
+            set => field_DaynVal = CheckNotFrozen(ref value);
         }
 
-        // ---------- IByteNode methods ----------
-        Byte IByteNode.ByteVal => field_ByteVal.ToExternal();
+        // ---------- IDaynNode methods ----------
+        System.DayOfWeek IDaynNode.DaynVal => field_DaynVal.ToExternal();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ByteNode()
+        public DaynNode()
         {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ByteNode(ByteNode source) : base(source)
+        public DaynNode(DaynNode source) : base(source)
         {
-            field_ByteVal = source.field_ByteVal;
+            field_DaynVal = source.field_DaynVal;
         }
 
-        public void CopyFrom(ByteNode source)
+        public void CopyFrom(DaynNode source)
         {
             base.CopyFrom(source);
-            field_ByteVal = source.field_ByteVal;
+            field_DaynVal = source.field_DaynVal;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ByteNode(IByteNode source) : base(source)
+        public DaynNode(IDaynNode source) : base(source)
         {
-            field_ByteVal = source.ByteVal.ToInternal();
+            field_DaynVal = source.DaynVal.ToInternal();
         }
 
-        public bool Equals(ByteNode? other)
+        public bool Equals(DaynNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!field_ByteVal.ValueEquals(other.field_ByteVal)) return false;
+            if (!field_DaynVal.ValueEquals(other.field_DaynVal)) return false;
             return base.Equals(other);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(ByteNode left, ByteNode right)
+        public static bool operator ==(DaynNode left, DaynNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(ByteNode left, ByteNode right)
+        public static bool operator !=(DaynNode left, DaynNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
@@ -754,13 +754,13 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
-            return obj is ByteNode other && Equals(other);
+            return obj is DaynNode other && Equals(other);
         }
 
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(field_ByteVal.CalcHashUnary());
+            hc.Add(field_DaynVal.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

@@ -9,7 +9,7 @@ namespace MetaFac.CG4.Runtime
     {
         // specific types
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ArrayEquals<T>(this ImmutableArray<T?> self, in ImmutableArray<T?> other) where T : IEquatable<T>
+        public static bool ArrayEquals<T>(this ImmutableArray<T?> self, in ImmutableArray<T?> other)
         {
             if (self.IsDefault) return other.IsDefault;
             if (other.IsDefault) return false;
@@ -19,36 +19,11 @@ namespace MetaFac.CG4.Runtime
                 if (!self[i].ValueEquals(other[i])) return false;
             }
             return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ArrayEquals<T>(this ImmutableArray<T?> self, in ImmutableArray<T?> other) where T : struct, IEquatable<T>
-        {
-            if (self.IsDefault) return other.IsDefault;
-            if (other.IsDefault) return false;
-            if (self.Length != other.Length) return false;
-            for (int i = 0; i < self.Length; i++)
-            {
-                if (!self[i].ValueEquals(other[i])) return false;
-            }
-            return true;
-        }
-
-        public static bool ValueEquals(this DayOfWeek self, in DayOfWeek other)
-        {
-            return self == other;
-        }
-
-        public static bool ValueEquals(this DayOfWeek? self, in DayOfWeek? other)
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            return self.Value == other.Value;
         }
 
         // generic types
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ValueEquals<T>(this T? self, in T? other) where T : IEquatable<T>
+        public static bool ValueEquals<T>(this T? self, in T? other)
         {
             if (self is null) return other is null;
             if (other is null) return false;
@@ -56,15 +31,7 @@ namespace MetaFac.CG4.Runtime
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ValueEquals<T>(this T? self, in T? other) where T : struct, IEquatable<T>
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            return self.Value.Equals(other.Value);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ArrayEquals<T>(this T?[]? self, in T?[]? other) where T : IEquatable<T>
+        public static bool ArrayEquals<T>(this T?[]? self, in T?[]? other)
         {
             if (self is null) return other is null;
             if (other is null) return false;
@@ -76,18 +43,6 @@ namespace MetaFac.CG4.Runtime
             return true;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ArrayEquals<T>(this T?[]? self, in T?[]? other) where T : struct, IEquatable<T>
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            if (self.Length != other.Length) return false;
-            for (int i = 0; i < self.Length; i++)
-            {
-                if (!self[i].ValueEquals(other[i])) return false;
-            }
-            return true;
-        }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ValueEquals(this byte[]? self, in byte[]? other)
         {
@@ -144,26 +99,7 @@ namespace MetaFac.CG4.Runtime
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ArrayEquals<T>(this IReadOnlyList<T?>? self, in IReadOnlyList<T?>? other, Func<T, T, bool> equalsFunc)
-        {
-            if (ReferenceEquals(self, other)) return true;
-            if (self is null) return false;
-            if (other is null) return false;
-            if (self.Count != other.Count) return false;
-            for (int i = 0; i < self.Count; i++)
-            {
-                T? selfItem = self[i];
-                T? otherItem = other[i];
-                if (selfItem is null && otherItem is null) continue;
-                if (selfItem is null) return false;
-                if (otherItem is null) return false;
-                if (!equalsFunc(selfItem, otherItem)) return false;
-            }
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ArrayEquals<T>(this IReadOnlyList<T?>? self, in IReadOnlyList<T?>? other) where T : IEquatable<T>
+        public static bool ArrayEquals<T>(this IReadOnlyList<T?>? self, in IReadOnlyList<T?>? other)
         {
             if (self is null) return other is null;
             if (other is null) return false;
@@ -202,38 +138,7 @@ namespace MetaFac.CG4.Runtime
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ArrayEquals<T>(this IReadOnlyList<T?>? self, in IReadOnlyList<T?>? other) where T : struct, IEquatable<T>
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            if (self.Count != other.Count) return false;
-            for (int i = 0; i < self.Count; i++)
-            {
-                if (!self[i].ValueEquals(other[i])) return false;
-            }
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IndexEquals<TKey, T>(this IReadOnlyDictionary<TKey, T?>? self, in IReadOnlyDictionary<TKey, T?>? other, Func<T, T, bool> equalsFunc)
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            if (self.Count != other.Count) return false;
-            foreach (var kvp in self)
-            {
-                if (!self.TryGetValue(kvp.Key, out T? otherItem)) return false;
-                T? selfItem = kvp.Value;
-                if (selfItem is null && otherItem is null) continue;
-                if (selfItem is null) return false;
-                if (otherItem is null) return false;
-                if (!equalsFunc(selfItem, otherItem)) return false;
-            }
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IndexEquals<TKey, T>(this IReadOnlyDictionary<TKey, T?>? self, in IReadOnlyDictionary<TKey, T?>? other) where T : IEquatable<T>
+        public static bool IndexEquals<TKey, T>(this IReadOnlyDictionary<TKey, T?>? self, in IReadOnlyDictionary<TKey, T?>? other)
         {
             if (self is null) return other is null;
             if (other is null) return false;
@@ -269,20 +174,6 @@ namespace MetaFac.CG4.Runtime
             foreach (var kvp in self)
             {
                 if (!self.TryGetValue(kvp.Key, out var otherValue)) return false;
-                if (!kvp.Value.ValueEquals(otherValue)) return false;
-            }
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IndexEquals<TKey, T>(this IReadOnlyDictionary<TKey, T?>? self, in IReadOnlyDictionary<TKey, T?>? other) where T : struct, IEquatable<T>
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            if (self.Count != other.Count) return false;
-            foreach (var kvp in self)
-            {
-                if (!self.TryGetValue(kvp.Key, out T? otherValue)) return false;
                 if (!kvp.Value.ValueEquals(otherValue)) return false;
             }
             return true;

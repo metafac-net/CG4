@@ -193,10 +193,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -364,10 +364,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -535,10 +535,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -706,10 +706,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -877,10 +877,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -1048,10 +1048,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -1219,10 +1219,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -1390,10 +1390,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -1561,10 +1561,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -1732,10 +1732,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -1903,10 +1903,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -2074,10 +2074,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -2245,10 +2245,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -2416,10 +2416,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -2587,10 +2587,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -2758,10 +2758,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -2929,10 +2929,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -3100,10 +3100,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -3271,10 +3271,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
@@ -3428,10 +3428,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!base.Equals(other)) return false;
             if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
             if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
-            if (!VectorRequired.ArrayEquals(other.VectorRequired, (a, b) => a == b)) return false;
-            if (!VectorOptional.ArrayEquals(other.VectorOptional, (a, b) => a == b)) return false;
-            if (!MapRequired.IndexEquals(other.MapRequired, (a, b) => a == b)) return false;
-            if (!MapOptional.IndexEquals(other.MapOptional, (a, b) => a == b)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
             return true;
         }
 

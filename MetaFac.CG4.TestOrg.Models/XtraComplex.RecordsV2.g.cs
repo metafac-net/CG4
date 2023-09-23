@@ -134,7 +134,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
                 case StrNode.EntityTag: return StrNode.CreateFrom((IStrNode)source);
                 case NumNode.EntityTag: return NumNode.CreateFrom((INumNode)source);
                 case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(Node)} from {source.GetType().Name}");
             }
@@ -263,7 +263,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
             switch (entityTag)
             {
                 case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumNode)} from {source.GetType().Name}");
             }
@@ -382,59 +382,59 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         }
     }
 
-    public partial record ByteNode
+    public partial record DaynNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ByteNode? CreateFrom(IByteNode? source)
+        public static DaynNode? CreateFrom(IDaynNode? source)
         {
             if (source is null) return null;
-            if (source is ByteNode thisEntity) return thisEntity;
-            return new ByteNode(source);
+            if (source is DaynNode thisEntity) return thisEntity;
+            return new DaynNode(source);
         }
 
-        private static readonly ByteNode _empty = new ByteNode();
-        public static new ByteNode Empty => _empty;
+        private static readonly DaynNode _empty = new DaynNode();
+        public static new DaynNode Empty => _empty;
 
     }
-    public partial record ByteNode : NumNode, IByteNode
+    public partial record DaynNode : NumNode, IDaynNode
     {
         public new const int EntityTag = 6;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Byte ByteVal { get; init; }
-        Byte IByteNode.ByteVal => ByteVal;
+        public System.DayOfWeek DaynVal { get; init; }
+        System.DayOfWeek IDaynNode.DaynVal => DaynVal;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ByteNode() : base()
+        public DaynNode() : base()
         {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ByteNode(ByteNode? source) : base(source)
-        {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            ByteVal = source.ByteVal;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ByteNode(IByteNode? source) : base(source)
+        public DaynNode(DaynNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            ByteVal = source.ByteVal;
+            DaynVal = source.DaynVal;
         }
 
-        public virtual bool Equals(ByteNode? other)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public DaynNode(IDaynNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DaynVal = source.DaynVal;
+        }
+
+        public virtual bool Equals(DaynNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!ByteVal.ValueEquals(other.ByteVal)) return false;
+            if (!DaynVal.ValueEquals(other.DaynVal)) return false;
             return base.Equals(other);
         }
 
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(ByteVal.CalcHashUnary());
+            hc.Add(DaynVal.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

@@ -31,7 +31,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 Value = new XtraComplex.RecordsV2.StrNode() { StrVal = "abc" },
                 A = new XtraComplex.RecordsV2.Tree()
                 {
-                    Value = new XtraComplex.RecordsV2.ByteNode() { ByteVal = 1 }
+                    Value = new XtraComplex.RecordsV2.DaynNode() { DaynVal = DayOfWeek.Monday }
                 },
                 B = new XtraComplex.RecordsV2.Tree()
                 {
@@ -57,10 +57,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 Value = new XtraComplex.RecordsV2.StrNode() { StrVal = "abc" },
                 A = new XtraComplex.RecordsV2.Tree()
                 {
-                    Value = new XtraComplex.RecordsV2.ByteNode() { ByteVal = 1 },
+                    Value = new XtraComplex.RecordsV2.DaynNode() { DaynVal = DayOfWeek.Monday },
                     A = new XtraComplex.RecordsV2.Tree()
                     {
-                        Value = new XtraComplex.RecordsV2.ByteNode() { ByteVal = 2 }
+                        Value = new XtraComplex.RecordsV2.DaynNode() { DaynVal = DayOfWeek.Tuesday }
                     }
                 },
                 B = new XtraComplex.RecordsV2.Tree()

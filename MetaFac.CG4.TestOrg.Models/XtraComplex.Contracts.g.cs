@@ -40,9 +40,9 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.Contracts
     {
         Int64 LongVal { get; }
     }
-    public partial interface IByteNode : INumNode
+    public partial interface IDaynNode : INumNode
     {
-        Byte ByteVal { get; }
+        System.DayOfWeek DaynVal { get; }
     }
 
     /// <summary>

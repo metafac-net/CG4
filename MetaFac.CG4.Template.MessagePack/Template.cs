@@ -860,19 +860,19 @@ namespace T_Namespace_.MessagePack
             if (!field_T_UnaryMaybeFieldName_.ValueEquals(other.field_T_UnaryMaybeFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayMaybe:
-            if (!field_T_ArrayMaybeFieldName_.ArrayEquals(other.field_T_ArrayMaybeFieldName_, (a, b) => a == b)) return false;
+            if (!field_T_ArrayMaybeFieldName_.ArrayEquals(other.field_T_ArrayMaybeFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.IndexMaybe:
-            if (!field_T_IndexMaybeFieldName_.IndexEquals(other.field_T_IndexMaybeFieldName_, (a, b) => a == b)) return false;
+            if (!field_T_IndexMaybeFieldName_.IndexEquals(other.field_T_IndexMaybeFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
             if (!field_T_UnaryOtherFieldName_.ValueEquals(other.field_T_UnaryOtherFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayOther:
-            if (!field_T_ArrayOtherFieldName_.ArrayEquals(other.field_T_ArrayOtherFieldName_, (a, b) => a == b)) return false;
+            if (!field_T_ArrayOtherFieldName_.ArrayEquals(other.field_T_ArrayOtherFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.IndexOther:
-            if (!field_T_IndexOtherFieldName_.IndexEquals(other.field_T_IndexOtherFieldName_, (a, b) => a == b)) return false;
+            if (!field_T_IndexOtherFieldName_.IndexEquals(other.field_T_IndexOtherFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryBuffer:
             if (!field_T_UnaryBufferFieldName_.ValueEquals(other.field_T_UnaryBufferFieldName_)) return false;

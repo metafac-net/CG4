@@ -1,4 +1,5 @@
 ﻿using MetaFac.CG4.Attributes;
+using System;
 
 namespace MetaFac.CG4.TestOrg.Schema.XtraComplex
 {
@@ -33,8 +34,8 @@ namespace MetaFac.CG4.TestOrg.Schema.XtraComplex
     }
 
     [Entity(6)]
-    public class ByteNode : NumNode
+    public class DaynNode : NumNode
     {
-        [Member(1)] byte ByteVal { get; }
+        [Member(1)] DayOfWeek DaynVal { get; }
     }
 }

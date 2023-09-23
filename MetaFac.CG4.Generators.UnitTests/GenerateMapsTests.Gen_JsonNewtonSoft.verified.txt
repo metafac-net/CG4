@@ -146,9 +146,9 @@ namespace Generated.JsonNewtonSoft
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (!Index1.IndexEquals(other.Index1, (a, b) => a == b)) return false;
-            if (!Index2.IndexEquals(other.Index2, (a, b) => a == b)) return false;
-            if (!Index3.IndexEquals(other.Index3, (a, b) => a == b)) return false;
+            if (!Index1.IndexEquals(other.Index1)) return false;
+            if (!Index2.IndexEquals(other.Index2)) return false;
+            if (!Index3.IndexEquals(other.Index3)) return false;
             return true;
         }
 

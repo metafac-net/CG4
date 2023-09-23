@@ -246,10 +246,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -458,10 +458,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -670,10 +670,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -882,10 +882,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -1094,10 +1094,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -1306,10 +1306,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -1518,10 +1518,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -1730,10 +1730,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -1942,10 +1942,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -2154,10 +2154,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -2366,10 +2366,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -2578,10 +2578,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -2790,10 +2790,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -3002,10 +3002,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -3214,10 +3214,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -3426,10 +3426,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -3638,10 +3638,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -3850,10 +3850,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -4062,10 +4062,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
@@ -4261,10 +4261,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (ReferenceEquals(other, this)) return true;
             if (!field_ScalarRequired.ValueEquals(other.field_ScalarRequired)) return false;
             if (!field_ScalarOptional.ValueEquals(other.field_ScalarOptional)) return false;
-            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired, (a, b) => a == b)) return false;
-            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional, (a, b) => a == b)) return false;
-            if (!field_MapRequired.IndexEquals(other.field_MapRequired, (a, b) => a == b)) return false;
-            if (!field_MapOptional.IndexEquals(other.field_MapOptional, (a, b) => a == b)) return false;
+            if (!field_VectorRequired.ArrayEquals(other.field_VectorRequired)) return false;
+            if (!field_VectorOptional.ArrayEquals(other.field_VectorOptional)) return false;
+            if (!field_MapRequired.IndexEquals(other.field_MapRequired)) return false;
+            if (!field_MapOptional.IndexEquals(other.field_MapOptional)) return false;
             return base.Equals(other);
         }
 

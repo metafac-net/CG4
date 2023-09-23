@@ -162,7 +162,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
                 case StrNode.EntityTag: return StrNode.CreateFrom((IStrNode)source);
                 case NumNode.EntityTag: return NumNode.CreateFrom((INumNode)source);
                 case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(Node)} from {source.GetType().Name}");
             }
@@ -306,7 +306,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
             switch (entityTag)
             {
                 case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumNode)} from {source.GetType().Name}");
             }
@@ -440,81 +440,81 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
         }
     }
 
-    public partial class ByteNode
+    public partial class DaynNode
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ByteNode? CreateFrom(IByteNode? source)
+        public static DaynNode? CreateFrom(IDaynNode? source)
         {
             if (source is null) return null;
-            return new ByteNode(source);
+            return new DaynNode(source);
         }
 
-        private static ByteNode CreateEmpty()
+        private static DaynNode CreateEmpty()
         {
-            var empty = new ByteNode();
+            var empty = new DaynNode();
             empty.Freeze();
             return empty;
         }
-        private static readonly ByteNode _empty = CreateEmpty();
-        public static new ByteNode Empty => _empty;
+        private static readonly DaynNode _empty = CreateEmpty();
+        public static new DaynNode Empty => _empty;
 
     }
-    public partial class ByteNode : NumNode, IByteNode, IEquatable<ByteNode>
+    public partial class DaynNode : NumNode, IDaynNode, IEquatable<DaynNode>
     {
         public new const int EntityTag = 6;
         protected override int OnGetEntityTag() => EntityTag;
 
-        private Byte field_ByteVal;
-        Byte IByteNode.ByteVal => field_ByteVal;
-        public Byte ByteVal
+        private System.DayOfWeek field_DaynVal;
+        System.DayOfWeek IDaynNode.DaynVal => field_DaynVal;
+        public System.DayOfWeek DaynVal
         {
-            get => field_ByteVal;
-            set => field_ByteVal = value;
+            get => field_DaynVal;
+            set => field_DaynVal = value;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ByteNode() : base()
+        public DaynNode() : base()
         {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ByteNode(ByteNode? source) : base(source)
-        {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            field_ByteVal = source.ByteVal;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ByteNode(IByteNode? source) : base(source)
+        public DaynNode(DaynNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_ByteVal = source.ByteVal;
+            field_DaynVal = source.DaynVal;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void CopyFrom(IByteNode? source)
+        public DaynNode(IDaynNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DaynVal = source.DaynVal;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IDaynNode? source)
         {
             if (source is null) return;
             base.CopyFrom(source);
-            field_ByteVal = source.ByteVal;
+            field_DaynVal = source.DaynVal;
         }
 
-        public bool Equals(ByteNode? other)
+        public bool Equals(DaynNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
             if (!base.Equals(other)) return false;
-            if (!ByteVal .ValueEquals(other.ByteVal)) return false;
+            if (!DaynVal .ValueEquals(other.DaynVal)) return false;
             return true;
         }
 
-        public override bool Equals(object? obj) => obj is ByteNode other && Equals(other);
+        public override bool Equals(object? obj) => obj is DaynNode other && Equals(other);
 
         public override int GetHashCode()
         {
             HashCode hc = new HashCode();
             hc.Add(base.GetHashCode());
-            hc.Add(ByteVal.CalcHashUnary());
+            hc.Add(DaynVal.CalcHashUnary());
             return hc.ToHashCode();
         }
     }

@@ -594,19 +594,19 @@ namespace T_Namespace_.JsonNewtonSoft
             if (!T_UnaryMaybeFieldName_.ValueEquals(other.T_UnaryMaybeFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayMaybe:
-            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_, (a, b) => a == b)) return false;
+            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.IndexMaybe:
-            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_, (a, b) => a == b)) return false;
+            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryOther:
             if (!T_UnaryOtherFieldName_ .ValueEquals(other.T_UnaryOtherFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.ArrayOther:
-            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_, (a, b) => a == b)) return false;
+            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.IndexOther:
-            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_, (a, b) => a == b)) return false;
+            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_)) return false;
             //>>                        break;
             //>>                    case FieldKind.UnaryBuffer:
             if (!T_UnaryBufferFieldName_.ValueEquals(other.T_UnaryBufferFieldName_)) return false;

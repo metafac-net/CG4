@@ -606,19 +606,19 @@ Emit("            if (!T_IndexModelFieldName_.IndexEquals(other.T_IndexModelFiel
 Emit("            if (!T_UnaryMaybeFieldName_.ValueEquals(other.T_UnaryMaybeFieldName_)) return false;");
                                     break;
                                 case FieldKind.ArrayMaybe:
-Emit("            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_, (a, b) => a == b)) return false;");
+Emit("            if (!T_ArrayMaybeFieldName_.ArrayEquals(other.T_ArrayMaybeFieldName_)) return false;");
                                     break;
                                 case FieldKind.IndexMaybe:
-Emit("            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_, (a, b) => a == b)) return false;");
+Emit("            if (!T_IndexMaybeFieldName_.IndexEquals(other.T_IndexMaybeFieldName_)) return false;");
                                     break;
                                 case FieldKind.UnaryOther:
 Emit("            if (!T_UnaryOtherFieldName_ .ValueEquals(other.T_UnaryOtherFieldName_)) return false;");
                                     break;
                                 case FieldKind.ArrayOther:
-Emit("            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_, (a, b) => a == b)) return false;");
+Emit("            if (!T_ArrayOtherFieldName_.ArrayEquals(other.T_ArrayOtherFieldName_)) return false;");
                                     break;
                                 case FieldKind.IndexOther:
-Emit("            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_, (a, b) => a == b)) return false;");
+Emit("            if (!T_IndexOtherFieldName_.IndexEquals(other.T_IndexOtherFieldName_)) return false;");
                                     break;
                                 case FieldKind.UnaryBuffer:
 Emit("            if (!T_UnaryBufferFieldName_.ValueEquals(other.T_UnaryBufferFieldName_)) return false;");

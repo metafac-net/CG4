@@ -7,8 +7,8 @@
   "A": {
     "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.Tree, MetaFac.CG4.TestOrg.Models",
     "Value": {
-      "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.ByteNode, MetaFac.CG4.TestOrg.Models",
-      "ByteVal": 1
+      "$type": "MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft.DaynNode, MetaFac.CG4.TestOrg.Models",
+      "DaynVal": 1
     }
   },
   "B": {

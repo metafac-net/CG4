@@ -198,9 +198,9 @@ namespace Generated.MessagePack
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!field_Index1.IndexEquals(other.field_Index1, (a, b) => a == b)) return false;
-            if (!field_Index2.IndexEquals(other.field_Index2, (a, b) => a == b)) return false;
-            if (!field_Index3.IndexEquals(other.field_Index3, (a, b) => a == b)) return false;
+            if (!field_Index1.IndexEquals(other.field_Index1)) return false;
+            if (!field_Index2.IndexEquals(other.field_Index2)) return false;
+            if (!field_Index3.IndexEquals(other.field_Index3)) return false;
             return base.Equals(other);
         }
 

@@ -2,6 +2,7 @@
 using MessagePack;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
 using System;
+using System.Collections.Immutable;
 using VerifyXunit;
 using Xunit;
 
@@ -15,7 +16,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_bool(bool? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_bool() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_bool()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_bool.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -45,7 +50,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_sbyte(sbyte? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_sbyte() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_sbyte()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_sbyte.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -74,7 +83,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_byte(byte? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_byte() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_byte()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_byte.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -104,7 +117,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_short(short? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_short() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_short()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_short.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -133,7 +150,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_ushort(ushort? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_ushort() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_ushort()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_ushort.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -162,7 +183,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_char(char? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_char() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_char()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_char.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -192,7 +217,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_int(int? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_int() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_int()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_int.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -221,7 +250,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_uint(uint? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_uint() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_uint()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_uint.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -260,7 +293,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_float(float? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_float() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_float()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_float.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -288,7 +325,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_long(long? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_long() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_long()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_long.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -317,7 +358,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_ulong(ulong? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_ulong() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_ulong()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_ulong.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -356,7 +401,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_double(double? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_double() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_double()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_double.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
@@ -383,7 +432,11 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_DayOfWeek(DayOfWeek? value)
         {
-            var original = new BasicTypes.RecordsV2.Basic_DayOfWeek() { ScalarOptional = value };
+            var original = new BasicTypes.RecordsV2.Basic_DayOfWeek()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
             {
                 var outgoing = BasicTypes.MessagePack.Basic_DayOfWeek.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
