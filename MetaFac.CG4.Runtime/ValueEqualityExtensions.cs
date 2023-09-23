@@ -34,6 +34,18 @@ namespace MetaFac.CG4.Runtime
             return true;
         }
 
+        public static bool ValueEquals(this DayOfWeek self, in DayOfWeek other)
+        {
+            return self == other;
+        }
+
+        public static bool ValueEquals(this DayOfWeek? self, in DayOfWeek? other)
+        {
+            if (self is null) return other is null;
+            if (other is null) return false;
+            return self.Value == other.Value;
+        }
+
         // generic types
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ValueEquals<T>(this T? self, in T? other) where T : IEquatable<T>

@@ -375,5 +375,40 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             }
         }
 
+        [Theory]
+        [InlineData(DayOfWeek.Sunday)]
+        [InlineData(DayOfWeek.Monday)]
+        [InlineData(DayOfWeek.Friday)]
+        [InlineData(DayOfWeek.Saturday)]
+        [InlineData(null)]
+        public void RoundtripValues_DayOfWeek(DayOfWeek? value)
+        {
+            var original = new BasicTypes.RecordsV2.Basic_DayOfWeek() { ScalarOptional = value };
+            {
+                var outgoing = BasicTypes.MessagePack.Basic_DayOfWeek.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var buffer = MessagePackSerializer.Serialize(outgoing);
+                var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_DayOfWeek>(buffer);
+                incoming.Should().Be(outgoing);
+                var duplicate1 = BasicTypes.RecordsV2.Basic_DayOfWeek.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                duplicate1.Should().Be(original);
+                duplicate1.Equals(original).Should().BeTrue();
+            }
+            {
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_DayOfWeek.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var buffer = outgoing.SerializeToJson();
+                var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_DayOfWeek>();
+                incoming.Should().Be(outgoing);
+                var duplicate2 = BasicTypes.RecordsV2.Basic_DayOfWeek.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                duplicate2.Should().Be(original);
+                duplicate2.Equals(original).Should().BeTrue();
+            }
+        }
+
+        // todo decimal
+        // todo datetime
+        // todo timespan
+        // todo datetimeoffset
+        // todo dayofweek
+
     }
 }

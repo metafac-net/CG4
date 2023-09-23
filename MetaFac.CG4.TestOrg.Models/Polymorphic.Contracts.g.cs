@@ -53,4 +53,14 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.Contracts
     {
         Int64 LongValue { get; }
     }
+
+    /// <summary>
+    /// Equality helpers for enumerations.
+    /// </summary>
+    internal static class EnumerationHelpers
+    {
+        public static bool ValueEquals(this CustomEnum self, in CustomEnum other) => self == other;
+        public static bool ValueEquals(this CustomEnum? self, in CustomEnum? other)
+            => (self is null) ? (other is null) : other is null ? false : self.Value == other.Value;
+    }
 }

@@ -44,4 +44,11 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.Contracts
     {
         Byte ByteVal { get; }
     }
+
+    /// <summary>
+    /// Equality helpers for enumerations.
+    /// </summary>
+    internal static class EnumerationHelpers
+    {
+    }
 }

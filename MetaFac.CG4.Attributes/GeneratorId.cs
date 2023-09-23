@@ -1,6 +1,5 @@
 ﻿namespace MetaFac.CG4.Attributes
 {
-    // todo move to Generators assm
     public enum GeneratorId
     {
         None = 0,
