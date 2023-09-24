@@ -43,21 +43,19 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public bool TryFreeze() => false;
     }
 
-
-    public partial record Basic_bool
+    public sealed class Basic_bool_Factory : IEntityFactory<IBasic_bool, Basic_bool>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_bool? CreateFrom(IBasic_bool? source)
+        private static readonly Basic_bool _empty = new Basic_bool();
+        public Basic_bool Empty => _empty;
+
+        public Basic_bool? CreateFrom(IBasic_bool? source)
         {
             if (source is null) return null;
             if (source is Basic_bool thisEntity) return thisEntity;
             return new Basic_bool(source);
         }
-
-        private static readonly Basic_bool _empty = new Basic_bool();
-        public static new Basic_bool Empty => _empty;
-
     }
+
     public partial record Basic_bool : EntityBase, IBasic_bool
     {
         public new const int EntityTag = 1;
@@ -156,20 +154,19 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         }
     }
 
-    public partial record Basic_sbyte
+    public sealed class Basic_sbyte_Factory : IEntityFactory<IBasic_sbyte, Basic_sbyte>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_sbyte? CreateFrom(IBasic_sbyte? source)
+        private static readonly Basic_sbyte _empty = new Basic_sbyte();
+        public Basic_sbyte Empty => _empty;
+
+        public Basic_sbyte? CreateFrom(IBasic_sbyte? source)
         {
             if (source is null) return null;
             if (source is Basic_sbyte thisEntity) return thisEntity;
             return new Basic_sbyte(source);
         }
-
-        private static readonly Basic_sbyte _empty = new Basic_sbyte();
-        public static new Basic_sbyte Empty => _empty;
-
     }
+
     public partial record Basic_sbyte : EntityBase, IBasic_sbyte
     {
         public new const int EntityTag = 2;

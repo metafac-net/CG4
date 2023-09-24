@@ -86,16 +86,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public override int GetHashCode() => 0;
     }
 
-
-    public sealed partial class Basic_bool
+    public sealed class Basic_bool_Factory : IEntityFactory<IBasic_bool, Basic_bool>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_bool? CreateFrom(IBasic_bool? source)
-        {
-            if (source is null) return null;
-            return new Basic_bool(source);
-        }
-
         private static Basic_bool CreateEmpty()
         {
             var empty = new Basic_bool();
@@ -103,9 +95,15 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return empty;
         }
         private static readonly Basic_bool _empty = CreateEmpty();
-        public static new Basic_bool Empty => _empty;
+        public Basic_bool Empty => _empty;
 
+        public Basic_bool? CreateFrom(IBasic_bool? source)
+        {
+            if (source is null) return null;
+            return new Basic_bool(source);
+        }
     }
+
     [MessagePackObject]
     public partial class Basic_bool : EntityBase, IBasic_bool, IEquatable<Basic_bool>, ICopyFrom<Basic_bool>
     {
@@ -299,15 +297,8 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
 
     }
 
-    public sealed partial class Basic_sbyte
+    public sealed class Basic_sbyte_Factory : IEntityFactory<IBasic_sbyte, Basic_sbyte>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_sbyte? CreateFrom(IBasic_sbyte? source)
-        {
-            if (source is null) return null;
-            return new Basic_sbyte(source);
-        }
-
         private static Basic_sbyte CreateEmpty()
         {
             var empty = new Basic_sbyte();
@@ -315,9 +306,15 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return empty;
         }
         private static readonly Basic_sbyte _empty = CreateEmpty();
-        public static new Basic_sbyte Empty => _empty;
+        public Basic_sbyte Empty => _empty;
 
+        public Basic_sbyte? CreateFrom(IBasic_sbyte? source)
+        {
+            if (source is null) return null;
+            return new Basic_sbyte(source);
+        }
     }
+
     [MessagePackObject]
     public partial class Basic_sbyte : EntityBase, IBasic_sbyte, IEquatable<Basic_sbyte>, ICopyFrom<Basic_sbyte>
     {

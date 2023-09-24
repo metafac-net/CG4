@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
 using MessagePack;
+using MetaFac.CG4.Runtime;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
+using MetaFac.Mutability;
 using System;
 using System.Collections.Immutable;
 using VerifyXunit;
@@ -10,34 +12,61 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
 {
     public class RoundtripValueTests
     {
+        private static TOriginal RoundtripViaJsonNewtonSoft<TInterface, TOriginal, TTransport>(
+            TOriginal original,
+            IEntityFactory<TInterface, TOriginal> originalFactory,
+            IEntityFactory<TInterface, TTransport> transportFactory)
+            where TOriginal : TInterface
+            where TTransport : TInterface
+        {
+            TTransport? outgoing = transportFactory.CreateFrom(original) ?? throw new Exception("Returned null!");
+            string buffer = outgoing.SerializeToJson();
+            TTransport incoming = buffer.DeserializeFromJson<TTransport>();
+            incoming.Should().Be(outgoing);
+            TOriginal duplicate = originalFactory.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            duplicate.Should().Be(original);
+            duplicate.Equals(original).Should().BeTrue();
+            return duplicate;
+        }
+
+        private static TOriginal RoundtripViaMessagePack<TInterface, TOriginal, TTransport>(
+            TOriginal original,
+            IEntityFactory<TInterface, TOriginal> originalFactory,
+            IEntityFactory<TInterface, TTransport> transportFactory)
+            where TOriginal : TInterface
+            where TTransport : TInterface
+        {
+            TTransport outgoing = transportFactory.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var buffer = MessagePackSerializer.Serialize(outgoing);
+            TTransport incoming = MessagePackSerializer.Deserialize<TTransport>(buffer);
+            incoming.Should().Be(outgoing);
+            TOriginal duplicate = originalFactory.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            duplicate.Should().Be(original);
+            duplicate.Equals(original).Should().BeTrue();
+            return duplicate;
+        }
+
         [Theory]
         [InlineData(false)]
         [InlineData(true)]
         [InlineData(null)]
         public void RoundtripValues_bool(bool? value)
         {
+            var origFactory = new BasicTypes.RecordsV2.Basic_bool_Factory();
+            var jsonFactory = new BasicTypes.JsonNewtonSoft.Basic_bool_Factory();
+            var msgpFactory = new BasicTypes.MessagePack.Basic_bool_Factory();
             var original = new BasicTypes.RecordsV2.Basic_bool()
             {
                 ScalarOptional = value,
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_bool.CreateFrom(original) ?? throw new Exception("Returned null!");
-                var buffer = MessagePackSerializer.Serialize(outgoing);
-                var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_bool>(buffer);
-                incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_bool.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-                duplicate1.Should().Be(original);
-                duplicate1.Equals(original).Should().BeTrue();
+                var duplicate1 = RoundtripViaMessagePack<IBasic_bool, BasicTypes.RecordsV2.Basic_bool, BasicTypes.MessagePack.Basic_bool>(
+                    original, origFactory, msgpFactory);
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_bool.CreateFrom(original) ?? throw new Exception("Returned null!");
-                var buffer = outgoing.SerializeToJson();
-                var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_bool>();
-                incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_bool.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-                duplicate2.Should().Be(original);
-                duplicate2.Equals(original).Should().BeTrue();
+                var duplicate2 = RoundtripViaJsonNewtonSoft<IBasic_bool, BasicTypes.RecordsV2.Basic_bool, BasicTypes.JsonNewtonSoft.Basic_bool>(
+                    original, origFactory, jsonFactory);
             }
         }
 
@@ -50,28 +79,21 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_sbyte(sbyte? value)
         {
+            var origFactory = new BasicTypes.RecordsV2.Basic_sbyte_Factory();
+            var jsonFactory = new BasicTypes.JsonNewtonSoft.Basic_sbyte_Factory();
+            var msgpFactory = new BasicTypes.MessagePack.Basic_sbyte_Factory();
             var original = new BasicTypes.RecordsV2.Basic_sbyte()
             {
                 ScalarOptional = value,
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_sbyte.CreateFrom(original) ?? throw new Exception("Returned null!");
-                var buffer = MessagePackSerializer.Serialize(outgoing);
-                var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_sbyte>(buffer);
-                incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_sbyte.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-                duplicate1.Should().Be(original);
-                duplicate1.Equals(original).Should().BeTrue();
+                var duplicate1 = RoundtripViaMessagePack<IBasic_sbyte, BasicTypes.RecordsV2.Basic_sbyte, BasicTypes.MessagePack.Basic_sbyte>(
+                    original, origFactory, msgpFactory);
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_sbyte.CreateFrom(original) ?? throw new Exception("Returned null!");
-                var buffer = outgoing.SerializeToJson();
-                var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_sbyte>();
-                incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_sbyte.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-                duplicate2.Should().Be(original);
-                duplicate2.Equals(original).Should().BeTrue();
+                var duplicate2 = RoundtripViaJsonNewtonSoft<IBasic_sbyte, BasicTypes.RecordsV2.Basic_sbyte, BasicTypes.JsonNewtonSoft.Basic_sbyte>(
+                    original, origFactory, jsonFactory);
             }
         }
 
