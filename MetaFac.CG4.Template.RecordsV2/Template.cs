@@ -60,6 +60,21 @@ namespace T_Namespace_.RecordsV2
 
     //>>using (Ignored())
     //>>{
+    public sealed class T_ModelType__Factory : IEntityFactory<IT_ModelType_, T_ModelType_>
+    {
+        private static readonly T_ModelType__Factory _instance = new T_ModelType__Factory();
+        public static T_ModelType__Factory Instance => _instance;
+
+        public T_ModelType_? CreateFrom(IT_ModelType_? source)
+        {
+            if (source is null) return null;
+            if (source is T_ModelType_ thisEntity) return thisEntity;
+            return new T_ModelType_(source);
+        }
+
+        private readonly T_ModelType_ _empty = new T_ModelType_();
+        public T_ModelType_ Empty => _empty;
+    }
     public record T_ModelType_ : EntityBase, IT_ModelType_
     {
         public static T_ModelType_? CreateFrom(IT_ModelType_? source)
@@ -96,7 +111,6 @@ namespace T_Namespace_.RecordsV2
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
-        public static EntityBase Empty => throw new NotSupportedException();
         public bool IsFreezable() => false;
         public bool IsFrozen() => true;
         public void Freeze() { }
@@ -114,8 +128,6 @@ namespace T_Namespace_.RecordsV2
         protected override int OnGetEntityTag() => EntityTag;
         public virtual bool Equals(T_ParentName_? other) => true;
         public override int GetHashCode() => 0;
-        private static T_ParentName_ _empty => new T_ParentName_();
-        public static new T_ParentName_ Empty => _empty;
     }
     //>>}
 
@@ -125,10 +137,15 @@ namespace T_Namespace_.RecordsV2
     //>>    {
     //>>        if (cd.AllDerivedEntities.Count > 0)
     //>>        {
-    public abstract partial record T_EntityName2_
+    public abstract partial record T_EntityName2_ : T_ParentName_, IT_EntityName2_
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T_EntityName_? CreateFrom(IT_EntityName_? source)
+    }
+    public sealed class T_EntityName2__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>
+    {
+        private static readonly T_EntityName2__Factory _instance = new T_EntityName2__Factory();
+        public static T_EntityName2__Factory Instance => _instance;
+
+        public T_EntityName_? CreateFrom(IT_EntityName_? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
@@ -138,7 +155,7 @@ namespace T_Namespace_.RecordsV2
                 //>>            {
                 //>>                using (NewScope(derived))
                 //>>                {
-                case T_EntityName_.EntityTag: return T_EntityName_.CreateFrom((IT_EntityName_)source);
+                case T_EntityName_.EntityTag: return T_EntityName__Factory.Instance.CreateFrom((IT_EntityName_)source);
                 //>>                }
                 //>>            }
                 default:
@@ -146,23 +163,25 @@ namespace T_Namespace_.RecordsV2
             }
         }
 
+        public T_EntityName_ Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(T_EntityName_)}");
     }
     //>>        }
     //>>        else
     //>>        {
-    public partial record T_EntityName_
+    public sealed class T_EntityName__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T_EntityName_? CreateFrom(IT_EntityName_? source)
+        private static readonly T_EntityName__Factory _instance = new T_EntityName__Factory();
+        public static T_EntityName__Factory Instance => _instance;
+
+        public T_EntityName_? CreateFrom(IT_EntityName_? source)
         {
             if (source is null) return null;
             if (source is T_EntityName_ thisEntity) return thisEntity;
             return new T_EntityName_(source);
         }
 
-        private static readonly T_EntityName_ _empty = new T_EntityName_();
-        public static new T_EntityName_ Empty => _empty;
-
+        private readonly T_EntityName_ _empty = new T_EntityName_();
+        public T_EntityName_ Empty => _empty;
     }
     //>>        }
     public partial record T_EntityName_ : T_ParentName_, IT_EntityName_
@@ -327,18 +346,18 @@ namespace T_Namespace_.RecordsV2
             //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
-            T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
+            T_UnaryModelFieldName_ = T_ModelType__Factory.Instance.CreateFrom(source.T_UnaryModelFieldName_);
             //>>                        break;
             //>>                    case FieldKind.ArrayModel:
             T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null
                 ? default
-                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType_.CreateFrom(x)));
+                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType__Factory.Instance.CreateFrom(x)));
             //>>                        break;
             //>>                    case FieldKind.IndexModel:
             T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null
                 ? default
                 : ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty.AddRange(
-                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType_.CreateFrom(x.Value))));
+                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType__Factory.Instance.CreateFrom(x.Value))));
             //>>                        break;
             //>>                    case FieldKind.UnaryMaybe:
             T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;
@@ -540,13 +559,11 @@ namespace T_Namespace_.RecordsV2
 
     //>>using (Ignored())
     //>>{
-    public record T_DerivedName_ : T_EntityName_, IT_DerivedName_
+    public sealed record T_DerivedName_ : T_EntityName_, IT_DerivedName_
     {
         public T_DerivedName_() { }
         public T_DerivedName_(T_DerivedName_? source) : base(source) { }
         public T_DerivedName_(IT_DerivedName_? source) : base(source) { }
-        public virtual bool Equals(T_DerivedName_? other) => true;
-        public override int GetHashCode() => 0;
     }
     //>>}
 

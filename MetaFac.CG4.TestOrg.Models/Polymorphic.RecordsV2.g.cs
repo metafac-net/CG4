@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.1
+// Generator: RecordsV2.2.2
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -36,7 +36,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
-        public static EntityBase Empty => throw new NotSupportedException();
         public bool IsFreezable() => false;
         public bool IsFrozen() => true;
         public void Freeze() { }
@@ -44,26 +43,32 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
     }
 
 
-    public abstract partial record ValueNode
+    public abstract partial record ValueNode : EntityBase, IValueNode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ValueNode? CreateFrom(IValueNode? source)
+    }
+    public sealed class ValueNode_Factory : IEntityFactory<IValueNode, ValueNode>
+    {
+        private static readonly ValueNode_Factory _instance = new ValueNode_Factory();
+        public static ValueNode_Factory Instance => _instance;
+
+        public ValueNode? CreateFrom(IValueNode? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
-                case NumericNode.EntityTag: return NumericNode.CreateFrom((INumericNode)source);
-                case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
-                case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
-                case StringNode.EntityTag: return StringNode.CreateFrom((IStringNode)source);
-                case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
-                case CustomNode.EntityTag: return CustomNode.CreateFrom((ICustomNode)source);
+                case NumericNode.EntityTag: return NumericNode_Factory.Instance.CreateFrom((INumericNode)source);
+                case Int32Node.EntityTag: return Int32Node_Factory.Instance.CreateFrom((IInt32Node)source);
+                case Int64Node.EntityTag: return Int64Node_Factory.Instance.CreateFrom((IInt64Node)source);
+                case StringNode.EntityTag: return StringNode_Factory.Instance.CreateFrom((IStringNode)source);
+                case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
+                case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
         }
 
+        public ValueNode Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(ValueNode)}");
     }
     public partial record ValueNode : EntityBase, IValueNode
     {
@@ -123,22 +128,28 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         }
     }
 
-    public abstract partial record NumericNode
+    public abstract partial record NumericNode : ValueNode, INumericNode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static NumericNode? CreateFrom(INumericNode? source)
+    }
+    public sealed class NumericNode_Factory : IEntityFactory<INumericNode, NumericNode>
+    {
+        private static readonly NumericNode_Factory _instance = new NumericNode_Factory();
+        public static NumericNode_Factory Instance => _instance;
+
+        public NumericNode? CreateFrom(INumericNode? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
-                case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
-                case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
+                case Int32Node.EntityTag: return Int32Node_Factory.Instance.CreateFrom((IInt32Node)source);
+                case Int64Node.EntityTag: return Int64Node_Factory.Instance.CreateFrom((IInt64Node)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
         }
 
+        public NumericNode Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(NumericNode)}");
     }
     public partial record NumericNode : ValueNode, INumericNode
     {
@@ -186,19 +197,20 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         }
     }
 
-    public partial record StringNode
+    public sealed class StringNode_Factory : IEntityFactory<IStringNode, StringNode>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static StringNode? CreateFrom(IStringNode? source)
+        private static readonly StringNode_Factory _instance = new StringNode_Factory();
+        public static StringNode_Factory Instance => _instance;
+
+        public StringNode? CreateFrom(IStringNode? source)
         {
             if (source is null) return null;
             if (source is StringNode thisEntity) return thisEntity;
             return new StringNode(source);
         }
 
-        private static readonly StringNode _empty = new StringNode();
-        public static new StringNode Empty => _empty;
-
+        private readonly StringNode _empty = new StringNode();
+        public StringNode Empty => _empty;
     }
     public partial record StringNode : ValueNode, IStringNode
     {
@@ -252,19 +264,20 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         }
     }
 
-    public partial record BooleanNode
+    public sealed class BooleanNode_Factory : IEntityFactory<IBooleanNode, BooleanNode>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static BooleanNode? CreateFrom(IBooleanNode? source)
+        private static readonly BooleanNode_Factory _instance = new BooleanNode_Factory();
+        public static BooleanNode_Factory Instance => _instance;
+
+        public BooleanNode? CreateFrom(IBooleanNode? source)
         {
             if (source is null) return null;
             if (source is BooleanNode thisEntity) return thisEntity;
             return new BooleanNode(source);
         }
 
-        private static readonly BooleanNode _empty = new BooleanNode();
-        public static new BooleanNode Empty => _empty;
-
+        private readonly BooleanNode _empty = new BooleanNode();
+        public BooleanNode Empty => _empty;
     }
     public partial record BooleanNode : ValueNode, IBooleanNode
     {
@@ -318,19 +331,20 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         }
     }
 
-    public partial record CustomNode
+    public sealed class CustomNode_Factory : IEntityFactory<ICustomNode, CustomNode>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static CustomNode? CreateFrom(ICustomNode? source)
+        private static readonly CustomNode_Factory _instance = new CustomNode_Factory();
+        public static CustomNode_Factory Instance => _instance;
+
+        public CustomNode? CreateFrom(ICustomNode? source)
         {
             if (source is null) return null;
             if (source is CustomNode thisEntity) return thisEntity;
             return new CustomNode(source);
         }
 
-        private static readonly CustomNode _empty = new CustomNode();
-        public static new CustomNode Empty => _empty;
-
+        private readonly CustomNode _empty = new CustomNode();
+        public CustomNode Empty => _empty;
     }
     public partial record CustomNode : ValueNode, ICustomNode
     {
@@ -384,19 +398,20 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         }
     }
 
-    public partial record Int32Node
+    public sealed class Int32Node_Factory : IEntityFactory<IInt32Node, Int32Node>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Int32Node? CreateFrom(IInt32Node? source)
+        private static readonly Int32Node_Factory _instance = new Int32Node_Factory();
+        public static Int32Node_Factory Instance => _instance;
+
+        public Int32Node? CreateFrom(IInt32Node? source)
         {
             if (source is null) return null;
             if (source is Int32Node thisEntity) return thisEntity;
             return new Int32Node(source);
         }
 
-        private static readonly Int32Node _empty = new Int32Node();
-        public static new Int32Node Empty => _empty;
-
+        private readonly Int32Node _empty = new Int32Node();
+        public Int32Node Empty => _empty;
     }
     public partial record Int32Node : NumericNode, IInt32Node
     {
@@ -450,19 +465,20 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         }
     }
 
-    public partial record Int64Node
+    public sealed class Int64Node_Factory : IEntityFactory<IInt64Node, Int64Node>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Int64Node? CreateFrom(IInt64Node? source)
+        private static readonly Int64Node_Factory _instance = new Int64Node_Factory();
+        public static Int64Node_Factory Instance => _instance;
+
+        public Int64Node? CreateFrom(IInt64Node? source)
         {
             if (source is null) return null;
             if (source is Int64Node thisEntity) return thisEntity;
             return new Int64Node(source);
         }
 
-        private static readonly Int64Node _empty = new Int64Node();
-        public static new Int64Node Empty => _empty;
-
+        private readonly Int64Node _empty = new Int64Node();
+        public Int64Node Empty => _empty;
     }
     public partial record Int64Node : NumericNode, IInt64Node
     {

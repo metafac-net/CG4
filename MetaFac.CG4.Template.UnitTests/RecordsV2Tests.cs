@@ -17,7 +17,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Fact]
         public void Create_Empty()
         {
-            var original = T_EntityName_.Empty;
+            var original = T_EntityName__Factory.Instance.Empty;
             original.T_UnaryModelFieldName_.Should().BeNull();
             original.T_ArrayModelFieldName_.Should().BeNull();
             original.T_IndexModelFieldName_.Should().BeNull();

@@ -18,7 +18,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 "94-C0-C0-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<XtraComplex.MessagePack.Tree>(buffer);
             incoming.Should().Be(outgoing);
-            var duplicate = XtraComplex.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = XtraComplex.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -44,7 +44,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 "94-C0-92-03-92-C0-A3-61-62-63-94-C0-92-06-92-C0-01-C0-C0-94-C0-92-05-92-C0-FF-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<XtraComplex.MessagePack.Tree>(buffer);
             incoming.Should().Be(outgoing);
-            var duplicate = XtraComplex.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = XtraComplex.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -78,7 +78,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 "94-C0-92-03-92-C0-A3-61-62-63-94-C0-92-06-92-C0-01-94-C0-92-06-92-C0-02-C0-C0-C0-94-C0-92-05-92-C0-FF-C0-94-C0-92-05-92-C0-FE-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<XtraComplex.MessagePack.Tree>(buffer);
             incoming.Should().Be(outgoing);
-            var duplicate = XtraComplex.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = XtraComplex.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }

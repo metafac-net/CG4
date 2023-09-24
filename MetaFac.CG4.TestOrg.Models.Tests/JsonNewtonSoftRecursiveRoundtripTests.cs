@@ -18,7 +18,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Recursive.JsonNewtonSoft.Tree>();
             incoming.Should().Be(outgoing);
-            var duplicate = Recursive.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -36,7 +36,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Recursive.JsonNewtonSoft.Tree>();
             incoming.Should().Be(outgoing);
-            var duplicate = Recursive.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -55,7 +55,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Recursive.JsonNewtonSoft.Tree>();
             incoming.Should().Be(outgoing);
-            var duplicate = Recursive.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
             duplicate.Id.Should().Be(1);
@@ -77,7 +77,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Recursive.JsonNewtonSoft.Tree>();
             incoming.Should().Be(outgoing);
-            var duplicate = Recursive.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
             duplicate.Id.Should().Be(1);

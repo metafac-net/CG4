@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.1
+// Generator: RecordsV2.2.2
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Personel)
 // </information>
 #endregion
@@ -36,7 +36,6 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.RecordsV2
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
-        public static EntityBase Empty => throw new NotSupportedException();
         public bool IsFreezable() => false;
         public bool IsFrozen() => true;
         public void Freeze() { }
@@ -44,19 +43,20 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.RecordsV2
     }
 
 
-    public partial record Person
+    public sealed class Person_Factory : IEntityFactory<IPerson, Person>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Person? CreateFrom(IPerson? source)
+        private static readonly Person_Factory _instance = new Person_Factory();
+        public static Person_Factory Instance => _instance;
+
+        public Person? CreateFrom(IPerson? source)
         {
             if (source is null) return null;
             if (source is Person thisEntity) return thisEntity;
             return new Person(source);
         }
 
-        private static readonly Person _empty = new Person();
-        public static new Person Empty => _empty;
-
+        private readonly Person _empty = new Person();
+        public Person Empty => _empty;
     }
     public partial record Person : EntityBase, IPerson
     {

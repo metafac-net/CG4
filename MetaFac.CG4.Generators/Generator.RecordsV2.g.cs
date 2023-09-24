@@ -72,6 +72,21 @@ Emit("");
 Emit("");
     using (Ignored())
     {
+Emit("    public sealed class T_ModelType__Factory : IEntityFactory<IT_ModelType_, T_ModelType_>");
+Emit("    {");
+Emit("        private static readonly T_ModelType__Factory _instance = new T_ModelType__Factory();");
+Emit("        public static T_ModelType__Factory Instance => _instance;");
+Emit("");
+Emit("        public T_ModelType_? CreateFrom(IT_ModelType_? source)");
+Emit("        {");
+Emit("            if (source is null) return null;");
+Emit("            if (source is T_ModelType_ thisEntity) return thisEntity;");
+Emit("            return new T_ModelType_(source);");
+Emit("        }");
+Emit("");
+Emit("        private readonly T_ModelType_ _empty = new T_ModelType_();");
+Emit("        public T_ModelType_ Empty => _empty;");
+Emit("    }");
 Emit("    public record T_ModelType_ : EntityBase, IT_ModelType_");
 Emit("    {");
 Emit("        public static T_ModelType_? CreateFrom(IT_ModelType_? source)");
@@ -108,7 +123,6 @@ Emit("        protected abstract int OnGetEntityTag();");
 Emit("        public int GetEntityTag() => OnGetEntityTag();");
 Emit("        public virtual bool Equals(EntityBase? other) => true;");
 Emit("        public override int GetHashCode() => 0;");
-Emit("        public static EntityBase Empty => throw new NotSupportedException();");
 Emit("        public bool IsFreezable() => false;");
 Emit("        public bool IsFrozen() => true;");
 Emit("        public void Freeze() { }");
@@ -126,8 +140,6 @@ Emit("        public new const int EntityTag = 0;");
 Emit("        protected override int OnGetEntityTag() => EntityTag;");
 Emit("        public virtual bool Equals(T_ParentName_? other) => true;");
 Emit("        public override int GetHashCode() => 0;");
-Emit("        private static T_ParentName_ _empty => new T_ParentName_();");
-Emit("        public static new T_ParentName_ Empty => _empty;");
 Emit("    }");
     }
 Emit("");
@@ -137,10 +149,15 @@ Emit("");
         {
             if (cd.AllDerivedEntities.Count > 0)
             {
-Emit("    public abstract partial record T_EntityName2_");
+Emit("    public abstract partial record T_EntityName2_ : T_ParentName_, IT_EntityName2_");
 Emit("    {");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
+Emit("    }");
+Emit("    public sealed class T_EntityName2__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>");
+Emit("    {");
+Emit("        private static readonly T_EntityName2__Factory _instance = new T_EntityName2__Factory();");
+Emit("        public static T_EntityName2__Factory Instance => _instance;");
+Emit("");
+Emit("        public T_EntityName_? CreateFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
 Emit("            int entityTag = source.GetEntityTag();");
@@ -150,7 +167,7 @@ Emit("            {");
                             {
                                 using (NewScope(derived))
                                 {
-Emit("                case T_EntityName_.EntityTag: return T_EntityName_.CreateFrom((IT_EntityName_)source);");
+Emit("                case T_EntityName_.EntityTag: return T_EntityName__Factory.Instance.CreateFrom((IT_EntityName_)source);");
                                 }
                             }
 Emit("                default:");
@@ -158,23 +175,25 @@ Emit("                    throw new InvalidOperationException($\"Unable to creat
 Emit("            }");
 Emit("        }");
 Emit("");
+Emit("        public T_EntityName_ Empty => throw new NotSupportedException($\"Cannot create abstract entity: {typeof(T_EntityName_)}\");");
 Emit("    }");
             }
             else
             {
-Emit("    public partial record T_EntityName_");
+Emit("    public sealed class T_EntityName__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>");
 Emit("    {");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
+Emit("        private static readonly T_EntityName__Factory _instance = new T_EntityName__Factory();");
+Emit("        public static T_EntityName__Factory Instance => _instance;");
+Emit("");
+Emit("        public T_EntityName_? CreateFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
 Emit("            if (source is T_EntityName_ thisEntity) return thisEntity;");
 Emit("            return new T_EntityName_(source);");
 Emit("        }");
 Emit("");
-Emit("        private static readonly T_EntityName_ _empty = new T_EntityName_();");
-Emit("        public static new T_EntityName_ Empty => _empty;");
-Emit("");
+Emit("        private readonly T_EntityName_ _empty = new T_EntityName_();");
+Emit("        public T_EntityName_ Empty => _empty;");
 Emit("    }");
             }
 Emit("    public partial record T_EntityName_ : T_ParentName_, IT_EntityName_");
@@ -339,18 +358,18 @@ Emit("            if (source is null) throw new ArgumentNullException(nameof(sou
                             switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
-Emit("            T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);");
+Emit("            T_UnaryModelFieldName_ = T_ModelType__Factory.Instance.CreateFrom(source.T_UnaryModelFieldName_);");
                                     break;
                                 case FieldKind.ArrayModel:
 Emit("            T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType_.CreateFrom(x)));");
+Emit("                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType__Factory.Instance.CreateFrom(x)));");
                                     break;
                                 case FieldKind.IndexModel:
 Emit("            T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null");
 Emit("                ? default");
 Emit("                : ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty.AddRange(");
-Emit("                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType_.CreateFrom(x.Value))));");
+Emit("                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType__Factory.Instance.CreateFrom(x.Value))));");
                                     break;
                                 case FieldKind.UnaryMaybe:
 Emit("            T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;");
@@ -552,13 +571,11 @@ Emit("");
 Emit("");
     using (Ignored())
     {
-Emit("    public record T_DerivedName_ : T_EntityName_, IT_DerivedName_");
+Emit("    public sealed record T_DerivedName_ : T_EntityName_, IT_DerivedName_");
 Emit("    {");
 Emit("        public T_DerivedName_() { }");
 Emit("        public T_DerivedName_(T_DerivedName_? source) : base(source) { }");
 Emit("        public T_DerivedName_(IT_DerivedName_? source) : base(source) { }");
-Emit("        public virtual bool Equals(T_DerivedName_? other) => true;");
-Emit("        public override int GetHashCode() => 0;");
 Emit("    }");
     }
 Emit("");

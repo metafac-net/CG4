@@ -75,6 +75,7 @@ namespace T_Namespace_.Contracts
     //>>using (Ignored())
     //>>{
     public interface IT_ParentName_ : IFreezable, IEntityBase { }
+    public interface IT_EntityName2_ : IT_ParentName_ { }
     public interface IT_ModelType_ : IFreezable, IEntityBase { int TestData { get; } }
     //>>}
     //>>foreach (var cd in outerScope.EntityDefs)

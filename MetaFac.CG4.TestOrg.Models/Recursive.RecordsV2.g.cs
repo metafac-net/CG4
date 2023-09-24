@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.1
+// Generator: RecordsV2.2.2
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Recursive)
 // </information>
 #endregion
@@ -36,7 +36,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.RecordsV2
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
-        public static EntityBase Empty => throw new NotSupportedException();
         public bool IsFreezable() => false;
         public bool IsFrozen() => true;
         public void Freeze() { }
@@ -44,19 +43,20 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.RecordsV2
     }
 
 
-    public partial record Tree
+    public sealed class Tree_Factory : IEntityFactory<ITree, Tree>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Tree? CreateFrom(ITree? source)
+        private static readonly Tree_Factory _instance = new Tree_Factory();
+        public static Tree_Factory Instance => _instance;
+
+        public Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
             if (source is Tree thisEntity) return thisEntity;
             return new Tree(source);
         }
 
-        private static readonly Tree _empty = new Tree();
-        public static new Tree Empty => _empty;
-
+        private readonly Tree _empty = new Tree();
+        public Tree Empty => _empty;
     }
     public partial record Tree : EntityBase, ITree
     {
@@ -89,8 +89,8 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.RecordsV2
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Id = source.Id;
-            A = Tree.CreateFrom(source.A);
-            B = Tree.CreateFrom(source.B);
+            A = Tree_Factory.Instance.CreateFrom(source.A);
+            B = Tree_Factory.Instance.CreateFrom(source.B);
         }
 
         public virtual bool Equals(Tree? other)

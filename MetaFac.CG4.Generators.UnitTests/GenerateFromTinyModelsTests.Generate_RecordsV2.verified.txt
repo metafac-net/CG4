@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.1
+// Generator: RecordsV2.2.2
 // Metadata : MetaFac.CG4.Generators.UnitTests(.TinyModels)
 // </information>
 #endregion
@@ -39,7 +39,6 @@ namespace Generated.RecordsV2
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
-        public static EntityBase Empty => throw new NotSupportedException();
         public bool IsFreezable() => false;
         public bool IsFrozen() => true;
         public void Freeze() { }
@@ -47,19 +46,20 @@ namespace Generated.RecordsV2
     }
 
 
-    public partial record Base
+    public sealed class Base_Factory : IEntityFactory<IBase, Base>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Base? CreateFrom(IBase? source)
+        private static readonly Base_Factory _instance = new Base_Factory();
+        public static Base_Factory Instance => _instance;
+
+        public Base? CreateFrom(IBase? source)
         {
             if (source is null) return null;
             if (source is Base thisEntity) return thisEntity;
             return new Base(source);
         }
 
-        private static readonly Base _empty = new Base();
-        public static new Base Empty => _empty;
-
+        private readonly Base _empty = new Base();
+        public Base Empty => _empty;
     }
     public partial record Base : EntityBase, IBase
     {
@@ -113,19 +113,20 @@ namespace Generated.RecordsV2
         }
     }
 
-    public partial record Derived
+    public sealed class Derived_Factory : IEntityFactory<IDerived, Derived>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Derived? CreateFrom(IDerived? source)
+        private static readonly Derived_Factory _instance = new Derived_Factory();
+        public static Derived_Factory Instance => _instance;
+
+        public Derived? CreateFrom(IDerived? source)
         {
             if (source is null) return null;
             if (source is Derived thisEntity) return thisEntity;
             return new Derived(source);
         }
 
-        private static readonly Derived _empty = new Derived();
-        public static new Derived Empty => _empty;
-
+        private readonly Derived _empty = new Derived();
+        public Derived Empty => _empty;
     }
     public partial record Derived : EntityBase, IDerived
     {

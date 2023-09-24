@@ -87,6 +87,7 @@ Emit("    }");
     using (Ignored())
     {
 Emit("    public interface IT_ParentName_ : IFreezable, IEntityBase { }");
+Emit("    public interface IT_EntityName2_ : IT_ParentName_ { }");
 Emit("    public interface IT_ModelType_ : IFreezable, IEntityBase { int TestData { get; } }");
     }
     foreach (var cd in outerScope.EntityDefs)

@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.1
+// Generator: RecordsV2.2.2
 // Metadata : MetaFac.CG4.TestOrg.Schema(.XtraComplex)
 // </information>
 #endregion
@@ -36,7 +36,6 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
-        public static EntityBase Empty => throw new NotSupportedException();
         public bool IsFreezable() => false;
         public bool IsFrozen() => true;
         public void Freeze() { }
@@ -44,19 +43,20 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
     }
 
 
-    public partial record Tree
+    public sealed class Tree_Factory : IEntityFactory<ITree, Tree>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Tree? CreateFrom(ITree? source)
+        private static readonly Tree_Factory _instance = new Tree_Factory();
+        public static Tree_Factory Instance => _instance;
+
+        public Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
             if (source is Tree thisEntity) return thisEntity;
             return new Tree(source);
         }
 
-        private static readonly Tree _empty = new Tree();
-        public static new Tree Empty => _empty;
-
+        private readonly Tree _empty = new Tree();
+        public Tree Empty => _empty;
     }
     public partial record Tree : EntityBase, ITree
     {
@@ -88,9 +88,9 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         public Tree(ITree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Value = Node.CreateFrom(source.Value);
-            A = Tree.CreateFrom(source.A);
-            B = Tree.CreateFrom(source.B);
+            Value = Node_Factory.Instance.CreateFrom(source.Value);
+            A = Tree_Factory.Instance.CreateFrom(source.A);
+            B = Tree_Factory.Instance.CreateFrom(source.B);
         }
 
         public virtual bool Equals(Tree? other)
@@ -122,24 +122,30 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         }
     }
 
-    public abstract partial record Node
+    public abstract partial record Node : EntityBase, INode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Node? CreateFrom(INode? source)
+    }
+    public sealed class Node_Factory : IEntityFactory<INode, Node>
+    {
+        private static readonly Node_Factory _instance = new Node_Factory();
+        public static Node_Factory Instance => _instance;
+
+        public Node? CreateFrom(INode? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
-                case StrNode.EntityTag: return StrNode.CreateFrom((IStrNode)source);
-                case NumNode.EntityTag: return NumNode.CreateFrom((INumNode)source);
-                case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
+                case StrNode.EntityTag: return StrNode_Factory.Instance.CreateFrom((IStrNode)source);
+                case NumNode.EntityTag: return NumNode_Factory.Instance.CreateFrom((INumNode)source);
+                case LongNode.EntityTag: return LongNode_Factory.Instance.CreateFrom((ILongNode)source);
+                case DaynNode.EntityTag: return DaynNode_Factory.Instance.CreateFrom((IDaynNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(Node)} from {source.GetType().Name}");
             }
         }
 
+        public Node Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(Node)}");
     }
     public partial record Node : EntityBase, INode
     {
@@ -187,19 +193,20 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         }
     }
 
-    public partial record StrNode
+    public sealed class StrNode_Factory : IEntityFactory<IStrNode, StrNode>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static StrNode? CreateFrom(IStrNode? source)
+        private static readonly StrNode_Factory _instance = new StrNode_Factory();
+        public static StrNode_Factory Instance => _instance;
+
+        public StrNode? CreateFrom(IStrNode? source)
         {
             if (source is null) return null;
             if (source is StrNode thisEntity) return thisEntity;
             return new StrNode(source);
         }
 
-        private static readonly StrNode _empty = new StrNode();
-        public static new StrNode Empty => _empty;
-
+        private readonly StrNode _empty = new StrNode();
+        public StrNode Empty => _empty;
     }
     public partial record StrNode : Node, IStrNode
     {
@@ -253,22 +260,28 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         }
     }
 
-    public abstract partial record NumNode
+    public abstract partial record NumNode : Node, INumNode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static NumNode? CreateFrom(INumNode? source)
+    }
+    public sealed class NumNode_Factory : IEntityFactory<INumNode, NumNode>
+    {
+        private static readonly NumNode_Factory _instance = new NumNode_Factory();
+        public static NumNode_Factory Instance => _instance;
+
+        public NumNode? CreateFrom(INumNode? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
-                case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
+                case LongNode.EntityTag: return LongNode_Factory.Instance.CreateFrom((ILongNode)source);
+                case DaynNode.EntityTag: return DaynNode_Factory.Instance.CreateFrom((IDaynNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumNode)} from {source.GetType().Name}");
             }
         }
 
+        public NumNode Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(NumNode)}");
     }
     public partial record NumNode : Node, INumNode
     {
@@ -316,19 +329,20 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         }
     }
 
-    public partial record LongNode
+    public sealed class LongNode_Factory : IEntityFactory<ILongNode, LongNode>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static LongNode? CreateFrom(ILongNode? source)
+        private static readonly LongNode_Factory _instance = new LongNode_Factory();
+        public static LongNode_Factory Instance => _instance;
+
+        public LongNode? CreateFrom(ILongNode? source)
         {
             if (source is null) return null;
             if (source is LongNode thisEntity) return thisEntity;
             return new LongNode(source);
         }
 
-        private static readonly LongNode _empty = new LongNode();
-        public static new LongNode Empty => _empty;
-
+        private readonly LongNode _empty = new LongNode();
+        public LongNode Empty => _empty;
     }
     public partial record LongNode : NumNode, ILongNode
     {
@@ -382,19 +396,20 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         }
     }
 
-    public partial record DaynNode
+    public sealed class DaynNode_Factory : IEntityFactory<IDaynNode, DaynNode>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static DaynNode? CreateFrom(IDaynNode? source)
+        private static readonly DaynNode_Factory _instance = new DaynNode_Factory();
+        public static DaynNode_Factory Instance => _instance;
+
+        public DaynNode? CreateFrom(IDaynNode? source)
         {
             if (source is null) return null;
             if (source is DaynNode thisEntity) return thisEntity;
             return new DaynNode(source);
         }
 
-        private static readonly DaynNode _empty = new DaynNode();
-        public static new DaynNode Empty => _empty;
-
+        private readonly DaynNode _empty = new DaynNode();
+        public DaynNode Empty => _empty;
     }
     public partial record DaynNode : NumNode, IDaynNode
     {

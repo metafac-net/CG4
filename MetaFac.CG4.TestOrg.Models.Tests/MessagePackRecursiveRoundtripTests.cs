@@ -18,7 +18,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 "94-C0-01-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<Recursive.MessagePack.Tree>(buffer);
             incoming.Should().Be(outgoing);
-            var duplicate = Recursive.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -37,7 +37,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 "94-C0-01-94-C0-02-C0-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<Recursive.MessagePack.Tree>(buffer);
             incoming.Should().Be(outgoing);
-            var duplicate = Recursive.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -57,7 +57,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 "94-C0-01-94-C0-02-C0-C0-94-C0-03-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<Recursive.MessagePack.Tree>(buffer);
             incoming.Should().Be(outgoing);
-            var duplicate = Recursive.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
             duplicate.Id.Should().Be(1);
@@ -80,7 +80,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 "94-C0-01-94-C0-02-94-C0-04-C0-C0-C0-94-C0-03-C0-94-C0-05-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<Recursive.MessagePack.Tree>(buffer);
             incoming.Should().Be(outgoing);
-            var duplicate = Recursive.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
             duplicate.Id.Should().Be(1);

@@ -18,7 +18,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<XtraComplex.JsonNewtonSoft.Tree>();
             incoming.Should().Be(outgoing);
-            var duplicate = XtraComplex.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = XtraComplex.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -43,7 +43,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<XtraComplex.JsonNewtonSoft.Tree>();
             incoming.Should().Be(outgoing);
-            var duplicate = XtraComplex.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = XtraComplex.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -76,7 +76,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<XtraComplex.JsonNewtonSoft.Tree>();
             incoming.Should().Be(outgoing);
-            var duplicate = XtraComplex.RecordsV2.Tree.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            var duplicate = XtraComplex.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }

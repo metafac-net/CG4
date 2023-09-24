@@ -21,7 +21,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Polymorphic.JsonNewtonSoft.ValueNode>();
             incoming.Should().Be(outgoing);
-            Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }
@@ -35,7 +35,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Polymorphic.JsonNewtonSoft.ValueNode>();
             incoming.Should().Be(outgoing);
-            Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+            Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
             duplicate.Equals(original).Should().BeTrue();
         }

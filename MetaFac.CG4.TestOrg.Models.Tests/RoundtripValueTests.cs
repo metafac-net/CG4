@@ -115,7 +115,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_byte>(buffer);
                 incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_byte.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_byte_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Should().Be(original);
                 duplicate1.Equals(original).Should().BeTrue();
             }
@@ -124,7 +124,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_byte>();
                 incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_byte.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_byte_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Should().Be(original);
                 duplicate2.Equals(original).Should().BeTrue();
             }
@@ -149,7 +149,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_short>(buffer);
                 incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_short.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_short_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Should().Be(original);
                 duplicate1.Equals(original).Should().BeTrue();
             }
@@ -158,7 +158,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_short>();
                 incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_short.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_short_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Should().Be(original);
                 duplicate2.Equals(original).Should().BeTrue();
             }
@@ -182,7 +182,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_ushort>(buffer);
                 incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_ushort.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_ushort_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Should().Be(original);
                 duplicate1.Equals(original).Should().BeTrue();
             }
@@ -191,7 +191,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_ushort>();
                 incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_ushort.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_ushort_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Should().Be(original);
                 duplicate2.Equals(original).Should().BeTrue();
             }
@@ -215,7 +215,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_char>(buffer);
                 incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_char.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_char_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Should().Be(original);
                 duplicate1.Equals(original).Should().BeTrue();
             }
@@ -224,7 +224,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_char>();
                 incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_char.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_char_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Should().Be(original);
                 duplicate2.Equals(original).Should().BeTrue();
             }
@@ -249,7 +249,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_int>(buffer);
                 incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_int.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_int_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Should().Be(original);
                 duplicate1.Equals(original).Should().BeTrue();
             }
@@ -258,7 +258,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_int>();
                 incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_int.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_int_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Should().Be(original);
                 duplicate2.Equals(original).Should().BeTrue();
             }
@@ -282,7 +282,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_uint>(buffer);
                 incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_uint.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_uint_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Should().Be(original);
                 duplicate1.Equals(original).Should().BeTrue();
             }
@@ -291,7 +291,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_uint>();
                 incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_uint.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_uint_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Should().Be(original);
                 duplicate2.Equals(original).Should().BeTrue();
             }
@@ -325,7 +325,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_float>(buffer);
                 incoming.Equals(outgoing).Should().BeTrue();
-                var duplicate1 = BasicTypes.RecordsV2.Basic_float.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_float_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
@@ -333,7 +333,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_float>();
                 incoming.Equals(outgoing).Should().BeTrue();
-                var duplicate2 = BasicTypes.RecordsV2.Basic_float.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_float_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Equals(original).Should().BeTrue();
             }
         }
@@ -357,7 +357,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_long>(buffer);
                 incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_long.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_long_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Should().Be(original);
                 duplicate1.Equals(original).Should().BeTrue();
             }
@@ -366,7 +366,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_long>();
                 incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_long.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_long_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Should().Be(original);
                 duplicate2.Equals(original).Should().BeTrue();
             }
@@ -390,7 +390,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_ulong>(buffer);
                 incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_ulong.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_ulong_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Should().Be(original);
                 duplicate1.Equals(original).Should().BeTrue();
             }
@@ -399,7 +399,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_ulong>();
                 incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_ulong.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_ulong_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Should().Be(original);
                 duplicate2.Equals(original).Should().BeTrue();
             }
@@ -433,7 +433,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_double>(buffer);
                 incoming.Equals(outgoing).Should().BeTrue();
-                var duplicate1 = BasicTypes.RecordsV2.Basic_double.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_double_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
@@ -441,7 +441,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_double>();
                 incoming.Equals(outgoing).Should().BeTrue();
-                var duplicate2 = BasicTypes.RecordsV2.Basic_double.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_double_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Equals(original).Should().BeTrue();
             }
         }
@@ -464,7 +464,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_DayOfWeek>(buffer);
                 incoming.Should().Be(outgoing);
-                var duplicate1 = BasicTypes.RecordsV2.Basic_DayOfWeek.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate1 = BasicTypes.RecordsV2.Basic_DayOfWeek_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate1.Should().Be(original);
                 duplicate1.Equals(original).Should().BeTrue();
             }
@@ -473,7 +473,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_DayOfWeek>();
                 incoming.Should().Be(outgoing);
-                var duplicate2 = BasicTypes.RecordsV2.Basic_DayOfWeek.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                var duplicate2 = BasicTypes.RecordsV2.Basic_DayOfWeek_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
                 duplicate2.Should().Be(original);
                 duplicate2.Equals(original).Should().BeTrue();
             }

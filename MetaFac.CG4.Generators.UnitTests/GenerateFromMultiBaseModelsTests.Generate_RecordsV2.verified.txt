@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.1
+// Generator: RecordsV2.2.2
 // Metadata : MetaFac.CG4.Generators.UnitTests(.MultiBaseModels)
 // </information>
 #endregion
@@ -39,7 +39,6 @@ namespace Generated.RecordsV2
         public int GetEntityTag() => OnGetEntityTag();
         public virtual bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
-        public static EntityBase Empty => throw new NotSupportedException();
         public bool IsFreezable() => false;
         public bool IsFrozen() => true;
         public void Freeze() { }
@@ -47,19 +46,20 @@ namespace Generated.RecordsV2
     }
 
 
-    public partial record SavingsAccount
+    public sealed class SavingsAccount_Factory : IEntityFactory<ISavingsAccount, SavingsAccount>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static SavingsAccount? CreateFrom(ISavingsAccount? source)
+        private static readonly SavingsAccount_Factory _instance = new SavingsAccount_Factory();
+        public static SavingsAccount_Factory Instance => _instance;
+
+        public SavingsAccount? CreateFrom(ISavingsAccount? source)
         {
             if (source is null) return null;
             if (source is SavingsAccount thisEntity) return thisEntity;
             return new SavingsAccount(source);
         }
 
-        private static readonly SavingsAccount _empty = new SavingsAccount();
-        public static new SavingsAccount Empty => _empty;
-
+        private readonly SavingsAccount _empty = new SavingsAccount();
+        public SavingsAccount Empty => _empty;
     }
     public partial record SavingsAccount : AccountType, ISavingsAccount
     {
@@ -113,19 +113,20 @@ namespace Generated.RecordsV2
         }
     }
 
-    public partial record Withdrawl
+    public sealed class Withdrawl_Factory : IEntityFactory<IWithdrawl, Withdrawl>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Withdrawl? CreateFrom(IWithdrawl? source)
+        private static readonly Withdrawl_Factory _instance = new Withdrawl_Factory();
+        public static Withdrawl_Factory Instance => _instance;
+
+        public Withdrawl? CreateFrom(IWithdrawl? source)
         {
             if (source is null) return null;
             if (source is Withdrawl thisEntity) return thisEntity;
             return new Withdrawl(source);
         }
 
-        private static readonly Withdrawl _empty = new Withdrawl();
-        public static new Withdrawl Empty => _empty;
-
+        private readonly Withdrawl _empty = new Withdrawl();
+        public Withdrawl Empty => _empty;
     }
     public partial record Withdrawl : TransactionType, IWithdrawl
     {
