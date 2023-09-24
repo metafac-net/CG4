@@ -328,7 +328,33 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
 
-        // todo decimal
+        [Theory]
+        [InlineData("0")]
+        [InlineData("1")]
+        [InlineData("-1")]
+        [InlineData("min")]
+        [InlineData("max")]
+        [InlineData(null)]
+        public void RoundtripValues_decimal(string? input)
+        {
+            decimal? value = input switch
+            {
+                null => null,
+                "min" => decimal.MinValue,
+                "max" => decimal.MaxValue,
+                _ => decimal.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_decimal_Factory.Instance;
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_decimal_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_decimal_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_decimal()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
+        }
+
         // todo datetime
         // todo timespan
         // todo datetimeoffset
