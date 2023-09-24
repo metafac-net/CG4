@@ -355,9 +355,105 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
 
-        // todo datetime
-        // todo timespan
-        // todo datetimeoffset
-        // todo GUID
+        [Theory]
+        [InlineData("min")]
+        [InlineData("max")]
+        [InlineData("now")]
+        [InlineData(null)]
+        public void RoundtripValues_DateTime(string? input)
+        {
+            DateTime? value = input switch
+            {
+                null => null,
+                "min" => DateTime.MinValue,
+                "max" => DateTime.MaxValue,
+                "now" => DateTime.UtcNow,
+                _ => DateTime.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_DateTime_Factory.Instance;
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_DateTime_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_DateTime_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_DateTime()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
+        }
+
+        [Theory]
+        [InlineData("min")]
+        [InlineData("max")]
+        [InlineData("00:00:00.000000")]
+        [InlineData(null)]
+        public void RoundtripValues_TimeSpan(string? input)
+        {
+            TimeSpan? value = input switch
+            {
+                null => null,
+                "min" => TimeSpan.MinValue,
+                "max" => TimeSpan.MaxValue,
+                _ => TimeSpan.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_TimeSpan_Factory.Instance;
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_TimeSpan_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_TimeSpan_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_TimeSpan()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
+        }
+
+        [Theory]
+        [InlineData("min")]
+        [InlineData("max")]
+        [InlineData("now")]
+        [InlineData(null)]
+        public void RoundtripValues_DateTimeOffset(string? input)
+        {
+            DateTimeOffset? value = input switch
+            {
+                null => null,
+                "min" => DateTimeOffset.MinValue,
+                "max" => DateTimeOffset.MaxValue,
+                "now" => DateTimeOffset.UtcNow,
+                _ => DateTimeOffset.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_DateTimeOffset_Factory.Instance;
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_DateTimeOffset_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_DateTimeOffset_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_DateTimeOffset()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
+        }
+
+        [Theory]
+        [InlineData("empty")]
+        [InlineData("any")]
+        [InlineData(null)]
+        public void RoundtripValues_Guid(string? input)
+        {
+            Guid? value = input switch
+            {
+                null => null,
+                "empty" => Guid.Empty,
+                "any" => Guid.NewGuid(),
+                _ => Guid.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_Guid_Factory.Instance;
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_Guid_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_Guid_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_Guid()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
+        }
     }
 }
