@@ -13,7 +13,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         public async Task RoundtripTree_Empty()
         {
             var original = new Recursive.RecordsV2.Tree() { Id = 1 };
-            var outgoing = Recursive.JsonNewtonSoft.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = Recursive.JsonNewtonSoft.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = outgoing.SerializeToJson<Recursive.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Recursive.JsonNewtonSoft.Tree>();
@@ -31,7 +31,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 Id = 1,
                 A = new Recursive.RecordsV2.Tree() { Id = 2 }
             };
-            var outgoing = Recursive.JsonNewtonSoft.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = Recursive.JsonNewtonSoft.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = outgoing.SerializeToJson<Recursive.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Recursive.JsonNewtonSoft.Tree>();
@@ -50,7 +50,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 A = new Recursive.RecordsV2.Tree() { Id = 2 },
                 B = new Recursive.RecordsV2.Tree() { Id = 3 }
             };
-            var outgoing = Recursive.JsonNewtonSoft.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = Recursive.JsonNewtonSoft.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = outgoing.SerializeToJson<Recursive.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Recursive.JsonNewtonSoft.Tree>();
@@ -72,7 +72,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 A = new Recursive.RecordsV2.Tree() { Id = 2, A = new Recursive.RecordsV2.Tree() { Id = 4 } },
                 B = new Recursive.RecordsV2.Tree() { Id = 3, B = new Recursive.RecordsV2.Tree() { Id = 5 } }
             };
-            var outgoing = Recursive.JsonNewtonSoft.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = Recursive.JsonNewtonSoft.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = outgoing.SerializeToJson<Recursive.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<Recursive.JsonNewtonSoft.Tree>();

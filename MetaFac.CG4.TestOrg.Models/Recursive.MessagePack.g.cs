@@ -95,7 +95,7 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
         public Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
-            if (source is Tree thisEntity) return thisEntity;
+            if (source is Tree sibling && sibling.IsFrozen()) return sibling;
             return new Tree(source);
         }
 

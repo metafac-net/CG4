@@ -39,7 +39,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Fact]
         public void Create_Empty()
         {
-            var concrete = T_EntityName_.Empty;
+            var concrete = T_EntityName__Factory.Instance.Empty;
             concrete.IsFreezable().Should().BeFalse();
             concrete.IsFrozen().Should().BeFalse();
             concrete.T_UnaryModelFieldName_.Should().BeNull();

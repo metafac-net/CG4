@@ -93,7 +93,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
     [Union(StringNode.EntityTag, typeof(StringNode))]
     [Union(BooleanNode.EntityTag, typeof(BooleanNode))]
     [Union(CustomNode.EntityTag, typeof(CustomNode))]
-    public abstract partial class ValueNode : EntityBase, IValueNode
+    public abstract partial class ValueNode
     {
     }
     public sealed class ValueNode_Factory : IEntityFactory<IValueNode, ValueNode>
@@ -230,7 +230,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
 
     [Union(Int32Node.EntityTag, typeof(Int32Node))]
     [Union(Int64Node.EntityTag, typeof(Int64Node))]
-    public abstract partial class NumericNode : ValueNode, INumericNode
+    public abstract partial class NumericNode
     {
     }
     public sealed class NumericNode_Factory : IEntityFactory<INumericNode, NumericNode>
@@ -343,7 +343,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         public StringNode? CreateFrom(IStringNode? source)
         {
             if (source is null) return null;
-            if (source is StringNode thisEntity) return thisEntity;
+            if (source is StringNode sibling && sibling.IsFrozen()) return sibling;
             return new StringNode(source);
         }
 
@@ -453,7 +453,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         public BooleanNode? CreateFrom(IBooleanNode? source)
         {
             if (source is null) return null;
-            if (source is BooleanNode thisEntity) return thisEntity;
+            if (source is BooleanNode sibling && sibling.IsFrozen()) return sibling;
             return new BooleanNode(source);
         }
 
@@ -563,7 +563,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         public CustomNode? CreateFrom(ICustomNode? source)
         {
             if (source is null) return null;
-            if (source is CustomNode thisEntity) return thisEntity;
+            if (source is CustomNode sibling && sibling.IsFrozen()) return sibling;
             return new CustomNode(source);
         }
 
@@ -673,7 +673,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         public Int32Node? CreateFrom(IInt32Node? source)
         {
             if (source is null) return null;
-            if (source is Int32Node thisEntity) return thisEntity;
+            if (source is Int32Node sibling && sibling.IsFrozen()) return sibling;
             return new Int32Node(source);
         }
 
@@ -783,7 +783,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         public Int64Node? CreateFrom(IInt64Node? source)
         {
             if (source is null) return null;
-            if (source is Int64Node thisEntity) return thisEntity;
+            if (source is Int64Node sibling && sibling.IsFrozen()) return sibling;
             return new Int64Node(source);
         }
 

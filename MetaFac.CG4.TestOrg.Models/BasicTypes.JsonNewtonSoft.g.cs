@@ -46,17 +46,14 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         public bool TryFreeze() => true;
     }
 
+
     public sealed class Basic_bool_Factory : IEntityFactory<IBasic_bool, Basic_bool>
     {
+        private static readonly Basic_bool_Factory _instance = new Basic_bool_Factory();
+        public static Basic_bool_Factory Instance => _instance;
+        public Basic_bool? CreateFrom(IBasic_bool? source) => (source is null) ? null : new Basic_bool(source);
         public Basic_bool Empty => new Basic_bool();
-
-        public Basic_bool? CreateFrom(IBasic_bool? source)
-        {
-            if (source is null) return null;
-            return new Basic_bool(source);
-        }
     }
-
     public partial class Basic_bool : EntityBase, IBasic_bool, IEquatable<Basic_bool>
     {
         public new const int EntityTag = 1;
@@ -211,15 +208,11 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
 
     public sealed class Basic_sbyte_Factory : IEntityFactory<IBasic_sbyte, Basic_sbyte>
     {
+        private static readonly Basic_sbyte_Factory _instance = new Basic_sbyte_Factory();
+        public static Basic_sbyte_Factory Instance => _instance;
+        public Basic_sbyte? CreateFrom(IBasic_sbyte? source) => (source is null) ? null : new Basic_sbyte(source);
         public Basic_sbyte Empty => new Basic_sbyte();
-
-        public Basic_sbyte? CreateFrom(IBasic_sbyte? source)
-        {
-            if (source is null) return null;
-            return new Basic_sbyte(source);
-        }
     }
-
     public partial class Basic_sbyte : EntityBase, IBasic_sbyte, IEquatable<Basic_sbyte>
     {
         public new const int EntityTag = 2;
@@ -372,24 +365,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_byte
+    public sealed class Basic_byte_Factory : IEntityFactory<IBasic_byte, Basic_byte>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_byte? CreateFrom(IBasic_byte? source)
-        {
-            if (source is null) return null;
-            return new Basic_byte(source);
-        }
-
-        private static Basic_byte CreateEmpty()
-        {
-            var empty = new Basic_byte();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_byte _empty = CreateEmpty();
-        public static new Basic_byte Empty => _empty;
-
+        private static readonly Basic_byte_Factory _instance = new Basic_byte_Factory();
+        public static Basic_byte_Factory Instance => _instance;
+        public Basic_byte? CreateFrom(IBasic_byte? source) => (source is null) ? null : new Basic_byte(source);
+        public Basic_byte Empty => new Basic_byte();
     }
     public partial class Basic_byte : EntityBase, IBasic_byte, IEquatable<Basic_byte>
     {
@@ -543,24 +524,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_short
+    public sealed class Basic_short_Factory : IEntityFactory<IBasic_short, Basic_short>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_short? CreateFrom(IBasic_short? source)
-        {
-            if (source is null) return null;
-            return new Basic_short(source);
-        }
-
-        private static Basic_short CreateEmpty()
-        {
-            var empty = new Basic_short();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_short _empty = CreateEmpty();
-        public static new Basic_short Empty => _empty;
-
+        private static readonly Basic_short_Factory _instance = new Basic_short_Factory();
+        public static Basic_short_Factory Instance => _instance;
+        public Basic_short? CreateFrom(IBasic_short? source) => (source is null) ? null : new Basic_short(source);
+        public Basic_short Empty => new Basic_short();
     }
     public partial class Basic_short : EntityBase, IBasic_short, IEquatable<Basic_short>
     {
@@ -714,24 +683,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_ushort
+    public sealed class Basic_ushort_Factory : IEntityFactory<IBasic_ushort, Basic_ushort>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_ushort? CreateFrom(IBasic_ushort? source)
-        {
-            if (source is null) return null;
-            return new Basic_ushort(source);
-        }
-
-        private static Basic_ushort CreateEmpty()
-        {
-            var empty = new Basic_ushort();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_ushort _empty = CreateEmpty();
-        public static new Basic_ushort Empty => _empty;
-
+        private static readonly Basic_ushort_Factory _instance = new Basic_ushort_Factory();
+        public static Basic_ushort_Factory Instance => _instance;
+        public Basic_ushort? CreateFrom(IBasic_ushort? source) => (source is null) ? null : new Basic_ushort(source);
+        public Basic_ushort Empty => new Basic_ushort();
     }
     public partial class Basic_ushort : EntityBase, IBasic_ushort, IEquatable<Basic_ushort>
     {
@@ -885,24 +842,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_char
+    public sealed class Basic_char_Factory : IEntityFactory<IBasic_char, Basic_char>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_char? CreateFrom(IBasic_char? source)
-        {
-            if (source is null) return null;
-            return new Basic_char(source);
-        }
-
-        private static Basic_char CreateEmpty()
-        {
-            var empty = new Basic_char();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_char _empty = CreateEmpty();
-        public static new Basic_char Empty => _empty;
-
+        private static readonly Basic_char_Factory _instance = new Basic_char_Factory();
+        public static Basic_char_Factory Instance => _instance;
+        public Basic_char? CreateFrom(IBasic_char? source) => (source is null) ? null : new Basic_char(source);
+        public Basic_char Empty => new Basic_char();
     }
     public partial class Basic_char : EntityBase, IBasic_char, IEquatable<Basic_char>
     {
@@ -1056,24 +1001,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_int
+    public sealed class Basic_int_Factory : IEntityFactory<IBasic_int, Basic_int>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_int? CreateFrom(IBasic_int? source)
-        {
-            if (source is null) return null;
-            return new Basic_int(source);
-        }
-
-        private static Basic_int CreateEmpty()
-        {
-            var empty = new Basic_int();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_int _empty = CreateEmpty();
-        public static new Basic_int Empty => _empty;
-
+        private static readonly Basic_int_Factory _instance = new Basic_int_Factory();
+        public static Basic_int_Factory Instance => _instance;
+        public Basic_int? CreateFrom(IBasic_int? source) => (source is null) ? null : new Basic_int(source);
+        public Basic_int Empty => new Basic_int();
     }
     public partial class Basic_int : EntityBase, IBasic_int, IEquatable<Basic_int>
     {
@@ -1227,24 +1160,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_uint
+    public sealed class Basic_uint_Factory : IEntityFactory<IBasic_uint, Basic_uint>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_uint? CreateFrom(IBasic_uint? source)
-        {
-            if (source is null) return null;
-            return new Basic_uint(source);
-        }
-
-        private static Basic_uint CreateEmpty()
-        {
-            var empty = new Basic_uint();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_uint _empty = CreateEmpty();
-        public static new Basic_uint Empty => _empty;
-
+        private static readonly Basic_uint_Factory _instance = new Basic_uint_Factory();
+        public static Basic_uint_Factory Instance => _instance;
+        public Basic_uint? CreateFrom(IBasic_uint? source) => (source is null) ? null : new Basic_uint(source);
+        public Basic_uint Empty => new Basic_uint();
     }
     public partial class Basic_uint : EntityBase, IBasic_uint, IEquatable<Basic_uint>
     {
@@ -1398,24 +1319,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_float
+    public sealed class Basic_float_Factory : IEntityFactory<IBasic_float, Basic_float>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_float? CreateFrom(IBasic_float? source)
-        {
-            if (source is null) return null;
-            return new Basic_float(source);
-        }
-
-        private static Basic_float CreateEmpty()
-        {
-            var empty = new Basic_float();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_float _empty = CreateEmpty();
-        public static new Basic_float Empty => _empty;
-
+        private static readonly Basic_float_Factory _instance = new Basic_float_Factory();
+        public static Basic_float_Factory Instance => _instance;
+        public Basic_float? CreateFrom(IBasic_float? source) => (source is null) ? null : new Basic_float(source);
+        public Basic_float Empty => new Basic_float();
     }
     public partial class Basic_float : EntityBase, IBasic_float, IEquatable<Basic_float>
     {
@@ -1569,24 +1478,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_long
+    public sealed class Basic_long_Factory : IEntityFactory<IBasic_long, Basic_long>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_long? CreateFrom(IBasic_long? source)
-        {
-            if (source is null) return null;
-            return new Basic_long(source);
-        }
-
-        private static Basic_long CreateEmpty()
-        {
-            var empty = new Basic_long();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_long _empty = CreateEmpty();
-        public static new Basic_long Empty => _empty;
-
+        private static readonly Basic_long_Factory _instance = new Basic_long_Factory();
+        public static Basic_long_Factory Instance => _instance;
+        public Basic_long? CreateFrom(IBasic_long? source) => (source is null) ? null : new Basic_long(source);
+        public Basic_long Empty => new Basic_long();
     }
     public partial class Basic_long : EntityBase, IBasic_long, IEquatable<Basic_long>
     {
@@ -1740,24 +1637,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_ulong
+    public sealed class Basic_ulong_Factory : IEntityFactory<IBasic_ulong, Basic_ulong>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_ulong? CreateFrom(IBasic_ulong? source)
-        {
-            if (source is null) return null;
-            return new Basic_ulong(source);
-        }
-
-        private static Basic_ulong CreateEmpty()
-        {
-            var empty = new Basic_ulong();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_ulong _empty = CreateEmpty();
-        public static new Basic_ulong Empty => _empty;
-
+        private static readonly Basic_ulong_Factory _instance = new Basic_ulong_Factory();
+        public static Basic_ulong_Factory Instance => _instance;
+        public Basic_ulong? CreateFrom(IBasic_ulong? source) => (source is null) ? null : new Basic_ulong(source);
+        public Basic_ulong Empty => new Basic_ulong();
     }
     public partial class Basic_ulong : EntityBase, IBasic_ulong, IEquatable<Basic_ulong>
     {
@@ -1911,24 +1796,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_double
+    public sealed class Basic_double_Factory : IEntityFactory<IBasic_double, Basic_double>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_double? CreateFrom(IBasic_double? source)
-        {
-            if (source is null) return null;
-            return new Basic_double(source);
-        }
-
-        private static Basic_double CreateEmpty()
-        {
-            var empty = new Basic_double();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_double _empty = CreateEmpty();
-        public static new Basic_double Empty => _empty;
-
+        private static readonly Basic_double_Factory _instance = new Basic_double_Factory();
+        public static Basic_double_Factory Instance => _instance;
+        public Basic_double? CreateFrom(IBasic_double? source) => (source is null) ? null : new Basic_double(source);
+        public Basic_double Empty => new Basic_double();
     }
     public partial class Basic_double : EntityBase, IBasic_double, IEquatable<Basic_double>
     {
@@ -2082,24 +1955,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_DateTime
+    public sealed class Basic_DateTime_Factory : IEntityFactory<IBasic_DateTime, Basic_DateTime>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_DateTime? CreateFrom(IBasic_DateTime? source)
-        {
-            if (source is null) return null;
-            return new Basic_DateTime(source);
-        }
-
-        private static Basic_DateTime CreateEmpty()
-        {
-            var empty = new Basic_DateTime();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_DateTime _empty = CreateEmpty();
-        public static new Basic_DateTime Empty => _empty;
-
+        private static readonly Basic_DateTime_Factory _instance = new Basic_DateTime_Factory();
+        public static Basic_DateTime_Factory Instance => _instance;
+        public Basic_DateTime? CreateFrom(IBasic_DateTime? source) => (source is null) ? null : new Basic_DateTime(source);
+        public Basic_DateTime Empty => new Basic_DateTime();
     }
     public partial class Basic_DateTime : EntityBase, IBasic_DateTime, IEquatable<Basic_DateTime>
     {
@@ -2253,24 +2114,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_TimeSpan
+    public sealed class Basic_TimeSpan_Factory : IEntityFactory<IBasic_TimeSpan, Basic_TimeSpan>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_TimeSpan? CreateFrom(IBasic_TimeSpan? source)
-        {
-            if (source is null) return null;
-            return new Basic_TimeSpan(source);
-        }
-
-        private static Basic_TimeSpan CreateEmpty()
-        {
-            var empty = new Basic_TimeSpan();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_TimeSpan _empty = CreateEmpty();
-        public static new Basic_TimeSpan Empty => _empty;
-
+        private static readonly Basic_TimeSpan_Factory _instance = new Basic_TimeSpan_Factory();
+        public static Basic_TimeSpan_Factory Instance => _instance;
+        public Basic_TimeSpan? CreateFrom(IBasic_TimeSpan? source) => (source is null) ? null : new Basic_TimeSpan(source);
+        public Basic_TimeSpan Empty => new Basic_TimeSpan();
     }
     public partial class Basic_TimeSpan : EntityBase, IBasic_TimeSpan, IEquatable<Basic_TimeSpan>
     {
@@ -2424,24 +2273,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_decimal
+    public sealed class Basic_decimal_Factory : IEntityFactory<IBasic_decimal, Basic_decimal>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_decimal? CreateFrom(IBasic_decimal? source)
-        {
-            if (source is null) return null;
-            return new Basic_decimal(source);
-        }
-
-        private static Basic_decimal CreateEmpty()
-        {
-            var empty = new Basic_decimal();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_decimal _empty = CreateEmpty();
-        public static new Basic_decimal Empty => _empty;
-
+        private static readonly Basic_decimal_Factory _instance = new Basic_decimal_Factory();
+        public static Basic_decimal_Factory Instance => _instance;
+        public Basic_decimal? CreateFrom(IBasic_decimal? source) => (source is null) ? null : new Basic_decimal(source);
+        public Basic_decimal Empty => new Basic_decimal();
     }
     public partial class Basic_decimal : EntityBase, IBasic_decimal, IEquatable<Basic_decimal>
     {
@@ -2595,24 +2432,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_DateTimeOffset
+    public sealed class Basic_DateTimeOffset_Factory : IEntityFactory<IBasic_DateTimeOffset, Basic_DateTimeOffset>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_DateTimeOffset? CreateFrom(IBasic_DateTimeOffset? source)
-        {
-            if (source is null) return null;
-            return new Basic_DateTimeOffset(source);
-        }
-
-        private static Basic_DateTimeOffset CreateEmpty()
-        {
-            var empty = new Basic_DateTimeOffset();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_DateTimeOffset _empty = CreateEmpty();
-        public static new Basic_DateTimeOffset Empty => _empty;
-
+        private static readonly Basic_DateTimeOffset_Factory _instance = new Basic_DateTimeOffset_Factory();
+        public static Basic_DateTimeOffset_Factory Instance => _instance;
+        public Basic_DateTimeOffset? CreateFrom(IBasic_DateTimeOffset? source) => (source is null) ? null : new Basic_DateTimeOffset(source);
+        public Basic_DateTimeOffset Empty => new Basic_DateTimeOffset();
     }
     public partial class Basic_DateTimeOffset : EntityBase, IBasic_DateTimeOffset, IEquatable<Basic_DateTimeOffset>
     {
@@ -2766,24 +2591,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_Guid
+    public sealed class Basic_Guid_Factory : IEntityFactory<IBasic_Guid, Basic_Guid>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_Guid? CreateFrom(IBasic_Guid? source)
-        {
-            if (source is null) return null;
-            return new Basic_Guid(source);
-        }
-
-        private static Basic_Guid CreateEmpty()
-        {
-            var empty = new Basic_Guid();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_Guid _empty = CreateEmpty();
-        public static new Basic_Guid Empty => _empty;
-
+        private static readonly Basic_Guid_Factory _instance = new Basic_Guid_Factory();
+        public static Basic_Guid_Factory Instance => _instance;
+        public Basic_Guid? CreateFrom(IBasic_Guid? source) => (source is null) ? null : new Basic_Guid(source);
+        public Basic_Guid Empty => new Basic_Guid();
     }
     public partial class Basic_Guid : EntityBase, IBasic_Guid, IEquatable<Basic_Guid>
     {
@@ -2937,24 +2750,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_DayOfWeek
+    public sealed class Basic_DayOfWeek_Factory : IEntityFactory<IBasic_DayOfWeek, Basic_DayOfWeek>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_DayOfWeek? CreateFrom(IBasic_DayOfWeek? source)
-        {
-            if (source is null) return null;
-            return new Basic_DayOfWeek(source);
-        }
-
-        private static Basic_DayOfWeek CreateEmpty()
-        {
-            var empty = new Basic_DayOfWeek();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_DayOfWeek _empty = CreateEmpty();
-        public static new Basic_DayOfWeek Empty => _empty;
-
+        private static readonly Basic_DayOfWeek_Factory _instance = new Basic_DayOfWeek_Factory();
+        public static Basic_DayOfWeek_Factory Instance => _instance;
+        public Basic_DayOfWeek? CreateFrom(IBasic_DayOfWeek? source) => (source is null) ? null : new Basic_DayOfWeek(source);
+        public Basic_DayOfWeek Empty => new Basic_DayOfWeek();
     }
     public partial class Basic_DayOfWeek : EntityBase, IBasic_DayOfWeek, IEquatable<Basic_DayOfWeek>
     {
@@ -3108,24 +2909,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_MyCustomEnum
+    public sealed class Basic_MyCustomEnum_Factory : IEntityFactory<IBasic_MyCustomEnum, Basic_MyCustomEnum>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_MyCustomEnum? CreateFrom(IBasic_MyCustomEnum? source)
-        {
-            if (source is null) return null;
-            return new Basic_MyCustomEnum(source);
-        }
-
-        private static Basic_MyCustomEnum CreateEmpty()
-        {
-            var empty = new Basic_MyCustomEnum();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_MyCustomEnum _empty = CreateEmpty();
-        public static new Basic_MyCustomEnum Empty => _empty;
-
+        private static readonly Basic_MyCustomEnum_Factory _instance = new Basic_MyCustomEnum_Factory();
+        public static Basic_MyCustomEnum_Factory Instance => _instance;
+        public Basic_MyCustomEnum? CreateFrom(IBasic_MyCustomEnum? source) => (source is null) ? null : new Basic_MyCustomEnum(source);
+        public Basic_MyCustomEnum Empty => new Basic_MyCustomEnum();
     }
     public partial class Basic_MyCustomEnum : EntityBase, IBasic_MyCustomEnum, IEquatable<Basic_MyCustomEnum>
     {
@@ -3279,24 +3068,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_Quantity
+    public sealed class Basic_Quantity_Factory : IEntityFactory<IBasic_Quantity, Basic_Quantity>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_Quantity? CreateFrom(IBasic_Quantity? source)
-        {
-            if (source is null) return null;
-            return new Basic_Quantity(source);
-        }
-
-        private static Basic_Quantity CreateEmpty()
-        {
-            var empty = new Basic_Quantity();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_Quantity _empty = CreateEmpty();
-        public static new Basic_Quantity Empty => _empty;
-
+        private static readonly Basic_Quantity_Factory _instance = new Basic_Quantity_Factory();
+        public static Basic_Quantity_Factory Instance => _instance;
+        public Basic_Quantity? CreateFrom(IBasic_Quantity? source) => (source is null) ? null : new Basic_Quantity(source);
+        public Basic_Quantity Empty => new Basic_Quantity();
     }
     public partial class Basic_Quantity : EntityBase, IBasic_Quantity, IEquatable<Basic_Quantity>
     {
@@ -3434,24 +3211,12 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
-    public partial class Basic_string
+    public sealed class Basic_string_Factory : IEntityFactory<IBasic_string, Basic_string>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Basic_string? CreateFrom(IBasic_string? source)
-        {
-            if (source is null) return null;
-            return new Basic_string(source);
-        }
-
-        private static Basic_string CreateEmpty()
-        {
-            var empty = new Basic_string();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Basic_string _empty = CreateEmpty();
-        public static new Basic_string Empty => _empty;
-
+        private static readonly Basic_string_Factory _instance = new Basic_string_Factory();
+        public static Basic_string_Factory Instance => _instance;
+        public Basic_string? CreateFrom(IBasic_string? source) => (source is null) ? null : new Basic_string(source);
+        public Basic_string Empty => new Basic_string();
     }
     public partial class Basic_string : EntityBase, IBasic_string, IEquatable<Basic_string>
     {

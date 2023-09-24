@@ -95,7 +95,7 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.MessagePack
         public Person? CreateFrom(IPerson? source)
         {
             if (source is null) return null;
-            if (source is Person thisEntity) return thisEntity;
+            if (source is Person sibling && sibling.IsFrozen()) return sibling;
             return new Person(source);
         }
 

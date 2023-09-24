@@ -50,24 +50,12 @@ namespace Generated.JsonNewtonSoft
     }
 
 
-    public partial class BuiltinTypes
+    public sealed class BuiltinTypes_Factory : IEntityFactory<IBuiltinTypes, BuiltinTypes>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static BuiltinTypes? CreateFrom(IBuiltinTypes? source)
-        {
-            if (source is null) return null;
-            return new BuiltinTypes(source);
-        }
-
-        private static BuiltinTypes CreateEmpty()
-        {
-            var empty = new BuiltinTypes();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly BuiltinTypes _empty = CreateEmpty();
-        public static new BuiltinTypes Empty => _empty;
-
+        private static readonly BuiltinTypes_Factory _instance = new BuiltinTypes_Factory();
+        public static BuiltinTypes_Factory Instance => _instance;
+        public BuiltinTypes? CreateFrom(IBuiltinTypes? source) => (source is null) ? null : new BuiltinTypes(source);
+        public BuiltinTypes Empty => new BuiltinTypes();
     }
     public partial class BuiltinTypes : EntityBase, IBuiltinTypes, IEquatable<BuiltinTypes>
     {

@@ -45,30 +45,25 @@ namespace T_Namespace_.JsonNewtonSoft
     using T_ExternalOtherType_ = System.Int64;
     using T_ExternalMaybeType_ = System.DayOfWeek;
     using T_IndexType_ = System.String;
-
-    internal static class IgnoredExtensions
-    {
-        public static bool ValueEquals(this DayOfWeek? self, in DayOfWeek? other)
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            return self.Value == other.Value;
-        }
-    }
-
     //>>}
 
     //>>using (Ignored())
     //>>{
-    public class T_ModelType_ : EntityBase, IT_ModelType_, IEquatable<T_ModelType_>
+    public sealed class T_ModelType__Factory : IEntityFactory<IT_ModelType_, T_ModelType_>
     {
-        public static T_ModelType_? CreateFrom(IT_ModelType_? source)
+        private static readonly T_ModelType__Factory _instance = new T_ModelType__Factory();
+        public static T_ModelType__Factory Instance => _instance;
+
+        public T_ModelType_? CreateFrom(IT_ModelType_? source)
         {
             if (source is null) return null;
-            if (source is T_ModelType_ concrete) return concrete;
             return new T_ModelType_(source);
         }
 
+        public T_ModelType_ Empty => new T_ModelType_();
+    }
+    public class T_ModelType_ : EntityBase, IT_ModelType_, IEquatable<T_ModelType_>
+    {
         protected override int OnGetEntityTag() => 0;
 
         public int TestData { get; set; }
@@ -141,8 +136,13 @@ namespace T_Namespace_.JsonNewtonSoft
     //>>        {
     public abstract partial class T_EntityName2_
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T_EntityName_? CreateFrom(IT_EntityName_? source)
+    }
+    public sealed class T_EntityName2__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>
+    {
+        private static readonly T_EntityName2__Factory _instance = new T_EntityName2__Factory();
+        public static T_EntityName2__Factory Instance => _instance;
+
+        public T_EntityName_? CreateFrom(IT_EntityName_? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
@@ -152,7 +152,7 @@ namespace T_Namespace_.JsonNewtonSoft
                 //>>            {
                 //>>                using (NewScope(derived))
                 //>>                {
-                case T_EntityName_.EntityTag: return T_EntityName_.CreateFrom((IT_EntityName_)source);
+                case T_EntityName_.EntityTag: return T_EntityName__Factory.Instance.CreateFrom((IT_EntityName_)source);
                 //>>                }
                 //>>            }
                 default:
@@ -160,28 +160,17 @@ namespace T_Namespace_.JsonNewtonSoft
             }
         }
 
+        public T_EntityName_ Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(T_EntityName_)}");
     }
     //>>        }
     //>>        else
     //>>        {
-    public partial class T_EntityName_
+    public sealed class T_EntityName__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T_EntityName_? CreateFrom(IT_EntityName_? source)
-        {
-            if (source is null) return null;
-            return new T_EntityName_(source);
-        }
-
-        private static T_EntityName_ CreateEmpty()
-        {
-            var empty = new T_EntityName_();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly T_EntityName_ _empty = CreateEmpty();
-        public static new T_EntityName_ Empty => _empty;
-
+        private static readonly T_EntityName__Factory _instance = new T_EntityName__Factory();
+        public static T_EntityName__Factory Instance => _instance;
+        public T_EntityName_? CreateFrom(IT_EntityName_? source) => (source is null) ? null : new T_EntityName_(source);
+        public T_EntityName_ Empty => new T_EntityName_();
     }
     //>>        }
     public partial class T_EntityName_ : T_ParentName_, IT_EntityName_, IEquatable<T_EntityName_>
@@ -410,18 +399,18 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
-            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
+            field_T_UnaryModelFieldName_ = T_ModelType__Factory.Instance.CreateFrom(source.T_UnaryModelFieldName_);
             //>>                        break;
             //>>                    case FieldKind.ArrayModel:
             field_T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null
                 ? default
-                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType_.CreateFrom(x)));
+                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType__Factory.Instance.CreateFrom(x)));
             //>>                        break;
             //>>                    case FieldKind.IndexModel:
             field_T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null
                 ? default
                 : ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty.AddRange(
-                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType_.CreateFrom(x.Value))));
+                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType__Factory.Instance.CreateFrom(x.Value))));
             //>>                        break;
             //>>                    case FieldKind.UnaryMaybe:
             field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;
@@ -496,18 +485,18 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
-            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
+            field_T_UnaryModelFieldName_ = T_ModelType__Factory.Instance.CreateFrom(source.T_UnaryModelFieldName_);
             //>>                        break;
             //>>                    case FieldKind.ArrayModel:
             field_T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null
                 ? default
-                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType_.CreateFrom(x)));
+                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType__Factory.Instance.CreateFrom(x)));
             //>>                        break;
             //>>                    case FieldKind.IndexModel:
             field_T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null
                 ? default
                 : ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty.AddRange(
-                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType_.CreateFrom(x.Value))));
+                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType__Factory.Instance.CreateFrom(x.Value))));
             //>>                        break;
             //>>                    case FieldKind.UnaryMaybe:
             field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;

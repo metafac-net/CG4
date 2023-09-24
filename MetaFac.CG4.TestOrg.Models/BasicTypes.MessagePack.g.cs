@@ -95,7 +95,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_bool? CreateFrom(IBasic_bool? source)
         {
             if (source is null) return null;
-            if (source is Basic_bool thisEntity) return thisEntity;
+            if (source is Basic_bool sibling && sibling.IsFrozen()) return sibling;
             return new Basic_bool(source);
         }
 
@@ -303,7 +303,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_sbyte? CreateFrom(IBasic_sbyte? source)
         {
             if (source is null) return null;
-            if (source is Basic_sbyte thisEntity) return thisEntity;
+            if (source is Basic_sbyte sibling && sibling.IsFrozen()) return sibling;
             return new Basic_sbyte(source);
         }
 
@@ -511,7 +511,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_byte? CreateFrom(IBasic_byte? source)
         {
             if (source is null) return null;
-            if (source is Basic_byte thisEntity) return thisEntity;
+            if (source is Basic_byte sibling && sibling.IsFrozen()) return sibling;
             return new Basic_byte(source);
         }
 
@@ -719,7 +719,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_short? CreateFrom(IBasic_short? source)
         {
             if (source is null) return null;
-            if (source is Basic_short thisEntity) return thisEntity;
+            if (source is Basic_short sibling && sibling.IsFrozen()) return sibling;
             return new Basic_short(source);
         }
 
@@ -927,7 +927,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_ushort? CreateFrom(IBasic_ushort? source)
         {
             if (source is null) return null;
-            if (source is Basic_ushort thisEntity) return thisEntity;
+            if (source is Basic_ushort sibling && sibling.IsFrozen()) return sibling;
             return new Basic_ushort(source);
         }
 
@@ -1135,7 +1135,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_char? CreateFrom(IBasic_char? source)
         {
             if (source is null) return null;
-            if (source is Basic_char thisEntity) return thisEntity;
+            if (source is Basic_char sibling && sibling.IsFrozen()) return sibling;
             return new Basic_char(source);
         }
 
@@ -1343,7 +1343,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_int? CreateFrom(IBasic_int? source)
         {
             if (source is null) return null;
-            if (source is Basic_int thisEntity) return thisEntity;
+            if (source is Basic_int sibling && sibling.IsFrozen()) return sibling;
             return new Basic_int(source);
         }
 
@@ -1551,7 +1551,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_uint? CreateFrom(IBasic_uint? source)
         {
             if (source is null) return null;
-            if (source is Basic_uint thisEntity) return thisEntity;
+            if (source is Basic_uint sibling && sibling.IsFrozen()) return sibling;
             return new Basic_uint(source);
         }
 
@@ -1759,7 +1759,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_float? CreateFrom(IBasic_float? source)
         {
             if (source is null) return null;
-            if (source is Basic_float thisEntity) return thisEntity;
+            if (source is Basic_float sibling && sibling.IsFrozen()) return sibling;
             return new Basic_float(source);
         }
 
@@ -1967,7 +1967,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_long? CreateFrom(IBasic_long? source)
         {
             if (source is null) return null;
-            if (source is Basic_long thisEntity) return thisEntity;
+            if (source is Basic_long sibling && sibling.IsFrozen()) return sibling;
             return new Basic_long(source);
         }
 
@@ -2175,7 +2175,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_ulong? CreateFrom(IBasic_ulong? source)
         {
             if (source is null) return null;
-            if (source is Basic_ulong thisEntity) return thisEntity;
+            if (source is Basic_ulong sibling && sibling.IsFrozen()) return sibling;
             return new Basic_ulong(source);
         }
 
@@ -2383,7 +2383,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_double? CreateFrom(IBasic_double? source)
         {
             if (source is null) return null;
-            if (source is Basic_double thisEntity) return thisEntity;
+            if (source is Basic_double sibling && sibling.IsFrozen()) return sibling;
             return new Basic_double(source);
         }
 
@@ -2591,7 +2591,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_DateTime? CreateFrom(IBasic_DateTime? source)
         {
             if (source is null) return null;
-            if (source is Basic_DateTime thisEntity) return thisEntity;
+            if (source is Basic_DateTime sibling && sibling.IsFrozen()) return sibling;
             return new Basic_DateTime(source);
         }
 
@@ -2799,7 +2799,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_TimeSpan? CreateFrom(IBasic_TimeSpan? source)
         {
             if (source is null) return null;
-            if (source is Basic_TimeSpan thisEntity) return thisEntity;
+            if (source is Basic_TimeSpan sibling && sibling.IsFrozen()) return sibling;
             return new Basic_TimeSpan(source);
         }
 
@@ -3007,7 +3007,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_decimal? CreateFrom(IBasic_decimal? source)
         {
             if (source is null) return null;
-            if (source is Basic_decimal thisEntity) return thisEntity;
+            if (source is Basic_decimal sibling && sibling.IsFrozen()) return sibling;
             return new Basic_decimal(source);
         }
 
@@ -3215,7 +3215,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_DateTimeOffset? CreateFrom(IBasic_DateTimeOffset? source)
         {
             if (source is null) return null;
-            if (source is Basic_DateTimeOffset thisEntity) return thisEntity;
+            if (source is Basic_DateTimeOffset sibling && sibling.IsFrozen()) return sibling;
             return new Basic_DateTimeOffset(source);
         }
 
@@ -3423,7 +3423,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_Guid? CreateFrom(IBasic_Guid? source)
         {
             if (source is null) return null;
-            if (source is Basic_Guid thisEntity) return thisEntity;
+            if (source is Basic_Guid sibling && sibling.IsFrozen()) return sibling;
             return new Basic_Guid(source);
         }
 
@@ -3631,7 +3631,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_DayOfWeek? CreateFrom(IBasic_DayOfWeek? source)
         {
             if (source is null) return null;
-            if (source is Basic_DayOfWeek thisEntity) return thisEntity;
+            if (source is Basic_DayOfWeek sibling && sibling.IsFrozen()) return sibling;
             return new Basic_DayOfWeek(source);
         }
 
@@ -3839,7 +3839,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_MyCustomEnum? CreateFrom(IBasic_MyCustomEnum? source)
         {
             if (source is null) return null;
-            if (source is Basic_MyCustomEnum thisEntity) return thisEntity;
+            if (source is Basic_MyCustomEnum sibling && sibling.IsFrozen()) return sibling;
             return new Basic_MyCustomEnum(source);
         }
 
@@ -4047,7 +4047,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_Quantity? CreateFrom(IBasic_Quantity? source)
         {
             if (source is null) return null;
-            if (source is Basic_Quantity thisEntity) return thisEntity;
+            if (source is Basic_Quantity sibling && sibling.IsFrozen()) return sibling;
             return new Basic_Quantity(source);
         }
 
@@ -4240,7 +4240,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         public Basic_string? CreateFrom(IBasic_string? source)
         {
             if (source is null) return null;
-            if (source is Basic_string thisEntity) return thisEntity;
+            if (source is Basic_string sibling && sibling.IsFrozen()) return sibling;
             return new Basic_string(source);
         }
 

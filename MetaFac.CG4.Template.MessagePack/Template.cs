@@ -214,7 +214,7 @@ namespace T_Namespace_.MessagePack
     [Union(T_EntityName_.EntityTag, typeof(T_EntityName_))]
     //>>                }
     //>>            }
-    public abstract partial class T_EntityName2_ : T_ParentName_, IT_EntityName2_
+    public abstract partial class T_EntityName2_
     {
     }
     public sealed class T_EntityName2__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>
@@ -253,7 +253,7 @@ namespace T_Namespace_.MessagePack
         public T_EntityName_? CreateFrom(IT_EntityName_? source)
         {
             if (source is null) return null;
-            if (source is T_EntityName_ thisEntity) return thisEntity;
+            if (source is T_EntityName_ sibling && sibling.IsFrozen()) return sibling;
             return new T_EntityName_(source);
         }
 

@@ -98,7 +98,7 @@ namespace Generated.MessagePack
         public BuiltinTypes? CreateFrom(IBuiltinTypes? source)
         {
             if (source is null) return null;
-            if (source is BuiltinTypes thisEntity) return thisEntity;
+            if (source is BuiltinTypes sibling && sibling.IsFrozen()) return sibling;
             return new BuiltinTypes(source);
         }
 

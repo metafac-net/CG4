@@ -98,7 +98,7 @@ namespace Generated.MessagePack
         public Base? CreateFrom(IBase? source)
         {
             if (source is null) return null;
-            if (source is Base thisEntity) return thisEntity;
+            if (source is Base sibling && sibling.IsFrozen()) return sibling;
             return new Base(source);
         }
 
@@ -208,7 +208,7 @@ namespace Generated.MessagePack
         public Derived? CreateFrom(IDerived? source)
         {
             if (source is null) return null;
-            if (source is Derived thisEntity) return thisEntity;
+            if (source is Derived sibling && sibling.IsFrozen()) return sibling;
             return new Derived(source);
         }
 

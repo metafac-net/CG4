@@ -53,7 +53,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         public void RoundtripValues_bool(bool? value)
         {
             var origFactory = BasicTypes.RecordsV2.Basic_bool_Factory.Instance;
-            var jsonFactory = new BasicTypes.JsonNewtonSoft.Basic_bool_Factory();
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_bool_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_bool_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_bool()
             {
@@ -78,7 +78,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         public void RoundtripValues_sbyte(sbyte? value)
         {
             var origFactory = BasicTypes.RecordsV2.Basic_sbyte_Factory.Instance;
-            var jsonFactory = new BasicTypes.JsonNewtonSoft.Basic_sbyte_Factory();
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_sbyte_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_sbyte_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_sbyte()
             {
@@ -116,7 +116,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_byte.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_byte_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_byte>();
                 incoming.Should().Be(outgoing);
@@ -150,7 +150,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_short.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_short_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_short>();
                 incoming.Should().Be(outgoing);
@@ -183,7 +183,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_ushort.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_ushort_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_ushort>();
                 incoming.Should().Be(outgoing);
@@ -216,7 +216,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_char.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_char_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_char>();
                 incoming.Should().Be(outgoing);
@@ -250,7 +250,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_int.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_int_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_int>();
                 incoming.Should().Be(outgoing);
@@ -283,7 +283,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_uint.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_uint_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_uint>();
                 incoming.Should().Be(outgoing);
@@ -325,7 +325,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_float.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_float_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_float>();
                 incoming.Equals(outgoing).Should().BeTrue();
@@ -358,7 +358,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_long.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_long_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_long>();
                 incoming.Should().Be(outgoing);
@@ -391,7 +391,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_ulong.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_ulong_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_ulong>();
                 incoming.Should().Be(outgoing);
@@ -433,7 +433,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_double.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_double_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_double>();
                 incoming.Equals(outgoing).Should().BeTrue();
@@ -465,7 +465,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 duplicate1.Equals(original).Should().BeTrue();
             }
             {
-                var outgoing = BasicTypes.JsonNewtonSoft.Basic_DayOfWeek.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.JsonNewtonSoft.Basic_DayOfWeek_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJson();
                 var incoming = buffer.DeserializeFromJson<BasicTypes.JsonNewtonSoft.Basic_DayOfWeek>();
                 incoming.Should().Be(outgoing);

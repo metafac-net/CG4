@@ -98,7 +98,7 @@ namespace Generated.MessagePack
         public IndexTypes? CreateFrom(IIndexTypes? source)
         {
             if (source is null) return null;
-            if (source is IndexTypes thisEntity) return thisEntity;
+            if (source is IndexTypes sibling && sibling.IsFrozen()) return sibling;
             return new IndexTypes(source);
         }
 

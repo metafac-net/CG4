@@ -98,7 +98,7 @@ namespace Generated.MessagePack
         public SavingsAccount? CreateFrom(ISavingsAccount? source)
         {
             if (source is null) return null;
-            if (source is SavingsAccount thisEntity) return thisEntity;
+            if (source is SavingsAccount sibling && sibling.IsFrozen()) return sibling;
             return new SavingsAccount(source);
         }
 
@@ -208,7 +208,7 @@ namespace Generated.MessagePack
         public Withdrawl? CreateFrom(IWithdrawl? source)
         {
             if (source is null) return null;
-            if (source is Withdrawl thisEntity) return thisEntity;
+            if (source is Withdrawl sibling && sibling.IsFrozen()) return sibling;
             return new Withdrawl(source);
         }
 

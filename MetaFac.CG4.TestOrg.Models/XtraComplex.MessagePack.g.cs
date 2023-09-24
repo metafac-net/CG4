@@ -95,7 +95,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
         public Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
-            if (source is Tree thisEntity) return thisEntity;
+            if (source is Tree sibling && sibling.IsFrozen()) return sibling;
             return new Tree(source);
         }
 
@@ -230,7 +230,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
     [Union(NumNode.EntityTag, typeof(NumNode))]
     [Union(LongNode.EntityTag, typeof(LongNode))]
     [Union(DaynNode.EntityTag, typeof(DaynNode))]
-    public abstract partial class Node : EntityBase, INode
+    public abstract partial class Node
     {
     }
     public sealed class Node_Factory : IEntityFactory<INode, Node>
@@ -345,7 +345,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
         public StrNode? CreateFrom(IStrNode? source)
         {
             if (source is null) return null;
-            if (source is StrNode thisEntity) return thisEntity;
+            if (source is StrNode sibling && sibling.IsFrozen()) return sibling;
             return new StrNode(source);
         }
 
@@ -449,7 +449,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
 
     [Union(LongNode.EntityTag, typeof(LongNode))]
     [Union(DaynNode.EntityTag, typeof(DaynNode))]
-    public abstract partial class NumNode : Node, INumNode
+    public abstract partial class NumNode
     {
     }
     public sealed class NumNode_Factory : IEntityFactory<INumNode, NumNode>
@@ -562,7 +562,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
         public LongNode? CreateFrom(ILongNode? source)
         {
             if (source is null) return null;
-            if (source is LongNode thisEntity) return thisEntity;
+            if (source is LongNode sibling && sibling.IsFrozen()) return sibling;
             return new LongNode(source);
         }
 
@@ -672,7 +672,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
         public DaynNode? CreateFrom(IDaynNode? source)
         {
             if (source is null) return null;
-            if (source is DaynNode thisEntity) return thisEntity;
+            if (source is DaynNode sibling && sibling.IsFrozen()) return sibling;
             return new DaynNode(source);
         }
 

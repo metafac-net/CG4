@@ -57,30 +57,25 @@ Emit("{");
 Emit("    using T_ExternalOtherType_ = System.Int64;");
 Emit("    using T_ExternalMaybeType_ = System.DayOfWeek;");
 Emit("    using T_IndexType_ = System.String;");
-Emit("");
-Emit("    internal static class IgnoredExtensions");
-Emit("    {");
-Emit("        public static bool ValueEquals(this DayOfWeek? self, in DayOfWeek? other)");
-Emit("        {");
-Emit("            if (self is null) return other is null;");
-Emit("            if (other is null) return false;");
-Emit("            return self.Value == other.Value;");
-Emit("        }");
-Emit("    }");
-Emit("");
     }
 Emit("");
     using (Ignored())
     {
-Emit("    public class T_ModelType_ : EntityBase, IT_ModelType_, IEquatable<T_ModelType_>");
+Emit("    public sealed class T_ModelType__Factory : IEntityFactory<IT_ModelType_, T_ModelType_>");
 Emit("    {");
-Emit("        public static T_ModelType_? CreateFrom(IT_ModelType_? source)");
+Emit("        private static readonly T_ModelType__Factory _instance = new T_ModelType__Factory();");
+Emit("        public static T_ModelType__Factory Instance => _instance;");
+Emit("");
+Emit("        public T_ModelType_? CreateFrom(IT_ModelType_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
-Emit("            if (source is T_ModelType_ concrete) return concrete;");
 Emit("            return new T_ModelType_(source);");
 Emit("        }");
 Emit("");
+Emit("        public T_ModelType_ Empty => new T_ModelType_();");
+Emit("    }");
+Emit("    public class T_ModelType_ : EntityBase, IT_ModelType_, IEquatable<T_ModelType_>");
+Emit("    {");
 Emit("        protected override int OnGetEntityTag() => 0;");
 Emit("");
 Emit("        public int TestData { get; set; }");
@@ -153,8 +148,13 @@ Emit("");
             {
 Emit("    public abstract partial class T_EntityName2_");
 Emit("    {");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
+Emit("    }");
+Emit("    public sealed class T_EntityName2__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>");
+Emit("    {");
+Emit("        private static readonly T_EntityName2__Factory _instance = new T_EntityName2__Factory();");
+Emit("        public static T_EntityName2__Factory Instance => _instance;");
+Emit("");
+Emit("        public T_EntityName_? CreateFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
 Emit("            int entityTag = source.GetEntityTag();");
@@ -164,7 +164,7 @@ Emit("            {");
                             {
                                 using (NewScope(derived))
                                 {
-Emit("                case T_EntityName_.EntityTag: return T_EntityName_.CreateFrom((IT_EntityName_)source);");
+Emit("                case T_EntityName_.EntityTag: return T_EntityName__Factory.Instance.CreateFrom((IT_EntityName_)source);");
                                 }
                             }
 Emit("                default:");
@@ -172,28 +172,17 @@ Emit("                    throw new InvalidOperationException($\"Unable to creat
 Emit("            }");
 Emit("        }");
 Emit("");
+Emit("        public T_EntityName_ Empty => throw new NotSupportedException($\"Cannot create abstract entity: {typeof(T_EntityName_)}\");");
 Emit("    }");
             }
             else
             {
-Emit("    public partial class T_EntityName_");
+Emit("    public sealed class T_EntityName__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>");
 Emit("    {");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
-Emit("        {");
-Emit("            if (source is null) return null;");
-Emit("            return new T_EntityName_(source);");
-Emit("        }");
-Emit("");
-Emit("        private static T_EntityName_ CreateEmpty()");
-Emit("        {");
-Emit("            var empty = new T_EntityName_();");
-Emit("            empty.Freeze();");
-Emit("            return empty;");
-Emit("        }");
-Emit("        private static readonly T_EntityName_ _empty = CreateEmpty();");
-Emit("        public static new T_EntityName_ Empty => _empty;");
-Emit("");
+Emit("        private static readonly T_EntityName__Factory _instance = new T_EntityName__Factory();");
+Emit("        public static T_EntityName__Factory Instance => _instance;");
+Emit("        public T_EntityName_? CreateFrom(IT_EntityName_? source) => (source is null) ? null : new T_EntityName_(source);");
+Emit("        public T_EntityName_ Empty => new T_EntityName_();");
 Emit("    }");
             }
 Emit("    public partial class T_EntityName_ : T_ParentName_, IT_EntityName_, IEquatable<T_EntityName_>");
@@ -422,18 +411,18 @@ Emit("            if (source is null) throw new ArgumentNullException(nameof(sou
                             switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
-Emit("            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);");
+Emit("            field_T_UnaryModelFieldName_ = T_ModelType__Factory.Instance.CreateFrom(source.T_UnaryModelFieldName_);");
                                     break;
                                 case FieldKind.ArrayModel:
 Emit("            field_T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType_.CreateFrom(x)));");
+Emit("                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType__Factory.Instance.CreateFrom(x)));");
                                     break;
                                 case FieldKind.IndexModel:
 Emit("            field_T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null");
 Emit("                ? default");
 Emit("                : ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty.AddRange(");
-Emit("                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType_.CreateFrom(x.Value))));");
+Emit("                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType__Factory.Instance.CreateFrom(x.Value))));");
                                     break;
                                 case FieldKind.UnaryMaybe:
 Emit("            field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;");
@@ -508,18 +497,18 @@ Emit("            base.CopyFrom(source);");
                             switch (memberInfo.Kind)
                             {
                                 case FieldKind.UnaryModel:
-Emit("            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);");
+Emit("            field_T_UnaryModelFieldName_ = T_ModelType__Factory.Instance.CreateFrom(source.T_UnaryModelFieldName_);");
                                     break;
                                 case FieldKind.ArrayModel:
 Emit("            field_T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null");
 Emit("                ? default");
-Emit("                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType_.CreateFrom(x)));");
+Emit("                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType__Factory.Instance.CreateFrom(x)));");
                                     break;
                                 case FieldKind.IndexModel:
 Emit("            field_T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null");
 Emit("                ? default");
 Emit("                : ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty.AddRange(");
-Emit("                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType_.CreateFrom(x.Value))));");
+Emit("                    source.T_IndexModelFieldName_.Select(x => new KeyValuePair<T_IndexType_, T_ModelType_?>(x.Key, T_ModelType__Factory.Instance.CreateFrom(x.Value))));");
                                     break;
                                 case FieldKind.UnaryMaybe:
 Emit("            field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_;");

@@ -226,7 +226,7 @@ Emit("");
 Emit("    [Union(T_EntityName_.EntityTag, typeof(T_EntityName_))]");
                     }
                 }
-Emit("    public abstract partial class T_EntityName2_ : T_ParentName_, IT_EntityName2_");
+Emit("    public abstract partial class T_EntityName2_");
 Emit("    {");
 Emit("    }");
 Emit("    public sealed class T_EntityName2__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>");
@@ -265,7 +265,7 @@ Emit("");
 Emit("        public T_EntityName_? CreateFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
-Emit("            if (source is T_EntityName_ thisEntity) return thisEntity;");
+Emit("            if (source is T_EntityName_ sibling && sibling.IsFrozen()) return sibling;");
 Emit("            return new T_EntityName_(source);");
 Emit("        }");
 Emit("");

@@ -30,5 +30,5 @@ goto :eof
 %_cmd% j2c -g ClassesV2 -jm %1.Models.json -on MetaFac.CG4.TestOrg.Models.%1 -o %1.ClassesV2.g.cs
 %_cmd% j2c -g RecordsV2 -jm %1.Models.json -on MetaFac.CG4.TestOrg.Models.%1 -o %1.RecordsV2.g.cs
 %_cmd% j2c -g MessagePack -jm %1.Models.json -on MetaFac.CG4.TestOrg.Models.%1 -o %1.MessagePack.g.cs
-:: %_cmd% j2c -g JsonNewtonSoft -jm %1.Models.json -on MetaFac.CG4.TestOrg.Models.%1 -o %1.JsonNewtonSoft.g.cs
+%_cmd% j2c -g JsonNewtonSoft -jm %1.Models.json -on MetaFac.CG4.TestOrg.Models.%1 -o %1.JsonNewtonSoft.g.cs
 goto :eof

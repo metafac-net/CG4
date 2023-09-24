@@ -13,7 +13,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         public async Task RoundtripTree_Empty()
         {
             var original = new XtraComplex.RecordsV2.Tree() { };
-            var outgoing = XtraComplex.JsonNewtonSoft.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = XtraComplex.JsonNewtonSoft.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = outgoing.SerializeToJson<XtraComplex.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<XtraComplex.JsonNewtonSoft.Tree>();
@@ -38,7 +38,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                     Value = new XtraComplex.RecordsV2.LongNode() { LongVal = -1L }
                 },
             };
-            var outgoing = XtraComplex.JsonNewtonSoft.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = XtraComplex.JsonNewtonSoft.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = outgoing.SerializeToJson<XtraComplex.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<XtraComplex.JsonNewtonSoft.Tree>();
@@ -71,7 +71,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                     }
                 },
             };
-            var outgoing = XtraComplex.JsonNewtonSoft.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = XtraComplex.JsonNewtonSoft.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = outgoing.SerializeToJson<XtraComplex.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJson<XtraComplex.JsonNewtonSoft.Tree>();
