@@ -45,17 +45,6 @@ namespace T_Namespace_.RecordsV2
     using T_ExternalOtherType_ = System.Int64;
     using T_ExternalMaybeType_ = System.DayOfWeek;
     using T_IndexType_ = System.String;
-
-    internal static class IgnoredExtensions
-    {
-        public static bool ValueEquals(this DayOfWeek? self, in DayOfWeek? other)
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            return self.Value == other.Value;
-        }
-    }
-
     //>>}
 
     //>>using (Ignored())

@@ -971,9 +971,9 @@ namespace Generated.MessagePack
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree source) : base(source)
         {
-            field_Left = Tree.CreateFrom(source.Left);
-            field_Right = Tree.CreateFrom(source.Right);
-            field_Value = ValueNode.CreateFrom(source.Value);
+            field_Left = Tree_Factory.Instance.CreateFrom(source.Left);
+            field_Right = Tree_Factory.Instance.CreateFrom(source.Right);
+            field_Value = ValueNode_Factory.Instance.CreateFrom(source.Value);
         }
 
         public bool Equals(Tree? other)

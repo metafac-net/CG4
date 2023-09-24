@@ -55,30 +55,27 @@ namespace T_Namespace_.MessagePack
     using T_ConcreteOtherType_ = System.Int64;
     using T_ExternalOtherType_ = System.Int64;
     using T_IndexType_ = System.String;
-
-    internal static class IgnoredExtensions
-    {
-        public static bool ValueEquals(this DayOfWeek? self, in DayOfWeek? other)
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            return self.Value == other.Value;
-        }
-    }
-
     //>>}
 
     //>>using (Ignored())
     //>>{
-    [MessagePackObject]
-    public class T_ModelType_ : EntityBase, IT_ModelType_, IEquatable<T_ModelType_>
+    public sealed class T_ModelType__Factory : IEntityFactory<IT_ModelType_, T_ModelType_>
     {
-        public static T_ModelType_? CreateFrom(IT_ModelType_? source)
+        private static readonly T_ModelType__Factory _instance = new T_ModelType__Factory();
+        public static T_ModelType__Factory Instance => _instance;
+
+        public T_ModelType_? CreateFrom(IT_ModelType_? source)
         {
             if (source is null) return null;
             return new T_ModelType_(source);
         }
 
+        private readonly T_ModelType_ _empty = new T_ModelType_().Frozen();
+        public T_ModelType_ Empty => _empty;
+    }
+    [MessagePackObject]
+    public class T_ModelType_ : EntityBase, IT_ModelType_, IEquatable<T_ModelType_>
+    {
         protected override int OnGetEntityTag() => 0;
 
         [Key(1)]
@@ -765,18 +762,18 @@ namespace T_Namespace_.MessagePack
             //>>                switch (memberInfo.Kind)
             //>>                {
             //>>                    case FieldKind.UnaryModel:
-            field_T_UnaryModelFieldName_ = T_ModelType_.CreateFrom(source.T_UnaryModelFieldName_);
+            field_T_UnaryModelFieldName_ = T_ModelType__Factory.Instance.CreateFrom(source.T_UnaryModelFieldName_);
             //>>                        break;
             //>>                    case FieldKind.ArrayModel:
             field_T_ArrayModelFieldName_ = source.T_ArrayModelFieldName_ is null
                 ? null
-                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType_.CreateFrom(x)));
+                : ImmutableList<T_ModelType_?>.Empty.AddRange(source.T_ArrayModelFieldName_.Select(x => T_ModelType__Factory.Instance.CreateFrom(x)));
             //>>                        break;
             //>>                    case FieldKind.IndexModel:
             field_T_IndexModelFieldName_ = source.T_IndexModelFieldName_ is null
                 ? null
                 : ImmutableDictionary<T_IndexType_, T_ModelType_?>.Empty.AddRange(source.T_IndexModelFieldName_.Select(
-                    kvp => new KeyValuePair<T_IndexType_, T_ModelType_?>(kvp.Key, T_ModelType_.CreateFrom(kvp.Value))));
+                    kvp => new KeyValuePair<T_IndexType_, T_ModelType_?>(kvp.Key, T_ModelType__Factory.Instance.CreateFrom(kvp.Value))));
             //>>                        break;
             //>>                    case FieldKind.UnaryMaybe:
             field_T_UnaryMaybeFieldName_ = source.T_UnaryMaybeFieldName_.ToInternal();

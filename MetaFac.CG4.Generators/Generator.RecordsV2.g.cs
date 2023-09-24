@@ -57,17 +57,6 @@ Emit("{");
 Emit("    using T_ExternalOtherType_ = System.Int64;");
 Emit("    using T_ExternalMaybeType_ = System.DayOfWeek;");
 Emit("    using T_IndexType_ = System.String;");
-Emit("");
-Emit("    internal static class IgnoredExtensions");
-Emit("    {");
-Emit("        public static bool ValueEquals(this DayOfWeek? self, in DayOfWeek? other)");
-Emit("        {");
-Emit("            if (self is null) return other is null;");
-Emit("            if (other is null) return false;");
-Emit("            return self.Value == other.Value;");
-Emit("        }");
-Emit("    }");
-Emit("");
     }
 Emit("");
     using (Ignored())
