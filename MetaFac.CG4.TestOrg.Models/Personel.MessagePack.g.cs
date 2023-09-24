@@ -87,24 +87,20 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.MessagePack
     }
 
 
-    public sealed partial class Person
+    public sealed class Person_Factory : IEntityFactory<IPerson, Person>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Person? CreateFrom(IPerson? source)
+        private static readonly Person_Factory _instance = new Person_Factory();
+        public static Person_Factory Instance => _instance;
+
+        public Person? CreateFrom(IPerson? source)
         {
             if (source is null) return null;
+            if (source is Person thisEntity) return thisEntity;
             return new Person(source);
         }
 
-        private static Person CreateEmpty()
-        {
-            var empty = new Person();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Person _empty = CreateEmpty();
-        public static new Person Empty => _empty;
-
+        private static readonly Person _empty = new Person().Frozen();
+        public Person Empty => _empty;
     }
     [MessagePackObject]
     public partial class Person : EntityBase, IPerson, IEquatable<Person>, ICopyFrom<Person>

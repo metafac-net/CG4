@@ -55,7 +55,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_bool(source);
         }
 
-        private readonly Basic_bool _empty = new Basic_bool();
+        private static readonly Basic_bool _empty = new Basic_bool();
         public Basic_bool Empty => _empty;
     }
     public partial record Basic_bool : EntityBase, IBasic_bool
@@ -168,7 +168,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_sbyte(source);
         }
 
-        private readonly Basic_sbyte _empty = new Basic_sbyte();
+        private static readonly Basic_sbyte _empty = new Basic_sbyte();
         public Basic_sbyte Empty => _empty;
     }
     public partial record Basic_sbyte : EntityBase, IBasic_sbyte
@@ -281,7 +281,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_byte(source);
         }
 
-        private readonly Basic_byte _empty = new Basic_byte();
+        private static readonly Basic_byte _empty = new Basic_byte();
         public Basic_byte Empty => _empty;
     }
     public partial record Basic_byte : EntityBase, IBasic_byte
@@ -394,7 +394,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_short(source);
         }
 
-        private readonly Basic_short _empty = new Basic_short();
+        private static readonly Basic_short _empty = new Basic_short();
         public Basic_short Empty => _empty;
     }
     public partial record Basic_short : EntityBase, IBasic_short
@@ -507,7 +507,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_ushort(source);
         }
 
-        private readonly Basic_ushort _empty = new Basic_ushort();
+        private static readonly Basic_ushort _empty = new Basic_ushort();
         public Basic_ushort Empty => _empty;
     }
     public partial record Basic_ushort : EntityBase, IBasic_ushort
@@ -620,7 +620,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_char(source);
         }
 
-        private readonly Basic_char _empty = new Basic_char();
+        private static readonly Basic_char _empty = new Basic_char();
         public Basic_char Empty => _empty;
     }
     public partial record Basic_char : EntityBase, IBasic_char
@@ -733,7 +733,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_int(source);
         }
 
-        private readonly Basic_int _empty = new Basic_int();
+        private static readonly Basic_int _empty = new Basic_int();
         public Basic_int Empty => _empty;
     }
     public partial record Basic_int : EntityBase, IBasic_int
@@ -846,7 +846,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_uint(source);
         }
 
-        private readonly Basic_uint _empty = new Basic_uint();
+        private static readonly Basic_uint _empty = new Basic_uint();
         public Basic_uint Empty => _empty;
     }
     public partial record Basic_uint : EntityBase, IBasic_uint
@@ -959,7 +959,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_float(source);
         }
 
-        private readonly Basic_float _empty = new Basic_float();
+        private static readonly Basic_float _empty = new Basic_float();
         public Basic_float Empty => _empty;
     }
     public partial record Basic_float : EntityBase, IBasic_float
@@ -1072,7 +1072,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_long(source);
         }
 
-        private readonly Basic_long _empty = new Basic_long();
+        private static readonly Basic_long _empty = new Basic_long();
         public Basic_long Empty => _empty;
     }
     public partial record Basic_long : EntityBase, IBasic_long
@@ -1185,7 +1185,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_ulong(source);
         }
 
-        private readonly Basic_ulong _empty = new Basic_ulong();
+        private static readonly Basic_ulong _empty = new Basic_ulong();
         public Basic_ulong Empty => _empty;
     }
     public partial record Basic_ulong : EntityBase, IBasic_ulong
@@ -1298,7 +1298,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_double(source);
         }
 
-        private readonly Basic_double _empty = new Basic_double();
+        private static readonly Basic_double _empty = new Basic_double();
         public Basic_double Empty => _empty;
     }
     public partial record Basic_double : EntityBase, IBasic_double
@@ -1411,7 +1411,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_DateTime(source);
         }
 
-        private readonly Basic_DateTime _empty = new Basic_DateTime();
+        private static readonly Basic_DateTime _empty = new Basic_DateTime();
         public Basic_DateTime Empty => _empty;
     }
     public partial record Basic_DateTime : EntityBase, IBasic_DateTime
@@ -1524,7 +1524,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_TimeSpan(source);
         }
 
-        private readonly Basic_TimeSpan _empty = new Basic_TimeSpan();
+        private static readonly Basic_TimeSpan _empty = new Basic_TimeSpan();
         public Basic_TimeSpan Empty => _empty;
     }
     public partial record Basic_TimeSpan : EntityBase, IBasic_TimeSpan
@@ -1637,7 +1637,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_decimal(source);
         }
 
-        private readonly Basic_decimal _empty = new Basic_decimal();
+        private static readonly Basic_decimal _empty = new Basic_decimal();
         public Basic_decimal Empty => _empty;
     }
     public partial record Basic_decimal : EntityBase, IBasic_decimal
@@ -1750,7 +1750,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_DateTimeOffset(source);
         }
 
-        private readonly Basic_DateTimeOffset _empty = new Basic_DateTimeOffset();
+        private static readonly Basic_DateTimeOffset _empty = new Basic_DateTimeOffset();
         public Basic_DateTimeOffset Empty => _empty;
     }
     public partial record Basic_DateTimeOffset : EntityBase, IBasic_DateTimeOffset
@@ -1863,7 +1863,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_Guid(source);
         }
 
-        private readonly Basic_Guid _empty = new Basic_Guid();
+        private static readonly Basic_Guid _empty = new Basic_Guid();
         public Basic_Guid Empty => _empty;
     }
     public partial record Basic_Guid : EntityBase, IBasic_Guid
@@ -1976,7 +1976,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_DayOfWeek(source);
         }
 
-        private readonly Basic_DayOfWeek _empty = new Basic_DayOfWeek();
+        private static readonly Basic_DayOfWeek _empty = new Basic_DayOfWeek();
         public Basic_DayOfWeek Empty => _empty;
     }
     public partial record Basic_DayOfWeek : EntityBase, IBasic_DayOfWeek
@@ -2089,7 +2089,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_MyCustomEnum(source);
         }
 
-        private readonly Basic_MyCustomEnum _empty = new Basic_MyCustomEnum();
+        private static readonly Basic_MyCustomEnum _empty = new Basic_MyCustomEnum();
         public Basic_MyCustomEnum Empty => _empty;
     }
     public partial record Basic_MyCustomEnum : EntityBase, IBasic_MyCustomEnum
@@ -2202,7 +2202,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_Quantity(source);
         }
 
-        private readonly Basic_Quantity _empty = new Basic_Quantity();
+        private static readonly Basic_Quantity _empty = new Basic_Quantity();
         public Basic_Quantity Empty => _empty;
     }
     public partial record Basic_Quantity : EntityBase, IBasic_Quantity
@@ -2307,7 +2307,7 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             return new Basic_string(source);
         }
 
-        private readonly Basic_string _empty = new Basic_string();
+        private static readonly Basic_string _empty = new Basic_string();
         public Basic_string Empty => _empty;
     }
     public partial record Basic_string : EntityBase, IBasic_string

@@ -209,7 +209,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
             return new StringNode(source);
         }
 
-        private readonly StringNode _empty = new StringNode();
+        private static readonly StringNode _empty = new StringNode();
         public StringNode Empty => _empty;
     }
     public partial record StringNode : ValueNode, IStringNode
@@ -276,7 +276,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
             return new BooleanNode(source);
         }
 
-        private readonly BooleanNode _empty = new BooleanNode();
+        private static readonly BooleanNode _empty = new BooleanNode();
         public BooleanNode Empty => _empty;
     }
     public partial record BooleanNode : ValueNode, IBooleanNode
@@ -343,7 +343,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
             return new CustomNode(source);
         }
 
-        private readonly CustomNode _empty = new CustomNode();
+        private static readonly CustomNode _empty = new CustomNode();
         public CustomNode Empty => _empty;
     }
     public partial record CustomNode : ValueNode, ICustomNode
@@ -410,7 +410,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
             return new Int32Node(source);
         }
 
-        private readonly Int32Node _empty = new Int32Node();
+        private static readonly Int32Node _empty = new Int32Node();
         public Int32Node Empty => _empty;
     }
     public partial record Int32Node : NumericNode, IInt32Node
@@ -477,7 +477,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
             return new Int64Node(source);
         }
 
-        private readonly Int64Node _empty = new Int64Node();
+        private static readonly Int64Node _empty = new Int64Node();
         public Int64Node Empty => _empty;
     }
     public partial record Int64Node : NumericNode, IInt64Node

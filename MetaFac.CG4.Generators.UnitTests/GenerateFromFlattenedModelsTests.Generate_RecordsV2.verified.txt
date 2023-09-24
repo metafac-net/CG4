@@ -58,7 +58,7 @@ namespace Generated.RecordsV2
             return new BuiltinTypes(source);
         }
 
-        private readonly BuiltinTypes _empty = new BuiltinTypes();
+        private static readonly BuiltinTypes _empty = new BuiltinTypes();
         public BuiltinTypes Empty => _empty;
     }
     public partial record BuiltinTypes : EntityBase, IBuiltinTypes

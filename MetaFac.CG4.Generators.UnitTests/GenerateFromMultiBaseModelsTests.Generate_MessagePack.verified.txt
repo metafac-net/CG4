@@ -90,24 +90,20 @@ namespace Generated.MessagePack
     }
 
 
-    public sealed partial class SavingsAccount
+    public sealed class SavingsAccount_Factory : IEntityFactory<ISavingsAccount, SavingsAccount>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static SavingsAccount? CreateFrom(ISavingsAccount? source)
+        private static readonly SavingsAccount_Factory _instance = new SavingsAccount_Factory();
+        public static SavingsAccount_Factory Instance => _instance;
+
+        public SavingsAccount? CreateFrom(ISavingsAccount? source)
         {
             if (source is null) return null;
+            if (source is SavingsAccount thisEntity) return thisEntity;
             return new SavingsAccount(source);
         }
 
-        private static SavingsAccount CreateEmpty()
-        {
-            var empty = new SavingsAccount();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly SavingsAccount _empty = CreateEmpty();
-        public static new SavingsAccount Empty => _empty;
-
+        private static readonly SavingsAccount _empty = new SavingsAccount().Frozen();
+        public SavingsAccount Empty => _empty;
     }
     [MessagePackObject]
     public partial class SavingsAccount : AccountType, ISavingsAccount, IEquatable<SavingsAccount>, ICopyFrom<SavingsAccount>
@@ -204,24 +200,20 @@ namespace Generated.MessagePack
 
     }
 
-    public sealed partial class Withdrawl
+    public sealed class Withdrawl_Factory : IEntityFactory<IWithdrawl, Withdrawl>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Withdrawl? CreateFrom(IWithdrawl? source)
+        private static readonly Withdrawl_Factory _instance = new Withdrawl_Factory();
+        public static Withdrawl_Factory Instance => _instance;
+
+        public Withdrawl? CreateFrom(IWithdrawl? source)
         {
             if (source is null) return null;
+            if (source is Withdrawl thisEntity) return thisEntity;
             return new Withdrawl(source);
         }
 
-        private static Withdrawl CreateEmpty()
-        {
-            var empty = new Withdrawl();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Withdrawl _empty = CreateEmpty();
-        public static new Withdrawl Empty => _empty;
-
+        private static readonly Withdrawl _empty = new Withdrawl().Frozen();
+        public Withdrawl Empty => _empty;
     }
     [MessagePackObject]
     public partial class Withdrawl : TransactionType, IWithdrawl, IEquatable<Withdrawl>, ICopyFrom<Withdrawl>

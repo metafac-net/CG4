@@ -90,24 +90,20 @@ namespace Generated.MessagePack
     }
 
 
-    public sealed partial class Base
+    public sealed class Base_Factory : IEntityFactory<IBase, Base>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Base? CreateFrom(IBase? source)
+        private static readonly Base_Factory _instance = new Base_Factory();
+        public static Base_Factory Instance => _instance;
+
+        public Base? CreateFrom(IBase? source)
         {
             if (source is null) return null;
+            if (source is Base thisEntity) return thisEntity;
             return new Base(source);
         }
 
-        private static Base CreateEmpty()
-        {
-            var empty = new Base();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Base _empty = CreateEmpty();
-        public static new Base Empty => _empty;
-
+        private static readonly Base _empty = new Base().Frozen();
+        public Base Empty => _empty;
     }
     [MessagePackObject]
     public partial class Base : EntityBase, IBase, IEquatable<Base>, ICopyFrom<Base>
@@ -204,24 +200,20 @@ namespace Generated.MessagePack
 
     }
 
-    public sealed partial class Derived
+    public sealed class Derived_Factory : IEntityFactory<IDerived, Derived>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Derived? CreateFrom(IDerived? source)
+        private static readonly Derived_Factory _instance = new Derived_Factory();
+        public static Derived_Factory Instance => _instance;
+
+        public Derived? CreateFrom(IDerived? source)
         {
             if (source is null) return null;
+            if (source is Derived thisEntity) return thisEntity;
             return new Derived(source);
         }
 
-        private static Derived CreateEmpty()
-        {
-            var empty = new Derived();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Derived _empty = CreateEmpty();
-        public static new Derived Empty => _empty;
-
+        private static readonly Derived _empty = new Derived().Frozen();
+        public Derived Empty => _empty;
     }
     [MessagePackObject]
     public partial class Derived : EntityBase, IDerived, IEquatable<Derived>, ICopyFrom<Derived>

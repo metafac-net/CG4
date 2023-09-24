@@ -217,10 +217,15 @@ namespace T_Namespace_.MessagePack
     [Union(T_EntityName_.EntityTag, typeof(T_EntityName_))]
     //>>                }
     //>>            }
-    public abstract partial class T_EntityName2_
+    public abstract partial class T_EntityName2_ : T_ParentName_, IT_EntityName2_
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T_EntityName_? CreateFrom(IT_EntityName_? source)
+    }
+    public sealed class T_EntityName2__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>
+    {
+        private static readonly T_EntityName2__Factory _instance = new T_EntityName2__Factory();
+        public static T_EntityName2__Factory Instance => _instance;
+
+        public T_EntityName_? CreateFrom(IT_EntityName_? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
@@ -230,35 +235,33 @@ namespace T_Namespace_.MessagePack
                 //>>            {
                 //>>                using (NewScope(derived))
                 //>>                {
-                case T_EntityName_.EntityTag: return T_EntityName_.CreateFrom((IT_EntityName_)source);
+                case T_EntityName_.EntityTag: return T_EntityName__Factory.Instance.CreateFrom((IT_EntityName_)source);
                 //>>                }
                 //>>            }
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(entityTag), entityTag, null);
+                    throw new InvalidOperationException($"Unable to create {typeof(T_EntityName_)} from {source.GetType().Name}");
             }
         }
+
+        public T_EntityName_ Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(T_EntityName_)}");
     }
     //>>        }
     //>>        else
     //>>        {
-    public sealed partial class T_EntityName_
+    public sealed class T_EntityName__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T_EntityName_? CreateFrom(IT_EntityName_? source)
+        private static readonly T_EntityName__Factory _instance = new T_EntityName__Factory();
+        public static T_EntityName__Factory Instance => _instance;
+
+        public T_EntityName_? CreateFrom(IT_EntityName_? source)
         {
             if (source is null) return null;
+            if (source is T_EntityName_ thisEntity) return thisEntity;
             return new T_EntityName_(source);
         }
 
-        private static T_EntityName_ CreateEmpty()
-        {
-            var empty = new T_EntityName_();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly T_EntityName_ _empty = CreateEmpty();
-        public static new T_EntityName_ Empty => _empty;
-
+        private static readonly T_EntityName_ _empty = new T_EntityName_().Frozen();
+        public T_EntityName_ Empty => _empty;
     }
     //>>        }
     [MessagePackObject]

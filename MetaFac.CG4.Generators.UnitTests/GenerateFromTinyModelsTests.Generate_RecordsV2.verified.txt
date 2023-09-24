@@ -58,7 +58,7 @@ namespace Generated.RecordsV2
             return new Base(source);
         }
 
-        private readonly Base _empty = new Base();
+        private static readonly Base _empty = new Base();
         public Base Empty => _empty;
     }
     public partial record Base : EntityBase, IBase
@@ -125,7 +125,7 @@ namespace Generated.RecordsV2
             return new Derived(source);
         }
 
-        private readonly Derived _empty = new Derived();
+        private static readonly Derived _empty = new Derived();
         public Derived Empty => _empty;
     }
     public partial record Derived : EntityBase, IDerived

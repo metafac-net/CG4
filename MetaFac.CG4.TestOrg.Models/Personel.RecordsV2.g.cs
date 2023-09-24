@@ -55,7 +55,7 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.RecordsV2
             return new Person(source);
         }
 
-        private readonly Person _empty = new Person();
+        private static readonly Person _empty = new Person();
         public Person Empty => _empty;
     }
     public partial record Person : EntityBase, IPerson

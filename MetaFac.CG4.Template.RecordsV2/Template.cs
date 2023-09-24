@@ -180,7 +180,7 @@ namespace T_Namespace_.RecordsV2
             return new T_EntityName_(source);
         }
 
-        private readonly T_EntityName_ _empty = new T_EntityName_();
+        private static readonly T_EntityName_ _empty = new T_EntityName_();
         public T_EntityName_ Empty => _empty;
     }
     //>>        }

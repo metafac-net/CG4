@@ -87,24 +87,20 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
     }
 
 
-    public sealed partial class Tree
+    public sealed class Tree_Factory : IEntityFactory<ITree, Tree>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Tree? CreateFrom(ITree? source)
+        private static readonly Tree_Factory _instance = new Tree_Factory();
+        public static Tree_Factory Instance => _instance;
+
+        public Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
+            if (source is Tree thisEntity) return thisEntity;
             return new Tree(source);
         }
 
-        private static Tree CreateEmpty()
-        {
-            var empty = new Tree();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Tree _empty = CreateEmpty();
-        public static new Tree Empty => _empty;
-
+        private static readonly Tree _empty = new Tree().Frozen();
+        public Tree Empty => _empty;
     }
     [MessagePackObject]
     public partial class Tree : EntityBase, ITree, IEquatable<Tree>, ICopyFrom<Tree>
@@ -174,9 +170,9 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree source) : base(source)
         {
-            field_Value = Node.CreateFrom(source.Value);
-            field_A = Tree.CreateFrom(source.A);
-            field_B = Tree.CreateFrom(source.B);
+            field_Value = Node_Factory.Instance.CreateFrom(source.Value);
+            field_A = Tree_Factory.Instance.CreateFrom(source.A);
+            field_B = Tree_Factory.Instance.CreateFrom(source.B);
         }
 
         public bool Equals(Tree? other)
@@ -234,23 +230,30 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
     [Union(NumNode.EntityTag, typeof(NumNode))]
     [Union(LongNode.EntityTag, typeof(LongNode))]
     [Union(DaynNode.EntityTag, typeof(DaynNode))]
-    public abstract partial class Node
+    public abstract partial class Node : EntityBase, INode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Node? CreateFrom(INode? source)
+    }
+    public sealed class Node_Factory : IEntityFactory<INode, Node>
+    {
+        private static readonly Node_Factory _instance = new Node_Factory();
+        public static Node_Factory Instance => _instance;
+
+        public Node? CreateFrom(INode? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
-                case StrNode.EntityTag: return StrNode.CreateFrom((IStrNode)source);
-                case NumNode.EntityTag: return NumNode.CreateFrom((INumNode)source);
-                case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
+                case StrNode.EntityTag: return StrNode_Factory.Instance.CreateFrom((IStrNode)source);
+                case NumNode.EntityTag: return NumNode_Factory.Instance.CreateFrom((INumNode)source);
+                case LongNode.EntityTag: return LongNode_Factory.Instance.CreateFrom((ILongNode)source);
+                case DaynNode.EntityTag: return DaynNode_Factory.Instance.CreateFrom((IDaynNode)source);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(entityTag), entityTag, null);
+                    throw new InvalidOperationException($"Unable to create {typeof(Node)} from {source.GetType().Name}");
             }
         }
+
+        public Node Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(Node)}");
     }
     [MessagePackObject]
     public partial class Node : EntityBase, INode, IEquatable<Node>, ICopyFrom<Node>
@@ -334,24 +337,20 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
 
     }
 
-    public sealed partial class StrNode
+    public sealed class StrNode_Factory : IEntityFactory<IStrNode, StrNode>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static StrNode? CreateFrom(IStrNode? source)
+        private static readonly StrNode_Factory _instance = new StrNode_Factory();
+        public static StrNode_Factory Instance => _instance;
+
+        public StrNode? CreateFrom(IStrNode? source)
         {
             if (source is null) return null;
+            if (source is StrNode thisEntity) return thisEntity;
             return new StrNode(source);
         }
 
-        private static StrNode CreateEmpty()
-        {
-            var empty = new StrNode();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly StrNode _empty = CreateEmpty();
-        public static new StrNode Empty => _empty;
-
+        private static readonly StrNode _empty = new StrNode().Frozen();
+        public StrNode Empty => _empty;
     }
     [MessagePackObject]
     public partial class StrNode : Node, IStrNode, IEquatable<StrNode>, ICopyFrom<StrNode>
@@ -450,21 +449,28 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
 
     [Union(LongNode.EntityTag, typeof(LongNode))]
     [Union(DaynNode.EntityTag, typeof(DaynNode))]
-    public abstract partial class NumNode
+    public abstract partial class NumNode : Node, INumNode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static NumNode? CreateFrom(INumNode? source)
+    }
+    public sealed class NumNode_Factory : IEntityFactory<INumNode, NumNode>
+    {
+        private static readonly NumNode_Factory _instance = new NumNode_Factory();
+        public static NumNode_Factory Instance => _instance;
+
+        public NumNode? CreateFrom(INumNode? source)
         {
             if (source is null) return null;
             int entityTag = source.GetEntityTag();
             switch (entityTag)
             {
-                case LongNode.EntityTag: return LongNode.CreateFrom((ILongNode)source);
-                case DaynNode.EntityTag: return DaynNode.CreateFrom((IDaynNode)source);
+                case LongNode.EntityTag: return LongNode_Factory.Instance.CreateFrom((ILongNode)source);
+                case DaynNode.EntityTag: return DaynNode_Factory.Instance.CreateFrom((IDaynNode)source);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(entityTag), entityTag, null);
+                    throw new InvalidOperationException($"Unable to create {typeof(NumNode)} from {source.GetType().Name}");
             }
         }
+
+        public NumNode Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(NumNode)}");
     }
     [MessagePackObject]
     public partial class NumNode : Node, INumNode, IEquatable<NumNode>, ICopyFrom<NumNode>
@@ -548,24 +554,20 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
 
     }
 
-    public sealed partial class LongNode
+    public sealed class LongNode_Factory : IEntityFactory<ILongNode, LongNode>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static LongNode? CreateFrom(ILongNode? source)
+        private static readonly LongNode_Factory _instance = new LongNode_Factory();
+        public static LongNode_Factory Instance => _instance;
+
+        public LongNode? CreateFrom(ILongNode? source)
         {
             if (source is null) return null;
+            if (source is LongNode thisEntity) return thisEntity;
             return new LongNode(source);
         }
 
-        private static LongNode CreateEmpty()
-        {
-            var empty = new LongNode();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly LongNode _empty = CreateEmpty();
-        public static new LongNode Empty => _empty;
-
+        private static readonly LongNode _empty = new LongNode().Frozen();
+        public LongNode Empty => _empty;
     }
     [MessagePackObject]
     public partial class LongNode : NumNode, ILongNode, IEquatable<LongNode>, ICopyFrom<LongNode>
@@ -662,24 +664,20 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.MessagePack
 
     }
 
-    public sealed partial class DaynNode
+    public sealed class DaynNode_Factory : IEntityFactory<IDaynNode, DaynNode>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static DaynNode? CreateFrom(IDaynNode? source)
+        private static readonly DaynNode_Factory _instance = new DaynNode_Factory();
+        public static DaynNode_Factory Instance => _instance;
+
+        public DaynNode? CreateFrom(IDaynNode? source)
         {
             if (source is null) return null;
+            if (source is DaynNode thisEntity) return thisEntity;
             return new DaynNode(source);
         }
 
-        private static DaynNode CreateEmpty()
-        {
-            var empty = new DaynNode();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly DaynNode _empty = CreateEmpty();
-        public static new DaynNode Empty => _empty;
-
+        private static readonly DaynNode _empty = new DaynNode().Frozen();
+        public DaynNode Empty => _empty;
     }
     [MessagePackObject]
     public partial class DaynNode : NumNode, IDaynNode, IEquatable<DaynNode>, ICopyFrom<DaynNode>

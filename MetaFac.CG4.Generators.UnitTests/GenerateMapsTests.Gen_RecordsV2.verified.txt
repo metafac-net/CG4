@@ -58,7 +58,7 @@ namespace Generated.RecordsV2
             return new IndexTypes(source);
         }
 
-        private readonly IndexTypes _empty = new IndexTypes();
+        private static readonly IndexTypes _empty = new IndexTypes();
         public IndexTypes Empty => _empty;
     }
     public partial record IndexTypes : EntityBase, IIndexTypes

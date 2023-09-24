@@ -55,7 +55,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
             return new Tree(source);
         }
 
-        private readonly Tree _empty = new Tree();
+        private static readonly Tree _empty = new Tree();
         public Tree Empty => _empty;
     }
     public partial record Tree : EntityBase, ITree
@@ -205,7 +205,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
             return new StrNode(source);
         }
 
-        private readonly StrNode _empty = new StrNode();
+        private static readonly StrNode _empty = new StrNode();
         public StrNode Empty => _empty;
     }
     public partial record StrNode : Node, IStrNode
@@ -341,7 +341,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
             return new LongNode(source);
         }
 
-        private readonly LongNode _empty = new LongNode();
+        private static readonly LongNode _empty = new LongNode();
         public LongNode Empty => _empty;
     }
     public partial record LongNode : NumNode, ILongNode
@@ -408,7 +408,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
             return new DaynNode(source);
         }
 
-        private readonly DaynNode _empty = new DaynNode();
+        private static readonly DaynNode _empty = new DaynNode();
         public DaynNode Empty => _empty;
     }
     public partial record DaynNode : NumNode, IDaynNode

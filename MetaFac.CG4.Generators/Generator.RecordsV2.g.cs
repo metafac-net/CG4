@@ -192,7 +192,7 @@ Emit("            if (source is T_EntityName_ thisEntity) return thisEntity;");
 Emit("            return new T_EntityName_(source);");
 Emit("        }");
 Emit("");
-Emit("        private readonly T_EntityName_ _empty = new T_EntityName_();");
+Emit("        private static readonly T_EntityName_ _empty = new T_EntityName_();");
 Emit("        public T_EntityName_ Empty => _empty;");
 Emit("    }");
             }

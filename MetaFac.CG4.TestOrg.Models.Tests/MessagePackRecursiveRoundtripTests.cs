@@ -12,7 +12,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         public void RoundtripTree_Empty()
         {
             var original = new Recursive.RecordsV2.Tree() { Id = 1 };
-            var outgoing = Recursive.MessagePack.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = Recursive.MessagePack.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = MessagePackSerializer.Serialize<Recursive.MessagePack.Tree>(outgoing);
             string.Join("-", buffer.Select(b => b.ToString("X2"))).Should().Be(
                 "94-C0-01-C0-C0");
@@ -31,7 +31,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 Id = 1,
                 A = new Recursive.RecordsV2.Tree() { Id = 2 }
             };
-            var outgoing = Recursive.MessagePack.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = Recursive.MessagePack.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = MessagePackSerializer.Serialize<Recursive.MessagePack.Tree>(outgoing);
             string.Join("-", buffer.Select(b => b.ToString("X2"))).Should().Be(
                 "94-C0-01-94-C0-02-C0-C0-C0");
@@ -51,7 +51,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 A = new Recursive.RecordsV2.Tree() { Id = 2 },
                 B = new Recursive.RecordsV2.Tree() { Id = 3 }
             };
-            var outgoing = Recursive.MessagePack.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = Recursive.MessagePack.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = MessagePackSerializer.Serialize<Recursive.MessagePack.Tree>(outgoing);
             string.Join("-", buffer.Select(b => b.ToString("X2"))).Should().Be(
                 "94-C0-01-94-C0-02-C0-C0-94-C0-03-C0-C0");
@@ -74,7 +74,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 A = new Recursive.RecordsV2.Tree() { Id = 2, A = new Recursive.RecordsV2.Tree() { Id = 4 } },
                 B = new Recursive.RecordsV2.Tree() { Id = 3, B = new Recursive.RecordsV2.Tree() { Id = 5 } }
             };
-            var outgoing = Recursive.MessagePack.Tree.CreateFrom(original) ?? throw new Exception("Returned null!");
+            var outgoing = Recursive.MessagePack.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = MessagePackSerializer.Serialize<Recursive.MessagePack.Tree>(outgoing);
             string.Join("-", buffer.Select(b => b.ToString("X2"))).Should().Be(
                 "94-C0-01-94-C0-02-94-C0-04-C0-C0-C0-94-C0-03-C0-94-C0-05-C0-C0");

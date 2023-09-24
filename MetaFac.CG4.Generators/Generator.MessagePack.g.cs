@@ -229,10 +229,15 @@ Emit("");
 Emit("    [Union(T_EntityName_.EntityTag, typeof(T_EntityName_))]");
                     }
                 }
-Emit("    public abstract partial class T_EntityName2_");
+Emit("    public abstract partial class T_EntityName2_ : T_ParentName_, IT_EntityName2_");
 Emit("    {");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
+Emit("    }");
+Emit("    public sealed class T_EntityName2__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>");
+Emit("    {");
+Emit("        private static readonly T_EntityName2__Factory _instance = new T_EntityName2__Factory();");
+Emit("        public static T_EntityName2__Factory Instance => _instance;");
+Emit("");
+Emit("        public T_EntityName_? CreateFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
 Emit("            int entityTag = source.GetEntityTag();");
@@ -242,35 +247,33 @@ Emit("            {");
                             {
                                 using (NewScope(derived))
                                 {
-Emit("                case T_EntityName_.EntityTag: return T_EntityName_.CreateFrom((IT_EntityName_)source);");
+Emit("                case T_EntityName_.EntityTag: return T_EntityName__Factory.Instance.CreateFrom((IT_EntityName_)source);");
                                 }
                             }
 Emit("                default:");
-Emit("                    throw new ArgumentOutOfRangeException(nameof(entityTag), entityTag, null);");
+Emit("                    throw new InvalidOperationException($\"Unable to create {typeof(T_EntityName_)} from {source.GetType().Name}\");");
 Emit("            }");
 Emit("        }");
+Emit("");
+Emit("        public T_EntityName_ Empty => throw new NotSupportedException($\"Cannot create abstract entity: {typeof(T_EntityName_)}\");");
 Emit("    }");
             }
             else
             {
-Emit("    public sealed partial class T_EntityName_");
+Emit("    public sealed class T_EntityName__Factory : IEntityFactory<IT_EntityName_, T_EntityName_>");
 Emit("    {");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
+Emit("        private static readonly T_EntityName__Factory _instance = new T_EntityName__Factory();");
+Emit("        public static T_EntityName__Factory Instance => _instance;");
+Emit("");
+Emit("        public T_EntityName_? CreateFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
+Emit("            if (source is T_EntityName_ thisEntity) return thisEntity;");
 Emit("            return new T_EntityName_(source);");
 Emit("        }");
 Emit("");
-Emit("        private static T_EntityName_ CreateEmpty()");
-Emit("        {");
-Emit("            var empty = new T_EntityName_();");
-Emit("            empty.Freeze();");
-Emit("            return empty;");
-Emit("        }");
-Emit("        private static readonly T_EntityName_ _empty = CreateEmpty();");
-Emit("        public static new T_EntityName_ Empty => _empty;");
-Emit("");
+Emit("        private static readonly T_EntityName_ _empty = new T_EntityName_().Frozen();");
+Emit("        public T_EntityName_ Empty => _empty;");
 Emit("    }");
             }
 Emit("    [MessagePackObject]");

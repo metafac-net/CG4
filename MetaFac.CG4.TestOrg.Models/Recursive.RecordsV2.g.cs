@@ -55,7 +55,7 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.RecordsV2
             return new Tree(source);
         }
 
-        private readonly Tree _empty = new Tree();
+        private static readonly Tree _empty = new Tree();
         public Tree Empty => _empty;
     }
     public partial record Tree : EntityBase, ITree

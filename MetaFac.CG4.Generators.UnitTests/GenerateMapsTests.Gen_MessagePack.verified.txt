@@ -90,24 +90,20 @@ namespace Generated.MessagePack
     }
 
 
-    public sealed partial class IndexTypes
+    public sealed class IndexTypes_Factory : IEntityFactory<IIndexTypes, IndexTypes>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IndexTypes? CreateFrom(IIndexTypes? source)
+        private static readonly IndexTypes_Factory _instance = new IndexTypes_Factory();
+        public static IndexTypes_Factory Instance => _instance;
+
+        public IndexTypes? CreateFrom(IIndexTypes? source)
         {
             if (source is null) return null;
+            if (source is IndexTypes thisEntity) return thisEntity;
             return new IndexTypes(source);
         }
 
-        private static IndexTypes CreateEmpty()
-        {
-            var empty = new IndexTypes();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly IndexTypes _empty = CreateEmpty();
-        public static new IndexTypes Empty => _empty;
-
+        private static readonly IndexTypes _empty = new IndexTypes().Frozen();
+        public IndexTypes Empty => _empty;
     }
     [MessagePackObject]
     public partial class IndexTypes : EntityBase, IIndexTypes, IEquatable<IndexTypes>, ICopyFrom<IndexTypes>

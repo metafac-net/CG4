@@ -58,7 +58,7 @@ namespace Generated.RecordsV2
             return new SavingsAccount(source);
         }
 
-        private readonly SavingsAccount _empty = new SavingsAccount();
+        private static readonly SavingsAccount _empty = new SavingsAccount();
         public SavingsAccount Empty => _empty;
     }
     public partial record SavingsAccount : AccountType, ISavingsAccount
@@ -125,7 +125,7 @@ namespace Generated.RecordsV2
             return new Withdrawl(source);
         }
 
-        private readonly Withdrawl _empty = new Withdrawl();
+        private static readonly Withdrawl _empty = new Withdrawl();
         public Withdrawl Empty => _empty;
     }
     public partial record Withdrawl : TransactionType, IWithdrawl

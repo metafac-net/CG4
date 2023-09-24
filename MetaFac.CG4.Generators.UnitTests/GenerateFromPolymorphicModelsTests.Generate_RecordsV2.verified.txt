@@ -212,7 +212,7 @@ namespace Generated.RecordsV2
             return new StringNode(source);
         }
 
-        private readonly StringNode _empty = new StringNode();
+        private static readonly StringNode _empty = new StringNode();
         public StringNode Empty => _empty;
     }
     public partial record StringNode : ValueNode, IStringNode
@@ -279,7 +279,7 @@ namespace Generated.RecordsV2
             return new BooleanNode(source);
         }
 
-        private readonly BooleanNode _empty = new BooleanNode();
+        private static readonly BooleanNode _empty = new BooleanNode();
         public BooleanNode Empty => _empty;
     }
     public partial record BooleanNode : ValueNode, IBooleanNode
@@ -346,7 +346,7 @@ namespace Generated.RecordsV2
             return new CustomNode(source);
         }
 
-        private readonly CustomNode _empty = new CustomNode();
+        private static readonly CustomNode _empty = new CustomNode();
         public CustomNode Empty => _empty;
     }
     public partial record CustomNode : ValueNode, ICustomNode
@@ -413,7 +413,7 @@ namespace Generated.RecordsV2
             return new Int32Node(source);
         }
 
-        private readonly Int32Node _empty = new Int32Node();
+        private static readonly Int32Node _empty = new Int32Node();
         public Int32Node Empty => _empty;
     }
     public partial record Int32Node : NumericNode, IInt32Node
@@ -480,7 +480,7 @@ namespace Generated.RecordsV2
             return new Int64Node(source);
         }
 
-        private readonly Int64Node _empty = new Int64Node();
+        private static readonly Int64Node _empty = new Int64Node();
         public Int64Node Empty => _empty;
     }
     public partial record Int64Node : NumericNode, IInt64Node
@@ -547,7 +547,7 @@ namespace Generated.RecordsV2
             return new Tree(source);
         }
 
-        private readonly Tree _empty = new Tree();
+        private static readonly Tree _empty = new Tree();
         public Tree Empty => _empty;
     }
     public partial record Tree : EntityBase, ITree

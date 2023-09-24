@@ -52,21 +52,19 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_bool(bool? value)
         {
-            var origFactory = new BasicTypes.RecordsV2.Basic_bool_Factory();
+            var origFactory = BasicTypes.RecordsV2.Basic_bool_Factory.Instance;
             var jsonFactory = new BasicTypes.JsonNewtonSoft.Basic_bool_Factory();
-            var msgpFactory = new BasicTypes.MessagePack.Basic_bool_Factory();
+            var msgpFactory = BasicTypes.MessagePack.Basic_bool_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_bool()
             {
                 ScalarOptional = value,
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var duplicate1 = RoundtripViaMessagePack<IBasic_bool, BasicTypes.RecordsV2.Basic_bool, BasicTypes.MessagePack.Basic_bool>(
-                    original, origFactory, msgpFactory);
+                var duplicate1 = RoundtripViaMessagePack(original, origFactory, msgpFactory);
             }
             {
-                var duplicate2 = RoundtripViaJsonNewtonSoft<IBasic_bool, BasicTypes.RecordsV2.Basic_bool, BasicTypes.JsonNewtonSoft.Basic_bool>(
-                    original, origFactory, jsonFactory);
+                var duplicate2 = RoundtripViaJsonNewtonSoft(original, origFactory, jsonFactory);
             }
         }
 
@@ -79,21 +77,19 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(null)]
         public void RoundtripValues_sbyte(sbyte? value)
         {
-            var origFactory = new BasicTypes.RecordsV2.Basic_sbyte_Factory();
+            var origFactory = BasicTypes.RecordsV2.Basic_sbyte_Factory.Instance;
             var jsonFactory = new BasicTypes.JsonNewtonSoft.Basic_sbyte_Factory();
-            var msgpFactory = new BasicTypes.MessagePack.Basic_sbyte_Factory();
+            var msgpFactory = BasicTypes.MessagePack.Basic_sbyte_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_sbyte()
             {
                 ScalarOptional = value,
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var duplicate1 = RoundtripViaMessagePack<IBasic_sbyte, BasicTypes.RecordsV2.Basic_sbyte, BasicTypes.MessagePack.Basic_sbyte>(
-                    original, origFactory, msgpFactory);
+                var duplicate1 = RoundtripViaMessagePack(original, origFactory, msgpFactory);
             }
             {
-                var duplicate2 = RoundtripViaJsonNewtonSoft<IBasic_sbyte, BasicTypes.RecordsV2.Basic_sbyte, BasicTypes.JsonNewtonSoft.Basic_sbyte>(
-                    original, origFactory, jsonFactory);
+                var duplicate2 = RoundtripViaJsonNewtonSoft(original, origFactory, jsonFactory);
             }
         }
 
@@ -111,7 +107,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_byte.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_byte_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_byte>(buffer);
                 incoming.Should().Be(outgoing);
@@ -145,7 +141,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_short.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_short_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_short>(buffer);
                 incoming.Should().Be(outgoing);
@@ -178,7 +174,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_ushort.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_ushort_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_ushort>(buffer);
                 incoming.Should().Be(outgoing);
@@ -211,7 +207,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_char.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_char_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_char>(buffer);
                 incoming.Should().Be(outgoing);
@@ -245,7 +241,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_int.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_int_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_int>(buffer);
                 incoming.Should().Be(outgoing);
@@ -278,7 +274,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_uint.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_uint_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_uint>(buffer);
                 incoming.Should().Be(outgoing);
@@ -321,7 +317,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_float.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_float_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_float>(buffer);
                 incoming.Equals(outgoing).Should().BeTrue();
@@ -353,7 +349,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_long.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_long_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_long>(buffer);
                 incoming.Should().Be(outgoing);
@@ -386,7 +382,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_ulong.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_ulong_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_ulong>(buffer);
                 incoming.Should().Be(outgoing);
@@ -429,7 +425,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_double.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_double_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_double>(buffer);
                 incoming.Equals(outgoing).Should().BeTrue();
@@ -460,7 +456,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value)
             };
             {
-                var outgoing = BasicTypes.MessagePack.Basic_DayOfWeek.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var outgoing = BasicTypes.MessagePack.Basic_DayOfWeek_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<BasicTypes.MessagePack.Basic_DayOfWeek>(buffer);
                 incoming.Should().Be(outgoing);

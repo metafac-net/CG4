@@ -87,24 +87,20 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
     }
 
 
-    public sealed partial class Tree
+    public sealed class Tree_Factory : IEntityFactory<ITree, Tree>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Tree? CreateFrom(ITree? source)
+        private static readonly Tree_Factory _instance = new Tree_Factory();
+        public static Tree_Factory Instance => _instance;
+
+        public Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
+            if (source is Tree thisEntity) return thisEntity;
             return new Tree(source);
         }
 
-        private static Tree CreateEmpty()
-        {
-            var empty = new Tree();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly Tree _empty = CreateEmpty();
-        public static new Tree Empty => _empty;
-
+        private static readonly Tree _empty = new Tree().Frozen();
+        public Tree Empty => _empty;
     }
     [MessagePackObject]
     public partial class Tree : EntityBase, ITree, IEquatable<Tree>, ICopyFrom<Tree>
@@ -174,8 +170,8 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
         public Tree(ITree source) : base(source)
         {
             field_Id = source.Id.ToInternal();
-            field_A = Tree.CreateFrom(source.A);
-            field_B = Tree.CreateFrom(source.B);
+            field_A = Tree_Factory.Instance.CreateFrom(source.A);
+            field_B = Tree_Factory.Instance.CreateFrom(source.B);
         }
 
         public bool Equals(Tree? other)
