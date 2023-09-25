@@ -44,16 +44,17 @@ namespace MetaFac.CG4.Runtime
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ByteSpanEquals(this ReadOnlySpan<byte> a, ReadOnlySpan<byte> b)
+        {
+            return a.SequenceEqual(b);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ValueEquals(this byte[]? self, in byte[]? other)
         {
             if (self is null) return other is null;
             if (other is null) return false;
-            if (self.Length != other.Length) return false;
-            for (int i = 0; i < self.Length; i++)
-            {
-                if (self[i] != other[i]) return false;
-            }
-            return true;
+            return ByteSpanEquals(self, other);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

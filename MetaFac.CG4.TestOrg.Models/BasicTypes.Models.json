@@ -1084,6 +1084,37 @@
               "IndexType": "string"
             }
           ]
+        },
+        {
+          "Name": "Basic_Octets",
+          "Tag": 31,
+          "MemberDefs": [
+            {
+              "Name": "Scalar",
+              "Tag": 1,
+              "InnerType": "binary"
+            },
+            {
+              "Name": "Vector",
+              "Tag": 2,
+              "InnerType": "binary",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapValue",
+              "Tag": 3,
+              "InnerType": "binary",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 4,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "binary"
+            }
+          ]
         }
       ],
       "EnumTypeDefs": [

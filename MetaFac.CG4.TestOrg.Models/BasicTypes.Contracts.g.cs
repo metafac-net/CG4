@@ -232,4 +232,11 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts
         IReadOnlyList<String?>? Vector { get; }
         IReadOnlyDictionary<String, String?>? MapValue { get; }
     }
+    public partial interface IBasic_Octets : IEntityBase
+    {
+        Octets? Scalar { get; }
+        IReadOnlyList<Octets?>? Vector { get; }
+        IReadOnlyDictionary<String, Octets?>? MapValue { get; }
+        IReadOnlyDictionary<Octets, String?>? MapKey { get; }
+    }
 }

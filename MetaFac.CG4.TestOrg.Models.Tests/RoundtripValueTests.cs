@@ -3,8 +3,10 @@ using LabApps.Units;
 using MessagePack;
 using MetaFac.CG4.Runtime;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
+using MetaFac.Memory;
 using System;
 using System.Collections.Immutable;
+using System.Text;
 using Xunit;
 
 namespace MetaFac.CG4.TestOrg.Models.Tests
@@ -505,6 +507,46 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             {
                 ScalarOptional = value,
                 VectorOptional = ImmutableList.Create(value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("abc")]
+        [InlineData(null)]
+        public void RoundtripValues_string(string? value)
+        {
+            var origFactory = BasicTypes.RecordsV2.Basic_string_Factory.Instance;
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_string_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_string_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_string()
+            {
+                Scalar = value,
+                Vector = ImmutableList.Create(value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
+        }
+
+        [Theory]
+        [InlineData("empty")]
+        [InlineData("abc")]
+        [InlineData(null)]
+        public void RoundtripValues_Octets(string? input)
+        {
+            Octets? value = input switch
+            {
+                null => null,
+                "empty" => Octets.Empty,
+                _ => new Octets(Encoding.UTF8.GetBytes(input))
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_Octets_Factory.Instance;
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_Octets_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_Octets_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_Octets()
+            {
+                Scalar = value,
+                Vector = ImmutableList.Create(value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }

@@ -3630,5 +3630,113 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
         }
     }
 
+    public sealed class Basic_Octets_Factory : IEntityFactory<IBasic_Octets, Basic_Octets>
+    {
+        private static readonly Basic_Octets_Factory _instance = new Basic_Octets_Factory();
+        public static Basic_Octets_Factory Instance => _instance;
+        public Basic_Octets? CreateFrom(IBasic_Octets? source) => (source is null) ? null : new Basic_Octets(source);
+        public Basic_Octets Empty => new Basic_Octets();
+    }
+    public partial class Basic_Octets : EntityBase, IBasic_Octets, IEquatable<Basic_Octets>
+    {
+        public new const int EntityTag = 31;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        Octets? IBasic_Octets.Scalar => Scalar is null ? null : new Octets(Scalar);
+        public byte[]? Scalar { get; set; }
+        IReadOnlyList<Octets?>? IBasic_Octets.Vector => Vector is null
+            ? null
+            : new List<Octets?>(Vector.Select(x => x is null ? null : new Octets(x)));
+        public byte[]?[]? Vector { get; set; }
+        IReadOnlyDictionary<String, Octets?>? IBasic_Octets.MapValue => MapValue is null
+            ? null
+            : MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : new Octets(x.Value));
+        public Dictionary<String, byte[]?>? MapValue { get; set; }
+        private ImmutableDictionary<Octets, String?>? field_MapKey;
+        IReadOnlyDictionary<Octets, String?>? IBasic_Octets.MapKey => field_MapKey;
+        public ImmutableDictionary<Octets, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_Octets() : base()
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_Octets(Basic_Octets? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            this.Scalar = source.Scalar;
+            this.Vector = source.Vector;
+            this.MapValue = source.MapValue;
+            field_MapKey = source.MapKey;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Basic_Octets(IBasic_Octets? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            this.Scalar = source.Scalar is null
+                ? default
+                : source.Scalar.Memory.ToArray();
+            this.Vector = source.Vector is null
+                ? default
+                : source.Vector.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+            this.MapValue = source.MapValue is null
+                ? default
+                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void CopyFrom(IBasic_Octets? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            this.Scalar = source.Scalar is null
+                ? default
+                : source.Scalar.Memory.ToArray();
+            this.Vector = source.Vector is null
+                ? default
+                : source.Vector.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+            this.MapValue = source.MapValue is null
+                ? default
+                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_Octets? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!Scalar.ValueEquals(other.Scalar)) return false;
+            if (!Vector.ArrayEquals(other.Vector)) return false;
+            if (!MapValue.IndexEquals(other.MapValue)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_Octets other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Scalar.CalcHashUnary());
+            hc.Add(Vector.CalcHashArray());
+            hc.Add(MapValue.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
 
 }
