@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using LabApps.Units;
 using MessagePack;
 using MetaFac.CG4.Runtime;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
@@ -455,5 +456,60 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
+
+        [Theory]
+        [InlineData(MyCustomEnum.DefaultValue)]
+        [InlineData(MyCustomEnum.FirstValue)]
+        [InlineData(MyCustomEnum.SomeValue)]
+        [InlineData(MyCustomEnum.LastValue)]
+        [InlineData(null)]
+        public void RoundtripValues_MyCustomEnum(MyCustomEnum? value)
+        {
+            var origFactory = BasicTypes.RecordsV2.Basic_MyCustomEnum_Factory.Instance;
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_MyCustomEnum_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_MyCustomEnum_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_MyCustomEnum()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
+        }
+
+        [Theory]
+        [InlineData("empty")]
+        [InlineData("zero")]
+        [InlineData("one")]
+        [InlineData("5 %")]
+        [InlineData("40 kg")]
+        [InlineData(null)]
+        public void RoundtripValues_Quantity(string? input)
+        {
+            Quantity ParseQuantity(string input)
+            {
+                var parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                double amount = double.Parse(parts[0]);
+                Unit unit = parts.Length == 2 ? new Unit(parts[1]) : Unit.Undefined;
+                return new Quantity(amount, unit);
+            }
+            Quantity? value = input switch
+            {
+                null => null,
+                "empty" => Quantity.Empty,
+                "zero" => Quantity.Zero,
+                "one" => Quantity.One,
+                _ => ParseQuantity(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_Quantity_Factory.Instance;
+            var jsonFactory = BasicTypes.JsonNewtonSoft.Basic_Quantity_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_Quantity_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_Quantity()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
+        }
+
     }
 }

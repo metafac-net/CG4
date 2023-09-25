@@ -63,7 +63,7 @@ namespace Generated.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private Int32 field_Id;
-        Int32 IBase.Id => field_Id;
+        Int32 IBase.Id { get => field_Id; }
         public Int32 Id
         {
             get => field_Id;

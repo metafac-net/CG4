@@ -362,7 +362,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private Int64 field_LongVal;
-        Int64 ILongNode.LongVal => field_LongVal;
+        Int64 ILongNode.LongVal { get => field_LongVal; }
         public Int64 LongVal
         {
             get => field_LongVal;
@@ -429,7 +429,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private System.DayOfWeek field_DaynVal;
-        System.DayOfWeek IDaynNode.DaynVal => field_DaynVal;
+        System.DayOfWeek IDaynNode.DaynVal { get => field_DaynVal; }
         public System.DayOfWeek DaynVal
         {
             get => field_DaynVal;

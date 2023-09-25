@@ -60,7 +60,7 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private Int32 field_Id;
-        Int32 ITree.Id => field_Id;
+        Int32 ITree.Id { get => field_Id; }
         public Int32 Id
         {
             get => field_Id;

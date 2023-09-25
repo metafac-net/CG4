@@ -144,7 +144,7 @@ namespace Generated.JsonNewtonSoft
             set => field_TargetAccountId = value;
         }
         private Decimal field_Amount;
-        Decimal IWithdrawl.Amount => field_Amount;
+        Decimal IWithdrawl.Amount { get => field_Amount; }
         public Decimal Amount
         {
             get => field_Amount;

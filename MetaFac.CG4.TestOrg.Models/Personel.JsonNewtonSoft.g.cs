@@ -74,14 +74,14 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.JsonNewtonSoft
             set => field_FirstName = value;
         }
         private GenderEnum field_Gender;
-        GenderEnum IPerson.Gender => field_Gender;
+        GenderEnum IPerson.Gender { get => field_Gender; }
         public GenderEnum Gender
         {
             get => field_Gender;
             set => field_Gender = value;
         }
         private System.DayOfWeek field_DayOfBirth;
-        System.DayOfWeek IPerson.DayOfBirth => field_DayOfBirth;
+        System.DayOfWeek IPerson.DayOfBirth { get => field_DayOfBirth; }
         public System.DayOfWeek DayOfBirth
         {
             get => field_DayOfBirth;

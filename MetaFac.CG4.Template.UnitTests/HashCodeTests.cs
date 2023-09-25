@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using T_Namespace_.Contracts;
+using T_Namespace_.JsonNewtonSoft;
 using Xunit;
 
 namespace MetaFac.CG4.Template.UnitTests
@@ -28,8 +29,8 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", new T_Namespace_.JsonNewtonSoft.T_ModelType_(456))
                     .Add("876", null),
                     T_UnaryOtherFieldName_ = 123L,
-                    T_ArrayOtherFieldName_ = ImmutableList<T_ExternalOtherType_>.Empty.Add(234L),
-                    T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty
+                    T_ArrayOtherFieldName_ = ImmutableList<SampleInternal>.Empty.Add(234L),
+                    T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, SampleInternal>.Empty
                     .Add("987", 456L)
                     .Add("876", default),
                     T_UnaryMaybeFieldName_ = null,

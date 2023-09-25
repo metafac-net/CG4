@@ -80,7 +80,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private Int64 field_Id;
-        Int64 IValueNode.Id => field_Id;
+        Int64 IValueNode.Id { get => field_Id; }
         public Int64 Id
         {
             get => field_Id;
@@ -297,7 +297,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private Boolean field_BoolValue;
-        Boolean IBooleanNode.BoolValue => field_BoolValue;
+        Boolean IBooleanNode.BoolValue { get => field_BoolValue; }
         public Boolean BoolValue
         {
             get => field_BoolValue;
@@ -364,7 +364,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private CustomEnum field_CustomValue;
-        CustomEnum ICustomNode.CustomValue => field_CustomValue;
+        CustomEnum ICustomNode.CustomValue { get => field_CustomValue; }
         public CustomEnum CustomValue
         {
             get => field_CustomValue;
@@ -431,7 +431,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private Int32 field_IntValue;
-        Int32 IInt32Node.IntValue => field_IntValue;
+        Int32 IInt32Node.IntValue { get => field_IntValue; }
         public Int32 IntValue
         {
             get => field_IntValue;
@@ -498,7 +498,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private Int64 field_LongValue;
-        Int64 IInt64Node.LongValue => field_LongValue;
+        Int64 IInt64Node.LongValue { get => field_LongValue; }
         public Int64 LongValue
         {
             get => field_LongValue;

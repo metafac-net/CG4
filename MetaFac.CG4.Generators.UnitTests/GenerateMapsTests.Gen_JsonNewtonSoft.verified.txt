@@ -63,21 +63,27 @@ namespace Generated.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private ImmutableDictionary<String, Int64>? field_Index1;
-        IReadOnlyDictionary<String, Int64>? IIndexTypes.Index1 => Index1;
+        IReadOnlyDictionary<String, Int64>? IIndexTypes.Index1 => field_Index1 is null
+            ? null
+            : new DictionaryFacade<String, Int64, Int64>(field_Index1, (x) => x.ToExternal());
         public ImmutableDictionary<String, Int64>? Index1
         {
             get => field_Index1;
             set => field_Index1 = value;
         }
         private ImmutableDictionary<Byte, Int64>? field_Index2;
-        IReadOnlyDictionary<Byte, Int64>? IIndexTypes.Index2 => Index2;
+        IReadOnlyDictionary<Byte, Int64>? IIndexTypes.Index2 => field_Index2 is null
+            ? null
+            : new DictionaryFacade<Byte, Int64, Int64>(field_Index2, (x) => x.ToExternal());
         public ImmutableDictionary<Byte, Int64>? Index2
         {
             get => field_Index2;
             set => field_Index2 = value;
         }
         private ImmutableDictionary<MyCustomEnum, Int64>? field_Index3;
-        IReadOnlyDictionary<MyCustomEnum, Int64>? IIndexTypes.Index3 => Index3;
+        IReadOnlyDictionary<MyCustomEnum, Int64>? IIndexTypes.Index3 => field_Index3 is null
+            ? null
+            : new DictionaryFacade<MyCustomEnum, Int64, Int64>(field_Index3, (x) => x.ToExternal());
         public ImmutableDictionary<MyCustomEnum, Int64>? Index3
         {
             get => field_Index3;
@@ -104,13 +110,16 @@ namespace Generated.JsonNewtonSoft
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Index1 = source.Index1 is null
                 ? default
-                : ImmutableDictionary<String, Int64>.Empty.AddRange(source.Index1);
+                : ImmutableDictionary<String, Int64>.Empty.AddRange(source.Index1
+                    .Select(x => new KeyValuePair<String, Int64>(x.Key, x.Value)));
             field_Index2 = source.Index2 is null
                 ? default
-                : ImmutableDictionary<Byte, Int64>.Empty.AddRange(source.Index2);
+                : ImmutableDictionary<Byte, Int64>.Empty.AddRange(source.Index2
+                    .Select(x => new KeyValuePair<Byte, Int64>(x.Key, x.Value)));
             field_Index3 = source.Index3 is null
                 ? default
-                : ImmutableDictionary<MyCustomEnum, Int64>.Empty.AddRange(source.Index3);
+                : ImmutableDictionary<MyCustomEnum, Int64>.Empty.AddRange(source.Index3
+                    .Select(x => new KeyValuePair<MyCustomEnum, Int64>(x.Key, x.Value)));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -120,13 +129,16 @@ namespace Generated.JsonNewtonSoft
             base.CopyFrom(source);
             field_Index1 = source.Index1 is null
                 ? default
-                : ImmutableDictionary<String, Int64>.Empty.AddRange(source.Index1);
+                : ImmutableDictionary<String, Int64>.Empty.AddRange(source.Index1
+                    .Select(x => new KeyValuePair<String, Int64>(x.Key, x.Value)));
             field_Index2 = source.Index2 is null
                 ? default
-                : ImmutableDictionary<Byte, Int64>.Empty.AddRange(source.Index2);
+                : ImmutableDictionary<Byte, Int64>.Empty.AddRange(source.Index2
+                    .Select(x => new KeyValuePair<Byte, Int64>(x.Key, x.Value)));
             field_Index3 = source.Index3 is null
                 ? default
-                : ImmutableDictionary<MyCustomEnum, Int64>.Empty.AddRange(source.Index3);
+                : ImmutableDictionary<MyCustomEnum, Int64>.Empty.AddRange(source.Index3
+                    .Select(x => new KeyValuePair<MyCustomEnum, Int64>(x.Key, x.Value)));
         }
 
         public bool Equals(IndexTypes? other)

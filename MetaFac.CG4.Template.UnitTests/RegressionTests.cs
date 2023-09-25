@@ -188,7 +188,9 @@ namespace MetaFac.CG4.Template.UnitTests
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.UnaryOther,
             """
             {
-              "T_UnaryOtherFieldName_": 1
+              "T_UnaryOtherFieldName_": {
+                "Value": 1
+              }
             }
             """)]
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.UnaryMaybe,
@@ -221,9 +223,13 @@ namespace MetaFac.CG4.Template.UnitTests
             """
             {
               "T_ArrayOtherFieldName_": [
-                -1,
-                0,
-                1
+                {
+                  "Value": -1
+                },
+                {},
+                {
+                  "Value": 1
+                }
               ]
             }
             """)]

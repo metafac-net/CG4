@@ -63,119 +63,153 @@ namespace Generated.JsonNewtonSoft
         protected override int OnGetEntityTag() => EntityTag;
 
         private ImmutableList<Boolean>? field_Bools;
-        IReadOnlyList<Boolean>? IBuiltinTypes.Bools => field_Bools;
+        IReadOnlyList<Boolean>? IBuiltinTypes.Bools => field_Bools is null
+            ? null
+            : new ListFacade<Boolean, Boolean>(field_Bools, (x) => x.ToExternal());
         public ImmutableList<Boolean>? Bools
         {
             get => field_Bools;
             set => field_Bools = value;
         }
         private ImmutableList<SByte>? field_SBytes;
-        IReadOnlyList<SByte>? IBuiltinTypes.SBytes => field_SBytes;
+        IReadOnlyList<SByte>? IBuiltinTypes.SBytes => field_SBytes is null
+            ? null
+            : new ListFacade<SByte, SByte>(field_SBytes, (x) => x.ToExternal());
         public ImmutableList<SByte>? SBytes
         {
             get => field_SBytes;
             set => field_SBytes = value;
         }
         private ImmutableList<Byte>? field_Bytes;
-        IReadOnlyList<Byte>? IBuiltinTypes.Bytes => field_Bytes;
+        IReadOnlyList<Byte>? IBuiltinTypes.Bytes => field_Bytes is null
+            ? null
+            : new ListFacade<Byte, Byte>(field_Bytes, (x) => x.ToExternal());
         public ImmutableList<Byte>? Bytes
         {
             get => field_Bytes;
             set => field_Bytes = value;
         }
         private ImmutableList<Int16>? field_Shorts;
-        IReadOnlyList<Int16>? IBuiltinTypes.Shorts => field_Shorts;
+        IReadOnlyList<Int16>? IBuiltinTypes.Shorts => field_Shorts is null
+            ? null
+            : new ListFacade<Int16, Int16>(field_Shorts, (x) => x.ToExternal());
         public ImmutableList<Int16>? Shorts
         {
             get => field_Shorts;
             set => field_Shorts = value;
         }
         private ImmutableList<UInt16>? field_UShorts;
-        IReadOnlyList<UInt16>? IBuiltinTypes.UShorts => field_UShorts;
+        IReadOnlyList<UInt16>? IBuiltinTypes.UShorts => field_UShorts is null
+            ? null
+            : new ListFacade<UInt16, UInt16>(field_UShorts, (x) => x.ToExternal());
         public ImmutableList<UInt16>? UShorts
         {
             get => field_UShorts;
             set => field_UShorts = value;
         }
         private ImmutableList<Char>? field_Chars;
-        IReadOnlyList<Char>? IBuiltinTypes.Chars => field_Chars;
+        IReadOnlyList<Char>? IBuiltinTypes.Chars => field_Chars is null
+            ? null
+            : new ListFacade<Char, Char>(field_Chars, (x) => x.ToExternal());
         public ImmutableList<Char>? Chars
         {
             get => field_Chars;
             set => field_Chars = value;
         }
         private ImmutableList<Int32>? field_Ints;
-        IReadOnlyList<Int32>? IBuiltinTypes.Ints => field_Ints;
+        IReadOnlyList<Int32>? IBuiltinTypes.Ints => field_Ints is null
+            ? null
+            : new ListFacade<Int32, Int32>(field_Ints, (x) => x.ToExternal());
         public ImmutableList<Int32>? Ints
         {
             get => field_Ints;
             set => field_Ints = value;
         }
         private ImmutableList<UInt32>? field_UInts;
-        IReadOnlyList<UInt32>? IBuiltinTypes.UInts => field_UInts;
+        IReadOnlyList<UInt32>? IBuiltinTypes.UInts => field_UInts is null
+            ? null
+            : new ListFacade<UInt32, UInt32>(field_UInts, (x) => x.ToExternal());
         public ImmutableList<UInt32>? UInts
         {
             get => field_UInts;
             set => field_UInts = value;
         }
         private ImmutableList<Single>? field_Floats;
-        IReadOnlyList<Single>? IBuiltinTypes.Floats => field_Floats;
+        IReadOnlyList<Single>? IBuiltinTypes.Floats => field_Floats is null
+            ? null
+            : new ListFacade<Single, Single>(field_Floats, (x) => x.ToExternal());
         public ImmutableList<Single>? Floats
         {
             get => field_Floats;
             set => field_Floats = value;
         }
         private ImmutableList<Int64>? field_Longs;
-        IReadOnlyList<Int64>? IBuiltinTypes.Longs => field_Longs;
+        IReadOnlyList<Int64>? IBuiltinTypes.Longs => field_Longs is null
+            ? null
+            : new ListFacade<Int64, Int64>(field_Longs, (x) => x.ToExternal());
         public ImmutableList<Int64>? Longs
         {
             get => field_Longs;
             set => field_Longs = value;
         }
         private ImmutableList<UInt64>? field_ULongs;
-        IReadOnlyList<UInt64>? IBuiltinTypes.ULongs => field_ULongs;
+        IReadOnlyList<UInt64>? IBuiltinTypes.ULongs => field_ULongs is null
+            ? null
+            : new ListFacade<UInt64, UInt64>(field_ULongs, (x) => x.ToExternal());
         public ImmutableList<UInt64>? ULongs
         {
             get => field_ULongs;
             set => field_ULongs = value;
         }
         private ImmutableList<Double>? field_Doubles;
-        IReadOnlyList<Double>? IBuiltinTypes.Doubles => field_Doubles;
+        IReadOnlyList<Double>? IBuiltinTypes.Doubles => field_Doubles is null
+            ? null
+            : new ListFacade<Double, Double>(field_Doubles, (x) => x.ToExternal());
         public ImmutableList<Double>? Doubles
         {
             get => field_Doubles;
             set => field_Doubles = value;
         }
         private ImmutableList<DateTime>? field_DateTimes;
-        IReadOnlyList<DateTime>? IBuiltinTypes.DateTimes => field_DateTimes;
+        IReadOnlyList<DateTime>? IBuiltinTypes.DateTimes => field_DateTimes is null
+            ? null
+            : new ListFacade<DateTime, DateTime>(field_DateTimes, (x) => x.ToExternal());
         public ImmutableList<DateTime>? DateTimes
         {
             get => field_DateTimes;
             set => field_DateTimes = value;
         }
         private ImmutableList<TimeSpan>? field_TimeSpans;
-        IReadOnlyList<TimeSpan>? IBuiltinTypes.TimeSpans => field_TimeSpans;
+        IReadOnlyList<TimeSpan>? IBuiltinTypes.TimeSpans => field_TimeSpans is null
+            ? null
+            : new ListFacade<TimeSpan, TimeSpan>(field_TimeSpans, (x) => x.ToExternal());
         public ImmutableList<TimeSpan>? TimeSpans
         {
             get => field_TimeSpans;
             set => field_TimeSpans = value;
         }
         private ImmutableList<Decimal>? field_Decimals;
-        IReadOnlyList<Decimal>? IBuiltinTypes.Decimals => field_Decimals;
+        IReadOnlyList<Decimal>? IBuiltinTypes.Decimals => field_Decimals is null
+            ? null
+            : new ListFacade<Decimal, Decimal>(field_Decimals, (x) => x.ToExternal());
         public ImmutableList<Decimal>? Decimals
         {
             get => field_Decimals;
             set => field_Decimals = value;
         }
         private ImmutableList<DateTimeOffset>? field_DateTimeOffsets;
-        IReadOnlyList<DateTimeOffset>? IBuiltinTypes.DateTimeOffsets => field_DateTimeOffsets;
+        IReadOnlyList<DateTimeOffset>? IBuiltinTypes.DateTimeOffsets => field_DateTimeOffsets is null
+            ? null
+            : new ListFacade<DateTimeOffset, DateTimeOffset>(field_DateTimeOffsets, (x) => x.ToExternal());
         public ImmutableList<DateTimeOffset>? DateTimeOffsets
         {
             get => field_DateTimeOffsets;
             set => field_DateTimeOffsets = value;
         }
         private ImmutableList<Guid>? field_Guids;
-        IReadOnlyList<Guid>? IBuiltinTypes.Guids => field_Guids;
+        IReadOnlyList<Guid>? IBuiltinTypes.Guids => field_Guids is null
+            ? null
+            : new ListFacade<Guid, Guid>(field_Guids, (x) => x.ToExternal());
         public ImmutableList<Guid>? Guids
         {
             get => field_Guids;
@@ -192,29 +226,37 @@ namespace Generated.JsonNewtonSoft
             ? null
             : new List<Octets?>(Buffers.Select(x => x is null ? null : new Octets(x)));
         public byte[]?[]? Buffers { get; set; }
-        private ImmutableList<LabApps.Units.Quantity>? field_Quantities;
-        IReadOnlyList<LabApps.Units.Quantity>? IBuiltinTypes.Quantities => field_Quantities;
-        public ImmutableList<LabApps.Units.Quantity>? Quantities
+        private ImmutableList<QuantityValue>? field_Quantities;
+        IReadOnlyList<LabApps.Units.Quantity>? IBuiltinTypes.Quantities => field_Quantities is null
+            ? null
+            : new ListFacade<LabApps.Units.Quantity, QuantityValue>(field_Quantities, (x) => x.ToExternal());
+        public ImmutableList<QuantityValue>? Quantities
         {
             get => field_Quantities;
             set => field_Quantities = value;
         }
         private ImmutableList<System.DayOfWeek>? field_DaysOfWeek;
-        IReadOnlyList<System.DayOfWeek>? IBuiltinTypes.DaysOfWeek => field_DaysOfWeek;
+        IReadOnlyList<System.DayOfWeek>? IBuiltinTypes.DaysOfWeek => field_DaysOfWeek is null
+            ? null
+            : new ListFacade<System.DayOfWeek, System.DayOfWeek>(field_DaysOfWeek, (x) => x.ToExternal());
         public ImmutableList<System.DayOfWeek>? DaysOfWeek
         {
             get => field_DaysOfWeek;
             set => field_DaysOfWeek = value;
         }
-        private ImmutableList<System.DateTimeKind>? field_MyDateTimeKinds;
-        IReadOnlyList<System.DateTimeKind>? IBuiltinTypes.MyDateTimeKinds => field_MyDateTimeKinds;
-        public ImmutableList<System.DateTimeKind>? MyDateTimeKinds
+        private ImmutableList<MyDateTimeKindValue>? field_MyDateTimeKinds;
+        IReadOnlyList<System.DateTimeKind>? IBuiltinTypes.MyDateTimeKinds => field_MyDateTimeKinds is null
+            ? null
+            : new ListFacade<System.DateTimeKind, MyDateTimeKindValue>(field_MyDateTimeKinds, (x) => x.ToExternal());
+        public ImmutableList<MyDateTimeKindValue>? MyDateTimeKinds
         {
             get => field_MyDateTimeKinds;
             set => field_MyDateTimeKinds = value;
         }
         private ImmutableList<MyCustomEnum>? field_MyCustomEnums;
-        IReadOnlyList<MyCustomEnum>? IBuiltinTypes.MyCustomEnums => field_MyCustomEnums;
+        IReadOnlyList<MyCustomEnum>? IBuiltinTypes.MyCustomEnums => field_MyCustomEnums is null
+            ? null
+            : new ListFacade<MyCustomEnum, MyCustomEnum>(field_MyCustomEnums, (x) => x.ToExternal());
         public ImmutableList<MyCustomEnum>? MyCustomEnums
         {
             get => field_MyCustomEnums;
@@ -261,55 +303,72 @@ namespace Generated.JsonNewtonSoft
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Bools = source.Bools is null
                 ? default
-                : ImmutableList<Boolean>.Empty.AddRange(source.Bools);
+                : ImmutableList<Boolean>.Empty.AddRange(source.Bools
+                    .Select(x => (Boolean)x));
             field_SBytes = source.SBytes is null
                 ? default
-                : ImmutableList<SByte>.Empty.AddRange(source.SBytes);
+                : ImmutableList<SByte>.Empty.AddRange(source.SBytes
+                    .Select(x => (SByte)x));
             field_Bytes = source.Bytes is null
                 ? default
-                : ImmutableList<Byte>.Empty.AddRange(source.Bytes);
+                : ImmutableList<Byte>.Empty.AddRange(source.Bytes
+                    .Select(x => (Byte)x));
             field_Shorts = source.Shorts is null
                 ? default
-                : ImmutableList<Int16>.Empty.AddRange(source.Shorts);
+                : ImmutableList<Int16>.Empty.AddRange(source.Shorts
+                    .Select(x => (Int16)x));
             field_UShorts = source.UShorts is null
                 ? default
-                : ImmutableList<UInt16>.Empty.AddRange(source.UShorts);
+                : ImmutableList<UInt16>.Empty.AddRange(source.UShorts
+                    .Select(x => (UInt16)x));
             field_Chars = source.Chars is null
                 ? default
-                : ImmutableList<Char>.Empty.AddRange(source.Chars);
+                : ImmutableList<Char>.Empty.AddRange(source.Chars
+                    .Select(x => (Char)x));
             field_Ints = source.Ints is null
                 ? default
-                : ImmutableList<Int32>.Empty.AddRange(source.Ints);
+                : ImmutableList<Int32>.Empty.AddRange(source.Ints
+                    .Select(x => (Int32)x));
             field_UInts = source.UInts is null
                 ? default
-                : ImmutableList<UInt32>.Empty.AddRange(source.UInts);
+                : ImmutableList<UInt32>.Empty.AddRange(source.UInts
+                    .Select(x => (UInt32)x));
             field_Floats = source.Floats is null
                 ? default
-                : ImmutableList<Single>.Empty.AddRange(source.Floats);
+                : ImmutableList<Single>.Empty.AddRange(source.Floats
+                    .Select(x => (Single)x));
             field_Longs = source.Longs is null
                 ? default
-                : ImmutableList<Int64>.Empty.AddRange(source.Longs);
+                : ImmutableList<Int64>.Empty.AddRange(source.Longs
+                    .Select(x => (Int64)x));
             field_ULongs = source.ULongs is null
                 ? default
-                : ImmutableList<UInt64>.Empty.AddRange(source.ULongs);
+                : ImmutableList<UInt64>.Empty.AddRange(source.ULongs
+                    .Select(x => (UInt64)x));
             field_Doubles = source.Doubles is null
                 ? default
-                : ImmutableList<Double>.Empty.AddRange(source.Doubles);
+                : ImmutableList<Double>.Empty.AddRange(source.Doubles
+                    .Select(x => (Double)x));
             field_DateTimes = source.DateTimes is null
                 ? default
-                : ImmutableList<DateTime>.Empty.AddRange(source.DateTimes);
+                : ImmutableList<DateTime>.Empty.AddRange(source.DateTimes
+                    .Select(x => (DateTime)x));
             field_TimeSpans = source.TimeSpans is null
                 ? default
-                : ImmutableList<TimeSpan>.Empty.AddRange(source.TimeSpans);
+                : ImmutableList<TimeSpan>.Empty.AddRange(source.TimeSpans
+                    .Select(x => (TimeSpan)x));
             field_Decimals = source.Decimals is null
                 ? default
-                : ImmutableList<Decimal>.Empty.AddRange(source.Decimals);
+                : ImmutableList<Decimal>.Empty.AddRange(source.Decimals
+                    .Select(x => (Decimal)x));
             field_DateTimeOffsets = source.DateTimeOffsets is null
                 ? default
-                : ImmutableList<DateTimeOffset>.Empty.AddRange(source.DateTimeOffsets);
+                : ImmutableList<DateTimeOffset>.Empty.AddRange(source.DateTimeOffsets
+                    .Select(x => (DateTimeOffset)x));
             field_Guids = source.Guids is null
                 ? default
-                : ImmutableList<Guid>.Empty.AddRange(source.Guids);
+                : ImmutableList<Guid>.Empty.AddRange(source.Guids
+                    .Select(x => (Guid)x));
             field_Strings = source.Strings is null
                 ? default
                 : ImmutableList<String?>.Empty.AddRange(source.Strings);
@@ -318,16 +377,20 @@ namespace Generated.JsonNewtonSoft
                 : source.Buffers.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
             field_Quantities = source.Quantities is null
                 ? default
-                : ImmutableList<LabApps.Units.Quantity>.Empty.AddRange(source.Quantities);
+                : ImmutableList<QuantityValue>.Empty.AddRange(source.Quantities
+                    .Select(x => (QuantityValue)x));
             field_DaysOfWeek = source.DaysOfWeek is null
                 ? default
-                : ImmutableList<System.DayOfWeek>.Empty.AddRange(source.DaysOfWeek);
+                : ImmutableList<System.DayOfWeek>.Empty.AddRange(source.DaysOfWeek
+                    .Select(x => (System.DayOfWeek)x));
             field_MyDateTimeKinds = source.MyDateTimeKinds is null
                 ? default
-                : ImmutableList<System.DateTimeKind>.Empty.AddRange(source.MyDateTimeKinds);
+                : ImmutableList<MyDateTimeKindValue>.Empty.AddRange(source.MyDateTimeKinds
+                    .Select(x => (MyDateTimeKindValue)x));
             field_MyCustomEnums = source.MyCustomEnums is null
                 ? default
-                : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums);
+                : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums
+                    .Select(x => (MyCustomEnum)x));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -337,55 +400,72 @@ namespace Generated.JsonNewtonSoft
             base.CopyFrom(source);
             field_Bools = source.Bools is null
                 ? default
-                : ImmutableList<Boolean>.Empty.AddRange(source.Bools);
+                : ImmutableList<Boolean>.Empty.AddRange(source.Bools
+                    .Select(x => (Boolean)x));
             field_SBytes = source.SBytes is null
                 ? default
-                : ImmutableList<SByte>.Empty.AddRange(source.SBytes);
+                : ImmutableList<SByte>.Empty.AddRange(source.SBytes
+                    .Select(x => (SByte)x));
             field_Bytes = source.Bytes is null
                 ? default
-                : ImmutableList<Byte>.Empty.AddRange(source.Bytes);
+                : ImmutableList<Byte>.Empty.AddRange(source.Bytes
+                    .Select(x => (Byte)x));
             field_Shorts = source.Shorts is null
                 ? default
-                : ImmutableList<Int16>.Empty.AddRange(source.Shorts);
+                : ImmutableList<Int16>.Empty.AddRange(source.Shorts
+                    .Select(x => (Int16)x));
             field_UShorts = source.UShorts is null
                 ? default
-                : ImmutableList<UInt16>.Empty.AddRange(source.UShorts);
+                : ImmutableList<UInt16>.Empty.AddRange(source.UShorts
+                    .Select(x => (UInt16)x));
             field_Chars = source.Chars is null
                 ? default
-                : ImmutableList<Char>.Empty.AddRange(source.Chars);
+                : ImmutableList<Char>.Empty.AddRange(source.Chars
+                    .Select(x => (Char)x));
             field_Ints = source.Ints is null
                 ? default
-                : ImmutableList<Int32>.Empty.AddRange(source.Ints);
+                : ImmutableList<Int32>.Empty.AddRange(source.Ints
+                    .Select(x => (Int32)x));
             field_UInts = source.UInts is null
                 ? default
-                : ImmutableList<UInt32>.Empty.AddRange(source.UInts);
+                : ImmutableList<UInt32>.Empty.AddRange(source.UInts
+                    .Select(x => (UInt32)x));
             field_Floats = source.Floats is null
                 ? default
-                : ImmutableList<Single>.Empty.AddRange(source.Floats);
+                : ImmutableList<Single>.Empty.AddRange(source.Floats
+                    .Select(x => (Single)x));
             field_Longs = source.Longs is null
                 ? default
-                : ImmutableList<Int64>.Empty.AddRange(source.Longs);
+                : ImmutableList<Int64>.Empty.AddRange(source.Longs
+                    .Select(x => (Int64)x));
             field_ULongs = source.ULongs is null
                 ? default
-                : ImmutableList<UInt64>.Empty.AddRange(source.ULongs);
+                : ImmutableList<UInt64>.Empty.AddRange(source.ULongs
+                    .Select(x => (UInt64)x));
             field_Doubles = source.Doubles is null
                 ? default
-                : ImmutableList<Double>.Empty.AddRange(source.Doubles);
+                : ImmutableList<Double>.Empty.AddRange(source.Doubles
+                    .Select(x => (Double)x));
             field_DateTimes = source.DateTimes is null
                 ? default
-                : ImmutableList<DateTime>.Empty.AddRange(source.DateTimes);
+                : ImmutableList<DateTime>.Empty.AddRange(source.DateTimes
+                    .Select(x => (DateTime)x));
             field_TimeSpans = source.TimeSpans is null
                 ? default
-                : ImmutableList<TimeSpan>.Empty.AddRange(source.TimeSpans);
+                : ImmutableList<TimeSpan>.Empty.AddRange(source.TimeSpans
+                    .Select(x => (TimeSpan)x));
             field_Decimals = source.Decimals is null
                 ? default
-                : ImmutableList<Decimal>.Empty.AddRange(source.Decimals);
+                : ImmutableList<Decimal>.Empty.AddRange(source.Decimals
+                    .Select(x => (Decimal)x));
             field_DateTimeOffsets = source.DateTimeOffsets is null
                 ? default
-                : ImmutableList<DateTimeOffset>.Empty.AddRange(source.DateTimeOffsets);
+                : ImmutableList<DateTimeOffset>.Empty.AddRange(source.DateTimeOffsets
+                    .Select(x => (DateTimeOffset)x));
             field_Guids = source.Guids is null
                 ? default
-                : ImmutableList<Guid>.Empty.AddRange(source.Guids);
+                : ImmutableList<Guid>.Empty.AddRange(source.Guids
+                    .Select(x => (Guid)x));
             field_Strings = source.Strings is null
                 ? default
                 : ImmutableList<String?>.Empty.AddRange(source.Strings);
@@ -394,16 +474,20 @@ namespace Generated.JsonNewtonSoft
                 : source.Buffers.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
             field_Quantities = source.Quantities is null
                 ? default
-                : ImmutableList<LabApps.Units.Quantity>.Empty.AddRange(source.Quantities);
+                : ImmutableList<QuantityValue>.Empty.AddRange(source.Quantities
+                    .Select(x => (QuantityValue)x));
             field_DaysOfWeek = source.DaysOfWeek is null
                 ? default
-                : ImmutableList<System.DayOfWeek>.Empty.AddRange(source.DaysOfWeek);
+                : ImmutableList<System.DayOfWeek>.Empty.AddRange(source.DaysOfWeek
+                    .Select(x => (System.DayOfWeek)x));
             field_MyDateTimeKinds = source.MyDateTimeKinds is null
                 ? default
-                : ImmutableList<System.DateTimeKind>.Empty.AddRange(source.MyDateTimeKinds);
+                : ImmutableList<MyDateTimeKindValue>.Empty.AddRange(source.MyDateTimeKinds
+                    .Select(x => (MyDateTimeKindValue)x));
             field_MyCustomEnums = source.MyCustomEnums is null
                 ? default
-                : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums);
+                : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums
+                    .Select(x => (MyCustomEnum)x));
         }
 
         public bool Equals(BuiltinTypes? other)

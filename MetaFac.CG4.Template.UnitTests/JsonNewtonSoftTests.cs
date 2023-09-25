@@ -45,7 +45,7 @@ namespace MetaFac.CG4.Template.UnitTests
             concrete.T_UnaryModelFieldName_.Should().BeNull();
             concrete.T_ArrayModelFieldName_.Should().BeNull();
             concrete.T_IndexModelFieldName_.Should().BeNull();
-            concrete.T_UnaryOtherFieldName_.Should().Be(default);
+            concrete.T_UnaryOtherFieldName_.Should().Be(new SampleInternal(0));
             concrete.T_ArrayOtherFieldName_.Should().BeNull();
             concrete.T_IndexOtherFieldName_.Should().BeNull();
             concrete.T_UnaryMaybeFieldName_.Should().BeNull();
@@ -147,8 +147,8 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", new T_ModelType_(456))
                     .Add("876", null),
                 T_UnaryOtherFieldName_ = 123L,
-                T_ArrayOtherFieldName_ = ImmutableList<T_ExternalOtherType_>.Empty.Add(234L),
-                T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty
+                T_ArrayOtherFieldName_ = ImmutableList<SampleInternal>.Empty.Add(234L),
+                T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, SampleInternal>.Empty
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryMaybeFieldName_ = null,
@@ -219,8 +219,8 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", new T_ModelType_(456))
                     .Add("876", null),
                 T_UnaryOtherFieldName_ = 123L,
-                T_ArrayOtherFieldName_ = ImmutableList<T_ExternalOtherType_>.Empty.Add(234L),
-                T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty
+                T_ArrayOtherFieldName_ = ImmutableList<SampleInternal>.Empty.Add(234L),
+                T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, SampleInternal>.Empty
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryMaybeFieldName_ = null,
@@ -278,8 +278,8 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", new T_ModelType_(456))
                     .Add("876", null),
                 T_UnaryOtherFieldName_ = 123L,
-                T_ArrayOtherFieldName_ = ImmutableList<T_ExternalOtherType_>.Empty.Add(234L),
-                T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty
+                T_ArrayOtherFieldName_ = ImmutableList<SampleInternal>.Empty.Add(234L),
+                T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, SampleInternal>.Empty
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryMaybeFieldName_ = null,
@@ -338,8 +338,8 @@ namespace MetaFac.CG4.Template.UnitTests
                     .Add("987", new T_ModelType_(456))
                     .Add("876", null),
                 T_UnaryOtherFieldName_ = 123L,
-                T_ArrayOtherFieldName_ = ImmutableList<T_ExternalOtherType_>.Empty.Add(234L),
-                T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalOtherType_>.Empty
+                T_ArrayOtherFieldName_ = ImmutableList<SampleInternal>.Empty.Add(234L),
+                T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, SampleInternal>.Empty
                     .Add("987", 456L)
                     .Add("876", default),
                 T_UnaryMaybeFieldName_ = null,
