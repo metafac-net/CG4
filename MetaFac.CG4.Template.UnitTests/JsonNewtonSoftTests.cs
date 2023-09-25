@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using MetaFac.CG4.Attributes;
 using MetaFac.CG4.Runtime;
 using Newtonsoft.Json;
 using System;
@@ -13,7 +12,6 @@ using Xunit;
 namespace MetaFac.CG4.Template.UnitTests
 {
     using T_ExternalMaybeType_ = DayOfWeek;
-    using T_ExternalOtherType_ = Int64;
     using T_IndexType_ = String;
 
     public class JsonNewtonSoftTests

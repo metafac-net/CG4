@@ -1,6 +1,4 @@
 using FluentAssertions;
-using MessagePack;
-using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
 using System;
 using System.Threading.Tasks;
 using VerifyXunit;
