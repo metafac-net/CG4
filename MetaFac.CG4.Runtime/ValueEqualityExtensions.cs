@@ -113,61 +113,7 @@ namespace MetaFac.CG4.Runtime
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ArrayEquals(this IReadOnlyList<ReadOnlyMemory<byte>>? self, in IReadOnlyList<ReadOnlyMemory<byte>>? other)
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            if (self.Count != other.Count) return false;
-            for (int i = 0; i < self.Count; i++)
-            {
-                if (!self[i].ValueEquals(other[i])) return false;
-            }
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ArrayEquals(this IReadOnlyList<ImmutableArray<byte>>? self, in IReadOnlyList<ImmutableArray<byte>>? other)
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            if (self.Count != other.Count) return false;
-            for (int i = 0; i < self.Count; i++)
-            {
-                if (!self[i].ValueEquals(other[i])) return false;
-            }
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IndexEquals<TKey, T>(this IReadOnlyDictionary<TKey, T?>? self, in IReadOnlyDictionary<TKey, T?>? other)
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            if (self.Count != other.Count) return false;
-            foreach (var kvp in self)
-            {
-                if (!self.TryGetValue(kvp.Key, out var otherValue)) return false;
-                if (!kvp.Value.ValueEquals(otherValue)) return false;
-            }
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IndexEquals<TKey>(this IReadOnlyDictionary<TKey, ReadOnlyMemory<byte>>? self, in IReadOnlyDictionary<TKey, ReadOnlyMemory<byte>>? other)
-        {
-            if (self is null) return other is null;
-            if (other is null) return false;
-            if (self.Count != other.Count) return false;
-            foreach (var kvp in self)
-            {
-                if (!self.TryGetValue(kvp.Key, out var otherValue)) return false;
-                if (!kvp.Value.ValueEquals(otherValue)) return false;
-            }
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IndexEquals<TKey>(this IReadOnlyDictionary<TKey, ImmutableArray<byte>>? self, in IReadOnlyDictionary<TKey, ImmutableArray<byte>>? other)
         {
             if (self is null) return other is null;
             if (other is null) return false;
