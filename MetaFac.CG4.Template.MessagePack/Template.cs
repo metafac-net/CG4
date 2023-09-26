@@ -277,7 +277,7 @@ namespace T_Namespace_.MessagePack
             field_T_UnaryModelFieldName_?.Freeze();
             //>>                        break;
             //>>                    case FieldKind.ArrayModel:
-            if (!(field_T_ArrayModelFieldName_ is null))
+            if (field_T_ArrayModelFieldName_ is not null)
             {
                 foreach (var element in field_T_ArrayModelFieldName_)
                 {
@@ -286,7 +286,7 @@ namespace T_Namespace_.MessagePack
             }
             //>>                        break;
             //>>                    case FieldKind.IndexModel:
-            if (!(field_T_IndexModelFieldName_ is null))
+            if (field_T_IndexModelFieldName_ is not null)
             {
                 foreach (var element in field_T_IndexModelFieldName_.Values)
                 {

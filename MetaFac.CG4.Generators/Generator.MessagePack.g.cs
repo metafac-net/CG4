@@ -289,7 +289,7 @@ Emit("        {");
 Emit("            field_T_UnaryModelFieldName_?.Freeze();");
                                     break;
                                 case FieldKind.ArrayModel:
-Emit("            if (!(field_T_ArrayModelFieldName_ is null))");
+Emit("            if (field_T_ArrayModelFieldName_ is not null)");
 Emit("            {");
 Emit("                foreach (var element in field_T_ArrayModelFieldName_)");
 Emit("                {");
@@ -298,7 +298,7 @@ Emit("                }");
 Emit("            }");
                                     break;
                                 case FieldKind.IndexModel:
-Emit("            if (!(field_T_IndexModelFieldName_ is null))");
+Emit("            if (field_T_IndexModelFieldName_ is not null)");
 Emit("            {");
 Emit("                foreach (var element in field_T_IndexModelFieldName_.Values)");
 Emit("                {");
