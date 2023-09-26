@@ -72,7 +72,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_bool()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, bool?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -92,7 +93,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_sbyte()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, sbyte?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -111,7 +113,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_byte()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, byte?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -131,7 +134,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_short()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, short?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -150,7 +154,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_ushort()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, ushort?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -169,7 +174,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_char()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, char?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -189,7 +195,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_int()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, int?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -208,7 +215,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_uint()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, uint?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -237,7 +245,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_float()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, float?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -257,7 +266,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_long()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, long?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -276,7 +286,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_ulong()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, ulong?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -305,7 +316,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_double()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, double?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -324,7 +336,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_DayOfWeek()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, DayOfWeek?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -351,7 +364,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_decimal()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, decimal?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -377,7 +391,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_DateTime()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, DateTime?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -402,7 +417,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_TimeSpan()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, TimeSpan?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -428,7 +444,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_DateTimeOffset()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, DateTimeOffset?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -452,7 +469,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_Guid()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, Guid?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -471,7 +489,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_MyCustomEnum()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, MyCustomEnum?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -506,7 +525,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_Quantity()
             {
                 ScalarOptional = value,
-                VectorOptional = ImmutableList.Create(value)
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, Quantity?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -523,7 +543,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_string()
             {
                 Scalar = value,
-                Vector = ImmutableList.Create(value)
+                Vector = ImmutableList.Create(value),
+                MapValue = ImmutableDictionary<string, string?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
@@ -546,7 +567,8 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new BasicTypes.RecordsV2.Basic_Octets()
             {
                 Scalar = value,
-                Vector = ImmutableList.Create(value)
+                Vector = ImmutableList.Create(value),
+                MapValue = ImmutableDictionary<string, Octets?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, jsonFactory);
         }
