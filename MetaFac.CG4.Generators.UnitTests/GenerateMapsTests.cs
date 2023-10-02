@@ -54,5 +54,14 @@ namespace MetaFac.CG4.Generators.UnitTests
             string sourceCode = GenerateSourceCode(generator);
             await Verifier.Verify(sourceCode);
         }
+
+        [Fact]
+        public async Task Generate_JsonSystemText()
+        {
+            var generator = new Generator.JsonSystemText.Generator();
+            string sourceCode = GenerateSourceCode(generator);
+            await Verifier.Verify(sourceCode);
+        }
+
     }
 }

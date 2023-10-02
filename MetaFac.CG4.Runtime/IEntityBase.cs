@@ -2,7 +2,7 @@
 {
     public interface IEntityFactory<TInterface, TConcrete>
     {
-        TConcrete? CreateFrom(TInterface source);
+        TConcrete? CreateFrom(TInterface? source);
         TConcrete Empty { get; }
     }
     public interface IEntityBase

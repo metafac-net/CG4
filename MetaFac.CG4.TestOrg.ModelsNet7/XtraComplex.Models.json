@@ -1,0 +1,85 @@
+{
+  "ModelDefs": [
+    {
+      "Tag": 1,
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "Tree",
+          "Tag": 1,
+          "MemberDefs": [
+            {
+              "Name": "Value",
+              "Tag": 1,
+              "InnerType": "Node",
+              "IsModelType": true
+            },
+            {
+              "Name": "A",
+              "Tag": 2,
+              "InnerType": "Tree",
+              "IsModelType": true
+            },
+            {
+              "Name": "B",
+              "Tag": 3,
+              "InnerType": "Tree",
+              "IsModelType": true
+            }
+          ]
+        },
+        {
+          "Name": "Node",
+          "Tag": 2,
+          "MemberDefs": []
+        },
+        {
+          "Name": "StrNode",
+          "Tag": 3,
+          "ParentName": "Node",
+          "MemberDefs": [
+            {
+              "Name": "StrVal",
+              "Tag": 1,
+              "InnerType": "string"
+            }
+          ]
+        },
+        {
+          "Name": "NumNode",
+          "Tag": 4,
+          "ParentName": "Node",
+          "MemberDefs": []
+        },
+        {
+          "Name": "LongNode",
+          "Tag": 5,
+          "ParentName": "NumNode",
+          "MemberDefs": [
+            {
+              "Name": "LongVal",
+              "Tag": 1,
+              "InnerType": "int64"
+            }
+          ]
+        },
+        {
+          "Name": "DaynNode",
+          "Tag": 6,
+          "ParentName": "NumNode",
+          "MemberDefs": [
+            {
+              "Name": "DaynVal",
+              "Tag": 1,
+              "InnerType": "System.DayOfWeek"
+            }
+          ]
+        }
+      ],
+      "EnumTypeDefs": []
+    }
+  ],
+  "Tokens": {
+    "Metadata": "MetaFac.CG4.TestOrg.Schema(.XtraComplex)"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "ModelDefs": [
+    {
+      "Tag": 1,
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "Tree",
+          "Tag": 1,
+          "MemberDefs": [
+            {
+              "Name": "Id",
+              "Tag": 1,
+              "InnerType": "int32"
+            },
+            {
+              "Name": "A",
+              "Tag": 2,
+              "InnerType": "Tree",
+              "IsModelType": true
+            },
+            {
+              "Name": "B",
+              "Tag": 3,
+              "InnerType": "Tree",
+              "IsModelType": true
+            }
+          ]
+        }
+      ],
+      "EnumTypeDefs": []
+    }
+  ],
+  "Tokens": {
+    "Metadata": "MetaFac.CG4.TestOrg.Schema(.Recursive)"
+  }
+}

@@ -1,0 +1,30 @@
+﻿{
+  "Value": {
+    "$type": 3,
+    "StrVal": "abc"
+  },
+  "A": {
+    "Value": {
+      "$type": 6,
+      "DaynVal": 1
+    },
+    "A": {
+      "Value": {
+        "$type": 6,
+        "DaynVal": 2
+      }
+    }
+  },
+  "B": {
+    "Value": {
+      "$type": 5,
+      "LongVal": -1
+    },
+    "B": {
+      "Value": {
+        "$type": 5,
+        "LongVal": -2
+      }
+    }
+  }
+}

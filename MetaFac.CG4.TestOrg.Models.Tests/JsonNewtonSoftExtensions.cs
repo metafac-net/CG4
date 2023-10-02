@@ -14,18 +14,18 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple,
         };
 
-        public static string SerializeToJson<T>(this T value)
+        public static string SerializeToJsonNewtonSoft<T>(this T value)
         {
             using var writer = new StringWriter();
             serializer.Serialize(writer, value);
             return writer.ToString();
         }
 
-        public static T DeserializeFromJson<T>(this string buffer)
+        public static T? DeserializeFromJsonNewtonSoft<T>(this string buffer)
         {
             using var tr = new StringReader(buffer);
             using var reader = new JsonTextReader(tr);
-            return serializer.Deserialize<T>(reader) ?? throw new JsonSerializationException();
+            return serializer.Deserialize<T>(reader);
         }
     }
 }

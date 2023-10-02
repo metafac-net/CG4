@@ -41,6 +41,7 @@ namespace MetaFac.CG4.Generators
                 GeneratorId.ClassesV2 => new MetaFac.CG4.Generator.ClassesV2.Generator(),
                 GeneratorId.MessagePack => new MetaFac.CG4.Generator.MessagePack.Generator(),
                 GeneratorId.JsonNewtonSoft => new MetaFac.CG4.Generator.JsonNewtonSoft.Generator(),
+                GeneratorId.JsonSystemText => new MetaFac.CG4.Generator.JsonSystemText.Generator(),
                 _ => throw new NotSupportedException($"GeneratorId: {generatorId}"),
             };
             return generator;

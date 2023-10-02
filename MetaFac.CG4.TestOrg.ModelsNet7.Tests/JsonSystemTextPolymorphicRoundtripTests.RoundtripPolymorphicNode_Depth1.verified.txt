@@ -1,0 +1,6 @@
+﻿{
+  "$type": 3,
+  "StrValue": "Value1",
+  "Id": 1,
+  "Name": "string"
+}

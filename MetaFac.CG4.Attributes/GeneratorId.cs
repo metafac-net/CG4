@@ -8,5 +8,6 @@
         ClassesV2 = 3,
         RecordsV2 = 4,
         JsonNewtonSoft = 5,
+        JsonSystemText = 6,
     }
 }

@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using MessagePack;
 using MetaFac.Memory;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Immutable;
 using System.IO;
@@ -16,7 +15,7 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             MessagePack,
             JsonNewtonSoft,
-            // todo JsonSystemText,
+            JsonSystemText,
             // todo JsonMessagePack,
             // todo ProtobufNet3
         }
@@ -36,11 +35,17 @@ namespace MetaFac.CG4.Template.UnitTests
             ArrayBytes,
         }
 
-        private static readonly JsonSerializer jsonSerializer = new JsonSerializer()
+        private static readonly Newtonsoft.Json.JsonSerializer nsJsonSerializer = new Newtonsoft.Json.JsonSerializer()
         {
-            Formatting = Formatting.Indented,
+            Formatting = Newtonsoft.Json. Formatting.Indented,
             //NullValueHandling = NullValueHandling.Ignore,
-            DefaultValueHandling = DefaultValueHandling.Ignore
+            DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore
+        };
+
+        private static readonly System.Text.Json.JsonSerializerOptions msJsonSerializerOptions = new System.Text.Json.JsonSerializerOptions()
+        {
+            WriteIndented = true,
+            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault
         };
 
         private static readonly MessagePackSerializerOptions messagePackOptions
@@ -48,20 +53,20 @@ namespace MetaFac.CG4.Template.UnitTests
                 .Standard
                 .WithCompression(MessagePackCompression.Lz4Block);
 
-        private static string SerializeToJson<T>(T value)
+        private static string SerializeToNewtonsoftJson<T>(T value)
         {
             using (var writer = new StringWriter())
             {
-                jsonSerializer.Serialize(writer, value);
+                nsJsonSerializer.Serialize(writer, value);
                 return writer.ToString();
             }
         }
 
-        private static T DeserializeFromJson<T>(string buffer)
+        private static T DeserializeFromNewtonsoftJson<T>(string buffer)
         {
             using var tr = new StringReader(buffer);
-            using var reader = new JsonTextReader(tr);
-            return jsonSerializer.Deserialize<T>(reader) ?? throw new JsonSerializationException();
+            using var reader = new Newtonsoft.Json.JsonTextReader(tr);
+            return nsJsonSerializer.Deserialize<T>(reader) ?? throw new Newtonsoft.Json.JsonSerializationException();
         }
 
         private static string CreateAndSerialize(WireFormat wf, T_Namespace_.Contracts.IT_EntityName_ source)
@@ -80,7 +85,14 @@ namespace MetaFac.CG4.Template.UnitTests
                     {
                         var original = new T_Namespace_.JsonNewtonSoft.T_EntityName_(source);
                         original.Freeze();
-                        string text = SerializeToJson(original);
+                        string text = SerializeToNewtonsoftJson(original);
+                        return text;
+                    }
+                case WireFormat.JsonSystemText:
+                    {
+                        var original = new T_Namespace_.JsonSystemText.T_EntityName_(source);
+                        original.Freeze();
+                        string text = System.Text.Json.JsonSerializer.Serialize(original, msJsonSerializerOptions);
                         return text;
                     }
                 default:
@@ -105,7 +117,12 @@ namespace MetaFac.CG4.Template.UnitTests
                     }
                 case WireFormat.JsonNewtonSoft:
                     {
-                        var duplicate = DeserializeFromJson<T_Namespace_.JsonNewtonSoft.T_EntityName_>(text);
+                        var duplicate = DeserializeFromNewtonsoftJson<T_Namespace_.JsonNewtonSoft.T_EntityName_>(text);
+                        return new T_Namespace_.RecordsV2.T_EntityName_(duplicate);
+                    }
+                case WireFormat.JsonSystemText:
+                    {
+                        var duplicate = System.Text.Json.JsonSerializer.Deserialize<T_Namespace_.JsonSystemText.T_EntityName_>(text, msJsonSerializerOptions);
                         return new T_Namespace_.RecordsV2.T_EntityName_(duplicate);
                     }
                 default:
@@ -149,6 +166,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Theory]
         [InlineData(WireFormat.MessagePack, "C7-1C-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-90-00-C0-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.JsonNewtonSoft, "{}")]
+        [InlineData(WireFormat.JsonSystemText, "{}")]
         public void RoundTrip_MultiFormat_Empty(WireFormat wf, string expected)
         {
             var original = new T_Namespace_.RecordsV2.T_EntityName_() { };
@@ -268,6 +286,98 @@ namespace MetaFac.CG4.Template.UnitTests
             }
             """)]
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.ArrayBytes,
+            """
+            {
+              "T_ArrayBufferFieldName_": [
+                "AQID",
+                null,
+                "BAUG"
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryOther,
+            """
+            {
+              "T_UnaryOtherFieldName_": {
+                "Value": 1
+              }
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryMaybe,
+            """
+            {
+              "T_UnaryMaybeFieldName_": 1
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryModel,
+            """
+            {
+              "T_UnaryModelFieldName_": {
+                "TestData": 123
+              }
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryChars,
+            """
+            {
+              "T_UnaryStringFieldName_": "abc"
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryBytes,
+            """
+            {
+              "T_UnaryBufferFieldName_": "AQID"
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayOther,
+            """
+            {
+              "T_ArrayOtherFieldName_": [
+                {
+                  "Value": -1
+                },
+                {},
+                {
+                  "Value": 1
+                }
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayMaybe,
+            """
+            {
+              "T_ArrayMaybeFieldName_": [
+                1,
+                null,
+                2
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayModel,
+            """
+            {
+              "T_ArrayModelFieldName_": [
+                {
+                  "TestData": 123
+                },
+                null,
+                {
+                  "TestData": 456
+                }
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayChars,
+            """
+            {
+              "T_ArrayStringFieldName_": [
+                "abc",
+                null,
+                "def"
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayBytes,
             """
             {
               "T_ArrayBufferFieldName_": [

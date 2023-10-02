@@ -6,7 +6,6 @@ using Xunit;
 
 namespace MetaFac.CG4.TestOrg.Models.Tests
 {
-
     [UsesVerify]
     public class JsonNewtonSoftPolymorphicRoundtripTests
     {
@@ -15,9 +14,9 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             Polymorphic.RecordsV2.ValueNode original = new Polymorphic.RecordsV2.StringNode() { Id = 1, Name = "string", StrValue = "Value1" };
             Polymorphic.JsonNewtonSoft.ValueNode outgoing = Polymorphic.JsonNewtonSoft.ValueNode_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
-            var buffer = outgoing.SerializeToJson<Polymorphic.JsonNewtonSoft.ValueNode>();
+            var buffer = outgoing.SerializeToJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
             await Verifier.Verify(buffer);
-            var incoming = buffer.DeserializeFromJson<Polymorphic.JsonNewtonSoft.ValueNode>();
+            var incoming = buffer.DeserializeFromJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
             incoming.Should().Be(outgoing);
             Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
@@ -29,9 +28,9 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             Polymorphic.RecordsV2.ValueNode original = new Polymorphic.RecordsV2.Int64Node() { Id = 1, Name = "long", LongValue = 123456L };
             Polymorphic.JsonNewtonSoft.ValueNode outgoing = Polymorphic.JsonNewtonSoft.ValueNode_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
-            var buffer = outgoing.SerializeToJson<Polymorphic.JsonNewtonSoft.ValueNode>();
+            var buffer = outgoing.SerializeToJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
             await Verifier.Verify(buffer);
-            var incoming = buffer.DeserializeFromJson<Polymorphic.JsonNewtonSoft.ValueNode>();
+            var incoming = buffer.DeserializeFromJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
             incoming.Should().Be(outgoing);
             Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
             duplicate.Should().Be(original);
