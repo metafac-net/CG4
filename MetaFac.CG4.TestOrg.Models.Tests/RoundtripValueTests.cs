@@ -572,5 +572,33 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
         }
 
+        [Theory]
+        [InlineData("0")]
+        [InlineData("1")]
+        [InlineData("-1")]
+        [InlineData("min")]
+        [InlineData("max")]
+        [InlineData(null)]
+        public void RoundtripValues_Half(string? input)
+        {
+            Half? value = input switch
+            {
+                null => null,
+                "min" => Half.MinValue,
+                "max" => Half.MaxValue,
+                _ => Half.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_Half_Factory.Instance;
+            var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Half_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_Half_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_Half()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, Half?>.Empty.Add("key", value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+        }
+
     }
 }

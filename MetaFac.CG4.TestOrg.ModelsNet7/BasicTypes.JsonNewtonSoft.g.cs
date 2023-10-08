@@ -74,7 +74,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Boolean>? field_VectorRequired;
         IReadOnlyList<Boolean>? IBasic_bool.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Boolean, Boolean>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Boolean, Boolean>(field_VectorRequired, (x) => x);
         public ImmutableList<Boolean>? VectorRequired
         {
             get => field_VectorRequired;
@@ -83,7 +83,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Boolean?>? field_VectorOptional;
         IReadOnlyList<Boolean?>? IBasic_bool.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Boolean?, Boolean?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Boolean?, Boolean?>(field_VectorOptional, (x) => x);
         public ImmutableList<Boolean?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -92,7 +92,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Boolean>? field_MapRequired;
         IReadOnlyDictionary<String, Boolean>? IBasic_bool.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Boolean, Boolean>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Boolean, Boolean>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Boolean>? MapRequired
         {
             get => field_MapRequired;
@@ -101,7 +101,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Boolean?>? field_MapOptional;
         IReadOnlyDictionary<String, Boolean?>? IBasic_bool.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Boolean?, Boolean?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Boolean?, Boolean?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Boolean?>? MapOptional
         {
             get => field_MapOptional;
@@ -245,7 +245,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<SByte>? field_VectorRequired;
         IReadOnlyList<SByte>? IBasic_sbyte.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<SByte, SByte>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<SByte, SByte>(field_VectorRequired, (x) => x);
         public ImmutableList<SByte>? VectorRequired
         {
             get => field_VectorRequired;
@@ -254,7 +254,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<SByte?>? field_VectorOptional;
         IReadOnlyList<SByte?>? IBasic_sbyte.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<SByte?, SByte?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<SByte?, SByte?>(field_VectorOptional, (x) => x);
         public ImmutableList<SByte?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -263,7 +263,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, SByte>? field_MapRequired;
         IReadOnlyDictionary<String, SByte>? IBasic_sbyte.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, SByte, SByte>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, SByte, SByte>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, SByte>? MapRequired
         {
             get => field_MapRequired;
@@ -272,7 +272,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, SByte?>? field_MapOptional;
         IReadOnlyDictionary<String, SByte?>? IBasic_sbyte.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, SByte?, SByte?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, SByte?, SByte?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, SByte?>? MapOptional
         {
             get => field_MapOptional;
@@ -416,7 +416,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Byte>? field_VectorRequired;
         IReadOnlyList<Byte>? IBasic_byte.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Byte, Byte>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Byte, Byte>(field_VectorRequired, (x) => x);
         public ImmutableList<Byte>? VectorRequired
         {
             get => field_VectorRequired;
@@ -425,7 +425,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Byte?>? field_VectorOptional;
         IReadOnlyList<Byte?>? IBasic_byte.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Byte?, Byte?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Byte?, Byte?>(field_VectorOptional, (x) => x);
         public ImmutableList<Byte?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -434,7 +434,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Byte>? field_MapRequired;
         IReadOnlyDictionary<String, Byte>? IBasic_byte.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Byte, Byte>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Byte, Byte>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Byte>? MapRequired
         {
             get => field_MapRequired;
@@ -443,7 +443,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Byte?>? field_MapOptional;
         IReadOnlyDictionary<String, Byte?>? IBasic_byte.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Byte?, Byte?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Byte?, Byte?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Byte?>? MapOptional
         {
             get => field_MapOptional;
@@ -587,7 +587,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Int16>? field_VectorRequired;
         IReadOnlyList<Int16>? IBasic_short.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Int16, Int16>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Int16, Int16>(field_VectorRequired, (x) => x);
         public ImmutableList<Int16>? VectorRequired
         {
             get => field_VectorRequired;
@@ -596,7 +596,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Int16?>? field_VectorOptional;
         IReadOnlyList<Int16?>? IBasic_short.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Int16?, Int16?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Int16?, Int16?>(field_VectorOptional, (x) => x);
         public ImmutableList<Int16?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -605,7 +605,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Int16>? field_MapRequired;
         IReadOnlyDictionary<String, Int16>? IBasic_short.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Int16, Int16>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Int16, Int16>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Int16>? MapRequired
         {
             get => field_MapRequired;
@@ -614,7 +614,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Int16?>? field_MapOptional;
         IReadOnlyDictionary<String, Int16?>? IBasic_short.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Int16?, Int16?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Int16?, Int16?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Int16?>? MapOptional
         {
             get => field_MapOptional;
@@ -758,7 +758,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<UInt16>? field_VectorRequired;
         IReadOnlyList<UInt16>? IBasic_ushort.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<UInt16, UInt16>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<UInt16, UInt16>(field_VectorRequired, (x) => x);
         public ImmutableList<UInt16>? VectorRequired
         {
             get => field_VectorRequired;
@@ -767,7 +767,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<UInt16?>? field_VectorOptional;
         IReadOnlyList<UInt16?>? IBasic_ushort.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<UInt16?, UInt16?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<UInt16?, UInt16?>(field_VectorOptional, (x) => x);
         public ImmutableList<UInt16?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -776,7 +776,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, UInt16>? field_MapRequired;
         IReadOnlyDictionary<String, UInt16>? IBasic_ushort.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, UInt16, UInt16>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, UInt16, UInt16>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, UInt16>? MapRequired
         {
             get => field_MapRequired;
@@ -785,7 +785,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, UInt16?>? field_MapOptional;
         IReadOnlyDictionary<String, UInt16?>? IBasic_ushort.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, UInt16?, UInt16?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, UInt16?, UInt16?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, UInt16?>? MapOptional
         {
             get => field_MapOptional;
@@ -929,7 +929,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Char>? field_VectorRequired;
         IReadOnlyList<Char>? IBasic_char.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Char, Char>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Char, Char>(field_VectorRequired, (x) => x);
         public ImmutableList<Char>? VectorRequired
         {
             get => field_VectorRequired;
@@ -938,7 +938,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Char?>? field_VectorOptional;
         IReadOnlyList<Char?>? IBasic_char.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Char?, Char?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Char?, Char?>(field_VectorOptional, (x) => x);
         public ImmutableList<Char?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -947,7 +947,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Char>? field_MapRequired;
         IReadOnlyDictionary<String, Char>? IBasic_char.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Char, Char>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Char, Char>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Char>? MapRequired
         {
             get => field_MapRequired;
@@ -956,7 +956,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Char?>? field_MapOptional;
         IReadOnlyDictionary<String, Char?>? IBasic_char.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Char?, Char?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Char?, Char?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Char?>? MapOptional
         {
             get => field_MapOptional;
@@ -1100,7 +1100,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Int32>? field_VectorRequired;
         IReadOnlyList<Int32>? IBasic_int.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Int32, Int32>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Int32, Int32>(field_VectorRequired, (x) => x);
         public ImmutableList<Int32>? VectorRequired
         {
             get => field_VectorRequired;
@@ -1109,7 +1109,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Int32?>? field_VectorOptional;
         IReadOnlyList<Int32?>? IBasic_int.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Int32?, Int32?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Int32?, Int32?>(field_VectorOptional, (x) => x);
         public ImmutableList<Int32?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -1118,7 +1118,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Int32>? field_MapRequired;
         IReadOnlyDictionary<String, Int32>? IBasic_int.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Int32, Int32>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Int32, Int32>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Int32>? MapRequired
         {
             get => field_MapRequired;
@@ -1127,7 +1127,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Int32?>? field_MapOptional;
         IReadOnlyDictionary<String, Int32?>? IBasic_int.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Int32?, Int32?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Int32?, Int32?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Int32?>? MapOptional
         {
             get => field_MapOptional;
@@ -1271,7 +1271,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<UInt32>? field_VectorRequired;
         IReadOnlyList<UInt32>? IBasic_uint.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<UInt32, UInt32>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<UInt32, UInt32>(field_VectorRequired, (x) => x);
         public ImmutableList<UInt32>? VectorRequired
         {
             get => field_VectorRequired;
@@ -1280,7 +1280,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<UInt32?>? field_VectorOptional;
         IReadOnlyList<UInt32?>? IBasic_uint.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<UInt32?, UInt32?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<UInt32?, UInt32?>(field_VectorOptional, (x) => x);
         public ImmutableList<UInt32?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -1289,7 +1289,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, UInt32>? field_MapRequired;
         IReadOnlyDictionary<String, UInt32>? IBasic_uint.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, UInt32, UInt32>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, UInt32, UInt32>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, UInt32>? MapRequired
         {
             get => field_MapRequired;
@@ -1298,7 +1298,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, UInt32?>? field_MapOptional;
         IReadOnlyDictionary<String, UInt32?>? IBasic_uint.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, UInt32?, UInt32?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, UInt32?, UInt32?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, UInt32?>? MapOptional
         {
             get => field_MapOptional;
@@ -1442,7 +1442,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Single>? field_VectorRequired;
         IReadOnlyList<Single>? IBasic_float.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Single, Single>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Single, Single>(field_VectorRequired, (x) => x);
         public ImmutableList<Single>? VectorRequired
         {
             get => field_VectorRequired;
@@ -1451,7 +1451,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Single?>? field_VectorOptional;
         IReadOnlyList<Single?>? IBasic_float.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Single?, Single?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Single?, Single?>(field_VectorOptional, (x) => x);
         public ImmutableList<Single?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -1460,7 +1460,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Single>? field_MapRequired;
         IReadOnlyDictionary<String, Single>? IBasic_float.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Single, Single>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Single, Single>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Single>? MapRequired
         {
             get => field_MapRequired;
@@ -1469,7 +1469,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Single?>? field_MapOptional;
         IReadOnlyDictionary<String, Single?>? IBasic_float.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Single?, Single?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Single?, Single?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Single?>? MapOptional
         {
             get => field_MapOptional;
@@ -1613,7 +1613,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Int64>? field_VectorRequired;
         IReadOnlyList<Int64>? IBasic_long.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Int64, Int64>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Int64, Int64>(field_VectorRequired, (x) => x);
         public ImmutableList<Int64>? VectorRequired
         {
             get => field_VectorRequired;
@@ -1622,7 +1622,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Int64?>? field_VectorOptional;
         IReadOnlyList<Int64?>? IBasic_long.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Int64?, Int64?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Int64?, Int64?>(field_VectorOptional, (x) => x);
         public ImmutableList<Int64?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -1631,7 +1631,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Int64>? field_MapRequired;
         IReadOnlyDictionary<String, Int64>? IBasic_long.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Int64, Int64>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Int64, Int64>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Int64>? MapRequired
         {
             get => field_MapRequired;
@@ -1640,7 +1640,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Int64?>? field_MapOptional;
         IReadOnlyDictionary<String, Int64?>? IBasic_long.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Int64?, Int64?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Int64?, Int64?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Int64?>? MapOptional
         {
             get => field_MapOptional;
@@ -1784,7 +1784,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<UInt64>? field_VectorRequired;
         IReadOnlyList<UInt64>? IBasic_ulong.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<UInt64, UInt64>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<UInt64, UInt64>(field_VectorRequired, (x) => x);
         public ImmutableList<UInt64>? VectorRequired
         {
             get => field_VectorRequired;
@@ -1793,7 +1793,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<UInt64?>? field_VectorOptional;
         IReadOnlyList<UInt64?>? IBasic_ulong.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<UInt64?, UInt64?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<UInt64?, UInt64?>(field_VectorOptional, (x) => x);
         public ImmutableList<UInt64?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -1802,7 +1802,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, UInt64>? field_MapRequired;
         IReadOnlyDictionary<String, UInt64>? IBasic_ulong.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, UInt64, UInt64>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, UInt64, UInt64>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, UInt64>? MapRequired
         {
             get => field_MapRequired;
@@ -1811,7 +1811,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, UInt64?>? field_MapOptional;
         IReadOnlyDictionary<String, UInt64?>? IBasic_ulong.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, UInt64?, UInt64?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, UInt64?, UInt64?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, UInt64?>? MapOptional
         {
             get => field_MapOptional;
@@ -1955,7 +1955,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Double>? field_VectorRequired;
         IReadOnlyList<Double>? IBasic_double.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Double, Double>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Double, Double>(field_VectorRequired, (x) => x);
         public ImmutableList<Double>? VectorRequired
         {
             get => field_VectorRequired;
@@ -1964,7 +1964,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Double?>? field_VectorOptional;
         IReadOnlyList<Double?>? IBasic_double.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Double?, Double?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Double?, Double?>(field_VectorOptional, (x) => x);
         public ImmutableList<Double?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -1973,7 +1973,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Double>? field_MapRequired;
         IReadOnlyDictionary<String, Double>? IBasic_double.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Double, Double>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Double, Double>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Double>? MapRequired
         {
             get => field_MapRequired;
@@ -1982,7 +1982,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Double?>? field_MapOptional;
         IReadOnlyDictionary<String, Double?>? IBasic_double.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Double?, Double?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Double?, Double?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Double?>? MapOptional
         {
             get => field_MapOptional;
@@ -2126,7 +2126,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<DateTime>? field_VectorRequired;
         IReadOnlyList<DateTime>? IBasic_DateTime.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<DateTime, DateTime>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<DateTime, DateTime>(field_VectorRequired, (x) => x);
         public ImmutableList<DateTime>? VectorRequired
         {
             get => field_VectorRequired;
@@ -2135,7 +2135,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<DateTime?>? field_VectorOptional;
         IReadOnlyList<DateTime?>? IBasic_DateTime.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<DateTime?, DateTime?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<DateTime?, DateTime?>(field_VectorOptional, (x) => x);
         public ImmutableList<DateTime?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -2144,7 +2144,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, DateTime>? field_MapRequired;
         IReadOnlyDictionary<String, DateTime>? IBasic_DateTime.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, DateTime, DateTime>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, DateTime, DateTime>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, DateTime>? MapRequired
         {
             get => field_MapRequired;
@@ -2153,7 +2153,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, DateTime?>? field_MapOptional;
         IReadOnlyDictionary<String, DateTime?>? IBasic_DateTime.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, DateTime?, DateTime?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, DateTime?, DateTime?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, DateTime?>? MapOptional
         {
             get => field_MapOptional;
@@ -2297,7 +2297,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<TimeSpan>? field_VectorRequired;
         IReadOnlyList<TimeSpan>? IBasic_TimeSpan.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<TimeSpan, TimeSpan>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<TimeSpan, TimeSpan>(field_VectorRequired, (x) => x);
         public ImmutableList<TimeSpan>? VectorRequired
         {
             get => field_VectorRequired;
@@ -2306,7 +2306,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<TimeSpan?>? field_VectorOptional;
         IReadOnlyList<TimeSpan?>? IBasic_TimeSpan.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<TimeSpan?, TimeSpan?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<TimeSpan?, TimeSpan?>(field_VectorOptional, (x) => x);
         public ImmutableList<TimeSpan?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -2315,7 +2315,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, TimeSpan>? field_MapRequired;
         IReadOnlyDictionary<String, TimeSpan>? IBasic_TimeSpan.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, TimeSpan, TimeSpan>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, TimeSpan, TimeSpan>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, TimeSpan>? MapRequired
         {
             get => field_MapRequired;
@@ -2324,7 +2324,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, TimeSpan?>? field_MapOptional;
         IReadOnlyDictionary<String, TimeSpan?>? IBasic_TimeSpan.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, TimeSpan?, TimeSpan?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, TimeSpan?, TimeSpan?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, TimeSpan?>? MapOptional
         {
             get => field_MapOptional;
@@ -2468,7 +2468,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Decimal>? field_VectorRequired;
         IReadOnlyList<Decimal>? IBasic_decimal.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Decimal, Decimal>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Decimal, Decimal>(field_VectorRequired, (x) => x);
         public ImmutableList<Decimal>? VectorRequired
         {
             get => field_VectorRequired;
@@ -2477,7 +2477,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Decimal?>? field_VectorOptional;
         IReadOnlyList<Decimal?>? IBasic_decimal.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Decimal?, Decimal?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Decimal?, Decimal?>(field_VectorOptional, (x) => x);
         public ImmutableList<Decimal?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -2486,7 +2486,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Decimal>? field_MapRequired;
         IReadOnlyDictionary<String, Decimal>? IBasic_decimal.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Decimal, Decimal>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Decimal, Decimal>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Decimal>? MapRequired
         {
             get => field_MapRequired;
@@ -2495,7 +2495,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Decimal?>? field_MapOptional;
         IReadOnlyDictionary<String, Decimal?>? IBasic_decimal.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Decimal?, Decimal?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Decimal?, Decimal?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Decimal?>? MapOptional
         {
             get => field_MapOptional;
@@ -2639,7 +2639,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<DateTimeOffset>? field_VectorRequired;
         IReadOnlyList<DateTimeOffset>? IBasic_DateTimeOffset.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<DateTimeOffset, DateTimeOffset>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<DateTimeOffset, DateTimeOffset>(field_VectorRequired, (x) => x);
         public ImmutableList<DateTimeOffset>? VectorRequired
         {
             get => field_VectorRequired;
@@ -2648,7 +2648,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<DateTimeOffset?>? field_VectorOptional;
         IReadOnlyList<DateTimeOffset?>? IBasic_DateTimeOffset.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<DateTimeOffset?, DateTimeOffset?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<DateTimeOffset?, DateTimeOffset?>(field_VectorOptional, (x) => x);
         public ImmutableList<DateTimeOffset?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -2657,7 +2657,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, DateTimeOffset>? field_MapRequired;
         IReadOnlyDictionary<String, DateTimeOffset>? IBasic_DateTimeOffset.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, DateTimeOffset, DateTimeOffset>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, DateTimeOffset, DateTimeOffset>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, DateTimeOffset>? MapRequired
         {
             get => field_MapRequired;
@@ -2666,7 +2666,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, DateTimeOffset?>? field_MapOptional;
         IReadOnlyDictionary<String, DateTimeOffset?>? IBasic_DateTimeOffset.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, DateTimeOffset?, DateTimeOffset?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, DateTimeOffset?, DateTimeOffset?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, DateTimeOffset?>? MapOptional
         {
             get => field_MapOptional;
@@ -2810,7 +2810,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Guid>? field_VectorRequired;
         IReadOnlyList<Guid>? IBasic_Guid.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<Guid, Guid>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<Guid, Guid>(field_VectorRequired, (x) => x);
         public ImmutableList<Guid>? VectorRequired
         {
             get => field_VectorRequired;
@@ -2819,7 +2819,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<Guid?>? field_VectorOptional;
         IReadOnlyList<Guid?>? IBasic_Guid.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<Guid?, Guid?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<Guid?, Guid?>(field_VectorOptional, (x) => x);
         public ImmutableList<Guid?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -2828,7 +2828,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Guid>? field_MapRequired;
         IReadOnlyDictionary<String, Guid>? IBasic_Guid.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, Guid, Guid>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Guid, Guid>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, Guid>? MapRequired
         {
             get => field_MapRequired;
@@ -2837,7 +2837,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, Guid?>? field_MapOptional;
         IReadOnlyDictionary<String, Guid?>? IBasic_Guid.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, Guid?, Guid?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Guid?, Guid?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, Guid?>? MapOptional
         {
             get => field_MapOptional;
@@ -2981,7 +2981,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<System.DayOfWeek>? field_VectorRequired;
         IReadOnlyList<System.DayOfWeek>? IBasic_DayOfWeek.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<System.DayOfWeek, System.DayOfWeek>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<System.DayOfWeek, System.DayOfWeek>(field_VectorRequired, (x) => x);
         public ImmutableList<System.DayOfWeek>? VectorRequired
         {
             get => field_VectorRequired;
@@ -2990,7 +2990,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<System.DayOfWeek?>? field_VectorOptional;
         IReadOnlyList<System.DayOfWeek?>? IBasic_DayOfWeek.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<System.DayOfWeek?, System.DayOfWeek?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<System.DayOfWeek?, System.DayOfWeek?>(field_VectorOptional, (x) => x);
         public ImmutableList<System.DayOfWeek?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -2999,7 +2999,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, System.DayOfWeek>? field_MapRequired;
         IReadOnlyDictionary<String, System.DayOfWeek>? IBasic_DayOfWeek.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, System.DayOfWeek, System.DayOfWeek>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, System.DayOfWeek, System.DayOfWeek>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, System.DayOfWeek>? MapRequired
         {
             get => field_MapRequired;
@@ -3008,7 +3008,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, System.DayOfWeek?>? field_MapOptional;
         IReadOnlyDictionary<String, System.DayOfWeek?>? IBasic_DayOfWeek.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, System.DayOfWeek?, System.DayOfWeek?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, System.DayOfWeek?, System.DayOfWeek?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, System.DayOfWeek?>? MapOptional
         {
             get => field_MapOptional;
@@ -3152,7 +3152,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<MyCustomEnum>? field_VectorRequired;
         IReadOnlyList<MyCustomEnum>? IBasic_MyCustomEnum.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<MyCustomEnum, MyCustomEnum>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<MyCustomEnum, MyCustomEnum>(field_VectorRequired, (x) => x);
         public ImmutableList<MyCustomEnum>? VectorRequired
         {
             get => field_VectorRequired;
@@ -3161,7 +3161,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<MyCustomEnum?>? field_VectorOptional;
         IReadOnlyList<MyCustomEnum?>? IBasic_MyCustomEnum.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<MyCustomEnum?, MyCustomEnum?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<MyCustomEnum?, MyCustomEnum?>(field_VectorOptional, (x) => x);
         public ImmutableList<MyCustomEnum?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -3170,7 +3170,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, MyCustomEnum>? field_MapRequired;
         IReadOnlyDictionary<String, MyCustomEnum>? IBasic_MyCustomEnum.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, MyCustomEnum, MyCustomEnum>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, MyCustomEnum, MyCustomEnum>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, MyCustomEnum>? MapRequired
         {
             get => field_MapRequired;
@@ -3179,7 +3179,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, MyCustomEnum?>? field_MapOptional;
         IReadOnlyDictionary<String, MyCustomEnum?>? IBasic_MyCustomEnum.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, MyCustomEnum?, MyCustomEnum?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, MyCustomEnum?, MyCustomEnum?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, MyCustomEnum?>? MapOptional
         {
             get => field_MapOptional;
@@ -3323,7 +3323,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<QuantityValue>? field_VectorRequired;
         IReadOnlyList<LabApps.Units.Quantity>? IBasic_Quantity.VectorRequired => field_VectorRequired is null
             ? null
-            : new ListFacade<LabApps.Units.Quantity, QuantityValue>(field_VectorRequired, (x) => x.ToExternal());
+            : new ListFacade<LabApps.Units.Quantity, QuantityValue>(field_VectorRequired, (x) => x);
         public ImmutableList<QuantityValue>? VectorRequired
         {
             get => field_VectorRequired;
@@ -3332,7 +3332,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableList<QuantityValue?>? field_VectorOptional;
         IReadOnlyList<LabApps.Units.Quantity?>? IBasic_Quantity.VectorOptional => field_VectorOptional is null 
             ? null
-            : new ListFacade<LabApps.Units.Quantity?, QuantityValue?>(field_VectorOptional, (x) => x.ToExternal());
+            : new ListFacade<LabApps.Units.Quantity?, QuantityValue?>(field_VectorOptional, (x) => x);
         public ImmutableList<QuantityValue?>? VectorOptional
         {
             get => field_VectorOptional;
@@ -3341,7 +3341,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, QuantityValue>? field_MapRequired;
         IReadOnlyDictionary<String, LabApps.Units.Quantity>? IBasic_Quantity.MapRequired => field_MapRequired is null
             ? null
-            : new DictionaryFacade<String, LabApps.Units.Quantity, QuantityValue>(field_MapRequired, (x) => x.ToExternal());
+            : new DictionaryFacade<String, LabApps.Units.Quantity, QuantityValue>(field_MapRequired, (x) => x);
         public ImmutableDictionary<String, QuantityValue>? MapRequired
         {
             get => field_MapRequired;
@@ -3350,7 +3350,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         private ImmutableDictionary<String, QuantityValue?>? field_MapOptional;
         IReadOnlyDictionary<String, LabApps.Units.Quantity?>? IBasic_Quantity.MapOptional => field_MapOptional is null
             ? null
-            : new DictionaryFacade<String, LabApps.Units.Quantity?, QuantityValue?>(field_MapOptional, (x) => x.ToExternal());
+            : new DictionaryFacade<String, LabApps.Units.Quantity?, QuantityValue?>(field_MapOptional, (x) => x);
         public ImmutableDictionary<String, QuantityValue?>? MapOptional
         {
             get => field_MapOptional;
@@ -3648,5 +3648,535 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonNewtonSoft
         }
     }
 
+    public sealed class Basic_Half_Factory : IEntityFactory<IBasic_Half, Basic_Half>
+    {
+        private static readonly Basic_Half_Factory _instance = new Basic_Half_Factory();
+        public static Basic_Half_Factory Instance => _instance;
+        public Basic_Half? CreateFrom(IBasic_Half? source) => (source is null) ? null : new Basic_Half(source);
+        public Basic_Half Empty => new Basic_Half();
+    }
+    public partial class Basic_Half : EntityBase, IBasic_Half, IEquatable<Basic_Half>
+    {
+        public new const int EntityTag = 32;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private HalfValue field_ScalarRequired;
+        Half IBasic_Half.ScalarRequired { get => field_ScalarRequired; }
+        public HalfValue ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private HalfValue? field_ScalarOptional;
+        Half? IBasic_Half.ScalarOptional => field_ScalarOptional;
+        public HalfValue? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<HalfValue>? field_VectorRequired;
+        IReadOnlyList<Half>? IBasic_Half.VectorRequired => field_VectorRequired is null
+            ? null
+            : new ListFacade<Half, HalfValue>(field_VectorRequired, (x) => x);
+        public ImmutableList<HalfValue>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<HalfValue?>? field_VectorOptional;
+        IReadOnlyList<Half?>? IBasic_Half.VectorOptional => field_VectorOptional is null 
+            ? null
+            : new ListFacade<Half?, HalfValue?>(field_VectorOptional, (x) => x);
+        public ImmutableList<HalfValue?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, HalfValue>? field_MapRequired;
+        IReadOnlyDictionary<String, Half>? IBasic_Half.MapRequired => field_MapRequired is null
+            ? null
+            : new DictionaryFacade<String, Half, HalfValue>(field_MapRequired, (x) => x);
+        public ImmutableDictionary<String, HalfValue>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, HalfValue?>? field_MapOptional;
+        IReadOnlyDictionary<String, Half?>? IBasic_Half.MapOptional => field_MapOptional is null
+            ? null
+            : new DictionaryFacade<String, Half?, HalfValue?>(field_MapOptional, (x) => x);
+        public ImmutableDictionary<String, HalfValue?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<Half, String?>? field_MapKey;
+        IReadOnlyDictionary<Half, String?>? IBasic_Half.MapKey => field_MapKey;
+        public ImmutableDictionary<Half, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        public Basic_Half() : base()
+        {
+        }
+
+        public Basic_Half(Basic_Half? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        public Basic_Half(IBasic_Half? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<HalfValue>.Empty.AddRange(source.VectorRequired
+                    .Select(x => (HalfValue)x));
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<HalfValue?>.Empty.AddRange(source.VectorOptional
+                    .Select(x => (HalfValue?)x));
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, HalfValue>.Empty.AddRange(source.MapRequired
+                    .Select(x => new KeyValuePair<String, HalfValue>(x.Key, x.Value)));
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, HalfValue?>.Empty.AddRange(source.MapOptional
+                    .Select(x => new KeyValuePair<String, HalfValue?>(x.Key, x.Value)));
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Half, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public void CopyFrom(IBasic_Half? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<HalfValue>.Empty.AddRange(source.VectorRequired
+                    .Select(x => (HalfValue)x));
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<HalfValue?>.Empty.AddRange(source.VectorOptional
+                    .Select(x => (HalfValue?)x));
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, HalfValue>.Empty.AddRange(source.MapRequired
+                    .Select(x => new KeyValuePair<String, HalfValue>(x.Key, x.Value)));
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, HalfValue?>.Empty.AddRange(source.MapOptional
+                    .Select(x => new KeyValuePair<String, HalfValue?>(x.Key, x.Value)));
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<Half, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_Half? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_Half other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+    public sealed class Basic_DateOnly_Factory : IEntityFactory<IBasic_DateOnly, Basic_DateOnly>
+    {
+        private static readonly Basic_DateOnly_Factory _instance = new Basic_DateOnly_Factory();
+        public static Basic_DateOnly_Factory Instance => _instance;
+        public Basic_DateOnly? CreateFrom(IBasic_DateOnly? source) => (source is null) ? null : new Basic_DateOnly(source);
+        public Basic_DateOnly Empty => new Basic_DateOnly();
+    }
+    public partial class Basic_DateOnly : EntityBase, IBasic_DateOnly, IEquatable<Basic_DateOnly>
+    {
+        public new const int EntityTag = 33;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private DateOnly field_ScalarRequired;
+        DateOnly IBasic_DateOnly.ScalarRequired { get => field_ScalarRequired; }
+        public DateOnly ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private DateOnly? field_ScalarOptional;
+        DateOnly? IBasic_DateOnly.ScalarOptional => field_ScalarOptional;
+        public DateOnly? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<DateOnly>? field_VectorRequired;
+        IReadOnlyList<DateOnly>? IBasic_DateOnly.VectorRequired => field_VectorRequired is null
+            ? null
+            : new ListFacade<DateOnly, DateOnly>(field_VectorRequired, (x) => x);
+        public ImmutableList<DateOnly>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<DateOnly?>? field_VectorOptional;
+        IReadOnlyList<DateOnly?>? IBasic_DateOnly.VectorOptional => field_VectorOptional is null 
+            ? null
+            : new ListFacade<DateOnly?, DateOnly?>(field_VectorOptional, (x) => x);
+        public ImmutableList<DateOnly?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, DateOnly>? field_MapRequired;
+        IReadOnlyDictionary<String, DateOnly>? IBasic_DateOnly.MapRequired => field_MapRequired is null
+            ? null
+            : new DictionaryFacade<String, DateOnly, DateOnly>(field_MapRequired, (x) => x);
+        public ImmutableDictionary<String, DateOnly>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, DateOnly?>? field_MapOptional;
+        IReadOnlyDictionary<String, DateOnly?>? IBasic_DateOnly.MapOptional => field_MapOptional is null
+            ? null
+            : new DictionaryFacade<String, DateOnly?, DateOnly?>(field_MapOptional, (x) => x);
+        public ImmutableDictionary<String, DateOnly?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<DateOnly, String?>? field_MapKey;
+        IReadOnlyDictionary<DateOnly, String?>? IBasic_DateOnly.MapKey => field_MapKey;
+        public ImmutableDictionary<DateOnly, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        public Basic_DateOnly() : base()
+        {
+        }
+
+        public Basic_DateOnly(Basic_DateOnly? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        public Basic_DateOnly(IBasic_DateOnly? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<DateOnly>.Empty.AddRange(source.VectorRequired
+                    .Select(x => (DateOnly)x));
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<DateOnly?>.Empty.AddRange(source.VectorOptional
+                    .Select(x => (DateOnly?)x));
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, DateOnly>.Empty.AddRange(source.MapRequired
+                    .Select(x => new KeyValuePair<String, DateOnly>(x.Key, x.Value)));
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, DateOnly?>.Empty.AddRange(source.MapOptional
+                    .Select(x => new KeyValuePair<String, DateOnly?>(x.Key, x.Value)));
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<DateOnly, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public void CopyFrom(IBasic_DateOnly? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<DateOnly>.Empty.AddRange(source.VectorRequired
+                    .Select(x => (DateOnly)x));
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<DateOnly?>.Empty.AddRange(source.VectorOptional
+                    .Select(x => (DateOnly?)x));
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, DateOnly>.Empty.AddRange(source.MapRequired
+                    .Select(x => new KeyValuePair<String, DateOnly>(x.Key, x.Value)));
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, DateOnly?>.Empty.AddRange(source.MapOptional
+                    .Select(x => new KeyValuePair<String, DateOnly?>(x.Key, x.Value)));
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<DateOnly, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_DateOnly? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_DateOnly other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+    public sealed class Basic_TimeOnly_Factory : IEntityFactory<IBasic_TimeOnly, Basic_TimeOnly>
+    {
+        private static readonly Basic_TimeOnly_Factory _instance = new Basic_TimeOnly_Factory();
+        public static Basic_TimeOnly_Factory Instance => _instance;
+        public Basic_TimeOnly? CreateFrom(IBasic_TimeOnly? source) => (source is null) ? null : new Basic_TimeOnly(source);
+        public Basic_TimeOnly Empty => new Basic_TimeOnly();
+    }
+    public partial class Basic_TimeOnly : EntityBase, IBasic_TimeOnly, IEquatable<Basic_TimeOnly>
+    {
+        public new const int EntityTag = 34;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private TimeOnly field_ScalarRequired;
+        TimeOnly IBasic_TimeOnly.ScalarRequired { get => field_ScalarRequired; }
+        public TimeOnly ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
+        }
+        private TimeOnly? field_ScalarOptional;
+        TimeOnly? IBasic_TimeOnly.ScalarOptional => field_ScalarOptional;
+        public TimeOnly? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<TimeOnly>? field_VectorRequired;
+        IReadOnlyList<TimeOnly>? IBasic_TimeOnly.VectorRequired => field_VectorRequired is null
+            ? null
+            : new ListFacade<TimeOnly, TimeOnly>(field_VectorRequired, (x) => x);
+        public ImmutableList<TimeOnly>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<TimeOnly?>? field_VectorOptional;
+        IReadOnlyList<TimeOnly?>? IBasic_TimeOnly.VectorOptional => field_VectorOptional is null 
+            ? null
+            : new ListFacade<TimeOnly?, TimeOnly?>(field_VectorOptional, (x) => x);
+        public ImmutableList<TimeOnly?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, TimeOnly>? field_MapRequired;
+        IReadOnlyDictionary<String, TimeOnly>? IBasic_TimeOnly.MapRequired => field_MapRequired is null
+            ? null
+            : new DictionaryFacade<String, TimeOnly, TimeOnly>(field_MapRequired, (x) => x);
+        public ImmutableDictionary<String, TimeOnly>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, TimeOnly?>? field_MapOptional;
+        IReadOnlyDictionary<String, TimeOnly?>? IBasic_TimeOnly.MapOptional => field_MapOptional is null
+            ? null
+            : new DictionaryFacade<String, TimeOnly?, TimeOnly?>(field_MapOptional, (x) => x);
+        public ImmutableDictionary<String, TimeOnly?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
+        private ImmutableDictionary<TimeOnly, String?>? field_MapKey;
+        IReadOnlyDictionary<TimeOnly, String?>? IBasic_TimeOnly.MapKey => field_MapKey;
+        public ImmutableDictionary<TimeOnly, String?>? MapKey
+        {
+            get => field_MapKey;
+            set => field_MapKey = value;
+        }
+
+        public Basic_TimeOnly() : base()
+        {
+        }
+
+        public Basic_TimeOnly(Basic_TimeOnly? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+            field_MapKey = source.MapKey;
+        }
+
+        public Basic_TimeOnly(IBasic_TimeOnly? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<TimeOnly>.Empty.AddRange(source.VectorRequired
+                    .Select(x => (TimeOnly)x));
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<TimeOnly?>.Empty.AddRange(source.VectorOptional
+                    .Select(x => (TimeOnly?)x));
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, TimeOnly>.Empty.AddRange(source.MapRequired
+                    .Select(x => new KeyValuePair<String, TimeOnly>(x.Key, x.Value)));
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, TimeOnly?>.Empty.AddRange(source.MapOptional
+                    .Select(x => new KeyValuePair<String, TimeOnly?>(x.Key, x.Value)));
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<TimeOnly, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public void CopyFrom(IBasic_TimeOnly? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<TimeOnly>.Empty.AddRange(source.VectorRequired
+                    .Select(x => (TimeOnly)x));
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<TimeOnly?>.Empty.AddRange(source.VectorOptional
+                    .Select(x => (TimeOnly?)x));
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, TimeOnly>.Empty.AddRange(source.MapRequired
+                    .Select(x => new KeyValuePair<String, TimeOnly>(x.Key, x.Value)));
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, TimeOnly?>.Empty.AddRange(source.MapOptional
+                    .Select(x => new KeyValuePair<String, TimeOnly?>(x.Key, x.Value)));
+            field_MapKey = source.MapKey is null
+                ? default
+                : ImmutableDictionary<TimeOnly, String?>.Empty.AddRange(source.MapKey);
+        }
+
+        public bool Equals(Basic_TimeOnly? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!ScalarRequired .ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
+            if (!MapKey.IndexEquals(other.MapKey)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_TimeOnly other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(MapKey.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
+
+#if NET6_0_OR_GREATER
+    public struct HalfValue
+    {
+        public short Value { get; set; }
+        public HalfValue() { }
+        public HalfValue(short value) => Value = value;
+        public override int GetHashCode() => HashCode.Combine(Value);
+        public override bool Equals(object? obj) => obj is HalfValue other && Equals(other);
+        public bool Equals(HalfValue other) => other.Value.Equals(Value);
+        public static bool operator ==(HalfValue left, HalfValue right) => left.Equals(right);
+        public static bool operator !=(HalfValue left, HalfValue right) => !left.Equals(right);
+
+        public static implicit operator HalfValue(Half value) => new HalfValue(BitConverter.HalfToInt16Bits(value));
+        public static implicit operator Half(HalfValue value) => BitConverter.Int16BitsToHalf(value.Value);
+    }
+#endif
 
 }

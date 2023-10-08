@@ -1115,6 +1115,162 @@
               "IndexType": "binary"
             }
           ]
+        },
+        {
+          "Name": "Basic_Half",
+          "Tag": 32,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "half"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "half",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "half",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "half",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "half",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "half",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "half"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_DateOnly",
+          "Tag": 33,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "date"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "date",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "date",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "date",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "date",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "date",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "date"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_TimeOnly",
+          "Tag": 34,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "time"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "time",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "time",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "time",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "time",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "time",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapKey",
+              "Tag": 7,
+              "InnerType": "string",
+              "ArrayRank": 1,
+              "IndexType": "time"
+            }
+          ]
         }
       ],
       "EnumTypeDefs": [

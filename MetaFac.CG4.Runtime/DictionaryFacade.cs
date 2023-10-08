@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace MetaFac.CG4.Runtime
 {
+    // todo readonly struct
     public sealed class DictionaryFacade<TKey, TExternal, TInternal> : IReadOnlyDictionary<TKey, TExternal?> where TKey : notnull
     {
         private readonly IReadOnlyDictionary<TKey, TInternal?> _dict;

@@ -239,4 +239,34 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.Contracts
         IReadOnlyDictionary<String, Octets?>? MapValue { get; }
         IReadOnlyDictionary<Octets, String?>? MapKey { get; }
     }
+    public partial interface IBasic_Half : IEntityBase
+    {
+        Half ScalarRequired { get; }
+        Half? ScalarOptional { get; }
+        IReadOnlyList<Half>? VectorRequired { get; }
+        IReadOnlyList<Half?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, Half>? MapRequired { get; }
+        IReadOnlyDictionary<String, Half?>? MapOptional { get; }
+        IReadOnlyDictionary<Half, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_DateOnly : IEntityBase
+    {
+        DateOnly ScalarRequired { get; }
+        DateOnly? ScalarOptional { get; }
+        IReadOnlyList<DateOnly>? VectorRequired { get; }
+        IReadOnlyList<DateOnly?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, DateOnly>? MapRequired { get; }
+        IReadOnlyDictionary<String, DateOnly?>? MapOptional { get; }
+        IReadOnlyDictionary<DateOnly, String?>? MapKey { get; }
+    }
+    public partial interface IBasic_TimeOnly : IEntityBase
+    {
+        TimeOnly ScalarRequired { get; }
+        TimeOnly? ScalarOptional { get; }
+        IReadOnlyList<TimeOnly>? VectorRequired { get; }
+        IReadOnlyList<TimeOnly?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, TimeOnly>? MapRequired { get; }
+        IReadOnlyDictionary<String, TimeOnly?>? MapOptional { get; }
+        IReadOnlyDictionary<TimeOnly, String?>? MapKey { get; }
+    }
 }

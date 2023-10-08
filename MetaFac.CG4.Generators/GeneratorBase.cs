@@ -121,6 +121,14 @@ namespace MetaFac.CG4.Generators
                 ["HalfFieldType"] = "Half",
                 ["ConcreteHalf"] = "T_HalfFieldType_",
                 ["ExternalHalf"] = "T_HalfFieldType_",
+                // DateOnly
+                ["DateOnlyFieldType"] = "DateOnly",
+                ["ConcreteDateOnly"] = "T_DateOnlyFieldType_",
+                ["ExternalDateOnly"] = "T_DateOnlyFieldType_",
+                // TimeOnly
+                ["TimeOnlyFieldType"] = "TimeOnly",
+                ["ConcreteTimeOnly"] = "T_TimeOnlyFieldType_",
+                ["ExternalTimeOnly"] = "T_TimeOnlyFieldType_",
             };
             _engine.Current.SetTokens(tokens);
         }
@@ -189,6 +197,8 @@ namespace MetaFac.CG4.Generators
                 "string" => "T_StringFieldType_",
                 "binary" => "T_BinaryFieldType_",
                 "half" => "T_HalfFieldType_",
+                "date" => "T_DateOnlyFieldType_",
+                "time" => "T_TimeOnlyFieldType_",
                 _ => innerType,
             };
         }

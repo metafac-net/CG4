@@ -113,10 +113,10 @@ namespace Generated.RecordsV2
         IReadOnlyList<MyCustomEnum>? IBuiltinTypes.MyCustomEnums => MyCustomEnums;
         public ImmutableList<Half>? Halves { get; init; }
         IReadOnlyList<Half>? IBuiltinTypes.Halves => Halves;
-        public ImmutableList<date>? Dates { get; init; }
-        IReadOnlyList<date>? IBuiltinTypes.Dates => Dates;
-        public ImmutableList<time>? Times { get; init; }
-        IReadOnlyList<time>? IBuiltinTypes.Times => Times;
+        public ImmutableList<DateOnly>? Dates { get; init; }
+        IReadOnlyList<DateOnly>? IBuiltinTypes.Dates => Dates;
+        public ImmutableList<TimeOnly>? Times { get; init; }
+        IReadOnlyList<TimeOnly>? IBuiltinTypes.Times => Times;
 
         public BuiltinTypes() : base()
         {
@@ -231,10 +231,10 @@ namespace Generated.RecordsV2
                 : ImmutableList<Half>.Empty.AddRange(source.Halves);
             Dates = source.Dates is null
                 ? default
-                : ImmutableList<date>.Empty.AddRange(source.Dates);
+                : ImmutableList<DateOnly>.Empty.AddRange(source.Dates);
             Times = source.Times is null
                 ? default
-                : ImmutableList<time>.Empty.AddRange(source.Times);
+                : ImmutableList<TimeOnly>.Empty.AddRange(source.Times);
         }
 
         public virtual bool Equals(BuiltinTypes? other)
