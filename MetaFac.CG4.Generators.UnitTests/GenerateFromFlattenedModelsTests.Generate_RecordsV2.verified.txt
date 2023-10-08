@@ -111,6 +111,12 @@ namespace Generated.RecordsV2
         IReadOnlyList<System.DateTimeKind>? IBuiltinTypes.MyDateTimeKinds => MyDateTimeKinds;
         public ImmutableList<MyCustomEnum>? MyCustomEnums { get; init; }
         IReadOnlyList<MyCustomEnum>? IBuiltinTypes.MyCustomEnums => MyCustomEnums;
+        public ImmutableList<Half>? Halves { get; init; }
+        IReadOnlyList<Half>? IBuiltinTypes.Halves => Halves;
+        public ImmutableList<date>? Dates { get; init; }
+        IReadOnlyList<date>? IBuiltinTypes.Dates => Dates;
+        public ImmutableList<time>? Times { get; init; }
+        IReadOnlyList<time>? IBuiltinTypes.Times => Times;
 
         public BuiltinTypes() : base()
         {
@@ -142,6 +148,9 @@ namespace Generated.RecordsV2
             DaysOfWeek = source.DaysOfWeek;
             MyDateTimeKinds = source.MyDateTimeKinds;
             MyCustomEnums = source.MyCustomEnums;
+            Halves = source.Halves;
+            Dates = source.Dates;
+            Times = source.Times;
         }
 
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
@@ -217,6 +226,15 @@ namespace Generated.RecordsV2
             MyCustomEnums = source.MyCustomEnums is null
                 ? default
                 : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums);
+            Halves = source.Halves is null
+                ? default
+                : ImmutableList<Half>.Empty.AddRange(source.Halves);
+            Dates = source.Dates is null
+                ? default
+                : ImmutableList<date>.Empty.AddRange(source.Dates);
+            Times = source.Times is null
+                ? default
+                : ImmutableList<time>.Empty.AddRange(source.Times);
         }
 
         public virtual bool Equals(BuiltinTypes? other)
@@ -246,6 +264,9 @@ namespace Generated.RecordsV2
             if (!DaysOfWeek.ArrayEquals(other.DaysOfWeek)) return false;
             if (!MyDateTimeKinds.ArrayEquals(other.MyDateTimeKinds)) return false;
             if (!MyCustomEnums.ArrayEquals(other.MyCustomEnums)) return false;
+            if (!Halves.ArrayEquals(other.Halves)) return false;
+            if (!Dates.ArrayEquals(other.Dates)) return false;
+            if (!Times.ArrayEquals(other.Times)) return false;
             return base.Equals(other);
         }
 
@@ -275,6 +296,9 @@ namespace Generated.RecordsV2
             hc.Add(DaysOfWeek.CalcHashArray());
             hc.Add(MyDateTimeKinds.CalcHashArray());
             hc.Add(MyCustomEnums.CalcHashArray());
+            hc.Add(Halves.CalcHashArray());
+            hc.Add(Dates.CalcHashArray());
+            hc.Add(Times.CalcHashArray());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

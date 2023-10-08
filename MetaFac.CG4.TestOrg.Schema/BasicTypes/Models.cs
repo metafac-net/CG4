@@ -273,4 +273,42 @@ namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
         [Member(4)] public Dictionary<Octets, string>? MapKey { get; }
     }
 
+#if NET6_0_OR_GREATER
+    [Entity(32)]
+    public class Basic_Half
+    {
+        [Member(1)] public Half ScalarRequired { get; }
+        [Member(2)] public Half? ScalarOptional { get; }
+        [Member(3)] public Half[]? VectorRequired { get; }
+        [Member(4)] public Half?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, Half>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, Half?>? MapOptional { get; }
+        [Member(7)] public Dictionary<Half, string?>? MapKey { get; }
+    }
+
+    [Entity(33)]
+    public class Basic_DateOnly
+    {
+        [Member(1)] public DateOnly ScalarRequired { get; }
+        [Member(2)] public DateOnly? ScalarOptional { get; }
+        [Member(3)] public DateOnly[]? VectorRequired { get; }
+        [Member(4)] public DateOnly?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, DateOnly>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, DateOnly?>? MapOptional { get; }
+        [Member(7)] public Dictionary<DateOnly, string?>? MapKey { get; }
+    }
+
+    [Entity(34)]
+    public class Basic_TimeOnly
+    {
+        [Member(1)] public TimeOnly ScalarRequired { get; }
+        [Member(2)] public TimeOnly? ScalarOptional { get; }
+        [Member(3)] public TimeOnly[]? VectorRequired { get; }
+        [Member(4)] public TimeOnly?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, TimeOnly>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, TimeOnly?>? MapOptional { get; }
+        [Member(7)] public Dictionary<TimeOnly, string?>? MapKey { get; }
+    }
+#endif
+
 }

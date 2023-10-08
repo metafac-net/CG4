@@ -261,6 +261,33 @@ namespace Generated.JsonSystemText
             get => field_MyCustomEnums;
             set => field_MyCustomEnums = value;
         }
+        private ImmutableList<Half>? field_Halves;
+        IReadOnlyList<Half>? IBuiltinTypes.Halves => field_Halves is null
+            ? null
+            : new ListFacade<Half, Half>(field_Halves, (x) => x.ToExternal());
+        public ImmutableList<Half>? Halves
+        {
+            get => field_Halves;
+            set => field_Halves = value;
+        }
+        private ImmutableList<date>? field_Dates;
+        IReadOnlyList<date>? IBuiltinTypes.Dates => field_Dates is null
+            ? null
+            : new ListFacade<date, date>(field_Dates, (x) => x.ToExternal());
+        public ImmutableList<date>? Dates
+        {
+            get => field_Dates;
+            set => field_Dates = value;
+        }
+        private ImmutableList<time>? field_Times;
+        IReadOnlyList<time>? IBuiltinTypes.Times => field_Times is null
+            ? null
+            : new ListFacade<time, time>(field_Times, (x) => x.ToExternal());
+        public ImmutableList<time>? Times
+        {
+            get => field_Times;
+            set => field_Times = value;
+        }
 
         public BuiltinTypes() : base()
         {
@@ -292,6 +319,9 @@ namespace Generated.JsonSystemText
             field_DaysOfWeek = source.DaysOfWeek;
             field_MyDateTimeKinds = source.MyDateTimeKinds;
             field_MyCustomEnums = source.MyCustomEnums;
+            field_Halves = source.Halves;
+            field_Dates = source.Dates;
+            field_Times = source.Times;
         }
 
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
@@ -387,6 +417,18 @@ namespace Generated.JsonSystemText
                 ? default
                 : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums
                     .Select(x => (MyCustomEnum)x));
+            field_Halves = source.Halves is null
+                ? default
+                : ImmutableList<Half>.Empty.AddRange(source.Halves
+                    .Select(x => (Half)x));
+            field_Dates = source.Dates is null
+                ? default
+                : ImmutableList<date>.Empty.AddRange(source.Dates
+                    .Select(x => (date)x));
+            field_Times = source.Times is null
+                ? default
+                : ImmutableList<time>.Empty.AddRange(source.Times
+                    .Select(x => (time)x));
         }
 
         public void CopyFrom(IBuiltinTypes? source)
@@ -483,6 +525,18 @@ namespace Generated.JsonSystemText
                 ? default
                 : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums
                     .Select(x => (MyCustomEnum)x));
+            field_Halves = source.Halves is null
+                ? default
+                : ImmutableList<Half>.Empty.AddRange(source.Halves
+                    .Select(x => (Half)x));
+            field_Dates = source.Dates is null
+                ? default
+                : ImmutableList<date>.Empty.AddRange(source.Dates
+                    .Select(x => (date)x));
+            field_Times = source.Times is null
+                ? default
+                : ImmutableList<time>.Empty.AddRange(source.Times
+                    .Select(x => (time)x));
         }
 
         public bool Equals(BuiltinTypes? other)
@@ -513,6 +567,9 @@ namespace Generated.JsonSystemText
             if (!DaysOfWeek.ArrayEquals(other.DaysOfWeek)) return false;
             if (!MyDateTimeKinds.ArrayEquals(other.MyDateTimeKinds)) return false;
             if (!MyCustomEnums.ArrayEquals(other.MyCustomEnums)) return false;
+            if (!Halves.ArrayEquals(other.Halves)) return false;
+            if (!Dates.ArrayEquals(other.Dates)) return false;
+            if (!Times.ArrayEquals(other.Times)) return false;
             return true;
         }
 
@@ -545,6 +602,9 @@ namespace Generated.JsonSystemText
             hc.Add(DaysOfWeek.CalcHashArray());
             hc.Add(MyDateTimeKinds.CalcHashArray());
             hc.Add(MyCustomEnums.CalcHashArray());
+            hc.Add(Halves.CalcHashArray());
+            hc.Add(Dates.CalcHashArray());
+            hc.Add(Times.CalcHashArray());
             return hc.ToHashCode();
         }
     }

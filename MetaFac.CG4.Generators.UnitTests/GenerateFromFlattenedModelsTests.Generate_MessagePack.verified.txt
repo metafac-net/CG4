@@ -131,6 +131,9 @@ namespace Generated.MessagePack
         private ImmutableList<System.DayOfWeek>? field_DaysOfWeek;
         private ImmutableList<MyDateTimeKindValue>? field_MyDateTimeKinds;
         private ImmutableList<MyCustomEnum>? field_MyCustomEnums;
+        private ImmutableList<Half>? field_Halves;
+        private ImmutableList<date>? field_Dates;
+        private ImmutableList<time>? field_Times;
 
         // ---------- accessors ----------
         [Key(1)]
@@ -271,6 +274,24 @@ namespace Generated.MessagePack
             get => field_MyCustomEnums;
             set => field_MyCustomEnums = CheckNotFrozen(ref value);
         }
+        [Key(24)]
+        public ImmutableList<Half>? Halves
+        {
+            get => field_Halves;
+            set => field_Halves = CheckNotFrozen(ref value);
+        }
+        [Key(25)]
+        public ImmutableList<date>? Dates
+        {
+            get => field_Dates;
+            set => field_Dates = CheckNotFrozen(ref value);
+        }
+        [Key(26)]
+        public ImmutableList<time>? Times
+        {
+            get => field_Times;
+            set => field_Times = CheckNotFrozen(ref value);
+        }
 
         // ---------- IBuiltinTypes methods ----------
         IReadOnlyList<Boolean>? IBuiltinTypes.Bools
@@ -340,6 +361,15 @@ namespace Generated.MessagePack
         IReadOnlyList<MyCustomEnum>? IBuiltinTypes.MyCustomEnums
             => field_MyCustomEnums is null ? null
             : new ListFacade<MyCustomEnum, MyCustomEnum>(field_MyCustomEnums, (x) => x.ToExternal());
+        IReadOnlyList<Half>? IBuiltinTypes.Halves
+            => field_Halves is null ? null
+            : new ListFacade<Half, Half>(field_Halves, (x) => x.ToExternal());
+        IReadOnlyList<date>? IBuiltinTypes.Dates
+            => field_Dates is null ? null
+            : new ListFacade<date, date>(field_Dates, (x) => x.ToExternal());
+        IReadOnlyList<time>? IBuiltinTypes.Times
+            => field_Times is null ? null
+            : new ListFacade<time, time>(field_Times, (x) => x.ToExternal());
 
         public BuiltinTypes()
         {
@@ -370,6 +400,9 @@ namespace Generated.MessagePack
             field_DaysOfWeek = source.field_DaysOfWeek;
             field_MyDateTimeKinds = source.field_MyDateTimeKinds;
             field_MyCustomEnums = source.field_MyCustomEnums;
+            field_Halves = source.field_Halves;
+            field_Dates = source.field_Dates;
+            field_Times = source.field_Times;
         }
 
         public void CopyFrom(BuiltinTypes source)
@@ -398,6 +431,9 @@ namespace Generated.MessagePack
             field_DaysOfWeek = source.field_DaysOfWeek;
             field_MyDateTimeKinds = source.field_MyDateTimeKinds;
             field_MyCustomEnums = source.field_MyCustomEnums;
+            field_Halves = source.field_Halves;
+            field_Dates = source.field_Dates;
+            field_Times = source.field_Times;
         }
 
         public BuiltinTypes(IBuiltinTypes source) : base(source)
@@ -471,6 +507,15 @@ namespace Generated.MessagePack
             field_MyCustomEnums = source.MyCustomEnums is null
                 ? null
                 : ImmutableList<MyCustomEnum>.Empty.AddRange(source.MyCustomEnums.Select(x => x.ToInternal()));
+            field_Halves = source.Halves is null
+                ? null
+                : ImmutableList<Half>.Empty.AddRange(source.Halves.Select(x => x.ToInternal()));
+            field_Dates = source.Dates is null
+                ? null
+                : ImmutableList<date>.Empty.AddRange(source.Dates.Select(x => x.ToInternal()));
+            field_Times = source.Times is null
+                ? null
+                : ImmutableList<time>.Empty.AddRange(source.Times.Select(x => x.ToInternal()));
         }
 
         public bool Equals(BuiltinTypes? other)
@@ -500,6 +545,9 @@ namespace Generated.MessagePack
             if (!field_DaysOfWeek.ArrayEquals(other.field_DaysOfWeek)) return false;
             if (!field_MyDateTimeKinds.ArrayEquals(other.field_MyDateTimeKinds)) return false;
             if (!field_MyCustomEnums.ArrayEquals(other.field_MyCustomEnums)) return false;
+            if (!field_Halves.ArrayEquals(other.field_Halves)) return false;
+            if (!field_Dates.ArrayEquals(other.field_Dates)) return false;
+            if (!field_Times.ArrayEquals(other.field_Times)) return false;
             return base.Equals(other);
         }
 
@@ -546,6 +594,9 @@ namespace Generated.MessagePack
             hc.Add(field_DaysOfWeek.CalcHashArray());
             hc.Add(field_MyDateTimeKinds.CalcHashArray());
             hc.Add(field_MyCustomEnums.CalcHashArray());
+            hc.Add(field_Halves.CalcHashArray());
+            hc.Add(field_Dates.CalcHashArray());
+            hc.Add(field_Times.CalcHashArray());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

@@ -143,6 +143,11 @@ namespace MetaFac.CG4.ModelReader
             if (dataType == typeof(DateTimeOffset)) return "datetimezone";
             if (dataType == typeof(Guid)) return "guid";
             if (dataType == typeof(Octets)) return "binary";
+#if NET6_0_OR_GREATER
+            if (dataType == typeof(Half)) return "half";
+            if (dataType == typeof(DateOnly)) return "date";
+            if (dataType == typeof(TimeOnly)) return "time";
+#endif
             return dataType.FullName;
         }
 
@@ -267,9 +272,14 @@ namespace MetaFac.CG4.ModelReader
                         break;
                     default:
 
-                        if (innerType == typeof(DateTimeOffset)
-                            || innerType == typeof(TimeSpan)
-                            || innerType == typeof(Guid))
+                        if (innerType == typeof(TimeSpan)
+                            || innerType == typeof(Guid)
+#if NET6_0_OR_GREATER
+                            || innerType == typeof(Half)
+                            || innerType == typeof(DateOnly)
+                            || innerType == typeof(TimeOnly)
+#endif
+                            || innerType == typeof(DateTimeOffset))
                         {
                             // supported value type
                             break;

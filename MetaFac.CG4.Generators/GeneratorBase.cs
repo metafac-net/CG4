@@ -117,6 +117,10 @@ namespace MetaFac.CG4.Generators
                 ["BinaryFieldType"] = "Octets",
                 ["ConcreteBinary"] = "T_BinaryFieldType_",
                 ["ExternalBinary"] = "T_BinaryFieldType_",
+                // Half
+                ["HalfFieldType"] = "Half",
+                ["ConcreteHalf"] = "T_HalfFieldType_",
+                ["ExternalHalf"] = "T_HalfFieldType_",
             };
             _engine.Current.SetTokens(tokens);
         }
@@ -184,6 +188,7 @@ namespace MetaFac.CG4.Generators
                 "guid" => "T_GuidFieldType_",
                 "string" => "T_StringFieldType_",
                 "binary" => "T_BinaryFieldType_",
+                "half" => "T_HalfFieldType_",
                 _ => innerType,
             };
         }

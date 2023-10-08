@@ -22,7 +22,7 @@ goto :eof
 ::
 :: parse schema
 ::
-%_cmd% a2j -am ..\%_prefix%\bin\Debug\netstandard2.0\%_prefix%.dll -an %_prefix%.%1 -oj %1.Models.json
+%_cmd% a2j -am ..\%_prefix%\bin\Debug\net6.0\%_prefix%.dll -an %_prefix%.%1 -oj %1.Models.json
 ::
 :: generate
 ::

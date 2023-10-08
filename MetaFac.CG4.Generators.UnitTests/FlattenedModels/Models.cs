@@ -43,5 +43,8 @@ namespace MetaFac.CG4.Generators.UnitTests.FlattenedModels
         [Member(21)] DayOfWeek[]? DaysOfWeek { get; }
         [Member(22)] MyDateTimeKind[]? MyDateTimeKinds { get; }
         [Member(23)] MyCustomEnum[]? MyCustomEnums { get; }
+        [Member(24)] Half[]? Halves { get; }
+        [Member(25)] DateOnly[]? Dates { get; }
+        [Member(26)] TimeOnly[]? Times { get; }
     }
 }
