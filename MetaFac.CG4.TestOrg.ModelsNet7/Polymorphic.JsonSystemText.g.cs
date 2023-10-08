@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.Contracts;
 using MetaFac.Memory;
@@ -34,7 +33,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -101,12 +99,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
             set => field_Name = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ValueNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ValueNode(ValueNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -114,7 +110,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
             field_Name = source.Name;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ValueNode(IValueNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -122,7 +117,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
             field_Name = source.Name;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IValueNode? source)
         {
             if (source is null) return;
@@ -184,24 +178,20 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
         protected override int OnGetEntityTag() => EntityTag;
 
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumericNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumericNode(NumericNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumericNode(INumericNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(INumericNode? source)
         {
             if (source is null) return;
@@ -246,26 +236,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
             set => field_StrValue = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringNode(StringNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_StrValue = source.StrValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringNode(IStringNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_StrValue = source.StrValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IStringNode? source)
         {
             if (source is null) return;
@@ -313,26 +299,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
             set => field_BoolValue = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BooleanNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BooleanNode(BooleanNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_BoolValue = source.BoolValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BooleanNode(IBooleanNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_BoolValue = source.BoolValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBooleanNode? source)
         {
             if (source is null) return;
@@ -380,26 +362,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
             set => field_CustomValue = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CustomNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CustomNode(CustomNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_CustomValue = source.CustomValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CustomNode(ICustomNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_CustomValue = source.CustomValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(ICustomNode? source)
         {
             if (source is null) return;
@@ -447,26 +425,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
             set => field_IntValue = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int32Node() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int32Node(Int32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_IntValue = source.IntValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int32Node(IInt32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_IntValue = source.IntValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IInt32Node? source)
         {
             if (source is null) return;
@@ -514,26 +488,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
             set => field_LongValue = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int64Node() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int64Node(Int64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_LongValue = source.LongValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int64Node(IInt64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_LongValue = source.LongValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IInt64Node? source)
         {
             if (source is null) return;

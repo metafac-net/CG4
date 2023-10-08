@@ -50,18 +50,9 @@ namespace Generated.MessagePack
             return ref value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void CheckNotFrozen()
-        {
-            if (_isFrozen) ThrowIsReadonly();
-        }
-
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source)
-        {
-            CheckNotFrozen();
-        }
+        public void CopyFrom(EntityBase source) { }
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -130,12 +121,10 @@ namespace Generated.MessagePack
         // ---------- ISavingsAccount methods ----------
         String? ISavingsAccount.AccountName => field_AccountName;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SavingsAccount()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SavingsAccount(SavingsAccount source) : base(source)
         {
             field_AccountName = source.field_AccountName;
@@ -147,7 +136,6 @@ namespace Generated.MessagePack
             field_AccountName = source.field_AccountName;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SavingsAccount(ISavingsAccount source) : base(source)
         {
             field_AccountName = source.AccountName;
@@ -161,21 +149,18 @@ namespace Generated.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(SavingsAccount left, SavingsAccount right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(SavingsAccount left, SavingsAccount right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is SavingsAccount other && Equals(other);
@@ -264,12 +249,10 @@ namespace Generated.MessagePack
         Decimal IWithdrawl.Amount => field_Amount.ToExternal();
         String? IWithdrawl.CurrencyCode3 => field_CurrencyCode3;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Withdrawl()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Withdrawl(Withdrawl source) : base(source)
         {
             field_SourceAccountId = source.field_SourceAccountId;
@@ -287,7 +270,6 @@ namespace Generated.MessagePack
             field_CurrencyCode3 = source.field_CurrencyCode3;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Withdrawl(IWithdrawl source) : base(source)
         {
             field_SourceAccountId = source.SourceAccountId;
@@ -307,21 +289,18 @@ namespace Generated.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Withdrawl left, Withdrawl right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Withdrawl left, Withdrawl right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Withdrawl other && Equals(other);

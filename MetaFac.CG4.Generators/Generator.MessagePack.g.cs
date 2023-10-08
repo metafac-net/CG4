@@ -146,18 +146,9 @@ Emit("            if (_isFrozen) ThrowIsReadonly();");
 Emit("            return ref value;");
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
-Emit("        protected void CheckNotFrozen()");
-Emit("        {");
-Emit("            if (_isFrozen) ThrowIsReadonly();");
-Emit("        }");
-Emit("");
 Emit("        public EntityBase() { }");
 Emit("        public EntityBase(EntityBase source) { }");
-Emit("        public void CopyFrom(EntityBase source)");
-Emit("        {");
-Emit("            CheckNotFrozen();");
-Emit("        }");
+Emit("        public void CopyFrom(EntityBase source) { }");
 Emit("        public EntityBase(IEntityBase source) { }");
 Emit("        protected abstract int OnGetEntityTag();");
 Emit("        public int GetEntityTag() => OnGetEntityTag();");
@@ -636,12 +627,10 @@ Emit("        IReadOnlyDictionary<T_IndexType_, String?>? IT_EntityName_.T_Index
                     }
                 }
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_()");
 Emit("        {");
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(T_EntityName_ source) : base(source)");
 Emit("        {");
                     foreach (var fd in cd.MemberDefs)
@@ -763,7 +752,6 @@ Emit("            field_T_IndexStringFieldName_ = source.field_T_IndexStringFiel
                     }
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(IT_EntityName_ source) : base(source)");
 Emit("        {");
                     foreach (var fd in cd.MemberDefs)
@@ -911,21 +899,18 @@ Emit("            if (!field_T_IndexStringFieldName_.IndexEquals(other.field_T_I
 Emit("            return base.Equals(other);");
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public static bool operator ==(T_EntityName_ left, T_EntityName_ right)");
 Emit("        {");
 Emit("            if (left is null) return (right is null);");
 Emit("            return left.Equals(right);");
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public static bool operator !=(T_EntityName_ left, T_EntityName_ right)");
 Emit("        {");
 Emit("            if (left is null) return !(right is null);");
 Emit("            return !left.Equals(right);");
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public override bool Equals(object? obj)");
 Emit("        {");
 Emit("            return obj is T_EntityName_ other && Equals(other);");

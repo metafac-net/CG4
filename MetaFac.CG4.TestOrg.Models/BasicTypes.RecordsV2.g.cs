@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
 
 namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
@@ -78,12 +77,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Boolean, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Boolean, String?>? IBasic_bool.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_bool() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_bool(Basic_bool? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -96,7 +93,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_bool(IBasic_bool? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -191,12 +187,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<SByte, String?>? MapKey { get; init; }
         IReadOnlyDictionary<SByte, String?>? IBasic_sbyte.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_sbyte() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_sbyte(Basic_sbyte? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -209,7 +203,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_sbyte(IBasic_sbyte? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -304,12 +297,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Byte, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Byte, String?>? IBasic_byte.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_byte() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_byte(Basic_byte? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -322,7 +313,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_byte(IBasic_byte? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -417,12 +407,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Int16, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Int16, String?>? IBasic_short.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_short() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_short(Basic_short? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -435,7 +423,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_short(IBasic_short? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -530,12 +517,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<UInt16, String?>? MapKey { get; init; }
         IReadOnlyDictionary<UInt16, String?>? IBasic_ushort.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ushort() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ushort(Basic_ushort? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -548,7 +533,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ushort(IBasic_ushort? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -643,12 +627,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Char, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Char, String?>? IBasic_char.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_char() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_char(Basic_char? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -661,7 +643,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_char(IBasic_char? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -756,12 +737,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Int32, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Int32, String?>? IBasic_int.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_int() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_int(Basic_int? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -774,7 +753,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_int(IBasic_int? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -869,12 +847,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<UInt32, String?>? MapKey { get; init; }
         IReadOnlyDictionary<UInt32, String?>? IBasic_uint.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_uint() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_uint(Basic_uint? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -887,7 +863,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_uint(IBasic_uint? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -982,12 +957,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Single, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Single, String?>? IBasic_float.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_float() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_float(Basic_float? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1000,7 +973,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_float(IBasic_float? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1095,12 +1067,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Int64, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Int64, String?>? IBasic_long.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_long() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_long(Basic_long? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1113,7 +1083,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_long(IBasic_long? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1208,12 +1177,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<UInt64, String?>? MapKey { get; init; }
         IReadOnlyDictionary<UInt64, String?>? IBasic_ulong.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ulong() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ulong(Basic_ulong? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1226,7 +1193,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ulong(IBasic_ulong? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1321,12 +1287,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Double, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Double, String?>? IBasic_double.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_double() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_double(Basic_double? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1339,7 +1303,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_double(IBasic_double? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1434,12 +1397,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<DateTime, String?>? MapKey { get; init; }
         IReadOnlyDictionary<DateTime, String?>? IBasic_DateTime.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTime() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTime(Basic_DateTime? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1452,7 +1413,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTime(IBasic_DateTime? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1547,12 +1507,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<TimeSpan, String?>? MapKey { get; init; }
         IReadOnlyDictionary<TimeSpan, String?>? IBasic_TimeSpan.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_TimeSpan() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_TimeSpan(Basic_TimeSpan? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1565,7 +1523,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_TimeSpan(IBasic_TimeSpan? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1660,12 +1617,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Decimal, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Decimal, String?>? IBasic_decimal.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_decimal() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_decimal(Basic_decimal? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1678,7 +1633,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_decimal(IBasic_decimal? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1773,12 +1727,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<DateTimeOffset, String?>? MapKey { get; init; }
         IReadOnlyDictionary<DateTimeOffset, String?>? IBasic_DateTimeOffset.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTimeOffset() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTimeOffset(Basic_DateTimeOffset? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1791,7 +1743,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTimeOffset(IBasic_DateTimeOffset? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1886,12 +1837,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Guid, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Guid, String?>? IBasic_Guid.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Guid() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Guid(Basic_Guid? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1904,7 +1853,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Guid(IBasic_Guid? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1999,12 +1947,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<System.DayOfWeek, String?>? MapKey { get; init; }
         IReadOnlyDictionary<System.DayOfWeek, String?>? IBasic_DayOfWeek.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DayOfWeek() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DayOfWeek(Basic_DayOfWeek? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2017,7 +1963,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DayOfWeek(IBasic_DayOfWeek? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2112,12 +2057,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<MyCustomEnum, String?>? MapKey { get; init; }
         IReadOnlyDictionary<MyCustomEnum, String?>? IBasic_MyCustomEnum.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum(Basic_MyCustomEnum? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2130,7 +2073,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum(IBasic_MyCustomEnum? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2223,12 +2165,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<String, LabApps.Units.Quantity?>? MapOptional { get; init; }
         IReadOnlyDictionary<String, LabApps.Units.Quantity?>? IBasic_Quantity.MapOptional => MapOptional;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Quantity() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Quantity(Basic_Quantity? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2240,7 +2180,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapOptional = source.MapOptional;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Quantity(IBasic_Quantity? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2322,12 +2261,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<String, String?>? MapValue { get; init; }
         IReadOnlyDictionary<String, String?>? IBasic_string.MapValue => MapValue;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_string() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_string(Basic_string? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2336,7 +2273,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapValue = source.MapValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_string(IBasic_string? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2407,12 +2343,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         public ImmutableDictionary<Octets, String?>? MapKey { get; init; }
         IReadOnlyDictionary<Octets, String?>? IBasic_Octets.MapKey => MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Octets() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Octets(Basic_Octets? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2422,7 +2356,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Octets(IBasic_Octets? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));

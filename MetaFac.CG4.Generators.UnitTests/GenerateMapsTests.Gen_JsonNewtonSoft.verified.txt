@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Generated.Contracts;
 using MetaFac.Memory;
 
@@ -36,7 +35,6 @@ namespace Generated.JsonNewtonSoft
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -90,12 +88,10 @@ namespace Generated.JsonNewtonSoft
             set => field_Index3 = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes(IndexTypes? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -104,7 +100,6 @@ namespace Generated.JsonNewtonSoft
             field_Index3 = source.Index3;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes(IIndexTypes? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -122,7 +117,6 @@ namespace Generated.JsonNewtonSoft
                     .Select(x => new KeyValuePair<MyCustomEnum, Int64>(x.Key, x.Value)));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IIndexTypes? source)
         {
             if (source is null) return;

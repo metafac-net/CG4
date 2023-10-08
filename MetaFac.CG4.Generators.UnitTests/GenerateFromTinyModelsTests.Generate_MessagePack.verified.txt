@@ -50,18 +50,9 @@ namespace Generated.MessagePack
             return ref value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void CheckNotFrozen()
-        {
-            if (_isFrozen) ThrowIsReadonly();
-        }
-
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source)
-        {
-            CheckNotFrozen();
-        }
+        public void CopyFrom(EntityBase source) { }
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -130,12 +121,10 @@ namespace Generated.MessagePack
         // ---------- IBase methods ----------
         Int32 IBase.Id => field_Id.ToExternal();
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base(Base source) : base(source)
         {
             field_Id = source.field_Id;
@@ -147,7 +136,6 @@ namespace Generated.MessagePack
             field_Id = source.field_Id;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base(IBase source) : base(source)
         {
             field_Id = source.Id.ToInternal();
@@ -161,21 +149,18 @@ namespace Generated.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Base left, Base right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Base left, Base right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Base other && Equals(other);
@@ -248,12 +233,10 @@ namespace Generated.MessagePack
         String? IDerived.Name => field_Name;
         Int64? IDerived.Number => field_Number.ToExternal();
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived(Derived source) : base(source)
         {
             field_Name = source.field_Name;
@@ -267,7 +250,6 @@ namespace Generated.MessagePack
             field_Number = source.field_Number;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived(IDerived source) : base(source)
         {
             field_Name = source.Name;
@@ -283,21 +265,18 @@ namespace Generated.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Derived left, Derived right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Derived left, Derived right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Derived other && Equals(other);

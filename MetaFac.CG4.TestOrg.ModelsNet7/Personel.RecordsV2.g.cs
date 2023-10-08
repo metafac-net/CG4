@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using MetaFac.CG4.TestOrg.ModelsNet7.Personel.Contracts;
 
 namespace MetaFac.CG4.TestOrg.ModelsNet7.Personel.RecordsV2
@@ -72,12 +71,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Personel.RecordsV2
         public System.DayOfWeek DayOfBirth { get; init; }
         System.DayOfWeek IPerson.DayOfBirth => DayOfBirth;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person(Person? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -87,7 +84,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Personel.RecordsV2
             DayOfBirth = source.DayOfBirth;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person(IPerson? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));

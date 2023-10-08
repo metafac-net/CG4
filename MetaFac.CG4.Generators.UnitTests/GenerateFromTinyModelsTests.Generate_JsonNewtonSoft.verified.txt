@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Generated.Contracts;
 using MetaFac.Memory;
 
@@ -36,7 +35,6 @@ namespace Generated.JsonNewtonSoft
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -70,26 +68,22 @@ namespace Generated.JsonNewtonSoft
             set => field_Id = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base(Base? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Id = source.Id;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base(IBase? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Id = source.Id;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBase? source)
         {
             if (source is null) return;
@@ -144,12 +138,10 @@ namespace Generated.JsonNewtonSoft
             set => field_Number = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived(Derived? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -157,7 +149,6 @@ namespace Generated.JsonNewtonSoft
             field_Number = source.Number;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived(IDerived? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -165,7 +156,6 @@ namespace Generated.JsonNewtonSoft
             field_Number = source.Number;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IDerived? source)
         {
             if (source is null) return;

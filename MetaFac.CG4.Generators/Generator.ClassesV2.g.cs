@@ -127,7 +127,6 @@ Emit("        public const int EntityTag = 0;");
 Emit("        public EntityBase() { }");
 Emit("        public EntityBase(EntityBase? source) { }");
 Emit("        public EntityBase(IEntityBase? source) { }");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public void CopyFrom(IEntityBase? source) { }");
 Emit("        protected abstract int OnGetEntityTag();");
 Emit("        public int GetEntityTag() => OnGetEntityTag();");
@@ -164,7 +163,6 @@ Emit("        public new const int EntityTag = 999;");
 Emit("        public T_ParentName_() { }");
 Emit("        public T_ParentName_(T_ParentName_? source) : base(source) { }");
 Emit("        public T_ParentName_(IT_ParentName_? source) : base(source) { }");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public void CopyFrom(IT_ParentName_? source)");
 Emit("        {");
 Emit("            base.CopyFrom(source);");
@@ -184,7 +182,6 @@ Emit("");
             {
 Emit("    public abstract partial class T_EntityName2_");
 Emit("    {");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
@@ -209,7 +206,6 @@ Emit("    }");
             {
 Emit("    public partial class T_EntityName_");
 Emit("    {");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public static T_EntityName_? CreateFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return null;");
@@ -436,12 +432,10 @@ Emit("        }");
                     }
                 }
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_() : base()");
 Emit("        {");
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(T_EntityName_? source) : base(source)");
 Emit("        {");
 Emit("            if (source is null) throw new ArgumentNullException(nameof(source));");
@@ -503,7 +497,6 @@ Emit("            field_T_IndexStringFieldName_ = source.T_IndexStringFieldName_
                     }
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(IT_EntityName_? source) : base(source)");
 Emit("        {");
 Emit("            if (source is null) throw new ArgumentNullException(nameof(source));");
@@ -586,7 +579,6 @@ Emit("                : ImmutableDictionary<T_IndexType_, String?>.Empty.AddRang
                     }
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public void CopyFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return;");

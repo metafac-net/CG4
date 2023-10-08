@@ -46,7 +46,6 @@ Emit("using System;");
 Emit("using System.Collections.Generic;");
 Emit("using System.Collections.Immutable;");
 Emit("using System.Linq;");
-Emit("using System.Runtime.CompilerServices;");
 Emit("using System.Text.Json.Serialization;");
 Emit("using T_Namespace_.Contracts;");
 Emit("using MetaFac.Memory;");
@@ -107,7 +106,6 @@ Emit("        public const int EntityTag = 0;");
 Emit("        public EntityBase() { }");
 Emit("        public EntityBase(EntityBase? source) { }");
 Emit("        public EntityBase(IEntityBase? source) { }");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public void CopyFrom(IEntityBase? source) { }");
 Emit("        protected abstract int OnGetEntityTag();");
 Emit("        public int GetEntityTag() => OnGetEntityTag();");
@@ -131,7 +129,6 @@ Emit("        public new const int EntityTag = 999;");
 Emit("        public T_ParentName_() { }");
 Emit("        public T_ParentName_(T_ParentName_? source) : base(source) { }");
 Emit("        public T_ParentName_(IT_ParentName_? source) : base(source) { }");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public void CopyFrom(IT_ParentName_? source)");
 Emit("        {");
 Emit("            base.CopyFrom(source);");
@@ -350,12 +347,10 @@ Emit("        }");
                     }
                 }
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_() : base()");
 Emit("        {");
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(T_EntityName_? source) : base(source)");
 Emit("        {");
 Emit("            if (source is null) throw new ArgumentNullException(nameof(source));");
@@ -417,7 +412,6 @@ Emit("            field_T_IndexStringFieldName_ = source.T_IndexStringFieldName_
                     }
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(IT_EntityName_? source) : base(source)");
 Emit("        {");
 Emit("            if (source is null) throw new ArgumentNullException(nameof(source));");
@@ -506,7 +500,6 @@ Emit("                : ImmutableDictionary<T_IndexType_, String?>.Empty.AddRang
                     }
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public void CopyFrom(IT_EntityName_? source)");
 Emit("        {");
 Emit("            if (source is null) return;");

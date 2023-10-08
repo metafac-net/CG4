@@ -33,7 +33,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.ClassesV2
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -62,7 +61,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.ClassesV2
 
     public partial class Tree
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Tree? CreateFrom(ITree? source)
         {
             if (source is null) return null;
@@ -127,12 +125,10 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.ClassesV2
             set => field_B = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(Tree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -141,7 +137,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.ClassesV2
             field_B = source.B;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -150,7 +145,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.ClassesV2
             field_B = Tree.CreateFrom(source.B);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(ITree? source)
         {
             if (source is null) return;

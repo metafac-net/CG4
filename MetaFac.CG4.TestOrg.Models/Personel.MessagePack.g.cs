@@ -47,18 +47,9 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.MessagePack
             return ref value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void CheckNotFrozen()
-        {
-            if (_isFrozen) ThrowIsReadonly();
-        }
-
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source)
-        {
-            CheckNotFrozen();
-        }
+        public void CopyFrom(EntityBase source) { }
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -151,12 +142,10 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.MessagePack
         GenderEnum IPerson.Gender => field_Gender.ToExternal();
         System.DayOfWeek IPerson.DayOfBirth => field_DayOfBirth.ToExternal();
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person(Person source) : base(source)
         {
             field_FamilyName = source.field_FamilyName;
@@ -174,7 +163,6 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.MessagePack
             field_DayOfBirth = source.field_DayOfBirth;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person(IPerson source) : base(source)
         {
             field_FamilyName = source.FamilyName;
@@ -194,21 +182,18 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Person left, Person right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Person left, Person right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Person other && Equals(other);

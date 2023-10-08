@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Generated.Contracts;
 
 namespace Generated.RecordsV2
@@ -113,12 +112,10 @@ namespace Generated.RecordsV2
         public ImmutableList<MyCustomEnum>? MyCustomEnums { get; init; }
         IReadOnlyList<MyCustomEnum>? IBuiltinTypes.MyCustomEnums => MyCustomEnums;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BuiltinTypes() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BuiltinTypes(BuiltinTypes? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -147,7 +144,6 @@ namespace Generated.RecordsV2
             MyCustomEnums = source.MyCustomEnums;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));

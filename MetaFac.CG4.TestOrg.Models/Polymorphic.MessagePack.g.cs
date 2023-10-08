@@ -47,18 +47,9 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             return ref value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void CheckNotFrozen()
-        {
-            if (_isFrozen) ThrowIsReadonly();
-        }
-
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source)
-        {
-            CheckNotFrozen();
-        }
+        public void CopyFrom(EntityBase source) { }
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -153,12 +144,10 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         Int64 IValueNode.Id => field_Id.ToExternal();
         String? IValueNode.Name => field_Name;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ValueNode()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ValueNode(ValueNode source) : base(source)
         {
             field_Id = source.field_Id;
@@ -172,7 +161,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             field_Name = source.field_Name;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ValueNode(IValueNode source) : base(source)
         {
             field_Id = source.Id.ToInternal();
@@ -188,21 +176,18 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(ValueNode left, ValueNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(ValueNode left, ValueNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is ValueNode other && Equals(other);
@@ -270,12 +255,10 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
 
         // ---------- INumericNode methods ----------
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumericNode()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumericNode(NumericNode source) : base(source)
         {
         }
@@ -285,7 +268,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             base.CopyFrom(source);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumericNode(INumericNode source) : base(source)
         {
         }
@@ -297,21 +279,18 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(NumericNode left, NumericNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(NumericNode left, NumericNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is NumericNode other && Equals(other);
@@ -375,12 +354,10 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         // ---------- IStringNode methods ----------
         String? IStringNode.StrValue => field_StrValue;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringNode()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringNode(StringNode source) : base(source)
         {
             field_StrValue = source.field_StrValue;
@@ -392,7 +369,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             field_StrValue = source.field_StrValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringNode(IStringNode source) : base(source)
         {
             field_StrValue = source.StrValue;
@@ -406,21 +382,18 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(StringNode left, StringNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(StringNode left, StringNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is StringNode other && Equals(other);
@@ -485,12 +458,10 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         // ---------- IBooleanNode methods ----------
         Boolean IBooleanNode.BoolValue => field_BoolValue.ToExternal();
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BooleanNode()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BooleanNode(BooleanNode source) : base(source)
         {
             field_BoolValue = source.field_BoolValue;
@@ -502,7 +473,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             field_BoolValue = source.field_BoolValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BooleanNode(IBooleanNode source) : base(source)
         {
             field_BoolValue = source.BoolValue.ToInternal();
@@ -516,21 +486,18 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(BooleanNode left, BooleanNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(BooleanNode left, BooleanNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is BooleanNode other && Equals(other);
@@ -595,12 +562,10 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         // ---------- ICustomNode methods ----------
         CustomEnum ICustomNode.CustomValue => field_CustomValue.ToExternal();
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CustomNode()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CustomNode(CustomNode source) : base(source)
         {
             field_CustomValue = source.field_CustomValue;
@@ -612,7 +577,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             field_CustomValue = source.field_CustomValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CustomNode(ICustomNode source) : base(source)
         {
             field_CustomValue = source.CustomValue.ToInternal();
@@ -626,21 +590,18 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(CustomNode left, CustomNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(CustomNode left, CustomNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is CustomNode other && Equals(other);
@@ -705,12 +666,10 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         // ---------- IInt32Node methods ----------
         Int32 IInt32Node.IntValue => field_IntValue.ToExternal();
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int32Node()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int32Node(Int32Node source) : base(source)
         {
             field_IntValue = source.field_IntValue;
@@ -722,7 +681,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             field_IntValue = source.field_IntValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int32Node(IInt32Node source) : base(source)
         {
             field_IntValue = source.IntValue.ToInternal();
@@ -736,21 +694,18 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Int32Node left, Int32Node right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Int32Node left, Int32Node right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Int32Node other && Equals(other);
@@ -815,12 +770,10 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         // ---------- IInt64Node methods ----------
         Int64 IInt64Node.LongValue => field_LongValue.ToExternal();
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int64Node()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int64Node(Int64Node source) : base(source)
         {
             field_LongValue = source.field_LongValue;
@@ -832,7 +785,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             field_LongValue = source.field_LongValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int64Node(IInt64Node source) : base(source)
         {
             field_LongValue = source.LongValue.ToInternal();
@@ -846,21 +798,18 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Int64Node left, Int64Node right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Int64Node left, Int64Node right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Int64Node other && Equals(other);

@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using Generated.Contracts;
 using MetaFac.Memory;
@@ -37,7 +36,6 @@ namespace Generated.JsonSystemText
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -71,26 +69,22 @@ namespace Generated.JsonSystemText
             set => field_AccountName = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SavingsAccount() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SavingsAccount(SavingsAccount? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_AccountName = source.AccountName;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SavingsAccount(ISavingsAccount? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_AccountName = source.AccountName;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(ISavingsAccount? source)
         {
             if (source is null) return;
@@ -159,12 +153,10 @@ namespace Generated.JsonSystemText
             set => field_CurrencyCode3 = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Withdrawl() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Withdrawl(Withdrawl? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -174,7 +166,6 @@ namespace Generated.JsonSystemText
             field_CurrencyCode3 = source.CurrencyCode3;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Withdrawl(IWithdrawl? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -184,7 +175,6 @@ namespace Generated.JsonSystemText
             field_CurrencyCode3 = source.CurrencyCode3;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IWithdrawl? source)
         {
             if (source is null) return;

@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Generated.Contracts;
 
 namespace Generated.RecordsV2
@@ -69,19 +68,16 @@ namespace Generated.RecordsV2
         public Int32 Id { get; init; }
         Int32 IBase.Id => Id;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base(Base? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             Id = source.Id;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base(IBase? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -138,12 +134,10 @@ namespace Generated.RecordsV2
         public Int64? Number { get; init; }
         Int64? IDerived.Number => Number;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived(Derived? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -151,7 +145,6 @@ namespace Generated.RecordsV2
             Number = source.Number;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived(IDerived? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));

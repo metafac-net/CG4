@@ -33,7 +33,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -62,7 +61,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
 
     public abstract partial class ValueNode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueNode? CreateFrom(IValueNode? source)
         {
             if (source is null) return null;
@@ -119,12 +117,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             set => field_Name = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ValueNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ValueNode(ValueNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -132,7 +128,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             field_Name = source.Name;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ValueNode(IValueNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -140,7 +135,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             field_Name = source.Name;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IValueNode? source)
         {
             if (source is null) return;
@@ -182,7 +176,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
 
     public abstract partial class NumericNode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static NumericNode? CreateFrom(INumericNode? source)
         {
             if (source is null) return null;
@@ -221,24 +214,20 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         protected override int OnGetEntityTag() => EntityTag;
 
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumericNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumericNode(NumericNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumericNode(INumericNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(INumericNode? source)
         {
             if (source is null) return;
@@ -274,7 +263,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
 
     public partial class StringNode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static StringNode? CreateFrom(IStringNode? source)
         {
             if (source is null) return null;
@@ -323,26 +311,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             set => field_StrValue = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringNode(StringNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_StrValue = source.StrValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringNode(IStringNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_StrValue = source.StrValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IStringNode? source)
         {
             if (source is null) return;
@@ -381,7 +365,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
 
     public partial class BooleanNode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static BooleanNode? CreateFrom(IBooleanNode? source)
         {
             if (source is null) return null;
@@ -430,26 +413,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             set => field_BoolValue = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BooleanNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BooleanNode(BooleanNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_BoolValue = source.BoolValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BooleanNode(IBooleanNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_BoolValue = source.BoolValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBooleanNode? source)
         {
             if (source is null) return;
@@ -488,7 +467,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
 
     public partial class CustomNode
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CustomNode? CreateFrom(ICustomNode? source)
         {
             if (source is null) return null;
@@ -537,26 +515,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             set => field_CustomValue = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CustomNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CustomNode(CustomNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_CustomValue = source.CustomValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CustomNode(ICustomNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_CustomValue = source.CustomValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(ICustomNode? source)
         {
             if (source is null) return;
@@ -595,7 +569,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
 
     public partial class Int32Node
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int32Node? CreateFrom(IInt32Node? source)
         {
             if (source is null) return null;
@@ -644,26 +617,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             set => field_IntValue = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int32Node() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int32Node(Int32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_IntValue = source.IntValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int32Node(IInt32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_IntValue = source.IntValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IInt32Node? source)
         {
             if (source is null) return;
@@ -702,7 +671,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
 
     public partial class Int64Node
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int64Node? CreateFrom(IInt64Node? source)
         {
             if (source is null) return null;
@@ -751,26 +719,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             set => field_LongValue = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int64Node() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int64Node(Int64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_LongValue = source.LongValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Int64Node(IInt64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_LongValue = source.LongValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IInt64Node? source)
         {
             if (source is null) return;

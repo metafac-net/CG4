@@ -33,7 +33,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -62,7 +61,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_bool
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_bool? CreateFrom(IBasic_bool? source)
         {
             if (source is null) return null;
@@ -153,12 +151,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_bool() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_bool(Basic_bool? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -171,7 +167,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_bool(IBasic_bool? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -194,7 +189,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Boolean, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_bool? source)
         {
             if (source is null) return;
@@ -261,7 +255,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_sbyte
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_sbyte? CreateFrom(IBasic_sbyte? source)
         {
             if (source is null) return null;
@@ -352,12 +345,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_sbyte() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_sbyte(Basic_sbyte? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -370,7 +361,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_sbyte(IBasic_sbyte? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -393,7 +383,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<SByte, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_sbyte? source)
         {
             if (source is null) return;
@@ -460,7 +449,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_byte
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_byte? CreateFrom(IBasic_byte? source)
         {
             if (source is null) return null;
@@ -551,12 +539,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_byte() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_byte(Basic_byte? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -569,7 +555,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_byte(IBasic_byte? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -592,7 +577,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Byte, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_byte? source)
         {
             if (source is null) return;
@@ -659,7 +643,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_short
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_short? CreateFrom(IBasic_short? source)
         {
             if (source is null) return null;
@@ -750,12 +733,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_short() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_short(Basic_short? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -768,7 +749,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_short(IBasic_short? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -791,7 +771,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Int16, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_short? source)
         {
             if (source is null) return;
@@ -858,7 +837,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_ushort
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_ushort? CreateFrom(IBasic_ushort? source)
         {
             if (source is null) return null;
@@ -949,12 +927,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ushort() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ushort(Basic_ushort? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -967,7 +943,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ushort(IBasic_ushort? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -990,7 +965,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<UInt16, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_ushort? source)
         {
             if (source is null) return;
@@ -1057,7 +1031,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_char
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_char? CreateFrom(IBasic_char? source)
         {
             if (source is null) return null;
@@ -1148,12 +1121,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_char() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_char(Basic_char? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1166,7 +1137,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_char(IBasic_char? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1189,7 +1159,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Char, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_char? source)
         {
             if (source is null) return;
@@ -1256,7 +1225,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_int
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_int? CreateFrom(IBasic_int? source)
         {
             if (source is null) return null;
@@ -1347,12 +1315,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_int() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_int(Basic_int? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1365,7 +1331,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_int(IBasic_int? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1388,7 +1353,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Int32, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_int? source)
         {
             if (source is null) return;
@@ -1455,7 +1419,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_uint
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_uint? CreateFrom(IBasic_uint? source)
         {
             if (source is null) return null;
@@ -1546,12 +1509,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_uint() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_uint(Basic_uint? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1564,7 +1525,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_uint(IBasic_uint? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1587,7 +1547,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<UInt32, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_uint? source)
         {
             if (source is null) return;
@@ -1654,7 +1613,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_float
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_float? CreateFrom(IBasic_float? source)
         {
             if (source is null) return null;
@@ -1745,12 +1703,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_float() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_float(Basic_float? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1763,7 +1719,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_float(IBasic_float? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1786,7 +1741,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Single, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_float? source)
         {
             if (source is null) return;
@@ -1853,7 +1807,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_long
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_long? CreateFrom(IBasic_long? source)
         {
             if (source is null) return null;
@@ -1944,12 +1897,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_long() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_long(Basic_long? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1962,7 +1913,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_long(IBasic_long? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -1985,7 +1935,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Int64, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_long? source)
         {
             if (source is null) return;
@@ -2052,7 +2001,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_ulong
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_ulong? CreateFrom(IBasic_ulong? source)
         {
             if (source is null) return null;
@@ -2143,12 +2091,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ulong() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ulong(Basic_ulong? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2161,7 +2107,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ulong(IBasic_ulong? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2184,7 +2129,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<UInt64, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_ulong? source)
         {
             if (source is null) return;
@@ -2251,7 +2195,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_double
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_double? CreateFrom(IBasic_double? source)
         {
             if (source is null) return null;
@@ -2342,12 +2285,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_double() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_double(Basic_double? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2360,7 +2301,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_double(IBasic_double? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2383,7 +2323,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Double, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_double? source)
         {
             if (source is null) return;
@@ -2450,7 +2389,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_DateTime
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_DateTime? CreateFrom(IBasic_DateTime? source)
         {
             if (source is null) return null;
@@ -2541,12 +2479,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTime() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTime(Basic_DateTime? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2559,7 +2495,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTime(IBasic_DateTime? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2582,7 +2517,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<DateTime, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_DateTime? source)
         {
             if (source is null) return;
@@ -2649,7 +2583,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_TimeSpan
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_TimeSpan? CreateFrom(IBasic_TimeSpan? source)
         {
             if (source is null) return null;
@@ -2740,12 +2673,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_TimeSpan() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_TimeSpan(Basic_TimeSpan? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2758,7 +2689,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_TimeSpan(IBasic_TimeSpan? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2781,7 +2711,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<TimeSpan, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_TimeSpan? source)
         {
             if (source is null) return;
@@ -2848,7 +2777,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_decimal
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_decimal? CreateFrom(IBasic_decimal? source)
         {
             if (source is null) return null;
@@ -2939,12 +2867,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_decimal() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_decimal(Basic_decimal? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2957,7 +2883,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_decimal(IBasic_decimal? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -2980,7 +2905,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Decimal, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_decimal? source)
         {
             if (source is null) return;
@@ -3047,7 +2971,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_DateTimeOffset
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_DateTimeOffset? CreateFrom(IBasic_DateTimeOffset? source)
         {
             if (source is null) return null;
@@ -3138,12 +3061,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTimeOffset() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTimeOffset(Basic_DateTimeOffset? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3156,7 +3077,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTimeOffset(IBasic_DateTimeOffset? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3179,7 +3099,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<DateTimeOffset, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_DateTimeOffset? source)
         {
             if (source is null) return;
@@ -3246,7 +3165,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_Guid
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_Guid? CreateFrom(IBasic_Guid? source)
         {
             if (source is null) return null;
@@ -3337,12 +3255,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Guid() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Guid(Basic_Guid? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3355,7 +3271,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Guid(IBasic_Guid? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3378,7 +3293,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Guid, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_Guid? source)
         {
             if (source is null) return;
@@ -3445,7 +3359,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_DayOfWeek
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_DayOfWeek? CreateFrom(IBasic_DayOfWeek? source)
         {
             if (source is null) return null;
@@ -3536,12 +3449,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DayOfWeek() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DayOfWeek(Basic_DayOfWeek? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3554,7 +3465,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DayOfWeek(IBasic_DayOfWeek? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3577,7 +3487,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<System.DayOfWeek, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_DayOfWeek? source)
         {
             if (source is null) return;
@@ -3644,7 +3553,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_MyCustomEnum
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_MyCustomEnum? CreateFrom(IBasic_MyCustomEnum? source)
         {
             if (source is null) return null;
@@ -3735,12 +3643,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum(Basic_MyCustomEnum? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3753,7 +3659,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum(IBasic_MyCustomEnum? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3776,7 +3681,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<MyCustomEnum, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_MyCustomEnum? source)
         {
             if (source is null) return;
@@ -3843,7 +3747,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_Quantity
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_Quantity? CreateFrom(IBasic_Quantity? source)
         {
             if (source is null) return null;
@@ -3927,12 +3830,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapOptional = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Quantity() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Quantity(Basic_Quantity? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3944,7 +3845,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapOptional = source.MapOptional;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Quantity(IBasic_Quantity? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -3964,7 +3864,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<String, LabApps.Units.Quantity?>.Empty.AddRange(source.MapOptional);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_Quantity? source)
         {
             if (source is null) return;
@@ -4026,7 +3925,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_string
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_string? CreateFrom(IBasic_string? source)
         {
             if (source is null) return null;
@@ -4089,12 +3987,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapValue = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_string() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_string(Basic_string? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -4103,7 +3999,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapValue = source.MapValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_string(IBasic_string? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -4116,7 +4011,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<String, String?>.Empty.AddRange(source.MapValue);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_string? source)
         {
             if (source is null) return;
@@ -4165,7 +4059,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
 
     public partial class Basic_Octets
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Basic_Octets? CreateFrom(IBasic_Octets? source)
         {
             if (source is null) return null;
@@ -4235,12 +4128,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             set => field_MapKey = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Octets() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Octets(Basic_Octets? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -4250,7 +4141,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapKey = source.MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Octets(IBasic_Octets? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -4266,7 +4156,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
                 : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBasic_Octets? source)
         {
             if (source is null) return;

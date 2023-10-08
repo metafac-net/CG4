@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using MetaFac.CG4.TestOrg.Models.Recursive.Contracts;
 using MetaFac.Memory;
 
@@ -33,7 +32,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -81,12 +79,10 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft
             set => field_B = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(Tree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -95,7 +91,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft
             field_B = source.B;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -104,7 +99,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft
             field_B = Tree_Factory.Instance.CreateFrom(source.B);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(ITree? source)
         {
             if (source is null) return;

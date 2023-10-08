@@ -47,18 +47,9 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             return ref value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void CheckNotFrozen()
-        {
-            if (_isFrozen) ThrowIsReadonly();
-        }
-
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source)
-        {
-            CheckNotFrozen();
-        }
+        public void CopyFrom(EntityBase source) { }
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -146,12 +137,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
         ITree? ITree.A => field_A;
         ITree? ITree.B => field_B;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(Tree source) : base(source)
         {
             field_Value = source.field_Value;
@@ -167,7 +156,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             field_B = source.field_B;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree source) : base(source)
         {
             field_Value = Node_Factory.Instance.CreateFrom(source.Value);
@@ -185,21 +173,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Tree left, Tree right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Tree left, Tree right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Tree other && Equals(other);
@@ -272,12 +257,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
 
         // ---------- INode methods ----------
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Node()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Node(Node source) : base(source)
         {
         }
@@ -287,7 +270,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             base.CopyFrom(source);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Node(INode source) : base(source)
         {
         }
@@ -299,21 +281,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Node left, Node right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Node left, Node right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Node other && Equals(other);
@@ -377,12 +356,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
         // ---------- IStrNode methods ----------
         String? IStrNode.StrVal => field_StrVal;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StrNode()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StrNode(StrNode source) : base(source)
         {
             field_StrVal = source.field_StrVal;
@@ -394,7 +371,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             field_StrVal = source.field_StrVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StrNode(IStrNode source) : base(source)
         {
             field_StrVal = source.StrVal;
@@ -408,21 +384,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(StrNode left, StrNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(StrNode left, StrNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is StrNode other && Equals(other);
@@ -489,12 +462,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
 
         // ---------- INumNode methods ----------
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode(NumNode source) : base(source)
         {
         }
@@ -504,7 +475,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             base.CopyFrom(source);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode(INumNode source) : base(source)
         {
         }
@@ -516,21 +486,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(NumNode left, NumNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(NumNode left, NumNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is NumNode other && Equals(other);
@@ -594,12 +561,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
         // ---------- ILongNode methods ----------
         Int64 ILongNode.LongVal => field_LongVal.ToExternal();
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LongNode()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LongNode(LongNode source) : base(source)
         {
             field_LongVal = source.field_LongVal;
@@ -611,7 +576,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             field_LongVal = source.field_LongVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LongNode(ILongNode source) : base(source)
         {
             field_LongVal = source.LongVal.ToInternal();
@@ -625,21 +589,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(LongNode left, LongNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(LongNode left, LongNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is LongNode other && Equals(other);
@@ -704,12 +665,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
         // ---------- IDaynNode methods ----------
         System.DayOfWeek IDaynNode.DaynVal => field_DaynVal.ToExternal();
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DaynNode()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DaynNode(DaynNode source) : base(source)
         {
             field_DaynVal = source.field_DaynVal;
@@ -721,7 +680,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             field_DaynVal = source.field_DaynVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DaynNode(IDaynNode source) : base(source)
         {
             field_DaynVal = source.DaynVal.ToInternal();
@@ -735,21 +693,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(DaynNode left, DaynNode right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(DaynNode left, DaynNode right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is DaynNode other && Equals(other);

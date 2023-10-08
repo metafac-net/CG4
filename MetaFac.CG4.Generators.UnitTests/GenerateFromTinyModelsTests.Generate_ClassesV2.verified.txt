@@ -36,7 +36,6 @@ namespace Generated.ClassesV2
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -65,7 +64,6 @@ namespace Generated.ClassesV2
 
     public partial class Base
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Base? CreateFrom(IBase? source)
         {
             if (source is null) return null;
@@ -114,26 +112,22 @@ namespace Generated.ClassesV2
             set => field_Id = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base(Base? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Id = source.Id;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Base(IBase? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_Id = source.Id;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBase? source)
         {
             if (source is null) return;
@@ -172,7 +166,6 @@ namespace Generated.ClassesV2
 
     public partial class Derived
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Derived? CreateFrom(IDerived? source)
         {
             if (source is null) return null;
@@ -228,12 +221,10 @@ namespace Generated.ClassesV2
             set => field_Number = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived(Derived? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -241,7 +232,6 @@ namespace Generated.ClassesV2
             field_Number = source.Number;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Derived(IDerived? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -249,7 +239,6 @@ namespace Generated.ClassesV2
             field_Number = source.Number;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IDerived? source)
         {
             if (source is null) return;

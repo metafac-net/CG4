@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Generated.Contracts;
 
 namespace Generated.RecordsV2
@@ -73,12 +72,10 @@ namespace Generated.RecordsV2
         public ImmutableDictionary<MyCustomEnum, Int64>? Index3 { get; init; }
         IReadOnlyDictionary<MyCustomEnum, Int64>? IIndexTypes.Index3 => Index3;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes(IndexTypes? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -87,7 +84,6 @@ namespace Generated.RecordsV2
             Index3 = source.Index3;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes(IIndexTypes? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));

@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using MetaFac.CG4.TestOrg.Models.XtraComplex.Contracts;
 
 namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
@@ -70,12 +69,10 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         public Tree? B { get; init; }
         ITree? ITree.B => B;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(Tree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -84,7 +81,6 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
             B = source.B;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -153,18 +149,15 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         protected override int OnGetEntityTag() => EntityTag;
 
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Node() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Node(Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Node(INode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -216,19 +209,16 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         public String? StrVal { get; init; }
         String? IStrNode.StrVal => StrVal;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StrNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StrNode(StrNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             StrVal = source.StrVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StrNode(IStrNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -289,18 +279,15 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         protected override int OnGetEntityTag() => EntityTag;
 
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode(NumNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode(INumNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -352,19 +339,16 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         public Int64 LongVal { get; init; }
         Int64 ILongNode.LongVal => LongVal;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LongNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LongNode(LongNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             LongVal = source.LongVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LongNode(ILongNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -419,19 +403,16 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
         public System.DayOfWeek DaynVal { get; init; }
         System.DayOfWeek IDaynNode.DaynVal => DaynVal;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DaynNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DaynNode(DaynNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             DaynVal = source.DaynVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DaynNode(IDaynNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));

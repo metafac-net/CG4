@@ -33,7 +33,6 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.ClassesV2
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -62,7 +61,6 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.ClassesV2
 
     public partial class Person
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Person? CreateFrom(IPerson? source)
         {
             if (source is null) return null;
@@ -132,12 +130,10 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.ClassesV2
             set => field_DayOfBirth = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person(Person? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -147,7 +143,6 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.ClassesV2
             field_DayOfBirth = source.DayOfBirth;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person(IPerson? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -157,7 +152,6 @@ namespace MetaFac.CG4.TestOrg.Models.Personel.ClassesV2
             field_DayOfBirth = source.DayOfBirth;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IPerson? source)
         {
             if (source is null) return;

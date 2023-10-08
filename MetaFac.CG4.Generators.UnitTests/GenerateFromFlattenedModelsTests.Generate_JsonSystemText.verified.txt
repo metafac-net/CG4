@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using Generated.Contracts;
 using MetaFac.Memory;
@@ -37,7 +36,6 @@ namespace Generated.JsonSystemText
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -264,12 +262,10 @@ namespace Generated.JsonSystemText
             set => field_MyCustomEnums = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BuiltinTypes() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BuiltinTypes(BuiltinTypes? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -298,7 +294,6 @@ namespace Generated.JsonSystemText
             field_MyCustomEnums = source.MyCustomEnums;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -394,7 +389,6 @@ namespace Generated.JsonSystemText
                     .Select(x => (MyCustomEnum)x));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IBuiltinTypes? source)
         {
             if (source is null) return;

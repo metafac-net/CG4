@@ -47,7 +47,6 @@ Emit("using System;");
 Emit("using System.Collections.Generic;");
 Emit("using System.Collections.Immutable;");
 Emit("using System.Linq;");
-Emit("using System.Runtime.CompilerServices;");
 Emit("using T_Namespace_.Contracts;");
 Emit("");
 Emit("namespace T_Namespace_.RecordsV2");
@@ -268,12 +267,10 @@ Emit("        IReadOnlyDictionary<T_IndexType_, String?>? IT_EntityName_.T_Index
                     }
                 }
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_() : base()");
 Emit("        {");
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(T_EntityName_? source) : base(source)");
 Emit("        {");
 Emit("            if (source is null) throw new ArgumentNullException(nameof(source));");
@@ -335,7 +332,6 @@ Emit("            T_IndexStringFieldName_ = source.T_IndexStringFieldName_;");
                     }
 Emit("        }");
 Emit("");
-Emit("        [MethodImpl(MethodImplOptions.AggressiveInlining)]");
 Emit("        public T_EntityName_(IT_EntityName_? source) : base(source)");
 Emit("        {");
 Emit("            if (source is null) throw new ArgumentNullException(nameof(source));");

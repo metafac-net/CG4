@@ -47,18 +47,9 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
             return ref value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void CheckNotFrozen()
-        {
-            if (_isFrozen) ThrowIsReadonly();
-        }
-
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source)
-        {
-            CheckNotFrozen();
-        }
+        public void CopyFrom(EntityBase source) { }
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -145,12 +136,10 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
         ITree? ITree.A => field_A;
         ITree? ITree.B => field_B;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(Tree source) : base(source)
         {
             field_Id = source.field_Id;
@@ -166,7 +155,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
             field_B = source.field_B;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree source) : base(source)
         {
             field_Id = source.Id.ToInternal();
@@ -184,21 +172,18 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Tree left, Tree right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Tree left, Tree right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Tree other && Equals(other);

@@ -47,18 +47,9 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return ref value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void CheckNotFrozen()
-        {
-            if (_isFrozen) ThrowIsReadonly();
-        }
-
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source)
-        {
-            CheckNotFrozen();
-        }
+        public void CopyFrom(EntityBase source) { }
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -183,12 +174,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Boolean?, Boolean?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Boolean, String?>? IBasic_bool.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_bool()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_bool(Basic_bool source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -212,7 +201,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_bool(IBasic_bool source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -250,21 +238,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_bool left, Basic_bool right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_bool left, Basic_bool right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_bool other && Equals(other);
@@ -391,12 +376,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, SByte?, SByte?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<SByte, String?>? IBasic_sbyte.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_sbyte()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_sbyte(Basic_sbyte source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -420,7 +403,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_sbyte(IBasic_sbyte source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -458,21 +440,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_sbyte left, Basic_sbyte right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_sbyte left, Basic_sbyte right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_sbyte other && Equals(other);
@@ -599,12 +578,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Byte?, Byte?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Byte, String?>? IBasic_byte.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_byte()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_byte(Basic_byte source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -628,7 +605,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_byte(IBasic_byte source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -666,21 +642,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_byte left, Basic_byte right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_byte left, Basic_byte right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_byte other && Equals(other);
@@ -807,12 +780,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Int16?, Int16?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Int16, String?>? IBasic_short.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_short()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_short(Basic_short source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -836,7 +807,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_short(IBasic_short source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -874,21 +844,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_short left, Basic_short right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_short left, Basic_short right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_short other && Equals(other);
@@ -1015,12 +982,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, UInt16?, UInt16?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<UInt16, String?>? IBasic_ushort.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ushort()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ushort(Basic_ushort source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -1044,7 +1009,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ushort(IBasic_ushort source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -1082,21 +1046,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_ushort left, Basic_ushort right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_ushort left, Basic_ushort right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_ushort other && Equals(other);
@@ -1223,12 +1184,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Char?, Char?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Char, String?>? IBasic_char.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_char()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_char(Basic_char source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -1252,7 +1211,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_char(IBasic_char source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -1290,21 +1248,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_char left, Basic_char right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_char left, Basic_char right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_char other && Equals(other);
@@ -1431,12 +1386,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Int32?, Int32?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Int32, String?>? IBasic_int.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_int()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_int(Basic_int source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -1460,7 +1413,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_int(IBasic_int source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -1498,21 +1450,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_int left, Basic_int right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_int left, Basic_int right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_int other && Equals(other);
@@ -1639,12 +1588,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, UInt32?, UInt32?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<UInt32, String?>? IBasic_uint.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_uint()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_uint(Basic_uint source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -1668,7 +1615,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_uint(IBasic_uint source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -1706,21 +1652,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_uint left, Basic_uint right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_uint left, Basic_uint right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_uint other && Equals(other);
@@ -1847,12 +1790,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Single?, Single?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Single, String?>? IBasic_float.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_float()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_float(Basic_float source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -1876,7 +1817,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_float(IBasic_float source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -1914,21 +1854,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_float left, Basic_float right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_float left, Basic_float right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_float other && Equals(other);
@@ -2055,12 +1992,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Int64?, Int64?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Int64, String?>? IBasic_long.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_long()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_long(Basic_long source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -2084,7 +2019,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_long(IBasic_long source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -2122,21 +2056,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_long left, Basic_long right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_long left, Basic_long right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_long other && Equals(other);
@@ -2263,12 +2194,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, UInt64?, UInt64?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<UInt64, String?>? IBasic_ulong.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ulong()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ulong(Basic_ulong source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -2292,7 +2221,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_ulong(IBasic_ulong source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -2330,21 +2258,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_ulong left, Basic_ulong right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_ulong left, Basic_ulong right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_ulong other && Equals(other);
@@ -2471,12 +2396,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Double?, Double?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Double, String?>? IBasic_double.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_double()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_double(Basic_double source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -2500,7 +2423,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_double(IBasic_double source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -2538,21 +2460,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_double left, Basic_double right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_double left, Basic_double right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_double other && Equals(other);
@@ -2679,12 +2598,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, DateTime?, DateTimeValue?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<DateTime, String?>? IBasic_DateTime.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTime()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTime(Basic_DateTime source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -2708,7 +2625,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTime(IBasic_DateTime source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -2746,21 +2662,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_DateTime left, Basic_DateTime right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_DateTime left, Basic_DateTime right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_DateTime other && Equals(other);
@@ -2887,12 +2800,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, TimeSpan?, TimeSpan?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<TimeSpan, String?>? IBasic_TimeSpan.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_TimeSpan()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_TimeSpan(Basic_TimeSpan source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -2916,7 +2827,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_TimeSpan(IBasic_TimeSpan source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -2954,21 +2864,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_TimeSpan left, Basic_TimeSpan right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_TimeSpan left, Basic_TimeSpan right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_TimeSpan other && Equals(other);
@@ -3095,12 +3002,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Decimal?, DecimalValue?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Decimal, String?>? IBasic_decimal.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_decimal()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_decimal(Basic_decimal source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -3124,7 +3029,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_decimal(IBasic_decimal source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -3162,21 +3066,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_decimal left, Basic_decimal right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_decimal left, Basic_decimal right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_decimal other && Equals(other);
@@ -3303,12 +3204,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, DateTimeOffset?, DateTimeOffsetValue?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<DateTimeOffset, String?>? IBasic_DateTimeOffset.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTimeOffset()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTimeOffset(Basic_DateTimeOffset source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -3332,7 +3231,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DateTimeOffset(IBasic_DateTimeOffset source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -3370,21 +3268,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_DateTimeOffset left, Basic_DateTimeOffset right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_DateTimeOffset left, Basic_DateTimeOffset right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_DateTimeOffset other && Equals(other);
@@ -3511,12 +3406,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Guid?, GuidValue?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<Guid, String?>? IBasic_Guid.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Guid()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Guid(Basic_Guid source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -3540,7 +3433,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Guid(IBasic_Guid source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -3578,21 +3470,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_Guid left, Basic_Guid right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_Guid left, Basic_Guid right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_Guid other && Equals(other);
@@ -3719,12 +3608,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, System.DayOfWeek?, System.DayOfWeek?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<System.DayOfWeek, String?>? IBasic_DayOfWeek.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DayOfWeek()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DayOfWeek(Basic_DayOfWeek source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -3748,7 +3635,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_DayOfWeek(IBasic_DayOfWeek source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -3786,21 +3672,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_DayOfWeek left, Basic_DayOfWeek right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_DayOfWeek left, Basic_DayOfWeek right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_DayOfWeek other && Equals(other);
@@ -3927,12 +3810,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, MyCustomEnum?, MyCustomEnum?>(field_MapOptional, (x) => x.ToExternal());
         IReadOnlyDictionary<MyCustomEnum, String?>? IBasic_MyCustomEnum.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum(Basic_MyCustomEnum source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -3956,7 +3837,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_MyCustomEnum(IBasic_MyCustomEnum source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -3994,21 +3874,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_MyCustomEnum left, Basic_MyCustomEnum right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_MyCustomEnum left, Basic_MyCustomEnum right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_MyCustomEnum other && Equals(other);
@@ -4127,12 +4004,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             => field_MapOptional is null ? null
             : new DictionaryFacade<String, LabApps.Units.Quantity?, QuantityValue?>(field_MapOptional, (x) => x.ToExternal());
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Quantity()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Quantity(Basic_Quantity source) : base(source)
         {
             field_ScalarRequired = source.field_ScalarRequired;
@@ -4154,7 +4029,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapOptional = source.field_MapOptional;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Quantity(IBasic_Quantity source) : base(source)
         {
             field_ScalarRequired = source.ScalarRequired.ToInternal();
@@ -4188,21 +4062,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_Quantity left, Basic_Quantity right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_Quantity left, Basic_Quantity right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_Quantity other && Equals(other);
@@ -4288,12 +4159,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         IReadOnlyList<String?>? IBasic_string.Vector => field_Vector;
         IReadOnlyDictionary<String, String?>? IBasic_string.MapValue => field_MapValue;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_string()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_string(Basic_string source) : base(source)
         {
             field_Scalar = source.field_Scalar;
@@ -4309,7 +4178,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapValue = source.field_MapValue;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_string(IBasic_string source) : base(source)
         {
             field_Scalar = source.Scalar;
@@ -4331,21 +4199,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_string left, Basic_string right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_string left, Basic_string right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_string other && Equals(other);
@@ -4440,12 +4305,10 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             : new DictionaryFacade<String, Octets?, BinaryValue?>(field_MapValue, x => (Octets?)x);
         IReadOnlyDictionary<Octets, String?>? IBasic_Octets.MapKey => field_MapKey;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Octets()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Octets(Basic_Octets source) : base(source)
         {
             field_Scalar = source.field_Scalar;
@@ -4463,7 +4326,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_MapKey = source.field_MapKey;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Basic_Octets(IBasic_Octets source) : base(source)
         {
             field_Scalar = source.Scalar;
@@ -4490,21 +4352,18 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Basic_Octets left, Basic_Octets right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Basic_Octets left, Basic_Octets right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is Basic_Octets other && Equals(other);

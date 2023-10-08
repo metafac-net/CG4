@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.Contracts;
 using MetaFac.Memory;
@@ -34,7 +33,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.JsonSystemText
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -82,12 +80,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.JsonSystemText
             set => field_B = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(Tree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -96,7 +92,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.JsonSystemText
             field_B = source.B;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -105,7 +100,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.JsonSystemText
             field_B = Tree_Factory.Instance.CreateFrom(source.B);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(ITree? source)
         {
             if (source is null) return;
@@ -174,24 +168,20 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.JsonSystemText
         protected override int OnGetEntityTag() => EntityTag;
 
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Node() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Node(Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Node(INode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(INode? source)
         {
             if (source is null) return;
@@ -236,26 +226,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.JsonSystemText
             set => field_StrVal = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StrNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StrNode(StrNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_StrVal = source.StrVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StrNode(IStrNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_StrVal = source.StrVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IStrNode? source)
         {
             if (source is null) return;
@@ -314,24 +300,20 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.JsonSystemText
         protected override int OnGetEntityTag() => EntityTag;
 
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode(NumNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public NumNode(INumNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(INumNode? source)
         {
             if (source is null) return;
@@ -376,26 +358,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.JsonSystemText
             set => field_LongVal = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LongNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LongNode(LongNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_LongVal = source.LongVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LongNode(ILongNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_LongVal = source.LongVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(ILongNode? source)
         {
             if (source is null) return;
@@ -443,26 +421,22 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.JsonSystemText
             set => field_DaynVal = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DaynNode() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DaynNode(DaynNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_DaynVal = source.DaynVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DaynNode(IDaynNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_DaynVal = source.DaynVal;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IDaynNode? source)
         {
             if (source is null) return;

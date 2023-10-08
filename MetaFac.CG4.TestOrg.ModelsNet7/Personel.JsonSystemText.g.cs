@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using MetaFac.CG4.TestOrg.ModelsNet7.Personel.Contracts;
 using MetaFac.Memory;
@@ -34,7 +33,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Personel.JsonSystemText
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -89,12 +87,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Personel.JsonSystemText
             set => field_DayOfBirth = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person(Person? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -104,7 +100,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Personel.JsonSystemText
             field_DayOfBirth = source.DayOfBirth;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Person(IPerson? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -114,7 +109,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Personel.JsonSystemText
             field_DayOfBirth = source.DayOfBirth;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IPerson? source)
         {
             if (source is null) return;

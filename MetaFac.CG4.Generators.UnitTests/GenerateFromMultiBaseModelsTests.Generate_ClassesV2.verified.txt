@@ -36,7 +36,6 @@ namespace Generated.ClassesV2
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -65,7 +64,6 @@ namespace Generated.ClassesV2
 
     public partial class SavingsAccount
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SavingsAccount? CreateFrom(ISavingsAccount? source)
         {
             if (source is null) return null;
@@ -114,26 +112,22 @@ namespace Generated.ClassesV2
             set => field_AccountName = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SavingsAccount() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SavingsAccount(SavingsAccount? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_AccountName = source.AccountName;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SavingsAccount(ISavingsAccount? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
             field_AccountName = source.AccountName;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(ISavingsAccount? source)
         {
             if (source is null) return;
@@ -172,7 +166,6 @@ namespace Generated.ClassesV2
 
     public partial class Withdrawl
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Withdrawl? CreateFrom(IWithdrawl? source)
         {
             if (source is null) return null;
@@ -242,12 +235,10 @@ namespace Generated.ClassesV2
             set => field_CurrencyCode3 = CheckNotFrozen(ref value);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Withdrawl() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Withdrawl(Withdrawl? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -257,7 +248,6 @@ namespace Generated.ClassesV2
             field_CurrencyCode3 = source.CurrencyCode3;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Withdrawl(IWithdrawl? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -267,7 +257,6 @@ namespace Generated.ClassesV2
             field_CurrencyCode3 = source.CurrencyCode3;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IWithdrawl? source)
         {
             if (source is null) return;

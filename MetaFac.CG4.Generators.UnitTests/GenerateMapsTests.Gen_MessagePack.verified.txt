@@ -50,18 +50,9 @@ namespace Generated.MessagePack
             return ref value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void CheckNotFrozen()
-        {
-            if (_isFrozen) ThrowIsReadonly();
-        }
-
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source)
-        {
-            CheckNotFrozen();
-        }
+        public void CopyFrom(EntityBase source) { }
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -152,12 +143,10 @@ namespace Generated.MessagePack
             => field_Index3 is null ? null
             : new DictionaryFacade<MyCustomEnum, Int64, Int64>(field_Index3, (x) => x.ToExternal());
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes(IndexTypes source) : base(source)
         {
             field_Index1 = source.field_Index1;
@@ -173,7 +162,6 @@ namespace Generated.MessagePack
             field_Index3 = source.field_Index3;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IndexTypes(IIndexTypes source) : base(source)
         {
             field_Index1 = source.Index1 is null
@@ -200,21 +188,18 @@ namespace Generated.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(IndexTypes left, IndexTypes right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(IndexTypes left, IndexTypes right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is IndexTypes other && Equals(other);

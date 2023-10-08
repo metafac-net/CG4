@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using MetaFac.CG4.TestOrg.ModelsNet7.Recursive.Contracts;
 
 namespace MetaFac.CG4.TestOrg.ModelsNet7.Recursive.RecordsV2
@@ -70,12 +69,10 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Recursive.RecordsV2
         public Tree? B { get; init; }
         ITree? ITree.B => B;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(Tree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -84,7 +81,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Recursive.RecordsV2
             B = source.B;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
