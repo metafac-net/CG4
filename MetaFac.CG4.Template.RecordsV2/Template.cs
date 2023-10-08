@@ -35,7 +35,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using T_Namespace_.Contracts;
 
 namespace T_Namespace_.RecordsV2
@@ -256,12 +255,10 @@ namespace T_Namespace_.RecordsV2
         //>>            }
         //>>        }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(T_EntityName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -323,7 +320,6 @@ namespace T_Namespace_.RecordsV2
             //>>        }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(IT_EntityName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));

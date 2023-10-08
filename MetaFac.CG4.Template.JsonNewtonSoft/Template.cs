@@ -34,7 +34,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using T_Namespace_.Contracts;
 using MetaFac.Memory;
 
@@ -94,7 +93,6 @@ namespace T_Namespace_.JsonNewtonSoft
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -118,7 +116,6 @@ namespace T_Namespace_.JsonNewtonSoft
         public T_ParentName_() { }
         public T_ParentName_(T_ParentName_? source) : base(source) { }
         public T_ParentName_(IT_ParentName_? source) : base(source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IT_ParentName_? source)
         {
             base.CopyFrom(source);
@@ -330,12 +327,10 @@ namespace T_Namespace_.JsonNewtonSoft
         //>>            }
         //>>        }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(T_EntityName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -397,7 +392,6 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>        }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(IT_EntityName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -486,7 +480,6 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>        }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IT_EntityName_? source)
         {
             if (source is null) return;

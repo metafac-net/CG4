@@ -115,7 +115,6 @@ namespace T_Namespace_.ClassesV2
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -152,7 +151,6 @@ namespace T_Namespace_.ClassesV2
         public T_ParentName_() { }
         public T_ParentName_(T_ParentName_? source) : base(source) { }
         public T_ParentName_(IT_ParentName_? source) : base(source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IT_ParentName_? source)
         {
             base.CopyFrom(source);
@@ -172,7 +170,6 @@ namespace T_Namespace_.ClassesV2
     //>>        {
     public abstract partial class T_EntityName2_
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T_EntityName_? CreateFrom(IT_EntityName_? source)
         {
             if (source is null) return null;
@@ -197,7 +194,6 @@ namespace T_Namespace_.ClassesV2
     //>>        {
     public partial class T_EntityName_
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T_EntityName_? CreateFrom(IT_EntityName_? source)
         {
             if (source is null) return null;
@@ -424,12 +420,10 @@ namespace T_Namespace_.ClassesV2
         //>>            }
         //>>        }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(T_EntityName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -491,7 +485,6 @@ namespace T_Namespace_.ClassesV2
             //>>        }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(IT_EntityName_? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -574,7 +567,6 @@ namespace T_Namespace_.ClassesV2
             //>>        }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IT_EntityName_? source)
         {
             if (source is null) return;

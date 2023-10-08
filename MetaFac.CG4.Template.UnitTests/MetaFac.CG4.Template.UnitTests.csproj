@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net7.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <WarningsAsErrors>nullable</WarningsAsErrors>
@@ -25,11 +25,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Template.ClassesV2\MetaFac.CG4.Template.ClassesV2.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Template.Contracts\MetaFac.CG4.Template.Contracts.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Template.JsonNewtonSoft\MetaFac.CG4.Template.JsonNewtonSoft.csproj" />
-        <ProjectReference Include="..\MetaFac.CG4.Template.JsonSystemText\MetaFac.CG4.Template.JsonSystemText.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Template.MessagePack\MetaFac.CG4.Template.MessagePack.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Template.RecordsV2\MetaFac.CG4.Template.RecordsV2.csproj" />
     </ItemGroup>

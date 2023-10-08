@@ -134,18 +134,9 @@ namespace T_Namespace_.MessagePack
             return ref value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void CheckNotFrozen()
-        {
-            if (_isFrozen) ThrowIsReadonly();
-        }
-
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source)
-        {
-            CheckNotFrozen();
-        }
+        public void CopyFrom(EntityBase source) { }
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -624,12 +615,10 @@ namespace T_Namespace_.MessagePack
         //>>            }
         //>>        }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(T_EntityName_ source) : base(source)
         {
             //>>        foreach (var fd in cd.MemberDefs)
@@ -751,7 +740,6 @@ namespace T_Namespace_.MessagePack
             //>>        }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T_EntityName_(IT_EntityName_ source) : base(source)
         {
             //>>        foreach (var fd in cd.MemberDefs)
@@ -899,21 +887,18 @@ namespace T_Namespace_.MessagePack
             return base.Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(T_EntityName_ left, T_EntityName_ right)
         {
             if (left is null) return (right is null);
             return left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(T_EntityName_ left, T_EntityName_ right)
         {
             if (left is null) return !(right is null);
             return !left.Equals(right);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
         {
             return obj is T_EntityName_ other && Equals(other);

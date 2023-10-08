@@ -8,7 +8,7 @@ using T_Namespace_.Contracts;
 using T_Namespace_.JsonSystemText;
 using Xunit;
 
-namespace MetaFac.CG4.Template.UnitTests
+namespace MetaFac.CG4.TemplateNet7.Tests
 {
     using T_ExternalMaybeType_ = DayOfWeek;
     using T_IndexType_ = String;
@@ -19,9 +19,9 @@ namespace MetaFac.CG4.Template.UnitTests
         public void ImmutableBufferRoundtrip()
         {
             ReadOnlyMemory<byte> orig = new byte[] { 1, 2, 3 };
-            ImmutableArray<byte> array1 = orig.ToImmutableArray();
+            ImmutableArray<byte> array1 = ImmutableArray.Create(orig.Span);
             ReadOnlyMemory<byte> copy = array1.AsMemory();
-            ImmutableArray<byte> array2 = copy.ToImmutableArray();
+            ImmutableArray<byte> array2 = ImmutableArray.Create(copy.Span);
 
             copy.Length.Should().Be(orig.Length);
             //copy.Should().BeEquivalentTo(orig);
