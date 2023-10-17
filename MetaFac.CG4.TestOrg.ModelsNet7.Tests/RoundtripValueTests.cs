@@ -669,5 +669,33 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
             RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
+        [Theory]
+        [InlineData("min")]
+        [InlineData("max")]
+        [InlineData("now")]
+        [InlineData(null)]
+        public void RoundtripValues_TimeOnly(string? input)
+        {
+            TimeOnly? value = input switch
+            {
+                null => null,
+                "min" => TimeOnly.MinValue,
+                "max" => TimeOnly.MaxValue,
+                "now" => TimeOnly.FromDateTime(DateTime.UtcNow),
+                _ => TimeOnly.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_TimeOnly_Factory.Instance;
+            var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_TimeOnly_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_TimeOnly_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_TimeOnly_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_TimeOnly()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, TimeOnly?>.Empty.Add("key", value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
+        }
+
     }
 }
