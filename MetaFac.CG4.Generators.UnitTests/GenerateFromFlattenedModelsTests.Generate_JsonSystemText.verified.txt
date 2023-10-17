@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonSystemText.2.3
+// Generator: JsonSystemText.2.4
 // Metadata : MetaFac.CG4.Generators.UnitTests(.FlattenedModels)
 // </information>
 #endregion
@@ -261,11 +261,11 @@ namespace Generated.JsonSystemText
             get => field_MyCustomEnums;
             set => field_MyCustomEnums = value;
         }
-        private ImmutableList<Half>? field_Halves;
+        private ImmutableList<HalfValue>? field_Halves;
         IReadOnlyList<Half>? IBuiltinTypes.Halves => field_Halves is null
             ? null
-            : new ListFacade<Half, Half>(field_Halves, (x) => x.ToExternal());
-        public ImmutableList<Half>? Halves
+            : new ListFacade<Half, HalfValue>(field_Halves, (x) => x.ToExternal());
+        public ImmutableList<HalfValue>? Halves
         {
             get => field_Halves;
             set => field_Halves = value;
@@ -419,8 +419,8 @@ namespace Generated.JsonSystemText
                     .Select(x => (MyCustomEnum)x));
             field_Halves = source.Halves is null
                 ? default
-                : ImmutableList<Half>.Empty.AddRange(source.Halves
-                    .Select(x => (Half)x));
+                : ImmutableList<HalfValue>.Empty.AddRange(source.Halves
+                    .Select(x => (HalfValue)x));
             field_Dates = source.Dates is null
                 ? default
                 : ImmutableList<DateOnly>.Empty.AddRange(source.Dates
@@ -527,8 +527,8 @@ namespace Generated.JsonSystemText
                     .Select(x => (MyCustomEnum)x));
             field_Halves = source.Halves is null
                 ? default
-                : ImmutableList<Half>.Empty.AddRange(source.Halves
-                    .Select(x => (Half)x));
+                : ImmutableList<HalfValue>.Empty.AddRange(source.Halves
+                    .Select(x => (HalfValue)x));
             field_Dates = source.Dates is null
                 ? default
                 : ImmutableList<DateOnly>.Empty.AddRange(source.Dates
@@ -609,5 +609,20 @@ namespace Generated.JsonSystemText
         }
     }
 
+
+    public struct HalfValue
+    {
+        public short Value { get; set; }
+        public HalfValue() { }
+        public HalfValue(short value) => Value = value;
+        public override int GetHashCode() => HashCode.Combine(Value);
+        public override bool Equals(object? obj) => obj is HalfValue other && Equals(other);
+        public bool Equals(HalfValue other) => other.Value.Equals(Value);
+        public static bool operator ==(HalfValue left, HalfValue right) => left.Equals(right);
+        public static bool operator !=(HalfValue left, HalfValue right) => !left.Equals(right);
+
+        public static implicit operator HalfValue(Half value) => new HalfValue(BitConverter.HalfToInt16Bits(value));
+        public static implicit operator Half(HalfValue value) => BitConverter.Int16BitsToHalf(value.Value);
+    }
 
 }

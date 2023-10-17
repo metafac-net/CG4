@@ -600,5 +600,32 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
         }
 
+        [Theory]
+        [InlineData("min")]
+        [InlineData("max")]
+        [InlineData("now")]
+        [InlineData(null)]
+        public void RoundtripValues_DateOnly(string? input)
+        {
+            DateOnly? value = input switch
+            {
+                null => null,
+                "min" => DateOnly.MinValue,
+                "max" => DateOnly.MaxValue,
+                "now" => DateOnly.FromDateTime(DateTime.UtcNow),
+                _ => DateOnly.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_DateOnly_Factory.Instance;
+            var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_DateOnly_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_DateOnly_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_DateOnly()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, DateOnly?>.Empty.Add("key", value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+        }
+
     }
 }

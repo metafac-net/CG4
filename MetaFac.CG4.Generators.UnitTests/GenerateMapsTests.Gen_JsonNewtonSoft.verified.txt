@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonNewtonSoft.2.3
+// Generator: JsonNewtonSoft.2.4
 // Metadata : MetaFac.CG4.Generators.UnitTests(.Indexes)
 // </information>
 #endregion
@@ -63,7 +63,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableDictionary<String, Int64>? field_Index1;
         IReadOnlyDictionary<String, Int64>? IIndexTypes.Index1 => field_Index1 is null
             ? null
-            : new DictionaryFacade<String, Int64, Int64>(field_Index1, (x) => x.ToExternal());
+            : new DictionaryFacade<String, Int64, Int64>(field_Index1, (x) => x);
         public ImmutableDictionary<String, Int64>? Index1
         {
             get => field_Index1;
@@ -72,7 +72,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableDictionary<Byte, Int64>? field_Index2;
         IReadOnlyDictionary<Byte, Int64>? IIndexTypes.Index2 => field_Index2 is null
             ? null
-            : new DictionaryFacade<Byte, Int64, Int64>(field_Index2, (x) => x.ToExternal());
+            : new DictionaryFacade<Byte, Int64, Int64>(field_Index2, (x) => x);
         public ImmutableDictionary<Byte, Int64>? Index2
         {
             get => field_Index2;
@@ -81,7 +81,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableDictionary<MyCustomEnum, Int64>? field_Index3;
         IReadOnlyDictionary<MyCustomEnum, Int64>? IIndexTypes.Index3 => field_Index3 is null
             ? null
-            : new DictionaryFacade<MyCustomEnum, Int64, Int64>(field_Index3, (x) => x.ToExternal());
+            : new DictionaryFacade<MyCustomEnum, Int64, Int64>(field_Index3, (x) => x);
         public ImmutableDictionary<MyCustomEnum, Int64>? Index3
         {
             get => field_Index3;
@@ -159,5 +159,22 @@ namespace Generated.JsonNewtonSoft
         }
     }
 
+
+#if NET6_0_OR_GREATER
+    public struct HalfValue
+    {
+        public short Value { get; set; }
+        public HalfValue() { }
+        public HalfValue(short value) => Value = value;
+        public override int GetHashCode() => HashCode.Combine(Value);
+        public override bool Equals(object? obj) => obj is HalfValue other && Equals(other);
+        public bool Equals(HalfValue other) => other.Value.Equals(Value);
+        public static bool operator ==(HalfValue left, HalfValue right) => left.Equals(right);
+        public static bool operator !=(HalfValue left, HalfValue right) => !left.Equals(right);
+
+        public static implicit operator HalfValue(Half value) => new HalfValue(BitConverter.HalfToInt16Bits(value));
+        public static implicit operator Half(HalfValue value) => BitConverter.Int16BitsToHalf(value.Value);
+    }
+#endif
 
 }

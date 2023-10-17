@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonNewtonSoft.2.3
+// Generator: JsonNewtonSoft.2.4
 // Metadata : MetaFac.CG4.Generators.UnitTests(.FlattenedModels)
 // </information>
 #endregion
@@ -63,7 +63,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Boolean>? field_Bools;
         IReadOnlyList<Boolean>? IBuiltinTypes.Bools => field_Bools is null
             ? null
-            : new ListFacade<Boolean, Boolean>(field_Bools, (x) => x.ToExternal());
+            : new ListFacade<Boolean, Boolean>(field_Bools, (x) => x);
         public ImmutableList<Boolean>? Bools
         {
             get => field_Bools;
@@ -72,7 +72,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<SByte>? field_SBytes;
         IReadOnlyList<SByte>? IBuiltinTypes.SBytes => field_SBytes is null
             ? null
-            : new ListFacade<SByte, SByte>(field_SBytes, (x) => x.ToExternal());
+            : new ListFacade<SByte, SByte>(field_SBytes, (x) => x);
         public ImmutableList<SByte>? SBytes
         {
             get => field_SBytes;
@@ -81,7 +81,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Byte>? field_Bytes;
         IReadOnlyList<Byte>? IBuiltinTypes.Bytes => field_Bytes is null
             ? null
-            : new ListFacade<Byte, Byte>(field_Bytes, (x) => x.ToExternal());
+            : new ListFacade<Byte, Byte>(field_Bytes, (x) => x);
         public ImmutableList<Byte>? Bytes
         {
             get => field_Bytes;
@@ -90,7 +90,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Int16>? field_Shorts;
         IReadOnlyList<Int16>? IBuiltinTypes.Shorts => field_Shorts is null
             ? null
-            : new ListFacade<Int16, Int16>(field_Shorts, (x) => x.ToExternal());
+            : new ListFacade<Int16, Int16>(field_Shorts, (x) => x);
         public ImmutableList<Int16>? Shorts
         {
             get => field_Shorts;
@@ -99,7 +99,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<UInt16>? field_UShorts;
         IReadOnlyList<UInt16>? IBuiltinTypes.UShorts => field_UShorts is null
             ? null
-            : new ListFacade<UInt16, UInt16>(field_UShorts, (x) => x.ToExternal());
+            : new ListFacade<UInt16, UInt16>(field_UShorts, (x) => x);
         public ImmutableList<UInt16>? UShorts
         {
             get => field_UShorts;
@@ -108,7 +108,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Char>? field_Chars;
         IReadOnlyList<Char>? IBuiltinTypes.Chars => field_Chars is null
             ? null
-            : new ListFacade<Char, Char>(field_Chars, (x) => x.ToExternal());
+            : new ListFacade<Char, Char>(field_Chars, (x) => x);
         public ImmutableList<Char>? Chars
         {
             get => field_Chars;
@@ -117,7 +117,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Int32>? field_Ints;
         IReadOnlyList<Int32>? IBuiltinTypes.Ints => field_Ints is null
             ? null
-            : new ListFacade<Int32, Int32>(field_Ints, (x) => x.ToExternal());
+            : new ListFacade<Int32, Int32>(field_Ints, (x) => x);
         public ImmutableList<Int32>? Ints
         {
             get => field_Ints;
@@ -126,7 +126,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<UInt32>? field_UInts;
         IReadOnlyList<UInt32>? IBuiltinTypes.UInts => field_UInts is null
             ? null
-            : new ListFacade<UInt32, UInt32>(field_UInts, (x) => x.ToExternal());
+            : new ListFacade<UInt32, UInt32>(field_UInts, (x) => x);
         public ImmutableList<UInt32>? UInts
         {
             get => field_UInts;
@@ -135,7 +135,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Single>? field_Floats;
         IReadOnlyList<Single>? IBuiltinTypes.Floats => field_Floats is null
             ? null
-            : new ListFacade<Single, Single>(field_Floats, (x) => x.ToExternal());
+            : new ListFacade<Single, Single>(field_Floats, (x) => x);
         public ImmutableList<Single>? Floats
         {
             get => field_Floats;
@@ -144,7 +144,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Int64>? field_Longs;
         IReadOnlyList<Int64>? IBuiltinTypes.Longs => field_Longs is null
             ? null
-            : new ListFacade<Int64, Int64>(field_Longs, (x) => x.ToExternal());
+            : new ListFacade<Int64, Int64>(field_Longs, (x) => x);
         public ImmutableList<Int64>? Longs
         {
             get => field_Longs;
@@ -153,7 +153,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<UInt64>? field_ULongs;
         IReadOnlyList<UInt64>? IBuiltinTypes.ULongs => field_ULongs is null
             ? null
-            : new ListFacade<UInt64, UInt64>(field_ULongs, (x) => x.ToExternal());
+            : new ListFacade<UInt64, UInt64>(field_ULongs, (x) => x);
         public ImmutableList<UInt64>? ULongs
         {
             get => field_ULongs;
@@ -162,7 +162,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Double>? field_Doubles;
         IReadOnlyList<Double>? IBuiltinTypes.Doubles => field_Doubles is null
             ? null
-            : new ListFacade<Double, Double>(field_Doubles, (x) => x.ToExternal());
+            : new ListFacade<Double, Double>(field_Doubles, (x) => x);
         public ImmutableList<Double>? Doubles
         {
             get => field_Doubles;
@@ -171,7 +171,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<DateTime>? field_DateTimes;
         IReadOnlyList<DateTime>? IBuiltinTypes.DateTimes => field_DateTimes is null
             ? null
-            : new ListFacade<DateTime, DateTime>(field_DateTimes, (x) => x.ToExternal());
+            : new ListFacade<DateTime, DateTime>(field_DateTimes, (x) => x);
         public ImmutableList<DateTime>? DateTimes
         {
             get => field_DateTimes;
@@ -180,7 +180,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<TimeSpan>? field_TimeSpans;
         IReadOnlyList<TimeSpan>? IBuiltinTypes.TimeSpans => field_TimeSpans is null
             ? null
-            : new ListFacade<TimeSpan, TimeSpan>(field_TimeSpans, (x) => x.ToExternal());
+            : new ListFacade<TimeSpan, TimeSpan>(field_TimeSpans, (x) => x);
         public ImmutableList<TimeSpan>? TimeSpans
         {
             get => field_TimeSpans;
@@ -189,7 +189,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Decimal>? field_Decimals;
         IReadOnlyList<Decimal>? IBuiltinTypes.Decimals => field_Decimals is null
             ? null
-            : new ListFacade<Decimal, Decimal>(field_Decimals, (x) => x.ToExternal());
+            : new ListFacade<Decimal, Decimal>(field_Decimals, (x) => x);
         public ImmutableList<Decimal>? Decimals
         {
             get => field_Decimals;
@@ -198,7 +198,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<DateTimeOffset>? field_DateTimeOffsets;
         IReadOnlyList<DateTimeOffset>? IBuiltinTypes.DateTimeOffsets => field_DateTimeOffsets is null
             ? null
-            : new ListFacade<DateTimeOffset, DateTimeOffset>(field_DateTimeOffsets, (x) => x.ToExternal());
+            : new ListFacade<DateTimeOffset, DateTimeOffset>(field_DateTimeOffsets, (x) => x);
         public ImmutableList<DateTimeOffset>? DateTimeOffsets
         {
             get => field_DateTimeOffsets;
@@ -207,7 +207,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<Guid>? field_Guids;
         IReadOnlyList<Guid>? IBuiltinTypes.Guids => field_Guids is null
             ? null
-            : new ListFacade<Guid, Guid>(field_Guids, (x) => x.ToExternal());
+            : new ListFacade<Guid, Guid>(field_Guids, (x) => x);
         public ImmutableList<Guid>? Guids
         {
             get => field_Guids;
@@ -227,7 +227,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<QuantityValue>? field_Quantities;
         IReadOnlyList<LabApps.Units.Quantity>? IBuiltinTypes.Quantities => field_Quantities is null
             ? null
-            : new ListFacade<LabApps.Units.Quantity, QuantityValue>(field_Quantities, (x) => x.ToExternal());
+            : new ListFacade<LabApps.Units.Quantity, QuantityValue>(field_Quantities, (x) => x);
         public ImmutableList<QuantityValue>? Quantities
         {
             get => field_Quantities;
@@ -236,7 +236,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<System.DayOfWeek>? field_DaysOfWeek;
         IReadOnlyList<System.DayOfWeek>? IBuiltinTypes.DaysOfWeek => field_DaysOfWeek is null
             ? null
-            : new ListFacade<System.DayOfWeek, System.DayOfWeek>(field_DaysOfWeek, (x) => x.ToExternal());
+            : new ListFacade<System.DayOfWeek, System.DayOfWeek>(field_DaysOfWeek, (x) => x);
         public ImmutableList<System.DayOfWeek>? DaysOfWeek
         {
             get => field_DaysOfWeek;
@@ -245,7 +245,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<MyDateTimeKindValue>? field_MyDateTimeKinds;
         IReadOnlyList<System.DateTimeKind>? IBuiltinTypes.MyDateTimeKinds => field_MyDateTimeKinds is null
             ? null
-            : new ListFacade<System.DateTimeKind, MyDateTimeKindValue>(field_MyDateTimeKinds, (x) => x.ToExternal());
+            : new ListFacade<System.DateTimeKind, MyDateTimeKindValue>(field_MyDateTimeKinds, (x) => x);
         public ImmutableList<MyDateTimeKindValue>? MyDateTimeKinds
         {
             get => field_MyDateTimeKinds;
@@ -254,17 +254,17 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<MyCustomEnum>? field_MyCustomEnums;
         IReadOnlyList<MyCustomEnum>? IBuiltinTypes.MyCustomEnums => field_MyCustomEnums is null
             ? null
-            : new ListFacade<MyCustomEnum, MyCustomEnum>(field_MyCustomEnums, (x) => x.ToExternal());
+            : new ListFacade<MyCustomEnum, MyCustomEnum>(field_MyCustomEnums, (x) => x);
         public ImmutableList<MyCustomEnum>? MyCustomEnums
         {
             get => field_MyCustomEnums;
             set => field_MyCustomEnums = value;
         }
-        private ImmutableList<Half>? field_Halves;
+        private ImmutableList<HalfValue>? field_Halves;
         IReadOnlyList<Half>? IBuiltinTypes.Halves => field_Halves is null
             ? null
-            : new ListFacade<Half, Half>(field_Halves, (x) => x.ToExternal());
-        public ImmutableList<Half>? Halves
+            : new ListFacade<Half, HalfValue>(field_Halves, (x) => x);
+        public ImmutableList<HalfValue>? Halves
         {
             get => field_Halves;
             set => field_Halves = value;
@@ -272,7 +272,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<DateOnly>? field_Dates;
         IReadOnlyList<DateOnly>? IBuiltinTypes.Dates => field_Dates is null
             ? null
-            : new ListFacade<DateOnly, DateOnly>(field_Dates, (x) => x.ToExternal());
+            : new ListFacade<DateOnly, DateOnly>(field_Dates, (x) => x);
         public ImmutableList<DateOnly>? Dates
         {
             get => field_Dates;
@@ -281,7 +281,7 @@ namespace Generated.JsonNewtonSoft
         private ImmutableList<TimeOnly>? field_Times;
         IReadOnlyList<TimeOnly>? IBuiltinTypes.Times => field_Times is null
             ? null
-            : new ListFacade<TimeOnly, TimeOnly>(field_Times, (x) => x.ToExternal());
+            : new ListFacade<TimeOnly, TimeOnly>(field_Times, (x) => x);
         public ImmutableList<TimeOnly>? Times
         {
             get => field_Times;
@@ -418,8 +418,8 @@ namespace Generated.JsonNewtonSoft
                     .Select(x => (MyCustomEnum)x));
             field_Halves = source.Halves is null
                 ? default
-                : ImmutableList<Half>.Empty.AddRange(source.Halves
-                    .Select(x => (Half)x));
+                : ImmutableList<HalfValue>.Empty.AddRange(source.Halves
+                    .Select(x => (HalfValue)x));
             field_Dates = source.Dates is null
                 ? default
                 : ImmutableList<DateOnly>.Empty.AddRange(source.Dates
@@ -526,8 +526,8 @@ namespace Generated.JsonNewtonSoft
                     .Select(x => (MyCustomEnum)x));
             field_Halves = source.Halves is null
                 ? default
-                : ImmutableList<Half>.Empty.AddRange(source.Halves
-                    .Select(x => (Half)x));
+                : ImmutableList<HalfValue>.Empty.AddRange(source.Halves
+                    .Select(x => (HalfValue)x));
             field_Dates = source.Dates is null
                 ? default
                 : ImmutableList<DateOnly>.Empty.AddRange(source.Dates
@@ -608,5 +608,22 @@ namespace Generated.JsonNewtonSoft
         }
     }
 
+
+#if NET6_0_OR_GREATER
+    public struct HalfValue
+    {
+        public short Value { get; set; }
+        public HalfValue() { }
+        public HalfValue(short value) => Value = value;
+        public override int GetHashCode() => HashCode.Combine(Value);
+        public override bool Equals(object? obj) => obj is HalfValue other && Equals(other);
+        public bool Equals(HalfValue other) => other.Value.Equals(Value);
+        public static bool operator ==(HalfValue left, HalfValue right) => left.Equals(right);
+        public static bool operator !=(HalfValue left, HalfValue right) => !left.Equals(right);
+
+        public static implicit operator HalfValue(Half value) => new HalfValue(BitConverter.HalfToInt16Bits(value));
+        public static implicit operator Half(HalfValue value) => BitConverter.Int16BitsToHalf(value.Value);
+    }
+#endif
 
 }
