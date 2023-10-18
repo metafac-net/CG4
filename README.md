@@ -17,10 +17,11 @@ Helpers to write and read CG4 metadata to/from JSON, and from attributed code.
 
 ## Generators
 C# code generators that use metadata to create POCOs for:
-- ordinary classes
-- polymorphic JSON DTOs (NewtonSoft)
-- polymorphic MessagePack DTOs
-- records
+- freezable classes
+- immutable records
+- polymorphic NewtonSoft.Json DTOs
+- polymorphic System.Text.Json DTOs (.NET 7+)
+- freezable, polymorphic MessagePack DTOs
 - common contracts (interfaces) for all the above.
 
 ## Runtimes
@@ -31,6 +32,3 @@ Testable templates for above generators.
 
 ## TextProcessing
 Bi-directional text processor to convert templates to generators (and back).
-
-## SourceGenerator (dev)
-Experimental Roslyn-based source generator
