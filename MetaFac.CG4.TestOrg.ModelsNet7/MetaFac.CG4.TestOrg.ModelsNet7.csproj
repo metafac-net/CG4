@@ -21,7 +21,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MetaFac.Mutability" Version="2.1.4" />
+        <PackageReference Include="MetaFac.Mutability" Version="2.1.5" />
     </ItemGroup>
 
 </Project>
