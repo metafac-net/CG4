@@ -84,7 +84,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
     [Union(ByteNode.EntityTag, typeof(ByteNode))]
     [Union(Int16Node.EntityTag, typeof(Int16Node))]
     [Union(UInt16Node.EntityTag, typeof(UInt16Node))]
-    [Union(CharNode.EntityTag, typeof(CharNode))]
     [Union(HalfNode.EntityTag, typeof(HalfNode))]
     [Union(UInt32Node.EntityTag, typeof(UInt32Node))]
     [Union(SingleNode.EntityTag, typeof(SingleNode))]
@@ -94,6 +93,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
     [Union(DecimalNode.EntityTag, typeof(DecimalNode))]
     [Union(BooleanNode.EntityTag, typeof(BooleanNode))]
     [Union(CustomNode.EntityTag, typeof(CustomNode))]
+    [Union(CharNode.EntityTag, typeof(CharNode))]
     [Union(DateTimeNode.EntityTag, typeof(DateTimeNode))]
     [Union(TimeSpanNode.EntityTag, typeof(TimeSpanNode))]
     [Union(DateOnlyNode.EntityTag, typeof(DateOnlyNode))]
@@ -122,7 +122,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
                 case ByteNode.EntityTag: return ByteNode_Factory.Instance.CreateFrom((IByteNode)source);
                 case Int16Node.EntityTag: return Int16Node_Factory.Instance.CreateFrom((IInt16Node)source);
                 case UInt16Node.EntityTag: return UInt16Node_Factory.Instance.CreateFrom((IUInt16Node)source);
-                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
                 case HalfNode.EntityTag: return HalfNode_Factory.Instance.CreateFrom((IHalfNode)source);
                 case UInt32Node.EntityTag: return UInt32Node_Factory.Instance.CreateFrom((IUInt32Node)source);
                 case SingleNode.EntityTag: return SingleNode_Factory.Instance.CreateFrom((ISingleNode)source);
@@ -132,6 +131,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
+                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
                 case DateTimeNode.EntityTag: return DateTimeNode_Factory.Instance.CreateFrom((IDateTimeNode)source);
                 case TimeSpanNode.EntityTag: return TimeSpanNode_Factory.Instance.CreateFrom((ITimeSpanNode)source);
                 case DateOnlyNode.EntityTag: return DateOnlyNode_Factory.Instance.CreateFrom((IDateOnlyNode)source);
@@ -254,7 +254,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
     [Union(ByteNode.EntityTag, typeof(ByteNode))]
     [Union(Int16Node.EntityTag, typeof(Int16Node))]
     [Union(UInt16Node.EntityTag, typeof(UInt16Node))]
-    [Union(CharNode.EntityTag, typeof(CharNode))]
     [Union(HalfNode.EntityTag, typeof(HalfNode))]
     [Union(UInt32Node.EntityTag, typeof(UInt32Node))]
     [Union(SingleNode.EntityTag, typeof(SingleNode))]
@@ -281,7 +280,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
                 case ByteNode.EntityTag: return ByteNode_Factory.Instance.CreateFrom((IByteNode)source);
                 case Int16Node.EntityTag: return Int16Node_Factory.Instance.CreateFrom((IInt16Node)source);
                 case UInt16Node.EntityTag: return UInt16Node_Factory.Instance.CreateFrom((IUInt16Node)source);
-                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
                 case HalfNode.EntityTag: return HalfNode_Factory.Instance.CreateFrom((IHalfNode)source);
                 case UInt32Node.EntityTag: return UInt32Node_Factory.Instance.CreateFrom((IUInt32Node)source);
                 case SingleNode.EntityTag: return SingleNode_Factory.Instance.CreateFrom((ISingleNode)source);
@@ -1116,7 +1114,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         public CharNode Empty => _empty;
     }
     [MessagePackObject]
-    public partial class CharNode : NumericNode, ICharNode, IEquatable<CharNode>, ICopyFrom<CharNode>
+    public partial class CharNode : ValueNode, ICharNode, IEquatable<CharNode>, ICopyFrom<CharNode>
     {
         protected override void OnFreeze()
         {

@@ -65,7 +65,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
                 case ByteNode.EntityTag: return ByteNode_Factory.Instance.CreateFrom((IByteNode)source);
                 case Int16Node.EntityTag: return Int16Node_Factory.Instance.CreateFrom((IInt16Node)source);
                 case UInt16Node.EntityTag: return UInt16Node_Factory.Instance.CreateFrom((IUInt16Node)source);
-                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
                 case HalfNode.EntityTag: return HalfNode_Factory.Instance.CreateFrom((IHalfNode)source);
                 case UInt32Node.EntityTag: return UInt32Node_Factory.Instance.CreateFrom((IUInt32Node)source);
                 case SingleNode.EntityTag: return SingleNode_Factory.Instance.CreateFrom((ISingleNode)source);
@@ -75,6 +74,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
+                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
                 case DateTimeNode.EntityTag: return DateTimeNode_Factory.Instance.CreateFrom((IDateTimeNode)source);
                 case TimeSpanNode.EntityTag: return TimeSpanNode_Factory.Instance.CreateFrom((ITimeSpanNode)source);
                 case DateOnlyNode.EntityTag: return DateOnlyNode_Factory.Instance.CreateFrom((IDateOnlyNode)source);
@@ -177,7 +177,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
                 case ByteNode.EntityTag: return ByteNode_Factory.Instance.CreateFrom((IByteNode)source);
                 case Int16Node.EntityTag: return Int16Node_Factory.Instance.CreateFrom((IInt16Node)source);
                 case UInt16Node.EntityTag: return UInt16Node_Factory.Instance.CreateFrom((IUInt16Node)source);
-                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
                 case HalfNode.EntityTag: return HalfNode_Factory.Instance.CreateFrom((IHalfNode)source);
                 case UInt32Node.EntityTag: return UInt32Node_Factory.Instance.CreateFrom((IUInt32Node)source);
                 case SingleNode.EntityTag: return SingleNode_Factory.Instance.CreateFrom((ISingleNode)source);
@@ -684,7 +683,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
         public CharNode? CreateFrom(ICharNode? source) => (source is null) ? null : new CharNode(source);
         public CharNode Empty => new CharNode();
     }
-    public partial class CharNode : NumericNode, ICharNode, IEquatable<CharNode>
+    public partial class CharNode : ValueNode, ICharNode, IEquatable<CharNode>
     {
         public new const int EntityTag = 12;
         protected override int OnGetEntityTag() => EntityTag;

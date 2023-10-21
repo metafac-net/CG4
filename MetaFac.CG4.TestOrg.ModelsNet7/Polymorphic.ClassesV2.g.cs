@@ -73,7 +73,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
                 case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
                 case Int16Node.EntityTag: return Int16Node.CreateFrom((IInt16Node)source);
                 case UInt16Node.EntityTag: return UInt16Node.CreateFrom((IUInt16Node)source);
-                case CharNode.EntityTag: return CharNode.CreateFrom((ICharNode)source);
                 case HalfNode.EntityTag: return HalfNode.CreateFrom((IHalfNode)source);
                 case UInt32Node.EntityTag: return UInt32Node.CreateFrom((IUInt32Node)source);
                 case SingleNode.EntityTag: return SingleNode.CreateFrom((ISingleNode)source);
@@ -83,6 +82,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
                 case DecimalNode.EntityTag: return DecimalNode.CreateFrom((IDecimalNode)source);
                 case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode.CreateFrom((ICustomNode)source);
+                case CharNode.EntityTag: return CharNode.CreateFrom((ICharNode)source);
                 case DateTimeNode.EntityTag: return DateTimeNode.CreateFrom((IDateTimeNode)source);
                 case TimeSpanNode.EntityTag: return TimeSpanNode.CreateFrom((ITimeSpanNode)source);
                 case DateOnlyNode.EntityTag: return DateOnlyNode.CreateFrom((IDateOnlyNode)source);
@@ -205,7 +205,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
                 case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
                 case Int16Node.EntityTag: return Int16Node.CreateFrom((IInt16Node)source);
                 case UInt16Node.EntityTag: return UInt16Node.CreateFrom((IUInt16Node)source);
-                case CharNode.EntityTag: return CharNode.CreateFrom((ICharNode)source);
                 case HalfNode.EntityTag: return HalfNode.CreateFrom((IHalfNode)source);
                 case UInt32Node.EntityTag: return UInt32Node.CreateFrom((IUInt32Node)source);
                 case SingleNode.EntityTag: return SingleNode.CreateFrom((ISingleNode)source);
@@ -1023,7 +1022,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         public static new CharNode Empty => _empty;
 
     }
-    public partial class CharNode : NumericNode, ICharNode, IEquatable<CharNode>
+    public partial class CharNode : ValueNode, ICharNode, IEquatable<CharNode>
     {
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static void ThrowIsReadonly()

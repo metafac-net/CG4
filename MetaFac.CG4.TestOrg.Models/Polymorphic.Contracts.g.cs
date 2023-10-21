@@ -61,7 +61,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.Contracts
     {
         UInt16 UInt16Value { get; }
     }
-    public partial interface ICharNode : INumericNode
+    public partial interface ICharNode : IValueNode
     {
         Char CharValue { get; }
     }

@@ -113,7 +113,7 @@
         {
           "Name": "CharNode",
           "Tag": 12,
-          "ParentName": "NumericNode",
+          "ParentName": "ValueNode",
           "MemberDefs": [
             {
               "Name": "CharValue",

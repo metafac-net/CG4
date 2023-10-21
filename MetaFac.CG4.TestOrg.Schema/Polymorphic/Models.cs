@@ -65,7 +65,7 @@ namespace MetaFac.CG4.TestOrg.Schema.Polymorphic
     }
 
     [Entity(12)]
-    public class CharNode : NumericNode
+    public class CharNode : ValueNode
     {
         [Member(3)] public Char CharValue { get; set; }
     }
