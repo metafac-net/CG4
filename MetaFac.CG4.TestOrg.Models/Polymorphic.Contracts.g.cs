@@ -33,10 +33,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.Contracts
     public partial interface INumericNode : IValueNode
     {
     }
-    public partial interface IStringNode : IValueNode
-    {
-        String? StrValue { get; }
-    }
     public partial interface IBooleanNode : IValueNode
     {
         Boolean BoolValue { get; }
@@ -47,10 +43,86 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.Contracts
     }
     public partial interface IInt32Node : INumericNode
     {
-        Int32 IntValue { get; }
+        Int32 Int32Value { get; }
+    }
+    public partial interface ISByteNode : INumericNode
+    {
+        SByte SByteValue { get; }
+    }
+    public partial interface IByteNode : INumericNode
+    {
+        Byte ByteValue { get; }
+    }
+    public partial interface IInt16Node : INumericNode
+    {
+        Int16 Int16Value { get; }
+    }
+    public partial interface IUInt16Node : INumericNode
+    {
+        UInt16 UInt16Value { get; }
+    }
+    public partial interface ICharNode : INumericNode
+    {
+        Char CharValue { get; }
+    }
+    public partial interface IHalfNode : INumericNode
+    {
+        Half HalfValue { get; }
+    }
+    public partial interface IUInt32Node : INumericNode
+    {
+        UInt32 UInt32Value { get; }
+    }
+    public partial interface ISingleNode : INumericNode
+    {
+        Single SingleValue { get; }
+    }
+    public partial interface IDateTimeNode : IValueNode
+    {
+        DateTime DateTimeValue { get; }
+    }
+    public partial interface ITimeSpanNode : IValueNode
+    {
+        TimeSpan TimeSpanValue { get; }
+    }
+    public partial interface IDateOnlyNode : IValueNode
+    {
+        DateOnly DateOnlyValue { get; }
+    }
+    public partial interface ITimeOnlyNode : IValueNode
+    {
+        TimeOnly TimeOnlyValue { get; }
     }
     public partial interface IInt64Node : INumericNode
     {
-        Int64 LongValue { get; }
+        Int64 Int64Value { get; }
+    }
+    public partial interface IUInt64Node : INumericNode
+    {
+        UInt64 UInt64Value { get; }
+    }
+    public partial interface IDoubleNode : INumericNode
+    {
+        Double DoubleValue { get; }
+    }
+    public partial interface IStringNode : IValueNode
+    {
+        String? StringValue { get; }
+    }
+    public partial interface IOctetsNode : IValueNode
+    {
+        Octets? OctetsValue { get; }
+    }
+    public partial interface IGuidNode : IValueNode
+    {
+        Guid GuidValue { get; }
+    }
+    public partial interface IDecimalNode : INumericNode
+    {
+        Decimal DecimalValue { get; }
+    }
+    public partial interface IDateTimeOffsetNode : IValueNode
+    {
+        DateTimeOffset DateTimeOffsetValue { get; }
     }
 }

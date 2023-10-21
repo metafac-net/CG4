@@ -58,10 +58,28 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
             {
                 case NumericNode.EntityTag: return NumericNode_Factory.Instance.CreateFrom((INumericNode)source);
                 case Int32Node.EntityTag: return Int32Node_Factory.Instance.CreateFrom((IInt32Node)source);
+                case SByteNode.EntityTag: return SByteNode_Factory.Instance.CreateFrom((ISByteNode)source);
+                case ByteNode.EntityTag: return ByteNode_Factory.Instance.CreateFrom((IByteNode)source);
+                case Int16Node.EntityTag: return Int16Node_Factory.Instance.CreateFrom((IInt16Node)source);
+                case UInt16Node.EntityTag: return UInt16Node_Factory.Instance.CreateFrom((IUInt16Node)source);
+                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
+                case HalfNode.EntityTag: return HalfNode_Factory.Instance.CreateFrom((IHalfNode)source);
+                case UInt32Node.EntityTag: return UInt32Node_Factory.Instance.CreateFrom((IUInt32Node)source);
+                case SingleNode.EntityTag: return SingleNode_Factory.Instance.CreateFrom((ISingleNode)source);
                 case Int64Node.EntityTag: return Int64Node_Factory.Instance.CreateFrom((IInt64Node)source);
-                case StringNode.EntityTag: return StringNode_Factory.Instance.CreateFrom((IStringNode)source);
+                case UInt64Node.EntityTag: return UInt64Node_Factory.Instance.CreateFrom((IUInt64Node)source);
+                case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
+                case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
+                case DateTimeNode.EntityTag: return DateTimeNode_Factory.Instance.CreateFrom((IDateTimeNode)source);
+                case TimeSpanNode.EntityTag: return TimeSpanNode_Factory.Instance.CreateFrom((ITimeSpanNode)source);
+                case DateOnlyNode.EntityTag: return DateOnlyNode_Factory.Instance.CreateFrom((IDateOnlyNode)source);
+                case TimeOnlyNode.EntityTag: return TimeOnlyNode_Factory.Instance.CreateFrom((ITimeOnlyNode)source);
+                case StringNode.EntityTag: return StringNode_Factory.Instance.CreateFrom((IStringNode)source);
+                case OctetsNode.EntityTag: return OctetsNode_Factory.Instance.CreateFrom((IOctetsNode)source);
+                case GuidNode.EntityTag: return GuidNode_Factory.Instance.CreateFrom((IGuidNode)source);
+                case DateTimeOffsetNode.EntityTag: return DateTimeOffsetNode_Factory.Instance.CreateFrom((IDateTimeOffsetNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -139,7 +157,18 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
             switch (entityTag)
             {
                 case Int32Node.EntityTag: return Int32Node_Factory.Instance.CreateFrom((IInt32Node)source);
+                case SByteNode.EntityTag: return SByteNode_Factory.Instance.CreateFrom((ISByteNode)source);
+                case ByteNode.EntityTag: return ByteNode_Factory.Instance.CreateFrom((IByteNode)source);
+                case Int16Node.EntityTag: return Int16Node_Factory.Instance.CreateFrom((IInt16Node)source);
+                case UInt16Node.EntityTag: return UInt16Node_Factory.Instance.CreateFrom((IUInt16Node)source);
+                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
+                case HalfNode.EntityTag: return HalfNode_Factory.Instance.CreateFrom((IHalfNode)source);
+                case UInt32Node.EntityTag: return UInt32Node_Factory.Instance.CreateFrom((IUInt32Node)source);
+                case SingleNode.EntityTag: return SingleNode_Factory.Instance.CreateFrom((ISingleNode)source);
                 case Int64Node.EntityTag: return Int64Node_Factory.Instance.CreateFrom((IInt64Node)source);
+                case UInt64Node.EntityTag: return UInt64Node_Factory.Instance.CreateFrom((IUInt64Node)source);
+                case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
+                case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -177,70 +206,6 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
-        }
-    }
-
-    public sealed class StringNode_Factory : IEntityFactory<IStringNode, StringNode>
-    {
-        private static readonly StringNode_Factory _instance = new StringNode_Factory();
-        public static StringNode_Factory Instance => _instance;
-
-        public StringNode? CreateFrom(IStringNode? source)
-        {
-            if (source is null) return null;
-            if (source is StringNode thisEntity) return thisEntity;
-            return new StringNode(source);
-        }
-
-        private static readonly StringNode _empty = new StringNode();
-        public StringNode Empty => _empty;
-    }
-    public partial record StringNode : ValueNode, IStringNode
-    {
-        public new const int EntityTag = 3;
-        protected override int OnGetEntityTag() => EntityTag;
-
-        public String? StrValue { get; init; }
-        String? IStringNode.StrValue => StrValue;
-
-        public StringNode() : base()
-        {
-        }
-
-        public StringNode(StringNode? source) : base(source)
-        {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            StrValue = source.StrValue;
-        }
-
-        public StringNode(IStringNode? source) : base(source)
-        {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            StrValue = source.StrValue;
-        }
-
-        public virtual bool Equals(StringNode? other)
-        {
-            if (other is null) return false;
-            if (ReferenceEquals(other, this)) return true;
-            if (!StrValue.ValueEquals(other.StrValue)) return false;
-            return base.Equals(other);
-        }
-
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(StrValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
@@ -402,8 +367,8 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         public new const int EntityTag = 6;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Int32 IntValue { get; init; }
-        Int32 IInt32Node.IntValue => IntValue;
+        public Int32 Int32Value { get; init; }
+        Int32 IInt32Node.Int32Value => Int32Value;
 
         public Int32Node() : base()
         {
@@ -412,27 +377,795 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         public Int32Node(Int32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            IntValue = source.IntValue;
+            Int32Value = source.Int32Value;
         }
 
         public Int32Node(IInt32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            IntValue = source.IntValue;
+            Int32Value = source.Int32Value;
         }
 
         public virtual bool Equals(Int32Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!IntValue.ValueEquals(other.IntValue)) return false;
+            if (!Int32Value.ValueEquals(other.Int32Value)) return false;
             return base.Equals(other);
         }
 
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(IntValue.CalcHashUnary());
+            hc.Add(Int32Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class SByteNode_Factory : IEntityFactory<ISByteNode, SByteNode>
+    {
+        private static readonly SByteNode_Factory _instance = new SByteNode_Factory();
+        public static SByteNode_Factory Instance => _instance;
+
+        public SByteNode? CreateFrom(ISByteNode? source)
+        {
+            if (source is null) return null;
+            if (source is SByteNode thisEntity) return thisEntity;
+            return new SByteNode(source);
+        }
+
+        private static readonly SByteNode _empty = new SByteNode();
+        public SByteNode Empty => _empty;
+    }
+    public partial record SByteNode : NumericNode, ISByteNode
+    {
+        public new const int EntityTag = 8;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public SByte SByteValue { get; init; }
+        SByte ISByteNode.SByteValue => SByteValue;
+
+        public SByteNode() : base()
+        {
+        }
+
+        public SByteNode(SByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            SByteValue = source.SByteValue;
+        }
+
+        public SByteNode(ISByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            SByteValue = source.SByteValue;
+        }
+
+        public virtual bool Equals(SByteNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!SByteValue.ValueEquals(other.SByteValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(SByteValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class ByteNode_Factory : IEntityFactory<IByteNode, ByteNode>
+    {
+        private static readonly ByteNode_Factory _instance = new ByteNode_Factory();
+        public static ByteNode_Factory Instance => _instance;
+
+        public ByteNode? CreateFrom(IByteNode? source)
+        {
+            if (source is null) return null;
+            if (source is ByteNode thisEntity) return thisEntity;
+            return new ByteNode(source);
+        }
+
+        private static readonly ByteNode _empty = new ByteNode();
+        public ByteNode Empty => _empty;
+    }
+    public partial record ByteNode : NumericNode, IByteNode
+    {
+        public new const int EntityTag = 9;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Byte ByteValue { get; init; }
+        Byte IByteNode.ByteValue => ByteValue;
+
+        public ByteNode() : base()
+        {
+        }
+
+        public ByteNode(ByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ByteValue = source.ByteValue;
+        }
+
+        public ByteNode(IByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ByteValue = source.ByteValue;
+        }
+
+        public virtual bool Equals(ByteNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!ByteValue.ValueEquals(other.ByteValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ByteValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class Int16Node_Factory : IEntityFactory<IInt16Node, Int16Node>
+    {
+        private static readonly Int16Node_Factory _instance = new Int16Node_Factory();
+        public static Int16Node_Factory Instance => _instance;
+
+        public Int16Node? CreateFrom(IInt16Node? source)
+        {
+            if (source is null) return null;
+            if (source is Int16Node thisEntity) return thisEntity;
+            return new Int16Node(source);
+        }
+
+        private static readonly Int16Node _empty = new Int16Node();
+        public Int16Node Empty => _empty;
+    }
+    public partial record Int16Node : NumericNode, IInt16Node
+    {
+        public new const int EntityTag = 10;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Int16 Int16Value { get; init; }
+        Int16 IInt16Node.Int16Value => Int16Value;
+
+        public Int16Node() : base()
+        {
+        }
+
+        public Int16Node(Int16Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Int16Value = source.Int16Value;
+        }
+
+        public Int16Node(IInt16Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Int16Value = source.Int16Value;
+        }
+
+        public virtual bool Equals(Int16Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Int16Value.ValueEquals(other.Int16Value)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Int16Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class UInt16Node_Factory : IEntityFactory<IUInt16Node, UInt16Node>
+    {
+        private static readonly UInt16Node_Factory _instance = new UInt16Node_Factory();
+        public static UInt16Node_Factory Instance => _instance;
+
+        public UInt16Node? CreateFrom(IUInt16Node? source)
+        {
+            if (source is null) return null;
+            if (source is UInt16Node thisEntity) return thisEntity;
+            return new UInt16Node(source);
+        }
+
+        private static readonly UInt16Node _empty = new UInt16Node();
+        public UInt16Node Empty => _empty;
+    }
+    public partial record UInt16Node : NumericNode, IUInt16Node
+    {
+        public new const int EntityTag = 11;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public UInt16 UInt16Value { get; init; }
+        UInt16 IUInt16Node.UInt16Value => UInt16Value;
+
+        public UInt16Node() : base()
+        {
+        }
+
+        public UInt16Node(UInt16Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            UInt16Value = source.UInt16Value;
+        }
+
+        public UInt16Node(IUInt16Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            UInt16Value = source.UInt16Value;
+        }
+
+        public virtual bool Equals(UInt16Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!UInt16Value.ValueEquals(other.UInt16Value)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(UInt16Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class CharNode_Factory : IEntityFactory<ICharNode, CharNode>
+    {
+        private static readonly CharNode_Factory _instance = new CharNode_Factory();
+        public static CharNode_Factory Instance => _instance;
+
+        public CharNode? CreateFrom(ICharNode? source)
+        {
+            if (source is null) return null;
+            if (source is CharNode thisEntity) return thisEntity;
+            return new CharNode(source);
+        }
+
+        private static readonly CharNode _empty = new CharNode();
+        public CharNode Empty => _empty;
+    }
+    public partial record CharNode : NumericNode, ICharNode
+    {
+        public new const int EntityTag = 12;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Char CharValue { get; init; }
+        Char ICharNode.CharValue => CharValue;
+
+        public CharNode() : base()
+        {
+        }
+
+        public CharNode(CharNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            CharValue = source.CharValue;
+        }
+
+        public CharNode(ICharNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            CharValue = source.CharValue;
+        }
+
+        public virtual bool Equals(CharNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!CharValue.ValueEquals(other.CharValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(CharValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class HalfNode_Factory : IEntityFactory<IHalfNode, HalfNode>
+    {
+        private static readonly HalfNode_Factory _instance = new HalfNode_Factory();
+        public static HalfNode_Factory Instance => _instance;
+
+        public HalfNode? CreateFrom(IHalfNode? source)
+        {
+            if (source is null) return null;
+            if (source is HalfNode thisEntity) return thisEntity;
+            return new HalfNode(source);
+        }
+
+        private static readonly HalfNode _empty = new HalfNode();
+        public HalfNode Empty => _empty;
+    }
+    public partial record HalfNode : NumericNode, IHalfNode
+    {
+        public new const int EntityTag = 13;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Half HalfValue { get; init; }
+        Half IHalfNode.HalfValue => HalfValue;
+
+        public HalfNode() : base()
+        {
+        }
+
+        public HalfNode(HalfNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            HalfValue = source.HalfValue;
+        }
+
+        public HalfNode(IHalfNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            HalfValue = source.HalfValue;
+        }
+
+        public virtual bool Equals(HalfNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!HalfValue.ValueEquals(other.HalfValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(HalfValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class UInt32Node_Factory : IEntityFactory<IUInt32Node, UInt32Node>
+    {
+        private static readonly UInt32Node_Factory _instance = new UInt32Node_Factory();
+        public static UInt32Node_Factory Instance => _instance;
+
+        public UInt32Node? CreateFrom(IUInt32Node? source)
+        {
+            if (source is null) return null;
+            if (source is UInt32Node thisEntity) return thisEntity;
+            return new UInt32Node(source);
+        }
+
+        private static readonly UInt32Node _empty = new UInt32Node();
+        public UInt32Node Empty => _empty;
+    }
+    public partial record UInt32Node : NumericNode, IUInt32Node
+    {
+        public new const int EntityTag = 14;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public UInt32 UInt32Value { get; init; }
+        UInt32 IUInt32Node.UInt32Value => UInt32Value;
+
+        public UInt32Node() : base()
+        {
+        }
+
+        public UInt32Node(UInt32Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            UInt32Value = source.UInt32Value;
+        }
+
+        public UInt32Node(IUInt32Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            UInt32Value = source.UInt32Value;
+        }
+
+        public virtual bool Equals(UInt32Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!UInt32Value.ValueEquals(other.UInt32Value)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(UInt32Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class SingleNode_Factory : IEntityFactory<ISingleNode, SingleNode>
+    {
+        private static readonly SingleNode_Factory _instance = new SingleNode_Factory();
+        public static SingleNode_Factory Instance => _instance;
+
+        public SingleNode? CreateFrom(ISingleNode? source)
+        {
+            if (source is null) return null;
+            if (source is SingleNode thisEntity) return thisEntity;
+            return new SingleNode(source);
+        }
+
+        private static readonly SingleNode _empty = new SingleNode();
+        public SingleNode Empty => _empty;
+    }
+    public partial record SingleNode : NumericNode, ISingleNode
+    {
+        public new const int EntityTag = 15;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Single SingleValue { get; init; }
+        Single ISingleNode.SingleValue => SingleValue;
+
+        public SingleNode() : base()
+        {
+        }
+
+        public SingleNode(SingleNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            SingleValue = source.SingleValue;
+        }
+
+        public SingleNode(ISingleNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            SingleValue = source.SingleValue;
+        }
+
+        public virtual bool Equals(SingleNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!SingleValue.ValueEquals(other.SingleValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(SingleValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class DateTimeNode_Factory : IEntityFactory<IDateTimeNode, DateTimeNode>
+    {
+        private static readonly DateTimeNode_Factory _instance = new DateTimeNode_Factory();
+        public static DateTimeNode_Factory Instance => _instance;
+
+        public DateTimeNode? CreateFrom(IDateTimeNode? source)
+        {
+            if (source is null) return null;
+            if (source is DateTimeNode thisEntity) return thisEntity;
+            return new DateTimeNode(source);
+        }
+
+        private static readonly DateTimeNode _empty = new DateTimeNode();
+        public DateTimeNode Empty => _empty;
+    }
+    public partial record DateTimeNode : ValueNode, IDateTimeNode
+    {
+        public new const int EntityTag = 16;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public DateTime DateTimeValue { get; init; }
+        DateTime IDateTimeNode.DateTimeValue => DateTimeValue;
+
+        public DateTimeNode() : base()
+        {
+        }
+
+        public DateTimeNode(DateTimeNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DateTimeValue = source.DateTimeValue;
+        }
+
+        public DateTimeNode(IDateTimeNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DateTimeValue = source.DateTimeValue;
+        }
+
+        public virtual bool Equals(DateTimeNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DateTimeValue.ValueEquals(other.DateTimeValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DateTimeValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class TimeSpanNode_Factory : IEntityFactory<ITimeSpanNode, TimeSpanNode>
+    {
+        private static readonly TimeSpanNode_Factory _instance = new TimeSpanNode_Factory();
+        public static TimeSpanNode_Factory Instance => _instance;
+
+        public TimeSpanNode? CreateFrom(ITimeSpanNode? source)
+        {
+            if (source is null) return null;
+            if (source is TimeSpanNode thisEntity) return thisEntity;
+            return new TimeSpanNode(source);
+        }
+
+        private static readonly TimeSpanNode _empty = new TimeSpanNode();
+        public TimeSpanNode Empty => _empty;
+    }
+    public partial record TimeSpanNode : ValueNode, ITimeSpanNode
+    {
+        public new const int EntityTag = 17;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public TimeSpan TimeSpanValue { get; init; }
+        TimeSpan ITimeSpanNode.TimeSpanValue => TimeSpanValue;
+
+        public TimeSpanNode() : base()
+        {
+        }
+
+        public TimeSpanNode(TimeSpanNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            TimeSpanValue = source.TimeSpanValue;
+        }
+
+        public TimeSpanNode(ITimeSpanNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            TimeSpanValue = source.TimeSpanValue;
+        }
+
+        public virtual bool Equals(TimeSpanNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!TimeSpanValue.ValueEquals(other.TimeSpanValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(TimeSpanValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class DateOnlyNode_Factory : IEntityFactory<IDateOnlyNode, DateOnlyNode>
+    {
+        private static readonly DateOnlyNode_Factory _instance = new DateOnlyNode_Factory();
+        public static DateOnlyNode_Factory Instance => _instance;
+
+        public DateOnlyNode? CreateFrom(IDateOnlyNode? source)
+        {
+            if (source is null) return null;
+            if (source is DateOnlyNode thisEntity) return thisEntity;
+            return new DateOnlyNode(source);
+        }
+
+        private static readonly DateOnlyNode _empty = new DateOnlyNode();
+        public DateOnlyNode Empty => _empty;
+    }
+    public partial record DateOnlyNode : ValueNode, IDateOnlyNode
+    {
+        public new const int EntityTag = 18;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public DateOnly DateOnlyValue { get; init; }
+        DateOnly IDateOnlyNode.DateOnlyValue => DateOnlyValue;
+
+        public DateOnlyNode() : base()
+        {
+        }
+
+        public DateOnlyNode(DateOnlyNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DateOnlyValue = source.DateOnlyValue;
+        }
+
+        public DateOnlyNode(IDateOnlyNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DateOnlyValue = source.DateOnlyValue;
+        }
+
+        public virtual bool Equals(DateOnlyNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DateOnlyValue.ValueEquals(other.DateOnlyValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DateOnlyValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class TimeOnlyNode_Factory : IEntityFactory<ITimeOnlyNode, TimeOnlyNode>
+    {
+        private static readonly TimeOnlyNode_Factory _instance = new TimeOnlyNode_Factory();
+        public static TimeOnlyNode_Factory Instance => _instance;
+
+        public TimeOnlyNode? CreateFrom(ITimeOnlyNode? source)
+        {
+            if (source is null) return null;
+            if (source is TimeOnlyNode thisEntity) return thisEntity;
+            return new TimeOnlyNode(source);
+        }
+
+        private static readonly TimeOnlyNode _empty = new TimeOnlyNode();
+        public TimeOnlyNode Empty => _empty;
+    }
+    public partial record TimeOnlyNode : ValueNode, ITimeOnlyNode
+    {
+        public new const int EntityTag = 19;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public TimeOnly TimeOnlyValue { get; init; }
+        TimeOnly ITimeOnlyNode.TimeOnlyValue => TimeOnlyValue;
+
+        public TimeOnlyNode() : base()
+        {
+        }
+
+        public TimeOnlyNode(TimeOnlyNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            TimeOnlyValue = source.TimeOnlyValue;
+        }
+
+        public TimeOnlyNode(ITimeOnlyNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            TimeOnlyValue = source.TimeOnlyValue;
+        }
+
+        public virtual bool Equals(TimeOnlyNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!TimeOnlyValue.ValueEquals(other.TimeOnlyValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(TimeOnlyValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
@@ -466,8 +1199,8 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         public new const int EntityTag = 7;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Int64 LongValue { get; init; }
-        Int64 IInt64Node.LongValue => LongValue;
+        public Int64 Int64Value { get; init; }
+        Int64 IInt64Node.Int64Value => Int64Value;
 
         public Int64Node() : base()
         {
@@ -476,27 +1209,475 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.RecordsV2
         public Int64Node(Int64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            LongValue = source.LongValue;
+            Int64Value = source.Int64Value;
         }
 
         public Int64Node(IInt64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            LongValue = source.LongValue;
+            Int64Value = source.Int64Value;
         }
 
         public virtual bool Equals(Int64Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!LongValue.ValueEquals(other.LongValue)) return false;
+            if (!Int64Value.ValueEquals(other.Int64Value)) return false;
             return base.Equals(other);
         }
 
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(LongValue.CalcHashUnary());
+            hc.Add(Int64Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class UInt64Node_Factory : IEntityFactory<IUInt64Node, UInt64Node>
+    {
+        private static readonly UInt64Node_Factory _instance = new UInt64Node_Factory();
+        public static UInt64Node_Factory Instance => _instance;
+
+        public UInt64Node? CreateFrom(IUInt64Node? source)
+        {
+            if (source is null) return null;
+            if (source is UInt64Node thisEntity) return thisEntity;
+            return new UInt64Node(source);
+        }
+
+        private static readonly UInt64Node _empty = new UInt64Node();
+        public UInt64Node Empty => _empty;
+    }
+    public partial record UInt64Node : NumericNode, IUInt64Node
+    {
+        public new const int EntityTag = 20;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public UInt64 UInt64Value { get; init; }
+        UInt64 IUInt64Node.UInt64Value => UInt64Value;
+
+        public UInt64Node() : base()
+        {
+        }
+
+        public UInt64Node(UInt64Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            UInt64Value = source.UInt64Value;
+        }
+
+        public UInt64Node(IUInt64Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            UInt64Value = source.UInt64Value;
+        }
+
+        public virtual bool Equals(UInt64Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!UInt64Value.ValueEquals(other.UInt64Value)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(UInt64Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class DoubleNode_Factory : IEntityFactory<IDoubleNode, DoubleNode>
+    {
+        private static readonly DoubleNode_Factory _instance = new DoubleNode_Factory();
+        public static DoubleNode_Factory Instance => _instance;
+
+        public DoubleNode? CreateFrom(IDoubleNode? source)
+        {
+            if (source is null) return null;
+            if (source is DoubleNode thisEntity) return thisEntity;
+            return new DoubleNode(source);
+        }
+
+        private static readonly DoubleNode _empty = new DoubleNode();
+        public DoubleNode Empty => _empty;
+    }
+    public partial record DoubleNode : NumericNode, IDoubleNode
+    {
+        public new const int EntityTag = 21;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Double DoubleValue { get; init; }
+        Double IDoubleNode.DoubleValue => DoubleValue;
+
+        public DoubleNode() : base()
+        {
+        }
+
+        public DoubleNode(DoubleNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DoubleValue = source.DoubleValue;
+        }
+
+        public DoubleNode(IDoubleNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DoubleValue = source.DoubleValue;
+        }
+
+        public virtual bool Equals(DoubleNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DoubleValue.ValueEquals(other.DoubleValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DoubleValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class StringNode_Factory : IEntityFactory<IStringNode, StringNode>
+    {
+        private static readonly StringNode_Factory _instance = new StringNode_Factory();
+        public static StringNode_Factory Instance => _instance;
+
+        public StringNode? CreateFrom(IStringNode? source)
+        {
+            if (source is null) return null;
+            if (source is StringNode thisEntity) return thisEntity;
+            return new StringNode(source);
+        }
+
+        private static readonly StringNode _empty = new StringNode();
+        public StringNode Empty => _empty;
+    }
+    public partial record StringNode : ValueNode, IStringNode
+    {
+        public new const int EntityTag = 3;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public String? StringValue { get; init; }
+        String? IStringNode.StringValue => StringValue;
+
+        public StringNode() : base()
+        {
+        }
+
+        public StringNode(StringNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            StringValue = source.StringValue;
+        }
+
+        public StringNode(IStringNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            StringValue = source.StringValue;
+        }
+
+        public virtual bool Equals(StringNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!StringValue.ValueEquals(other.StringValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(StringValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class OctetsNode_Factory : IEntityFactory<IOctetsNode, OctetsNode>
+    {
+        private static readonly OctetsNode_Factory _instance = new OctetsNode_Factory();
+        public static OctetsNode_Factory Instance => _instance;
+
+        public OctetsNode? CreateFrom(IOctetsNode? source)
+        {
+            if (source is null) return null;
+            if (source is OctetsNode thisEntity) return thisEntity;
+            return new OctetsNode(source);
+        }
+
+        private static readonly OctetsNode _empty = new OctetsNode();
+        public OctetsNode Empty => _empty;
+    }
+    public partial record OctetsNode : ValueNode, IOctetsNode
+    {
+        public new const int EntityTag = 22;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Octets? OctetsValue { get; init; }
+        Octets? IOctetsNode.OctetsValue => OctetsValue;
+
+        public OctetsNode() : base()
+        {
+        }
+
+        public OctetsNode(OctetsNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            OctetsValue = source.OctetsValue;
+        }
+
+        public OctetsNode(IOctetsNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            OctetsValue = source.OctetsValue;
+        }
+
+        public virtual bool Equals(OctetsNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!OctetsValue.ValueEquals(other.OctetsValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(OctetsValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class GuidNode_Factory : IEntityFactory<IGuidNode, GuidNode>
+    {
+        private static readonly GuidNode_Factory _instance = new GuidNode_Factory();
+        public static GuidNode_Factory Instance => _instance;
+
+        public GuidNode? CreateFrom(IGuidNode? source)
+        {
+            if (source is null) return null;
+            if (source is GuidNode thisEntity) return thisEntity;
+            return new GuidNode(source);
+        }
+
+        private static readonly GuidNode _empty = new GuidNode();
+        public GuidNode Empty => _empty;
+    }
+    public partial record GuidNode : ValueNode, IGuidNode
+    {
+        public new const int EntityTag = 23;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Guid GuidValue { get; init; }
+        Guid IGuidNode.GuidValue => GuidValue;
+
+        public GuidNode() : base()
+        {
+        }
+
+        public GuidNode(GuidNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            GuidValue = source.GuidValue;
+        }
+
+        public GuidNode(IGuidNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            GuidValue = source.GuidValue;
+        }
+
+        public virtual bool Equals(GuidNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!GuidValue.ValueEquals(other.GuidValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(GuidValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class DecimalNode_Factory : IEntityFactory<IDecimalNode, DecimalNode>
+    {
+        private static readonly DecimalNode_Factory _instance = new DecimalNode_Factory();
+        public static DecimalNode_Factory Instance => _instance;
+
+        public DecimalNode? CreateFrom(IDecimalNode? source)
+        {
+            if (source is null) return null;
+            if (source is DecimalNode thisEntity) return thisEntity;
+            return new DecimalNode(source);
+        }
+
+        private static readonly DecimalNode _empty = new DecimalNode();
+        public DecimalNode Empty => _empty;
+    }
+    public partial record DecimalNode : NumericNode, IDecimalNode
+    {
+        public new const int EntityTag = 24;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Decimal DecimalValue { get; init; }
+        Decimal IDecimalNode.DecimalValue => DecimalValue;
+
+        public DecimalNode() : base()
+        {
+        }
+
+        public DecimalNode(DecimalNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DecimalValue = source.DecimalValue;
+        }
+
+        public DecimalNode(IDecimalNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DecimalValue = source.DecimalValue;
+        }
+
+        public virtual bool Equals(DecimalNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DecimalValue.ValueEquals(other.DecimalValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DecimalValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class DateTimeOffsetNode_Factory : IEntityFactory<IDateTimeOffsetNode, DateTimeOffsetNode>
+    {
+        private static readonly DateTimeOffsetNode_Factory _instance = new DateTimeOffsetNode_Factory();
+        public static DateTimeOffsetNode_Factory Instance => _instance;
+
+        public DateTimeOffsetNode? CreateFrom(IDateTimeOffsetNode? source)
+        {
+            if (source is null) return null;
+            if (source is DateTimeOffsetNode thisEntity) return thisEntity;
+            return new DateTimeOffsetNode(source);
+        }
+
+        private static readonly DateTimeOffsetNode _empty = new DateTimeOffsetNode();
+        public DateTimeOffsetNode Empty => _empty;
+    }
+    public partial record DateTimeOffsetNode : ValueNode, IDateTimeOffsetNode
+    {
+        public new const int EntityTag = 25;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public DateTimeOffset DateTimeOffsetValue { get; init; }
+        DateTimeOffset IDateTimeOffsetNode.DateTimeOffsetValue => DateTimeOffsetValue;
+
+        public DateTimeOffsetNode() : base()
+        {
+        }
+
+        public DateTimeOffsetNode(DateTimeOffsetNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DateTimeOffsetValue = source.DateTimeOffsetValue;
+        }
+
+        public DateTimeOffsetNode(IDateTimeOffsetNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            DateTimeOffsetValue = source.DateTimeOffsetValue;
+        }
+
+        public virtual bool Equals(DateTimeOffsetNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DateTimeOffsetValue.ValueEquals(other.DateTimeOffsetValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DateTimeOffsetValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
