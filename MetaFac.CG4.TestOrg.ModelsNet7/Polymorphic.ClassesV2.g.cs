@@ -69,10 +69,28 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             {
                 case NumericNode.EntityTag: return NumericNode.CreateFrom((INumericNode)source);
                 case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case SByteNode.EntityTag: return SByteNode.CreateFrom((ISByteNode)source);
+                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                case Int16Node.EntityTag: return Int16Node.CreateFrom((IInt16Node)source);
+                case UInt16Node.EntityTag: return UInt16Node.CreateFrom((IUInt16Node)source);
+                case CharNode.EntityTag: return CharNode.CreateFrom((ICharNode)source);
+                case HalfNode.EntityTag: return HalfNode.CreateFrom((IHalfNode)source);
+                case UInt32Node.EntityTag: return UInt32Node.CreateFrom((IUInt32Node)source);
+                case SingleNode.EntityTag: return SingleNode.CreateFrom((ISingleNode)source);
                 case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
-                case StringNode.EntityTag: return StringNode.CreateFrom((IStringNode)source);
+                case UInt64Node.EntityTag: return UInt64Node.CreateFrom((IUInt64Node)source);
+                case DoubleNode.EntityTag: return DoubleNode.CreateFrom((IDoubleNode)source);
+                case DecimalNode.EntityTag: return DecimalNode.CreateFrom((IDecimalNode)source);
                 case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode.CreateFrom((ICustomNode)source);
+                case DateTimeNode.EntityTag: return DateTimeNode.CreateFrom((IDateTimeNode)source);
+                case TimeSpanNode.EntityTag: return TimeSpanNode.CreateFrom((ITimeSpanNode)source);
+                case DateOnlyNode.EntityTag: return DateOnlyNode.CreateFrom((IDateOnlyNode)source);
+                case TimeOnlyNode.EntityTag: return TimeOnlyNode.CreateFrom((ITimeOnlyNode)source);
+                case StringNode.EntityTag: return StringNode.CreateFrom((IStringNode)source);
+                case OctetsNode.EntityTag: return OctetsNode.CreateFrom((IOctetsNode)source);
+                case GuidNode.EntityTag: return GuidNode.CreateFrom((IGuidNode)source);
+                case DateTimeOffsetNode.EntityTag: return DateTimeOffsetNode.CreateFrom((IDateTimeOffsetNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -183,7 +201,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             switch (entityTag)
             {
                 case Int32Node.EntityTag: return Int32Node.CreateFrom((IInt32Node)source);
+                case SByteNode.EntityTag: return SByteNode.CreateFrom((ISByteNode)source);
+                case ByteNode.EntityTag: return ByteNode.CreateFrom((IByteNode)source);
+                case Int16Node.EntityTag: return Int16Node.CreateFrom((IInt16Node)source);
+                case UInt16Node.EntityTag: return UInt16Node.CreateFrom((IUInt16Node)source);
+                case CharNode.EntityTag: return CharNode.CreateFrom((ICharNode)source);
+                case HalfNode.EntityTag: return HalfNode.CreateFrom((IHalfNode)source);
+                case UInt32Node.EntityTag: return UInt32Node.CreateFrom((IUInt32Node)source);
+                case SingleNode.EntityTag: return SingleNode.CreateFrom((ISingleNode)source);
                 case Int64Node.EntityTag: return Int64Node.CreateFrom((IInt64Node)source);
+                case UInt64Node.EntityTag: return UInt64Node.CreateFrom((IUInt64Node)source);
+                case DoubleNode.EntityTag: return DoubleNode.CreateFrom((IDoubleNode)source);
+                case DecimalNode.EntityTag: return DecimalNode.CreateFrom((IDecimalNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -247,108 +276,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (!_isFrozen) return CalcHashCode();
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
-        }
-    }
-
-    public partial class StringNode
-    {
-        public static StringNode? CreateFrom(IStringNode? source)
-        {
-            if (source is null) return null;
-            if (source is StringNode thisEntity && thisEntity._isFrozen) return thisEntity;
-            return new StringNode(source);
-        }
-
-        private static StringNode CreateEmpty()
-        {
-            var empty = new StringNode();
-            empty.Freeze();
-            return empty;
-        }
-        private static readonly StringNode _empty = CreateEmpty();
-        public static new StringNode Empty => _empty;
-
-    }
-    public partial class StringNode : ValueNode, IStringNode, IEquatable<StringNode>
-    {
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        private static void ThrowIsReadonly()
-        {
-            throw new InvalidOperationException("Cannot set properties when frozen");
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private ref T CheckNotFrozen<T>(ref T value)
-        {
-            if (_isFrozen) ThrowIsReadonly();
-            return ref value;
-        }
-
-        protected override void OnFreeze()
-        {
-            base.OnFreeze();
-        }
-
-        public new const int EntityTag = 3;
-        protected override int OnGetEntityTag() => EntityTag;
-
-        private String? field_StrValue;
-        String? IStringNode.StrValue => field_StrValue;
-        public String? StrValue
-        {
-            get => field_StrValue;
-            set => field_StrValue = CheckNotFrozen(ref value);
-        }
-
-        public StringNode() : base()
-        {
-        }
-
-        public StringNode(StringNode? source) : base(source)
-        {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            field_StrValue = source.StrValue;
-        }
-
-        public StringNode(IStringNode? source) : base(source)
-        {
-            if (source is null) throw new ArgumentNullException(nameof(source));
-            field_StrValue = source.StrValue;
-        }
-
-        public void CopyFrom(IStringNode? source)
-        {
-            if (source is null) return;
-            if (_isFrozen) ThrowIsReadonly();
-            base.CopyFrom(source);
-            field_StrValue = source.StrValue;
-        }
-
-        public virtual bool Equals(StringNode? other)
-        {
-            if (other is null) return false;
-            if (ReferenceEquals(other, this)) return true;
-            if (!StrValue.ValueEquals(other.StrValue)) return false;
-            return base.Equals(other);
-        }
-
-        public override bool Equals(object? obj) => obj is StringNode other && Equals(other);
-
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(StrValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
@@ -609,12 +536,12 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         public new const int EntityTag = 6;
         protected override int OnGetEntityTag() => EntityTag;
 
-        private Int32 field_IntValue;
-        Int32 IInt32Node.IntValue => field_IntValue;
-        public Int32 IntValue
+        private Int32 field_Int32Value;
+        Int32 IInt32Node.Int32Value => field_Int32Value;
+        public Int32 Int32Value
         {
-            get => field_IntValue;
-            set => field_IntValue = CheckNotFrozen(ref value);
+            get => field_Int32Value;
+            set => field_Int32Value = CheckNotFrozen(ref value);
         }
 
         public Int32Node() : base()
@@ -624,13 +551,13 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         public Int32Node(Int32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_IntValue = source.IntValue;
+            field_Int32Value = source.Int32Value;
         }
 
         public Int32Node(IInt32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_IntValue = source.IntValue;
+            field_Int32Value = source.Int32Value;
         }
 
         public void CopyFrom(IInt32Node? source)
@@ -638,14 +565,14 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             if (source is null) return;
             if (_isFrozen) ThrowIsReadonly();
             base.CopyFrom(source);
-            field_IntValue = source.IntValue;
+            field_Int32Value = source.Int32Value;
         }
 
         public virtual bool Equals(Int32Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!IntValue.ValueEquals(other.IntValue)) return false;
+            if (!Int32Value.ValueEquals(other.Int32Value)) return false;
             return base.Equals(other);
         }
 
@@ -654,7 +581,1231 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(IntValue.CalcHashUnary());
+            hc.Add(Int32Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class SByteNode
+    {
+        public static SByteNode? CreateFrom(ISByteNode? source)
+        {
+            if (source is null) return null;
+            if (source is SByteNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new SByteNode(source);
+        }
+
+        private static SByteNode CreateEmpty()
+        {
+            var empty = new SByteNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly SByteNode _empty = CreateEmpty();
+        public static new SByteNode Empty => _empty;
+
+    }
+    public partial class SByteNode : NumericNode, ISByteNode, IEquatable<SByteNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 8;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private SByte field_SByteValue;
+        SByte ISByteNode.SByteValue => field_SByteValue;
+        public SByte SByteValue
+        {
+            get => field_SByteValue;
+            set => field_SByteValue = CheckNotFrozen(ref value);
+        }
+
+        public SByteNode() : base()
+        {
+        }
+
+        public SByteNode(SByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_SByteValue = source.SByteValue;
+        }
+
+        public SByteNode(ISByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_SByteValue = source.SByteValue;
+        }
+
+        public void CopyFrom(ISByteNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_SByteValue = source.SByteValue;
+        }
+
+        public virtual bool Equals(SByteNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!SByteValue.ValueEquals(other.SByteValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is SByteNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(SByteValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class ByteNode
+    {
+        public static ByteNode? CreateFrom(IByteNode? source)
+        {
+            if (source is null) return null;
+            if (source is ByteNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new ByteNode(source);
+        }
+
+        private static ByteNode CreateEmpty()
+        {
+            var empty = new ByteNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly ByteNode _empty = CreateEmpty();
+        public static new ByteNode Empty => _empty;
+
+    }
+    public partial class ByteNode : NumericNode, IByteNode, IEquatable<ByteNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 9;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Byte field_ByteValue;
+        Byte IByteNode.ByteValue => field_ByteValue;
+        public Byte ByteValue
+        {
+            get => field_ByteValue;
+            set => field_ByteValue = CheckNotFrozen(ref value);
+        }
+
+        public ByteNode() : base()
+        {
+        }
+
+        public ByteNode(ByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ByteValue = source.ByteValue;
+        }
+
+        public ByteNode(IByteNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ByteValue = source.ByteValue;
+        }
+
+        public void CopyFrom(IByteNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_ByteValue = source.ByteValue;
+        }
+
+        public virtual bool Equals(ByteNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!ByteValue.ValueEquals(other.ByteValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is ByteNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ByteValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class Int16Node
+    {
+        public static Int16Node? CreateFrom(IInt16Node? source)
+        {
+            if (source is null) return null;
+            if (source is Int16Node thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new Int16Node(source);
+        }
+
+        private static Int16Node CreateEmpty()
+        {
+            var empty = new Int16Node();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Int16Node _empty = CreateEmpty();
+        public static new Int16Node Empty => _empty;
+
+    }
+    public partial class Int16Node : NumericNode, IInt16Node, IEquatable<Int16Node>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 10;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Int16 field_Int16Value;
+        Int16 IInt16Node.Int16Value => field_Int16Value;
+        public Int16 Int16Value
+        {
+            get => field_Int16Value;
+            set => field_Int16Value = CheckNotFrozen(ref value);
+        }
+
+        public Int16Node() : base()
+        {
+        }
+
+        public Int16Node(Int16Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Int16Value = source.Int16Value;
+        }
+
+        public Int16Node(IInt16Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Int16Value = source.Int16Value;
+        }
+
+        public void CopyFrom(IInt16Node? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_Int16Value = source.Int16Value;
+        }
+
+        public virtual bool Equals(Int16Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Int16Value.ValueEquals(other.Int16Value)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is Int16Node other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Int16Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class UInt16Node
+    {
+        public static UInt16Node? CreateFrom(IUInt16Node? source)
+        {
+            if (source is null) return null;
+            if (source is UInt16Node thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new UInt16Node(source);
+        }
+
+        private static UInt16Node CreateEmpty()
+        {
+            var empty = new UInt16Node();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly UInt16Node _empty = CreateEmpty();
+        public static new UInt16Node Empty => _empty;
+
+    }
+    public partial class UInt16Node : NumericNode, IUInt16Node, IEquatable<UInt16Node>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 11;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private UInt16 field_UInt16Value;
+        UInt16 IUInt16Node.UInt16Value => field_UInt16Value;
+        public UInt16 UInt16Value
+        {
+            get => field_UInt16Value;
+            set => field_UInt16Value = CheckNotFrozen(ref value);
+        }
+
+        public UInt16Node() : base()
+        {
+        }
+
+        public UInt16Node(UInt16Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_UInt16Value = source.UInt16Value;
+        }
+
+        public UInt16Node(IUInt16Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_UInt16Value = source.UInt16Value;
+        }
+
+        public void CopyFrom(IUInt16Node? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_UInt16Value = source.UInt16Value;
+        }
+
+        public virtual bool Equals(UInt16Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!UInt16Value.ValueEquals(other.UInt16Value)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is UInt16Node other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(UInt16Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class CharNode
+    {
+        public static CharNode? CreateFrom(ICharNode? source)
+        {
+            if (source is null) return null;
+            if (source is CharNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new CharNode(source);
+        }
+
+        private static CharNode CreateEmpty()
+        {
+            var empty = new CharNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly CharNode _empty = CreateEmpty();
+        public static new CharNode Empty => _empty;
+
+    }
+    public partial class CharNode : NumericNode, ICharNode, IEquatable<CharNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 12;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Char field_CharValue;
+        Char ICharNode.CharValue => field_CharValue;
+        public Char CharValue
+        {
+            get => field_CharValue;
+            set => field_CharValue = CheckNotFrozen(ref value);
+        }
+
+        public CharNode() : base()
+        {
+        }
+
+        public CharNode(CharNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_CharValue = source.CharValue;
+        }
+
+        public CharNode(ICharNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_CharValue = source.CharValue;
+        }
+
+        public void CopyFrom(ICharNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_CharValue = source.CharValue;
+        }
+
+        public virtual bool Equals(CharNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!CharValue.ValueEquals(other.CharValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is CharNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(CharValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class HalfNode
+    {
+        public static HalfNode? CreateFrom(IHalfNode? source)
+        {
+            if (source is null) return null;
+            if (source is HalfNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new HalfNode(source);
+        }
+
+        private static HalfNode CreateEmpty()
+        {
+            var empty = new HalfNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly HalfNode _empty = CreateEmpty();
+        public static new HalfNode Empty => _empty;
+
+    }
+    public partial class HalfNode : NumericNode, IHalfNode, IEquatable<HalfNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 13;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Half field_HalfValue;
+        Half IHalfNode.HalfValue => field_HalfValue;
+        public Half HalfValue
+        {
+            get => field_HalfValue;
+            set => field_HalfValue = CheckNotFrozen(ref value);
+        }
+
+        public HalfNode() : base()
+        {
+        }
+
+        public HalfNode(HalfNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_HalfValue = source.HalfValue;
+        }
+
+        public HalfNode(IHalfNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_HalfValue = source.HalfValue;
+        }
+
+        public void CopyFrom(IHalfNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_HalfValue = source.HalfValue;
+        }
+
+        public virtual bool Equals(HalfNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!HalfValue.ValueEquals(other.HalfValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is HalfNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(HalfValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class UInt32Node
+    {
+        public static UInt32Node? CreateFrom(IUInt32Node? source)
+        {
+            if (source is null) return null;
+            if (source is UInt32Node thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new UInt32Node(source);
+        }
+
+        private static UInt32Node CreateEmpty()
+        {
+            var empty = new UInt32Node();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly UInt32Node _empty = CreateEmpty();
+        public static new UInt32Node Empty => _empty;
+
+    }
+    public partial class UInt32Node : NumericNode, IUInt32Node, IEquatable<UInt32Node>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 14;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private UInt32 field_UInt32Value;
+        UInt32 IUInt32Node.UInt32Value => field_UInt32Value;
+        public UInt32 UInt32Value
+        {
+            get => field_UInt32Value;
+            set => field_UInt32Value = CheckNotFrozen(ref value);
+        }
+
+        public UInt32Node() : base()
+        {
+        }
+
+        public UInt32Node(UInt32Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_UInt32Value = source.UInt32Value;
+        }
+
+        public UInt32Node(IUInt32Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_UInt32Value = source.UInt32Value;
+        }
+
+        public void CopyFrom(IUInt32Node? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_UInt32Value = source.UInt32Value;
+        }
+
+        public virtual bool Equals(UInt32Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!UInt32Value.ValueEquals(other.UInt32Value)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is UInt32Node other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(UInt32Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class SingleNode
+    {
+        public static SingleNode? CreateFrom(ISingleNode? source)
+        {
+            if (source is null) return null;
+            if (source is SingleNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new SingleNode(source);
+        }
+
+        private static SingleNode CreateEmpty()
+        {
+            var empty = new SingleNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly SingleNode _empty = CreateEmpty();
+        public static new SingleNode Empty => _empty;
+
+    }
+    public partial class SingleNode : NumericNode, ISingleNode, IEquatable<SingleNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 15;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Single field_SingleValue;
+        Single ISingleNode.SingleValue => field_SingleValue;
+        public Single SingleValue
+        {
+            get => field_SingleValue;
+            set => field_SingleValue = CheckNotFrozen(ref value);
+        }
+
+        public SingleNode() : base()
+        {
+        }
+
+        public SingleNode(SingleNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_SingleValue = source.SingleValue;
+        }
+
+        public SingleNode(ISingleNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_SingleValue = source.SingleValue;
+        }
+
+        public void CopyFrom(ISingleNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_SingleValue = source.SingleValue;
+        }
+
+        public virtual bool Equals(SingleNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!SingleValue.ValueEquals(other.SingleValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is SingleNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(SingleValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class DateTimeNode
+    {
+        public static DateTimeNode? CreateFrom(IDateTimeNode? source)
+        {
+            if (source is null) return null;
+            if (source is DateTimeNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new DateTimeNode(source);
+        }
+
+        private static DateTimeNode CreateEmpty()
+        {
+            var empty = new DateTimeNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly DateTimeNode _empty = CreateEmpty();
+        public static new DateTimeNode Empty => _empty;
+
+    }
+    public partial class DateTimeNode : ValueNode, IDateTimeNode, IEquatable<DateTimeNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 16;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private DateTime field_DateTimeValue;
+        DateTime IDateTimeNode.DateTimeValue => field_DateTimeValue;
+        public DateTime DateTimeValue
+        {
+            get => field_DateTimeValue;
+            set => field_DateTimeValue = CheckNotFrozen(ref value);
+        }
+
+        public DateTimeNode() : base()
+        {
+        }
+
+        public DateTimeNode(DateTimeNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DateTimeValue = source.DateTimeValue;
+        }
+
+        public DateTimeNode(IDateTimeNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DateTimeValue = source.DateTimeValue;
+        }
+
+        public void CopyFrom(IDateTimeNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_DateTimeValue = source.DateTimeValue;
+        }
+
+        public virtual bool Equals(DateTimeNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DateTimeValue.ValueEquals(other.DateTimeValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is DateTimeNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DateTimeValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class TimeSpanNode
+    {
+        public static TimeSpanNode? CreateFrom(ITimeSpanNode? source)
+        {
+            if (source is null) return null;
+            if (source is TimeSpanNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new TimeSpanNode(source);
+        }
+
+        private static TimeSpanNode CreateEmpty()
+        {
+            var empty = new TimeSpanNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly TimeSpanNode _empty = CreateEmpty();
+        public static new TimeSpanNode Empty => _empty;
+
+    }
+    public partial class TimeSpanNode : ValueNode, ITimeSpanNode, IEquatable<TimeSpanNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 17;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private TimeSpan field_TimeSpanValue;
+        TimeSpan ITimeSpanNode.TimeSpanValue => field_TimeSpanValue;
+        public TimeSpan TimeSpanValue
+        {
+            get => field_TimeSpanValue;
+            set => field_TimeSpanValue = CheckNotFrozen(ref value);
+        }
+
+        public TimeSpanNode() : base()
+        {
+        }
+
+        public TimeSpanNode(TimeSpanNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_TimeSpanValue = source.TimeSpanValue;
+        }
+
+        public TimeSpanNode(ITimeSpanNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_TimeSpanValue = source.TimeSpanValue;
+        }
+
+        public void CopyFrom(ITimeSpanNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_TimeSpanValue = source.TimeSpanValue;
+        }
+
+        public virtual bool Equals(TimeSpanNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!TimeSpanValue.ValueEquals(other.TimeSpanValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is TimeSpanNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(TimeSpanValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class DateOnlyNode
+    {
+        public static DateOnlyNode? CreateFrom(IDateOnlyNode? source)
+        {
+            if (source is null) return null;
+            if (source is DateOnlyNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new DateOnlyNode(source);
+        }
+
+        private static DateOnlyNode CreateEmpty()
+        {
+            var empty = new DateOnlyNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly DateOnlyNode _empty = CreateEmpty();
+        public static new DateOnlyNode Empty => _empty;
+
+    }
+    public partial class DateOnlyNode : ValueNode, IDateOnlyNode, IEquatable<DateOnlyNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 18;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private DateOnly field_DateOnlyValue;
+        DateOnly IDateOnlyNode.DateOnlyValue => field_DateOnlyValue;
+        public DateOnly DateOnlyValue
+        {
+            get => field_DateOnlyValue;
+            set => field_DateOnlyValue = CheckNotFrozen(ref value);
+        }
+
+        public DateOnlyNode() : base()
+        {
+        }
+
+        public DateOnlyNode(DateOnlyNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DateOnlyValue = source.DateOnlyValue;
+        }
+
+        public DateOnlyNode(IDateOnlyNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DateOnlyValue = source.DateOnlyValue;
+        }
+
+        public void CopyFrom(IDateOnlyNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_DateOnlyValue = source.DateOnlyValue;
+        }
+
+        public virtual bool Equals(DateOnlyNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DateOnlyValue.ValueEquals(other.DateOnlyValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is DateOnlyNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DateOnlyValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class TimeOnlyNode
+    {
+        public static TimeOnlyNode? CreateFrom(ITimeOnlyNode? source)
+        {
+            if (source is null) return null;
+            if (source is TimeOnlyNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new TimeOnlyNode(source);
+        }
+
+        private static TimeOnlyNode CreateEmpty()
+        {
+            var empty = new TimeOnlyNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly TimeOnlyNode _empty = CreateEmpty();
+        public static new TimeOnlyNode Empty => _empty;
+
+    }
+    public partial class TimeOnlyNode : ValueNode, ITimeOnlyNode, IEquatable<TimeOnlyNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 19;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private TimeOnly field_TimeOnlyValue;
+        TimeOnly ITimeOnlyNode.TimeOnlyValue => field_TimeOnlyValue;
+        public TimeOnly TimeOnlyValue
+        {
+            get => field_TimeOnlyValue;
+            set => field_TimeOnlyValue = CheckNotFrozen(ref value);
+        }
+
+        public TimeOnlyNode() : base()
+        {
+        }
+
+        public TimeOnlyNode(TimeOnlyNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_TimeOnlyValue = source.TimeOnlyValue;
+        }
+
+        public TimeOnlyNode(ITimeOnlyNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_TimeOnlyValue = source.TimeOnlyValue;
+        }
+
+        public void CopyFrom(ITimeOnlyNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_TimeOnlyValue = source.TimeOnlyValue;
+        }
+
+        public virtual bool Equals(TimeOnlyNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!TimeOnlyValue.ValueEquals(other.TimeOnlyValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is TimeOnlyNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(TimeOnlyValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
@@ -711,12 +1862,12 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         public new const int EntityTag = 7;
         protected override int OnGetEntityTag() => EntityTag;
 
-        private Int64 field_LongValue;
-        Int64 IInt64Node.LongValue => field_LongValue;
-        public Int64 LongValue
+        private Int64 field_Int64Value;
+        Int64 IInt64Node.Int64Value => field_Int64Value;
+        public Int64 Int64Value
         {
-            get => field_LongValue;
-            set => field_LongValue = CheckNotFrozen(ref value);
+            get => field_Int64Value;
+            set => field_Int64Value = CheckNotFrozen(ref value);
         }
 
         public Int64Node() : base()
@@ -726,13 +1877,13 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         public Int64Node(Int64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_LongValue = source.LongValue;
+            field_Int64Value = source.Int64Value;
         }
 
         public Int64Node(IInt64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            field_LongValue = source.LongValue;
+            field_Int64Value = source.Int64Value;
         }
 
         public void CopyFrom(IInt64Node? source)
@@ -740,14 +1891,14 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
             if (source is null) return;
             if (_isFrozen) ThrowIsReadonly();
             base.CopyFrom(source);
-            field_LongValue = source.LongValue;
+            field_Int64Value = source.Int64Value;
         }
 
         public virtual bool Equals(Int64Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!LongValue.ValueEquals(other.LongValue)) return false;
+            if (!Int64Value.ValueEquals(other.Int64Value)) return false;
             return base.Equals(other);
         }
 
@@ -756,7 +1907,721 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(LongValue.CalcHashUnary());
+            hc.Add(Int64Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class UInt64Node
+    {
+        public static UInt64Node? CreateFrom(IUInt64Node? source)
+        {
+            if (source is null) return null;
+            if (source is UInt64Node thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new UInt64Node(source);
+        }
+
+        private static UInt64Node CreateEmpty()
+        {
+            var empty = new UInt64Node();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly UInt64Node _empty = CreateEmpty();
+        public static new UInt64Node Empty => _empty;
+
+    }
+    public partial class UInt64Node : NumericNode, IUInt64Node, IEquatable<UInt64Node>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 20;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private UInt64 field_UInt64Value;
+        UInt64 IUInt64Node.UInt64Value => field_UInt64Value;
+        public UInt64 UInt64Value
+        {
+            get => field_UInt64Value;
+            set => field_UInt64Value = CheckNotFrozen(ref value);
+        }
+
+        public UInt64Node() : base()
+        {
+        }
+
+        public UInt64Node(UInt64Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_UInt64Value = source.UInt64Value;
+        }
+
+        public UInt64Node(IUInt64Node? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_UInt64Value = source.UInt64Value;
+        }
+
+        public void CopyFrom(IUInt64Node? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_UInt64Value = source.UInt64Value;
+        }
+
+        public virtual bool Equals(UInt64Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!UInt64Value.ValueEquals(other.UInt64Value)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is UInt64Node other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(UInt64Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class DoubleNode
+    {
+        public static DoubleNode? CreateFrom(IDoubleNode? source)
+        {
+            if (source is null) return null;
+            if (source is DoubleNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new DoubleNode(source);
+        }
+
+        private static DoubleNode CreateEmpty()
+        {
+            var empty = new DoubleNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly DoubleNode _empty = CreateEmpty();
+        public static new DoubleNode Empty => _empty;
+
+    }
+    public partial class DoubleNode : NumericNode, IDoubleNode, IEquatable<DoubleNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 21;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Double field_DoubleValue;
+        Double IDoubleNode.DoubleValue => field_DoubleValue;
+        public Double DoubleValue
+        {
+            get => field_DoubleValue;
+            set => field_DoubleValue = CheckNotFrozen(ref value);
+        }
+
+        public DoubleNode() : base()
+        {
+        }
+
+        public DoubleNode(DoubleNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DoubleValue = source.DoubleValue;
+        }
+
+        public DoubleNode(IDoubleNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DoubleValue = source.DoubleValue;
+        }
+
+        public void CopyFrom(IDoubleNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_DoubleValue = source.DoubleValue;
+        }
+
+        public virtual bool Equals(DoubleNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DoubleValue.ValueEquals(other.DoubleValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is DoubleNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DoubleValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class StringNode
+    {
+        public static StringNode? CreateFrom(IStringNode? source)
+        {
+            if (source is null) return null;
+            if (source is StringNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new StringNode(source);
+        }
+
+        private static StringNode CreateEmpty()
+        {
+            var empty = new StringNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly StringNode _empty = CreateEmpty();
+        public static new StringNode Empty => _empty;
+
+    }
+    public partial class StringNode : ValueNode, IStringNode, IEquatable<StringNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 3;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private String? field_StringValue;
+        String? IStringNode.StringValue => field_StringValue;
+        public String? StringValue
+        {
+            get => field_StringValue;
+            set => field_StringValue = CheckNotFrozen(ref value);
+        }
+
+        public StringNode() : base()
+        {
+        }
+
+        public StringNode(StringNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_StringValue = source.StringValue;
+        }
+
+        public StringNode(IStringNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_StringValue = source.StringValue;
+        }
+
+        public void CopyFrom(IStringNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_StringValue = source.StringValue;
+        }
+
+        public virtual bool Equals(StringNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!StringValue.ValueEquals(other.StringValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is StringNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(StringValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class OctetsNode
+    {
+        public static OctetsNode? CreateFrom(IOctetsNode? source)
+        {
+            if (source is null) return null;
+            if (source is OctetsNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new OctetsNode(source);
+        }
+
+        private static OctetsNode CreateEmpty()
+        {
+            var empty = new OctetsNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly OctetsNode _empty = CreateEmpty();
+        public static new OctetsNode Empty => _empty;
+
+    }
+    public partial class OctetsNode : ValueNode, IOctetsNode, IEquatable<OctetsNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 22;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Octets? field_OctetsValue;
+        Octets? IOctetsNode.OctetsValue => field_OctetsValue;
+        public Octets? OctetsValue
+        {
+            get => field_OctetsValue;
+            set => field_OctetsValue = CheckNotFrozen(ref value);
+        }
+
+        public OctetsNode() : base()
+        {
+        }
+
+        public OctetsNode(OctetsNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_OctetsValue = source.OctetsValue;
+        }
+
+        public OctetsNode(IOctetsNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_OctetsValue = source.OctetsValue;
+        }
+
+        public void CopyFrom(IOctetsNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_OctetsValue = source.OctetsValue;
+        }
+
+        public virtual bool Equals(OctetsNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!OctetsValue.ValueEquals(other.OctetsValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is OctetsNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(OctetsValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class GuidNode
+    {
+        public static GuidNode? CreateFrom(IGuidNode? source)
+        {
+            if (source is null) return null;
+            if (source is GuidNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new GuidNode(source);
+        }
+
+        private static GuidNode CreateEmpty()
+        {
+            var empty = new GuidNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly GuidNode _empty = CreateEmpty();
+        public static new GuidNode Empty => _empty;
+
+    }
+    public partial class GuidNode : ValueNode, IGuidNode, IEquatable<GuidNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 23;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Guid field_GuidValue;
+        Guid IGuidNode.GuidValue => field_GuidValue;
+        public Guid GuidValue
+        {
+            get => field_GuidValue;
+            set => field_GuidValue = CheckNotFrozen(ref value);
+        }
+
+        public GuidNode() : base()
+        {
+        }
+
+        public GuidNode(GuidNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_GuidValue = source.GuidValue;
+        }
+
+        public GuidNode(IGuidNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_GuidValue = source.GuidValue;
+        }
+
+        public void CopyFrom(IGuidNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_GuidValue = source.GuidValue;
+        }
+
+        public virtual bool Equals(GuidNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!GuidValue.ValueEquals(other.GuidValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is GuidNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(GuidValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class DecimalNode
+    {
+        public static DecimalNode? CreateFrom(IDecimalNode? source)
+        {
+            if (source is null) return null;
+            if (source is DecimalNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new DecimalNode(source);
+        }
+
+        private static DecimalNode CreateEmpty()
+        {
+            var empty = new DecimalNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly DecimalNode _empty = CreateEmpty();
+        public static new DecimalNode Empty => _empty;
+
+    }
+    public partial class DecimalNode : NumericNode, IDecimalNode, IEquatable<DecimalNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 24;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Decimal field_DecimalValue;
+        Decimal IDecimalNode.DecimalValue => field_DecimalValue;
+        public Decimal DecimalValue
+        {
+            get => field_DecimalValue;
+            set => field_DecimalValue = CheckNotFrozen(ref value);
+        }
+
+        public DecimalNode() : base()
+        {
+        }
+
+        public DecimalNode(DecimalNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DecimalValue = source.DecimalValue;
+        }
+
+        public DecimalNode(IDecimalNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DecimalValue = source.DecimalValue;
+        }
+
+        public void CopyFrom(IDecimalNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_DecimalValue = source.DecimalValue;
+        }
+
+        public virtual bool Equals(DecimalNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DecimalValue.ValueEquals(other.DecimalValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is DecimalNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DecimalValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class DateTimeOffsetNode
+    {
+        public static DateTimeOffsetNode? CreateFrom(IDateTimeOffsetNode? source)
+        {
+            if (source is null) return null;
+            if (source is DateTimeOffsetNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new DateTimeOffsetNode(source);
+        }
+
+        private static DateTimeOffsetNode CreateEmpty()
+        {
+            var empty = new DateTimeOffsetNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly DateTimeOffsetNode _empty = CreateEmpty();
+        public static new DateTimeOffsetNode Empty => _empty;
+
+    }
+    public partial class DateTimeOffsetNode : ValueNode, IDateTimeOffsetNode, IEquatable<DateTimeOffsetNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 25;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private DateTimeOffset field_DateTimeOffsetValue;
+        DateTimeOffset IDateTimeOffsetNode.DateTimeOffsetValue => field_DateTimeOffsetValue;
+        public DateTimeOffset DateTimeOffsetValue
+        {
+            get => field_DateTimeOffsetValue;
+            set => field_DateTimeOffsetValue = CheckNotFrozen(ref value);
+        }
+
+        public DateTimeOffsetNode() : base()
+        {
+        }
+
+        public DateTimeOffsetNode(DateTimeOffsetNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DateTimeOffsetValue = source.DateTimeOffsetValue;
+        }
+
+        public DateTimeOffsetNode(IDateTimeOffsetNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_DateTimeOffsetValue = source.DateTimeOffsetValue;
+        }
+
+        public void CopyFrom(IDateTimeOffsetNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_DateTimeOffsetValue = source.DateTimeOffsetValue;
+        }
+
+        public virtual bool Equals(DateTimeOffsetNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!DateTimeOffsetValue.ValueEquals(other.DateTimeOffsetValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is DateTimeOffsetNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(DateTimeOffsetValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

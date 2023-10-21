@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using MessagePack;
+using MetaFac.CG4.TestOrg.Constants;
 using MetaFac.Memory;
 using System;
 using System.Text;

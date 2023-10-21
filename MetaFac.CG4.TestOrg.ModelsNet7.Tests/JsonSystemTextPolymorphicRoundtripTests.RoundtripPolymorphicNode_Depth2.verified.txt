@@ -1,6 +1,6 @@
 ﻿{
   "$type": 7,
-  "LongValue": 123456,
+  "Int64Value": 123456,
   "Id": 1,
   "Name": "long"
 }

@@ -80,10 +80,28 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
 
     [Union(NumericNode.EntityTag, typeof(NumericNode))]
     [Union(Int32Node.EntityTag, typeof(Int32Node))]
+    [Union(SByteNode.EntityTag, typeof(SByteNode))]
+    [Union(ByteNode.EntityTag, typeof(ByteNode))]
+    [Union(Int16Node.EntityTag, typeof(Int16Node))]
+    [Union(UInt16Node.EntityTag, typeof(UInt16Node))]
+    [Union(CharNode.EntityTag, typeof(CharNode))]
+    [Union(HalfNode.EntityTag, typeof(HalfNode))]
+    [Union(UInt32Node.EntityTag, typeof(UInt32Node))]
+    [Union(SingleNode.EntityTag, typeof(SingleNode))]
     [Union(Int64Node.EntityTag, typeof(Int64Node))]
-    [Union(StringNode.EntityTag, typeof(StringNode))]
+    [Union(UInt64Node.EntityTag, typeof(UInt64Node))]
+    [Union(DoubleNode.EntityTag, typeof(DoubleNode))]
+    [Union(DecimalNode.EntityTag, typeof(DecimalNode))]
     [Union(BooleanNode.EntityTag, typeof(BooleanNode))]
     [Union(CustomNode.EntityTag, typeof(CustomNode))]
+    [Union(DateTimeNode.EntityTag, typeof(DateTimeNode))]
+    [Union(TimeSpanNode.EntityTag, typeof(TimeSpanNode))]
+    [Union(DateOnlyNode.EntityTag, typeof(DateOnlyNode))]
+    [Union(TimeOnlyNode.EntityTag, typeof(TimeOnlyNode))]
+    [Union(StringNode.EntityTag, typeof(StringNode))]
+    [Union(OctetsNode.EntityTag, typeof(OctetsNode))]
+    [Union(GuidNode.EntityTag, typeof(GuidNode))]
+    [Union(DateTimeOffsetNode.EntityTag, typeof(DateTimeOffsetNode))]
     public abstract partial class ValueNode
     {
     }
@@ -100,10 +118,28 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
             {
                 case NumericNode.EntityTag: return NumericNode_Factory.Instance.CreateFrom((INumericNode)source);
                 case Int32Node.EntityTag: return Int32Node_Factory.Instance.CreateFrom((IInt32Node)source);
+                case SByteNode.EntityTag: return SByteNode_Factory.Instance.CreateFrom((ISByteNode)source);
+                case ByteNode.EntityTag: return ByteNode_Factory.Instance.CreateFrom((IByteNode)source);
+                case Int16Node.EntityTag: return Int16Node_Factory.Instance.CreateFrom((IInt16Node)source);
+                case UInt16Node.EntityTag: return UInt16Node_Factory.Instance.CreateFrom((IUInt16Node)source);
+                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
+                case HalfNode.EntityTag: return HalfNode_Factory.Instance.CreateFrom((IHalfNode)source);
+                case UInt32Node.EntityTag: return UInt32Node_Factory.Instance.CreateFrom((IUInt32Node)source);
+                case SingleNode.EntityTag: return SingleNode_Factory.Instance.CreateFrom((ISingleNode)source);
                 case Int64Node.EntityTag: return Int64Node_Factory.Instance.CreateFrom((IInt64Node)source);
-                case StringNode.EntityTag: return StringNode_Factory.Instance.CreateFrom((IStringNode)source);
+                case UInt64Node.EntityTag: return UInt64Node_Factory.Instance.CreateFrom((IUInt64Node)source);
+                case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
+                case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
+                case DateTimeNode.EntityTag: return DateTimeNode_Factory.Instance.CreateFrom((IDateTimeNode)source);
+                case TimeSpanNode.EntityTag: return TimeSpanNode_Factory.Instance.CreateFrom((ITimeSpanNode)source);
+                case DateOnlyNode.EntityTag: return DateOnlyNode_Factory.Instance.CreateFrom((IDateOnlyNode)source);
+                case TimeOnlyNode.EntityTag: return TimeOnlyNode_Factory.Instance.CreateFrom((ITimeOnlyNode)source);
+                case StringNode.EntityTag: return StringNode_Factory.Instance.CreateFrom((IStringNode)source);
+                case OctetsNode.EntityTag: return OctetsNode_Factory.Instance.CreateFrom((IOctetsNode)source);
+                case GuidNode.EntityTag: return GuidNode_Factory.Instance.CreateFrom((IGuidNode)source);
+                case DateTimeOffsetNode.EntityTag: return DateTimeOffsetNode_Factory.Instance.CreateFrom((IDateTimeOffsetNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -214,7 +250,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
     }
 
     [Union(Int32Node.EntityTag, typeof(Int32Node))]
+    [Union(SByteNode.EntityTag, typeof(SByteNode))]
+    [Union(ByteNode.EntityTag, typeof(ByteNode))]
+    [Union(Int16Node.EntityTag, typeof(Int16Node))]
+    [Union(UInt16Node.EntityTag, typeof(UInt16Node))]
+    [Union(CharNode.EntityTag, typeof(CharNode))]
+    [Union(HalfNode.EntityTag, typeof(HalfNode))]
+    [Union(UInt32Node.EntityTag, typeof(UInt32Node))]
+    [Union(SingleNode.EntityTag, typeof(SingleNode))]
     [Union(Int64Node.EntityTag, typeof(Int64Node))]
+    [Union(UInt64Node.EntityTag, typeof(UInt64Node))]
+    [Union(DoubleNode.EntityTag, typeof(DoubleNode))]
+    [Union(DecimalNode.EntityTag, typeof(DecimalNode))]
     public abstract partial class NumericNode
     {
     }
@@ -230,7 +277,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
             switch (entityTag)
             {
                 case Int32Node.EntityTag: return Int32Node_Factory.Instance.CreateFrom((IInt32Node)source);
+                case SByteNode.EntityTag: return SByteNode_Factory.Instance.CreateFrom((ISByteNode)source);
+                case ByteNode.EntityTag: return ByteNode_Factory.Instance.CreateFrom((IByteNode)source);
+                case Int16Node.EntityTag: return Int16Node_Factory.Instance.CreateFrom((IInt16Node)source);
+                case UInt16Node.EntityTag: return UInt16Node_Factory.Instance.CreateFrom((IUInt16Node)source);
+                case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
+                case HalfNode.EntityTag: return HalfNode_Factory.Instance.CreateFrom((IHalfNode)source);
+                case UInt32Node.EntityTag: return UInt32Node_Factory.Instance.CreateFrom((IUInt32Node)source);
+                case SingleNode.EntityTag: return SingleNode_Factory.Instance.CreateFrom((ISingleNode)source);
                 case Int64Node.EntityTag: return Int64Node_Factory.Instance.CreateFrom((IInt64Node)source);
+                case UInt64Node.EntityTag: return UInt64Node_Factory.Instance.CreateFrom((IUInt64Node)source);
+                case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
+                case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -299,110 +357,6 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (!_isFrozen) return CalcHashCode();
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
-        }
-
-    }
-
-    public sealed class StringNode_Factory : IEntityFactory<IStringNode, StringNode>
-    {
-        private static readonly StringNode_Factory _instance = new StringNode_Factory();
-        public static StringNode_Factory Instance => _instance;
-
-        public StringNode? CreateFrom(IStringNode? source)
-        {
-            if (source is null) return null;
-            if (source is StringNode sibling && sibling.IsFrozen()) return sibling;
-            return new StringNode(source);
-        }
-
-        private static readonly StringNode _empty = new StringNode().Frozen();
-        public StringNode Empty => _empty;
-    }
-    [MessagePackObject]
-    public partial class StringNode : ValueNode, IStringNode, IEquatable<StringNode>, ICopyFrom<StringNode>
-    {
-        protected override void OnFreeze()
-        {
-            base.OnFreeze();
-        }
-
-        public new const int EntityTag = 3;
-        protected override int OnGetEntityTag() => EntityTag;
-
-        // ---------- private fields ----------
-        private String? field_StrValue;
-
-        // ---------- accessors ----------
-        [Key(3)]
-        public String? StrValue
-        {
-            get => field_StrValue;
-            set => field_StrValue = CheckNotFrozen(ref value);
-        }
-
-        // ---------- IStringNode methods ----------
-        String? IStringNode.StrValue => field_StrValue;
-
-        public StringNode()
-        {
-        }
-
-        public StringNode(StringNode source) : base(source)
-        {
-            field_StrValue = source.field_StrValue;
-        }
-
-        public void CopyFrom(StringNode source)
-        {
-            base.CopyFrom(source);
-            field_StrValue = source.field_StrValue;
-        }
-
-        public StringNode(IStringNode source) : base(source)
-        {
-            field_StrValue = source.StrValue;
-        }
-
-        public bool Equals(StringNode? other)
-        {
-            if (other is null) return false;
-            if (ReferenceEquals(other, this)) return true;
-            if (!field_StrValue.ValueEquals(other.field_StrValue)) return false;
-            return base.Equals(other);
-        }
-
-        public static bool operator ==(StringNode left, StringNode right)
-        {
-            if (left is null) return (right is null);
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(StringNode left, StringNode right)
-        {
-            if (left is null) return !(right is null);
-            return !left.Equals(right);
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return obj is StringNode other && Equals(other);
-        }
-
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(field_StrValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
@@ -653,18 +607,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
         protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
-        private Int32 field_IntValue;
+        private Int32 field_Int32Value;
 
         // ---------- accessors ----------
         [Key(3)]
-        public Int32 IntValue
+        public Int32 Int32Value
         {
-            get => field_IntValue;
-            set => field_IntValue = CheckNotFrozen(ref value);
+            get => field_Int32Value;
+            set => field_Int32Value = CheckNotFrozen(ref value);
         }
 
         // ---------- IInt32Node methods ----------
-        Int32 IInt32Node.IntValue => field_IntValue.ToExternal();
+        Int32 IInt32Node.Int32Value => field_Int32Value.ToExternal();
 
         public Int32Node()
         {
@@ -672,25 +626,25 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
 
         public Int32Node(Int32Node source) : base(source)
         {
-            field_IntValue = source.field_IntValue;
+            field_Int32Value = source.field_Int32Value;
         }
 
         public void CopyFrom(Int32Node source)
         {
             base.CopyFrom(source);
-            field_IntValue = source.field_IntValue;
+            field_Int32Value = source.field_Int32Value;
         }
 
         public Int32Node(IInt32Node source) : base(source)
         {
-            field_IntValue = source.IntValue.ToInternal();
+            field_Int32Value = source.Int32Value.ToInternal();
         }
 
         public bool Equals(Int32Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!field_IntValue.ValueEquals(other.field_IntValue)) return false;
+            if (!field_Int32Value.ValueEquals(other.field_Int32Value)) return false;
             return base.Equals(other);
         }
 
@@ -714,7 +668,1255 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(field_IntValue.CalcHashUnary());
+            hc.Add(field_Int32Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class SByteNode_Factory : IEntityFactory<ISByteNode, SByteNode>
+    {
+        private static readonly SByteNode_Factory _instance = new SByteNode_Factory();
+        public static SByteNode_Factory Instance => _instance;
+
+        public SByteNode? CreateFrom(ISByteNode? source)
+        {
+            if (source is null) return null;
+            if (source is SByteNode sibling && sibling.IsFrozen()) return sibling;
+            return new SByteNode(source);
+        }
+
+        private static readonly SByteNode _empty = new SByteNode().Frozen();
+        public SByteNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class SByteNode : NumericNode, ISByteNode, IEquatable<SByteNode>, ICopyFrom<SByteNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 8;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private SByte field_SByteValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public SByte SByteValue
+        {
+            get => field_SByteValue;
+            set => field_SByteValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- ISByteNode methods ----------
+        SByte ISByteNode.SByteValue => field_SByteValue.ToExternal();
+
+        public SByteNode()
+        {
+        }
+
+        public SByteNode(SByteNode source) : base(source)
+        {
+            field_SByteValue = source.field_SByteValue;
+        }
+
+        public void CopyFrom(SByteNode source)
+        {
+            base.CopyFrom(source);
+            field_SByteValue = source.field_SByteValue;
+        }
+
+        public SByteNode(ISByteNode source) : base(source)
+        {
+            field_SByteValue = source.SByteValue.ToInternal();
+        }
+
+        public bool Equals(SByteNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_SByteValue.ValueEquals(other.field_SByteValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(SByteNode left, SByteNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(SByteNode left, SByteNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is SByteNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_SByteValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class ByteNode_Factory : IEntityFactory<IByteNode, ByteNode>
+    {
+        private static readonly ByteNode_Factory _instance = new ByteNode_Factory();
+        public static ByteNode_Factory Instance => _instance;
+
+        public ByteNode? CreateFrom(IByteNode? source)
+        {
+            if (source is null) return null;
+            if (source is ByteNode sibling && sibling.IsFrozen()) return sibling;
+            return new ByteNode(source);
+        }
+
+        private static readonly ByteNode _empty = new ByteNode().Frozen();
+        public ByteNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class ByteNode : NumericNode, IByteNode, IEquatable<ByteNode>, ICopyFrom<ByteNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 9;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Byte field_ByteValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public Byte ByteValue
+        {
+            get => field_ByteValue;
+            set => field_ByteValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IByteNode methods ----------
+        Byte IByteNode.ByteValue => field_ByteValue.ToExternal();
+
+        public ByteNode()
+        {
+        }
+
+        public ByteNode(ByteNode source) : base(source)
+        {
+            field_ByteValue = source.field_ByteValue;
+        }
+
+        public void CopyFrom(ByteNode source)
+        {
+            base.CopyFrom(source);
+            field_ByteValue = source.field_ByteValue;
+        }
+
+        public ByteNode(IByteNode source) : base(source)
+        {
+            field_ByteValue = source.ByteValue.ToInternal();
+        }
+
+        public bool Equals(ByteNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_ByteValue.ValueEquals(other.field_ByteValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(ByteNode left, ByteNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ByteNode left, ByteNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is ByteNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_ByteValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class Int16Node_Factory : IEntityFactory<IInt16Node, Int16Node>
+    {
+        private static readonly Int16Node_Factory _instance = new Int16Node_Factory();
+        public static Int16Node_Factory Instance => _instance;
+
+        public Int16Node? CreateFrom(IInt16Node? source)
+        {
+            if (source is null) return null;
+            if (source is Int16Node sibling && sibling.IsFrozen()) return sibling;
+            return new Int16Node(source);
+        }
+
+        private static readonly Int16Node _empty = new Int16Node().Frozen();
+        public Int16Node Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class Int16Node : NumericNode, IInt16Node, IEquatable<Int16Node>, ICopyFrom<Int16Node>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 10;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Int16 field_Int16Value;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public Int16 Int16Value
+        {
+            get => field_Int16Value;
+            set => field_Int16Value = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IInt16Node methods ----------
+        Int16 IInt16Node.Int16Value => field_Int16Value.ToExternal();
+
+        public Int16Node()
+        {
+        }
+
+        public Int16Node(Int16Node source) : base(source)
+        {
+            field_Int16Value = source.field_Int16Value;
+        }
+
+        public void CopyFrom(Int16Node source)
+        {
+            base.CopyFrom(source);
+            field_Int16Value = source.field_Int16Value;
+        }
+
+        public Int16Node(IInt16Node source) : base(source)
+        {
+            field_Int16Value = source.Int16Value.ToInternal();
+        }
+
+        public bool Equals(Int16Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_Int16Value.ValueEquals(other.field_Int16Value)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(Int16Node left, Int16Node right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Int16Node left, Int16Node right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Int16Node other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_Int16Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class UInt16Node_Factory : IEntityFactory<IUInt16Node, UInt16Node>
+    {
+        private static readonly UInt16Node_Factory _instance = new UInt16Node_Factory();
+        public static UInt16Node_Factory Instance => _instance;
+
+        public UInt16Node? CreateFrom(IUInt16Node? source)
+        {
+            if (source is null) return null;
+            if (source is UInt16Node sibling && sibling.IsFrozen()) return sibling;
+            return new UInt16Node(source);
+        }
+
+        private static readonly UInt16Node _empty = new UInt16Node().Frozen();
+        public UInt16Node Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class UInt16Node : NumericNode, IUInt16Node, IEquatable<UInt16Node>, ICopyFrom<UInt16Node>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 11;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private UInt16 field_UInt16Value;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public UInt16 UInt16Value
+        {
+            get => field_UInt16Value;
+            set => field_UInt16Value = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IUInt16Node methods ----------
+        UInt16 IUInt16Node.UInt16Value => field_UInt16Value.ToExternal();
+
+        public UInt16Node()
+        {
+        }
+
+        public UInt16Node(UInt16Node source) : base(source)
+        {
+            field_UInt16Value = source.field_UInt16Value;
+        }
+
+        public void CopyFrom(UInt16Node source)
+        {
+            base.CopyFrom(source);
+            field_UInt16Value = source.field_UInt16Value;
+        }
+
+        public UInt16Node(IUInt16Node source) : base(source)
+        {
+            field_UInt16Value = source.UInt16Value.ToInternal();
+        }
+
+        public bool Equals(UInt16Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_UInt16Value.ValueEquals(other.field_UInt16Value)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(UInt16Node left, UInt16Node right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(UInt16Node left, UInt16Node right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is UInt16Node other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_UInt16Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class CharNode_Factory : IEntityFactory<ICharNode, CharNode>
+    {
+        private static readonly CharNode_Factory _instance = new CharNode_Factory();
+        public static CharNode_Factory Instance => _instance;
+
+        public CharNode? CreateFrom(ICharNode? source)
+        {
+            if (source is null) return null;
+            if (source is CharNode sibling && sibling.IsFrozen()) return sibling;
+            return new CharNode(source);
+        }
+
+        private static readonly CharNode _empty = new CharNode().Frozen();
+        public CharNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class CharNode : NumericNode, ICharNode, IEquatable<CharNode>, ICopyFrom<CharNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 12;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Char field_CharValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public Char CharValue
+        {
+            get => field_CharValue;
+            set => field_CharValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- ICharNode methods ----------
+        Char ICharNode.CharValue => field_CharValue.ToExternal();
+
+        public CharNode()
+        {
+        }
+
+        public CharNode(CharNode source) : base(source)
+        {
+            field_CharValue = source.field_CharValue;
+        }
+
+        public void CopyFrom(CharNode source)
+        {
+            base.CopyFrom(source);
+            field_CharValue = source.field_CharValue;
+        }
+
+        public CharNode(ICharNode source) : base(source)
+        {
+            field_CharValue = source.CharValue.ToInternal();
+        }
+
+        public bool Equals(CharNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_CharValue.ValueEquals(other.field_CharValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(CharNode left, CharNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(CharNode left, CharNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is CharNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_CharValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class HalfNode_Factory : IEntityFactory<IHalfNode, HalfNode>
+    {
+        private static readonly HalfNode_Factory _instance = new HalfNode_Factory();
+        public static HalfNode_Factory Instance => _instance;
+
+        public HalfNode? CreateFrom(IHalfNode? source)
+        {
+            if (source is null) return null;
+            if (source is HalfNode sibling && sibling.IsFrozen()) return sibling;
+            return new HalfNode(source);
+        }
+
+        private static readonly HalfNode _empty = new HalfNode().Frozen();
+        public HalfNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class HalfNode : NumericNode, IHalfNode, IEquatable<HalfNode>, ICopyFrom<HalfNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 13;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Half field_HalfValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public Half HalfValue
+        {
+            get => field_HalfValue;
+            set => field_HalfValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IHalfNode methods ----------
+        Half IHalfNode.HalfValue => field_HalfValue.ToExternal();
+
+        public HalfNode()
+        {
+        }
+
+        public HalfNode(HalfNode source) : base(source)
+        {
+            field_HalfValue = source.field_HalfValue;
+        }
+
+        public void CopyFrom(HalfNode source)
+        {
+            base.CopyFrom(source);
+            field_HalfValue = source.field_HalfValue;
+        }
+
+        public HalfNode(IHalfNode source) : base(source)
+        {
+            field_HalfValue = source.HalfValue.ToInternal();
+        }
+
+        public bool Equals(HalfNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_HalfValue.ValueEquals(other.field_HalfValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(HalfNode left, HalfNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(HalfNode left, HalfNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is HalfNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_HalfValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class UInt32Node_Factory : IEntityFactory<IUInt32Node, UInt32Node>
+    {
+        private static readonly UInt32Node_Factory _instance = new UInt32Node_Factory();
+        public static UInt32Node_Factory Instance => _instance;
+
+        public UInt32Node? CreateFrom(IUInt32Node? source)
+        {
+            if (source is null) return null;
+            if (source is UInt32Node sibling && sibling.IsFrozen()) return sibling;
+            return new UInt32Node(source);
+        }
+
+        private static readonly UInt32Node _empty = new UInt32Node().Frozen();
+        public UInt32Node Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class UInt32Node : NumericNode, IUInt32Node, IEquatable<UInt32Node>, ICopyFrom<UInt32Node>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 14;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private UInt32 field_UInt32Value;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public UInt32 UInt32Value
+        {
+            get => field_UInt32Value;
+            set => field_UInt32Value = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IUInt32Node methods ----------
+        UInt32 IUInt32Node.UInt32Value => field_UInt32Value.ToExternal();
+
+        public UInt32Node()
+        {
+        }
+
+        public UInt32Node(UInt32Node source) : base(source)
+        {
+            field_UInt32Value = source.field_UInt32Value;
+        }
+
+        public void CopyFrom(UInt32Node source)
+        {
+            base.CopyFrom(source);
+            field_UInt32Value = source.field_UInt32Value;
+        }
+
+        public UInt32Node(IUInt32Node source) : base(source)
+        {
+            field_UInt32Value = source.UInt32Value.ToInternal();
+        }
+
+        public bool Equals(UInt32Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_UInt32Value.ValueEquals(other.field_UInt32Value)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(UInt32Node left, UInt32Node right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(UInt32Node left, UInt32Node right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is UInt32Node other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_UInt32Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class SingleNode_Factory : IEntityFactory<ISingleNode, SingleNode>
+    {
+        private static readonly SingleNode_Factory _instance = new SingleNode_Factory();
+        public static SingleNode_Factory Instance => _instance;
+
+        public SingleNode? CreateFrom(ISingleNode? source)
+        {
+            if (source is null) return null;
+            if (source is SingleNode sibling && sibling.IsFrozen()) return sibling;
+            return new SingleNode(source);
+        }
+
+        private static readonly SingleNode _empty = new SingleNode().Frozen();
+        public SingleNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class SingleNode : NumericNode, ISingleNode, IEquatable<SingleNode>, ICopyFrom<SingleNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 15;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Single field_SingleValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public Single SingleValue
+        {
+            get => field_SingleValue;
+            set => field_SingleValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- ISingleNode methods ----------
+        Single ISingleNode.SingleValue => field_SingleValue.ToExternal();
+
+        public SingleNode()
+        {
+        }
+
+        public SingleNode(SingleNode source) : base(source)
+        {
+            field_SingleValue = source.field_SingleValue;
+        }
+
+        public void CopyFrom(SingleNode source)
+        {
+            base.CopyFrom(source);
+            field_SingleValue = source.field_SingleValue;
+        }
+
+        public SingleNode(ISingleNode source) : base(source)
+        {
+            field_SingleValue = source.SingleValue.ToInternal();
+        }
+
+        public bool Equals(SingleNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_SingleValue.ValueEquals(other.field_SingleValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(SingleNode left, SingleNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(SingleNode left, SingleNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is SingleNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_SingleValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class DateTimeNode_Factory : IEntityFactory<IDateTimeNode, DateTimeNode>
+    {
+        private static readonly DateTimeNode_Factory _instance = new DateTimeNode_Factory();
+        public static DateTimeNode_Factory Instance => _instance;
+
+        public DateTimeNode? CreateFrom(IDateTimeNode? source)
+        {
+            if (source is null) return null;
+            if (source is DateTimeNode sibling && sibling.IsFrozen()) return sibling;
+            return new DateTimeNode(source);
+        }
+
+        private static readonly DateTimeNode _empty = new DateTimeNode().Frozen();
+        public DateTimeNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class DateTimeNode : ValueNode, IDateTimeNode, IEquatable<DateTimeNode>, ICopyFrom<DateTimeNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 16;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private DateTimeValue field_DateTimeValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public DateTimeValue DateTimeValue
+        {
+            get => field_DateTimeValue;
+            set => field_DateTimeValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IDateTimeNode methods ----------
+        DateTime IDateTimeNode.DateTimeValue => field_DateTimeValue.ToExternal();
+
+        public DateTimeNode()
+        {
+        }
+
+        public DateTimeNode(DateTimeNode source) : base(source)
+        {
+            field_DateTimeValue = source.field_DateTimeValue;
+        }
+
+        public void CopyFrom(DateTimeNode source)
+        {
+            base.CopyFrom(source);
+            field_DateTimeValue = source.field_DateTimeValue;
+        }
+
+        public DateTimeNode(IDateTimeNode source) : base(source)
+        {
+            field_DateTimeValue = source.DateTimeValue.ToInternal();
+        }
+
+        public bool Equals(DateTimeNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_DateTimeValue.ValueEquals(other.field_DateTimeValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(DateTimeNode left, DateTimeNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(DateTimeNode left, DateTimeNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is DateTimeNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_DateTimeValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class TimeSpanNode_Factory : IEntityFactory<ITimeSpanNode, TimeSpanNode>
+    {
+        private static readonly TimeSpanNode_Factory _instance = new TimeSpanNode_Factory();
+        public static TimeSpanNode_Factory Instance => _instance;
+
+        public TimeSpanNode? CreateFrom(ITimeSpanNode? source)
+        {
+            if (source is null) return null;
+            if (source is TimeSpanNode sibling && sibling.IsFrozen()) return sibling;
+            return new TimeSpanNode(source);
+        }
+
+        private static readonly TimeSpanNode _empty = new TimeSpanNode().Frozen();
+        public TimeSpanNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class TimeSpanNode : ValueNode, ITimeSpanNode, IEquatable<TimeSpanNode>, ICopyFrom<TimeSpanNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 17;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private TimeSpan field_TimeSpanValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public TimeSpan TimeSpanValue
+        {
+            get => field_TimeSpanValue;
+            set => field_TimeSpanValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- ITimeSpanNode methods ----------
+        TimeSpan ITimeSpanNode.TimeSpanValue => field_TimeSpanValue.ToExternal();
+
+        public TimeSpanNode()
+        {
+        }
+
+        public TimeSpanNode(TimeSpanNode source) : base(source)
+        {
+            field_TimeSpanValue = source.field_TimeSpanValue;
+        }
+
+        public void CopyFrom(TimeSpanNode source)
+        {
+            base.CopyFrom(source);
+            field_TimeSpanValue = source.field_TimeSpanValue;
+        }
+
+        public TimeSpanNode(ITimeSpanNode source) : base(source)
+        {
+            field_TimeSpanValue = source.TimeSpanValue.ToInternal();
+        }
+
+        public bool Equals(TimeSpanNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_TimeSpanValue.ValueEquals(other.field_TimeSpanValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(TimeSpanNode left, TimeSpanNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(TimeSpanNode left, TimeSpanNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is TimeSpanNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_TimeSpanValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class DateOnlyNode_Factory : IEntityFactory<IDateOnlyNode, DateOnlyNode>
+    {
+        private static readonly DateOnlyNode_Factory _instance = new DateOnlyNode_Factory();
+        public static DateOnlyNode_Factory Instance => _instance;
+
+        public DateOnlyNode? CreateFrom(IDateOnlyNode? source)
+        {
+            if (source is null) return null;
+            if (source is DateOnlyNode sibling && sibling.IsFrozen()) return sibling;
+            return new DateOnlyNode(source);
+        }
+
+        private static readonly DateOnlyNode _empty = new DateOnlyNode().Frozen();
+        public DateOnlyNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class DateOnlyNode : ValueNode, IDateOnlyNode, IEquatable<DateOnlyNode>, ICopyFrom<DateOnlyNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 18;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private DateOnly field_DateOnlyValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public DateOnly DateOnlyValue
+        {
+            get => field_DateOnlyValue;
+            set => field_DateOnlyValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IDateOnlyNode methods ----------
+        DateOnly IDateOnlyNode.DateOnlyValue => field_DateOnlyValue.ToExternal();
+
+        public DateOnlyNode()
+        {
+        }
+
+        public DateOnlyNode(DateOnlyNode source) : base(source)
+        {
+            field_DateOnlyValue = source.field_DateOnlyValue;
+        }
+
+        public void CopyFrom(DateOnlyNode source)
+        {
+            base.CopyFrom(source);
+            field_DateOnlyValue = source.field_DateOnlyValue;
+        }
+
+        public DateOnlyNode(IDateOnlyNode source) : base(source)
+        {
+            field_DateOnlyValue = source.DateOnlyValue.ToInternal();
+        }
+
+        public bool Equals(DateOnlyNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_DateOnlyValue.ValueEquals(other.field_DateOnlyValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(DateOnlyNode left, DateOnlyNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(DateOnlyNode left, DateOnlyNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is DateOnlyNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_DateOnlyValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class TimeOnlyNode_Factory : IEntityFactory<ITimeOnlyNode, TimeOnlyNode>
+    {
+        private static readonly TimeOnlyNode_Factory _instance = new TimeOnlyNode_Factory();
+        public static TimeOnlyNode_Factory Instance => _instance;
+
+        public TimeOnlyNode? CreateFrom(ITimeOnlyNode? source)
+        {
+            if (source is null) return null;
+            if (source is TimeOnlyNode sibling && sibling.IsFrozen()) return sibling;
+            return new TimeOnlyNode(source);
+        }
+
+        private static readonly TimeOnlyNode _empty = new TimeOnlyNode().Frozen();
+        public TimeOnlyNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class TimeOnlyNode : ValueNode, ITimeOnlyNode, IEquatable<TimeOnlyNode>, ICopyFrom<TimeOnlyNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 19;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private TimeOnly field_TimeOnlyValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public TimeOnly TimeOnlyValue
+        {
+            get => field_TimeOnlyValue;
+            set => field_TimeOnlyValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- ITimeOnlyNode methods ----------
+        TimeOnly ITimeOnlyNode.TimeOnlyValue => field_TimeOnlyValue.ToExternal();
+
+        public TimeOnlyNode()
+        {
+        }
+
+        public TimeOnlyNode(TimeOnlyNode source) : base(source)
+        {
+            field_TimeOnlyValue = source.field_TimeOnlyValue;
+        }
+
+        public void CopyFrom(TimeOnlyNode source)
+        {
+            base.CopyFrom(source);
+            field_TimeOnlyValue = source.field_TimeOnlyValue;
+        }
+
+        public TimeOnlyNode(ITimeOnlyNode source) : base(source)
+        {
+            field_TimeOnlyValue = source.TimeOnlyValue.ToInternal();
+        }
+
+        public bool Equals(TimeOnlyNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_TimeOnlyValue.ValueEquals(other.field_TimeOnlyValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(TimeOnlyNode left, TimeOnlyNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(TimeOnlyNode left, TimeOnlyNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is TimeOnlyNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_TimeOnlyValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }
@@ -757,18 +1959,18 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
         protected override int OnGetEntityTag() => EntityTag;
 
         // ---------- private fields ----------
-        private Int64 field_LongValue;
+        private Int64 field_Int64Value;
 
         // ---------- accessors ----------
         [Key(3)]
-        public Int64 LongValue
+        public Int64 Int64Value
         {
-            get => field_LongValue;
-            set => field_LongValue = CheckNotFrozen(ref value);
+            get => field_Int64Value;
+            set => field_Int64Value = CheckNotFrozen(ref value);
         }
 
         // ---------- IInt64Node methods ----------
-        Int64 IInt64Node.LongValue => field_LongValue.ToExternal();
+        Int64 IInt64Node.Int64Value => field_Int64Value.ToExternal();
 
         public Int64Node()
         {
@@ -776,25 +1978,25 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
 
         public Int64Node(Int64Node source) : base(source)
         {
-            field_LongValue = source.field_LongValue;
+            field_Int64Value = source.field_Int64Value;
         }
 
         public void CopyFrom(Int64Node source)
         {
             base.CopyFrom(source);
-            field_LongValue = source.field_LongValue;
+            field_Int64Value = source.field_Int64Value;
         }
 
         public Int64Node(IInt64Node source) : base(source)
         {
-            field_LongValue = source.LongValue.ToInternal();
+            field_Int64Value = source.Int64Value.ToInternal();
         }
 
         public bool Equals(Int64Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            if (!field_LongValue.ValueEquals(other.field_LongValue)) return false;
+            if (!field_Int64Value.ValueEquals(other.field_Int64Value)) return false;
             return base.Equals(other);
         }
 
@@ -818,7 +2020,735 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.MessagePack
         private int CalcHashCode()
         {
             HashCode hc = new HashCode();
-            hc.Add(field_LongValue.CalcHashUnary());
+            hc.Add(field_Int64Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class UInt64Node_Factory : IEntityFactory<IUInt64Node, UInt64Node>
+    {
+        private static readonly UInt64Node_Factory _instance = new UInt64Node_Factory();
+        public static UInt64Node_Factory Instance => _instance;
+
+        public UInt64Node? CreateFrom(IUInt64Node? source)
+        {
+            if (source is null) return null;
+            if (source is UInt64Node sibling && sibling.IsFrozen()) return sibling;
+            return new UInt64Node(source);
+        }
+
+        private static readonly UInt64Node _empty = new UInt64Node().Frozen();
+        public UInt64Node Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class UInt64Node : NumericNode, IUInt64Node, IEquatable<UInt64Node>, ICopyFrom<UInt64Node>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 20;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private UInt64 field_UInt64Value;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public UInt64 UInt64Value
+        {
+            get => field_UInt64Value;
+            set => field_UInt64Value = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IUInt64Node methods ----------
+        UInt64 IUInt64Node.UInt64Value => field_UInt64Value.ToExternal();
+
+        public UInt64Node()
+        {
+        }
+
+        public UInt64Node(UInt64Node source) : base(source)
+        {
+            field_UInt64Value = source.field_UInt64Value;
+        }
+
+        public void CopyFrom(UInt64Node source)
+        {
+            base.CopyFrom(source);
+            field_UInt64Value = source.field_UInt64Value;
+        }
+
+        public UInt64Node(IUInt64Node source) : base(source)
+        {
+            field_UInt64Value = source.UInt64Value.ToInternal();
+        }
+
+        public bool Equals(UInt64Node? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_UInt64Value.ValueEquals(other.field_UInt64Value)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(UInt64Node left, UInt64Node right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(UInt64Node left, UInt64Node right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is UInt64Node other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_UInt64Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class DoubleNode_Factory : IEntityFactory<IDoubleNode, DoubleNode>
+    {
+        private static readonly DoubleNode_Factory _instance = new DoubleNode_Factory();
+        public static DoubleNode_Factory Instance => _instance;
+
+        public DoubleNode? CreateFrom(IDoubleNode? source)
+        {
+            if (source is null) return null;
+            if (source is DoubleNode sibling && sibling.IsFrozen()) return sibling;
+            return new DoubleNode(source);
+        }
+
+        private static readonly DoubleNode _empty = new DoubleNode().Frozen();
+        public DoubleNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class DoubleNode : NumericNode, IDoubleNode, IEquatable<DoubleNode>, ICopyFrom<DoubleNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 21;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Double field_DoubleValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public Double DoubleValue
+        {
+            get => field_DoubleValue;
+            set => field_DoubleValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IDoubleNode methods ----------
+        Double IDoubleNode.DoubleValue => field_DoubleValue.ToExternal();
+
+        public DoubleNode()
+        {
+        }
+
+        public DoubleNode(DoubleNode source) : base(source)
+        {
+            field_DoubleValue = source.field_DoubleValue;
+        }
+
+        public void CopyFrom(DoubleNode source)
+        {
+            base.CopyFrom(source);
+            field_DoubleValue = source.field_DoubleValue;
+        }
+
+        public DoubleNode(IDoubleNode source) : base(source)
+        {
+            field_DoubleValue = source.DoubleValue.ToInternal();
+        }
+
+        public bool Equals(DoubleNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_DoubleValue.ValueEquals(other.field_DoubleValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(DoubleNode left, DoubleNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(DoubleNode left, DoubleNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is DoubleNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_DoubleValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class StringNode_Factory : IEntityFactory<IStringNode, StringNode>
+    {
+        private static readonly StringNode_Factory _instance = new StringNode_Factory();
+        public static StringNode_Factory Instance => _instance;
+
+        public StringNode? CreateFrom(IStringNode? source)
+        {
+            if (source is null) return null;
+            if (source is StringNode sibling && sibling.IsFrozen()) return sibling;
+            return new StringNode(source);
+        }
+
+        private static readonly StringNode _empty = new StringNode().Frozen();
+        public StringNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class StringNode : ValueNode, IStringNode, IEquatable<StringNode>, ICopyFrom<StringNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 3;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private String? field_StringValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public String? StringValue
+        {
+            get => field_StringValue;
+            set => field_StringValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IStringNode methods ----------
+        String? IStringNode.StringValue => field_StringValue;
+
+        public StringNode()
+        {
+        }
+
+        public StringNode(StringNode source) : base(source)
+        {
+            field_StringValue = source.field_StringValue;
+        }
+
+        public void CopyFrom(StringNode source)
+        {
+            base.CopyFrom(source);
+            field_StringValue = source.field_StringValue;
+        }
+
+        public StringNode(IStringNode source) : base(source)
+        {
+            field_StringValue = source.StringValue;
+        }
+
+        public bool Equals(StringNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_StringValue.ValueEquals(other.field_StringValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(StringNode left, StringNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(StringNode left, StringNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is StringNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_StringValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class OctetsNode_Factory : IEntityFactory<IOctetsNode, OctetsNode>
+    {
+        private static readonly OctetsNode_Factory _instance = new OctetsNode_Factory();
+        public static OctetsNode_Factory Instance => _instance;
+
+        public OctetsNode? CreateFrom(IOctetsNode? source)
+        {
+            if (source is null) return null;
+            if (source is OctetsNode sibling && sibling.IsFrozen()) return sibling;
+            return new OctetsNode(source);
+        }
+
+        private static readonly OctetsNode _empty = new OctetsNode().Frozen();
+        public OctetsNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class OctetsNode : ValueNode, IOctetsNode, IEquatable<OctetsNode>, ICopyFrom<OctetsNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 22;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private BinaryValue? field_OctetsValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public BinaryValue? OctetsValue
+        {
+            get => field_OctetsValue;
+            set => field_OctetsValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IOctetsNode methods ----------
+        Octets? IOctetsNode.OctetsValue => field_OctetsValue;
+
+        public OctetsNode()
+        {
+        }
+
+        public OctetsNode(OctetsNode source) : base(source)
+        {
+            field_OctetsValue = source.field_OctetsValue;
+        }
+
+        public void CopyFrom(OctetsNode source)
+        {
+            base.CopyFrom(source);
+            field_OctetsValue = source.field_OctetsValue;
+        }
+
+        public OctetsNode(IOctetsNode source) : base(source)
+        {
+            field_OctetsValue = source.OctetsValue;
+        }
+
+        public bool Equals(OctetsNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_OctetsValue.ValueEquals(other.field_OctetsValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(OctetsNode left, OctetsNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(OctetsNode left, OctetsNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is OctetsNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_OctetsValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class GuidNode_Factory : IEntityFactory<IGuidNode, GuidNode>
+    {
+        private static readonly GuidNode_Factory _instance = new GuidNode_Factory();
+        public static GuidNode_Factory Instance => _instance;
+
+        public GuidNode? CreateFrom(IGuidNode? source)
+        {
+            if (source is null) return null;
+            if (source is GuidNode sibling && sibling.IsFrozen()) return sibling;
+            return new GuidNode(source);
+        }
+
+        private static readonly GuidNode _empty = new GuidNode().Frozen();
+        public GuidNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class GuidNode : ValueNode, IGuidNode, IEquatable<GuidNode>, ICopyFrom<GuidNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 23;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private GuidValue field_GuidValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public GuidValue GuidValue
+        {
+            get => field_GuidValue;
+            set => field_GuidValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IGuidNode methods ----------
+        Guid IGuidNode.GuidValue => field_GuidValue.ToExternal();
+
+        public GuidNode()
+        {
+        }
+
+        public GuidNode(GuidNode source) : base(source)
+        {
+            field_GuidValue = source.field_GuidValue;
+        }
+
+        public void CopyFrom(GuidNode source)
+        {
+            base.CopyFrom(source);
+            field_GuidValue = source.field_GuidValue;
+        }
+
+        public GuidNode(IGuidNode source) : base(source)
+        {
+            field_GuidValue = source.GuidValue.ToInternal();
+        }
+
+        public bool Equals(GuidNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_GuidValue.ValueEquals(other.field_GuidValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(GuidNode left, GuidNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(GuidNode left, GuidNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is GuidNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_GuidValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class DecimalNode_Factory : IEntityFactory<IDecimalNode, DecimalNode>
+    {
+        private static readonly DecimalNode_Factory _instance = new DecimalNode_Factory();
+        public static DecimalNode_Factory Instance => _instance;
+
+        public DecimalNode? CreateFrom(IDecimalNode? source)
+        {
+            if (source is null) return null;
+            if (source is DecimalNode sibling && sibling.IsFrozen()) return sibling;
+            return new DecimalNode(source);
+        }
+
+        private static readonly DecimalNode _empty = new DecimalNode().Frozen();
+        public DecimalNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class DecimalNode : NumericNode, IDecimalNode, IEquatable<DecimalNode>, ICopyFrom<DecimalNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 24;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private DecimalValue field_DecimalValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public DecimalValue DecimalValue
+        {
+            get => field_DecimalValue;
+            set => field_DecimalValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IDecimalNode methods ----------
+        Decimal IDecimalNode.DecimalValue => field_DecimalValue.ToExternal();
+
+        public DecimalNode()
+        {
+        }
+
+        public DecimalNode(DecimalNode source) : base(source)
+        {
+            field_DecimalValue = source.field_DecimalValue;
+        }
+
+        public void CopyFrom(DecimalNode source)
+        {
+            base.CopyFrom(source);
+            field_DecimalValue = source.field_DecimalValue;
+        }
+
+        public DecimalNode(IDecimalNode source) : base(source)
+        {
+            field_DecimalValue = source.DecimalValue.ToInternal();
+        }
+
+        public bool Equals(DecimalNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_DecimalValue.ValueEquals(other.field_DecimalValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(DecimalNode left, DecimalNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(DecimalNode left, DecimalNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is DecimalNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_DecimalValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class DateTimeOffsetNode_Factory : IEntityFactory<IDateTimeOffsetNode, DateTimeOffsetNode>
+    {
+        private static readonly DateTimeOffsetNode_Factory _instance = new DateTimeOffsetNode_Factory();
+        public static DateTimeOffsetNode_Factory Instance => _instance;
+
+        public DateTimeOffsetNode? CreateFrom(IDateTimeOffsetNode? source)
+        {
+            if (source is null) return null;
+            if (source is DateTimeOffsetNode sibling && sibling.IsFrozen()) return sibling;
+            return new DateTimeOffsetNode(source);
+        }
+
+        private static readonly DateTimeOffsetNode _empty = new DateTimeOffsetNode().Frozen();
+        public DateTimeOffsetNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class DateTimeOffsetNode : ValueNode, IDateTimeOffsetNode, IEquatable<DateTimeOffsetNode>, ICopyFrom<DateTimeOffsetNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 25;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private DateTimeOffsetValue field_DateTimeOffsetValue;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public DateTimeOffsetValue DateTimeOffsetValue
+        {
+            get => field_DateTimeOffsetValue;
+            set => field_DateTimeOffsetValue = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IDateTimeOffsetNode methods ----------
+        DateTimeOffset IDateTimeOffsetNode.DateTimeOffsetValue => field_DateTimeOffsetValue.ToExternal();
+
+        public DateTimeOffsetNode()
+        {
+        }
+
+        public DateTimeOffsetNode(DateTimeOffsetNode source) : base(source)
+        {
+            field_DateTimeOffsetValue = source.field_DateTimeOffsetValue;
+        }
+
+        public void CopyFrom(DateTimeOffsetNode source)
+        {
+            base.CopyFrom(source);
+            field_DateTimeOffsetValue = source.field_DateTimeOffsetValue;
+        }
+
+        public DateTimeOffsetNode(IDateTimeOffsetNode source) : base(source)
+        {
+            field_DateTimeOffsetValue = source.DateTimeOffsetValue.ToInternal();
+        }
+
+        public bool Equals(DateTimeOffsetNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_DateTimeOffsetValue.ValueEquals(other.field_DateTimeOffsetValue)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(DateTimeOffsetNode left, DateTimeOffsetNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(DateTimeOffsetNode left, DateTimeOffsetNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is DateTimeOffsetNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_DateTimeOffsetValue.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

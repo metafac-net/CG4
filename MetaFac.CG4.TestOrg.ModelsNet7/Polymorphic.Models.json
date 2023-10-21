@@ -27,18 +27,6 @@
           "MemberDefs": []
         },
         {
-          "Name": "StringNode",
-          "Tag": 3,
-          "ParentName": "ValueNode",
-          "MemberDefs": [
-            {
-              "Name": "StrValue",
-              "Tag": 3,
-              "InnerType": "string"
-            }
-          ]
-        },
-        {
           "Name": "BooleanNode",
           "Tag": 4,
           "ParentName": "ValueNode",
@@ -68,9 +56,153 @@
           "ParentName": "NumericNode",
           "MemberDefs": [
             {
-              "Name": "IntValue",
+              "Name": "Int32Value",
               "Tag": 3,
               "InnerType": "int32"
+            }
+          ]
+        },
+        {
+          "Name": "SByteNode",
+          "Tag": 8,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "SByteValue",
+              "Tag": 3,
+              "InnerType": "int8"
+            }
+          ]
+        },
+        {
+          "Name": "ByteNode",
+          "Tag": 9,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "ByteValue",
+              "Tag": 3,
+              "InnerType": "uint8"
+            }
+          ]
+        },
+        {
+          "Name": "Int16Node",
+          "Tag": 10,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "Int16Value",
+              "Tag": 3,
+              "InnerType": "int16"
+            }
+          ]
+        },
+        {
+          "Name": "UInt16Node",
+          "Tag": 11,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "UInt16Value",
+              "Tag": 3,
+              "InnerType": "uint16"
+            }
+          ]
+        },
+        {
+          "Name": "CharNode",
+          "Tag": 12,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "CharValue",
+              "Tag": 3,
+              "InnerType": "char"
+            }
+          ]
+        },
+        {
+          "Name": "HalfNode",
+          "Tag": 13,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "HalfValue",
+              "Tag": 3,
+              "InnerType": "half"
+            }
+          ]
+        },
+        {
+          "Name": "UInt32Node",
+          "Tag": 14,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "UInt32Value",
+              "Tag": 3,
+              "InnerType": "uint32"
+            }
+          ]
+        },
+        {
+          "Name": "SingleNode",
+          "Tag": 15,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "SingleValue",
+              "Tag": 3,
+              "InnerType": "single"
+            }
+          ]
+        },
+        {
+          "Name": "DateTimeNode",
+          "Tag": 16,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "DateTimeValue",
+              "Tag": 3,
+              "InnerType": "datetime"
+            }
+          ]
+        },
+        {
+          "Name": "TimeSpanNode",
+          "Tag": 17,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "TimeSpanValue",
+              "Tag": 3,
+              "InnerType": "timespan"
+            }
+          ]
+        },
+        {
+          "Name": "DateOnlyNode",
+          "Tag": 18,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "DateOnlyValue",
+              "Tag": 3,
+              "InnerType": "date"
+            }
+          ]
+        },
+        {
+          "Name": "TimeOnlyNode",
+          "Tag": 19,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "TimeOnlyValue",
+              "Tag": 3,
+              "InnerType": "time"
             }
           ]
         },
@@ -80,9 +212,93 @@
           "ParentName": "NumericNode",
           "MemberDefs": [
             {
-              "Name": "LongValue",
+              "Name": "Int64Value",
               "Tag": 3,
               "InnerType": "int64"
+            }
+          ]
+        },
+        {
+          "Name": "UInt64Node",
+          "Tag": 20,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "UInt64Value",
+              "Tag": 3,
+              "InnerType": "uint64"
+            }
+          ]
+        },
+        {
+          "Name": "DoubleNode",
+          "Tag": 21,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "DoubleValue",
+              "Tag": 3,
+              "InnerType": "double"
+            }
+          ]
+        },
+        {
+          "Name": "StringNode",
+          "Tag": 3,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "StringValue",
+              "Tag": 3,
+              "InnerType": "string"
+            }
+          ]
+        },
+        {
+          "Name": "OctetsNode",
+          "Tag": 22,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "OctetsValue",
+              "Tag": 3,
+              "InnerType": "binary"
+            }
+          ]
+        },
+        {
+          "Name": "GuidNode",
+          "Tag": 23,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "GuidValue",
+              "Tag": 3,
+              "InnerType": "guid"
+            }
+          ]
+        },
+        {
+          "Name": "DecimalNode",
+          "Tag": 24,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "DecimalValue",
+              "Tag": 3,
+              "InnerType": "decimal"
+            }
+          ]
+        },
+        {
+          "Name": "DateTimeOffsetNode",
+          "Tag": 25,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "DateTimeOffsetValue",
+              "Tag": 3,
+              "InnerType": "datetimezone"
             }
           ]
         }
