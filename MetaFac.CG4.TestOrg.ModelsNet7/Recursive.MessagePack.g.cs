@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: MessagePack.2.4
+// Generator: MessagePack.2.5
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Recursive)
 // </information>
 #endregion
@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using MetaFac.CG4.TestOrg.ModelsNet7.Recursive.Contracts;
 

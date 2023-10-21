@@ -25,8 +25,8 @@
         DateOnly,
         TimeOnly,
         Custom,
+        BigInteger,
         // todo
-        // BigInteger
         // Complex
         // Version
     }

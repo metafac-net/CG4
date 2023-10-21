@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: Contracts.2.4
+// Generator: Contracts.2.5
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Recursive)
 // </information>
 #endregion
@@ -17,6 +17,7 @@ using MetaFac.Memory;
 using MetaFac.Mutability;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace MetaFac.CG4.TestOrg.ModelsNet7.Recursive.Contracts
 {

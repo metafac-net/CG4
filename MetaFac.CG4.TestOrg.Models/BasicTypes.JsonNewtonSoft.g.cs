@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonNewtonSoft.2.4
+// Generator: JsonNewtonSoft.2.5
 // Metadata : MetaFac.CG4.TestOrg.Schema(.BasicTypes)
 // </information>
 #endregion
@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
 using MetaFac.Memory;
 

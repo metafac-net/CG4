@@ -301,6 +301,18 @@
               "InnerType": "datetimezone"
             }
           ]
+        },
+        {
+          "Name": "BigIntNode",
+          "Tag": 26,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "Value",
+              "Tag": 3,
+              "InnerType": "bigint"
+            }
+          ]
         }
       ],
       "EnumTypeDefs": [

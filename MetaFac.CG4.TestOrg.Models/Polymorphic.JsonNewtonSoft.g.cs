@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonNewtonSoft.2.4
+// Generator: JsonNewtonSoft.2.5
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using MetaFac.CG4.TestOrg.Models.Polymorphic.Contracts;
 using MetaFac.Memory;
 
@@ -72,6 +73,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
                 case UInt64Node.EntityTag: return UInt64Node_Factory.Instance.CreateFrom((IUInt64Node)source);
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
+                case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
                 case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
                 case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
@@ -184,6 +186,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
                 case UInt64Node.EntityTag: return UInt64Node_Factory.Instance.CreateFrom((IUInt64Node)source);
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
+                case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -1679,6 +1682,69 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             HashCode hc = new HashCode();
             hc.Add(base.GetHashCode());
             hc.Add(DateTimeOffsetValue.CalcHashUnary());
+            return hc.ToHashCode();
+        }
+    }
+
+    public sealed class BigIntNode_Factory : IEntityFactory<IBigIntNode, BigIntNode>
+    {
+        private static readonly BigIntNode_Factory _instance = new BigIntNode_Factory();
+        public static BigIntNode_Factory Instance => _instance;
+        public BigIntNode? CreateFrom(IBigIntNode? source) => (source is null) ? null : new BigIntNode(source);
+        public BigIntNode Empty => new BigIntNode();
+    }
+    public partial class BigIntNode : NumericNode, IBigIntNode, IEquatable<BigIntNode>
+    {
+        public new const int EntityTag = 26;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private BigInteger field_Value;
+        BigInteger IBigIntNode.Value { get => field_Value; }
+        public BigInteger Value
+        {
+            get => field_Value;
+            set => field_Value = value;
+        }
+
+        public BigIntNode() : base()
+        {
+        }
+
+        public BigIntNode(BigIntNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public BigIntNode(IBigIntNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public void CopyFrom(IBigIntNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public bool Equals(BigIntNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!Value .ValueEquals(other.Value)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is BigIntNode other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Value.CalcHashUnary());
             return hc.ToHashCode();
         }
     }

@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: ClassesV2.2.4
+// Generator: ClassesV2.2.5
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.Contracts;
 
@@ -80,6 +81,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
                 case UInt64Node.EntityTag: return UInt64Node.CreateFrom((IUInt64Node)source);
                 case DoubleNode.EntityTag: return DoubleNode.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode.CreateFrom((IDecimalNode)source);
+                case BigIntNode.EntityTag: return BigIntNode.CreateFrom((IBigIntNode)source);
                 case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode.CreateFrom((ICustomNode)source);
                 case CharNode.EntityTag: return CharNode.CreateFrom((ICharNode)source);
@@ -212,6 +214,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
                 case UInt64Node.EntityTag: return UInt64Node.CreateFrom((IUInt64Node)source);
                 case DoubleNode.EntityTag: return DoubleNode.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode.CreateFrom((IDecimalNode)source);
+                case BigIntNode.EntityTag: return BigIntNode.CreateFrom((IBigIntNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -2621,6 +2624,108 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         {
             HashCode hc = new HashCode();
             hc.Add(DateTimeOffsetValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class BigIntNode
+    {
+        public static BigIntNode? CreateFrom(IBigIntNode? source)
+        {
+            if (source is null) return null;
+            if (source is BigIntNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new BigIntNode(source);
+        }
+
+        private static BigIntNode CreateEmpty()
+        {
+            var empty = new BigIntNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly BigIntNode _empty = CreateEmpty();
+        public static new BigIntNode Empty => _empty;
+
+    }
+    public partial class BigIntNode : NumericNode, IBigIntNode, IEquatable<BigIntNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 26;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private BigInteger field_Value;
+        BigInteger IBigIntNode.Value => field_Value;
+        public BigInteger Value
+        {
+            get => field_Value;
+            set => field_Value = CheckNotFrozen(ref value);
+        }
+
+        public BigIntNode() : base()
+        {
+        }
+
+        public BigIntNode(BigIntNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public BigIntNode(IBigIntNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public void CopyFrom(IBigIntNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public virtual bool Equals(BigIntNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Value.ValueEquals(other.Value)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is BigIntNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Value.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

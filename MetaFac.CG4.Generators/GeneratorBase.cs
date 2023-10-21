@@ -129,6 +129,10 @@ namespace MetaFac.CG4.Generators
                 ["TimeOnlyFieldType"] = "TimeOnly",
                 ["ConcreteTimeOnly"] = "T_TimeOnlyFieldType_",
                 ["ExternalTimeOnly"] = "T_TimeOnlyFieldType_",
+                // BigInteger
+                ["BigIntegerFieldType"] = "BigInteger",
+                ["ConcreteBigInteger"] = "T_BigIntegerFieldType_",
+                ["ExternalBigInteger"] = "T_BigIntegerFieldType_",
             };
             _engine.Current.SetTokens(tokens);
         }
@@ -199,6 +203,7 @@ namespace MetaFac.CG4.Generators
                 "half" => "T_HalfFieldType_",
                 "date" => "T_DateOnlyFieldType_",
                 "time" => "T_TimeOnlyFieldType_",
+                "bigint" => "T_BigIntegerFieldType_",
                 _ => innerType,
             };
         }

@@ -55,6 +55,7 @@ Emit("using System;");
 Emit("using System.Collections.Generic;");
 Emit("using System.Collections.Immutable;");
 Emit("using System.Linq;");
+Emit("using System.Numerics;");
 Emit("using System.Runtime.CompilerServices;");
 Emit("using T_Namespace_.Contracts;");
 Emit("");

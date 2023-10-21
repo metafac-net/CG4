@@ -6,6 +6,7 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 
 namespace MetaFac.CG4.ModelReader
@@ -148,6 +149,7 @@ namespace MetaFac.CG4.ModelReader
             if (dataType == typeof(DateOnly)) return "date";
             if (dataType == typeof(TimeOnly)) return "time";
 #endif
+            if (dataType == typeof(BigInteger)) return "bigint";
             return dataType.FullName;
         }
 
@@ -279,6 +281,7 @@ namespace MetaFac.CG4.ModelReader
                             || innerType == typeof(DateOnly)
                             || innerType == typeof(TimeOnly)
 #endif
+                            || innerType == typeof(BigInteger)
                             || innerType == typeof(DateTimeOffset))
                         {
                             // supported value type

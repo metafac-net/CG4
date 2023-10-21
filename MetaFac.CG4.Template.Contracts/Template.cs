@@ -33,6 +33,7 @@ using MetaFac.Memory;
 using MetaFac.Mutability;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace T_Namespace_.Contracts
 {

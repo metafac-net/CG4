@@ -1,6 +1,7 @@
 ﻿using MetaFac.CG4.Attributes;
 using MetaFac.Memory;
 using System;
+using System.Numerics;
 
 namespace MetaFac.CG4.TestOrg.Schema.Polymorphic
 {
@@ -94,5 +95,6 @@ namespace MetaFac.CG4.TestOrg.Schema.Polymorphic
     [Entity(23)] public class GuidNode : ValueNode { [Member(3)] public Guid GuidValue { get; set; } }
     [Entity(24)] public class DecimalNode : NumericNode { [Member(3)] public Decimal DecimalValue { get; set; } }
     [Entity(25)] public class DateTimeOffsetNode : ValueNode { [Member(3)] public DateTimeOffset DateTimeOffsetValue { get; set; } }
+    [Entity(26)] public class BigIntNode : NumericNode { [Member(3)] public BigInteger Value { get; set; } }
 
 }

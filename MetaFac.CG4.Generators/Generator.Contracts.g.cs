@@ -45,6 +45,7 @@ Emit("using MetaFac.Memory;");
 Emit("using MetaFac.Mutability;");
 Emit("using System;");
 Emit("using System.Collections.Generic;");
+Emit("using System.Numerics;");
 Emit("");
 Emit("namespace T_Namespace_.Contracts");
 Emit("{");

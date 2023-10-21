@@ -8,6 +8,7 @@ using System.Text;
 
 using MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.Contracts;
 using MetaFac.CG4.TestOrg.Constants;
+using System.Numerics;
 
 namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
 {
@@ -40,6 +41,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
                 BuiltinValueKind.String => new Polymorphic.RecordsV2.StringNode() { Id = 1, Name = "Id1", StringValue = "abcdef" },
                 BuiltinValueKind.Octets => new Polymorphic.RecordsV2.OctetsNode() { Id = 1, Name = "Id1", OctetsValue = new Octets(Encoding.UTF8.GetBytes("abcdef")) },
                 BuiltinValueKind.Custom => new Polymorphic.RecordsV2.CustomNode() { Id = 1, Name = "Id1", CustomValue = Polymorphic.Contracts.CustomEnum.Value1 },
+                BuiltinValueKind.BigInteger => new Polymorphic.RecordsV2.BigIntNode() { Id = 1, Name = "Id1", Value = BigInteger.MinusOne },
                 _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
             };
         }
@@ -68,6 +70,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
         [InlineData(BuiltinValueKind.String)]
         [InlineData(BuiltinValueKind.Octets)]
         [InlineData(BuiltinValueKind.Custom)]
+        [InlineData(BuiltinValueKind.BigInteger)]
         public void RoundtripPolymorphicNode(BuiltinValueKind kind)
         {
             Polymorphic.Contracts.IValueNode value = CreateValue(kind);

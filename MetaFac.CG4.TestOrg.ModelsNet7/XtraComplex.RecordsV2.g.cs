@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.4
+// Generator: RecordsV2.2.5
 // Metadata : MetaFac.CG4.TestOrg.Schema(.XtraComplex)
 // </information>
 #endregion
@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.Contracts;
 
 namespace MetaFac.CG4.TestOrg.ModelsNet7.XtraComplex.RecordsV2

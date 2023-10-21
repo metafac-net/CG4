@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.4
+// Generator: RecordsV2.2.5
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.Contracts;
 
 namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
@@ -69,6 +70,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
                 case UInt64Node.EntityTag: return UInt64Node_Factory.Instance.CreateFrom((IUInt64Node)source);
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
+                case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
                 case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
                 case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
@@ -168,6 +170,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
                 case UInt64Node.EntityTag: return UInt64Node_Factory.Instance.CreateFrom((IUInt64Node)source);
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
+                case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -1677,6 +1680,70 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         {
             HashCode hc = new HashCode();
             hc.Add(DateTimeOffsetValue.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class BigIntNode_Factory : IEntityFactory<IBigIntNode, BigIntNode>
+    {
+        private static readonly BigIntNode_Factory _instance = new BigIntNode_Factory();
+        public static BigIntNode_Factory Instance => _instance;
+
+        public BigIntNode? CreateFrom(IBigIntNode? source)
+        {
+            if (source is null) return null;
+            if (source is BigIntNode thisEntity) return thisEntity;
+            return new BigIntNode(source);
+        }
+
+        private static readonly BigIntNode _empty = new BigIntNode();
+        public BigIntNode Empty => _empty;
+    }
+    public partial record BigIntNode : NumericNode, IBigIntNode
+    {
+        public new const int EntityTag = 26;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public BigInteger Value { get; init; }
+        BigInteger IBigIntNode.Value => Value;
+
+        public BigIntNode() : base()
+        {
+        }
+
+        public BigIntNode(BigIntNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Value = source.Value;
+        }
+
+        public BigIntNode(IBigIntNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Value = source.Value;
+        }
+
+        public virtual bool Equals(BigIntNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Value.ValueEquals(other.Value)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Value.CalcHashUnary());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

@@ -35,6 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using T_Namespace_.Contracts;
 
 namespace T_Namespace_.RecordsV2

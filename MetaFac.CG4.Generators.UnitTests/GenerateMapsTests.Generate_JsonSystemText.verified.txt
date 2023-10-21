@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonSystemText.2.4
+// Generator: JsonSystemText.2.5
 // Metadata : MetaFac.CG4.Generators.UnitTests(.Indexes)
 // </information>
 #endregion
@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 using System.Text.Json.Serialization;
 using Generated.Contracts;
 using MetaFac.Memory;
@@ -174,6 +175,21 @@ namespace Generated.JsonSystemText
 
         public static implicit operator HalfValue(Half value) => new HalfValue(BitConverter.HalfToInt16Bits(value));
         public static implicit operator Half(HalfValue value) => BitConverter.Int16BitsToHalf(value.Value);
+    }
+
+    public struct BigIntValue
+    {
+        public string? Text { get; set; }
+        public BigIntValue() { }
+        public BigIntValue(string? text) => Text = text;
+        public override int GetHashCode() => HashCode.Combine(Text);
+        public override bool Equals(object? obj) => obj is BigIntValue other && Equals(other);
+        public bool Equals(BigIntValue other) => string.Equals(Text, other.Text);
+        public static bool operator ==(BigIntValue left, BigIntValue right) => left.Equals(right);
+        public static bool operator !=(BigIntValue left, BigIntValue right) => !left.Equals(right);
+
+        public static implicit operator BigIntValue(BigInteger value) => new BigIntValue(value.ToString());
+        public static implicit operator BigInteger(BigIntValue value) => value.Text is null ? default : BigInteger.Parse(value.Text);
     }
 
 }
