@@ -14,7 +14,7 @@
         public readonly MetaFac.CG4.Attributes.ModelState State;
         public readonly int Tag;
         public EntityAttribute(int tag, MetaFac.CG4.Attributes.ModelState state = 0, string? reason = null) { }
-        public bool IsInActive { get; }
+        public bool Deprecated { get; }
         public bool IsRedacted { get; }
     }
     public enum GeneratorId
@@ -34,16 +34,14 @@
         public readonly MetaFac.CG4.Attributes.ModelState State;
         public readonly int Tag;
         public MemberAttribute(int tag, MetaFac.CG4.Attributes.ModelState state = 0, string? reason = null) { }
-        public bool IsInActive { get; }
+        public bool Deprecated { get; }
         public bool IsRedacted { get; }
     }
     [System.Flags]
     public enum ModelState
     {
         Active = 0,
-        IsRedacted = 1,
-        IsInactive = 2,
-        Reserved = 1,
+        Hidden = 1,
         Deprecated = 2,
         Deleted = 3,
     }

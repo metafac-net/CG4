@@ -5,23 +5,24 @@ namespace MetaFac.CG4.Attributes
     [Flags]
     public enum ModelState
     {
+        /// <summary>
+        /// Active. Emitted during generation.
+        /// </summary>
         Active = 0,
-        IsRedacted = 0x01,
-        IsInactive = 0x02,
 
         /// <summary>
-        /// Reserved for future use. Not emitted during generation. Useful for pre-allocating tags.
+        /// Hidden. Not emitted during generation. Useful for pre-allocating items.
         /// </summary>
-        Reserved = IsRedacted,
+        Hidden = 0x01,
 
         /// <summary>
-        /// Deprecated. Will be deleted in the future. Emitted during generation.
+        /// Deprecated. Emitted during generation. Will be deleted in the future.
         /// </summary>
-        Deprecated = IsInactive,
+        Deprecated = 0x02,
 
         /// <summary>
-        /// Deleted. Is not emitted during generation
+        /// Deleted. Not emitted during generation.
         /// </summary>
-        Deleted = IsRedacted | IsInactive,
+        Deleted = Hidden | Deprecated,
     }
 }

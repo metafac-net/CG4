@@ -8,7 +8,7 @@ namespace MetaFac.CG4.ModelReader.Tests.LifeCycle
         [Member(1)]
         public bool State0_Active { get; }
 
-        [Member(2, ModelState.Reserved, "For future use")]
+        [Member(2, ModelState.Hidden, "For future use")]
         public bool State1_Reserved { get; }
 
         [Member(3, ModelState.Deprecated, "Not used anymore")]

@@ -8,13 +8,13 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel2
     /// provided by the end developer.
     /// </summary>
 
-    [Entity(1, ModelState.Reserved, "Hidden")]
+    [Entity(1, ModelState.Hidden, "Hidden")]
     public class AccountType
     {
         [Member(1)] string? AccountId { get; }
     }
 
-    [Entity(2, ModelState.Reserved, "Hidden")]
+    [Entity(2, ModelState.Hidden, "Hidden")]
     public class TransactionType
     {
         [Member(1)] Guid TxId { get; }

@@ -84,7 +84,7 @@ namespace MetaFac.CG4.ModelReader
                                 new ValidationError(ValidationErrorCode.RedefinedEntityTag, modelName,
                                 entityTagName, null, new TagName(ea.Tag, entityName)));
                         entityTag = ea.Tag;
-                        entityState = ModelItemState.Create(ea.IsInActive, ea.IsRedacted, ea.Reason);
+                        entityState = ModelItemState.Create(ea.Deprecated, ea.IsRedacted, ea.Reason);
                     }
                     else if (attr is TokenAttribute ta)
                     {
@@ -368,7 +368,7 @@ namespace MetaFac.CG4.ModelReader
                     {
                         fieldTag = ma.Tag;
                         //isEmitted = ma.IsEmitted();
-                        fieldState = ModelItemState.Create(ma.IsInActive, ma.IsRedacted, ma.Reason);
+                        fieldState = ModelItemState.Create(ma.Deprecated, ma.IsRedacted, ma.Reason);
                     }
                 }
 

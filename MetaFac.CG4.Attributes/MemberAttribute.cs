@@ -17,7 +17,7 @@ namespace MetaFac.CG4.Attributes
             Reason = reason;
         }
 
-        public bool IsInActive => State.HasFlag(ModelState.IsInactive);
-        public bool IsRedacted => State.HasFlag(ModelState.IsRedacted);
+        public bool Deprecated => State.HasFlag(ModelState.Deprecated);
+        public bool IsRedacted => State.HasFlag(ModelState.Hidden);
     }
 }
