@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: MessagePack.2.5
+// Generator: MessagePack.2.6
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -93,6 +93,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
     [Union(DoubleNode.EntityTag, typeof(DoubleNode))]
     [Union(DecimalNode.EntityTag, typeof(DecimalNode))]
     [Union(BigIntNode.EntityTag, typeof(BigIntNode))]
+    [Union(ComplexNode.EntityTag, typeof(ComplexNode))]
     [Union(BooleanNode.EntityTag, typeof(BooleanNode))]
     [Union(CustomNode.EntityTag, typeof(CustomNode))]
     [Union(CharNode.EntityTag, typeof(CharNode))]
@@ -132,6 +133,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
+                case ComplexNode.EntityTag: return ComplexNode_Factory.Instance.CreateFrom((IComplexNode)source);
                 case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
                 case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
@@ -265,6 +267,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
     [Union(DoubleNode.EntityTag, typeof(DoubleNode))]
     [Union(DecimalNode.EntityTag, typeof(DecimalNode))]
     [Union(BigIntNode.EntityTag, typeof(BigIntNode))]
+    [Union(ComplexNode.EntityTag, typeof(ComplexNode))]
     public abstract partial class NumericNode
     {
     }
@@ -292,6 +295,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
+                case ComplexNode.EntityTag: return ComplexNode_Factory.Instance.CreateFrom((IComplexNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -2850,6 +2854,110 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         public override bool Equals(object? obj)
         {
             return obj is BigIntNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class ComplexNode_Factory : IEntityFactory<IComplexNode, ComplexNode>
+    {
+        private static readonly ComplexNode_Factory _instance = new ComplexNode_Factory();
+        public static ComplexNode_Factory Instance => _instance;
+
+        public ComplexNode? CreateFrom(IComplexNode? source)
+        {
+            if (source is null) return null;
+            if (source is ComplexNode sibling && sibling.IsFrozen()) return sibling;
+            return new ComplexNode(source);
+        }
+
+        private static readonly ComplexNode _empty = new ComplexNode().Frozen();
+        public ComplexNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class ComplexNode : NumericNode, IComplexNode, IEquatable<ComplexNode>, ICopyFrom<ComplexNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 27;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Complex field_Value;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public Complex Value
+        {
+            get => field_Value;
+            set => field_Value = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IComplexNode methods ----------
+        Complex IComplexNode.Value => field_Value.ToExternal();
+
+        public ComplexNode()
+        {
+        }
+
+        public ComplexNode(ComplexNode source) : base(source)
+        {
+            field_Value = source.field_Value;
+        }
+
+        public void CopyFrom(ComplexNode source)
+        {
+            base.CopyFrom(source);
+            field_Value = source.field_Value;
+        }
+
+        public ComplexNode(IComplexNode source) : base(source)
+        {
+            field_Value = source.Value.ToInternal();
+        }
+
+        public bool Equals(ComplexNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_Value.ValueEquals(other.field_Value)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(ComplexNode left, ComplexNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ComplexNode left, ComplexNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is ComplexNode other && Equals(other);
         }
 
         private int CalcHashCode()

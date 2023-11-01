@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: MessagePack.2.5
+// Generator: MessagePack.2.6
 // Metadata : MetaFac.CG4.Generators.UnitTests(.FlattenedModels)
 // </information>
 #endregion
@@ -135,6 +135,8 @@ namespace Generated.MessagePack
         private ImmutableList<Half>? field_Halves;
         private ImmutableList<DateOnly>? field_Dates;
         private ImmutableList<TimeOnly>? field_Times;
+        private ImmutableList<BigInteger>? field_BigInts;
+        private ImmutableList<Complex>? field_Complexes;
 
         // ---------- accessors ----------
         [Key(1)]
@@ -293,6 +295,18 @@ namespace Generated.MessagePack
             get => field_Times;
             set => field_Times = CheckNotFrozen(ref value);
         }
+        [Key(27)]
+        public ImmutableList<BigInteger>? BigInts
+        {
+            get => field_BigInts;
+            set => field_BigInts = CheckNotFrozen(ref value);
+        }
+        [Key(28)]
+        public ImmutableList<Complex>? Complexes
+        {
+            get => field_Complexes;
+            set => field_Complexes = CheckNotFrozen(ref value);
+        }
 
         // ---------- IBuiltinTypes methods ----------
         IReadOnlyList<Boolean>? IBuiltinTypes.Bools
@@ -371,6 +385,12 @@ namespace Generated.MessagePack
         IReadOnlyList<TimeOnly>? IBuiltinTypes.Times
             => field_Times is null ? null
             : new ListFacade<TimeOnly, TimeOnly>(field_Times, (x) => x.ToExternal());
+        IReadOnlyList<BigInteger>? IBuiltinTypes.BigInts
+            => field_BigInts is null ? null
+            : new ListFacade<BigInteger, BigInteger>(field_BigInts, (x) => x.ToExternal());
+        IReadOnlyList<Complex>? IBuiltinTypes.Complexes
+            => field_Complexes is null ? null
+            : new ListFacade<Complex, Complex>(field_Complexes, (x) => x.ToExternal());
 
         public BuiltinTypes()
         {
@@ -404,6 +424,8 @@ namespace Generated.MessagePack
             field_Halves = source.field_Halves;
             field_Dates = source.field_Dates;
             field_Times = source.field_Times;
+            field_BigInts = source.field_BigInts;
+            field_Complexes = source.field_Complexes;
         }
 
         public void CopyFrom(BuiltinTypes source)
@@ -435,6 +457,8 @@ namespace Generated.MessagePack
             field_Halves = source.field_Halves;
             field_Dates = source.field_Dates;
             field_Times = source.field_Times;
+            field_BigInts = source.field_BigInts;
+            field_Complexes = source.field_Complexes;
         }
 
         public BuiltinTypes(IBuiltinTypes source) : base(source)
@@ -517,6 +541,12 @@ namespace Generated.MessagePack
             field_Times = source.Times is null
                 ? null
                 : ImmutableList<TimeOnly>.Empty.AddRange(source.Times.Select(x => x.ToInternal()));
+            field_BigInts = source.BigInts is null
+                ? null
+                : ImmutableList<BigInteger>.Empty.AddRange(source.BigInts.Select(x => x.ToInternal()));
+            field_Complexes = source.Complexes is null
+                ? null
+                : ImmutableList<Complex>.Empty.AddRange(source.Complexes.Select(x => x.ToInternal()));
         }
 
         public bool Equals(BuiltinTypes? other)
@@ -549,6 +579,8 @@ namespace Generated.MessagePack
             if (!field_Halves.ArrayEquals(other.field_Halves)) return false;
             if (!field_Dates.ArrayEquals(other.field_Dates)) return false;
             if (!field_Times.ArrayEquals(other.field_Times)) return false;
+            if (!field_BigInts.ArrayEquals(other.field_BigInts)) return false;
+            if (!field_Complexes.ArrayEquals(other.field_Complexes)) return false;
             return base.Equals(other);
         }
 
@@ -598,6 +630,8 @@ namespace Generated.MessagePack
             hc.Add(field_Halves.CalcHashArray());
             hc.Add(field_Dates.CalcHashArray());
             hc.Add(field_Times.CalcHashArray());
+            hc.Add(field_BigInts.CalcHashArray());
+            hc.Add(field_Complexes.CalcHashArray());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: Contracts.2.5
+// Generator: Contracts.2.6
 // Metadata : MetaFac.CG4.Generators.UnitTests(.FlattenedModels)
 // </information>
 #endregion
@@ -58,5 +58,7 @@ namespace Generated.Contracts
         IReadOnlyList<Half>? Halves { get; }
         IReadOnlyList<DateOnly>? Dates { get; }
         IReadOnlyList<TimeOnly>? Times { get; }
+        IReadOnlyList<BigInteger>? BigInts { get; }
+        IReadOnlyList<Complex>? Complexes { get; }
     }
 }

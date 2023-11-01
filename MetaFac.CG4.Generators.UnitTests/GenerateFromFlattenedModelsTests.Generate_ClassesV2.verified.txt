@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: ClassesV2.2.5
+// Generator: ClassesV2.2.6
 // Metadata : MetaFac.CG4.Generators.UnitTests(.FlattenedModels)
 // </information>
 #endregion
@@ -287,6 +287,20 @@ namespace Generated.ClassesV2
             get => field_Times;
             set => field_Times = CheckNotFrozen(ref value);
         }
+        private ImmutableList<BigInteger>? field_BigInts;
+        IReadOnlyList<BigInteger>? IBuiltinTypes.BigInts => field_BigInts;
+        public ImmutableList<BigInteger>? BigInts
+        {
+            get => field_BigInts;
+            set => field_BigInts = CheckNotFrozen(ref value);
+        }
+        private ImmutableList<Complex>? field_Complexes;
+        IReadOnlyList<Complex>? IBuiltinTypes.Complexes => field_Complexes;
+        public ImmutableList<Complex>? Complexes
+        {
+            get => field_Complexes;
+            set => field_Complexes = CheckNotFrozen(ref value);
+        }
 
         public BuiltinTypes() : base()
         {
@@ -321,6 +335,8 @@ namespace Generated.ClassesV2
             field_Halves = source.Halves;
             field_Dates = source.Dates;
             field_Times = source.Times;
+            field_BigInts = source.BigInts;
+            field_Complexes = source.Complexes;
         }
 
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
@@ -404,6 +420,12 @@ namespace Generated.ClassesV2
             field_Times = source.Times is null
                 ? default
                 : ImmutableList<TimeOnly>.Empty.AddRange(source.Times);
+            field_BigInts = source.BigInts is null
+                ? default
+                : ImmutableList<BigInteger>.Empty.AddRange(source.BigInts);
+            field_Complexes = source.Complexes is null
+                ? default
+                : ImmutableList<Complex>.Empty.AddRange(source.Complexes);
         }
 
         public void CopyFrom(IBuiltinTypes? source)
@@ -489,6 +511,12 @@ namespace Generated.ClassesV2
             field_Times = source.Times is null
                 ? default
                 : ImmutableList<TimeOnly>.Empty.AddRange(source.Times);
+            field_BigInts = source.BigInts is null
+                ? default
+                : ImmutableList<BigInteger>.Empty.AddRange(source.BigInts);
+            field_Complexes = source.Complexes is null
+                ? default
+                : ImmutableList<Complex>.Empty.AddRange(source.Complexes);
         }
 
         public virtual bool Equals(BuiltinTypes? other)
@@ -521,6 +549,8 @@ namespace Generated.ClassesV2
             if (!Halves.ArrayEquals(other.Halves)) return false;
             if (!Dates.ArrayEquals(other.Dates)) return false;
             if (!Times.ArrayEquals(other.Times)) return false;
+            if (!BigInts.ArrayEquals(other.BigInts)) return false;
+            if (!Complexes.ArrayEquals(other.Complexes)) return false;
             return base.Equals(other);
         }
 
@@ -555,6 +585,8 @@ namespace Generated.ClassesV2
             hc.Add(Halves.CalcHashArray());
             hc.Add(Dates.CalcHashArray());
             hc.Add(Times.CalcHashArray());
+            hc.Add(BigInts.CalcHashArray());
+            hc.Add(Complexes.CalcHashArray());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

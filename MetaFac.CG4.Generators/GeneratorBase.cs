@@ -133,6 +133,10 @@ namespace MetaFac.CG4.Generators
                 ["BigIntegerFieldType"] = "BigInteger",
                 ["ConcreteBigInteger"] = "T_BigIntegerFieldType_",
                 ["ExternalBigInteger"] = "T_BigIntegerFieldType_",
+                // Complex
+                ["ComplexFieldType"] = "Complex",
+                ["ConcreteComplex"] = "T_ComplexFieldType_",
+                ["ExternalComplex"] = "T_ComplexFieldType_",
             };
             _engine.Current.SetTokens(tokens);
         }
@@ -204,6 +208,7 @@ namespace MetaFac.CG4.Generators
                 "date" => "T_DateOnlyFieldType_",
                 "time" => "T_TimeOnlyFieldType_",
                 "bigint" => "T_BigIntegerFieldType_",
+                "complex" => "T_ComplexFieldType_",
                 _ => innerType,
             };
         }

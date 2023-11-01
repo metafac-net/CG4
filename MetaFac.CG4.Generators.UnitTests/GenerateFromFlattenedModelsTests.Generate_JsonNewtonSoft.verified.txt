@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonNewtonSoft.2.5
+// Generator: JsonNewtonSoft.2.6
 // Metadata : MetaFac.CG4.Generators.UnitTests(.FlattenedModels)
 // </information>
 #endregion
@@ -288,6 +288,24 @@ namespace Generated.JsonNewtonSoft
             get => field_Times;
             set => field_Times = value;
         }
+        private ImmutableList<BigInteger>? field_BigInts;
+        IReadOnlyList<BigInteger>? IBuiltinTypes.BigInts => field_BigInts is null
+            ? null
+            : new ListFacade<BigInteger, BigInteger>(field_BigInts, (x) => x);
+        public ImmutableList<BigInteger>? BigInts
+        {
+            get => field_BigInts;
+            set => field_BigInts = value;
+        }
+        private ImmutableList<Complex>? field_Complexes;
+        IReadOnlyList<Complex>? IBuiltinTypes.Complexes => field_Complexes is null
+            ? null
+            : new ListFacade<Complex, Complex>(field_Complexes, (x) => x);
+        public ImmutableList<Complex>? Complexes
+        {
+            get => field_Complexes;
+            set => field_Complexes = value;
+        }
 
         public BuiltinTypes() : base()
         {
@@ -322,6 +340,8 @@ namespace Generated.JsonNewtonSoft
             field_Halves = source.Halves;
             field_Dates = source.Dates;
             field_Times = source.Times;
+            field_BigInts = source.BigInts;
+            field_Complexes = source.Complexes;
         }
 
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
@@ -429,6 +449,14 @@ namespace Generated.JsonNewtonSoft
                 ? default
                 : ImmutableList<TimeOnly>.Empty.AddRange(source.Times
                     .Select(x => (TimeOnly)x));
+            field_BigInts = source.BigInts is null
+                ? default
+                : ImmutableList<BigInteger>.Empty.AddRange(source.BigInts
+                    .Select(x => (BigInteger)x));
+            field_Complexes = source.Complexes is null
+                ? default
+                : ImmutableList<Complex>.Empty.AddRange(source.Complexes
+                    .Select(x => (Complex)x));
         }
 
         public void CopyFrom(IBuiltinTypes? source)
@@ -537,6 +565,14 @@ namespace Generated.JsonNewtonSoft
                 ? default
                 : ImmutableList<TimeOnly>.Empty.AddRange(source.Times
                     .Select(x => (TimeOnly)x));
+            field_BigInts = source.BigInts is null
+                ? default
+                : ImmutableList<BigInteger>.Empty.AddRange(source.BigInts
+                    .Select(x => (BigInteger)x));
+            field_Complexes = source.Complexes is null
+                ? default
+                : ImmutableList<Complex>.Empty.AddRange(source.Complexes
+                    .Select(x => (Complex)x));
         }
 
         public bool Equals(BuiltinTypes? other)
@@ -570,6 +606,8 @@ namespace Generated.JsonNewtonSoft
             if (!Halves.ArrayEquals(other.Halves)) return false;
             if (!Dates.ArrayEquals(other.Dates)) return false;
             if (!Times.ArrayEquals(other.Times)) return false;
+            if (!BigInts.ArrayEquals(other.BigInts)) return false;
+            if (!Complexes.ArrayEquals(other.Complexes)) return false;
             return true;
         }
 
@@ -605,6 +643,8 @@ namespace Generated.JsonNewtonSoft
             hc.Add(Halves.CalcHashArray());
             hc.Add(Dates.CalcHashArray());
             hc.Add(Times.CalcHashArray());
+            hc.Add(BigInts.CalcHashArray());
+            hc.Add(Complexes.CalcHashArray());
             return hc.ToHashCode();
         }
     }

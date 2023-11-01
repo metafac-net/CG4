@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: ClassesV2.2.5
+// Generator: ClassesV2.2.6
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -82,6 +82,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
                 case DoubleNode.EntityTag: return DoubleNode.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode.CreateFrom((IDecimalNode)source);
                 case BigIntNode.EntityTag: return BigIntNode.CreateFrom((IBigIntNode)source);
+                case ComplexNode.EntityTag: return ComplexNode.CreateFrom((IComplexNode)source);
                 case BooleanNode.EntityTag: return BooleanNode.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode.CreateFrom((ICustomNode)source);
                 case CharNode.EntityTag: return CharNode.CreateFrom((ICharNode)source);
@@ -215,6 +216,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
                 case DoubleNode.EntityTag: return DoubleNode.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode.CreateFrom((IDecimalNode)source);
                 case BigIntNode.EntityTag: return BigIntNode.CreateFrom((IBigIntNode)source);
+                case ComplexNode.EntityTag: return ComplexNode.CreateFrom((IComplexNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -2721,6 +2723,108 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.ClassesV2
         }
 
         public override bool Equals(object? obj) => obj is BigIntNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class ComplexNode
+    {
+        public static ComplexNode? CreateFrom(IComplexNode? source)
+        {
+            if (source is null) return null;
+            if (source is ComplexNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new ComplexNode(source);
+        }
+
+        private static ComplexNode CreateEmpty()
+        {
+            var empty = new ComplexNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly ComplexNode _empty = CreateEmpty();
+        public static new ComplexNode Empty => _empty;
+
+    }
+    public partial class ComplexNode : NumericNode, IComplexNode, IEquatable<ComplexNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 27;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Complex field_Value;
+        Complex IComplexNode.Value => field_Value;
+        public Complex Value
+        {
+            get => field_Value;
+            set => field_Value = CheckNotFrozen(ref value);
+        }
+
+        public ComplexNode() : base()
+        {
+        }
+
+        public ComplexNode(ComplexNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public ComplexNode(IComplexNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public void CopyFrom(IComplexNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public virtual bool Equals(ComplexNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Value.ValueEquals(other.Value)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is ComplexNode other && Equals(other);
 
         private int CalcHashCode()
         {

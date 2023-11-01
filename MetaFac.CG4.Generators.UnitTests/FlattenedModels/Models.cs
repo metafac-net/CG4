@@ -1,6 +1,7 @@
 ﻿using MetaFac.CG4.Attributes;
 using MetaFac.Memory;
 using System;
+using System.Numerics;
 
 namespace MetaFac.CG4.Generators.UnitTests.FlattenedModels
 {
@@ -46,5 +47,7 @@ namespace MetaFac.CG4.Generators.UnitTests.FlattenedModels
         [Member(24)] Half[]? Halves { get; }
         [Member(25)] DateOnly[]? Dates { get; }
         [Member(26)] TimeOnly[]? Times { get; }
+        [Member(27)] BigInteger[]? BigInts { get; }
+        [Member(28)] Complex[]? Complexes { get; }
     }
 }

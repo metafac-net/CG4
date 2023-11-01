@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.5
+// Generator: RecordsV2.2.6
 // Metadata : MetaFac.CG4.Generators.UnitTests(.FlattenedModels)
 // </information>
 #endregion
@@ -118,6 +118,10 @@ namespace Generated.RecordsV2
         IReadOnlyList<DateOnly>? IBuiltinTypes.Dates => Dates;
         public ImmutableList<TimeOnly>? Times { get; init; }
         IReadOnlyList<TimeOnly>? IBuiltinTypes.Times => Times;
+        public ImmutableList<BigInteger>? BigInts { get; init; }
+        IReadOnlyList<BigInteger>? IBuiltinTypes.BigInts => BigInts;
+        public ImmutableList<Complex>? Complexes { get; init; }
+        IReadOnlyList<Complex>? IBuiltinTypes.Complexes => Complexes;
 
         public BuiltinTypes() : base()
         {
@@ -152,6 +156,8 @@ namespace Generated.RecordsV2
             Halves = source.Halves;
             Dates = source.Dates;
             Times = source.Times;
+            BigInts = source.BigInts;
+            Complexes = source.Complexes;
         }
 
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
@@ -236,6 +242,12 @@ namespace Generated.RecordsV2
             Times = source.Times is null
                 ? default
                 : ImmutableList<TimeOnly>.Empty.AddRange(source.Times);
+            BigInts = source.BigInts is null
+                ? default
+                : ImmutableList<BigInteger>.Empty.AddRange(source.BigInts);
+            Complexes = source.Complexes is null
+                ? default
+                : ImmutableList<Complex>.Empty.AddRange(source.Complexes);
         }
 
         public virtual bool Equals(BuiltinTypes? other)
@@ -268,6 +280,8 @@ namespace Generated.RecordsV2
             if (!Halves.ArrayEquals(other.Halves)) return false;
             if (!Dates.ArrayEquals(other.Dates)) return false;
             if (!Times.ArrayEquals(other.Times)) return false;
+            if (!BigInts.ArrayEquals(other.BigInts)) return false;
+            if (!Complexes.ArrayEquals(other.Complexes)) return false;
             return base.Equals(other);
         }
 
@@ -300,6 +314,8 @@ namespace Generated.RecordsV2
             hc.Add(Halves.CalcHashArray());
             hc.Add(Dates.CalcHashArray());
             hc.Add(Times.CalcHashArray());
+            hc.Add(BigInts.CalcHashArray());
+            hc.Add(Complexes.CalcHashArray());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

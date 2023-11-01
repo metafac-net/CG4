@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonSystemText.2.5
+// Generator: JsonSystemText.2.6
 // Metadata : MetaFac.CG4.Generators.UnitTests(.MultiBaseModels)
 // </information>
 #endregion
@@ -241,6 +241,26 @@ namespace Generated.JsonSystemText
 
         public static implicit operator BigIntValue(BigInteger value) => new BigIntValue(value.ToString());
         public static implicit operator BigInteger(BigIntValue value) => value.Text is null ? default : BigInteger.Parse(value.Text);
+    }
+
+    public struct ComplexValue
+    {
+        public long RealBits { get; set; }
+        public long ImagBits { get; set; }
+        public ComplexValue() { }
+        public ComplexValue(long realBits, long imagBits)
+        {
+            RealBits = realBits;
+            ImagBits = imagBits;
+        }
+        public override int GetHashCode() => HashCode.Combine(RealBits, ImagBits);
+        public override bool Equals(object? obj) => obj is ComplexValue other && Equals(other);
+        public bool Equals(ComplexValue other) => other.RealBits.Equals(this.RealBits) && other.ImagBits.Equals(this.ImagBits);
+        public static bool operator ==(ComplexValue left, ComplexValue right) => left.Equals(right);
+        public static bool operator !=(ComplexValue left, ComplexValue right) => !left.Equals(right);
+
+        public static implicit operator ComplexValue(Complex value) => new ComplexValue(BitConverter.DoubleToInt64Bits(value.Real), BitConverter.DoubleToInt64Bits(value.Imaginary));
+        public static implicit operator Complex(ComplexValue value) => new Complex(BitConverter.Int64BitsToDouble(value.RealBits), BitConverter.Int64BitsToDouble(value.ImagBits));
     }
 
 }

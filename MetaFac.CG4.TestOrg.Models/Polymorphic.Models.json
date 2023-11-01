@@ -313,6 +313,18 @@
               "InnerType": "bigint"
             }
           ]
+        },
+        {
+          "Name": "ComplexNode",
+          "Tag": 27,
+          "ParentName": "NumericNode",
+          "MemberDefs": [
+            {
+              "Name": "Value",
+              "Tag": 3,
+              "InnerType": "complex"
+            }
+          ]
         }
       ],
       "EnumTypeDefs": [

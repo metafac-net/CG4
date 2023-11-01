@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonSystemText.2.5
+// Generator: JsonSystemText.2.6
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -61,6 +61,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
     [JsonDerivedType(typeof(DoubleNode), DoubleNode.EntityTag)]
     [JsonDerivedType(typeof(DecimalNode), DecimalNode.EntityTag)]
     [JsonDerivedType(typeof(BigIntNode), BigIntNode.EntityTag)]
+    [JsonDerivedType(typeof(ComplexNode), ComplexNode.EntityTag)]
     [JsonDerivedType(typeof(BooleanNode), BooleanNode.EntityTag)]
     [JsonDerivedType(typeof(CustomNode), CustomNode.EntityTag)]
     [JsonDerivedType(typeof(CharNode), CharNode.EntityTag)]
@@ -100,6 +101,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
+                case ComplexNode.EntityTag: return ComplexNode_Factory.Instance.CreateFrom((IComplexNode)source);
                 case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
                 case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
@@ -199,6 +201,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
     [JsonDerivedType(typeof(DoubleNode), DoubleNode.EntityTag)]
     [JsonDerivedType(typeof(DecimalNode), DecimalNode.EntityTag)]
     [JsonDerivedType(typeof(BigIntNode), BigIntNode.EntityTag)]
+    [JsonDerivedType(typeof(ComplexNode), ComplexNode.EntityTag)]
     public partial class NumericNode
     {
     }
@@ -226,6 +229,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
+                case ComplexNode.EntityTag: return ComplexNode_Factory.Instance.CreateFrom((IComplexNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -1788,6 +1792,69 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
         }
     }
 
+    public sealed class ComplexNode_Factory : IEntityFactory<IComplexNode, ComplexNode>
+    {
+        private static readonly ComplexNode_Factory _instance = new ComplexNode_Factory();
+        public static ComplexNode_Factory Instance => _instance;
+        public ComplexNode? CreateFrom(IComplexNode? source) => (source is null) ? null : new ComplexNode(source);
+        public ComplexNode Empty => new ComplexNode();
+    }
+    public partial class ComplexNode : NumericNode, IComplexNode, IEquatable<ComplexNode>
+    {
+        public new const int EntityTag = 27;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private ComplexValue field_Value;
+        Complex IComplexNode.Value { get => field_Value; }
+        public ComplexValue Value
+        {
+            get => field_Value;
+            set => field_Value = value;
+        }
+
+        public ComplexNode() : base()
+        {
+        }
+
+        public ComplexNode(ComplexNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public ComplexNode(IComplexNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public void CopyFrom(IComplexNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public bool Equals(ComplexNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!Value.ValueEquals(other.Value)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is ComplexNode other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Value.CalcHashUnary());
+            return hc.ToHashCode();
+        }
+    }
+
 
     public struct HalfValue
     {
@@ -1817,6 +1884,26 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
 
         public static implicit operator BigIntValue(BigInteger value) => new BigIntValue(value.ToString());
         public static implicit operator BigInteger(BigIntValue value) => value.Text is null ? default : BigInteger.Parse(value.Text);
+    }
+
+    public struct ComplexValue
+    {
+        public long RealBits { get; set; }
+        public long ImagBits { get; set; }
+        public ComplexValue() { }
+        public ComplexValue(long realBits, long imagBits)
+        {
+            RealBits = realBits;
+            ImagBits = imagBits;
+        }
+        public override int GetHashCode() => HashCode.Combine(RealBits, ImagBits);
+        public override bool Equals(object? obj) => obj is ComplexValue other && Equals(other);
+        public bool Equals(ComplexValue other) => other.RealBits.Equals(this.RealBits) && other.ImagBits.Equals(this.ImagBits);
+        public static bool operator ==(ComplexValue left, ComplexValue right) => left.Equals(right);
+        public static bool operator !=(ComplexValue left, ComplexValue right) => !left.Equals(right);
+
+        public static implicit operator ComplexValue(Complex value) => new ComplexValue(BitConverter.DoubleToInt64Bits(value.Real), BitConverter.DoubleToInt64Bits(value.Imaginary));
+        public static implicit operator Complex(ComplexValue value) => new Complex(BitConverter.Int64BitsToDouble(value.RealBits), BitConverter.Int64BitsToDouble(value.ImagBits));
     }
 
 }

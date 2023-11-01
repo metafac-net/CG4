@@ -150,6 +150,7 @@ namespace MetaFac.CG4.ModelReader
             if (dataType == typeof(TimeOnly)) return "time";
 #endif
             if (dataType == typeof(BigInteger)) return "bigint";
+            if (dataType == typeof(Complex)) return "complex";
             return dataType.FullName;
         }
 
@@ -282,6 +283,7 @@ namespace MetaFac.CG4.ModelReader
                             || innerType == typeof(TimeOnly)
 #endif
                             || innerType == typeof(BigInteger)
+                            || innerType == typeof(Complex)
                             || innerType == typeof(DateTimeOffset))
                         {
                             // supported value type

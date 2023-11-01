@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.5
+// Generator: RecordsV2.2.6
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -71,6 +71,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
+                case ComplexNode.EntityTag: return ComplexNode_Factory.Instance.CreateFrom((IComplexNode)source);
                 case BooleanNode.EntityTag: return BooleanNode_Factory.Instance.CreateFrom((IBooleanNode)source);
                 case CustomNode.EntityTag: return CustomNode_Factory.Instance.CreateFrom((ICustomNode)source);
                 case CharNode.EntityTag: return CharNode_Factory.Instance.CreateFrom((ICharNode)source);
@@ -171,6 +172,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
                 case DoubleNode.EntityTag: return DoubleNode_Factory.Instance.CreateFrom((IDoubleNode)source);
                 case DecimalNode.EntityTag: return DecimalNode_Factory.Instance.CreateFrom((IDecimalNode)source);
                 case BigIntNode.EntityTag: return BigIntNode_Factory.Instance.CreateFrom((IBigIntNode)source);
+                case ComplexNode.EntityTag: return ComplexNode_Factory.Instance.CreateFrom((IComplexNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(NumericNode)} from {source.GetType().Name}");
             }
@@ -1733,6 +1735,70 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         }
 
         public virtual bool Equals(BigIntNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Value.ValueEquals(other.Value)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class ComplexNode_Factory : IEntityFactory<IComplexNode, ComplexNode>
+    {
+        private static readonly ComplexNode_Factory _instance = new ComplexNode_Factory();
+        public static ComplexNode_Factory Instance => _instance;
+
+        public ComplexNode? CreateFrom(IComplexNode? source)
+        {
+            if (source is null) return null;
+            if (source is ComplexNode thisEntity) return thisEntity;
+            return new ComplexNode(source);
+        }
+
+        private static readonly ComplexNode _empty = new ComplexNode();
+        public ComplexNode Empty => _empty;
+    }
+    public partial record ComplexNode : NumericNode, IComplexNode
+    {
+        public new const int EntityTag = 27;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Complex Value { get; init; }
+        Complex IComplexNode.Value => Value;
+
+        public ComplexNode() : base()
+        {
+        }
+
+        public ComplexNode(ComplexNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Value = source.Value;
+        }
+
+        public ComplexNode(IComplexNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Value = source.Value;
+        }
+
+        public virtual bool Equals(ComplexNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;

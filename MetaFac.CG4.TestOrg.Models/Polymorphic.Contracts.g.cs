@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: Contracts.2.5
+// Generator: Contracts.2.6
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -129,5 +129,9 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.Contracts
     public partial interface IBigIntNode : INumericNode
     {
         BigInteger Value { get; }
+    }
+    public partial interface IComplexNode : INumericNode
+    {
+        Complex Value { get; }
     }
 }
