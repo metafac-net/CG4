@@ -28,8 +28,8 @@ namespace MetaFac.CG4.ModelBuilding
             return new ModelEnumItemDef(_name, _code, _summary, ModelItemState.Create(_itemState, _reason), _tokens);
         }
 
-        public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
-            => _outer.AddEntity(entityName, entityTag, baseName, summary, itemState, reason);
+        public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, bool isAbstract = false, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
+            => _outer.AddEntity(entityName, entityTag, baseName, isAbstract, summary, itemState, reason);
         public IEnumTypeBuilder AddEnumType(string enumTypeName, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
             => _outer.AddEnumType(enumTypeName, summary, itemState, reason);
         public IEnumItemBuilder AddEnumItem(string name, int value, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)

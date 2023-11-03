@@ -7,6 +7,7 @@ namespace MetaFac.CG4.Models
 {
     public class ModelEntityDef : ModelItemBase, IEquatable<ModelEntityDef>
     {
+        public readonly bool IsAbstract;
         public readonly string? ParentName;
         private readonly ImmutableList<ModelMemberDef> _memberDefs;
         private readonly ImmutableList<ModelEntityDef> _derivedEntities;
@@ -16,7 +17,7 @@ namespace MetaFac.CG4.Models
         public ImmutableList<ModelMemberDef> AllMemberDefs => _memberDefs;
         public IEnumerable<ModelMemberDef> MemberDefs => _memberDefs.Where(md => !md.IsRedacted);
 
-        private ModelEntityDef(string name, int? tag, string? summary,
+        private ModelEntityDef(string name, bool isAbstract, int? tag, string? summary,
             string? parentName,
             ImmutableDictionary<string, string> tokens,
             ImmutableList<ModelMemberDef> memberDefs,
@@ -24,18 +25,20 @@ namespace MetaFac.CG4.Models
             ModelItemState? state)
             : base(name, tag, summary, state, tokens)
         {
+            IsAbstract = isAbstract;
             ParentName = parentName;
             _memberDefs = memberDefs;
             _derivedEntities = derivedEntities;
         }
 
-        public ModelEntityDef(string name, int? tag, string? summary,
+        public ModelEntityDef(string name, bool isAbstract, int? tag, string? summary,
             string? parentName,
             IEnumerable<ModelMemberDef> memberDefs,
             ModelItemState? state = null,
             IEnumerable<KeyValuePair<string, string>>? tokens = null)
             : base(name, tag, summary, state, tokens)
         {
+            IsAbstract = isAbstract;
             ParentName = parentName;
             _memberDefs = ImmutableList<ModelMemberDef>.Empty.AddRange(memberDefs);
             _derivedEntities = ImmutableList<ModelEntityDef>.Empty;
@@ -44,7 +47,7 @@ namespace MetaFac.CG4.Models
         internal ModelEntityDef SetAllDescendents(IEnumerable<ModelEntityDef> descendents)
         {
             return new ModelEntityDef(
-                Name, Tag, Summary, ParentName, Tokens, _memberDefs,
+                Name, IsAbstract, Tag, Summary, ParentName, Tokens, _memberDefs,
                 ImmutableList<ModelEntityDef>.Empty.AddRange(descendents),
                 State);
         }
@@ -54,6 +57,7 @@ namespace MetaFac.CG4.Models
             if (source is null) return null;
             return new ModelEntityDef(
                 source.Name ?? throw new ArgumentNullException(nameof(source.Name)),
+                source.IsAbstract,
                 source.Tag,
                 source.Summary,
                 source.ParentName,
@@ -71,6 +75,7 @@ namespace MetaFac.CG4.Models
             if (other is null) return false;
             return base.Equals(other)
                 && string.Equals(ParentName, other.ParentName)
+                && IsAbstract == other.IsAbstract
                 && _memberDefs.IsEqualTo(other._memberDefs)
                 ;
         }
@@ -85,6 +90,7 @@ namespace MetaFac.CG4.Models
             var hashCode = new HashCode();
             hashCode.Add(base.GetHashCode());
             hashCode.Add(ParentName);
+            hashCode.Add(IsAbstract);
             hashCode.Add(_memberDefs.Count);
             foreach (var md in _memberDefs)
             {

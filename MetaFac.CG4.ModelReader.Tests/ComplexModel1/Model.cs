@@ -10,18 +10,18 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     // ==================== Level 0 fields ====================
 
     [Entity(1)]
-    public class BaseMessage
+    public abstract class BaseMessage
     {
         [Member(1)] Guid RequestId { get; }
     }
 
     [Entity(2)]
-    public class BaseRequest : BaseMessage
+    public abstract class BaseRequest : BaseMessage
     {
     }
 
     [Entity(3)]
-    public class BaseResponse : BaseMessage
+    public abstract class BaseResponse : BaseMessage
     {
         [Member(2)] bool Succeeded { get; }
         [Member(3)] string? FailReason { get; }
@@ -60,12 +60,12 @@ namespace MetaFac.CG4.ModelReader.Tests.ComplexModel1
     }
 
     [Entity(21)]
-    public class AccountRequest : BaseRequest
+    public abstract class AccountRequest : BaseRequest
     {
     }
 
     [Entity(22)]
-    public class AccountResponse : BaseResponse
+    public abstract class AccountResponse : BaseResponse
     {
     }
 

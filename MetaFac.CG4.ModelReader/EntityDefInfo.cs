@@ -9,6 +9,7 @@ namespace MetaFac.CG4.ModelReader
     {
         private readonly TypeInfo _typeInfo;
         public readonly string EntityName;
+        public readonly bool IsAbstract;
         public string? ParentName;
         public readonly int? Tag;
 
@@ -55,10 +56,10 @@ namespace MetaFac.CG4.ModelReader
             if (!typeInfo.IsClass) throw new ArgumentException("Must be an class type", nameof(typeInfo));
             _typeInfo = typeInfo ?? throw new ArgumentNullException(nameof(typeInfo));
             EntityName = _typeInfo.Name;
-            if (_typeInfo.BaseType is not null && _typeInfo.BaseType != typeof(object))
-                ParentName = _typeInfo.BaseType.Name;
-            else
-                ParentName = null;
+            IsAbstract = _typeInfo.IsAbstract;
+            ParentName = _typeInfo.BaseType is not null && _typeInfo.BaseType != typeof(object)
+                ? _typeInfo.BaseType.Name
+                : null;
             Tag = tag;
         }
 

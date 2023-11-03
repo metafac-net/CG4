@@ -11,18 +11,20 @@ namespace MetaFac.CG4.ModelBuilding
         private readonly string _name;
         private readonly int? _tag;
         private readonly string? _baseName;
+        private readonly bool _isAbstract;
         private readonly string? _summary;
         private readonly ItemState _itemState;
         private readonly string? _reason;
 
         private readonly Dictionary<string, MemberBuilder> _memberBuilders = new Dictionary<string, MemberBuilder>();
 
-        public EntityBuilder(ModelDefinitionBuilder outer, string name, int? tag, string? baseName = null, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
+        public EntityBuilder(ModelDefinitionBuilder outer, string name, int? tag, string? baseName = null, bool isAbstract = false, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
         {
             _outer = outer;
             _name = name;
             _tag = tag;
             _baseName = baseName;
+            _isAbstract = isAbstract;
             _summary = summary;
             _itemState = itemState;
             _reason = reason;
@@ -44,11 +46,11 @@ namespace MetaFac.CG4.ModelBuilding
         public ModelEntityDef GetModelEntityDef()
         {
             var memberDefs = _memberBuilders.Values.Select(mdb => mdb.GetModelMemberDef()).OrderBy(x => x.Name).ToList();
-            return new ModelEntityDef(_name, _tag, _summary, _baseName, memberDefs, ModelItemState.Create(_itemState, _reason), _tokens);
+            return new ModelEntityDef(_name, _isAbstract, _tag, _summary, _baseName, memberDefs, ModelItemState.Create(_itemState, _reason), _tokens);
         }
 
-        public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
-            => _outer.AddEntity(entityName, entityTag, baseName, summary, itemState, reason);
+        public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName = null, bool isAbstract = false, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
+            => _outer.AddEntity(entityName, entityTag, baseName, isAbstract, summary, itemState, reason);
         public IEnumTypeBuilder AddEnumType(string enumTypeName, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
             => _outer.AddEnumType(enumTypeName, summary, itemState, reason);
         public IModelDefinitionBuilder AddModelDef(string modelName, int? modelTag) => _outer.AddModelDef(modelName, modelTag);

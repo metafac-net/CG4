@@ -6,6 +6,7 @@
         {
           "Name": "Entity1",
           "Summary": "Description for Entity1",
+          "IsAbstract": true,
           "MemberDefs": []
         },
         {

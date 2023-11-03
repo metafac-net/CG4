@@ -10,6 +10,7 @@ namespace MetaFac.CG4.Models
         public int? Tag { get; set; }
         public string? Summary { get; set; }
         public JsonItemState? State { get; set; }
+        public bool IsAbstract { get; set; }
         public string? ParentName { get; set; }
         public List<JsonMemberDef>? MemberDefs { get; set; }
         public Dictionary<string, string>? Tokens { get; set; }
@@ -23,6 +24,7 @@ namespace MetaFac.CG4.Models
             Tag = source.Tag;
             Summary = source.Summary;
             State = JsonItemState.From(source.State);
+            IsAbstract = source.IsAbstract;
             ParentName = source.ParentName;
             MemberDefs = source.AllMemberDefs.Select(fd => new JsonMemberDef(fd)).ToList();
             Tokens = source.Tokens.Count > 0 ? new Dictionary<string, string>(source.Tokens) : null;
@@ -36,6 +38,7 @@ namespace MetaFac.CG4.Models
                    && Tag == other.Tag
                    && string.Equals(Summary, other.Summary)
                    && Equals(State, other.State)
+                   && IsAbstract == other.IsAbstract
                    && string.Equals(ParentName, other.ParentName)
                    && MemberDefs.IsEqualTo(other.MemberDefs)
                    && Tokens.IsEqualTo(other.Tokens)
@@ -54,6 +57,7 @@ namespace MetaFac.CG4.Models
             hashCode.Add(Tag);
             hashCode.Add(Summary);
             hashCode.Add(State);
+            hashCode.Add(IsAbstract);
             hashCode.Add(ParentName);
             if (MemberDefs is not null)
             {

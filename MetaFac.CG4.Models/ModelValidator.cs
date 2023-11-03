@@ -74,7 +74,7 @@ namespace MetaFac.CG4.Models
                     if (newEntityTag == 0)
                         newEntityTag = ++maxEntityTag;
                     mergedEntityDefsByTag.Add(newEntityTag,
-                        new ModelEntityDef(ncd.Name, newEntityTag, ncd.Summary, ncd.ParentName, ncd.AllMemberDefs, ncd.State));
+                        new ModelEntityDef(ncd.Name, ncd.IsAbstract, newEntityTag, ncd.Summary, ncd.ParentName, ncd.AllMemberDefs, ncd.State));
                     mergedEntityNameToTagMap.Add(ncd.Name, newEntityTag);
                     newEntityDefs.Remove(newEntityName);
                 }
@@ -102,7 +102,7 @@ namespace MetaFac.CG4.Models
                     {
                         // update class
                         mergedEntityDefsByTag.Add(oldEntityTag,
-                            new ModelEntityDef(ncd.Name, oldEntityTag, ncd.Summary, ncd.ParentName, ncd.AllMemberDefs, ncd.State));
+                            new ModelEntityDef(ncd.Name, ncd.IsAbstract, oldEntityTag, ncd.Summary, ncd.ParentName, ncd.AllMemberDefs, ncd.State));
                         mergedEntityNameToTagMap.Add(ncd.Name, oldEntityTag);
                         newEntityDefs.Remove(newEntityName);
                         oldEntityNameToTagMap.Remove(oldEntityDef.Name);
@@ -256,13 +256,12 @@ namespace MetaFac.CG4.Models
                     if (entityNameMap.TryGetValue(entityDef.ParentName, out var parent))
                     {
                         // known parent - check is abstract
-                        // todo this is only required for MessagePack
-                        //if (!parent.IsAbstract)
-                        //{
-                        //    result = result.AddWarning(new ValidationError(
-                        //        ValidationErrorCode.NonAbstractParent,
-                        //        model.Name, entityDef.ToTagName(), null, parent.ToTagName(), null));
-                        //}
+                        if (!parent.IsAbstract)
+                        {
+                            result = result.AddWarning(new ValidationError(
+                                ValidationErrorCode.NonAbstractParent,
+                                model.Name, entityDef.ToTagName(), null, parent.ToTagName(), null));
+                        }
                     }
                     else
                     {

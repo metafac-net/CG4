@@ -26,9 +26,9 @@ namespace MetaFac.CG4.ModelBuilding
             return this;
         }
 
-        public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
+        public IEntityBuilder AddEntity(string entityName, int? entityTag, string? baseName, bool isAbstract, string? summary = null, ItemState itemState = ItemState.Active, string? reason = null)
         {
-            var entityDefBuilder = new EntityBuilder(this, entityName, entityTag, baseName, summary, itemState, reason);
+            var entityDefBuilder = new EntityBuilder(this, entityName, entityTag, baseName, isAbstract, summary, itemState, reason);
             _entityDefBuilders.Add(entityName, entityDefBuilder);
             return entityDefBuilder;
         }

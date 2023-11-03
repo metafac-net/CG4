@@ -11,6 +11,7 @@
     {
         public JsonEntityDef() { }
         public JsonEntityDef(MetaFac.CG4.Models.ModelEntityDef source) { }
+        public bool IsAbstract { get; set; }
         public System.Collections.Generic.List<MetaFac.CG4.Models.JsonMemberDef>? MemberDefs { get; set; }
         public string? Name { get; set; }
         public string? ParentName { get; set; }
@@ -160,8 +161,9 @@
     }
     public class ModelEntityDef : MetaFac.CG4.Models.ModelItemBase, System.IEquatable<MetaFac.CG4.Models.ModelEntityDef>
     {
+        public readonly bool IsAbstract;
         public readonly string? ParentName;
-        public ModelEntityDef(string name, int? tag, string? summary, string? parentName, System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelMemberDef> memberDefs, MetaFac.CG4.Models.ModelItemState? state = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens = null) { }
+        public ModelEntityDef(string name, bool isAbstract, int? tag, string? summary, string? parentName, System.Collections.Generic.IEnumerable<MetaFac.CG4.Models.ModelMemberDef> memberDefs, MetaFac.CG4.Models.ModelItemState? state = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>? tokens = null) { }
         public System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelEntityDef> AllDerivedEntities { get; }
         public System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelMemberDef> AllMemberDefs { get; }
         public System.Collections.Immutable.ImmutableList<MetaFac.CG4.Models.ModelEntityDef> DerivedEntities { get; }

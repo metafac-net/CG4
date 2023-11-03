@@ -96,8 +96,9 @@ namespace MetaFac.CG4.ModelReader
 
                 if (entityTag.HasValue)
                 {
+                    bool isAbstract = entityDefInfo.IsAbstract;
                     string? parentName = entityDefInfo.ParentName;
-                    var entityDef = new ModelEntityDef(entityName, entityTag.Value, entityDesc, parentName, fieldList, entityState, entityTokens);
+                    var entityDef = new ModelEntityDef(entityName, isAbstract, entityTag.Value, entityDesc, parentName, fieldList, entityState, entityTokens);
                     entityDefsByName.Add(entityName, entityDef);
                     entityDefsByTag.Add(entityTag.Value, entityDef);
                 }
