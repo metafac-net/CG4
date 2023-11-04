@@ -31,6 +31,7 @@
         {
           "Name": "Node",
           "Tag": 2,
+          "IsAbstract": true,
           "MemberDefs": []
         },
         {
@@ -48,6 +49,7 @@
         {
           "Name": "NumNode",
           "Tag": 4,
+          "IsAbstract": true,
           "ParentName": "Node",
           "MemberDefs": []
         },

@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Xunit;
 
 namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
 {

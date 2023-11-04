@@ -12,7 +12,7 @@ namespace MetaFac.CG4.TestOrg.Schema.XtraComplex
     }
 
     [Entity(2)]
-    public class Node
+    public abstract class Node
     {
     }
 
@@ -23,7 +23,7 @@ namespace MetaFac.CG4.TestOrg.Schema.XtraComplex
     }
 
     [Entity(4)]
-    public class NumNode : Node
+    public abstract class NumNode : Node
     {
     }
 

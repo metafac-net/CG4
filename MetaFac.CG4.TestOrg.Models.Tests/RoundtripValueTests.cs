@@ -101,7 +101,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [Theory]
         [InlineData(byte.MinValue)]
         [InlineData((byte)1)]
-        [InlineData((byte)(byte.MaxValue-1))]
+        [InlineData((byte)(byte.MaxValue - 1))]
         [InlineData(byte.MaxValue)]
         [InlineData(null)]
         public void RoundtripValues_byte(byte? value)

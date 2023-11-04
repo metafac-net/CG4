@@ -1,6 +1,4 @@
-﻿using MetaFac.Memory;
-using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace MetaFac.CG4.Runtime
 {

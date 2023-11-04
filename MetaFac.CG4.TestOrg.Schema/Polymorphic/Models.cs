@@ -12,14 +12,14 @@ namespace MetaFac.CG4.TestOrg.Schema.Polymorphic
     }
 
     [Entity(1)]
-    public class ValueNode
+    public abstract class ValueNode
     {
         [Member(1)] public long Id { get; set; }
         [Member(2)] public string? Name { get; set; }
     }
 
     [Entity(2)]
-    public class NumericNode : ValueNode
+    public abstract class NumericNode : ValueNode
     {
     }
 
@@ -79,7 +79,7 @@ namespace MetaFac.CG4.TestOrg.Schema.Polymorphic
     }
 #endif
 
-    [Entity(14)] public class UInt32Node : NumericNode {  [Member(3)] public UInt32 UInt32Value { get; set; }}
+    [Entity(14)] public class UInt32Node : NumericNode { [Member(3)] public UInt32 UInt32Value { get; set; } }
     [Entity(15)] public class SingleNode : NumericNode { [Member(3)] public Single SingleValue { get; set; } }
     [Entity(16)] public class DateTimeNode : ValueNode { [Member(3)] public DateTime DateTimeValue { get; set; } }
     [Entity(17)] public class TimeSpanNode : ValueNode { [Member(3)] public TimeSpan TimeSpanValue { get; set; } }

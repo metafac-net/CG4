@@ -1,7 +1,4 @@
 ﻿using FluentAssertions;
-using MetaFac.Memory;
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using T_Namespace_.Contracts;
 using Xunit;
@@ -9,7 +6,6 @@ using Xunit;
 namespace MetaFac.CG4.TemplateNet7.Tests
 {
     using T_ExternalMaybeType_ = DayOfWeek;
-    using T_ExternalOtherType_ = Int64;
     using T_IndexType_ = String;
 
     public class HashCodeTests

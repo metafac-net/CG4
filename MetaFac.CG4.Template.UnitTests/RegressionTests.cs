@@ -47,7 +47,7 @@ namespace MetaFac.CG4.Template.UnitTests
 
         private static readonly Newtonsoft.Json.JsonSerializer nsJsonSerializer = new Newtonsoft.Json.JsonSerializer()
         {
-            Formatting = Newtonsoft.Json. Formatting.Indented,
+            Formatting = Newtonsoft.Json.Formatting.Indented,
             //NullValueHandling = NullValueHandling.Ignore,
             DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore
         };

@@ -1,9 +1,6 @@
 ﻿using FluentAssertions;
 using MetaFac.Memory;
-using System;
 using System.Collections.Immutable;
-using System.IO;
-using System.Linq;
 using Xunit;
 
 namespace MetaFac.CG4.TemplateNet7.Tests
