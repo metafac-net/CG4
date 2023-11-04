@@ -2,7 +2,7 @@
 using LabApps.Units;
 using MessagePack;
 using MetaFac.CG4.Runtime;
-using MetaFac.CG4.TestOrg.Constants;
+using MetaFac.CG4.TestOrg.Common;
 using MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.Contracts;
 using MetaFac.Memory;
 using System.Collections.Immutable;
@@ -42,6 +42,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
                 BuiltinValueKind.Custom => new Polymorphic.RecordsV2.CustomNode() { Id = 1, Name = "Id1", CustomValue = Polymorphic.Contracts.CustomEnum.Value1 },
                 BuiltinValueKind.BigInteger => new Polymorphic.RecordsV2.BigIntNode() { Id = 1, Name = "Id1", Value = BigInteger.MinusOne },
                 BuiltinValueKind.Complex => new Polymorphic.RecordsV2.ComplexNode() { Id = 1, Name = "Id1", Value = Complex.ImaginaryOne },
+                BuiltinValueKind.Version => new Polymorphic.RecordsV2.VersionNode() { Id = 1, Name = "Id1", Value = new Version(1, 2, 3, 4) },
                 _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
             };
         }
@@ -72,6 +73,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
         [InlineData(BuiltinValueKind.Custom)]
         [InlineData(BuiltinValueKind.BigInteger)]
         [InlineData(BuiltinValueKind.Complex)]
+        [InlineData(BuiltinValueKind.Version)]
         public void RoundtripPolymorphicNode(BuiltinValueKind kind)
         {
             Polymorphic.Contracts.IValueNode value = CreateValue(kind);
@@ -113,8 +115,8 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
             where TTransport : TInterface
         {
             TTransport? outgoing = transportFactory.CreateFrom(original) ?? throw new Exception("Returned null!");
-            string buffer = outgoing.SerializeToJsonSystemText();
-            TTransport? incoming = buffer.DeserializeFromJsonSystemText<TTransport>();
+            string buffer = outgoing.SerializeToJsonNewtonSoft();
+            TTransport? incoming = buffer.DeserializeFromJsonNewtonSoft<TTransport>();
             incoming.Should().Be(outgoing);
             return originalFactory.CreateFrom(incoming) ?? throw new Exception("Returned null!");
         }
@@ -697,6 +699,9 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
         [InlineData("-1")]
         [InlineData("min")]
         [InlineData("max")]
+        [InlineData("eps")]
+        [InlineData("posinf")]
+        [InlineData("neginf")]
         [InlineData(null)]
         public void RoundtripValues_Half(string? input)
         {
@@ -705,6 +710,9 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
                 null => null,
                 "min" => Half.MinValue,
                 "max" => Half.MaxValue,
+                "eps" => Half.Epsilon,
+                "posinf" => Half.PositiveInfinity,
+                "neginf" => Half.NegativeInfinity,
                 _ => Half.Parse(input)
             };
             var origFactory = BasicTypes.RecordsV2.Basic_Half_Factory.Instance;
@@ -772,6 +780,62 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
                 ScalarOptional = value,
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, TimeOnly?>.Empty.Add("key", value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
+        }
+
+        [Theory]
+        [InlineData("0")]
+        [InlineData("1")]
+        [InlineData("-1")]
+        [InlineData("i")]
+        [InlineData("nan")]
+        [InlineData("inf")]
+        [InlineData(null)]
+        public void RoundtripValues_Complex(string? input)
+        {
+            Complex? value = input switch
+            {
+                null => null,
+                "i" => Complex.ImaginaryOne,
+                "nan" => Complex.NaN,
+                "inf" => Complex.Infinity,
+                _ => new Complex(double.Parse(input), 0.0)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_Complex_Factory.Instance;
+            var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Complex_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_Complex_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_Complex_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_Complex()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, Complex?>.Empty.Add("key", value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
+        }
+
+        [Theory]
+        [InlineData("1.0")]
+        [InlineData("1.2.3")]
+        [InlineData("1.2.3.4")]
+        [InlineData(null)]
+        public void RoundtripValues_Version(string? input)
+        {
+            Version? value = input switch
+            {
+                null => null,
+                _ => Version.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_Version_Factory.Instance;
+            var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Version_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_Version_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_Version_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_Version()
+            {
+                Scalar = value,
+                Vector = ImmutableList.Create<Version?>(value),
+                MapValue = ImmutableDictionary<string, Version?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }

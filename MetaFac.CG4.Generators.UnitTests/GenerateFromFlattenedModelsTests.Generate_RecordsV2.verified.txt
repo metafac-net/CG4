@@ -122,6 +122,8 @@ namespace Generated.RecordsV2
         IReadOnlyList<BigInteger>? IBuiltinTypes.BigInts => BigInts;
         public ImmutableList<Complex>? Complexes { get; init; }
         IReadOnlyList<Complex>? IBuiltinTypes.Complexes => Complexes;
+        public ImmutableList<Version?>? Versions { get; init; }
+        IReadOnlyList<Version?>? IBuiltinTypes.Versions => Versions;
 
         public BuiltinTypes() : base()
         {
@@ -158,6 +160,7 @@ namespace Generated.RecordsV2
             Times = source.Times;
             BigInts = source.BigInts;
             Complexes = source.Complexes;
+            Versions = source.Versions;
         }
 
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
@@ -248,6 +251,9 @@ namespace Generated.RecordsV2
             Complexes = source.Complexes is null
                 ? default
                 : ImmutableList<Complex>.Empty.AddRange(source.Complexes);
+            Versions = source.Versions is null
+                ? default
+                : ImmutableList<Version?>.Empty.AddRange(source.Versions);
         }
 
         public virtual bool Equals(BuiltinTypes? other)
@@ -282,6 +288,7 @@ namespace Generated.RecordsV2
             if (!Times.ArrayEquals(other.Times)) return false;
             if (!BigInts.ArrayEquals(other.BigInts)) return false;
             if (!Complexes.ArrayEquals(other.Complexes)) return false;
+            if (!Versions.ArrayEquals(other.Versions)) return false;
             return base.Equals(other);
         }
 
@@ -316,6 +323,7 @@ namespace Generated.RecordsV2
             hc.Add(Times.CalcHashArray());
             hc.Add(BigInts.CalcHashArray());
             hc.Add(Complexes.CalcHashArray());
+            hc.Add(Versions.CalcHashArray());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

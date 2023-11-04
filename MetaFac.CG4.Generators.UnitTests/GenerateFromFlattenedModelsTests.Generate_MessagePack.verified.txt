@@ -137,6 +137,7 @@ namespace Generated.MessagePack
         private ImmutableList<TimeOnly>? field_Times;
         private ImmutableList<BigInteger>? field_BigInts;
         private ImmutableList<Complex>? field_Complexes;
+        private ImmutableList<Version?>? field_Versions;
 
         // ---------- accessors ----------
         [Key(1)]
@@ -307,6 +308,12 @@ namespace Generated.MessagePack
             get => field_Complexes;
             set => field_Complexes = CheckNotFrozen(ref value);
         }
+        [Key(29)]
+        public ImmutableList<Version?>? Versions
+        {
+            get => field_Versions;
+            set => field_Versions = CheckNotFrozen(ref value);
+        }
 
         // ---------- IBuiltinTypes methods ----------
         IReadOnlyList<Boolean>? IBuiltinTypes.Bools
@@ -391,6 +398,9 @@ namespace Generated.MessagePack
         IReadOnlyList<Complex>? IBuiltinTypes.Complexes
             => field_Complexes is null ? null
             : new ListFacade<Complex, Complex>(field_Complexes, (x) => x.ToExternal());
+        IReadOnlyList<Version?>? IBuiltinTypes.Versions
+            => field_Versions is null ? null
+            : new ListFacade<Version?, Version?>(field_Versions, (x) => x.ToExternal());
 
         public BuiltinTypes()
         {
@@ -426,6 +436,7 @@ namespace Generated.MessagePack
             field_Times = source.field_Times;
             field_BigInts = source.field_BigInts;
             field_Complexes = source.field_Complexes;
+            field_Versions = source.field_Versions;
         }
 
         public void CopyFrom(BuiltinTypes source)
@@ -459,6 +470,7 @@ namespace Generated.MessagePack
             field_Times = source.field_Times;
             field_BigInts = source.field_BigInts;
             field_Complexes = source.field_Complexes;
+            field_Versions = source.field_Versions;
         }
 
         public BuiltinTypes(IBuiltinTypes source) : base(source)
@@ -547,6 +559,9 @@ namespace Generated.MessagePack
             field_Complexes = source.Complexes is null
                 ? null
                 : ImmutableList<Complex>.Empty.AddRange(source.Complexes.Select(x => x.ToInternal()));
+            field_Versions = source.Versions is null
+                ? null
+                : ImmutableList<Version?>.Empty.AddRange(source.Versions.Select(x => x.ToInternal()));
         }
 
         public bool Equals(BuiltinTypes? other)
@@ -581,6 +596,7 @@ namespace Generated.MessagePack
             if (!field_Times.ArrayEquals(other.field_Times)) return false;
             if (!field_BigInts.ArrayEquals(other.field_BigInts)) return false;
             if (!field_Complexes.ArrayEquals(other.field_Complexes)) return false;
+            if (!field_Versions.ArrayEquals(other.field_Versions)) return false;
             return base.Equals(other);
         }
 
@@ -632,6 +648,7 @@ namespace Generated.MessagePack
             hc.Add(field_Times.CalcHashArray());
             hc.Add(field_BigInts.CalcHashArray());
             hc.Add(field_Complexes.CalcHashArray());
+            hc.Add(field_Versions.CalcHashArray());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

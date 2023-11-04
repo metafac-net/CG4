@@ -134,4 +134,8 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.Contracts
     {
         Complex Value { get; }
     }
+    public partial interface IVersionNode : IValueNode
+    {
+        Version? Value { get; }
+    }
 }

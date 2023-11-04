@@ -60,5 +60,6 @@ namespace Generated.Contracts
         IReadOnlyList<TimeOnly>? Times { get; }
         IReadOnlyList<BigInteger>? BigInts { get; }
         IReadOnlyList<Complex>? Complexes { get; }
+        IReadOnlyList<Version?>? Versions { get; }
     }
 }

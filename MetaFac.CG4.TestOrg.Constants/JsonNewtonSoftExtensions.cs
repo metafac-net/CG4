@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace MetaFac.CG4.TestOrg.Models.Tests
+namespace MetaFac.CG4.TestOrg.Common
 {
-    internal static class JsonNewtonSoftExtensions
+    public static class JsonNewtonSoftExtensions
     {
         private static readonly JsonSerializer serializer = new JsonSerializer()
         {

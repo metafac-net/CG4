@@ -14,6 +14,7 @@
 #pragma warning disable CS8019 // Unnecessary using directive
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
+using MetaFac.CG4.Runtime.JsonSystemText;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -73,6 +74,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
     [JsonDerivedType(typeof(OctetsNode), OctetsNode.EntityTag)]
     [JsonDerivedType(typeof(GuidNode), GuidNode.EntityTag)]
     [JsonDerivedType(typeof(DateTimeOffsetNode), DateTimeOffsetNode.EntityTag)]
+    [JsonDerivedType(typeof(VersionNode), VersionNode.EntityTag)]
     public partial class ValueNode
     {
     }
@@ -113,6 +115,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
                 case OctetsNode.EntityTag: return OctetsNode_Factory.Instance.CreateFrom((IOctetsNode)source);
                 case GuidNode.EntityTag: return GuidNode_Factory.Instance.CreateFrom((IGuidNode)source);
                 case DateTimeOffsetNode.EntityTag: return DateTimeOffsetNode_Factory.Instance.CreateFrom((IDateTimeOffsetNode)source);
+                case VersionNode.EntityTag: return VersionNode_Factory.Instance.CreateFrom((IVersionNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -1855,55 +1858,68 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonSystemText
         }
     }
 
-
-    public struct HalfValue
+    public sealed class VersionNode_Factory : IEntityFactory<IVersionNode, VersionNode>
     {
-        public short Value { get; set; }
-        public HalfValue() { }
-        public HalfValue(short value) => Value = value;
-        public override int GetHashCode() => HashCode.Combine(Value);
-        public override bool Equals(object? obj) => obj is HalfValue other && Equals(other);
-        public bool Equals(HalfValue other) => other.Value.Equals(Value);
-        public static bool operator ==(HalfValue left, HalfValue right) => left.Equals(right);
-        public static bool operator !=(HalfValue left, HalfValue right) => !left.Equals(right);
-
-        public static implicit operator HalfValue(Half value) => new HalfValue(BitConverter.HalfToInt16Bits(value));
-        public static implicit operator Half(HalfValue value) => BitConverter.Int16BitsToHalf(value.Value);
+        private static readonly VersionNode_Factory _instance = new VersionNode_Factory();
+        public static VersionNode_Factory Instance => _instance;
+        public VersionNode? CreateFrom(IVersionNode? source) => (source is null) ? null : new VersionNode(source);
+        public VersionNode Empty => new VersionNode();
     }
-
-    public struct BigIntValue
+    public partial class VersionNode : ValueNode, IVersionNode, IEquatable<VersionNode>
     {
-        public string? Text { get; set; }
-        public BigIntValue() { }
-        public BigIntValue(string? text) => Text = text;
-        public override int GetHashCode() => HashCode.Combine(Text);
-        public override bool Equals(object? obj) => obj is BigIntValue other && Equals(other);
-        public bool Equals(BigIntValue other) => string.Equals(Text, other.Text);
-        public static bool operator ==(BigIntValue left, BigIntValue right) => left.Equals(right);
-        public static bool operator !=(BigIntValue left, BigIntValue right) => !left.Equals(right);
+        public new const int EntityTag = 28;
+        protected override int OnGetEntityTag() => EntityTag;
 
-        public static implicit operator BigIntValue(BigInteger value) => new BigIntValue(value.ToString());
-        public static implicit operator BigInteger(BigIntValue value) => value.Text is null ? default : BigInteger.Parse(value.Text);
-    }
-
-    public struct ComplexValue
-    {
-        public long RealBits { get; set; }
-        public long ImagBits { get; set; }
-        public ComplexValue() { }
-        public ComplexValue(long realBits, long imagBits)
+        private VersionValue? field_Value;
+        Version? IVersionNode.Value => field_Value;
+        public VersionValue? Value
         {
-            RealBits = realBits;
-            ImagBits = imagBits;
+            get => field_Value;
+            set => field_Value = value;
         }
-        public override int GetHashCode() => HashCode.Combine(RealBits, ImagBits);
-        public override bool Equals(object? obj) => obj is ComplexValue other && Equals(other);
-        public bool Equals(ComplexValue other) => other.RealBits.Equals(this.RealBits) && other.ImagBits.Equals(this.ImagBits);
-        public static bool operator ==(ComplexValue left, ComplexValue right) => left.Equals(right);
-        public static bool operator !=(ComplexValue left, ComplexValue right) => !left.Equals(right);
 
-        public static implicit operator ComplexValue(Complex value) => new ComplexValue(BitConverter.DoubleToInt64Bits(value.Real), BitConverter.DoubleToInt64Bits(value.Imaginary));
-        public static implicit operator Complex(ComplexValue value) => new Complex(BitConverter.Int64BitsToDouble(value.RealBits), BitConverter.Int64BitsToDouble(value.ImagBits));
+        public VersionNode() : base()
+        {
+        }
+
+        public VersionNode(VersionNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public VersionNode(IVersionNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public void CopyFrom(IVersionNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public bool Equals(VersionNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!Value.ValueEquals(other.Value)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is VersionNode other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Value.CalcHashUnary());
+            return hc.ToHashCode();
+        }
     }
+
 
 }

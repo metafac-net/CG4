@@ -14,6 +14,7 @@
 #pragma warning disable CS8019 // Unnecessary using directive
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
+using MetaFac.CG4.Runtime.JsonSystemText;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -4163,55 +4164,263 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonSystemText
         }
     }
 
-
-    public struct HalfValue
+    public sealed class Basic_Complex_Factory : IEntityFactory<IBasic_Complex, Basic_Complex>
     {
-        public short Value { get; set; }
-        public HalfValue() { }
-        public HalfValue(short value) => Value = value;
-        public override int GetHashCode() => HashCode.Combine(Value);
-        public override bool Equals(object? obj) => obj is HalfValue other && Equals(other);
-        public bool Equals(HalfValue other) => other.Value.Equals(Value);
-        public static bool operator ==(HalfValue left, HalfValue right) => left.Equals(right);
-        public static bool operator !=(HalfValue left, HalfValue right) => !left.Equals(right);
-
-        public static implicit operator HalfValue(Half value) => new HalfValue(BitConverter.HalfToInt16Bits(value));
-        public static implicit operator Half(HalfValue value) => BitConverter.Int16BitsToHalf(value.Value);
+        private static readonly Basic_Complex_Factory _instance = new Basic_Complex_Factory();
+        public static Basic_Complex_Factory Instance => _instance;
+        public Basic_Complex? CreateFrom(IBasic_Complex? source) => (source is null) ? null : new Basic_Complex(source);
+        public Basic_Complex Empty => new Basic_Complex();
     }
-
-    public struct BigIntValue
+    public partial class Basic_Complex : EntityBase, IBasic_Complex, IEquatable<Basic_Complex>
     {
-        public string? Text { get; set; }
-        public BigIntValue() { }
-        public BigIntValue(string? text) => Text = text;
-        public override int GetHashCode() => HashCode.Combine(Text);
-        public override bool Equals(object? obj) => obj is BigIntValue other && Equals(other);
-        public bool Equals(BigIntValue other) => string.Equals(Text, other.Text);
-        public static bool operator ==(BigIntValue left, BigIntValue right) => left.Equals(right);
-        public static bool operator !=(BigIntValue left, BigIntValue right) => !left.Equals(right);
+        public new const int EntityTag = 35;
+        protected override int OnGetEntityTag() => EntityTag;
 
-        public static implicit operator BigIntValue(BigInteger value) => new BigIntValue(value.ToString());
-        public static implicit operator BigInteger(BigIntValue value) => value.Text is null ? default : BigInteger.Parse(value.Text);
-    }
-
-    public struct ComplexValue
-    {
-        public long RealBits { get; set; }
-        public long ImagBits { get; set; }
-        public ComplexValue() { }
-        public ComplexValue(long realBits, long imagBits)
+        private ComplexValue field_ScalarRequired;
+        Complex IBasic_Complex.ScalarRequired { get => field_ScalarRequired; }
+        public ComplexValue ScalarRequired
         {
-            RealBits = realBits;
-            ImagBits = imagBits;
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = value;
         }
-        public override int GetHashCode() => HashCode.Combine(RealBits, ImagBits);
-        public override bool Equals(object? obj) => obj is ComplexValue other && Equals(other);
-        public bool Equals(ComplexValue other) => other.RealBits.Equals(this.RealBits) && other.ImagBits.Equals(this.ImagBits);
-        public static bool operator ==(ComplexValue left, ComplexValue right) => left.Equals(right);
-        public static bool operator !=(ComplexValue left, ComplexValue right) => !left.Equals(right);
+        private ComplexValue? field_ScalarOptional;
+        Complex? IBasic_Complex.ScalarOptional => field_ScalarOptional;
+        public ComplexValue? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = value;
+        }
+        private ImmutableList<ComplexValue>? field_VectorRequired;
+        IReadOnlyList<Complex>? IBasic_Complex.VectorRequired => field_VectorRequired is null
+            ? null
+            : new ListFacade<Complex, ComplexValue>(field_VectorRequired, (x) => x.ToExternal());
+        public ImmutableList<ComplexValue>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = value;
+        }
+        private ImmutableList<ComplexValue?>? field_VectorOptional;
+        IReadOnlyList<Complex?>? IBasic_Complex.VectorOptional => field_VectorOptional is null
+            ? null
+            : new ListFacade<Complex?, ComplexValue?>(field_VectorOptional, (x) => x.ToExternal());
+        public ImmutableList<ComplexValue?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = value;
+        }
+        private ImmutableDictionary<String, ComplexValue>? field_MapRequired;
+        IReadOnlyDictionary<String, Complex>? IBasic_Complex.MapRequired => field_MapRequired is null
+            ? null
+            : new DictionaryFacade<String, Complex, ComplexValue>(field_MapRequired, (x) => x.ToExternal());
+        public ImmutableDictionary<String, ComplexValue>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = value;
+        }
+        private ImmutableDictionary<String, ComplexValue?>? field_MapOptional;
+        IReadOnlyDictionary<String, Complex?>? IBasic_Complex.MapOptional => field_MapOptional is null
+            ? null
+            : new DictionaryFacade<String, Complex?, ComplexValue?>(field_MapOptional, (x) => x.ToExternal());
+        public ImmutableDictionary<String, ComplexValue?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = value;
+        }
 
-        public static implicit operator ComplexValue(Complex value) => new ComplexValue(BitConverter.DoubleToInt64Bits(value.Real), BitConverter.DoubleToInt64Bits(value.Imaginary));
-        public static implicit operator Complex(ComplexValue value) => new Complex(BitConverter.Int64BitsToDouble(value.RealBits), BitConverter.Int64BitsToDouble(value.ImagBits));
+        public Basic_Complex() : base()
+        {
+        }
+
+        public Basic_Complex(Basic_Complex? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+        }
+
+        public Basic_Complex(IBasic_Complex? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<ComplexValue>.Empty.AddRange(source.VectorRequired
+                    .Select(x => (ComplexValue)x));
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<ComplexValue?>.Empty.AddRange(source.VectorOptional
+                    .Select(x => (ComplexValue?)x));
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, ComplexValue>.Empty.AddRange(source.MapRequired
+                    .Select(x => new KeyValuePair<String, ComplexValue>(x.Key, x.Value)));
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, ComplexValue?>.Empty.AddRange(source.MapOptional
+                    .Select(x => new KeyValuePair<String, ComplexValue?>(x.Key, x.Value)));
+        }
+
+        public void CopyFrom(IBasic_Complex? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<ComplexValue>.Empty.AddRange(source.VectorRequired
+                    .Select(x => (ComplexValue)x));
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<ComplexValue?>.Empty.AddRange(source.VectorOptional
+                    .Select(x => (ComplexValue?)x));
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, ComplexValue>.Empty.AddRange(source.MapRequired
+                    .Select(x => new KeyValuePair<String, ComplexValue>(x.Key, x.Value)));
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, ComplexValue?>.Empty.AddRange(source.MapOptional
+                    .Select(x => new KeyValuePair<String, ComplexValue?>(x.Key, x.Value)));
+        }
+
+        public bool Equals(Basic_Complex? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_Complex other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            return hc.ToHashCode();
+        }
     }
+
+    public sealed class Basic_Version_Factory : IEntityFactory<IBasic_Version, Basic_Version>
+    {
+        private static readonly Basic_Version_Factory _instance = new Basic_Version_Factory();
+        public static Basic_Version_Factory Instance => _instance;
+        public Basic_Version? CreateFrom(IBasic_Version? source) => (source is null) ? null : new Basic_Version(source);
+        public Basic_Version Empty => new Basic_Version();
+    }
+    public partial class Basic_Version : EntityBase, IBasic_Version, IEquatable<Basic_Version>
+    {
+        public new const int EntityTag = 36;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private VersionValue? field_Scalar;
+        Version? IBasic_Version.Scalar => field_Scalar;
+        public VersionValue? Scalar
+        {
+            get => field_Scalar;
+            set => field_Scalar = value;
+        }
+        private ImmutableList<VersionValue?>? field_Vector;
+        IReadOnlyList<Version?>? IBasic_Version.Vector => field_Vector is null
+            ? null
+            : new ListFacade<Version?, VersionValue?>(field_Vector, (x) => x.ToExternal());
+        public ImmutableList<VersionValue?>? Vector
+        {
+            get => field_Vector;
+            set => field_Vector = value;
+        }
+        private ImmutableDictionary<String, VersionValue?>? field_MapValue;
+        IReadOnlyDictionary<String, Version?>? IBasic_Version.MapValue => field_MapValue is null
+            ? null
+            : new DictionaryFacade<String, Version?, VersionValue?>(field_MapValue, (x) => x.ToExternal());
+        public ImmutableDictionary<String, VersionValue?>? MapValue
+        {
+            get => field_MapValue;
+            set => field_MapValue = value;
+        }
+
+        public Basic_Version() : base()
+        {
+        }
+
+        public Basic_Version(Basic_Version? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Scalar = source.Scalar;
+            field_Vector = source.Vector;
+            field_MapValue = source.MapValue;
+        }
+
+        public Basic_Version(IBasic_Version? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Scalar = source.Scalar;
+            field_Vector = source.Vector is null
+                ? default
+                : ImmutableList<VersionValue?>.Empty.AddRange(source.Vector
+                    .Select(x => (VersionValue?)x));
+            field_MapValue = source.MapValue is null
+                ? default
+                : ImmutableDictionary<String, VersionValue?>.Empty.AddRange(source.MapValue
+                    .Select(x => new KeyValuePair<String, VersionValue?>(x.Key, x.Value)));
+        }
+
+        public void CopyFrom(IBasic_Version? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Scalar = source.Scalar;
+            field_Vector = source.Vector is null
+                ? default
+                : ImmutableList<VersionValue?>.Empty.AddRange(source.Vector
+                    .Select(x => (VersionValue?)x));
+            field_MapValue = source.MapValue is null
+                ? default
+                : ImmutableDictionary<String, VersionValue?>.Empty.AddRange(source.MapValue
+                    .Select(x => new KeyValuePair<String, VersionValue?>(x.Key, x.Value)));
+        }
+
+        public bool Equals(Basic_Version? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!Scalar.ValueEquals(other.Scalar)) return false;
+            if (!Vector.ArrayEquals(other.Vector)) return false;
+            if (!MapValue.IndexEquals(other.MapValue)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_Version other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Scalar.CalcHashUnary());
+            hc.Add(Vector.CalcHashArray());
+            hc.Add(MapValue.CalcHashIndex());
+            return hc.ToHashCode();
+        }
+    }
+
 
 }

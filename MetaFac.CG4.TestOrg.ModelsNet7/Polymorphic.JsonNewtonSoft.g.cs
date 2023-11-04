@@ -86,6 +86,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonNewtonSoft
                 case OctetsNode.EntityTag: return OctetsNode_Factory.Instance.CreateFrom((IOctetsNode)source);
                 case GuidNode.EntityTag: return GuidNode_Factory.Instance.CreateFrom((IGuidNode)source);
                 case DateTimeOffsetNode.EntityTag: return DateTimeOffsetNode_Factory.Instance.CreateFrom((IDateTimeOffsetNode)source);
+                case VersionNode.EntityTag: return VersionNode_Factory.Instance.CreateFrom((IVersionNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -1804,6 +1805,69 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.JsonNewtonSoft
         }
 
         public override bool Equals(object? obj) => obj is ComplexNode other && Equals(other);
+
+        public override int GetHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Value.CalcHashUnary());
+            return hc.ToHashCode();
+        }
+    }
+
+    public sealed class VersionNode_Factory : IEntityFactory<IVersionNode, VersionNode>
+    {
+        private static readonly VersionNode_Factory _instance = new VersionNode_Factory();
+        public static VersionNode_Factory Instance => _instance;
+        public VersionNode? CreateFrom(IVersionNode? source) => (source is null) ? null : new VersionNode(source);
+        public VersionNode Empty => new VersionNode();
+    }
+    public partial class VersionNode : ValueNode, IVersionNode, IEquatable<VersionNode>
+    {
+        public new const int EntityTag = 28;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Version? field_Value;
+        Version? IVersionNode.Value => field_Value;
+        public Version? Value
+        {
+            get => field_Value;
+            set => field_Value = value;
+        }
+
+        public VersionNode() : base()
+        {
+        }
+
+        public VersionNode(VersionNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public VersionNode(IVersionNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public void CopyFrom(IVersionNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public bool Equals(VersionNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
+            if (!Value.ValueEquals(other.Value)) return false;
+            return true;
+        }
+
+        public override bool Equals(object? obj) => obj is VersionNode other && Equals(other);
 
         public override int GetHashCode()
         {

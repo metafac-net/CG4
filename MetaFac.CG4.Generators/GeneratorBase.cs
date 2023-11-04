@@ -117,27 +117,19 @@ namespace MetaFac.CG4.Generators
                 ["BinaryFieldType"] = "Octets",
                 ["ConcreteBinary"] = "T_BinaryFieldType_",
                 ["ExternalBinary"] = "T_BinaryFieldType_",
-                // Half
-                ["HalfFieldType"] = "Half",
-                ["ConcreteHalf"] = "T_HalfFieldType_",
-                ["ExternalHalf"] = "T_HalfFieldType_",
-                // DateOnly
-                ["DateOnlyFieldType"] = "DateOnly",
-                ["ConcreteDateOnly"] = "T_DateOnlyFieldType_",
-                ["ExternalDateOnly"] = "T_DateOnlyFieldType_",
-                // TimeOnly
-                ["TimeOnlyFieldType"] = "TimeOnly",
-                ["ConcreteTimeOnly"] = "T_TimeOnlyFieldType_",
-                ["ExternalTimeOnly"] = "T_TimeOnlyFieldType_",
-                // BigInteger
-                ["BigIntegerFieldType"] = "BigInteger",
-                ["ConcreteBigInteger"] = "T_BigIntegerFieldType_",
-                ["ExternalBigInteger"] = "T_BigIntegerFieldType_",
-                // Complex
-                ["ComplexFieldType"] = "Complex",
-                ["ConcreteComplex"] = "T_ComplexFieldType_",
-                ["ExternalComplex"] = "T_ComplexFieldType_",
             };
+            void AddTokens(string typeName)
+            {
+                tokens[$"{typeName}FieldType"] = $"{typeName}";
+                tokens[$"Concrete{typeName}"] = $"T_{typeName}FieldType_";
+                tokens[$"External{typeName}"] = $"T_{typeName}FieldType_";
+            }
+            AddTokens("Half");
+            AddTokens("DateOnly");
+            AddTokens("TimeOnly");
+            AddTokens("BigInteger");
+            AddTokens("Complex");
+            AddTokens("Version");
             _engine.Current.SetTokens(tokens);
         }
 
@@ -209,6 +201,7 @@ namespace MetaFac.CG4.Generators
                 "time" => "T_TimeOnlyFieldType_",
                 "bigint" => "T_BigIntegerFieldType_",
                 "complex" => "T_ComplexFieldType_",
+                "version" => "T_VersionFieldType_",
                 _ => innerType,
             };
         }

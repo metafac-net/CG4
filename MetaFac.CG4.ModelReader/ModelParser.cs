@@ -152,6 +152,7 @@ namespace MetaFac.CG4.ModelReader
 #endif
             if (dataType == typeof(BigInteger)) return "bigint";
             if (dataType == typeof(Complex)) return "complex";
+            if (dataType == typeof(Version)) return "version";
             return dataType.FullName;
         }
 
@@ -251,6 +252,12 @@ namespace MetaFac.CG4.ModelReader
                 result.innerTypeName = innerType.Name;
                 return result;
             }
+            else if (proxyTypes.TryGetValue(innerType.Name, out var _))
+            {
+                // external type
+                result.innerTypeName = innerType.Name;
+                result.IsProxy = true;
+            }
             else if (innerType.IsValueType)
             {
                 // value type
@@ -290,13 +297,6 @@ namespace MetaFac.CG4.ModelReader
                             // supported value type
                             break;
                         }
-                        else if (proxyTypes.TryGetValue(innerType.Name, out var _))
-                        {
-                            // external type
-                            result.innerTypeName = innerType.Name;
-                            result.IsProxy = true;
-                            break;
-                        }
                         else
                             // unsupported value type!
                             throw new ValidationException(
@@ -305,12 +305,6 @@ namespace MetaFac.CG4.ModelReader
                                     modelName, entityTagName, new TagName(null, memberName, fieldType.FullName)));
                 }
 
-            }
-            else if (proxyTypes.TryGetValue(innerType.Name, out var _))
-            {
-                // external type
-                result.innerTypeName = innerType.Name;
-                result.IsProxy = true;
             }
             else if (innerType == typeof(string))
             {
@@ -328,6 +322,12 @@ namespace MetaFac.CG4.ModelReader
                 // buffer type
                 result.isBufferType = true;
                 innerType = typeof(Octets);
+            }
+            else if(innerType == typeof(Version))
+            {
+                // version
+                innerType = typeof(Version);
+                result.nullable = true;
             }
             else
             {

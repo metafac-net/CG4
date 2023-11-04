@@ -1271,6 +1271,78 @@
               "IndexType": "time"
             }
           ]
+        },
+        {
+          "Name": "Basic_Complex",
+          "Tag": 35,
+          "MemberDefs": [
+            {
+              "Name": "ScalarRequired",
+              "Tag": 1,
+              "InnerType": "complex"
+            },
+            {
+              "Name": "ScalarOptional",
+              "Tag": 2,
+              "InnerType": "complex",
+              "Nullable": true
+            },
+            {
+              "Name": "VectorRequired",
+              "Tag": 3,
+              "InnerType": "complex",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "VectorOptional",
+              "Tag": 4,
+              "InnerType": "complex",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapRequired",
+              "Tag": 5,
+              "InnerType": "complex",
+              "ArrayRank": 1,
+              "IndexType": "string"
+            },
+            {
+              "Name": "MapOptional",
+              "Tag": 6,
+              "InnerType": "complex",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            }
+          ]
+        },
+        {
+          "Name": "Basic_Version",
+          "Tag": 36,
+          "MemberDefs": [
+            {
+              "Name": "Scalar",
+              "Tag": 1,
+              "InnerType": "version",
+              "Nullable": true
+            },
+            {
+              "Name": "Vector",
+              "Tag": 2,
+              "InnerType": "version",
+              "Nullable": true,
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MapValue",
+              "Tag": 3,
+              "InnerType": "version",
+              "Nullable": true,
+              "ArrayRank": 1,
+              "IndexType": "string"
+            }
+          ]
         }
       ],
       "EnumTypeDefs": [

@@ -17,6 +17,7 @@
 #pragma warning disable CS8019 // Unnecessary using directive
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
+using MetaFac.CG4.Runtime.JsonSystemText;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -188,55 +189,5 @@ namespace Generated.JsonSystemText
         }
     }
 
-
-    public struct HalfValue
-    {
-        public short Value { get; set; }
-        public HalfValue() { }
-        public HalfValue(short value) => Value = value;
-        public override int GetHashCode() => HashCode.Combine(Value);
-        public override bool Equals(object? obj) => obj is HalfValue other && Equals(other);
-        public bool Equals(HalfValue other) => other.Value.Equals(Value);
-        public static bool operator ==(HalfValue left, HalfValue right) => left.Equals(right);
-        public static bool operator !=(HalfValue left, HalfValue right) => !left.Equals(right);
-
-        public static implicit operator HalfValue(Half value) => new HalfValue(BitConverter.HalfToInt16Bits(value));
-        public static implicit operator Half(HalfValue value) => BitConverter.Int16BitsToHalf(value.Value);
-    }
-
-    public struct BigIntValue
-    {
-        public string? Text { get; set; }
-        public BigIntValue() { }
-        public BigIntValue(string? text) => Text = text;
-        public override int GetHashCode() => HashCode.Combine(Text);
-        public override bool Equals(object? obj) => obj is BigIntValue other && Equals(other);
-        public bool Equals(BigIntValue other) => string.Equals(Text, other.Text);
-        public static bool operator ==(BigIntValue left, BigIntValue right) => left.Equals(right);
-        public static bool operator !=(BigIntValue left, BigIntValue right) => !left.Equals(right);
-
-        public static implicit operator BigIntValue(BigInteger value) => new BigIntValue(value.ToString());
-        public static implicit operator BigInteger(BigIntValue value) => value.Text is null ? default : BigInteger.Parse(value.Text);
-    }
-
-    public struct ComplexValue
-    {
-        public long RealBits { get; set; }
-        public long ImagBits { get; set; }
-        public ComplexValue() { }
-        public ComplexValue(long realBits, long imagBits)
-        {
-            RealBits = realBits;
-            ImagBits = imagBits;
-        }
-        public override int GetHashCode() => HashCode.Combine(RealBits, ImagBits);
-        public override bool Equals(object? obj) => obj is ComplexValue other && Equals(other);
-        public bool Equals(ComplexValue other) => other.RealBits.Equals(this.RealBits) && other.ImagBits.Equals(this.ImagBits);
-        public static bool operator ==(ComplexValue left, ComplexValue right) => left.Equals(right);
-        public static bool operator !=(ComplexValue left, ComplexValue right) => !left.Equals(right);
-
-        public static implicit operator ComplexValue(Complex value) => new ComplexValue(BitConverter.DoubleToInt64Bits(value.Real), BitConverter.DoubleToInt64Bits(value.Imaginary));
-        public static implicit operator Complex(ComplexValue value) => new Complex(BitConverter.Int64BitsToDouble(value.RealBits), BitConverter.Int64BitsToDouble(value.ImagBits));
-    }
 
 }

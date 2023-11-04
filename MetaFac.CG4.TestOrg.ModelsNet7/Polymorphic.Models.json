@@ -327,6 +327,19 @@
               "InnerType": "complex"
             }
           ]
+        },
+        {
+          "Name": "VersionNode",
+          "Tag": 28,
+          "ParentName": "ValueNode",
+          "MemberDefs": [
+            {
+              "Name": "Value",
+              "Tag": 3,
+              "InnerType": "version",
+              "Nullable": true
+            }
+          ]
         }
       ],
       "EnumTypeDefs": [

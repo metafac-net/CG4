@@ -2735,6 +2735,188 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         }
     }
 
+    public sealed class Basic_Complex_Factory : IEntityFactory<IBasic_Complex, Basic_Complex>
+    {
+        private static readonly Basic_Complex_Factory _instance = new Basic_Complex_Factory();
+        public static Basic_Complex_Factory Instance => _instance;
+
+        public Basic_Complex? CreateFrom(IBasic_Complex? source)
+        {
+            if (source is null) return null;
+            if (source is Basic_Complex thisEntity) return thisEntity;
+            return new Basic_Complex(source);
+        }
+
+        private static readonly Basic_Complex _empty = new Basic_Complex();
+        public Basic_Complex Empty => _empty;
+    }
+    public partial record Basic_Complex : EntityBase, IBasic_Complex
+    {
+        public new const int EntityTag = 35;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Complex ScalarRequired { get; init; }
+        Complex IBasic_Complex.ScalarRequired => ScalarRequired;
+        public Complex? ScalarOptional { get; init; }
+        Complex? IBasic_Complex.ScalarOptional => ScalarOptional;
+        public ImmutableList<Complex>? VectorRequired { get; init; }
+        IReadOnlyList<Complex>? IBasic_Complex.VectorRequired => VectorRequired;
+        public ImmutableList<Complex?>? VectorOptional { get; init; }
+        IReadOnlyList<Complex?>? IBasic_Complex.VectorOptional => VectorOptional;
+        public ImmutableDictionary<String, Complex>? MapRequired { get; init; }
+        IReadOnlyDictionary<String, Complex>? IBasic_Complex.MapRequired => MapRequired;
+        public ImmutableDictionary<String, Complex?>? MapOptional { get; init; }
+        IReadOnlyDictionary<String, Complex?>? IBasic_Complex.MapOptional => MapOptional;
+
+        public Basic_Complex() : base()
+        {
+        }
+
+        public Basic_Complex(Basic_Complex? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired;
+            VectorOptional = source.VectorOptional;
+            MapRequired = source.MapRequired;
+            MapOptional = source.MapOptional;
+        }
+
+        public Basic_Complex(IBasic_Complex? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            ScalarRequired = source.ScalarRequired;
+            ScalarOptional = source.ScalarOptional;
+            VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Complex>.Empty.AddRange(source.VectorRequired);
+            VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Complex?>.Empty.AddRange(source.VectorOptional);
+            MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Complex>.Empty.AddRange(source.MapRequired);
+            MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Complex?>.Empty.AddRange(source.MapOptional);
+        }
+
+        public virtual bool Equals(Basic_Complex? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class Basic_Version_Factory : IEntityFactory<IBasic_Version, Basic_Version>
+    {
+        private static readonly Basic_Version_Factory _instance = new Basic_Version_Factory();
+        public static Basic_Version_Factory Instance => _instance;
+
+        public Basic_Version? CreateFrom(IBasic_Version? source)
+        {
+            if (source is null) return null;
+            if (source is Basic_Version thisEntity) return thisEntity;
+            return new Basic_Version(source);
+        }
+
+        private static readonly Basic_Version _empty = new Basic_Version();
+        public Basic_Version Empty => _empty;
+    }
+    public partial record Basic_Version : EntityBase, IBasic_Version
+    {
+        public new const int EntityTag = 36;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Version? Scalar { get; init; }
+        Version? IBasic_Version.Scalar => Scalar;
+        public ImmutableList<Version?>? Vector { get; init; }
+        IReadOnlyList<Version?>? IBasic_Version.Vector => Vector;
+        public ImmutableDictionary<String, Version?>? MapValue { get; init; }
+        IReadOnlyDictionary<String, Version?>? IBasic_Version.MapValue => MapValue;
+
+        public Basic_Version() : base()
+        {
+        }
+
+        public Basic_Version(Basic_Version? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Scalar = source.Scalar;
+            Vector = source.Vector;
+            MapValue = source.MapValue;
+        }
+
+        public Basic_Version(IBasic_Version? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Scalar = source.Scalar;
+            Vector = source.Vector is null
+                ? default
+                : ImmutableList<Version?>.Empty.AddRange(source.Vector);
+            MapValue = source.MapValue is null
+                ? default
+                : ImmutableDictionary<String, Version?>.Empty.AddRange(source.MapValue);
+        }
+
+        public virtual bool Equals(Basic_Version? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Scalar.ValueEquals(other.Scalar)) return false;
+            if (!Vector.ArrayEquals(other.Vector)) return false;
+            if (!MapValue.IndexEquals(other.MapValue)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Scalar.CalcHashUnary());
+            hc.Add(Vector.CalcHashArray());
+            hc.Add(MapValue.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
 
 
 }

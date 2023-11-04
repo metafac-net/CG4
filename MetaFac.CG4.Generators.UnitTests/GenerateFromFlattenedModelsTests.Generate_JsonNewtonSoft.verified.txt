@@ -306,6 +306,15 @@ namespace Generated.JsonNewtonSoft
             get => field_Complexes;
             set => field_Complexes = value;
         }
+        private ImmutableList<Version?>? field_Versions;
+        IReadOnlyList<Version?>? IBuiltinTypes.Versions => field_Versions is null 
+            ? null
+            : new ListFacade<Version?, Version?>(field_Versions, (x) => x);
+        public ImmutableList<Version?>? Versions
+        {
+            get => field_Versions;
+            set => field_Versions = value;
+        }
 
         public BuiltinTypes() : base()
         {
@@ -342,6 +351,7 @@ namespace Generated.JsonNewtonSoft
             field_Times = source.Times;
             field_BigInts = source.BigInts;
             field_Complexes = source.Complexes;
+            field_Versions = source.Versions;
         }
 
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
@@ -457,6 +467,10 @@ namespace Generated.JsonNewtonSoft
                 ? default
                 : ImmutableList<Complex>.Empty.AddRange(source.Complexes
                     .Select(x => (Complex)x));
+            field_Versions = source.Versions is null
+                ? default
+                : ImmutableList<Version?>.Empty.AddRange(source.Versions
+                    .Select(x => (Version?)x));
         }
 
         public void CopyFrom(IBuiltinTypes? source)
@@ -573,6 +587,10 @@ namespace Generated.JsonNewtonSoft
                 ? default
                 : ImmutableList<Complex>.Empty.AddRange(source.Complexes
                     .Select(x => (Complex)x));
+            field_Versions = source.Versions is null
+                ? default
+                : ImmutableList<Version?>.Empty.AddRange(source.Versions
+                    .Select(x => (Version?)x));
         }
 
         public bool Equals(BuiltinTypes? other)
@@ -608,6 +626,7 @@ namespace Generated.JsonNewtonSoft
             if (!Times.ArrayEquals(other.Times)) return false;
             if (!BigInts.ArrayEquals(other.BigInts)) return false;
             if (!Complexes.ArrayEquals(other.Complexes)) return false;
+            if (!Versions.ArrayEquals(other.Versions)) return false;
             return true;
         }
 
@@ -645,6 +664,7 @@ namespace Generated.JsonNewtonSoft
             hc.Add(Times.CalcHashArray());
             hc.Add(BigInts.CalcHashArray());
             hc.Add(Complexes.CalcHashArray());
+            hc.Add(Versions.CalcHashArray());
             return hc.ToHashCode();
         }
     }

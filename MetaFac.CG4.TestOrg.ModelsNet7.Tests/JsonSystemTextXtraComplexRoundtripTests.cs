@@ -1,4 +1,5 @@
 using FluentAssertions;
+using MetaFac.CG4.TestOrg.Common;
 
 namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
 {

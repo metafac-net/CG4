@@ -2,6 +2,7 @@
 using MetaFac.Memory;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
 {
@@ -310,5 +311,24 @@ namespace MetaFac.CG4.TestOrg.Schema.BasicTypes
         [Member(7)] public Dictionary<TimeOnly, string?>? MapKey { get; }
     }
 #endif
+
+    [Entity(35)]
+    public class Basic_Complex
+    {
+        [Member(1)] public Complex ScalarRequired { get; }
+        [Member(2)] public Complex? ScalarOptional { get; }
+        [Member(3)] public Complex[]? VectorRequired { get; }
+        [Member(4)] public Complex?[]? VectorOptional { get; }
+        [Member(5)] public Dictionary<string, Complex>? MapRequired { get; }
+        [Member(6)] public Dictionary<string, Complex?>? MapOptional { get; }
+    }
+
+    [Entity(36)]
+    public class Basic_Version
+    {
+        [Member(1)] public Version? Scalar { get; }
+        [Member(2)] public Version?[]? Vector { get; }
+        [Member(3)] public Dictionary<string, Version?>? MapValue { get; }
+    }
 
 }

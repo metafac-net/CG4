@@ -2,10 +2,12 @@
 using LabApps.Units;
 using MessagePack;
 using MetaFac.CG4.Runtime;
+using MetaFac.CG4.TestOrg.Common;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
 using MetaFac.Memory;
 using System;
 using System.Collections.Immutable;
+using System.Numerics;
 using System.Text;
 using Xunit;
 
@@ -578,6 +580,9 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData("-1")]
         [InlineData("min")]
         [InlineData("max")]
+        [InlineData("eps")]
+        [InlineData("posinf")]
+        [InlineData("neginf")]
         [InlineData(null)]
         public void RoundtripValues_Half(string? input)
         {
@@ -586,6 +591,9 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 null => null,
                 "min" => Half.MinValue,
                 "max" => Half.MaxValue,
+                "eps" => Half.Epsilon,
+                "posinf" => Half.PositiveInfinity,
+                "neginf" => Half.NegativeInfinity,
                 _ => Half.Parse(input)
             };
             var origFactory = BasicTypes.RecordsV2.Basic_Half_Factory.Instance;
@@ -650,6 +658,60 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 ScalarOptional = value,
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, TimeOnly?>.Empty.Add("key", value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+        }
+
+        [Theory]
+        [InlineData("0")]
+        [InlineData("1")]
+        [InlineData("-1")]
+        [InlineData("i")]
+        [InlineData("nan")]
+        [InlineData("inf")]
+        [InlineData(null)]
+        public void RoundtripValues_Complex(string? input)
+        {
+            Complex? value = input switch
+            {
+                null => null,
+                "i" => Complex.ImaginaryOne,
+                "nan" => Complex.NaN,
+                "inf" => Complex.Infinity,
+                _ => new Complex(double.Parse(input), 0.0)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_Complex_Factory.Instance;
+            var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Complex_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_Complex_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_Complex()
+            {
+                ScalarOptional = value,
+                VectorOptional = ImmutableList.Create(value),
+                MapOptional = ImmutableDictionary<string, Complex?>.Empty.Add("key", value)
+            };
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+        }
+
+        [Theory]
+        [InlineData("1.0")]
+        [InlineData("1.2.3")]
+        [InlineData("1.2.3.4")]
+        [InlineData(null)]
+        public void RoundtripValues_Version(string? input)
+        {
+            Version? value = input switch
+            {
+                null => null,
+                _ => Version.Parse(input)
+            };
+            var origFactory = BasicTypes.RecordsV2.Basic_Version_Factory.Instance;
+            var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Version_Factory.Instance;
+            var msgpFactory = BasicTypes.MessagePack.Basic_Version_Factory.Instance;
+            var original = new BasicTypes.RecordsV2.Basic_Version()
+            {
+                Scalar = value,
+                Vector = ImmutableList.Create<Version?>(value),
+                MapValue = ImmutableDictionary<string, Version?>.Empty.Add("key", value)
             };
             RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
         }

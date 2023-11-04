@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using MessagePack;
-using MetaFac.CG4.TestOrg.Constants;
+using MetaFac.CG4.TestOrg.Common;
 using MetaFac.Memory;
 using System;
 using System.Numerics;
@@ -40,6 +40,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 BuiltinValueKind.Custom => new Polymorphic.RecordsV2.CustomNode() { Id = 1, Name = "Id1", CustomValue = Polymorphic.Contracts.CustomEnum.Value1 },
                 BuiltinValueKind.BigInteger => new Polymorphic.RecordsV2.BigIntNode() { Id = 1, Name = "Id1", Value = BigInteger.MinusOne },
                 BuiltinValueKind.Complex => new Polymorphic.RecordsV2.ComplexNode() { Id = 1, Name = "Id1", Value = Complex.ImaginaryOne },
+                BuiltinValueKind.Version => new Polymorphic.RecordsV2.VersionNode() { Id = 1, Name = "Id1", Value = new Version(1,2,3,4) },
                 _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
             };
         }
@@ -70,6 +71,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         [InlineData(BuiltinValueKind.Custom)]
         [InlineData(BuiltinValueKind.BigInteger)]
         [InlineData(BuiltinValueKind.Complex)]
+        [InlineData(BuiltinValueKind.Version)]
         public void RoundtripPolymorphicNode(BuiltinValueKind kind)
         {
             Polymorphic.Contracts.IValueNode value = CreateValue(kind);

@@ -301,6 +301,13 @@ namespace Generated.ClassesV2
             get => field_Complexes;
             set => field_Complexes = CheckNotFrozen(ref value);
         }
+        private ImmutableList<Version?>? field_Versions;
+        IReadOnlyList<Version?>? IBuiltinTypes.Versions => field_Versions;
+        public ImmutableList<Version?>? Versions
+        {
+            get => field_Versions;
+            set => field_Versions = CheckNotFrozen(ref value);
+        }
 
         public BuiltinTypes() : base()
         {
@@ -337,6 +344,7 @@ namespace Generated.ClassesV2
             field_Times = source.Times;
             field_BigInts = source.BigInts;
             field_Complexes = source.Complexes;
+            field_Versions = source.Versions;
         }
 
         public BuiltinTypes(IBuiltinTypes? source) : base(source)
@@ -426,6 +434,9 @@ namespace Generated.ClassesV2
             field_Complexes = source.Complexes is null
                 ? default
                 : ImmutableList<Complex>.Empty.AddRange(source.Complexes);
+            field_Versions = source.Versions is null
+                ? default
+                : ImmutableList<Version?>.Empty.AddRange(source.Versions);
         }
 
         public void CopyFrom(IBuiltinTypes? source)
@@ -517,6 +528,9 @@ namespace Generated.ClassesV2
             field_Complexes = source.Complexes is null
                 ? default
                 : ImmutableList<Complex>.Empty.AddRange(source.Complexes);
+            field_Versions = source.Versions is null
+                ? default
+                : ImmutableList<Version?>.Empty.AddRange(source.Versions);
         }
 
         public virtual bool Equals(BuiltinTypes? other)
@@ -551,6 +565,7 @@ namespace Generated.ClassesV2
             if (!Times.ArrayEquals(other.Times)) return false;
             if (!BigInts.ArrayEquals(other.BigInts)) return false;
             if (!Complexes.ArrayEquals(other.Complexes)) return false;
+            if (!Versions.ArrayEquals(other.Versions)) return false;
             return base.Equals(other);
         }
 
@@ -587,6 +602,7 @@ namespace Generated.ClassesV2
             hc.Add(Times.CalcHashArray());
             hc.Add(BigInts.CalcHashArray());
             hc.Add(Complexes.CalcHashArray());
+            hc.Add(Versions.CalcHashArray());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

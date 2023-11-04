@@ -270,4 +270,19 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.Contracts
         IReadOnlyDictionary<String, TimeOnly?>? MapOptional { get; }
         IReadOnlyDictionary<TimeOnly, String?>? MapKey { get; }
     }
+    public partial interface IBasic_Complex : IEntityBase
+    {
+        Complex ScalarRequired { get; }
+        Complex? ScalarOptional { get; }
+        IReadOnlyList<Complex>? VectorRequired { get; }
+        IReadOnlyList<Complex?>? VectorOptional { get; }
+        IReadOnlyDictionary<String, Complex>? MapRequired { get; }
+        IReadOnlyDictionary<String, Complex?>? MapOptional { get; }
+    }
+    public partial interface IBasic_Version : IEntityBase
+    {
+        Version? Scalar { get; }
+        IReadOnlyList<Version?>? Vector { get; }
+        IReadOnlyDictionary<String, Version?>? MapValue { get; }
+    }
 }

@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MetaFac.CG4.TestOrg.Constants\MetaFac.CG4.TestOrg.Constants.csproj" />
+      <ProjectReference Include="..\MetaFac.CG4.TestOrg.Constants\MetaFac.CG4.TestOrg.Common.csproj" />
       <ProjectReference Include="..\MetaFac.CG4.TestOrg.Models\MetaFac.CG4.TestOrg.Models.csproj" />
     </ItemGroup>
 

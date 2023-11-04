@@ -105,6 +105,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
     [Union(OctetsNode.EntityTag, typeof(OctetsNode))]
     [Union(GuidNode.EntityTag, typeof(GuidNode))]
     [Union(DateTimeOffsetNode.EntityTag, typeof(DateTimeOffsetNode))]
+    [Union(VersionNode.EntityTag, typeof(VersionNode))]
     public abstract partial class ValueNode
     {
     }
@@ -145,6 +146,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
                 case OctetsNode.EntityTag: return OctetsNode_Factory.Instance.CreateFrom((IOctetsNode)source);
                 case GuidNode.EntityTag: return GuidNode_Factory.Instance.CreateFrom((IGuidNode)source);
                 case DateTimeOffsetNode.EntityTag: return DateTimeOffsetNode_Factory.Instance.CreateFrom((IDateTimeOffsetNode)source);
+                case VersionNode.EntityTag: return VersionNode_Factory.Instance.CreateFrom((IVersionNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -2958,6 +2960,110 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.MessagePack
         public override bool Equals(object? obj)
         {
             return obj is ComplexNode other && Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(field_Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+
+    }
+
+    public sealed class VersionNode_Factory : IEntityFactory<IVersionNode, VersionNode>
+    {
+        private static readonly VersionNode_Factory _instance = new VersionNode_Factory();
+        public static VersionNode_Factory Instance => _instance;
+
+        public VersionNode? CreateFrom(IVersionNode? source)
+        {
+            if (source is null) return null;
+            if (source is VersionNode sibling && sibling.IsFrozen()) return sibling;
+            return new VersionNode(source);
+        }
+
+        private static readonly VersionNode _empty = new VersionNode().Frozen();
+        public VersionNode Empty => _empty;
+    }
+    [MessagePackObject]
+    public partial class VersionNode : ValueNode, IVersionNode, IEquatable<VersionNode>, ICopyFrom<VersionNode>
+    {
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 28;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        // ---------- private fields ----------
+        private Version? field_Value;
+
+        // ---------- accessors ----------
+        [Key(3)]
+        public Version? Value
+        {
+            get => field_Value;
+            set => field_Value = CheckNotFrozen(ref value);
+        }
+
+        // ---------- IVersionNode methods ----------
+        Version? IVersionNode.Value => field_Value.ToExternal();
+
+        public VersionNode()
+        {
+        }
+
+        public VersionNode(VersionNode source) : base(source)
+        {
+            field_Value = source.field_Value;
+        }
+
+        public void CopyFrom(VersionNode source)
+        {
+            base.CopyFrom(source);
+            field_Value = source.field_Value;
+        }
+
+        public VersionNode(IVersionNode source) : base(source)
+        {
+            field_Value = source.Value.ToInternal();
+        }
+
+        public bool Equals(VersionNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!field_Value.ValueEquals(other.field_Value)) return false;
+            return base.Equals(other);
+        }
+
+        public static bool operator ==(VersionNode left, VersionNode right)
+        {
+            if (left is null) return (right is null);
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(VersionNode left, VersionNode right)
+        {
+            if (left is null) return !(right is null);
+            return !left.Equals(right);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is VersionNode other && Equals(other);
         }
 
         private int CalcHashCode()

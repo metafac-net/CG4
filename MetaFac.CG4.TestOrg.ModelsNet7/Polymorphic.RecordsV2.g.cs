@@ -83,6 +83,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
                 case OctetsNode.EntityTag: return OctetsNode_Factory.Instance.CreateFrom((IOctetsNode)source);
                 case GuidNode.EntityTag: return GuidNode_Factory.Instance.CreateFrom((IGuidNode)source);
                 case DateTimeOffsetNode.EntityTag: return DateTimeOffsetNode_Factory.Instance.CreateFrom((IDateTimeOffsetNode)source);
+                case VersionNode.EntityTag: return VersionNode_Factory.Instance.CreateFrom((IVersionNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -1799,6 +1800,70 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         }
 
         public virtual bool Equals(ComplexNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Value.ValueEquals(other.Value)) return false;
+            return base.Equals(other);
+        }
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public sealed class VersionNode_Factory : IEntityFactory<IVersionNode, VersionNode>
+    {
+        private static readonly VersionNode_Factory _instance = new VersionNode_Factory();
+        public static VersionNode_Factory Instance => _instance;
+
+        public VersionNode? CreateFrom(IVersionNode? source)
+        {
+            if (source is null) return null;
+            if (source is VersionNode thisEntity) return thisEntity;
+            return new VersionNode(source);
+        }
+
+        private static readonly VersionNode _empty = new VersionNode();
+        public VersionNode Empty => _empty;
+    }
+    public partial record VersionNode : ValueNode, IVersionNode
+    {
+        public new const int EntityTag = 28;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        public Version? Value { get; init; }
+        Version? IVersionNode.Value => Value;
+
+        public VersionNode() : base()
+        {
+        }
+
+        public VersionNode(VersionNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Value = source.Value;
+        }
+
+        public VersionNode(IVersionNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            Value = source.Value;
+        }
+
+        public virtual bool Equals(VersionNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;

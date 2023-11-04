@@ -97,5 +97,5 @@ namespace MetaFac.CG4.TestOrg.Schema.Polymorphic
     [Entity(25)] public class DateTimeOffsetNode : ValueNode { [Member(3)] public DateTimeOffset DateTimeOffsetValue { get; set; } }
     [Entity(26)] public class BigIntNode : NumericNode { [Member(3)] public BigInteger Value { get; set; } }
     [Entity(27)] public class ComplexNode : NumericNode { [Member(3)] public Complex Value { get; set; } }
-
+    [Entity(28)] public class VersionNode : ValueNode { [Member(3)] public Version? Value { get; set; } }
 }

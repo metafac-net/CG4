@@ -1,4 +1,10 @@
-﻿namespace MetaFac.CG4.TestOrg.Constants
+﻿using Newtonsoft.Json;
+using System.IO;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using System.Xml;
+
+namespace MetaFac.CG4.TestOrg.Common
 {
     public enum BuiltinValueKind
     {
@@ -26,8 +32,7 @@
         TimeOnly,
         Custom,
         BigInteger,
-        Complex
-        // todo
-        // Version
+        Complex,
+        Version
     }
 }

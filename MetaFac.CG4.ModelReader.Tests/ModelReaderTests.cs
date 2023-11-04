@@ -261,7 +261,7 @@ namespace MetaFac.CG4.ModelReader.Tests
             });
             ex.Should().NotBeNull();
             ex.Should().BeOfType<ValidationException>();
-            ex.Message.Should().Be("Model1.InvalidEntity2.MyVersion(): Unknown field type: System.Version");
+            ex.Message.Should().Be("Model1.InvalidEntity2.MyType(): Unknown field type: System.Type");
         }
 
         [Fact]

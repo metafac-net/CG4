@@ -4790,4 +4790,316 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.ClassesV2
         }
     }
 
+    public partial class Basic_Complex
+    {
+        public static Basic_Complex? CreateFrom(IBasic_Complex? source)
+        {
+            if (source is null) return null;
+            if (source is Basic_Complex thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new Basic_Complex(source);
+        }
+
+        private static Basic_Complex CreateEmpty()
+        {
+            var empty = new Basic_Complex();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_Complex _empty = CreateEmpty();
+        public static new Basic_Complex Empty => _empty;
+
+    }
+    public partial class Basic_Complex : EntityBase, IBasic_Complex, IEquatable<Basic_Complex>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 35;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Complex field_ScalarRequired;
+        Complex IBasic_Complex.ScalarRequired => field_ScalarRequired;
+        public Complex ScalarRequired
+        {
+            get => field_ScalarRequired;
+            set => field_ScalarRequired = CheckNotFrozen(ref value);
+        }
+        private Complex? field_ScalarOptional;
+        Complex? IBasic_Complex.ScalarOptional => field_ScalarOptional;
+        public Complex? ScalarOptional
+        {
+            get => field_ScalarOptional;
+            set => field_ScalarOptional = CheckNotFrozen(ref value);
+        }
+        private ImmutableList<Complex>? field_VectorRequired;
+        IReadOnlyList<Complex>? IBasic_Complex.VectorRequired => field_VectorRequired;
+        public ImmutableList<Complex>? VectorRequired
+        {
+            get => field_VectorRequired;
+            set => field_VectorRequired = CheckNotFrozen(ref value);
+        }
+        private ImmutableList<Complex?>? field_VectorOptional;
+        IReadOnlyList<Complex?>? IBasic_Complex.VectorOptional => field_VectorOptional;
+        public ImmutableList<Complex?>? VectorOptional
+        {
+            get => field_VectorOptional;
+            set => field_VectorOptional = CheckNotFrozen(ref value);
+        }
+        private ImmutableDictionary<String, Complex>? field_MapRequired;
+        IReadOnlyDictionary<String, Complex>? IBasic_Complex.MapRequired => MapRequired;
+        public ImmutableDictionary<String, Complex>? MapRequired
+        {
+            get => field_MapRequired;
+            set => field_MapRequired = CheckNotFrozen(ref value);
+        }
+        private ImmutableDictionary<String, Complex?>? field_MapOptional;
+        IReadOnlyDictionary<String, Complex?>? IBasic_Complex.MapOptional => field_MapOptional;
+        public ImmutableDictionary<String, Complex?>? MapOptional
+        {
+            get => field_MapOptional;
+            set => field_MapOptional = CheckNotFrozen(ref value);
+        }
+
+        public Basic_Complex() : base()
+        {
+        }
+
+        public Basic_Complex(Basic_Complex? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired;
+            field_VectorOptional = source.VectorOptional;
+            field_MapRequired = source.MapRequired;
+            field_MapOptional = source.MapOptional;
+        }
+
+        public Basic_Complex(IBasic_Complex? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Complex>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Complex?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Complex>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Complex?>.Empty.AddRange(source.MapOptional);
+        }
+
+        public void CopyFrom(IBasic_Complex? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_ScalarRequired = source.ScalarRequired;
+            field_ScalarOptional = source.ScalarOptional;
+            field_VectorRequired = source.VectorRequired is null
+                ? default
+                : ImmutableList<Complex>.Empty.AddRange(source.VectorRequired);
+            field_VectorOptional = source.VectorOptional is null
+                ? default
+                : ImmutableList<Complex?>.Empty.AddRange(source.VectorOptional);
+            field_MapRequired = source.MapRequired is null
+                ? default
+                : ImmutableDictionary<String, Complex>.Empty.AddRange(source.MapRequired);
+            field_MapOptional = source.MapOptional is null
+                ? default
+                : ImmutableDictionary<String, Complex?>.Empty.AddRange(source.MapOptional);
+        }
+
+        public virtual bool Equals(Basic_Complex? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!ScalarRequired.ValueEquals(other.ScalarRequired)) return false;
+            if (!ScalarOptional.ValueEquals(other.ScalarOptional)) return false;
+            if (!VectorRequired.ArrayEquals(other.VectorRequired)) return false;
+            if (!VectorOptional.ArrayEquals(other.VectorOptional)) return false;
+            if (!MapRequired.IndexEquals(other.MapRequired)) return false;
+            if (!MapOptional.IndexEquals(other.MapOptional)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_Complex other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(ScalarRequired.CalcHashUnary());
+            hc.Add(ScalarOptional.CalcHashUnary());
+            hc.Add(VectorRequired.CalcHashArray());
+            hc.Add(VectorOptional.CalcHashArray());
+            hc.Add(MapRequired.CalcHashIndex());
+            hc.Add(MapOptional.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class Basic_Version
+    {
+        public static Basic_Version? CreateFrom(IBasic_Version? source)
+        {
+            if (source is null) return null;
+            if (source is Basic_Version thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new Basic_Version(source);
+        }
+
+        private static Basic_Version CreateEmpty()
+        {
+            var empty = new Basic_Version();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly Basic_Version _empty = CreateEmpty();
+        public static new Basic_Version Empty => _empty;
+
+    }
+    public partial class Basic_Version : EntityBase, IBasic_Version, IEquatable<Basic_Version>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 36;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Version? field_Scalar;
+        Version? IBasic_Version.Scalar => field_Scalar;
+        public Version? Scalar
+        {
+            get => field_Scalar;
+            set => field_Scalar = CheckNotFrozen(ref value);
+        }
+        private ImmutableList<Version?>? field_Vector;
+        IReadOnlyList<Version?>? IBasic_Version.Vector => field_Vector;
+        public ImmutableList<Version?>? Vector
+        {
+            get => field_Vector;
+            set => field_Vector = CheckNotFrozen(ref value);
+        }
+        private ImmutableDictionary<String, Version?>? field_MapValue;
+        IReadOnlyDictionary<String, Version?>? IBasic_Version.MapValue => field_MapValue;
+        public ImmutableDictionary<String, Version?>? MapValue
+        {
+            get => field_MapValue;
+            set => field_MapValue = CheckNotFrozen(ref value);
+        }
+
+        public Basic_Version() : base()
+        {
+        }
+
+        public Basic_Version(Basic_Version? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Scalar = source.Scalar;
+            field_Vector = source.Vector;
+            field_MapValue = source.MapValue;
+        }
+
+        public Basic_Version(IBasic_Version? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Scalar = source.Scalar;
+            field_Vector = source.Vector is null
+                ? default
+                : ImmutableList<Version?>.Empty.AddRange(source.Vector);
+            field_MapValue = source.MapValue is null
+                ? default
+                : ImmutableDictionary<String, Version?>.Empty.AddRange(source.MapValue);
+        }
+
+        public void CopyFrom(IBasic_Version? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_Scalar = source.Scalar;
+            field_Vector = source.Vector is null
+                ? default
+                : ImmutableList<Version?>.Empty.AddRange(source.Vector);
+            field_MapValue = source.MapValue is null
+                ? default
+                : ImmutableDictionary<String, Version?>.Empty.AddRange(source.MapValue);
+        }
+
+        public virtual bool Equals(Basic_Version? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Scalar.ValueEquals(other.Scalar)) return false;
+            if (!Vector.ArrayEquals(other.Vector)) return false;
+            if (!MapValue.IndexEquals(other.MapValue)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is Basic_Version other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Scalar.CalcHashUnary());
+            hc.Add(Vector.CalcHashArray());
+            hc.Add(MapValue.CalcHashIndex());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
 }

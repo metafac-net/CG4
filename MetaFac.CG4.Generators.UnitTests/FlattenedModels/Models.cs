@@ -49,5 +49,6 @@ namespace MetaFac.CG4.Generators.UnitTests.FlattenedModels
         [Member(26)] TimeOnly[]? Times { get; }
         [Member(27)] BigInteger[]? BigInts { get; }
         [Member(28)] Complex[]? Complexes { get; }
+        [Member(29)] Version[]? Versions { get; }
     }
 }

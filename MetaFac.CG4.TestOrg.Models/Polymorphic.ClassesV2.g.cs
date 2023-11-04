@@ -94,6 +94,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.ClassesV2
                 case OctetsNode.EntityTag: return OctetsNode.CreateFrom((IOctetsNode)source);
                 case GuidNode.EntityTag: return GuidNode.CreateFrom((IGuidNode)source);
                 case DateTimeOffsetNode.EntityTag: return DateTimeOffsetNode.CreateFrom((IDateTimeOffsetNode)source);
+                case VersionNode.EntityTag: return VersionNode.CreateFrom((IVersionNode)source);
                 default:
                     throw new InvalidOperationException($"Unable to create {typeof(ValueNode)} from {source.GetType().Name}");
             }
@@ -2825,6 +2826,108 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.ClassesV2
         }
 
         public override bool Equals(object? obj) => obj is ComplexNode other && Equals(other);
+
+        private int CalcHashCode()
+        {
+            HashCode hc = new HashCode();
+            hc.Add(Value.CalcHashUnary());
+            hc.Add(base.GetHashCode());
+            return hc.ToHashCode();
+        }
+
+        private int? _hashCode = null;
+        public override int GetHashCode()
+        {
+            if (!_isFrozen) return CalcHashCode();
+            if (_hashCode is null)
+                _hashCode = CalcHashCode();
+            return _hashCode.Value;
+        }
+    }
+
+    public partial class VersionNode
+    {
+        public static VersionNode? CreateFrom(IVersionNode? source)
+        {
+            if (source is null) return null;
+            if (source is VersionNode thisEntity && thisEntity._isFrozen) return thisEntity;
+            return new VersionNode(source);
+        }
+
+        private static VersionNode CreateEmpty()
+        {
+            var empty = new VersionNode();
+            empty.Freeze();
+            return empty;
+        }
+        private static readonly VersionNode _empty = CreateEmpty();
+        public static new VersionNode Empty => _empty;
+
+    }
+    public partial class VersionNode : ValueNode, IVersionNode, IEquatable<VersionNode>
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void ThrowIsReadonly()
+        {
+            throw new InvalidOperationException("Cannot set properties when frozen");
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ref T CheckNotFrozen<T>(ref T value)
+        {
+            if (_isFrozen) ThrowIsReadonly();
+            return ref value;
+        }
+
+        protected override void OnFreeze()
+        {
+            base.OnFreeze();
+        }
+
+        public new const int EntityTag = 28;
+        protected override int OnGetEntityTag() => EntityTag;
+
+        private Version? field_Value;
+        Version? IVersionNode.Value => field_Value;
+        public Version? Value
+        {
+            get => field_Value;
+            set => field_Value = CheckNotFrozen(ref value);
+        }
+
+        public VersionNode() : base()
+        {
+        }
+
+        public VersionNode(VersionNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public VersionNode(IVersionNode? source) : base(source)
+        {
+            if (source is null) throw new ArgumentNullException(nameof(source));
+            field_Value = source.Value;
+        }
+
+        public void CopyFrom(IVersionNode? source)
+        {
+            if (source is null) return;
+            if (_isFrozen) ThrowIsReadonly();
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public virtual bool Equals(VersionNode? other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(other, this)) return true;
+            if (!Value.ValueEquals(other.Value)) return false;
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object? obj) => obj is VersionNode other && Equals(other);
 
         private int CalcHashCode()
         {
