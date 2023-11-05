@@ -124,6 +124,26 @@ namespace MetaFac.CG4.Models
             return new ModelContainer(new ModelDefinition(modelName, modelTag, mergedEntityDefsByTag.Values.OrderBy(c => c.Tag ?? 0)));
         }
 
+        private static void AddParentMembers(
+            ModelDefinition model,
+            Dictionary<int, ModelMemberDef> fieldTagMap,
+            Dictionary<string, ModelMemberDef> fieldNameMap,
+            string? entityName)
+        {
+            if (entityName is null) return;
+            var entity = model.AllEntityDefs.Where(ed => ed.Name == entityName).SingleOrDefault();
+            if (entity is null) return;
+
+            foreach (var memberDef in entity.AllMemberDefs)
+            {
+                if (memberDef.Tag.HasValue) fieldTagMap[memberDef.Tag.Value] = memberDef;
+                fieldNameMap[memberDef.Name] = memberDef;
+            }
+
+            // recurse
+            AddParentMembers(model, fieldTagMap, fieldNameMap, entity.ParentName);
+        }
+
         public ValidationResult Validate(ModelContainer metadata,
             ValidationErrorHandling errorHandling = ValidationErrorHandling.Default)
         {
@@ -200,6 +220,8 @@ namespace MetaFac.CG4.Models
 
                 Dictionary<int, ModelMemberDef> fieldTagMap = new Dictionary<int, ModelMemberDef>();
                 Dictionary<string, ModelMemberDef> fieldNameMap = new Dictionary<string, ModelMemberDef>();
+
+                AddParentMembers(model, fieldTagMap, fieldNameMap, entityDef.ParentName);
 
                 foreach (var memberDef in entityDef.AllMemberDefs)
                 {
@@ -312,9 +334,9 @@ namespace MetaFac.CG4.Models
                     if (visitedEntities.ContainsKey(memberDef.InnerType))
                     {
                         // circular ref!
-                        result = result.AddWarning(new ValidationError(
-                            ValidationErrorCode.CircularReference,
-                            model.Name, entityDef.ToTagName(), memberDef.ToTagName(), otherEntity.ToTagName(), null));
+                        //result = result.AddWarning(new ValidationError(
+                        //    ValidationErrorCode.CircularReference,
+                        //    model.Name, entityDef.ToTagName(), memberDef.ToTagName(), otherEntity.ToTagName(), null));
                     }
                     else
                     {

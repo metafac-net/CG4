@@ -305,6 +305,7 @@
     public class ValidationException : System.Exception
     {
         public ValidationException(MetaFac.CG4.Models.ValidationError error) { }
+        public MetaFac.CG4.Models.ValidationError ValidationError { get; }
     }
     public class ValidationResult
     {

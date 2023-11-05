@@ -248,6 +248,7 @@ namespace MetaFac.CG4.ModelReader.Tests
             ex.Should().NotBeNull();
             ex.Should().BeOfType<ValidationException>();
             ex.Message.Should().Be("Model1.InvalidEntity1.Grid(): Invalid array rank");
+            ex.ValidationError.ErrorCode.Should().Be(ValidationErrorCode.InvalidArrayRank);
         }
 
         [Fact]
@@ -262,6 +263,24 @@ namespace MetaFac.CG4.ModelReader.Tests
             ex.Should().NotBeNull();
             ex.Should().BeOfType<ValidationException>();
             ex.Message.Should().Be("Model1.InvalidEntity2.MyType(): Unknown field type: System.Type");
+            ex.ValidationError.ErrorCode.Should().Be(ValidationErrorCode.UnknownFieldType);
+        }
+
+        [Fact]
+        public void ReadInvalidTypes3()
+        {
+            Type anchorType = typeof(InvalidModel3.InvalidEntity3);
+
+            ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
+            var ex = Assert.ThrowsAny<ValidationException>(() =>
+            {
+                var validator = new ModelValidator();
+                var validationResult = validator.Validate(metadata, ValidationErrorHandling.ThrowOnFirst);
+            });
+            ex.Should().NotBeNull();
+            ex.Should().BeOfType<ValidationException>();
+            ex.Message.Should().Be("Model1.InvalidEntity3.MyField1: Field tag (1) is same as field: BaseField1");
+            ex.ValidationError.ErrorCode.Should().Be(ValidationErrorCode.DuplicateFieldTag);
         }
 
         [Fact]
