@@ -48,9 +48,15 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.MessagePack
             return ref value;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected void CheckNotFrozen()
+        {
+            if (_isFrozen) ThrowIsReadonly();
+        }
+
         public EntityBase() { }
         public EntityBase(EntityBase source) { }
-        public void CopyFrom(EntityBase source) { }
+        public void CopyFrom(EntityBase source) => CheckNotFrozen();
         public EntityBase(IEntityBase source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
