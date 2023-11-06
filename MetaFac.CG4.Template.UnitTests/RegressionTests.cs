@@ -28,6 +28,9 @@ namespace MetaFac.CG4.Template.UnitTests
             JsonNewtonSoft,
             // todo JsonMessagePack,
             // todo ProtobufNet3
+            // todo Bond (Fast)
+            // todo Bond (Compact)
+            // todo Protobuf
         }
 
         public enum TestFieldId

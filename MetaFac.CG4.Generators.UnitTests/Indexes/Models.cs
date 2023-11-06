@@ -17,6 +17,6 @@ namespace MetaFac.CG4.Generators.UnitTests.Indexes
         [Member(2)] public Dictionary<byte, long>? Index2 { get; }
         [Member(3)] public Dictionary<MyCustomEnum, long>? Index3 { get; }
 
-        //todo [Member(4)] public Dictionary<Octets, Octets>? Index4 { get; }
+        //todo [Member(4)] public Dictionary<Octets, long>? Index4 { get; }
     }
 }
