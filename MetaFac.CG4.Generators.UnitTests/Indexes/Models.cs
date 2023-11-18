@@ -1,4 +1,4 @@
-﻿using MetaFac.CG4.Attributes;
+﻿using FluentModels;
 using System.Collections.Generic;
 
 namespace MetaFac.CG4.Generators.UnitTests.Indexes

@@ -1,5 +1,4 @@
-﻿using MetaFac.CG4.Attributes;
-using MetaFac.CG4.Generators;
+﻿using MetaFac.CG4.Generators;
 using MetaFac.CG4.ModelReader;
 using MetaFac.CG4.Models;
 using MetaFac.TinyCLI;

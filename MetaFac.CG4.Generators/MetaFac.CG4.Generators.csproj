@@ -38,7 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
     <ProjectReference Include="..\MetaFac.CG4.Models\MetaFac.CG4.Models.csproj" />
   </ItemGroup>
 

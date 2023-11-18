@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime.JsonSystemText\MetaFac.CG4.Runtime.JsonSystemText.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime.MessagePack\MetaFac.CG4.Runtime.MessagePack.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />

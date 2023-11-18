@@ -1,4 +1,4 @@
-﻿using MetaFac.CG4.Attributes;
+﻿using FluentModels;
 using MetaFac.CG4.Models;
 using MetaFac.Memory;
 using System;

@@ -1,4 +1,4 @@
-﻿using MetaFac.CG4.Attributes;
+﻿using FluentModels;
 
 namespace MetaFac.CG4.TestOrg.Schema.Recursive
 {

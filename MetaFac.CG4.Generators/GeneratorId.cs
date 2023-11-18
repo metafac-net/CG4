@@ -1,4 +1,4 @@
-﻿namespace MetaFac.CG4.Attributes
+﻿namespace MetaFac.CG4.Generators
 {
     public enum GeneratorId
     {

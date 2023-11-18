@@ -11,6 +11,7 @@
 
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="6.12.0" />
+        <PackageReference Include="FluentModels" Version="1.0.3-beta" />
         <PackageReference Include="MetaFac.Memory" Version="1.2.4" />
         <PackageReference Include="MetaFac.Mutability" Version="2.1.5" />
         <PackageReference Include="Meziantou.Xunit.ParallelTestFramework" Version="2.1.0" />
@@ -28,7 +29,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Generators\MetaFac.CG4.Generators.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.ModelReader\MetaFac.CG4.ModelReader.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Models\MetaFac.CG4.Models.csproj" />
