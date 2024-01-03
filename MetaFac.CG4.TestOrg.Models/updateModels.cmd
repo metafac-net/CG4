@@ -7,7 +7,7 @@
 :: dotnet tool update --global MetaFac.CG4.CLI --ignore-failed-sources
 
 :: set _cmd=mfcg4
-set _cmd=..\MetaFac.CG4.CLI\bin\Debug\net6.0\MetaFac.CG4.CLI.exe
+set _cmd=..\MetaFac.CG4.CLI\bin\Debug\net8.0\MetaFac.CG4.CLI.exe
 
 set _prefix=MetaFac.CG4.TestOrg.Schema
 
@@ -22,7 +22,7 @@ goto :eof
 ::
 :: parse schema
 ::
-%_cmd% a2j -am ..\%_prefix%\bin\Debug\net6.0\%_prefix%.dll -an %_prefix%.%1 -oj %1.Models.json
+%_cmd% a2j -am ..\%_prefix%\bin\Debug\net8.0\%_prefix%.dll -an %_prefix%.%1 -oj %1.Models.json
 ::
 :: generate
 ::
