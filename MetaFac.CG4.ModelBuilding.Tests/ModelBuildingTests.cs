@@ -5,7 +5,6 @@ using Xunit;
 
 namespace MetaFac.CG4.ModelBuilding.Tests
 {
-    [UsesVerify]
     public class ModelBuildingTests
     {
         [Fact]

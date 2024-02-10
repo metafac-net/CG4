@@ -6,7 +6,6 @@ using Xunit;
 
 namespace MetaFac.CG4.Generators.UnitTests
 {
-    [UsesVerify]
     public class GenerateFromTinyModelsTests
     {
         private static string GenerateSourceCode(GeneratorBase generator)

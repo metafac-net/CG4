@@ -7,7 +7,6 @@ using Xunit;
 
 namespace MetaFac.CG4.TestOrg.Models.Tests
 {
-    [UsesVerify]
     public class JsonNewtonSoftPolymorphicRoundtripTests
     {
         [Fact]

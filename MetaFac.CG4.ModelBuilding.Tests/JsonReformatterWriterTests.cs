@@ -6,7 +6,6 @@ using Xunit;
 
 namespace MetaFac.CG4.ModelBuilding.Tests
 {
-    [UsesVerify]
     public class JsonReformatterWriterTests
     {
         private readonly JsonWriterOptions writerOptions = new JsonWriterOptions() { Indented = true };

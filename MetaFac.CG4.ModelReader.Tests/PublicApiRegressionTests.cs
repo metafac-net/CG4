@@ -6,7 +6,6 @@ using Xunit;
 
 namespace MetaFac.CG4.ModelReader.Tests
 {
-    [UsesVerify]
     public class PublicApiRegressionTests
     {
         [Fact]

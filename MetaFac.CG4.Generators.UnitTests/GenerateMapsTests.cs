@@ -5,7 +5,6 @@ using Xunit;
 
 namespace MetaFac.CG4.Generators.UnitTests
 {
-    [UsesVerify]
     public class GenerateMapsTests
     {
         private static string GenerateSourceCode(GeneratorBase generator)

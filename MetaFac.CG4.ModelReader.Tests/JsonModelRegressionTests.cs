@@ -8,7 +8,6 @@ using Xunit;
 namespace MetaFac.CG4.ModelReader.Tests
 {
 
-    [UsesVerify]
     public class JsonModelRegressionTests
     {
         [Fact]

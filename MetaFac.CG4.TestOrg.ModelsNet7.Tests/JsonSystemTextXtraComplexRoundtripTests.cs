@@ -3,7 +3,6 @@ using MetaFac.CG4.TestOrg.Common;
 
 namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
 {
-    [UsesVerify]
     public class JsonSystemTextXtraComplexRoundtripTests
     {
         [Fact]
