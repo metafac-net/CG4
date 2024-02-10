@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+	  <TargetFrameworks>netstandard2.0;net7.0;net8.0</TargetFrameworks>
 	  <LangVersion>latest</LangVersion>
 	  <Nullable>enable</Nullable>
 	  <WarningsAsErrors>nullable</WarningsAsErrors>
@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MessagePack" Version="2.5.129" />
-    <PackageReference Include="MessagePackAnalyzer" Version="2.5.129">
+    <PackageReference Include="MessagePack" Version="2.5.140" />
+    <PackageReference Include="MessagePackAnalyzer" Version="2.5.140">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

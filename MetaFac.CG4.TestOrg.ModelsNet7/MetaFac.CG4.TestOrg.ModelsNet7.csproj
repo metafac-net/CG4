@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net7.0</TargetFrameworks>
+        <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <WarningsAsErrors>nullable</WarningsAsErrors>
@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MetaFac.CG4.Attributes\MetaFac.CG4.Attributes.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime.JsonSystemText\MetaFac.CG4.Runtime.JsonSystemText.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime.MessagePack\MetaFac.CG4.Runtime.MessagePack.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
@@ -17,12 +16,12 @@
 
     <ItemGroup>
         <PackageReference Include="LabApps.Units" Version="0.3.35" />
-        <PackageReference Include="MessagePack" Version="2.5.129" />
-        <PackageReference Include="MessagePackAnalyzer" Version="2.5.129">
+        <PackageReference Include="MessagePack" Version="2.5.140" />
+        <PackageReference Include="MessagePackAnalyzer" Version="2.5.140">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MetaFac.Mutability" Version="2.1.5" />
+        <PackageReference Include="MetaFac.Mutability" Version="2.2.2" />
     </ItemGroup>
 
 </Project>
