@@ -9,7 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="FluentModels" Version="1.0.4" />
-      <PackageReference Include="MetaFac.Memory" Version="1.4.1" />
+      <PackageReference Include="MetaFac.Memory" Version="1.4.2" />
     </ItemGroup>
 
 </Project>
