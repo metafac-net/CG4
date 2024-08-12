@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFrameworks>net8.0</TargetFrameworks>
@@ -14,11 +14,11 @@
         <Authors>MetaFac Contributors</Authors>
         <Company>MetaFac</Company>
         <Product>CG4</Product>
-        <Copyright>Copyright (c) 2020-2023 MetaFac</Copyright>
+        <Copyright>Copyright (c) 2020-2024 MetaFac</Copyright>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-        <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/metafac-net/CG4</PackageProjectUrl>
         <PackageTags>MetaFac CG4 runtime</PackageTags>
-        <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG4</RepositoryUrl>
+        <RepositoryUrl>https://github.com/metafac-net/CG4</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
         <Description>Runtime helpers for generated using System.Text.Json serialization.</Description>
         <PackageReadmeFile>README.md</PackageReadmeFile>

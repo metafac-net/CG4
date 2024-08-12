@@ -3,8 +3,9 @@
     <PropertyGroup>
         <TargetFrameworks>net8.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
-
+        <WarningsAsErrors>nullable</WarningsAsErrors>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
     </PropertyGroup>
@@ -26,8 +27,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MetaFac.CG4.TestOrg.Constants\MetaFac.CG4.TestOrg.Common.csproj" />
-      <ProjectReference Include="..\MetaFac.CG4.TestOrg.ModelsNet7\MetaFac.CG4.TestOrg.ModelsNet7.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.TestOrg.Constants\MetaFac.CG4.TestOrg.Common.csproj" />
+        <ProjectReference Include="..\MetaFac.CG4.TestOrg.ModelsNet7\MetaFac.CG4.TestOrg.ModelsNet7.csproj" />
     </ItemGroup>
 
 </Project>

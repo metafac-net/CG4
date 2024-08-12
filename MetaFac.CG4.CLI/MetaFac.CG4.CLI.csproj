@@ -14,11 +14,11 @@
     <Authors>MetaFac Contributors</Authors>
     <Company>MetaFac</Company>
     <Product>CG4</Product>
-    <Copyright>Copyright (c) 2020-2023 MetaFac</Copyright>
+    <Copyright>Copyright (c) 2020-2024 MetaFac</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://dev.azure.com/MetaFac/OSR</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/metafac-net/CG4</PackageProjectUrl>
     <PackageTags>MetaFac, CG4, meta-programming, source-generator, model-first, code-first, template engine</PackageTags>
-    <RepositoryUrl>https://dev.azure.com/MetaFac/OSR/_git/CG4</RepositoryUrl>
+    <RepositoryUrl>https://github.com/metafac-net/CG4</RepositoryUrl>
     <Description>Converts templates into generators, and with schemas, generates code.</Description>
     <PackageId>MetaFac.CG4.CLI</PackageId>
     <PackAsTool>true</PackAsTool>
