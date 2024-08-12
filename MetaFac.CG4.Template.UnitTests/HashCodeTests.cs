@@ -19,6 +19,35 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             return generator switch
             {
+                TemplateId.JsonSystemText => new T_Namespace_.JsonSystemText.T_EntityName_()
+                {
+                    T_UnaryModelFieldName_ = new T_Namespace_.JsonSystemText.T_ModelType_(123),
+                    T_ArrayModelFieldName_ = ImmutableList<T_Namespace_.JsonSystemText.T_ModelType_?>.Empty.Add(new T_Namespace_.JsonSystemText.T_ModelType_(234)),
+                    T_IndexModelFieldName_ = ImmutableDictionary<T_IndexType_, T_Namespace_.JsonSystemText.T_ModelType_?>.Empty
+                    .Add("987", new T_Namespace_.JsonSystemText.T_ModelType_(456))
+                    .Add("876", null),
+                    T_UnaryOtherFieldName_ = 123L,
+                    T_ArrayOtherFieldName_ = ImmutableList<T_Namespace_.JsonSystemText.SampleInternal>.Empty.Add(234L),
+                    T_IndexOtherFieldName_ = ImmutableDictionary<T_IndexType_, T_Namespace_.JsonSystemText.SampleInternal>.Empty
+                    .Add("987", 456L)
+                    .Add("876", default),
+                    T_UnaryMaybeFieldName_ = null,
+                    T_ArrayMaybeFieldName_ = ImmutableList<T_ExternalMaybeType_?>.Empty.Add(null).Add(T_ExternalMaybeType_.Monday),
+                    T_IndexMaybeFieldName_ = ImmutableDictionary<T_IndexType_, T_ExternalMaybeType_?>.Empty
+                    .Add("987", T_ExternalMaybeType_.Tuesday)
+                    .Add("876", default),
+                    T_UnaryBufferFieldName_ = new byte[] { 1, 2, 3, 4 },
+                    T_ArrayBufferFieldName_ = new byte[]?[]
+                    {
+                        new byte[] { 1, 2, 3, 4 },
+                        new byte[] { 5, 6, 7, 8 },
+                    },
+                    T_IndexBufferFieldName_ = new Dictionary<T_IndexType_, byte[]?>()
+                    {
+                        ["a"] = new byte[] { 1, 2, 3, 4 },
+                        ["b"] = new byte[] { 5, 6, 7, 8 },
+                    },
+                },
                 TemplateId.JsonNewtonSoft => new T_Namespace_.JsonNewtonSoft.T_EntityName_()
                 {
                     T_UnaryModelFieldName_ = new T_Namespace_.JsonNewtonSoft.T_ModelType_(123),
@@ -115,6 +144,9 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             switch (generator)
             {
+                case TemplateId.JsonSystemText:
+                    ((T_Namespace_.JsonSystemText.T_EntityName_)record).T_UnaryOtherFieldName_ = 234L;
+                    break;
                 case TemplateId.JsonNewtonSoft:
                     ((T_Namespace_.JsonNewtonSoft.T_EntityName_)record).T_UnaryOtherFieldName_ = 234L;
                     break;
@@ -134,6 +166,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [InlineData(TemplateId.ClassesV2)]
         [InlineData(TemplateId.MessagePack)]
         [InlineData(TemplateId.JsonNewtonSoft)]
+        [InlineData(TemplateId.JsonSystemText)]
         public void HashShouldChangeWhenModified(TemplateId generator)
         {
             // arrange

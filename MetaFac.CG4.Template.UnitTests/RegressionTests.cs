@@ -26,6 +26,7 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             MessagePack,
             JsonNewtonSoft,
+            JsonSystemText,
             // todo JsonMessagePack,
             // todo ProtobufNet3
             // todo Bond (Fast)
@@ -86,6 +87,13 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             switch (wf)
             {
+                case WireFormat.JsonSystemText:
+                    {
+                        var original = new T_Namespace_.JsonSystemText.T_EntityName_(source);
+                        original.Freeze();
+                        string text = System.Text.Json.JsonSerializer.Serialize(original, msJsonSerializerOptions);
+                        return text;
+                    }
                 case WireFormat.MessagePack:
                     {
                         var original = new T_Namespace_.MessagePack.T_EntityName_(source);
@@ -110,6 +118,11 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             switch (wf)
             {
+                case WireFormat.JsonSystemText:
+                    {
+                        var duplicate = System.Text.Json.JsonSerializer.Deserialize<T_Namespace_.JsonSystemText.T_EntityName_>(text, msJsonSerializerOptions);
+                        return new T_Namespace_.RecordsV2.T_EntityName_(duplicate);
+                    }
                 case WireFormat.MessagePack:
                     {
                         var bytes = text.Split('-');
@@ -167,6 +180,7 @@ namespace MetaFac.CG4.Template.UnitTests
         [Theory]
         [InlineData(WireFormat.MessagePack, "C7-1C-63-D2-00-00-00-77-6F-DC-00-74-C0-00-C0-01-00-4E-03-63-00-90-00-C0-C0-C0-C0-C0-C0-C0-C0")]
         [InlineData(WireFormat.JsonNewtonSoft, "{}")]
+        [InlineData(WireFormat.JsonSystemText, "{}")]
         public void RoundTrip_MultiFormat_Empty(WireFormat wf, string expected)
         {
             var original = new T_Namespace_.RecordsV2.T_EntityName_() { };
@@ -286,6 +300,98 @@ namespace MetaFac.CG4.Template.UnitTests
             }
             """)]
         [InlineData(WireFormat.JsonNewtonSoft, TestFieldId.ArrayBytes,
+            """
+            {
+              "T_ArrayBufferFieldName_": [
+                "AQID",
+                null,
+                "BAUG"
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryOther,
+            """
+            {
+              "T_UnaryOtherFieldName_": {
+                "Value": 1
+              }
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryMaybe,
+            """
+            {
+              "T_UnaryMaybeFieldName_": 1
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryModel,
+            """
+            {
+              "T_UnaryModelFieldName_": {
+                "TestData": 123
+              }
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryChars,
+            """
+            {
+              "T_UnaryStringFieldName_": "abc"
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.UnaryBytes,
+            """
+            {
+              "T_UnaryBufferFieldName_": "AQID"
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayOther,
+            """
+            {
+              "T_ArrayOtherFieldName_": [
+                {
+                  "Value": -1
+                },
+                {},
+                {
+                  "Value": 1
+                }
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayMaybe,
+            """
+            {
+              "T_ArrayMaybeFieldName_": [
+                1,
+                null,
+                2
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayModel,
+            """
+            {
+              "T_ArrayModelFieldName_": [
+                {
+                  "TestData": 123
+                },
+                null,
+                {
+                  "TestData": 456
+                }
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayChars,
+            """
+            {
+              "T_ArrayStringFieldName_": [
+                "abc",
+                null,
+                "def"
+              ]
+            }
+            """)]
+        [InlineData(WireFormat.JsonSystemText, TestFieldId.ArrayBytes,
             """
             {
               "T_ArrayBufferFieldName_": [

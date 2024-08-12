@@ -1,12 +1,14 @@
 ﻿using FluentAssertions;
 using MetaFac.CG4.Runtime;
+using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text.Json;
 using T_Namespace_.Contracts;
 using T_Namespace_.JsonSystemText;
 using Xunit;
 
-namespace MetaFac.CG4.TemplateNet7.Tests
+namespace MetaFac.CG4.Template.UnitTests
 {
     using T_ExternalMaybeType_ = DayOfWeek;
     using T_IndexType_ = String;

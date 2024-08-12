@@ -61,8 +61,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TestOrg.ModelsN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TestOrg.ModelsNet7.Tests", "MetaFac.CG4.TestOrg.ModelsNet7.Tests\MetaFac.CG4.TestOrg.ModelsNet7.Tests.csproj", "{F0CC2D62-E8BB-42A2-9F77-90C90511AE78}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TemplateNet7.Tests", "MetaFac.CG4.TemplateNet7.Tests\MetaFac.CG4.TemplateNet7.Tests.csproj", "{14C6F35A-BC1E-4143-9B5D-C4252BCE5BB1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.TestOrg.Common", "MetaFac.CG4.TestOrg.Constants\MetaFac.CG4.TestOrg.Common.csproj", "{9A65C6C2-F372-46BD-B128-1B862B706872}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFac.CG4.Runtime.JsonSystemText", "MetaFac.CG4.Runtime.JsonSystemText\MetaFac.CG4.Runtime.JsonSystemText.csproj", "{97FB689E-A566-4DE5-B81C-13D6AAA2FB5D}"
@@ -173,10 +171,6 @@ Global
 		{F0CC2D62-E8BB-42A2-9F77-90C90511AE78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0CC2D62-E8BB-42A2-9F77-90C90511AE78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0CC2D62-E8BB-42A2-9F77-90C90511AE78}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14C6F35A-BC1E-4143-9B5D-C4252BCE5BB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14C6F35A-BC1E-4143-9B5D-C4252BCE5BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14C6F35A-BC1E-4143-9B5D-C4252BCE5BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14C6F35A-BC1E-4143-9B5D-C4252BCE5BB1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9A65C6C2-F372-46BD-B128-1B862B706872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A65C6C2-F372-46BD-B128-1B862B706872}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A65C6C2-F372-46BD-B128-1B862B706872}.Release|Any CPU.ActiveCfg = Release|Any CPU
