@@ -76,6 +76,16 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             Polymorphic.Contracts.IValueNode value = CreateValue(kind);
             Polymorphic.RecordsV2.ValueNode original = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(value) ?? throw new Exception("Returned null!");
+            // JsonSystemText
+            {
+                Polymorphic.JsonSystemText.ValueNode outgoing = Polymorphic.JsonSystemText.ValueNode_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
+                var buffer = outgoing.SerializeToJsonSystemText<Polymorphic.JsonSystemText.ValueNode>();
+                var incoming = buffer.DeserializeFromJsonSystemText<Polymorphic.JsonSystemText.ValueNode>();
+                incoming.Should().Be(outgoing);
+                Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+                duplicate.Should().Be(original);
+                duplicate.Equals(original).Should().BeTrue();
+            }
             // JsonNewstonSoft
             {
                 Polymorphic.JsonNewtonSoft.ValueNode outgoing = Polymorphic.JsonNewtonSoft.ValueNode_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");

@@ -5,45 +5,77 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.2.9
+// Generator: JsonSystemText.2.9
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
 #nullable enable
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable CS8019 // Unnecessary using directive
-using MetaFac.Memory;
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
+using MetaFac.CG4.Runtime.JsonSystemText;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
-using MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.Contracts;
+using System.Text.Json.Serialization;
+using MetaFac.CG4.TestOrg.Models.Polymorphic.Contracts;
+using MetaFac.Memory;
 
-namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
+namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonSystemText
 {
 
 
-    public abstract record EntityBase : IFreezable, IEntityBase
+    public abstract class EntityBase : IFreezable, IEntityBase
     {
+        public static EntityBase Empty => throw new NotSupportedException();
+        public const int EntityTag = 0;
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        public const int EntityTag = 0;
+        public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
-        public virtual bool Equals(EntityBase? other) => true;
+        public bool Equals(EntityBase? other) => true;
         public override int GetHashCode() => 0;
+
         public bool IsFreezable() => false;
-        public bool IsFrozen() => true;
+        public bool IsFrozen() => false;
         public void Freeze() { }
-        public bool TryFreeze() => false;
+        public bool TryFreeze() => true;
     }
 
 
-    public abstract partial record ValueNode : EntityBase, IValueNode
+    [JsonDerivedType(typeof(NumericNode), NumericNode.EntityTag)]
+    [JsonDerivedType(typeof(Int32Node), Int32Node.EntityTag)]
+    [JsonDerivedType(typeof(SByteNode), SByteNode.EntityTag)]
+    [JsonDerivedType(typeof(ByteNode), ByteNode.EntityTag)]
+    [JsonDerivedType(typeof(Int16Node), Int16Node.EntityTag)]
+    [JsonDerivedType(typeof(UInt16Node), UInt16Node.EntityTag)]
+    [JsonDerivedType(typeof(HalfNode), HalfNode.EntityTag)]
+    [JsonDerivedType(typeof(UInt32Node), UInt32Node.EntityTag)]
+    [JsonDerivedType(typeof(SingleNode), SingleNode.EntityTag)]
+    [JsonDerivedType(typeof(Int64Node), Int64Node.EntityTag)]
+    [JsonDerivedType(typeof(UInt64Node), UInt64Node.EntityTag)]
+    [JsonDerivedType(typeof(DoubleNode), DoubleNode.EntityTag)]
+    [JsonDerivedType(typeof(DecimalNode), DecimalNode.EntityTag)]
+    [JsonDerivedType(typeof(BigIntNode), BigIntNode.EntityTag)]
+    [JsonDerivedType(typeof(ComplexNode), ComplexNode.EntityTag)]
+    [JsonDerivedType(typeof(BooleanNode), BooleanNode.EntityTag)]
+    [JsonDerivedType(typeof(CustomNode), CustomNode.EntityTag)]
+    [JsonDerivedType(typeof(CharNode), CharNode.EntityTag)]
+    [JsonDerivedType(typeof(DateTimeNode), DateTimeNode.EntityTag)]
+    [JsonDerivedType(typeof(TimeSpanNode), TimeSpanNode.EntityTag)]
+    [JsonDerivedType(typeof(DateOnlyNode), DateOnlyNode.EntityTag)]
+    [JsonDerivedType(typeof(TimeOnlyNode), TimeOnlyNode.EntityTag)]
+    [JsonDerivedType(typeof(StringNode), StringNode.EntityTag)]
+    [JsonDerivedType(typeof(OctetsNode), OctetsNode.EntityTag)]
+    [JsonDerivedType(typeof(GuidNode), GuidNode.EntityTag)]
+    [JsonDerivedType(typeof(DateTimeOffsetNode), DateTimeOffsetNode.EntityTag)]
+    [JsonDerivedType(typeof(VersionNode), VersionNode.EntityTag)]
+    public partial class ValueNode
     {
     }
     public sealed class ValueNode_Factory : IEntityFactory<IValueNode, ValueNode>
@@ -91,15 +123,25 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
 
         public ValueNode Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(ValueNode)}");
     }
-    public partial record ValueNode : EntityBase, IValueNode
+    public partial class ValueNode : EntityBase, IValueNode, IEquatable<ValueNode>
     {
         public new const int EntityTag = 1;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Int64 Id { get; init; }
-        Int64 IValueNode.Id => Id;
-        public String? Name { get; init; }
-        String? IValueNode.Name => Name;
+        private Int64 field_Id;
+        Int64 IValueNode.Id { get => field_Id; }
+        public Int64 Id
+        {
+            get => field_Id;
+            set => field_Id = value;
+        }
+        private String? field_Name;
+        String? IValueNode.Name => field_Name;
+        public String? Name
+        {
+            get => field_Name;
+            set => field_Name = value;
+        }
 
         public ValueNode() : base()
         {
@@ -108,45 +150,62 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public ValueNode(ValueNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Id = source.Id;
-            Name = source.Name;
+            field_Id = source.Id;
+            field_Name = source.Name;
         }
 
         public ValueNode(IValueNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Id = source.Id;
-            Name = source.Name;
+            field_Id = source.Id;
+            field_Name = source.Name;
         }
 
-        public virtual bool Equals(ValueNode? other)
+        public void CopyFrom(IValueNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Id = source.Id;
+            field_Name = source.Name;
+        }
+
+        public bool Equals(ValueNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Id.ValueEquals(other.Id)) return false;
             if (!Name.ValueEquals(other.Name)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Id.CalcHashUnary());
-            hc.Add(Name.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is ValueNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Id.CalcHashUnary());
+            hc.Add(Name.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
-    public abstract partial record NumericNode : ValueNode, INumericNode
+    [JsonDerivedType(typeof(Int32Node), Int32Node.EntityTag)]
+    [JsonDerivedType(typeof(SByteNode), SByteNode.EntityTag)]
+    [JsonDerivedType(typeof(ByteNode), ByteNode.EntityTag)]
+    [JsonDerivedType(typeof(Int16Node), Int16Node.EntityTag)]
+    [JsonDerivedType(typeof(UInt16Node), UInt16Node.EntityTag)]
+    [JsonDerivedType(typeof(HalfNode), HalfNode.EntityTag)]
+    [JsonDerivedType(typeof(UInt32Node), UInt32Node.EntityTag)]
+    [JsonDerivedType(typeof(SingleNode), SingleNode.EntityTag)]
+    [JsonDerivedType(typeof(Int64Node), Int64Node.EntityTag)]
+    [JsonDerivedType(typeof(UInt64Node), UInt64Node.EntityTag)]
+    [JsonDerivedType(typeof(DoubleNode), DoubleNode.EntityTag)]
+    [JsonDerivedType(typeof(DecimalNode), DecimalNode.EntityTag)]
+    [JsonDerivedType(typeof(BigIntNode), BigIntNode.EntityTag)]
+    [JsonDerivedType(typeof(ComplexNode), ComplexNode.EntityTag)]
+    public partial class NumericNode
     {
     }
     public sealed class NumericNode_Factory : IEntityFactory<INumericNode, NumericNode>
@@ -181,7 +240,7 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
 
         public NumericNode Empty => throw new NotSupportedException($"Cannot create abstract entity: {typeof(NumericNode)}");
     }
-    public partial record NumericNode : ValueNode, INumericNode
+    public partial class NumericNode : ValueNode, INumericNode, IEquatable<NumericNode>
     {
         public new const int EntityTag = 2;
         protected override int OnGetEntityTag() => EntityTag;
@@ -201,26 +260,27 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
             if (source is null) throw new ArgumentNullException(nameof(source));
         }
 
-        public virtual bool Equals(NumericNode? other)
+        public void CopyFrom(INumericNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+        }
+
+        public bool Equals(NumericNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
-            return base.Equals(other);
+            if (!base.Equals(other)) return false;
+            return true;
         }
 
-        private int CalcHashCode()
+        public override bool Equals(object? obj) => obj is NumericNode other && Equals(other);
+
+        public override int GetHashCode()
         {
             HashCode hc = new HashCode();
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
-        }
-
-        private int? _hashCode = null;
-        public override int GetHashCode()
-        {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
         }
     }
 
@@ -228,24 +288,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly BooleanNode_Factory _instance = new BooleanNode_Factory();
         public static BooleanNode_Factory Instance => _instance;
-
-        public BooleanNode? CreateFrom(IBooleanNode? source)
-        {
-            if (source is null) return null;
-            if (source is BooleanNode thisEntity) return thisEntity;
-            return new BooleanNode(source);
-        }
-
-        private static readonly BooleanNode _empty = new BooleanNode();
-        public BooleanNode Empty => _empty;
+        public BooleanNode? CreateFrom(IBooleanNode? source) => (source is null) ? null : new BooleanNode(source);
+        public BooleanNode Empty => new BooleanNode();
     }
-    public partial record BooleanNode : ValueNode, IBooleanNode
+    public partial class BooleanNode : ValueNode, IBooleanNode, IEquatable<BooleanNode>
     {
         public new const int EntityTag = 4;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Boolean BoolValue { get; init; }
-        Boolean IBooleanNode.BoolValue => BoolValue;
+        private Boolean field_BoolValue;
+        Boolean IBooleanNode.BoolValue { get => field_BoolValue; }
+        public Boolean BoolValue
+        {
+            get => field_BoolValue;
+            set => field_BoolValue = value;
+        }
 
         public BooleanNode() : base()
         {
@@ -254,37 +311,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public BooleanNode(BooleanNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            BoolValue = source.BoolValue;
+            field_BoolValue = source.BoolValue;
         }
 
         public BooleanNode(IBooleanNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            BoolValue = source.BoolValue;
+            field_BoolValue = source.BoolValue;
         }
 
-        public virtual bool Equals(BooleanNode? other)
+        public void CopyFrom(IBooleanNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_BoolValue = source.BoolValue;
+        }
+
+        public bool Equals(BooleanNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!BoolValue.ValueEquals(other.BoolValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(BoolValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is BooleanNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(BoolValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -292,24 +351,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly CustomNode_Factory _instance = new CustomNode_Factory();
         public static CustomNode_Factory Instance => _instance;
-
-        public CustomNode? CreateFrom(ICustomNode? source)
-        {
-            if (source is null) return null;
-            if (source is CustomNode thisEntity) return thisEntity;
-            return new CustomNode(source);
-        }
-
-        private static readonly CustomNode _empty = new CustomNode();
-        public CustomNode Empty => _empty;
+        public CustomNode? CreateFrom(ICustomNode? source) => (source is null) ? null : new CustomNode(source);
+        public CustomNode Empty => new CustomNode();
     }
-    public partial record CustomNode : ValueNode, ICustomNode
+    public partial class CustomNode : ValueNode, ICustomNode, IEquatable<CustomNode>
     {
         public new const int EntityTag = 5;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public CustomEnum CustomValue { get; init; }
-        CustomEnum ICustomNode.CustomValue => CustomValue;
+        private CustomEnum field_CustomValue;
+        CustomEnum ICustomNode.CustomValue { get => field_CustomValue; }
+        public CustomEnum CustomValue
+        {
+            get => field_CustomValue;
+            set => field_CustomValue = value;
+        }
 
         public CustomNode() : base()
         {
@@ -318,37 +374,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public CustomNode(CustomNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            CustomValue = source.CustomValue;
+            field_CustomValue = source.CustomValue;
         }
 
         public CustomNode(ICustomNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            CustomValue = source.CustomValue;
+            field_CustomValue = source.CustomValue;
         }
 
-        public virtual bool Equals(CustomNode? other)
+        public void CopyFrom(ICustomNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_CustomValue = source.CustomValue;
+        }
+
+        public bool Equals(CustomNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!CustomValue.ValueEquals(other.CustomValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(CustomValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is CustomNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(CustomValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -356,24 +414,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly Int32Node_Factory _instance = new Int32Node_Factory();
         public static Int32Node_Factory Instance => _instance;
-
-        public Int32Node? CreateFrom(IInt32Node? source)
-        {
-            if (source is null) return null;
-            if (source is Int32Node thisEntity) return thisEntity;
-            return new Int32Node(source);
-        }
-
-        private static readonly Int32Node _empty = new Int32Node();
-        public Int32Node Empty => _empty;
+        public Int32Node? CreateFrom(IInt32Node? source) => (source is null) ? null : new Int32Node(source);
+        public Int32Node Empty => new Int32Node();
     }
-    public partial record Int32Node : NumericNode, IInt32Node
+    public partial class Int32Node : NumericNode, IInt32Node, IEquatable<Int32Node>
     {
         public new const int EntityTag = 6;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Int32 Int32Value { get; init; }
-        Int32 IInt32Node.Int32Value => Int32Value;
+        private Int32 field_Int32Value;
+        Int32 IInt32Node.Int32Value { get => field_Int32Value; }
+        public Int32 Int32Value
+        {
+            get => field_Int32Value;
+            set => field_Int32Value = value;
+        }
 
         public Int32Node() : base()
         {
@@ -382,37 +437,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public Int32Node(Int32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Int32Value = source.Int32Value;
+            field_Int32Value = source.Int32Value;
         }
 
         public Int32Node(IInt32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Int32Value = source.Int32Value;
+            field_Int32Value = source.Int32Value;
         }
 
-        public virtual bool Equals(Int32Node? other)
+        public void CopyFrom(IInt32Node? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Int32Value = source.Int32Value;
+        }
+
+        public bool Equals(Int32Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Int32Value.ValueEquals(other.Int32Value)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Int32Value.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is Int32Node other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Int32Value.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -420,24 +477,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly SByteNode_Factory _instance = new SByteNode_Factory();
         public static SByteNode_Factory Instance => _instance;
-
-        public SByteNode? CreateFrom(ISByteNode? source)
-        {
-            if (source is null) return null;
-            if (source is SByteNode thisEntity) return thisEntity;
-            return new SByteNode(source);
-        }
-
-        private static readonly SByteNode _empty = new SByteNode();
-        public SByteNode Empty => _empty;
+        public SByteNode? CreateFrom(ISByteNode? source) => (source is null) ? null : new SByteNode(source);
+        public SByteNode Empty => new SByteNode();
     }
-    public partial record SByteNode : NumericNode, ISByteNode
+    public partial class SByteNode : NumericNode, ISByteNode, IEquatable<SByteNode>
     {
         public new const int EntityTag = 8;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public SByte SByteValue { get; init; }
-        SByte ISByteNode.SByteValue => SByteValue;
+        private SByte field_SByteValue;
+        SByte ISByteNode.SByteValue { get => field_SByteValue; }
+        public SByte SByteValue
+        {
+            get => field_SByteValue;
+            set => field_SByteValue = value;
+        }
 
         public SByteNode() : base()
         {
@@ -446,37 +500,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public SByteNode(SByteNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            SByteValue = source.SByteValue;
+            field_SByteValue = source.SByteValue;
         }
 
         public SByteNode(ISByteNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            SByteValue = source.SByteValue;
+            field_SByteValue = source.SByteValue;
         }
 
-        public virtual bool Equals(SByteNode? other)
+        public void CopyFrom(ISByteNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_SByteValue = source.SByteValue;
+        }
+
+        public bool Equals(SByteNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!SByteValue.ValueEquals(other.SByteValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(SByteValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is SByteNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(SByteValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -484,24 +540,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly ByteNode_Factory _instance = new ByteNode_Factory();
         public static ByteNode_Factory Instance => _instance;
-
-        public ByteNode? CreateFrom(IByteNode? source)
-        {
-            if (source is null) return null;
-            if (source is ByteNode thisEntity) return thisEntity;
-            return new ByteNode(source);
-        }
-
-        private static readonly ByteNode _empty = new ByteNode();
-        public ByteNode Empty => _empty;
+        public ByteNode? CreateFrom(IByteNode? source) => (source is null) ? null : new ByteNode(source);
+        public ByteNode Empty => new ByteNode();
     }
-    public partial record ByteNode : NumericNode, IByteNode
+    public partial class ByteNode : NumericNode, IByteNode, IEquatable<ByteNode>
     {
         public new const int EntityTag = 9;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Byte ByteValue { get; init; }
-        Byte IByteNode.ByteValue => ByteValue;
+        private Byte field_ByteValue;
+        Byte IByteNode.ByteValue { get => field_ByteValue; }
+        public Byte ByteValue
+        {
+            get => field_ByteValue;
+            set => field_ByteValue = value;
+        }
 
         public ByteNode() : base()
         {
@@ -510,37 +563,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public ByteNode(ByteNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            ByteValue = source.ByteValue;
+            field_ByteValue = source.ByteValue;
         }
 
         public ByteNode(IByteNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            ByteValue = source.ByteValue;
+            field_ByteValue = source.ByteValue;
         }
 
-        public virtual bool Equals(ByteNode? other)
+        public void CopyFrom(IByteNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_ByteValue = source.ByteValue;
+        }
+
+        public bool Equals(ByteNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!ByteValue.ValueEquals(other.ByteValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(ByteValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is ByteNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(ByteValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -548,24 +603,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly Int16Node_Factory _instance = new Int16Node_Factory();
         public static Int16Node_Factory Instance => _instance;
-
-        public Int16Node? CreateFrom(IInt16Node? source)
-        {
-            if (source is null) return null;
-            if (source is Int16Node thisEntity) return thisEntity;
-            return new Int16Node(source);
-        }
-
-        private static readonly Int16Node _empty = new Int16Node();
-        public Int16Node Empty => _empty;
+        public Int16Node? CreateFrom(IInt16Node? source) => (source is null) ? null : new Int16Node(source);
+        public Int16Node Empty => new Int16Node();
     }
-    public partial record Int16Node : NumericNode, IInt16Node
+    public partial class Int16Node : NumericNode, IInt16Node, IEquatable<Int16Node>
     {
         public new const int EntityTag = 10;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Int16 Int16Value { get; init; }
-        Int16 IInt16Node.Int16Value => Int16Value;
+        private Int16 field_Int16Value;
+        Int16 IInt16Node.Int16Value { get => field_Int16Value; }
+        public Int16 Int16Value
+        {
+            get => field_Int16Value;
+            set => field_Int16Value = value;
+        }
 
         public Int16Node() : base()
         {
@@ -574,37 +626,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public Int16Node(Int16Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Int16Value = source.Int16Value;
+            field_Int16Value = source.Int16Value;
         }
 
         public Int16Node(IInt16Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Int16Value = source.Int16Value;
+            field_Int16Value = source.Int16Value;
         }
 
-        public virtual bool Equals(Int16Node? other)
+        public void CopyFrom(IInt16Node? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Int16Value = source.Int16Value;
+        }
+
+        public bool Equals(Int16Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Int16Value.ValueEquals(other.Int16Value)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Int16Value.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is Int16Node other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Int16Value.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -612,24 +666,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly UInt16Node_Factory _instance = new UInt16Node_Factory();
         public static UInt16Node_Factory Instance => _instance;
-
-        public UInt16Node? CreateFrom(IUInt16Node? source)
-        {
-            if (source is null) return null;
-            if (source is UInt16Node thisEntity) return thisEntity;
-            return new UInt16Node(source);
-        }
-
-        private static readonly UInt16Node _empty = new UInt16Node();
-        public UInt16Node Empty => _empty;
+        public UInt16Node? CreateFrom(IUInt16Node? source) => (source is null) ? null : new UInt16Node(source);
+        public UInt16Node Empty => new UInt16Node();
     }
-    public partial record UInt16Node : NumericNode, IUInt16Node
+    public partial class UInt16Node : NumericNode, IUInt16Node, IEquatable<UInt16Node>
     {
         public new const int EntityTag = 11;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public UInt16 UInt16Value { get; init; }
-        UInt16 IUInt16Node.UInt16Value => UInt16Value;
+        private UInt16 field_UInt16Value;
+        UInt16 IUInt16Node.UInt16Value { get => field_UInt16Value; }
+        public UInt16 UInt16Value
+        {
+            get => field_UInt16Value;
+            set => field_UInt16Value = value;
+        }
 
         public UInt16Node() : base()
         {
@@ -638,37 +689,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public UInt16Node(UInt16Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            UInt16Value = source.UInt16Value;
+            field_UInt16Value = source.UInt16Value;
         }
 
         public UInt16Node(IUInt16Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            UInt16Value = source.UInt16Value;
+            field_UInt16Value = source.UInt16Value;
         }
 
-        public virtual bool Equals(UInt16Node? other)
+        public void CopyFrom(IUInt16Node? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_UInt16Value = source.UInt16Value;
+        }
+
+        public bool Equals(UInt16Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!UInt16Value.ValueEquals(other.UInt16Value)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(UInt16Value.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is UInt16Node other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(UInt16Value.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -676,24 +729,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly CharNode_Factory _instance = new CharNode_Factory();
         public static CharNode_Factory Instance => _instance;
-
-        public CharNode? CreateFrom(ICharNode? source)
-        {
-            if (source is null) return null;
-            if (source is CharNode thisEntity) return thisEntity;
-            return new CharNode(source);
-        }
-
-        private static readonly CharNode _empty = new CharNode();
-        public CharNode Empty => _empty;
+        public CharNode? CreateFrom(ICharNode? source) => (source is null) ? null : new CharNode(source);
+        public CharNode Empty => new CharNode();
     }
-    public partial record CharNode : ValueNode, ICharNode
+    public partial class CharNode : ValueNode, ICharNode, IEquatable<CharNode>
     {
         public new const int EntityTag = 12;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Char CharValue { get; init; }
-        Char ICharNode.CharValue => CharValue;
+        private Char field_CharValue;
+        Char ICharNode.CharValue { get => field_CharValue; }
+        public Char CharValue
+        {
+            get => field_CharValue;
+            set => field_CharValue = value;
+        }
 
         public CharNode() : base()
         {
@@ -702,37 +752,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public CharNode(CharNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            CharValue = source.CharValue;
+            field_CharValue = source.CharValue;
         }
 
         public CharNode(ICharNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            CharValue = source.CharValue;
+            field_CharValue = source.CharValue;
         }
 
-        public virtual bool Equals(CharNode? other)
+        public void CopyFrom(ICharNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_CharValue = source.CharValue;
+        }
+
+        public bool Equals(CharNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!CharValue.ValueEquals(other.CharValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(CharValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is CharNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(CharValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -740,24 +792,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly HalfNode_Factory _instance = new HalfNode_Factory();
         public static HalfNode_Factory Instance => _instance;
-
-        public HalfNode? CreateFrom(IHalfNode? source)
-        {
-            if (source is null) return null;
-            if (source is HalfNode thisEntity) return thisEntity;
-            return new HalfNode(source);
-        }
-
-        private static readonly HalfNode _empty = new HalfNode();
-        public HalfNode Empty => _empty;
+        public HalfNode? CreateFrom(IHalfNode? source) => (source is null) ? null : new HalfNode(source);
+        public HalfNode Empty => new HalfNode();
     }
-    public partial record HalfNode : NumericNode, IHalfNode
+    public partial class HalfNode : NumericNode, IHalfNode, IEquatable<HalfNode>
     {
         public new const int EntityTag = 13;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Half HalfValue { get; init; }
-        Half IHalfNode.HalfValue => HalfValue;
+        private HalfValue field_HalfValue;
+        Half IHalfNode.HalfValue { get => field_HalfValue; }
+        public HalfValue HalfValue
+        {
+            get => field_HalfValue;
+            set => field_HalfValue = value;
+        }
 
         public HalfNode() : base()
         {
@@ -766,37 +815,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public HalfNode(HalfNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            HalfValue = source.HalfValue;
+            field_HalfValue = source.HalfValue;
         }
 
         public HalfNode(IHalfNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            HalfValue = source.HalfValue;
+            field_HalfValue = source.HalfValue;
         }
 
-        public virtual bool Equals(HalfNode? other)
+        public void CopyFrom(IHalfNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_HalfValue = source.HalfValue;
+        }
+
+        public bool Equals(HalfNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!HalfValue.ValueEquals(other.HalfValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(HalfValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is HalfNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(HalfValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -804,24 +855,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly UInt32Node_Factory _instance = new UInt32Node_Factory();
         public static UInt32Node_Factory Instance => _instance;
-
-        public UInt32Node? CreateFrom(IUInt32Node? source)
-        {
-            if (source is null) return null;
-            if (source is UInt32Node thisEntity) return thisEntity;
-            return new UInt32Node(source);
-        }
-
-        private static readonly UInt32Node _empty = new UInt32Node();
-        public UInt32Node Empty => _empty;
+        public UInt32Node? CreateFrom(IUInt32Node? source) => (source is null) ? null : new UInt32Node(source);
+        public UInt32Node Empty => new UInt32Node();
     }
-    public partial record UInt32Node : NumericNode, IUInt32Node
+    public partial class UInt32Node : NumericNode, IUInt32Node, IEquatable<UInt32Node>
     {
         public new const int EntityTag = 14;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public UInt32 UInt32Value { get; init; }
-        UInt32 IUInt32Node.UInt32Value => UInt32Value;
+        private UInt32 field_UInt32Value;
+        UInt32 IUInt32Node.UInt32Value { get => field_UInt32Value; }
+        public UInt32 UInt32Value
+        {
+            get => field_UInt32Value;
+            set => field_UInt32Value = value;
+        }
 
         public UInt32Node() : base()
         {
@@ -830,37 +878,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public UInt32Node(UInt32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            UInt32Value = source.UInt32Value;
+            field_UInt32Value = source.UInt32Value;
         }
 
         public UInt32Node(IUInt32Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            UInt32Value = source.UInt32Value;
+            field_UInt32Value = source.UInt32Value;
         }
 
-        public virtual bool Equals(UInt32Node? other)
+        public void CopyFrom(IUInt32Node? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_UInt32Value = source.UInt32Value;
+        }
+
+        public bool Equals(UInt32Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!UInt32Value.ValueEquals(other.UInt32Value)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(UInt32Value.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is UInt32Node other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(UInt32Value.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -868,24 +918,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly SingleNode_Factory _instance = new SingleNode_Factory();
         public static SingleNode_Factory Instance => _instance;
-
-        public SingleNode? CreateFrom(ISingleNode? source)
-        {
-            if (source is null) return null;
-            if (source is SingleNode thisEntity) return thisEntity;
-            return new SingleNode(source);
-        }
-
-        private static readonly SingleNode _empty = new SingleNode();
-        public SingleNode Empty => _empty;
+        public SingleNode? CreateFrom(ISingleNode? source) => (source is null) ? null : new SingleNode(source);
+        public SingleNode Empty => new SingleNode();
     }
-    public partial record SingleNode : NumericNode, ISingleNode
+    public partial class SingleNode : NumericNode, ISingleNode, IEquatable<SingleNode>
     {
         public new const int EntityTag = 15;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Single SingleValue { get; init; }
-        Single ISingleNode.SingleValue => SingleValue;
+        private Single field_SingleValue;
+        Single ISingleNode.SingleValue { get => field_SingleValue; }
+        public Single SingleValue
+        {
+            get => field_SingleValue;
+            set => field_SingleValue = value;
+        }
 
         public SingleNode() : base()
         {
@@ -894,37 +941,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public SingleNode(SingleNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            SingleValue = source.SingleValue;
+            field_SingleValue = source.SingleValue;
         }
 
         public SingleNode(ISingleNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            SingleValue = source.SingleValue;
+            field_SingleValue = source.SingleValue;
         }
 
-        public virtual bool Equals(SingleNode? other)
+        public void CopyFrom(ISingleNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_SingleValue = source.SingleValue;
+        }
+
+        public bool Equals(SingleNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!SingleValue.ValueEquals(other.SingleValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(SingleValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is SingleNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(SingleValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -932,24 +981,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly DateTimeNode_Factory _instance = new DateTimeNode_Factory();
         public static DateTimeNode_Factory Instance => _instance;
-
-        public DateTimeNode? CreateFrom(IDateTimeNode? source)
-        {
-            if (source is null) return null;
-            if (source is DateTimeNode thisEntity) return thisEntity;
-            return new DateTimeNode(source);
-        }
-
-        private static readonly DateTimeNode _empty = new DateTimeNode();
-        public DateTimeNode Empty => _empty;
+        public DateTimeNode? CreateFrom(IDateTimeNode? source) => (source is null) ? null : new DateTimeNode(source);
+        public DateTimeNode Empty => new DateTimeNode();
     }
-    public partial record DateTimeNode : ValueNode, IDateTimeNode
+    public partial class DateTimeNode : ValueNode, IDateTimeNode, IEquatable<DateTimeNode>
     {
         public new const int EntityTag = 16;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public DateTime DateTimeValue { get; init; }
-        DateTime IDateTimeNode.DateTimeValue => DateTimeValue;
+        private DateTime field_DateTimeValue;
+        DateTime IDateTimeNode.DateTimeValue { get => field_DateTimeValue; }
+        public DateTime DateTimeValue
+        {
+            get => field_DateTimeValue;
+            set => field_DateTimeValue = value;
+        }
 
         public DateTimeNode() : base()
         {
@@ -958,37 +1004,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public DateTimeNode(DateTimeNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DateTimeValue = source.DateTimeValue;
+            field_DateTimeValue = source.DateTimeValue;
         }
 
         public DateTimeNode(IDateTimeNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DateTimeValue = source.DateTimeValue;
+            field_DateTimeValue = source.DateTimeValue;
         }
 
-        public virtual bool Equals(DateTimeNode? other)
+        public void CopyFrom(IDateTimeNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_DateTimeValue = source.DateTimeValue;
+        }
+
+        public bool Equals(DateTimeNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!DateTimeValue.ValueEquals(other.DateTimeValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(DateTimeValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is DateTimeNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(DateTimeValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -996,24 +1044,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly TimeSpanNode_Factory _instance = new TimeSpanNode_Factory();
         public static TimeSpanNode_Factory Instance => _instance;
-
-        public TimeSpanNode? CreateFrom(ITimeSpanNode? source)
-        {
-            if (source is null) return null;
-            if (source is TimeSpanNode thisEntity) return thisEntity;
-            return new TimeSpanNode(source);
-        }
-
-        private static readonly TimeSpanNode _empty = new TimeSpanNode();
-        public TimeSpanNode Empty => _empty;
+        public TimeSpanNode? CreateFrom(ITimeSpanNode? source) => (source is null) ? null : new TimeSpanNode(source);
+        public TimeSpanNode Empty => new TimeSpanNode();
     }
-    public partial record TimeSpanNode : ValueNode, ITimeSpanNode
+    public partial class TimeSpanNode : ValueNode, ITimeSpanNode, IEquatable<TimeSpanNode>
     {
         public new const int EntityTag = 17;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public TimeSpan TimeSpanValue { get; init; }
-        TimeSpan ITimeSpanNode.TimeSpanValue => TimeSpanValue;
+        private TimeSpan field_TimeSpanValue;
+        TimeSpan ITimeSpanNode.TimeSpanValue { get => field_TimeSpanValue; }
+        public TimeSpan TimeSpanValue
+        {
+            get => field_TimeSpanValue;
+            set => field_TimeSpanValue = value;
+        }
 
         public TimeSpanNode() : base()
         {
@@ -1022,37 +1067,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public TimeSpanNode(TimeSpanNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            TimeSpanValue = source.TimeSpanValue;
+            field_TimeSpanValue = source.TimeSpanValue;
         }
 
         public TimeSpanNode(ITimeSpanNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            TimeSpanValue = source.TimeSpanValue;
+            field_TimeSpanValue = source.TimeSpanValue;
         }
 
-        public virtual bool Equals(TimeSpanNode? other)
+        public void CopyFrom(ITimeSpanNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_TimeSpanValue = source.TimeSpanValue;
+        }
+
+        public bool Equals(TimeSpanNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!TimeSpanValue.ValueEquals(other.TimeSpanValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(TimeSpanValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is TimeSpanNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(TimeSpanValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1060,24 +1107,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly DateOnlyNode_Factory _instance = new DateOnlyNode_Factory();
         public static DateOnlyNode_Factory Instance => _instance;
-
-        public DateOnlyNode? CreateFrom(IDateOnlyNode? source)
-        {
-            if (source is null) return null;
-            if (source is DateOnlyNode thisEntity) return thisEntity;
-            return new DateOnlyNode(source);
-        }
-
-        private static readonly DateOnlyNode _empty = new DateOnlyNode();
-        public DateOnlyNode Empty => _empty;
+        public DateOnlyNode? CreateFrom(IDateOnlyNode? source) => (source is null) ? null : new DateOnlyNode(source);
+        public DateOnlyNode Empty => new DateOnlyNode();
     }
-    public partial record DateOnlyNode : ValueNode, IDateOnlyNode
+    public partial class DateOnlyNode : ValueNode, IDateOnlyNode, IEquatable<DateOnlyNode>
     {
         public new const int EntityTag = 18;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public DateOnly DateOnlyValue { get; init; }
-        DateOnly IDateOnlyNode.DateOnlyValue => DateOnlyValue;
+        private DateOnly field_DateOnlyValue;
+        DateOnly IDateOnlyNode.DateOnlyValue { get => field_DateOnlyValue; }
+        public DateOnly DateOnlyValue
+        {
+            get => field_DateOnlyValue;
+            set => field_DateOnlyValue = value;
+        }
 
         public DateOnlyNode() : base()
         {
@@ -1086,37 +1130,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public DateOnlyNode(DateOnlyNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DateOnlyValue = source.DateOnlyValue;
+            field_DateOnlyValue = source.DateOnlyValue;
         }
 
         public DateOnlyNode(IDateOnlyNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DateOnlyValue = source.DateOnlyValue;
+            field_DateOnlyValue = source.DateOnlyValue;
         }
 
-        public virtual bool Equals(DateOnlyNode? other)
+        public void CopyFrom(IDateOnlyNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_DateOnlyValue = source.DateOnlyValue;
+        }
+
+        public bool Equals(DateOnlyNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!DateOnlyValue.ValueEquals(other.DateOnlyValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(DateOnlyValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is DateOnlyNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(DateOnlyValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1124,24 +1170,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly TimeOnlyNode_Factory _instance = new TimeOnlyNode_Factory();
         public static TimeOnlyNode_Factory Instance => _instance;
-
-        public TimeOnlyNode? CreateFrom(ITimeOnlyNode? source)
-        {
-            if (source is null) return null;
-            if (source is TimeOnlyNode thisEntity) return thisEntity;
-            return new TimeOnlyNode(source);
-        }
-
-        private static readonly TimeOnlyNode _empty = new TimeOnlyNode();
-        public TimeOnlyNode Empty => _empty;
+        public TimeOnlyNode? CreateFrom(ITimeOnlyNode? source) => (source is null) ? null : new TimeOnlyNode(source);
+        public TimeOnlyNode Empty => new TimeOnlyNode();
     }
-    public partial record TimeOnlyNode : ValueNode, ITimeOnlyNode
+    public partial class TimeOnlyNode : ValueNode, ITimeOnlyNode, IEquatable<TimeOnlyNode>
     {
         public new const int EntityTag = 19;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public TimeOnly TimeOnlyValue { get; init; }
-        TimeOnly ITimeOnlyNode.TimeOnlyValue => TimeOnlyValue;
+        private TimeOnly field_TimeOnlyValue;
+        TimeOnly ITimeOnlyNode.TimeOnlyValue { get => field_TimeOnlyValue; }
+        public TimeOnly TimeOnlyValue
+        {
+            get => field_TimeOnlyValue;
+            set => field_TimeOnlyValue = value;
+        }
 
         public TimeOnlyNode() : base()
         {
@@ -1150,37 +1193,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public TimeOnlyNode(TimeOnlyNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            TimeOnlyValue = source.TimeOnlyValue;
+            field_TimeOnlyValue = source.TimeOnlyValue;
         }
 
         public TimeOnlyNode(ITimeOnlyNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            TimeOnlyValue = source.TimeOnlyValue;
+            field_TimeOnlyValue = source.TimeOnlyValue;
         }
 
-        public virtual bool Equals(TimeOnlyNode? other)
+        public void CopyFrom(ITimeOnlyNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_TimeOnlyValue = source.TimeOnlyValue;
+        }
+
+        public bool Equals(TimeOnlyNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!TimeOnlyValue.ValueEquals(other.TimeOnlyValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(TimeOnlyValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is TimeOnlyNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(TimeOnlyValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1188,24 +1233,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly Int64Node_Factory _instance = new Int64Node_Factory();
         public static Int64Node_Factory Instance => _instance;
-
-        public Int64Node? CreateFrom(IInt64Node? source)
-        {
-            if (source is null) return null;
-            if (source is Int64Node thisEntity) return thisEntity;
-            return new Int64Node(source);
-        }
-
-        private static readonly Int64Node _empty = new Int64Node();
-        public Int64Node Empty => _empty;
+        public Int64Node? CreateFrom(IInt64Node? source) => (source is null) ? null : new Int64Node(source);
+        public Int64Node Empty => new Int64Node();
     }
-    public partial record Int64Node : NumericNode, IInt64Node
+    public partial class Int64Node : NumericNode, IInt64Node, IEquatable<Int64Node>
     {
         public new const int EntityTag = 7;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Int64 Int64Value { get; init; }
-        Int64 IInt64Node.Int64Value => Int64Value;
+        private Int64 field_Int64Value;
+        Int64 IInt64Node.Int64Value { get => field_Int64Value; }
+        public Int64 Int64Value
+        {
+            get => field_Int64Value;
+            set => field_Int64Value = value;
+        }
 
         public Int64Node() : base()
         {
@@ -1214,37 +1256,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public Int64Node(Int64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Int64Value = source.Int64Value;
+            field_Int64Value = source.Int64Value;
         }
 
         public Int64Node(IInt64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Int64Value = source.Int64Value;
+            field_Int64Value = source.Int64Value;
         }
 
-        public virtual bool Equals(Int64Node? other)
+        public void CopyFrom(IInt64Node? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Int64Value = source.Int64Value;
+        }
+
+        public bool Equals(Int64Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Int64Value.ValueEquals(other.Int64Value)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Int64Value.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is Int64Node other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Int64Value.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1252,24 +1296,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly UInt64Node_Factory _instance = new UInt64Node_Factory();
         public static UInt64Node_Factory Instance => _instance;
-
-        public UInt64Node? CreateFrom(IUInt64Node? source)
-        {
-            if (source is null) return null;
-            if (source is UInt64Node thisEntity) return thisEntity;
-            return new UInt64Node(source);
-        }
-
-        private static readonly UInt64Node _empty = new UInt64Node();
-        public UInt64Node Empty => _empty;
+        public UInt64Node? CreateFrom(IUInt64Node? source) => (source is null) ? null : new UInt64Node(source);
+        public UInt64Node Empty => new UInt64Node();
     }
-    public partial record UInt64Node : NumericNode, IUInt64Node
+    public partial class UInt64Node : NumericNode, IUInt64Node, IEquatable<UInt64Node>
     {
         public new const int EntityTag = 20;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public UInt64 UInt64Value { get; init; }
-        UInt64 IUInt64Node.UInt64Value => UInt64Value;
+        private UInt64 field_UInt64Value;
+        UInt64 IUInt64Node.UInt64Value { get => field_UInt64Value; }
+        public UInt64 UInt64Value
+        {
+            get => field_UInt64Value;
+            set => field_UInt64Value = value;
+        }
 
         public UInt64Node() : base()
         {
@@ -1278,37 +1319,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public UInt64Node(UInt64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            UInt64Value = source.UInt64Value;
+            field_UInt64Value = source.UInt64Value;
         }
 
         public UInt64Node(IUInt64Node? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            UInt64Value = source.UInt64Value;
+            field_UInt64Value = source.UInt64Value;
         }
 
-        public virtual bool Equals(UInt64Node? other)
+        public void CopyFrom(IUInt64Node? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_UInt64Value = source.UInt64Value;
+        }
+
+        public bool Equals(UInt64Node? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!UInt64Value.ValueEquals(other.UInt64Value)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(UInt64Value.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is UInt64Node other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(UInt64Value.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1316,24 +1359,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly DoubleNode_Factory _instance = new DoubleNode_Factory();
         public static DoubleNode_Factory Instance => _instance;
-
-        public DoubleNode? CreateFrom(IDoubleNode? source)
-        {
-            if (source is null) return null;
-            if (source is DoubleNode thisEntity) return thisEntity;
-            return new DoubleNode(source);
-        }
-
-        private static readonly DoubleNode _empty = new DoubleNode();
-        public DoubleNode Empty => _empty;
+        public DoubleNode? CreateFrom(IDoubleNode? source) => (source is null) ? null : new DoubleNode(source);
+        public DoubleNode Empty => new DoubleNode();
     }
-    public partial record DoubleNode : NumericNode, IDoubleNode
+    public partial class DoubleNode : NumericNode, IDoubleNode, IEquatable<DoubleNode>
     {
         public new const int EntityTag = 21;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Double DoubleValue { get; init; }
-        Double IDoubleNode.DoubleValue => DoubleValue;
+        private Double field_DoubleValue;
+        Double IDoubleNode.DoubleValue { get => field_DoubleValue; }
+        public Double DoubleValue
+        {
+            get => field_DoubleValue;
+            set => field_DoubleValue = value;
+        }
 
         public DoubleNode() : base()
         {
@@ -1342,37 +1382,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public DoubleNode(DoubleNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DoubleValue = source.DoubleValue;
+            field_DoubleValue = source.DoubleValue;
         }
 
         public DoubleNode(IDoubleNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DoubleValue = source.DoubleValue;
+            field_DoubleValue = source.DoubleValue;
         }
 
-        public virtual bool Equals(DoubleNode? other)
+        public void CopyFrom(IDoubleNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_DoubleValue = source.DoubleValue;
+        }
+
+        public bool Equals(DoubleNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!DoubleValue.ValueEquals(other.DoubleValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(DoubleValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is DoubleNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(DoubleValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1380,24 +1422,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly StringNode_Factory _instance = new StringNode_Factory();
         public static StringNode_Factory Instance => _instance;
-
-        public StringNode? CreateFrom(IStringNode? source)
-        {
-            if (source is null) return null;
-            if (source is StringNode thisEntity) return thisEntity;
-            return new StringNode(source);
-        }
-
-        private static readonly StringNode _empty = new StringNode();
-        public StringNode Empty => _empty;
+        public StringNode? CreateFrom(IStringNode? source) => (source is null) ? null : new StringNode(source);
+        public StringNode Empty => new StringNode();
     }
-    public partial record StringNode : ValueNode, IStringNode
+    public partial class StringNode : ValueNode, IStringNode, IEquatable<StringNode>
     {
         public new const int EntityTag = 3;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public String? StringValue { get; init; }
-        String? IStringNode.StringValue => StringValue;
+        private String? field_StringValue;
+        String? IStringNode.StringValue => field_StringValue;
+        public String? StringValue
+        {
+            get => field_StringValue;
+            set => field_StringValue = value;
+        }
 
         public StringNode() : base()
         {
@@ -1406,37 +1445,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public StringNode(StringNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            StringValue = source.StringValue;
+            field_StringValue = source.StringValue;
         }
 
         public StringNode(IStringNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            StringValue = source.StringValue;
+            field_StringValue = source.StringValue;
         }
 
-        public virtual bool Equals(StringNode? other)
+        public void CopyFrom(IStringNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_StringValue = source.StringValue;
+        }
+
+        public bool Equals(StringNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!StringValue.ValueEquals(other.StringValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(StringValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is StringNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(StringValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1444,24 +1485,16 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly OctetsNode_Factory _instance = new OctetsNode_Factory();
         public static OctetsNode_Factory Instance => _instance;
-
-        public OctetsNode? CreateFrom(IOctetsNode? source)
-        {
-            if (source is null) return null;
-            if (source is OctetsNode thisEntity) return thisEntity;
-            return new OctetsNode(source);
-        }
-
-        private static readonly OctetsNode _empty = new OctetsNode();
-        public OctetsNode Empty => _empty;
+        public OctetsNode? CreateFrom(IOctetsNode? source) => (source is null) ? null : new OctetsNode(source);
+        public OctetsNode Empty => new OctetsNode();
     }
-    public partial record OctetsNode : ValueNode, IOctetsNode
+    public partial class OctetsNode : ValueNode, IOctetsNode, IEquatable<OctetsNode>
     {
         public new const int EntityTag = 22;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Octets? OctetsValue { get; init; }
-        Octets? IOctetsNode.OctetsValue => OctetsValue;
+        Octets? IOctetsNode.OctetsValue => OctetsValue is null ? null : new Octets(OctetsValue);
+        public byte[]? OctetsValue { get; set; }
 
         public OctetsNode() : base()
         {
@@ -1470,37 +1503,43 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public OctetsNode(OctetsNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            OctetsValue = source.OctetsValue;
+            this.OctetsValue = source.OctetsValue;
         }
 
         public OctetsNode(IOctetsNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            OctetsValue = source.OctetsValue;
+            this.OctetsValue = source.OctetsValue is null
+                ? default
+                : source.OctetsValue.Memory.ToArray();
         }
 
-        public virtual bool Equals(OctetsNode? other)
+        public void CopyFrom(IOctetsNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            this.OctetsValue = source.OctetsValue is null
+                ? default
+                : source.OctetsValue.Memory.ToArray();
+        }
+
+        public bool Equals(OctetsNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!OctetsValue.ValueEquals(other.OctetsValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(OctetsValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is OctetsNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(OctetsValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1508,24 +1547,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly GuidNode_Factory _instance = new GuidNode_Factory();
         public static GuidNode_Factory Instance => _instance;
-
-        public GuidNode? CreateFrom(IGuidNode? source)
-        {
-            if (source is null) return null;
-            if (source is GuidNode thisEntity) return thisEntity;
-            return new GuidNode(source);
-        }
-
-        private static readonly GuidNode _empty = new GuidNode();
-        public GuidNode Empty => _empty;
+        public GuidNode? CreateFrom(IGuidNode? source) => (source is null) ? null : new GuidNode(source);
+        public GuidNode Empty => new GuidNode();
     }
-    public partial record GuidNode : ValueNode, IGuidNode
+    public partial class GuidNode : ValueNode, IGuidNode, IEquatable<GuidNode>
     {
         public new const int EntityTag = 23;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Guid GuidValue { get; init; }
-        Guid IGuidNode.GuidValue => GuidValue;
+        private Guid field_GuidValue;
+        Guid IGuidNode.GuidValue { get => field_GuidValue; }
+        public Guid GuidValue
+        {
+            get => field_GuidValue;
+            set => field_GuidValue = value;
+        }
 
         public GuidNode() : base()
         {
@@ -1534,37 +1570,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public GuidNode(GuidNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            GuidValue = source.GuidValue;
+            field_GuidValue = source.GuidValue;
         }
 
         public GuidNode(IGuidNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            GuidValue = source.GuidValue;
+            field_GuidValue = source.GuidValue;
         }
 
-        public virtual bool Equals(GuidNode? other)
+        public void CopyFrom(IGuidNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_GuidValue = source.GuidValue;
+        }
+
+        public bool Equals(GuidNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!GuidValue.ValueEquals(other.GuidValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(GuidValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is GuidNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(GuidValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1572,24 +1610,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly DecimalNode_Factory _instance = new DecimalNode_Factory();
         public static DecimalNode_Factory Instance => _instance;
-
-        public DecimalNode? CreateFrom(IDecimalNode? source)
-        {
-            if (source is null) return null;
-            if (source is DecimalNode thisEntity) return thisEntity;
-            return new DecimalNode(source);
-        }
-
-        private static readonly DecimalNode _empty = new DecimalNode();
-        public DecimalNode Empty => _empty;
+        public DecimalNode? CreateFrom(IDecimalNode? source) => (source is null) ? null : new DecimalNode(source);
+        public DecimalNode Empty => new DecimalNode();
     }
-    public partial record DecimalNode : NumericNode, IDecimalNode
+    public partial class DecimalNode : NumericNode, IDecimalNode, IEquatable<DecimalNode>
     {
         public new const int EntityTag = 24;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Decimal DecimalValue { get; init; }
-        Decimal IDecimalNode.DecimalValue => DecimalValue;
+        private Decimal field_DecimalValue;
+        Decimal IDecimalNode.DecimalValue { get => field_DecimalValue; }
+        public Decimal DecimalValue
+        {
+            get => field_DecimalValue;
+            set => field_DecimalValue = value;
+        }
 
         public DecimalNode() : base()
         {
@@ -1598,37 +1633,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public DecimalNode(DecimalNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DecimalValue = source.DecimalValue;
+            field_DecimalValue = source.DecimalValue;
         }
 
         public DecimalNode(IDecimalNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DecimalValue = source.DecimalValue;
+            field_DecimalValue = source.DecimalValue;
         }
 
-        public virtual bool Equals(DecimalNode? other)
+        public void CopyFrom(IDecimalNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_DecimalValue = source.DecimalValue;
+        }
+
+        public bool Equals(DecimalNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!DecimalValue.ValueEquals(other.DecimalValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(DecimalValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is DecimalNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(DecimalValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1636,24 +1673,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly DateTimeOffsetNode_Factory _instance = new DateTimeOffsetNode_Factory();
         public static DateTimeOffsetNode_Factory Instance => _instance;
-
-        public DateTimeOffsetNode? CreateFrom(IDateTimeOffsetNode? source)
-        {
-            if (source is null) return null;
-            if (source is DateTimeOffsetNode thisEntity) return thisEntity;
-            return new DateTimeOffsetNode(source);
-        }
-
-        private static readonly DateTimeOffsetNode _empty = new DateTimeOffsetNode();
-        public DateTimeOffsetNode Empty => _empty;
+        public DateTimeOffsetNode? CreateFrom(IDateTimeOffsetNode? source) => (source is null) ? null : new DateTimeOffsetNode(source);
+        public DateTimeOffsetNode Empty => new DateTimeOffsetNode();
     }
-    public partial record DateTimeOffsetNode : ValueNode, IDateTimeOffsetNode
+    public partial class DateTimeOffsetNode : ValueNode, IDateTimeOffsetNode, IEquatable<DateTimeOffsetNode>
     {
         public new const int EntityTag = 25;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public DateTimeOffset DateTimeOffsetValue { get; init; }
-        DateTimeOffset IDateTimeOffsetNode.DateTimeOffsetValue => DateTimeOffsetValue;
+        private DateTimeOffset field_DateTimeOffsetValue;
+        DateTimeOffset IDateTimeOffsetNode.DateTimeOffsetValue { get => field_DateTimeOffsetValue; }
+        public DateTimeOffset DateTimeOffsetValue
+        {
+            get => field_DateTimeOffsetValue;
+            set => field_DateTimeOffsetValue = value;
+        }
 
         public DateTimeOffsetNode() : base()
         {
@@ -1662,37 +1696,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public DateTimeOffsetNode(DateTimeOffsetNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DateTimeOffsetValue = source.DateTimeOffsetValue;
+            field_DateTimeOffsetValue = source.DateTimeOffsetValue;
         }
 
         public DateTimeOffsetNode(IDateTimeOffsetNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            DateTimeOffsetValue = source.DateTimeOffsetValue;
+            field_DateTimeOffsetValue = source.DateTimeOffsetValue;
         }
 
-        public virtual bool Equals(DateTimeOffsetNode? other)
+        public void CopyFrom(IDateTimeOffsetNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_DateTimeOffsetValue = source.DateTimeOffsetValue;
+        }
+
+        public bool Equals(DateTimeOffsetNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!DateTimeOffsetValue.ValueEquals(other.DateTimeOffsetValue)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(DateTimeOffsetValue.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is DateTimeOffsetNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(DateTimeOffsetValue.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1700,24 +1736,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly BigIntNode_Factory _instance = new BigIntNode_Factory();
         public static BigIntNode_Factory Instance => _instance;
-
-        public BigIntNode? CreateFrom(IBigIntNode? source)
-        {
-            if (source is null) return null;
-            if (source is BigIntNode thisEntity) return thisEntity;
-            return new BigIntNode(source);
-        }
-
-        private static readonly BigIntNode _empty = new BigIntNode();
-        public BigIntNode Empty => _empty;
+        public BigIntNode? CreateFrom(IBigIntNode? source) => (source is null) ? null : new BigIntNode(source);
+        public BigIntNode Empty => new BigIntNode();
     }
-    public partial record BigIntNode : NumericNode, IBigIntNode
+    public partial class BigIntNode : NumericNode, IBigIntNode, IEquatable<BigIntNode>
     {
         public new const int EntityTag = 26;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public BigInteger Value { get; init; }
-        BigInteger IBigIntNode.Value => Value;
+        private BigIntValue field_Value;
+        BigInteger IBigIntNode.Value { get => field_Value; }
+        public BigIntValue Value
+        {
+            get => field_Value;
+            set => field_Value = value;
+        }
 
         public BigIntNode() : base()
         {
@@ -1726,37 +1759,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public BigIntNode(BigIntNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Value = source.Value;
+            field_Value = source.Value;
         }
 
         public BigIntNode(IBigIntNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Value = source.Value;
+            field_Value = source.Value;
         }
 
-        public virtual bool Equals(BigIntNode? other)
+        public void CopyFrom(IBigIntNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public bool Equals(BigIntNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Value.ValueEquals(other.Value)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Value.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is BigIntNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Value.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1764,24 +1799,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly ComplexNode_Factory _instance = new ComplexNode_Factory();
         public static ComplexNode_Factory Instance => _instance;
-
-        public ComplexNode? CreateFrom(IComplexNode? source)
-        {
-            if (source is null) return null;
-            if (source is ComplexNode thisEntity) return thisEntity;
-            return new ComplexNode(source);
-        }
-
-        private static readonly ComplexNode _empty = new ComplexNode();
-        public ComplexNode Empty => _empty;
+        public ComplexNode? CreateFrom(IComplexNode? source) => (source is null) ? null : new ComplexNode(source);
+        public ComplexNode Empty => new ComplexNode();
     }
-    public partial record ComplexNode : NumericNode, IComplexNode
+    public partial class ComplexNode : NumericNode, IComplexNode, IEquatable<ComplexNode>
     {
         public new const int EntityTag = 27;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Complex Value { get; init; }
-        Complex IComplexNode.Value => Value;
+        private ComplexValue field_Value;
+        Complex IComplexNode.Value { get => field_Value; }
+        public ComplexValue Value
+        {
+            get => field_Value;
+            set => field_Value = value;
+        }
 
         public ComplexNode() : base()
         {
@@ -1790,37 +1822,39 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public ComplexNode(ComplexNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Value = source.Value;
+            field_Value = source.Value;
         }
 
         public ComplexNode(IComplexNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Value = source.Value;
+            field_Value = source.Value;
         }
 
-        public virtual bool Equals(ComplexNode? other)
+        public void CopyFrom(IComplexNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public bool Equals(ComplexNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Value.ValueEquals(other.Value)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Value.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is ComplexNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Value.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
 
@@ -1828,24 +1862,21 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
     {
         private static readonly VersionNode_Factory _instance = new VersionNode_Factory();
         public static VersionNode_Factory Instance => _instance;
-
-        public VersionNode? CreateFrom(IVersionNode? source)
-        {
-            if (source is null) return null;
-            if (source is VersionNode thisEntity) return thisEntity;
-            return new VersionNode(source);
-        }
-
-        private static readonly VersionNode _empty = new VersionNode();
-        public VersionNode Empty => _empty;
+        public VersionNode? CreateFrom(IVersionNode? source) => (source is null) ? null : new VersionNode(source);
+        public VersionNode Empty => new VersionNode();
     }
-    public partial record VersionNode : ValueNode, IVersionNode
+    public partial class VersionNode : ValueNode, IVersionNode, IEquatable<VersionNode>
     {
         public new const int EntityTag = 28;
         protected override int OnGetEntityTag() => EntityTag;
 
-        public Version? Value { get; init; }
-        Version? IVersionNode.Value => Value;
+        private VersionValue? field_Value;
+        Version? IVersionNode.Value => field_Value;
+        public VersionValue? Value
+        {
+            get => field_Value;
+            set => field_Value = value;
+        }
 
         public VersionNode() : base()
         {
@@ -1854,40 +1885,41 @@ namespace MetaFac.CG4.TestOrg.ModelsNet7.Polymorphic.RecordsV2
         public VersionNode(VersionNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Value = source.Value;
+            field_Value = source.Value;
         }
 
         public VersionNode(IVersionNode? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
-            Value = source.Value;
+            field_Value = source.Value;
         }
 
-        public virtual bool Equals(VersionNode? other)
+        public void CopyFrom(IVersionNode? source)
+        {
+            if (source is null) return;
+            base.CopyFrom(source);
+            field_Value = source.Value;
+        }
+
+        public bool Equals(VersionNode? other)
         {
             if (other is null) return false;
             if (ReferenceEquals(other, this)) return true;
+            if (!base.Equals(other)) return false;
             if (!Value.ValueEquals(other.Value)) return false;
-            return base.Equals(other);
+            return true;
         }
 
-        private int CalcHashCode()
-        {
-            HashCode hc = new HashCode();
-            hc.Add(Value.CalcHashUnary());
-            hc.Add(base.GetHashCode());
-            return hc.ToHashCode();
-        }
+        public override bool Equals(object? obj) => obj is VersionNode other && Equals(other);
 
-        private int? _hashCode = null;
         public override int GetHashCode()
         {
-            if (_hashCode is null)
-                _hashCode = CalcHashCode();
-            return _hashCode.Value;
+            HashCode hc = new HashCode();
+            hc.Add(base.GetHashCode());
+            hc.Add(Value.CalcHashUnary());
+            return hc.ToHashCode();
         }
     }
-
 
 
 }

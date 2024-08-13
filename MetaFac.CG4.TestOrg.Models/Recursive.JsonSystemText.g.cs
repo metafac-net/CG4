@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonSystemText.2.4
+// Generator: JsonSystemText.2.9
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Recursive)
 // </information>
 #endregion
@@ -14,11 +14,12 @@
 #pragma warning disable CS8019 // Unnecessary using directive
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
+using MetaFac.CG4.Runtime.JsonSystemText;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Numerics;
 using System.Text.Json.Serialization;
 using MetaFac.CG4.TestOrg.Models.Recursive.Contracts;
 using MetaFac.Memory;
@@ -34,7 +35,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonSystemText
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
         public EntityBase(IEntityBase? source) { }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(IEntityBase? source) { }
         protected abstract int OnGetEntityTag();
         public int GetEntityTag() => OnGetEntityTag();
@@ -82,12 +82,10 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonSystemText
             set => field_B = value;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree() : base()
         {
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(Tree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -96,7 +94,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonSystemText
             field_B = source.B;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Tree(ITree? source) : base(source)
         {
             if (source is null) throw new ArgumentNullException(nameof(source));
@@ -105,7 +102,6 @@ namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonSystemText
             field_B = Tree_Factory.Instance.CreateFrom(source.B);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyFrom(ITree? source)
         {
             if (source is null) return;

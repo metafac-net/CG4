@@ -1,7 +1,11 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using MetaFac.CG4.TestOrg.Common;
+using System;
+using System.Threading.Tasks;
+using VerifyXunit;
+using Xunit;
 
-namespace MetaFac.CG4.TestOrg.ModelsNet7.Tests
+namespace MetaFac.CG4.TestOrg.Models.Tests
 {
     public class JsonSystemTextXtraComplexRoundtripTests
     {

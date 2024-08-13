@@ -15,6 +15,20 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
 {
     public class RoundtripValueTests
     {
+        private static TOriginal RoundtripViaJsonSystemText<TInterface, TOriginal, TTransport>(
+            TOriginal original,
+            IEntityFactory<TInterface, TOriginal> originalFactory,
+            IEntityFactory<TInterface, TTransport> transportFactory)
+            where TOriginal : TInterface
+            where TTransport : TInterface
+        {
+            TTransport? outgoing = transportFactory.CreateFrom(original) ?? throw new Exception("Returned null!");
+            string buffer = outgoing.SerializeToJsonSystemText();
+            TTransport? incoming = buffer.DeserializeFromJsonSystemText<TTransport>();
+            incoming.Should().Be(outgoing);
+            return originalFactory.CreateFrom(incoming) ?? throw new Exception("Returned null!");
+        }
+
         private static TOriginal RoundtripViaJsonNewtonSoft<TInterface, TOriginal, TTransport>(
             TOriginal original,
             IEntityFactory<TInterface, TOriginal> originalFactory,
@@ -43,15 +57,17 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             return originalFactory.CreateFrom(incoming) ?? throw new Exception("Returned null!");
         }
 
-        private static void RoundtripViaAllTransports<TInterface, TOriginal, TTransport1, TTransport2>(
+        private static void RoundtripViaAllTransports<TInterface, TOriginal, TTransport1, TTransport2, TTransport3>(
             TOriginal original,
             IEntityFactory<TInterface, TOriginal> origFactory,
             IEntityFactory<TInterface, TTransport1> msgpFactory,
-            IEntityFactory<TInterface, TTransport2> nsJsonFactory
+            IEntityFactory<TInterface, TTransport2> nsJsonFactory,
+            IEntityFactory<TInterface, TTransport3> msJsonFactory
             )
             where TOriginal : TInterface
             where TTransport1 : TInterface
             where TTransport2 : TInterface
+            where TTransport3 : TInterface
         {
             var duplicate1 = RoundtripViaMessagePack(original, origFactory, msgpFactory);
             duplicate1.Should().Be(original);
@@ -59,6 +75,9 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var duplicate2 = RoundtripViaJsonNewtonSoft(original, origFactory, nsJsonFactory);
             duplicate2.Should().Be(original);
             duplicate2!.Equals(original).Should().BeTrue();
+            var duplicate3 = RoundtripViaJsonSystemText(original, origFactory, msJsonFactory);
+            duplicate3.Should().Be(original);
+            duplicate3!.Equals(original).Should().BeTrue();
         }
 
         [Theory]
@@ -69,6 +88,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_bool_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_bool_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_bool_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_bool_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_bool()
             {
@@ -76,7 +96,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, bool?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -90,6 +110,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_sbyte_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_sbyte_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_sbyte_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_sbyte_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_sbyte()
             {
@@ -97,7 +118,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, sbyte?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -110,6 +131,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_byte_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_byte_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_byte_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_byte_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_byte()
             {
@@ -117,7 +139,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, byte?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -131,6 +153,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_short_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_short_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_short_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_short_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_short()
             {
@@ -138,7 +161,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, short?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -151,6 +174,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_ushort_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_ushort_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_ushort_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_ushort_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_ushort()
             {
@@ -158,7 +182,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, ushort?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -171,6 +195,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_char_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_char_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_char_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_char_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_char()
             {
@@ -178,7 +203,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, char?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -192,6 +217,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_int_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_int_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_int_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_int_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_int()
             {
@@ -199,7 +225,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, int?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -212,6 +238,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_uint_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_uint_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_uint_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_uint_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_uint()
             {
@@ -219,7 +246,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, uint?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -242,6 +269,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_float_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_float_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_float_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_float_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_float()
             {
@@ -249,7 +277,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, float?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -263,6 +291,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_long_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_long_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_long_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_long_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_long()
             {
@@ -270,7 +299,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, long?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -283,6 +312,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_ulong_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_ulong_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_ulong_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_ulong_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_ulong()
             {
@@ -290,7 +320,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, ulong?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -313,6 +343,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_double_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_double_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_double_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_double_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_double()
             {
@@ -320,7 +351,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, double?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -333,6 +364,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_DayOfWeek_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_DayOfWeek_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_DayOfWeek_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_DayOfWeek_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_DayOfWeek()
             {
@@ -340,7 +372,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, DayOfWeek?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -361,6 +393,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_decimal_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_decimal_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_decimal_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_decimal_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_decimal()
             {
@@ -368,7 +401,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, decimal?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -388,6 +421,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_DateTime_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_DateTime_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_DateTime_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_DateTime_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_DateTime()
             {
@@ -395,7 +429,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, DateTime?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -414,6 +448,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_TimeSpan_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_TimeSpan_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_TimeSpan_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_TimeSpan_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_TimeSpan()
             {
@@ -421,7 +456,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, TimeSpan?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -441,6 +476,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_DateTimeOffset_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_DateTimeOffset_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_DateTimeOffset_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_DateTimeOffset_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_DateTimeOffset()
             {
@@ -448,7 +484,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, DateTimeOffset?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -466,6 +502,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_Guid_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Guid_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_Guid_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_Guid_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_Guid()
             {
@@ -473,7 +510,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, Guid?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -486,6 +523,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_MyCustomEnum_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_MyCustomEnum_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_MyCustomEnum_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_MyCustomEnum_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_MyCustomEnum()
             {
@@ -493,7 +531,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, MyCustomEnum?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -522,6 +560,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_Quantity_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Quantity_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_Quantity_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_Quantity_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_Quantity()
             {
@@ -529,7 +568,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, Quantity?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -540,6 +579,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
         {
             var origFactory = BasicTypes.RecordsV2.Basic_string_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_string_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_string_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_string_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_string()
             {
@@ -547,7 +587,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 Vector = ImmutableList.Create(value),
                 MapValue = ImmutableDictionary<string, string?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -564,6 +604,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_Octets_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Octets_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_Octets_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_Octets_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_Octets()
             {
@@ -571,7 +612,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 Vector = ImmutableList.Create(value),
                 MapValue = ImmutableDictionary<string, Octets?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -598,6 +639,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_Half_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Half_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_Half_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_Half_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_Half()
             {
@@ -605,7 +647,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, Half?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -625,6 +667,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_DateOnly_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_DateOnly_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_DateOnly_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_DateOnly_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_DateOnly()
             {
@@ -632,7 +675,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, DateOnly?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -652,6 +695,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_TimeOnly_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_TimeOnly_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_TimeOnly_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_TimeOnly_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_TimeOnly()
             {
@@ -659,7 +703,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, TimeOnly?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -682,6 +726,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_Complex_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Complex_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_Complex_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_Complex_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_Complex()
             {
@@ -689,7 +734,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 VectorOptional = ImmutableList.Create(value),
                 MapOptional = ImmutableDictionary<string, Complex?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
         [Theory]
@@ -706,6 +751,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var origFactory = BasicTypes.RecordsV2.Basic_Version_Factory.Instance;
             var nsJsonFactory = BasicTypes.JsonNewtonSoft.Basic_Version_Factory.Instance;
+            var msJsonFactory = BasicTypes.JsonSystemText.Basic_Version_Factory.Instance;
             var msgpFactory = BasicTypes.MessagePack.Basic_Version_Factory.Instance;
             var original = new BasicTypes.RecordsV2.Basic_Version()
             {
@@ -713,7 +759,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 Vector = ImmutableList.Create<Version?>(value),
                 MapValue = ImmutableDictionary<string, Version?>.Empty.Add("key", value)
             };
-            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory);
+            RoundtripViaAllTransports(original, origFactory, msgpFactory, nsJsonFactory, msJsonFactory);
         }
 
     }

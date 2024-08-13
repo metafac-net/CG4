@@ -1,7 +1,7 @@
 ﻿using LabApps.Units;
 using System;
 
-namespace MetaFac.CG4.TestOrg.ModelsNet7.BasicTypes.JsonSystemText
+namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonSystemText
 {
     public struct QuantityValue : IEquatable<QuantityValue>
     {

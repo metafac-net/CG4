@@ -21,10 +21,10 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using System.Text.Json.Serialization;
-using MetaFac.CG4.TestOrg.ModelsNet7.Personel.Contracts;
+using MetaFac.CG4.TestOrg.Models.Personel.Contracts;
 using MetaFac.Memory;
 
-namespace MetaFac.CG4.TestOrg.ModelsNet7.Personel.JsonSystemText
+namespace MetaFac.CG4.TestOrg.Models.Personel.JsonSystemText
 {
 
 
