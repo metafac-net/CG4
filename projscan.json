@@ -1,3 +1,6 @@
 {
-  "ProductName": "CG4"
+  "ProductName": "CG4",
+  "ExemptionCodes": [
+    "targetframeworks_contains_net6"
+  ]
 }
