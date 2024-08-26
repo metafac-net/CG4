@@ -1,9 +1,9 @@
 # CG4
 
-*todo build badge*
+[![Build-Deploy](https://github.com/metafac-net/CG4/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/metafac-net/CG4/actions/workflows/dotnet.yml)
 
-## Attributes
-C# attributes for defining CG4 models in code.
+Define your models in C# code using FluentModels.
+https://github.com/metafac-net/FluentModelsV1
 
 ## CLI
 A Dotnet tool for:
