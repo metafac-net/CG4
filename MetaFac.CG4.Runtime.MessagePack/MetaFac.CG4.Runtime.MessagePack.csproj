@@ -27,7 +27,7 @@
   <ItemGroup>
     <PackageReference Include="MessagePack" Version="2.5.187" />
     <PackageReference Include="MetaFac.Memory" Version="1.5.8" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.143">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
