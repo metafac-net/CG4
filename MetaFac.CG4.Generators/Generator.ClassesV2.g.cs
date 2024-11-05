@@ -121,7 +121,7 @@ Emit("        public override bool Equals(object? obj) => obj is T_ModelType_ ot
 Emit("    }");
     }
 Emit("");
-Emit("    public abstract class EntityBase : IFreezable, IEntityBase");
+Emit("    public abstract partial class EntityBase : IFreezable, IEntityBase");
 Emit("    {");
 Emit("        public static EntityBase Empty => throw new NotSupportedException();");
 Emit("        public const int EntityTag = 0;");

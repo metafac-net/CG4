@@ -102,7 +102,7 @@ Emit("        }");
 Emit("    }");
     }
 Emit("");
-Emit("    public abstract record EntityBase : IFreezable, IEntityBase");
+Emit("    public abstract partial record EntityBase : IFreezable, IEntityBase");
 Emit("    {");
 Emit("        public EntityBase() { }");
 Emit("        public EntityBase(EntityBase? source) { }");

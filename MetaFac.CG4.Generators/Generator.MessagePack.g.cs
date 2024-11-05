@@ -129,7 +129,7 @@ Emit("        public static T ToInternal<T>(this T value) => value;");
 Emit("    }");
     }
 Emit("");
-Emit("    public abstract class EntityBase : IFreezable, IEntityBase, IEquatable<EntityBase>, ICopyFrom<EntityBase>");
+Emit("    public abstract partial class EntityBase : IFreezable, IEntityBase, IEquatable<EntityBase>, ICopyFrom<EntityBase>");
 Emit("    {");
 Emit("        public static EntityBase Empty => throw new NotSupportedException();");
 Emit("        public const int EntityTag = 0;");
