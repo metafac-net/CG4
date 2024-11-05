@@ -26,7 +26,7 @@ namespace MetaFac.CG4.TestOrg.Models.XtraComplex.RecordsV2
 {
 
 
-    public abstract record EntityBase : IFreezable, IEntityBase
+    public abstract partial record EntityBase : IFreezable, IEntityBase
     {
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
