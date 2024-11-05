@@ -88,7 +88,7 @@ namespace T_Namespace_.JsonNewtonSoft
     }
     //>>}
 
-    public abstract class EntityBase : IFreezable, IEntityBase
+    public abstract partial class EntityBase : IFreezable, IEntityBase
     {
         public static EntityBase Empty => throw new NotSupportedException();
         public const int EntityTag = 0;

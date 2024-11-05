@@ -117,7 +117,7 @@ namespace T_Namespace_.MessagePack
     }
     //>>}
 
-    public abstract class EntityBase : IFreezable, IEntityBase, IEquatable<EntityBase>, ICopyFrom<EntityBase>
+    public abstract partial class EntityBase : IFreezable, IEntityBase, IEquatable<EntityBase>, ICopyFrom<EntityBase>
     {
         public static EntityBase Empty => throw new NotSupportedException();
         public const int EntityTag = 0;
