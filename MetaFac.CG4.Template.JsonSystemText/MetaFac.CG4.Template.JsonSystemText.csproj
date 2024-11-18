@@ -9,6 +9,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="MetaFac.Memory" Version="1.6.1" />
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\MetaFac.CG4.Runtime.JsonSystemText\MetaFac.CG4.Runtime.JsonSystemText.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Runtime\MetaFac.CG4.Runtime.csproj" />
         <ProjectReference Include="..\MetaFac.CG4.Template.Contracts\MetaFac.CG4.Template.Contracts.csproj" />
