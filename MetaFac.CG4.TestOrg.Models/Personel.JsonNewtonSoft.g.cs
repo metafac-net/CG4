@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonNewtonSoft.2.9
+// Generator: JsonNewtonSoft.2.10
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Personel)
 // </information>
 #endregion
