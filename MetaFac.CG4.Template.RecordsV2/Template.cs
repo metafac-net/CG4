@@ -90,7 +90,7 @@ namespace T_Namespace_.RecordsV2
     }
     //>>}
 
-    public abstract record EntityBase : IFreezable, IEntityBase
+    public abstract partial record EntityBase : IFreezable, IEntityBase
     {
         public EntityBase() { }
         public EntityBase(EntityBase? source) { }
