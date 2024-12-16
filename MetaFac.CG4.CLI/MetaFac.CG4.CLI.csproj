@@ -36,11 +36,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentModels" Version="1.1.9" />
-    <PackageReference Include="MetaFac.Memory" Version="2.0.5" />
+    <PackageReference Include="FluentModels" Version="1.2.6" />
+    <PackageReference Include="MetaFac.Memory" Version="2.0.6" />
     <PackageReference Include="MetaFac.TinyCLI" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.0" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.112">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
