@@ -1,4 +1,4 @@
-﻿using FluentModels;
+﻿using MetaFac.CG4.Schemas;
 using System;
 
 namespace MetaFac.CG4.ModelReader.Tests.ComplexModel2

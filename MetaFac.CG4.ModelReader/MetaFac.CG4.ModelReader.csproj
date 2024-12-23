@@ -31,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentModels" Version="1.2.6" />
     <PackageReference Include="MetaFac.Memory" Version="2.0.6" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.112">
@@ -44,6 +43,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MetaFac.CG4.Models\MetaFac.CG4.Models.csproj" />
+    <ProjectReference Include="..\MetaFac.CG4.Schemas\MetaFac.CG4.Schemas.csproj" />
   </ItemGroup>
 
 </Project>

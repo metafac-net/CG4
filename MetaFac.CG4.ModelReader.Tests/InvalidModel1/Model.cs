@@ -1,4 +1,5 @@
-﻿using FluentModels;
+﻿
+using MetaFac.CG4.Schemas;
 
 namespace MetaFac.CG4.ModelReader.Tests.InvalidModel1
 {

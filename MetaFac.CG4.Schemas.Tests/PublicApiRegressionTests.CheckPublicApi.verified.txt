@@ -1,0 +1,44 @@
+﻿namespace MetaFac.CG4.Schemas
+{
+    [System.AttributeUsage(System.AttributeTargets.Class)]
+    public class EntityAttribute : System.Attribute
+    {
+        public readonly string? Reason;
+        public readonly MetaFac.CG4.Schemas.ModelState State;
+        public readonly int Tag;
+        public EntityAttribute(int tag, MetaFac.CG4.Schemas.ModelState state = 0, string? reason = null) { }
+        public bool Deprecated { get; }
+        public bool IsRedacted { get; }
+    }
+    [System.AttributeUsage(System.AttributeTargets.Property)]
+    public class MemberAttribute : System.Attribute
+    {
+        public readonly string? Reason;
+        public readonly MetaFac.CG4.Schemas.ModelState State;
+        public readonly int Tag;
+        public MemberAttribute(int tag, MetaFac.CG4.Schemas.ModelState state = 0, string? reason = null) { }
+        public bool Deprecated { get; }
+        public bool IsRedacted { get; }
+    }
+    [System.Flags]
+    public enum ModelState
+    {
+        Active = 0,
+        Hidden = 1,
+        Deprecated = 2,
+        Deleted = 3,
+    }
+    [System.AttributeUsage(System.AttributeTargets.Struct)]
+    public class ProxyAttribute : System.Attribute
+    {
+        public readonly string ConcreteName;
+        public readonly string ExternalName;
+        public ProxyAttribute(string externalName, string concreteName) { }
+    }
+    public class TokenAttribute : System.Attribute
+    {
+        public readonly string Name;
+        public readonly string Value;
+        public TokenAttribute(string name, string value) { }
+    }
+}
