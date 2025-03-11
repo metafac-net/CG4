@@ -1,4 +1,4 @@
-using FluentAssertions;
+using Shouldly;
 using MetaFac.CG4.TestOrg.Common;
 using System;
 using System.Threading.Tasks;
@@ -17,10 +17,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var buffer = outgoing.SerializeToJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
 
         [Fact]
@@ -31,10 +31,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var buffer = outgoing.SerializeToJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
 
     }

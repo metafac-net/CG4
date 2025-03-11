@@ -1,4 +1,4 @@
-using FluentAssertions;
+using Shouldly;
 using System.Collections.Immutable;
 using Xunit;
 
@@ -21,9 +21,9 @@ namespace MetaFac.CG4.Template.UnitTests
             var m2 = MessagePack.MessagePackSerializer.Deserialize<T_Namespace_.MessagePack.T_EntityName_>(buffer);
 
             var r2 = new T_Namespace_.RecordsV2.T_EntityName_(m2);
-            r2.Should().Be(r1);
-            r2.Equals(r1).Should().BeTrue();
-            r2.GetHashCode().Should().Be(r1.GetHashCode());
+            r2.ShouldBe(r1);
+            r2.Equals(r1).ShouldBeTrue();
+            r2.GetHashCode().ShouldBe(r1.GetHashCode());
         }
 
         [Fact]
@@ -41,15 +41,15 @@ namespace MetaFac.CG4.Template.UnitTests
             f1.Freeze();
 
             var m2 = new T_Namespace_.ClassesV2.T_EntityName_(f1);
-            m2.Should().Be(m1);
-            m2.Equals(m1).Should().BeTrue();
-            //m2.GetHashCode().Should().Be(m1.GetHashCode());
+            m2.ShouldBe(m1);
+            m2.Equals(m1).ShouldBeTrue();
+            //m2.GetHashCode().ShouldBe(m1.GetHashCode());
 
             var f2 = new T_Namespace_.MessagePack.T_EntityName_(m2);
             f2.Freeze();
-            f2.Should().Be(f1);
-            f2.Equals(f1).Should().BeTrue();
-            f2.GetHashCode().Should().Be(f1.GetHashCode());
+            f2.ShouldBe(f1);
+            f2.Equals(f1).ShouldBeTrue();
+            f2.GetHashCode().ShouldBe(f1.GetHashCode());
         }
 
     }

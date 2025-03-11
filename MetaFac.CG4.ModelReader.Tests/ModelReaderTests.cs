@@ -1,4 +1,4 @@
-using FluentAssertions;
+using Shouldly;
 using MetaFac.CG4.Models;
 using System;
 using System.Collections.Generic;
@@ -15,27 +15,27 @@ namespace MetaFac.CG4.ModelReader.Tests
             // arrange - get model from assembly
             Type anchorType = typeof(GoodModels.BuiltinTypes);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
-            metadata.Tokens.Count.Should().Be(1);
-            metadata.Tokens.Should().ContainKey("Metadata");
-            metadata.ModelDefs.Count.Should().Be(1);
+            metadata.Tokens.Count.ShouldBe(1);
+            metadata.Tokens.ShouldContainKey("Metadata");
+            metadata.ModelDefs.Count.ShouldBe(1);
 
             var validator = new ModelValidator();
             var validationResult = validator.Validate(metadata);
-            validationResult.Errors.Should().BeEmpty();
-            validationResult.Warnings.Should().BeEmpty();
+            validationResult.Errors.ShouldBeEmpty();
+            validationResult.Warnings.ShouldBeEmpty();
 
             // act
             string originalJson = metadata.ToJson(true);
             var metadata2 = ModelContainer.FromJson(originalJson);
 
             // assert
-            metadata2.Should().Be(metadata);
+            metadata2.ShouldBe(metadata);
 
             // act again
             string duplicateJson = metadata2.ToJson(true);
 
             // assert
-            duplicateJson.Should().Be(originalJson);
+            duplicateJson.ShouldBe(originalJson);
         }
 
         [Fact]
@@ -63,26 +63,26 @@ namespace MetaFac.CG4.ModelReader.Tests
             };
             var modelDef = new ModelDefinition("Model1", 1, entityDefs, enumTypeDefs);
             var metadata = new ModelContainer(modelDef);
-            metadata.Tokens.Count.Should().Be(0);
-            metadata.ModelDefs.Count.Should().Be(1);
+            metadata.Tokens.Count.ShouldBe(0);
+            metadata.ModelDefs.Count.ShouldBe(1);
             string originalJson = metadata.ToJson(true);
 
             var validator = new ModelValidator();
             var validationResult = validator.Validate(metadata);
-            validationResult.Errors.Should().BeEmpty();
-            validationResult.Warnings.Should().BeEmpty();
+            validationResult.Errors.ShouldBeEmpty();
+            validationResult.Warnings.ShouldBeEmpty();
 
             // act
             var metadata2 = ModelContainer.FromJson(originalJson);
 
             // assert
-            metadata2.Should().Be(metadata);
+            metadata2.ShouldBe(metadata);
 
             // act again
             string duplicateJson = metadata2.ToJson(true);
 
             // assert
-            duplicateJson.Should().Be(originalJson);
+            duplicateJson.ShouldBe(originalJson);
         }
 
         [Fact]
@@ -90,20 +90,20 @@ namespace MetaFac.CG4.ModelReader.Tests
         {
             Type anchorType = typeof(ComplexModel1.BaseMessage);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
-            metadata.Tokens.Count.Should().Be(1);
-            metadata.Tokens.Should().ContainKey("Metadata");
-            metadata.ModelDefs.Count.Should().Be(1);
+            metadata.Tokens.Count.ShouldBe(1);
+            metadata.Tokens.ShouldContainKey("Metadata");
+            metadata.ModelDefs.Count.ShouldBe(1);
 
             var validator = new ModelValidator();
             var validationResult = validator.Validate(metadata);
-            validationResult.Errors.Should().BeEmpty();
-            validationResult.Warnings.Should().BeEmpty();
+            validationResult.Errors.ShouldBeEmpty();
+            validationResult.Warnings.ShouldBeEmpty();
 
             var modelDef = metadata.ModelDefs[0];
-            modelDef.AllEntityDefs.Count.Should().Be(28);
+            modelDef.AllEntityDefs.Count.ShouldBe(28);
             var entityDef = modelDef.AllEntityDefs[0];
-            entityDef.Name.Should().Be("BaseMessage");
-            entityDef.AllMemberDefs.Count.Should().Be(1);
+            entityDef.Name.ShouldBe("BaseMessage");
+            entityDef.AllMemberDefs.Count.ShouldBe(1);
         }
 
         [Fact]
@@ -111,20 +111,20 @@ namespace MetaFac.CG4.ModelReader.Tests
         {
             Type anchorType = typeof(ComplexModel2.AccountType);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
-            metadata.Tokens.Count.Should().Be(1);
-            metadata.Tokens.Should().ContainKey("Metadata");
-            metadata.ModelDefs.Count.Should().Be(1);
+            metadata.Tokens.Count.ShouldBe(1);
+            metadata.Tokens.ShouldContainKey("Metadata");
+            metadata.ModelDefs.Count.ShouldBe(1);
 
             var validator = new ModelValidator();
             var validationResult = validator.Validate(metadata);
-            validationResult.Errors.Should().BeEmpty();
-            validationResult.Warnings.Should().BeEmpty();
+            validationResult.Errors.ShouldBeEmpty();
+            validationResult.Warnings.ShouldBeEmpty();
 
             var modelDef = metadata.ModelDefs[0];
-            modelDef.AllEntityDefs.Count.Should().Be(4);
+            modelDef.AllEntityDefs.Count.ShouldBe(4);
             var entityDef = modelDef.AllEntityDefs[0];
-            entityDef.Name.Should().Be("AccountType");
-            entityDef.AllMemberDefs.Count.Should().Be(1);
+            entityDef.Name.ShouldBe("AccountType");
+            entityDef.AllMemberDefs.Count.ShouldBe(1);
         }
 
         [Fact]
@@ -132,20 +132,20 @@ namespace MetaFac.CG4.ModelReader.Tests
         {
             Type anchorType = typeof(GoodModels.BuiltinTypes);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
-            metadata.Tokens.Count.Should().Be(1);
-            metadata.Tokens.Should().ContainKey("Metadata");
-            metadata.ModelDefs.Count.Should().Be(1);
+            metadata.Tokens.Count.ShouldBe(1);
+            metadata.Tokens.ShouldContainKey("Metadata");
+            metadata.ModelDefs.Count.ShouldBe(1);
 
             var validator = new ModelValidator();
             var validationResult = validator.Validate(metadata);
-            validationResult.Errors.Should().BeEmpty();
-            validationResult.Warnings.Should().BeEmpty();
+            validationResult.Errors.ShouldBeEmpty();
+            validationResult.Warnings.ShouldBeEmpty();
 
             var modelDef = metadata.ModelDefs[0];
-            modelDef.AllEntityDefs.Count.Should().Be(3);
+            modelDef.AllEntityDefs.Count.ShouldBe(3);
             var entityDef = modelDef.AllEntityDefs[0];
-            entityDef.Name.Should().Be("BuiltinTypes");
-            entityDef.AllMemberDefs.Count.Should().Be(19);
+            entityDef.Name.ShouldBe("BuiltinTypes");
+            entityDef.AllMemberDefs.Count.ShouldBe(19);
         }
 
         [Fact]
@@ -153,28 +153,28 @@ namespace MetaFac.CG4.ModelReader.Tests
         {
             Type anchorType = typeof(GoodModels.ExternalTypes);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
-            metadata.Tokens.Count.Should().Be(1);
-            metadata.Tokens.Should().ContainKey("Metadata");
-            metadata.ModelDefs.Count.Should().Be(1);
+            metadata.Tokens.Count.ShouldBe(1);
+            metadata.Tokens.ShouldContainKey("Metadata");
+            metadata.ModelDefs.Count.ShouldBe(1);
 
             var validator = new ModelValidator();
             var validationResult = validator.Validate(metadata);
-            validationResult.Errors.Should().BeEmpty();
-            validationResult.Warnings.Should().BeEmpty();
+            validationResult.Errors.ShouldBeEmpty();
+            validationResult.Warnings.ShouldBeEmpty();
 
             var modelDef = metadata.ModelDefs[0];
             var entityDef = modelDef.AllEntityDefs.Where(cd => cd.Name == "ExternalTypes").Single();
-            entityDef.AllMemberDefs.Count.Should().Be(1);
+            entityDef.AllMemberDefs.Count.ShouldBe(1);
 
             // external type
             var field0 = entityDef.AllMemberDefs[0];
-            field0.Tag.Should().Be(1);
-            field0.Name.Should().Be("Quantities");
-            field0.ProxyDef.Should().NotBeNull();
-            field0.ProxyDef!.ExternalName.Should().Be("LabApps.Units.Quantity");
-            field0.ProxyDef.ConcreteName.Should().Be("QuantityValue");
-            field0.ArrayRank.Should().Be(1);
-            field0.InnerType.Should().Be("Quantity");
+            field0.Tag.ShouldBe(1);
+            field0.Name.ShouldBe("Quantities");
+            field0.ProxyDef.ShouldNotBeNull();
+            field0.ProxyDef!.ExternalName.ShouldBe("LabApps.Units.Quantity");
+            field0.ProxyDef.ConcreteName.ShouldBe("QuantityValue");
+            field0.ArrayRank.ShouldBe(1);
+            field0.InnerType.ShouldBe("Quantity");
         }
 
         [Fact]
@@ -182,57 +182,57 @@ namespace MetaFac.CG4.ModelReader.Tests
         {
             Type anchorType = typeof(GoodModels.ExternalTypes);
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
-            metadata.Tokens.Count.Should().Be(1);
-            metadata.Tokens.Should().ContainKey("Metadata");
-            metadata.ModelDefs.Count.Should().Be(1);
+            metadata.Tokens.Count.ShouldBe(1);
+            metadata.Tokens.ShouldContainKey("Metadata");
+            metadata.ModelDefs.Count.ShouldBe(1);
             var modelDef = metadata.ModelDefs[0];
             var entityDef = modelDef.AllEntityDefs.Where(cd => cd.Name == "EnumeratorTypes").Single();
-            entityDef.AllMemberDefs.Count.Should().Be(3);
+            entityDef.AllMemberDefs.Count.ShouldBe(3);
 
             // enumeration definitions
-            modelDef.AllEnumTypeDefs.Count.Should().Be(1);
+            modelDef.AllEnumTypeDefs.Count.ShouldBe(1);
             {
                 var enumTypeDef = modelDef.AllEnumTypeDefs[0];
-                enumTypeDef.Tag.Should().BeNull();
-                enumTypeDef.Name.Should().Be("MyCustomEnum");
-                enumTypeDef.IsRedacted.Should().BeFalse();
-                enumTypeDef.IsInactive.Should().BeFalse();
-                enumTypeDef.EnumItemDefs.Count.Should().Be(4);
-                enumTypeDef.EnumItemDefs[0].Name.Should().Be("DefaultValue");
-                enumTypeDef.EnumItemDefs[0].Value.Should().Be(0);
-                enumTypeDef.EnumItemDefs[1].Name.Should().Be("FirstValue");
-                enumTypeDef.EnumItemDefs[1].Value.Should().Be(1);
-                enumTypeDef.EnumItemDefs[2].Name.Should().Be("SomeValue");
-                enumTypeDef.EnumItemDefs[2].Value.Should().Be(2);
-                enumTypeDef.EnumItemDefs[3].Name.Should().Be("LastValue");
-                enumTypeDef.EnumItemDefs[3].Value.Should().Be(99);
+                enumTypeDef.Tag.ShouldBeNull();
+                enumTypeDef.Name.ShouldBe("MyCustomEnum");
+                enumTypeDef.IsRedacted.ShouldBeFalse();
+                enumTypeDef.IsInactive.ShouldBeFalse();
+                enumTypeDef.EnumItemDefs.Count.ShouldBe(4);
+                enumTypeDef.EnumItemDefs[0].Name.ShouldBe("DefaultValue");
+                enumTypeDef.EnumItemDefs[0].Value.ShouldBe(0);
+                enumTypeDef.EnumItemDefs[1].Name.ShouldBe("FirstValue");
+                enumTypeDef.EnumItemDefs[1].Value.ShouldBe(1);
+                enumTypeDef.EnumItemDefs[2].Name.ShouldBe("SomeValue");
+                enumTypeDef.EnumItemDefs[2].Value.ShouldBe(2);
+                enumTypeDef.EnumItemDefs[3].Name.ShouldBe("LastValue");
+                enumTypeDef.EnumItemDefs[3].Value.ShouldBe(99);
             }
             // enumerator types
             {
                 var memberDef = entityDef.AllMemberDefs[0];
-                memberDef.Tag.Should().Be(1);
-                memberDef.Name.Should().Be("DaysOfWeek");
-                memberDef.ProxyDef.Should().BeNull();
-                memberDef.ArrayRank.Should().Be(1);
-                memberDef.InnerType.Should().Be("System.DayOfWeek");
+                memberDef.Tag.ShouldBe(1);
+                memberDef.Name.ShouldBe("DaysOfWeek");
+                memberDef.ProxyDef.ShouldBeNull();
+                memberDef.ArrayRank.ShouldBe(1);
+                memberDef.InnerType.ShouldBe("System.DayOfWeek");
             }
             {
                 var memberDef = entityDef.AllMemberDefs[1];
-                memberDef.Tag.Should().Be(2);
-                memberDef.Name.Should().Be("MyCustomEnums");
-                memberDef.ProxyDef.Should().BeNull();
-                memberDef.ArrayRank.Should().Be(1);
-                memberDef.InnerType.Should().Be("MyCustomEnum");
+                memberDef.Tag.ShouldBe(2);
+                memberDef.Name.ShouldBe("MyCustomEnums");
+                memberDef.ProxyDef.ShouldBeNull();
+                memberDef.ArrayRank.ShouldBe(1);
+                memberDef.InnerType.ShouldBe("MyCustomEnum");
             }
             {
                 var memberDef = entityDef.AllMemberDefs[2];
-                memberDef.Tag.Should().Be(3);
-                memberDef.Name.Should().Be("MyDateTimeKinds");
-                memberDef.ProxyDef.Should().NotBeNull();
-                memberDef.ProxyDef!.ExternalName.Should().Be("System.DateTimeKind");
-                memberDef.ProxyDef.ConcreteName.Should().Be("MyDateTimeKindValue");
-                memberDef.ArrayRank.Should().Be(1);
-                memberDef.InnerType.Should().Be("MyDateTimeKind");
+                memberDef.Tag.ShouldBe(3);
+                memberDef.Name.ShouldBe("MyDateTimeKinds");
+                memberDef.ProxyDef.ShouldNotBeNull();
+                memberDef.ProxyDef!.ExternalName.ShouldBe("System.DateTimeKind");
+                memberDef.ProxyDef.ConcreteName.ShouldBe("MyDateTimeKindValue");
+                memberDef.ArrayRank.ShouldBe(1);
+                memberDef.InnerType.ShouldBe("MyDateTimeKind");
             }
         }
 
@@ -245,10 +245,10 @@ namespace MetaFac.CG4.ModelReader.Tests
             {
                 ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             });
-            ex.Should().NotBeNull();
-            ex.Should().BeOfType<ValidationException>();
-            ex.Message.Should().Be("Model1.InvalidEntity1.Grid(): Invalid array rank");
-            ex.ValidationError.ErrorCode.Should().Be(ValidationErrorCode.InvalidArrayRank);
+            ex.ShouldNotBeNull();
+            ex.ShouldBeOfType<ValidationException>();
+            ex.Message.ShouldBe("Model1.InvalidEntity1.Grid(): Invalid array rank");
+            ex.ValidationError.ErrorCode.ShouldBe(ValidationErrorCode.InvalidArrayRank);
         }
 
         [Fact]
@@ -260,10 +260,10 @@ namespace MetaFac.CG4.ModelReader.Tests
             {
                 ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
             });
-            ex.Should().NotBeNull();
-            ex.Should().BeOfType<ValidationException>();
-            ex.Message.Should().Be("Model1.InvalidEntity2.MyType(): Unknown field type: System.Type");
-            ex.ValidationError.ErrorCode.Should().Be(ValidationErrorCode.UnknownFieldType);
+            ex.ShouldNotBeNull();
+            ex.ShouldBeOfType<ValidationException>();
+            ex.Message.ShouldBe("Model1.InvalidEntity2.MyType(): Unknown field type: System.Type");
+            ex.ValidationError.ErrorCode.ShouldBe(ValidationErrorCode.UnknownFieldType);
         }
 
         [Fact]
@@ -277,10 +277,10 @@ namespace MetaFac.CG4.ModelReader.Tests
                 var validator = new ModelValidator();
                 var validationResult = validator.Validate(metadata, ValidationErrorHandling.ThrowOnFirst);
             });
-            ex.Should().NotBeNull();
-            ex.Should().BeOfType<ValidationException>();
-            ex.Message.Should().Be("Model1.InvalidEntity3.MyField1: Field tag (1) is same as field: BaseField1");
-            ex.ValidationError.ErrorCode.Should().Be(ValidationErrorCode.DuplicateFieldTag);
+            ex.ShouldNotBeNull();
+            ex.ShouldBeOfType<ValidationException>();
+            ex.Message.ShouldBe("Model1.InvalidEntity3.MyField1: Field tag (1) is same as field: BaseField1");
+            ex.ValidationError.ErrorCode.ShouldBe(ValidationErrorCode.DuplicateFieldTag);
         }
 
         [Fact]
@@ -289,83 +289,83 @@ namespace MetaFac.CG4.ModelReader.Tests
             Type anchorType = typeof(LifeCycle.Entity1);
 
             ModelContainer metadata = ModelParser.ParseAssembly(anchorType);
-            metadata.Tokens.Count.Should().Be(1);
-            metadata.Tokens.Should().ContainKey("Metadata");
-            metadata.ModelDefs.Count.Should().Be(1);
+            metadata.Tokens.Count.ShouldBe(1);
+            metadata.Tokens.ShouldContainKey("Metadata");
+            metadata.ModelDefs.Count.ShouldBe(1);
             var modelDef = metadata.ModelDefs[0];
             var entityDef = modelDef.AllEntityDefs.Where(cd => cd.Name == "Entity1").Single();
-            entityDef.AllMemberDefs.Count.Should().Be(4);
+            entityDef.AllMemberDefs.Count.ShouldBe(4);
 
             // active member
             {
                 var member = entityDef.AllMemberDefs[0];
-                member.Name.Should().Be("State0_Active");
-                member.Tag.Should().Be(1);
-                member.State.Should().BeNull();
-                member.IsInactive.Should().BeFalse();
-                member.IsRedacted.Should().BeFalse();
-                //member.State!.Reason.Should().BeNull();
-                member.InnerType.Should().Be("bool");
-                member.Nullable.Should().BeFalse();
-                member.ArrayRank.Should().Be(0);
-                member.IsModelType.Should().BeFalse();
-                member.IsStringType.Should().BeFalse();
-                member.IsBufferType.Should().BeFalse();
-                member.ProxyDef.Should().BeNull();
+                member.Name.ShouldBe("State0_Active");
+                member.Tag.ShouldBe(1);
+                member.State.ShouldBeNull();
+                member.IsInactive.ShouldBeFalse();
+                member.IsRedacted.ShouldBeFalse();
+                //member.State!.Reason.ShouldBeNull();
+                member.InnerType.ShouldBe("bool");
+                member.Nullable.ShouldBeFalse();
+                member.ArrayRank.ShouldBe(0);
+                member.IsModelType.ShouldBeFalse();
+                member.IsStringType.ShouldBeFalse();
+                member.IsBufferType.ShouldBeFalse();
+                member.ProxyDef.ShouldBeNull();
             }
 
             // reserved member
             {
                 var member = entityDef.AllMemberDefs[1];
-                member.Name.Should().Be("State1_Reserved");
-                member.Tag.Should().Be(2);
-                member.State.Should().NotBeNull();
-                member.IsInactive.Should().BeFalse();
-                member.IsRedacted.Should().BeTrue();
-                member.State!.Reason.Should().Be("For future use");
-                member.InnerType.Should().Be("bool");
-                member.Nullable.Should().BeFalse();
-                member.ArrayRank.Should().Be(0);
-                member.IsModelType.Should().BeFalse();
-                member.IsStringType.Should().BeFalse();
-                member.IsBufferType.Should().BeFalse();
-                member.ProxyDef.Should().BeNull();
+                member.Name.ShouldBe("State1_Reserved");
+                member.Tag.ShouldBe(2);
+                member.State.ShouldNotBeNull();
+                member.IsInactive.ShouldBeFalse();
+                member.IsRedacted.ShouldBeTrue();
+                member.State!.Reason.ShouldBe("For future use");
+                member.InnerType.ShouldBe("bool");
+                member.Nullable.ShouldBeFalse();
+                member.ArrayRank.ShouldBe(0);
+                member.IsModelType.ShouldBeFalse();
+                member.IsStringType.ShouldBeFalse();
+                member.IsBufferType.ShouldBeFalse();
+                member.ProxyDef.ShouldBeNull();
             }
 
             // deprecated member
             {
                 var member = entityDef.AllMemberDefs[2];
-                member.Name.Should().Be("State2_Deprecated");
-                member.Tag.Should().Be(3);
-                member.State.Should().NotBeNull();
-                member.IsInactive.Should().BeTrue();
-                member.IsRedacted.Should().BeFalse();
-                member.State!.Reason.Should().Be("Not used anymore");
-                member.InnerType.Should().Be("bool");
-                member.Nullable.Should().BeFalse();
-                member.ArrayRank.Should().Be(0);
-                member.IsModelType.Should().BeFalse();
-                member.IsStringType.Should().BeFalse();
-                member.IsBufferType.Should().BeFalse();
-                member.ProxyDef.Should().BeNull();
+                member.Name.ShouldBe("State2_Deprecated");
+                member.Tag.ShouldBe(3);
+                member.State.ShouldNotBeNull();
+                member.IsInactive.ShouldBeTrue();
+                member.IsRedacted.ShouldBeFalse();
+                member.State!.Reason.ShouldBe("Not used anymore");
+                member.InnerType.ShouldBe("bool");
+                member.Nullable.ShouldBeFalse();
+                member.ArrayRank.ShouldBe(0);
+                member.IsModelType.ShouldBeFalse();
+                member.IsStringType.ShouldBeFalse();
+                member.IsBufferType.ShouldBeFalse();
+                member.ProxyDef.ShouldBeNull();
             }
 
             // deleted member
             {
                 var member = entityDef.AllMemberDefs[3];
-                member.Name.Should().Be("State3_Deleted");
-                member.Tag.Should().Be(4);
-                member.State.Should().NotBeNull();
-                member.IsInactive.Should().BeTrue();
-                member.IsRedacted.Should().BeTrue();
-                member.State!.Reason.Should().Be("RIP");
-                member.InnerType.Should().Be("bool");
-                member.Nullable.Should().BeFalse();
-                member.ArrayRank.Should().Be(0);
-                member.IsModelType.Should().BeFalse();
-                member.IsStringType.Should().BeFalse();
-                member.IsBufferType.Should().BeFalse();
-                member.ProxyDef.Should().BeNull();
+                member.Name.ShouldBe("State3_Deleted");
+                member.Tag.ShouldBe(4);
+                member.State.ShouldNotBeNull();
+                member.IsInactive.ShouldBeTrue();
+                member.IsRedacted.ShouldBeTrue();
+                member.State!.Reason.ShouldBe("RIP");
+                member.InnerType.ShouldBe("bool");
+                member.Nullable.ShouldBeFalse();
+                member.ArrayRank.ShouldBe(0);
+                member.IsModelType.ShouldBeFalse();
+                member.IsStringType.ShouldBeFalse();
+                member.IsBufferType.ShouldBeFalse();
+                member.ProxyDef.ShouldBeNull();
             }
         }
 

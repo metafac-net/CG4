@@ -8,7 +8,7 @@
     <Authors>MetaFac Contributors</Authors>
     <Company>MetaFac</Company>
     <Product>CG4</Product>
-    <Copyright>Copyright (c) 2020-2024 MetaFac</Copyright>
+    <Copyright>Copyright (c) 2020-2025 MetaFac</Copyright>
     <PackageProjectUrl>https://github.com/metafac-net/CG4</PackageProjectUrl>
     <PackageTags>MetaFac, CG4, meta-programming, source-generator, model-first, code-first, template engine</PackageTags>
     <RepositoryUrl>https://github.com/metafac-net/CG4</RepositoryUrl>
@@ -31,11 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.112">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Text.Json" Version="9.0.0" />
+    <PackageReference Include="System.Text.Json" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>

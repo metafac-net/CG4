@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
-using MessagePack;
+﻿using MessagePack;
 using MetaFac.Memory;
+using Shouldly;
 using System;
 using System.Collections.Immutable;
 using System.IO;
@@ -187,13 +187,13 @@ namespace MetaFac.CG4.Template.UnitTests
             string serialized = CreateAndSerialize(wf, original);
 
             // check serialized bytes for regression
-            serialized.Should().Be(expected);
+            serialized.ShouldBe(expected);
 
             // deserialize and compare to original
             var received = Deserialize(wf, serialized);
-            received.Should().Be(original);
-            received.Equals(original).Should().BeTrue();
-            received.GetHashCode().Should().Be(original.GetHashCode());
+            received.ShouldBe(original);
+            received.Equals(original).ShouldBeTrue();
+            received.GetHashCode().ShouldBe(original.GetHashCode());
         }
 
         [Theory]
@@ -408,13 +408,13 @@ namespace MetaFac.CG4.Template.UnitTests
             string serialized = CreateAndSerialize(wf, original);
 
             // check serialized bytes for regression
-            serialized.Should().Be(expected);
+            serialized.ShouldBe(expected);
 
             // deserialize and compare to original
             var received = Deserialize(wf, serialized);
-            received.Should().Be(original);
-            received.Equals(original).Should().BeTrue();
-            received.GetHashCode().Should().Be(original.GetHashCode());
+            received.ShouldBe(original);
+            received.Equals(original).ShouldBeTrue();
+            received.GetHashCode().ShouldBe(original.GetHashCode());
         }
 
     }

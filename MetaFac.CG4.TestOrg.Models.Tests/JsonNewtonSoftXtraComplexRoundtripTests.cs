@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using MetaFac.CG4.TestOrg.Common;
+﻿using MetaFac.CG4.TestOrg.Common;
+using Shouldly;
 using System;
 using System.Threading.Tasks;
 using VerifyXunit;
@@ -17,10 +17,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var buffer = outgoing.SerializeToJsonNewtonSoft<XtraComplex.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJsonNewtonSoft<XtraComplex.JsonNewtonSoft.Tree>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = XtraComplex.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
 
         [Fact]
@@ -42,10 +42,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var buffer = outgoing.SerializeToJsonNewtonSoft<XtraComplex.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJsonNewtonSoft<XtraComplex.JsonNewtonSoft.Tree>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = XtraComplex.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
 
         [Fact]
@@ -75,10 +75,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var buffer = outgoing.SerializeToJsonNewtonSoft<XtraComplex.JsonNewtonSoft.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJsonNewtonSoft<XtraComplex.JsonNewtonSoft.Tree>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = XtraComplex.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
     }
 }

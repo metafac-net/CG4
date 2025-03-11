@@ -1,10 +1,10 @@
-﻿using FluentAssertions;
-using LabApps.Units;
+﻿using LabApps.Units;
 using MessagePack;
 using MetaFac.CG4.Runtime;
 using MetaFac.CG4.TestOrg.Common;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
 using MetaFac.Memory;
+using Shouldly;
 using System;
 using System.Collections.Immutable;
 using System.Numerics;
@@ -25,7 +25,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             TTransport? outgoing = transportFactory.CreateFrom(original) ?? throw new Exception("Returned null!");
             string buffer = outgoing.SerializeToJsonSystemText();
             TTransport? incoming = buffer.DeserializeFromJsonSystemText<TTransport>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             return originalFactory.CreateFrom(incoming) ?? throw new Exception("Returned null!");
         }
 
@@ -39,7 +39,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             TTransport? outgoing = transportFactory.CreateFrom(original) ?? throw new Exception("Returned null!");
             string buffer = outgoing.SerializeToJsonNewtonSoft();
             TTransport? incoming = buffer.DeserializeFromJsonNewtonSoft<TTransport>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             return originalFactory.CreateFrom(incoming) ?? throw new Exception("Returned null!");
         }
 
@@ -53,7 +53,7 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             TTransport outgoing = transportFactory.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = MessagePackSerializer.Serialize(outgoing);
             TTransport incoming = MessagePackSerializer.Deserialize<TTransport>(buffer);
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             return originalFactory.CreateFrom(incoming) ?? throw new Exception("Returned null!");
         }
 
@@ -70,14 +70,14 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             where TTransport3 : TInterface
         {
             var duplicate1 = RoundtripViaMessagePack(original, origFactory, msgpFactory);
-            duplicate1.Should().Be(original);
-            duplicate1!.Equals(original).Should().BeTrue();
+            duplicate1.ShouldBe(original);
+            duplicate1!.Equals(original).ShouldBeTrue();
             var duplicate2 = RoundtripViaJsonNewtonSoft(original, origFactory, nsJsonFactory);
-            duplicate2.Should().Be(original);
-            duplicate2!.Equals(original).Should().BeTrue();
+            duplicate2.ShouldBe(original);
+            duplicate2!.Equals(original).ShouldBeTrue();
             var duplicate3 = RoundtripViaJsonSystemText(original, origFactory, msJsonFactory);
-            duplicate3.Should().Be(original);
-            duplicate3!.Equals(original).Should().BeTrue();
+            duplicate3.ShouldBe(original);
+            duplicate3!.Equals(original).ShouldBeTrue();
         }
 
         [Theory]

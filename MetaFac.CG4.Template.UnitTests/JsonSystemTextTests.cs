@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using MetaFac.CG4.Runtime;
+﻿using MetaFac.CG4.Runtime;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -23,11 +23,11 @@ namespace MetaFac.CG4.Template.UnitTests
             ReadOnlyMemory<byte> copy = array1.AsMemory();
             ImmutableArray<byte> array2 = ImmutableArray.Create(copy.Span);
 
-            copy.Length.Should().Be(orig.Length);
-            //copy.Should().BeEquivalentTo(orig);
+            copy.Length.ShouldBe(orig.Length);
+            //copy.ShouldBeEquivalentTo(orig);
 
-            array1.Length.Should().Be(array2.Length);
-            array1.ArrayEquals(array2).Should().BeTrue();
+            array1.Length.ShouldBe(array2.Length);
+            array1.ArrayEquals(array2).ShouldBeTrue();
 
             copy.ValueEquals(orig);
             array2.ValueEquals(array1);
@@ -37,65 +37,65 @@ namespace MetaFac.CG4.Template.UnitTests
         public void Create_Empty()
         {
             var concrete = T_EntityName__Factory.Instance.Empty;
-            concrete.IsFreezable().Should().BeFalse();
-            concrete.IsFrozen().Should().BeFalse();
-            concrete.T_UnaryModelFieldName_.Should().BeNull();
-            concrete.T_ArrayModelFieldName_.Should().BeNull();
-            concrete.T_IndexModelFieldName_.Should().BeNull();
-            concrete.T_UnaryOtherFieldName_.Should().Be(new SampleInternal(0));
-            concrete.T_ArrayOtherFieldName_.Should().BeNull();
-            concrete.T_IndexOtherFieldName_.Should().BeNull();
-            concrete.T_UnaryMaybeFieldName_.Should().BeNull();
-            concrete.T_ArrayMaybeFieldName_.Should().BeNull();
-            concrete.T_IndexMaybeFieldName_.Should().BeNull();
-            concrete.T_UnaryBufferFieldName_.Should().BeNull();
-            concrete.T_ArrayBufferFieldName_.Should().BeNull();
-            concrete.T_IndexBufferFieldName_.Should().BeNull();
-            concrete.T_UnaryStringFieldName_.Should().BeNull();
-            concrete.T_ArrayStringFieldName_.Should().BeNull();
-            concrete.T_IndexStringFieldName_.Should().BeNull();
+            concrete.IsFreezable().ShouldBeFalse();
+            concrete.IsFrozen().ShouldBeFalse();
+            concrete.T_UnaryModelFieldName_.ShouldBeNull();
+            concrete.T_ArrayModelFieldName_.ShouldBeNull();
+            concrete.T_IndexModelFieldName_.ShouldBeNull();
+            concrete.T_UnaryOtherFieldName_.ShouldBe(new SampleInternal(0));
+            concrete.T_ArrayOtherFieldName_.ShouldBeNull();
+            concrete.T_IndexOtherFieldName_.ShouldBeNull();
+            concrete.T_UnaryMaybeFieldName_.ShouldBeNull();
+            concrete.T_ArrayMaybeFieldName_.ShouldBeNull();
+            concrete.T_IndexMaybeFieldName_.ShouldBeNull();
+            concrete.T_UnaryBufferFieldName_.ShouldBeNull();
+            concrete.T_ArrayBufferFieldName_.ShouldBeNull();
+            concrete.T_IndexBufferFieldName_.ShouldBeNull();
+            concrete.T_UnaryStringFieldName_.ShouldBeNull();
+            concrete.T_ArrayStringFieldName_.ShouldBeNull();
+            concrete.T_IndexStringFieldName_.ShouldBeNull();
 
             IT_EntityName_ external = concrete;
-            external.T_UnaryModelFieldName_.Should().BeNull();
-            external.T_ArrayModelFieldName_.Should().BeNull();
-            external.T_IndexModelFieldName_.Should().BeNull();
-            external.T_UnaryOtherFieldName_.Should().Be(default);
-            external.T_ArrayOtherFieldName_.Should().BeNull();
-            external.T_IndexOtherFieldName_.Should().BeNull();
-            external.T_UnaryMaybeFieldName_.Should().BeNull();
-            external.T_ArrayMaybeFieldName_.Should().BeNull();
-            external.T_IndexMaybeFieldName_.Should().BeNull();
-            external.T_UnaryBufferFieldName_.Should().BeNull();
-            external.T_ArrayBufferFieldName_.Should().BeNull();
-            external.T_IndexBufferFieldName_.Should().BeNull();
-            external.T_UnaryStringFieldName_.Should().BeNull();
-            external.T_ArrayStringFieldName_.Should().BeNull();
-            external.T_IndexStringFieldName_.Should().BeNull();
+            external.T_UnaryModelFieldName_.ShouldBeNull();
+            external.T_ArrayModelFieldName_.ShouldBeNull();
+            external.T_IndexModelFieldName_.ShouldBeNull();
+            external.T_UnaryOtherFieldName_.ShouldBe(default);
+            external.T_ArrayOtherFieldName_.ShouldBeNull();
+            external.T_IndexOtherFieldName_.ShouldBeNull();
+            external.T_UnaryMaybeFieldName_.ShouldBeNull();
+            external.T_ArrayMaybeFieldName_.ShouldBeNull();
+            external.T_IndexMaybeFieldName_.ShouldBeNull();
+            external.T_UnaryBufferFieldName_.ShouldBeNull();
+            external.T_ArrayBufferFieldName_.ShouldBeNull();
+            external.T_IndexBufferFieldName_.ShouldBeNull();
+            external.T_UnaryStringFieldName_.ShouldBeNull();
+            external.T_ArrayStringFieldName_.ShouldBeNull();
+            external.T_IndexStringFieldName_.ShouldBeNull();
 
             var duplicate = new T_EntityName_(external);
-            duplicate.IsFreezable().Should().BeFalse();
-            duplicate.IsFrozen().Should().BeFalse();
+            duplicate.IsFreezable().ShouldBeFalse();
+            duplicate.IsFrozen().ShouldBeFalse();
             duplicate.Freeze();
-            duplicate.IsFrozen().Should().BeFalse();
+            duplicate.IsFrozen().ShouldBeFalse();
 
-            duplicate.T_UnaryModelFieldName_.Should().Be(concrete.T_UnaryModelFieldName_);
-            duplicate.T_UnaryMaybeFieldName_.Should().Be(concrete.T_UnaryMaybeFieldName_);
-            duplicate.T_UnaryOtherFieldName_.Should().Be(concrete.T_UnaryOtherFieldName_);
-            duplicate.T_UnaryBufferFieldName_.Should().BeEquivalentTo(concrete.T_UnaryBufferFieldName_);
-            duplicate.T_UnaryStringFieldName_.Should().Be(concrete.T_UnaryStringFieldName_);
-            duplicate.T_ArrayModelFieldName_.Should().BeEquivalentTo(concrete.T_ArrayModelFieldName_);
-            duplicate.T_ArrayMaybeFieldName_.Should().BeEquivalentTo(concrete.T_ArrayMaybeFieldName_);
-            duplicate.T_ArrayOtherFieldName_.Should().BeEquivalentTo(concrete.T_ArrayOtherFieldName_);
-            duplicate.T_ArrayBufferFieldName_.Should().BeEquivalentTo(concrete.T_ArrayBufferFieldName_);
-            duplicate.T_ArrayStringFieldName_.Should().BeEquivalentTo(concrete.T_ArrayStringFieldName_);
-            duplicate.T_IndexModelFieldName_.Should().BeEquivalentTo(concrete.T_IndexModelFieldName_);
-            duplicate.T_IndexMaybeFieldName_.Should().BeEquivalentTo(concrete.T_IndexMaybeFieldName_);
-            duplicate.T_IndexOtherFieldName_.Should().BeEquivalentTo(concrete.T_IndexOtherFieldName_);
-            duplicate.T_IndexBufferFieldName_.Should().BeEquivalentTo(concrete.T_IndexBufferFieldName_);
-            duplicate.T_IndexStringFieldName_.Should().BeEquivalentTo(concrete.T_IndexStringFieldName_);
+            duplicate.T_UnaryModelFieldName_.ShouldBe(concrete.T_UnaryModelFieldName_);
+            duplicate.T_UnaryMaybeFieldName_.ShouldBe(concrete.T_UnaryMaybeFieldName_);
+            duplicate.T_UnaryOtherFieldName_.ShouldBe(concrete.T_UnaryOtherFieldName_);
+            duplicate.T_UnaryBufferFieldName_.ShouldBeEquivalentTo(concrete.T_UnaryBufferFieldName_);
+            duplicate.T_UnaryStringFieldName_.ShouldBe(concrete.T_UnaryStringFieldName_);
+            duplicate.T_ArrayModelFieldName_.ShouldBeEquivalentTo(concrete.T_ArrayModelFieldName_);
+            duplicate.T_ArrayMaybeFieldName_.ShouldBeEquivalentTo(concrete.T_ArrayMaybeFieldName_);
+            duplicate.T_ArrayOtherFieldName_.ShouldBeEquivalentTo(concrete.T_ArrayOtherFieldName_);
+            duplicate.T_ArrayBufferFieldName_.ShouldBeEquivalentTo(concrete.T_ArrayBufferFieldName_);
+            duplicate.T_ArrayStringFieldName_.ShouldBeEquivalentTo(concrete.T_ArrayStringFieldName_);
+            duplicate.T_IndexModelFieldName_.ShouldBeEquivalentTo(concrete.T_IndexModelFieldName_);
+            duplicate.T_IndexMaybeFieldName_.ShouldBeEquivalentTo(concrete.T_IndexMaybeFieldName_);
+            duplicate.T_IndexOtherFieldName_.ShouldBeEquivalentTo(concrete.T_IndexOtherFieldName_);
+            duplicate.T_IndexBufferFieldName_.ShouldBeEquivalentTo(concrete.T_IndexBufferFieldName_);
+            duplicate.T_IndexStringFieldName_.ShouldBeEquivalentTo(concrete.T_IndexStringFieldName_);
 
-            duplicate.Should().Be(concrete);
-            duplicate.Equals(concrete).Should().BeTrue();
+            duplicate.ShouldBe(concrete);
+            duplicate.Equals(concrete).ShouldBeTrue();
         }
 
         private static readonly JsonSerializerOptions serializerOptions = new JsonSerializerOptions()
@@ -119,11 +119,11 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             T_EntityName_ original = new T_EntityName_();
             string buffer = SerializeToJson(original);
-            buffer.Length.Should().Be(2);
+            buffer.Length.ShouldBe(2);
 
             T_EntityName_ duplicate = DeserializeFromJson<T_EntityName_>(buffer);
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
 
         [Fact]
@@ -161,41 +161,41 @@ namespace MetaFac.CG4.Template.UnitTests
             original.Freeze();
 
             IT_EntityName_ external = original;
-            external.T_UnaryModelFieldName_.Should().NotBeNull();
-            external.T_ArrayModelFieldName_.Should().NotBeNull();
-            external.T_IndexModelFieldName_.Should().NotBeNull();
-            external.T_UnaryOtherFieldName_.Should().Be(123L);
-            external.T_ArrayOtherFieldName_.Should().NotBeNull();
-            external.T_IndexOtherFieldName_.Should().NotBeNull();
-            external.T_UnaryMaybeFieldName_.Should().BeNull();
-            external.T_ArrayMaybeFieldName_.Should().NotBeNull();
-            external.T_IndexMaybeFieldName_.Should().NotBeNull();
-            external.T_UnaryBufferFieldName_.Should().NotBeNull();
-            external.T_UnaryBufferFieldName_!.Length.Should().Be(4);
+            external.T_UnaryModelFieldName_.ShouldNotBeNull();
+            external.T_ArrayModelFieldName_.ShouldNotBeNull();
+            external.T_IndexModelFieldName_.ShouldNotBeNull();
+            external.T_UnaryOtherFieldName_.ShouldBe(123L);
+            external.T_ArrayOtherFieldName_.ShouldNotBeNull();
+            external.T_IndexOtherFieldName_.ShouldNotBeNull();
+            external.T_UnaryMaybeFieldName_.ShouldBeNull();
+            external.T_ArrayMaybeFieldName_.ShouldNotBeNull();
+            external.T_IndexMaybeFieldName_.ShouldNotBeNull();
+            external.T_UnaryBufferFieldName_.ShouldNotBeNull();
+            external.T_UnaryBufferFieldName_!.Length.ShouldBe(4);
 
             var duplicate = new T_EntityName_(external);
-            duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
-            duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
-            duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);
-            duplicate.T_UnaryBufferFieldName_.ArrayEquals(original.T_UnaryBufferFieldName_).Should().BeTrue();
-            duplicate.T_UnaryStringFieldName_.Should().Be(original.T_UnaryStringFieldName_);
-            duplicate.T_ArrayModelFieldName_.Should().BeEquivalentTo(original.T_ArrayModelFieldName_);
-            duplicate.T_ArrayMaybeFieldName_.Should().BeEquivalentTo(original.T_ArrayMaybeFieldName_);
-            duplicate.T_ArrayOtherFieldName_.Should().BeEquivalentTo(original.T_ArrayOtherFieldName_);
-            duplicate.T_ArrayBufferFieldName_.Should().BeEquivalentTo(original.T_ArrayBufferFieldName_);
-            duplicate.T_ArrayStringFieldName_.Should().BeEquivalentTo(original.T_ArrayStringFieldName_);
-            duplicate.T_IndexModelFieldName_.Should().BeEquivalentTo(original.T_IndexModelFieldName_);
-            duplicate.T_IndexMaybeFieldName_.Should().BeEquivalentTo(original.T_IndexMaybeFieldName_);
-            duplicate.T_IndexOtherFieldName_.Should().BeEquivalentTo(original.T_IndexOtherFieldName_);
-            duplicate.T_IndexBufferFieldName_.Should().BeEquivalentTo(original.T_IndexBufferFieldName_);
-            duplicate.T_IndexStringFieldName_.Should().BeEquivalentTo(original.T_IndexStringFieldName_);
+            duplicate.T_UnaryModelFieldName_.ShouldBe(original.T_UnaryModelFieldName_);
+            duplicate.T_UnaryMaybeFieldName_.ShouldBe(original.T_UnaryMaybeFieldName_);
+            duplicate.T_UnaryOtherFieldName_.ShouldBe(original.T_UnaryOtherFieldName_);
+            duplicate.T_UnaryBufferFieldName_.ArrayEquals(original.T_UnaryBufferFieldName_).ShouldBeTrue();
+            duplicate.T_UnaryStringFieldName_.ShouldBe(original.T_UnaryStringFieldName_);
+            duplicate.T_ArrayModelFieldName_.ShouldBeEquivalentTo(original.T_ArrayModelFieldName_);
+            duplicate.T_ArrayMaybeFieldName_.ShouldBeEquivalentTo(original.T_ArrayMaybeFieldName_);
+            duplicate.T_ArrayOtherFieldName_.ShouldBeEquivalentTo(original.T_ArrayOtherFieldName_);
+            duplicate.T_ArrayBufferFieldName_.ShouldBeEquivalentTo(original.T_ArrayBufferFieldName_);
+            duplicate.T_ArrayStringFieldName_.ShouldBeEquivalentTo(original.T_ArrayStringFieldName_);
+            duplicate.T_IndexModelFieldName_.ShouldBeEquivalentTo(original.T_IndexModelFieldName_);
+            duplicate.T_IndexMaybeFieldName_.ShouldBeEquivalentTo(original.T_IndexMaybeFieldName_);
+            duplicate.T_IndexOtherFieldName_.ShouldBeEquivalentTo(original.T_IndexOtherFieldName_);
+            duplicate.T_IndexBufferFieldName_.IndexEquals(original.T_IndexBufferFieldName_).ShouldBeTrue();
+            duplicate.T_IndexStringFieldName_.ShouldBeEquivalentTo(original.T_IndexStringFieldName_);
 
-            duplicate.Equals(original).Should().BeTrue();
-            duplicate.Should().Be(original);
+            duplicate.Equals(original).ShouldBeTrue();
+            duplicate.ShouldBe(original);
 
             int originalHash = original.GetHashCode();
             int duplicateHash = duplicate.GetHashCode();
-            duplicateHash.Should().Be(originalHash);
+            duplicateHash.ShouldBe(originalHash);
         }
 
         [Fact]
@@ -233,28 +233,28 @@ namespace MetaFac.CG4.Template.UnitTests
             original.Freeze();
 
             var duplicate = new T_EntityName_(original);
-            duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
-            duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
-            duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);
-            duplicate.T_UnaryBufferFieldName_.ArrayEquals(original.T_UnaryBufferFieldName_).Should().BeTrue();
-            duplicate.T_UnaryStringFieldName_.Should().Be(original.T_UnaryStringFieldName_);
-            duplicate.T_ArrayModelFieldName_.Should().BeEquivalentTo(original.T_ArrayModelFieldName_);
-            duplicate.T_ArrayMaybeFieldName_.Should().BeEquivalentTo(original.T_ArrayMaybeFieldName_);
-            duplicate.T_ArrayOtherFieldName_.Should().BeEquivalentTo(original.T_ArrayOtherFieldName_);
-            duplicate.T_ArrayBufferFieldName_.Should().BeEquivalentTo(original.T_ArrayBufferFieldName_);
-            duplicate.T_ArrayStringFieldName_.Should().BeEquivalentTo(original.T_ArrayStringFieldName_);
-            duplicate.T_IndexModelFieldName_.Should().BeEquivalentTo(original.T_IndexModelFieldName_);
-            duplicate.T_IndexMaybeFieldName_.Should().BeEquivalentTo(original.T_IndexMaybeFieldName_);
-            duplicate.T_IndexOtherFieldName_.Should().BeEquivalentTo(original.T_IndexOtherFieldName_);
-            duplicate.T_IndexBufferFieldName_.Should().BeEquivalentTo(original.T_IndexBufferFieldName_);
-            duplicate.T_IndexStringFieldName_.Should().BeEquivalentTo(original.T_IndexStringFieldName_);
+            duplicate.T_UnaryModelFieldName_.ShouldBe(original.T_UnaryModelFieldName_);
+            duplicate.T_UnaryMaybeFieldName_.ShouldBe(original.T_UnaryMaybeFieldName_);
+            duplicate.T_UnaryOtherFieldName_.ShouldBe(original.T_UnaryOtherFieldName_);
+            duplicate.T_UnaryBufferFieldName_.ArrayEquals(original.T_UnaryBufferFieldName_).ShouldBeTrue();
+            duplicate.T_UnaryStringFieldName_.ShouldBe(original.T_UnaryStringFieldName_);
+            duplicate.T_ArrayModelFieldName_.ShouldBeEquivalentTo(original.T_ArrayModelFieldName_);
+            duplicate.T_ArrayMaybeFieldName_.ShouldBeEquivalentTo(original.T_ArrayMaybeFieldName_);
+            duplicate.T_ArrayOtherFieldName_.ShouldBeEquivalentTo(original.T_ArrayOtherFieldName_);
+            duplicate.T_ArrayBufferFieldName_.ShouldBeEquivalentTo(original.T_ArrayBufferFieldName_);
+            duplicate.T_ArrayStringFieldName_.ShouldBeEquivalentTo(original.T_ArrayStringFieldName_);
+            duplicate.T_IndexModelFieldName_.ShouldBeEquivalentTo(original.T_IndexModelFieldName_);
+            duplicate.T_IndexMaybeFieldName_.ShouldBeEquivalentTo(original.T_IndexMaybeFieldName_);
+            duplicate.T_IndexOtherFieldName_.ShouldBeEquivalentTo(original.T_IndexOtherFieldName_);
+            duplicate.T_IndexBufferFieldName_.ShouldBeEquivalentTo(original.T_IndexBufferFieldName_);
+            duplicate.T_IndexStringFieldName_.ShouldBeEquivalentTo(original.T_IndexStringFieldName_);
 
-            duplicate.Equals(original).Should().BeTrue();
-            duplicate.Should().Be(original);
+            duplicate.Equals(original).ShouldBeTrue();
+            duplicate.ShouldBe(original);
 
             int originalHash = original.GetHashCode();
             int duplicateHash = duplicate.GetHashCode();
-            duplicateHash.Should().Be(originalHash);
+            duplicateHash.ShouldBe(originalHash);
         }
 
         [Fact]
@@ -293,28 +293,28 @@ namespace MetaFac.CG4.Template.UnitTests
 
             var duplicate = new T_EntityName_();
             duplicate.CopyFrom(original);
-            duplicate.T_UnaryModelFieldName_.Should().Be(original.T_UnaryModelFieldName_);
-            duplicate.T_UnaryMaybeFieldName_.Should().Be(original.T_UnaryMaybeFieldName_);
-            duplicate.T_UnaryOtherFieldName_.Should().Be(original.T_UnaryOtherFieldName_);
-            duplicate.T_UnaryBufferFieldName_.ArrayEquals(original.T_UnaryBufferFieldName_).Should().BeTrue();
-            duplicate.T_UnaryStringFieldName_.Should().Be(original.T_UnaryStringFieldName_);
-            duplicate.T_ArrayModelFieldName_.Should().BeEquivalentTo(original.T_ArrayModelFieldName_);
-            duplicate.T_ArrayMaybeFieldName_.Should().BeEquivalentTo(original.T_ArrayMaybeFieldName_);
-            duplicate.T_ArrayOtherFieldName_.Should().BeEquivalentTo(original.T_ArrayOtherFieldName_);
-            duplicate.T_ArrayBufferFieldName_.Should().BeEquivalentTo(original.T_ArrayBufferFieldName_);
-            duplicate.T_ArrayStringFieldName_.Should().BeEquivalentTo(original.T_ArrayStringFieldName_);
-            duplicate.T_IndexModelFieldName_.Should().BeEquivalentTo(original.T_IndexModelFieldName_);
-            duplicate.T_IndexMaybeFieldName_.Should().BeEquivalentTo(original.T_IndexMaybeFieldName_);
-            duplicate.T_IndexOtherFieldName_.Should().BeEquivalentTo(original.T_IndexOtherFieldName_);
-            duplicate.T_IndexBufferFieldName_.Should().BeEquivalentTo(original.T_IndexBufferFieldName_);
-            duplicate.T_IndexStringFieldName_.Should().BeEquivalentTo(original.T_IndexStringFieldName_);
+            duplicate.T_UnaryModelFieldName_.ShouldBe(original.T_UnaryModelFieldName_);
+            duplicate.T_UnaryMaybeFieldName_.ShouldBe(original.T_UnaryMaybeFieldName_);
+            duplicate.T_UnaryOtherFieldName_.ShouldBe(original.T_UnaryOtherFieldName_);
+            duplicate.T_UnaryBufferFieldName_.ArrayEquals(original.T_UnaryBufferFieldName_).ShouldBeTrue();
+            duplicate.T_UnaryStringFieldName_.ShouldBe(original.T_UnaryStringFieldName_);
+            duplicate.T_ArrayModelFieldName_.ShouldBeEquivalentTo(original.T_ArrayModelFieldName_);
+            duplicate.T_ArrayMaybeFieldName_.ShouldBeEquivalentTo(original.T_ArrayMaybeFieldName_);
+            duplicate.T_ArrayOtherFieldName_.ShouldBeEquivalentTo(original.T_ArrayOtherFieldName_);
+            duplicate.T_ArrayBufferFieldName_.ShouldBeEquivalentTo(original.T_ArrayBufferFieldName_);
+            duplicate.T_ArrayStringFieldName_.ShouldBeEquivalentTo(original.T_ArrayStringFieldName_);
+            duplicate.T_IndexModelFieldName_.ShouldBeEquivalentTo(original.T_IndexModelFieldName_);
+            duplicate.T_IndexMaybeFieldName_.ShouldBeEquivalentTo(original.T_IndexMaybeFieldName_);
+            duplicate.T_IndexOtherFieldName_.ShouldBeEquivalentTo(original.T_IndexOtherFieldName_);
+            duplicate.T_IndexBufferFieldName_.IndexEquals(original.T_IndexBufferFieldName_).ShouldBeTrue();
+            duplicate.T_IndexStringFieldName_.ShouldBeEquivalentTo(original.T_IndexStringFieldName_);
 
-            duplicate.Equals(original).Should().BeTrue();
-            duplicate.Should().Be(original);
+            duplicate.Equals(original).ShouldBeTrue();
+            duplicate.ShouldBe(original);
 
             int originalHash = original.GetHashCode();
             int duplicateHash = duplicate.GetHashCode();
-            duplicateHash.Should().Be(originalHash);
+            duplicateHash.ShouldBe(originalHash);
         }
 
         [Fact]
@@ -351,12 +351,12 @@ namespace MetaFac.CG4.Template.UnitTests
             };
             var buffer = SerializeToJson(original);
             var duplicate = DeserializeFromJson<T_EntityName_>(buffer);
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
 
             int originalHash = original.GetHashCode();
             int duplicateHash = duplicate.GetHashCode();
-            duplicateHash.Should().Be(originalHash);
+            duplicateHash.ShouldBe(originalHash);
         }
 
     }

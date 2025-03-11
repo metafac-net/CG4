@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MetaFac.Memory" Version="2.0.6" />
+    <PackageReference Include="MetaFac.Memory" Version="2.0.9" />
     <PackageReference Include="MetaFac.Mutability" Version="3.0.3" />
   </ItemGroup>
 

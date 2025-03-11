@@ -12,7 +12,7 @@
         <Authors>MetaFac Contributors</Authors>
         <Company>MetaFac</Company>
         <Product>CG4</Product>
-        <Copyright>Copyright (c) 2020-2024 MetaFac</Copyright>
+        <Copyright>Copyright (c) 2020-2025 MetaFac</Copyright>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/metafac-net/CG4</PackageProjectUrl>
         <PackageTags>MetaFac, fluent, modelling, meta-programming, generators, model-first, code-first</PackageTags>
@@ -24,7 +24,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.112">
+        <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

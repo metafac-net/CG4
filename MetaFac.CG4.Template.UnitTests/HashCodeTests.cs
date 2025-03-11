@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
-using MetaFac.CG4.Runtime.MessagePack;
+﻿using MetaFac.CG4.Runtime.MessagePack;
 using MetaFac.Memory;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -178,7 +178,7 @@ namespace MetaFac.CG4.Template.UnitTests
 
             // assert
             int modifiedHash = original.GetHashCode();
-            modifiedHash.Should().NotBe(originalHash);
+            modifiedHash.ShouldNotBe(originalHash);
         }
 
     }

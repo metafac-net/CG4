@@ -1,7 +1,7 @@
-﻿using FluentAssertions;
-using MessagePack;
+﻿using MessagePack;
 using MetaFac.CG4.TestOrg.Common;
 using MetaFac.Memory;
+using Shouldly;
 using System;
 using System.Numerics;
 using System.Text;
@@ -81,30 +81,30 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
                 Polymorphic.JsonSystemText.ValueNode outgoing = Polymorphic.JsonSystemText.ValueNode_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJsonSystemText<Polymorphic.JsonSystemText.ValueNode>();
                 var incoming = buffer.DeserializeFromJsonSystemText<Polymorphic.JsonSystemText.ValueNode>();
-                incoming.Should().Be(outgoing);
+                incoming.ShouldBe(outgoing);
                 Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-                duplicate.Should().Be(original);
-                duplicate.Equals(original).Should().BeTrue();
+                duplicate.ShouldBe(original);
+                duplicate.Equals(original).ShouldBeTrue();
             }
             // JsonNewstonSoft
             {
                 Polymorphic.JsonNewtonSoft.ValueNode outgoing = Polymorphic.JsonNewtonSoft.ValueNode_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = outgoing.SerializeToJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
                 var incoming = buffer.DeserializeFromJsonNewtonSoft<Polymorphic.JsonNewtonSoft.ValueNode>();
-                incoming.Should().Be(outgoing);
+                incoming.ShouldBe(outgoing);
                 Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-                duplicate.Should().Be(original);
-                duplicate.Equals(original).Should().BeTrue();
+                duplicate.ShouldBe(original);
+                duplicate.Equals(original).ShouldBeTrue();
             }
             // MessagePack
             {
                 Polymorphic.MessagePack.ValueNode outgoing = Polymorphic.MessagePack.ValueNode_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
                 var buffer = MessagePackSerializer.Serialize<Polymorphic.MessagePack.ValueNode>(outgoing);
                 var incoming = MessagePackSerializer.Deserialize<Polymorphic.MessagePack.ValueNode>(buffer);
-                incoming.Should().Be(outgoing);
+                incoming.ShouldBe(outgoing);
                 Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-                duplicate.Should().Be(original);
-                duplicate.Equals(original).Should().BeTrue();
+                duplicate.ShouldBe(original);
+                duplicate.Equals(original).ShouldBeTrue();
             }
         }
 

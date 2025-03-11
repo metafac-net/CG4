@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using Shouldly;
 using System.Collections.Generic;
 using Xunit;
 
@@ -24,7 +24,7 @@ namespace MetaFac.CG4.Generators.UnitTests
                     ["Field1"] = "MyField",
                 });
             string actualOutput = replacer.ReplaceTokens(input);
-            actualOutput.Should().Be(expectedOutput);
+            actualOutput.ShouldBe(expectedOutput);
         }
 
     }

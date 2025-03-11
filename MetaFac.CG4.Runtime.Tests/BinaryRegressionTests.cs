@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
-using MessagePack;
+﻿using MessagePack;
 using MetaFac.CG4.Runtime.MessagePack;
+using Shouldly;
 using System;
 using System.Linq;
 using Xunit;
@@ -17,9 +17,9 @@ namespace MetaFac.CG4.Runtime.Tests
                 BinaryValue? data = null;
                 var buffer = MessagePackSerializer.Serialize(data);
                 string.Join('-', buffer.Select(b => b.ToString("X2")))
-                    .Should().Be("C0");
+                    .ShouldBe("C0");
                 var copy = MessagePackSerializer.Deserialize<BinaryValue>(buffer);
-                copy.Should().BeNull();
+                copy.ShouldBeNull();
             }
 
             // empty
@@ -27,10 +27,10 @@ namespace MetaFac.CG4.Runtime.Tests
                 BinaryValue data = new BinaryValue(Array.Empty<byte>());
                 var buffer = MessagePackSerializer.Serialize(data);
                 string.Join('-', buffer.Select(b => b.ToString("X2")))
-                    .Should().Be("91-C4-00");
+                    .ShouldBe("91-C4-00");
                 var copy = MessagePackSerializer.Deserialize<BinaryValue>(buffer);
-                copy.Should().Be(data);
-                copy.Equals(data).Should().BeTrue();
+                copy.ShouldBe(data);
+                copy.Equals(data).ShouldBeTrue();
             }
 
             // non-empty
@@ -38,10 +38,10 @@ namespace MetaFac.CG4.Runtime.Tests
                 BinaryValue data = new BinaryValue(new byte[] { 1, 2, 3 });
                 var buffer = MessagePackSerializer.Serialize(data);
                 string.Join('-', buffer.Select(b => b.ToString("X2")))
-                    .Should().Be("91-C4-03-01-02-03");
+                    .ShouldBe("91-C4-03-01-02-03");
                 var copy = MessagePackSerializer.Deserialize<BinaryValue>(buffer);
-                copy.Should().Be(data);
-                copy.Equals(data).Should().BeTrue();
+                copy.ShouldBe(data);
+                copy.Equals(data).ShouldBeTrue();
             }
         }
     }

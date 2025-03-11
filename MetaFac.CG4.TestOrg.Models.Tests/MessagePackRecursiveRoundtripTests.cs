@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using MessagePack;
+﻿using MessagePack;
+using Shouldly;
 using System;
 using System.Linq;
 using Xunit;
@@ -14,13 +14,13 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var original = new Recursive.RecordsV2.Tree() { Id = 1 };
             var outgoing = Recursive.MessagePack.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = MessagePackSerializer.Serialize<Recursive.MessagePack.Tree>(outgoing);
-            string.Join("-", buffer.Select(b => b.ToString("X2"))).Should().Be(
+            string.Join("-", buffer.Select(b => b.ToString("X2"))).ShouldBe(
                 "94-C0-01-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<Recursive.MessagePack.Tree>(buffer);
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
 
         [Fact]
@@ -33,13 +33,13 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var outgoing = Recursive.MessagePack.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = MessagePackSerializer.Serialize<Recursive.MessagePack.Tree>(outgoing);
-            string.Join("-", buffer.Select(b => b.ToString("X2"))).Should().Be(
+            string.Join("-", buffer.Select(b => b.ToString("X2"))).ShouldBe(
                 "94-C0-01-94-C0-02-C0-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<Recursive.MessagePack.Tree>(buffer);
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
 
         [Fact]
@@ -53,16 +53,16 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var outgoing = Recursive.MessagePack.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = MessagePackSerializer.Serialize<Recursive.MessagePack.Tree>(outgoing);
-            string.Join("-", buffer.Select(b => b.ToString("X2"))).Should().Be(
+            string.Join("-", buffer.Select(b => b.ToString("X2"))).ShouldBe(
                 "94-C0-01-94-C0-02-C0-C0-94-C0-03-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<Recursive.MessagePack.Tree>(buffer);
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
-            duplicate.Id.Should().Be(1);
-            duplicate.A!.Id.Should().Be(2);
-            duplicate.B!.Id.Should().Be(3);
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
+            duplicate.Id.ShouldBe(1);
+            duplicate.A!.Id.ShouldBe(2);
+            duplicate.B!.Id.ShouldBe(3);
         }
 
         [Fact]
@@ -76,18 +76,18 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             };
             var outgoing = Recursive.MessagePack.Tree_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = MessagePackSerializer.Serialize<Recursive.MessagePack.Tree>(outgoing);
-            string.Join("-", buffer.Select(b => b.ToString("X2"))).Should().Be(
+            string.Join("-", buffer.Select(b => b.ToString("X2"))).ShouldBe(
                 "94-C0-01-94-C0-02-94-C0-04-C0-C0-C0-94-C0-03-C0-94-C0-05-C0-C0");
             var incoming = MessagePackSerializer.Deserialize<Recursive.MessagePack.Tree>(buffer);
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
-            duplicate.Id.Should().Be(1);
-            duplicate.A!.Id.Should().Be(2);
-            duplicate.B!.Id.Should().Be(3);
-            duplicate.A!.A!.Id.Should().Be(4);
-            duplicate.B!.B!.Id.Should().Be(5);
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
+            duplicate.Id.ShouldBe(1);
+            duplicate.A!.Id.ShouldBe(2);
+            duplicate.B!.Id.ShouldBe(3);
+            duplicate.A!.A!.Id.ShouldBe(4);
+            duplicate.B!.B!.Id.ShouldBe(5);
         }
 
     }

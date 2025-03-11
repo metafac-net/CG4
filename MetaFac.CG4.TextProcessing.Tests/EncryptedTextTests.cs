@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using Shouldly;
 using System;
 using System.Security.Cryptography;
 using System.Text;
@@ -20,9 +20,9 @@ namespace MetaFac.CG4.TextProcessing.UnitTests
             using (HashAlgorithm hasher = MD5.Create())
             {
                 var hash = hasher.ComputeHash(Encoding.Unicode.GetBytes(text));
-                hash.Length.Should().Be(16);
+                hash.Length.ShouldBe(16);
                 Guid fromHash = new Guid(hash);
-                fromHash.ToString("D").Should().Be(hashAsGuid);
+                fromHash.ToString("D").ShouldBe(hashAsGuid);
             }
         }
 

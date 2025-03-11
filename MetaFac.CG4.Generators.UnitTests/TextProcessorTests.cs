@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using Shouldly;
 using System.Linq;
 using Xunit;
 
@@ -72,14 +72,14 @@ namespace MetaFac.CG4.Generators.UnitTests
         {
             var actualOutput = TextProcessor.ConvertTemplateToGenerator(
                 originalTemplate, "MyOrganisation.Generator", "MyGeneratorId").ToArray();
-            actualOutput.Should().BeEquivalentTo(expectedGenerated);
+            actualOutput.ShouldBeEquivalentTo(expectedGenerated);
         }
 
         [Fact]
         public void GeneratorToTemplate()
         {
             string[] actualOutput = TextProcessor.ConvertGeneratorToTemplate(expectedGenerated).ToArray();
-            actualOutput.Should().BeEquivalentTo(originalTemplate);
+            actualOutput.ShouldBeEquivalentTo(originalTemplate);
         }
 
     }

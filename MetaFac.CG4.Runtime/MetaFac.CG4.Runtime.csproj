@@ -14,7 +14,7 @@
     <Authors>MetaFac Contributors</Authors>
     <Company>MetaFac</Company>
     <Product>CG4</Product>
-    <Copyright>Copyright (c) 2020-2024 MetaFac</Copyright>
+    <Copyright>Copyright (c) 2020-2025 MetaFac</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/metafac-net/CG4</PackageProjectUrl>
     <PackageTags>MetaFac CG4 runtime</PackageTags>
@@ -32,13 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MetaFac.Memory" Version="2.0.6" />
+    <PackageReference Include="MetaFac.Memory" Version="2.0.9" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.112">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Collections.Immutable" Version="9.0.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="9.0.2" />
   </ItemGroup>
 
 </Project>

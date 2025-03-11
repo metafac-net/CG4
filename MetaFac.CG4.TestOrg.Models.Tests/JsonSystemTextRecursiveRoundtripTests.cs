@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using MetaFac.CG4.TestOrg.Common;
+﻿using MetaFac.CG4.TestOrg.Common;
+using Shouldly;
 using System;
 using System.Threading.Tasks;
 using VerifyXunit;
@@ -17,10 +17,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var buffer = outgoing.SerializeToJsonSystemText<Recursive.JsonSystemText.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJsonSystemText<Recursive.JsonSystemText.Tree>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
 
         [Fact]
@@ -35,10 +35,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var buffer = outgoing.SerializeToJsonSystemText<Recursive.JsonSystemText.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJsonSystemText<Recursive.JsonSystemText.Tree>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
         }
 
         [Fact]
@@ -54,13 +54,13 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var buffer = outgoing.SerializeToJsonSystemText<Recursive.JsonSystemText.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJsonSystemText<Recursive.JsonSystemText.Tree>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
-            duplicate.Id.Should().Be(1);
-            duplicate.A!.Id.Should().Be(2);
-            duplicate.B!.Id.Should().Be(3);
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
+            duplicate.Id.ShouldBe(1);
+            duplicate.A!.Id.ShouldBe(2);
+            duplicate.B!.Id.ShouldBe(3);
         }
 
         [Fact]
@@ -76,15 +76,15 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             var buffer = outgoing.SerializeToJsonSystemText<Recursive.JsonSystemText.Tree>();
             await Verifier.Verify(buffer);
             var incoming = buffer.DeserializeFromJsonSystemText<Recursive.JsonSystemText.Tree>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             var duplicate = Recursive.RecordsV2.Tree_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
-            duplicate.Id.Should().Be(1);
-            duplicate.A!.Id.Should().Be(2);
-            duplicate.B!.Id.Should().Be(3);
-            duplicate.A!.A!.Id.Should().Be(4);
-            duplicate.B!.B!.Id.Should().Be(5);
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
+            duplicate.Id.ShouldBe(1);
+            duplicate.A!.Id.ShouldBe(2);
+            duplicate.B!.Id.ShouldBe(3);
+            duplicate.A!.A!.Id.ShouldBe(4);
+            duplicate.B!.B!.Id.ShouldBe(5);
         }
 
     }

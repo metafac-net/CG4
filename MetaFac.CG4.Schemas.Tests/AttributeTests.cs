@@ -1,4 +1,4 @@
-using FluentAssertions;
+using Shouldly;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -16,13 +16,13 @@ namespace MetaFac.CG4.Schemas.Tests
         public void NormalUsageTest()
         {
             Attribute[] customAttributes = typeof(GoodEntity).GetCustomAttributes().ToArray();
-            customAttributes.Length.Should().Be(1);
+            customAttributes.Length.ShouldBe(1);
 
             Attribute customAttribute = customAttributes[0];
-            customAttribute.Should().BeOfType<EntityAttribute>();
+            customAttribute.ShouldBeOfType<EntityAttribute>();
 
             EntityAttribute entityAttribute = (EntityAttribute)customAttribute;
-            entityAttribute.Tag.Should().Be(1);
+            entityAttribute.Tag.ShouldBe(1);
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace MetaFac.CG4.Schemas.Tests
             {
                 Attribute[] customAttributes = typeof(BadTagEntity).GetCustomAttributes().ToArray();
             });
-            ex.Message.Should().StartWith("Must be > 0");
+            ex.Message.ShouldStartWith("Must be > 0");
         }
     }
 }

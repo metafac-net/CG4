@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using MetaFac.CG4.TestOrg.Common;
+﻿using MetaFac.CG4.TestOrg.Common;
+using Shouldly;
 using System;
 using System.Threading.Tasks;
 using VerifyXunit;
@@ -16,10 +16,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             Polymorphic.JsonSystemText.ValueNode outgoing = Polymorphic.JsonSystemText.ValueNode_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = outgoing.SerializeToJsonSystemText<Polymorphic.JsonSystemText.ValueNode>();
             var incoming = buffer.DeserializeFromJsonSystemText<Polymorphic.JsonSystemText.ValueNode>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
             await Verifier.Verify(buffer);
         }
 
@@ -30,10 +30,10 @@ namespace MetaFac.CG4.TestOrg.Models.Tests
             Polymorphic.JsonSystemText.ValueNode outgoing = Polymorphic.JsonSystemText.ValueNode_Factory.Instance.CreateFrom(original) ?? throw new Exception("Returned null!");
             var buffer = outgoing.SerializeToJsonSystemText<Polymorphic.JsonSystemText.ValueNode>();
             var incoming = buffer.DeserializeFromJsonSystemText<Polymorphic.JsonSystemText.ValueNode>();
-            incoming.Should().Be(outgoing);
+            incoming.ShouldBe(outgoing);
             Polymorphic.RecordsV2.ValueNode duplicate = Polymorphic.RecordsV2.ValueNode_Factory.Instance.CreateFrom(incoming) ?? throw new Exception("Returned null!");
-            duplicate.Should().Be(original);
-            duplicate.Equals(original).Should().BeTrue();
+            duplicate.ShouldBe(original);
+            duplicate.Equals(original).ShouldBeTrue();
             await Verifier.Verify(buffer);
         }
 
