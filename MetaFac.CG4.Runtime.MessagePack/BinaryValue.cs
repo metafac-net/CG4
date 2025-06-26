@@ -1,5 +1,5 @@
 ﻿using MessagePack;
-using MetaFac.Memory;
+using DataFac.Memory;
 using System;
 
 namespace MetaFac.CG4.Runtime.MessagePack
@@ -37,7 +37,7 @@ namespace MetaFac.CG4.Runtime.MessagePack
         public override bool Equals(object? obj) => obj is BinaryValue other && Equals(other);
         public static bool operator ==(BinaryValue? left, BinaryValue? right) => left is null ? right is null : left.Equals(right);
         public static bool operator !=(BinaryValue? left, BinaryValue? right) => !(left == right);
-        public static implicit operator BinaryValue?(Octets? octets) => octets is null ? null : new BinaryValue(octets.Memory);
+        public static implicit operator BinaryValue?(Octets? octets) => octets is null ? null : new BinaryValue(octets.AsMemory());
         public static implicit operator Octets?(BinaryValue? binary) => binary is null ? null : Octets.UnsafeWrap(binary.Value);
     }
 }

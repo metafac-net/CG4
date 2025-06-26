@@ -5,14 +5,14 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: ClassesV2.3.2
+// Generator: ClassesV2.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.BasicTypes)
 // </information>
 #endregion
 #nullable enable
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable CS8019 // Unnecessary using directive
-using MetaFac.Memory;
+using DataFac.Memory;
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
 using System;
@@ -4121,13 +4121,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             get => field_MapValue;
             set => field_MapValue = CheckNotFrozen(ref value);
         }
-        private ImmutableDictionary<Octets, String?>? field_MapKey;
-        IReadOnlyDictionary<Octets, String?>? IBasic_Octets.MapKey => field_MapKey;
-        public ImmutableDictionary<Octets, String?>? MapKey
-        {
-            get => field_MapKey;
-            set => field_MapKey = CheckNotFrozen(ref value);
-        }
 
         public Basic_Octets() : base()
         {
@@ -4139,7 +4132,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_Scalar = source.Scalar;
             field_Vector = source.Vector;
             field_MapValue = source.MapValue;
-            field_MapKey = source.MapKey;
         }
 
         public Basic_Octets(IBasic_Octets? source) : base(source)
@@ -4152,9 +4144,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapValue = source.MapValue is null
                 ? default
                 : ImmutableDictionary<String, Octets?>.Empty.AddRange(source.MapValue);
-            field_MapKey = source.MapKey is null
-                ? default
-                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
         }
 
         public void CopyFrom(IBasic_Octets? source)
@@ -4169,9 +4158,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             field_MapValue = source.MapValue is null
                 ? default
                 : ImmutableDictionary<String, Octets?>.Empty.AddRange(source.MapValue);
-            field_MapKey = source.MapKey is null
-                ? default
-                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
         }
 
         public virtual bool Equals(Basic_Octets? other)
@@ -4181,7 +4167,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             if (!Scalar.ValueEquals(other.Scalar)) return false;
             if (!Vector.ArrayEquals(other.Vector)) return false;
             if (!MapValue.IndexEquals(other.MapValue)) return false;
-            if (!MapKey.IndexEquals(other.MapKey)) return false;
             return base.Equals(other);
         }
 
@@ -4193,7 +4178,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.ClassesV2
             hc.Add(Scalar.CalcHashUnary());
             hc.Add(Vector.CalcHashArray());
             hc.Add(MapValue.CalcHashIndex());
-            hc.Add(MapKey.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

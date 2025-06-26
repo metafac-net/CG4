@@ -3,7 +3,7 @@ using MessagePack;
 using MetaFac.CG4.Runtime;
 using MetaFac.CG4.TestOrg.Common;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 using Shouldly;
 using System;
 using System.Collections.Immutable;

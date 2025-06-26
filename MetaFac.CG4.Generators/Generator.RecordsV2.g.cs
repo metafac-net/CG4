@@ -40,7 +40,7 @@ Emit("#endregion");
 Emit("#nullable enable");
 Emit("#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member");
 Emit("#pragma warning disable CS8019 // Unnecessary using directive");
-Emit("using MetaFac.Memory;");
+Emit("using DataFac.Memory;");
 Emit("using MetaFac.Mutability;");
 Emit("using MetaFac.CG4.Runtime;");
 Emit("using System;");

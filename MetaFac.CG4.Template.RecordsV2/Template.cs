@@ -28,7 +28,7 @@
 #nullable enable
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable CS8019 // Unnecessary using directive
-using MetaFac.Memory;
+using DataFac.Memory;
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
 using System;

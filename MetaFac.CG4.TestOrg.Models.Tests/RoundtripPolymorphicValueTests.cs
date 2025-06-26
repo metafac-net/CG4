@@ -1,6 +1,6 @@
 ﻿using MessagePack;
 using MetaFac.CG4.TestOrg.Common;
-using MetaFac.Memory;
+using DataFac.Memory;
 using Shouldly;
 using System;
 using System.Numerics;

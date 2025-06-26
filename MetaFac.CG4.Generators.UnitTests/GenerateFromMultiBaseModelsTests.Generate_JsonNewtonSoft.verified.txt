@@ -23,7 +23,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using Generated.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 
 namespace Generated.JsonNewtonSoft
 {

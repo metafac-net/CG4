@@ -49,7 +49,7 @@ Emit("using System.Collections.Immutable;");
 Emit("using System.Linq;");
 Emit("using System.Numerics;");
 Emit("using T_Namespace_.Contracts;");
-Emit("using MetaFac.Memory;");
+Emit("using DataFac.Memory;");
 Emit("");
 Emit("namespace T_Namespace_.JsonNewtonSoft");
 Emit("{");
@@ -463,17 +463,17 @@ Emit("                    .Select(x => new KeyValuePair<T_IndexType_, T_Concrete
                                 case FieldKind.UnaryBuffer:
 Emit("            this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : source.T_UnaryBufferFieldName_.Memory.ToArray();");
+Emit("                : source.T_UnaryBufferFieldName_.ToByteArray();");
                                     break;
                                 case FieldKind.ArrayBuffer:
 Emit("            this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();");
+Emit("                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.ToByteArray()).ToArray();");
                                     break;
                                 case FieldKind.IndexBuffer:
 Emit("            this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());");
+Emit("                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.ToByteArray());");
                                     break;
                                 case FieldKind.UnaryString:
 Emit("            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;");
@@ -552,17 +552,17 @@ Emit("                    .Select(x => new KeyValuePair<T_IndexType_, T_Concrete
                                 case FieldKind.UnaryBuffer:
 Emit("            this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : source.T_UnaryBufferFieldName_.Memory.ToArray();");
+Emit("                : source.T_UnaryBufferFieldName_.ToByteArray();");
                                     break;
                                 case FieldKind.ArrayBuffer:
 Emit("            this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();");
+Emit("                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.ToByteArray()).ToArray();");
                                     break;
                                 case FieldKind.IndexBuffer:
 Emit("            this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null");
 Emit("                ? default");
-Emit("                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());");
+Emit("                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.ToByteArray());");
                                     break;
                                 case FieldKind.UnaryString:
 Emit("            field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;");

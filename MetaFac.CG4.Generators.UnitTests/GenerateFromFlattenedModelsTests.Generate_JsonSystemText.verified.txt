@@ -25,7 +25,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text.Json.Serialization;
 using Generated.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 
 namespace Generated.JsonSystemText
 {
@@ -432,7 +432,7 @@ namespace Generated.JsonSystemText
                 : ImmutableList<String?>.Empty.AddRange(source.Strings);
             this.Buffers = source.Buffers is null
                 ? default
-                : source.Buffers.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.Buffers.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             field_Quantities = source.Quantities is null
                 ? default
                 : ImmutableList<QuantityValue>.Empty.AddRange(source.Quantities
@@ -552,7 +552,7 @@ namespace Generated.JsonSystemText
                 : ImmutableList<String?>.Empty.AddRange(source.Strings);
             this.Buffers = source.Buffers is null
                 ? default
-                : source.Buffers.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.Buffers.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             field_Quantities = source.Quantities is null
                 ? default
                 : ImmutableList<QuantityValue>.Empty.AddRange(source.Quantities

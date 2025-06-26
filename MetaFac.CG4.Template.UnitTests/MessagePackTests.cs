@@ -2,7 +2,7 @@
 using MessagePack.Formatters;
 using MetaFac.CG4.Runtime;
 using MetaFac.CG4.Runtime.MessagePack;
-using MetaFac.Memory;
+using DataFac.Memory;
 using Shouldly;
 using System;
 using System.Collections.Immutable;
@@ -26,8 +26,8 @@ namespace MetaFac.CG4.Template.UnitTests
                 writer.WriteNil();
             else
             {
-                writer.WriteInt32(value.Length);
-                writer.WriteRaw(value.Memory.Span);
+                writer.WriteInt64(value.Length);
+                writer.WriteRaw(value.Sequence);
             }
         }
 
@@ -35,9 +35,9 @@ namespace MetaFac.CG4.Template.UnitTests
         {
             if (reader.TryReadNil()) return null!;
 
-            long length = reader.ReadInt32();
+            long length = reader.ReadInt64();
             var sequence = reader.ReadRaw(length);
-            return new Octets(sequence);
+            return Octets.UnsafeWrap(sequence);
         }
     }
 

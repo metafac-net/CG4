@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonSystemText.3.2
+// Generator: JsonSystemText.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.BasicTypes)
 // </information>
 #endregion
@@ -22,7 +22,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text.Json.Serialization;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 
 namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonSystemText
 {
@@ -3559,23 +3559,19 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonSystemText
         public new const int EntityTag = 31;
         protected override int OnGetEntityTag() => EntityTag;
 
+        [JsonIgnore]
         Octets? IBasic_Octets.Scalar => Scalar is null ? null : new Octets(Scalar);
         public byte[]? Scalar { get; set; }
+        [JsonIgnore]
         IReadOnlyList<Octets?>? IBasic_Octets.Vector => Vector is null
             ? null
             : new List<Octets?>(Vector.Select(x => x is null ? null : new Octets(x)));
         public byte[]?[]? Vector { get; set; }
+        [JsonIgnore]
         IReadOnlyDictionary<String, Octets?>? IBasic_Octets.MapValue => MapValue is null
             ? null
             : MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : new Octets(x.Value));
         public Dictionary<String, byte[]?>? MapValue { get; set; }
-        private ImmutableDictionary<Octets, String?>? field_MapKey;
-        IReadOnlyDictionary<Octets, String?>? IBasic_Octets.MapKey => field_MapKey;
-        public ImmutableDictionary<Octets, String?>? MapKey
-        {
-            get => field_MapKey;
-            set => field_MapKey = value;
-        }
 
         public Basic_Octets() : base()
         {
@@ -3587,7 +3583,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonSystemText
             this.Scalar = source.Scalar;
             this.Vector = source.Vector;
             this.MapValue = source.MapValue;
-            field_MapKey = source.MapKey;
         }
 
         public Basic_Octets(IBasic_Octets? source) : base(source)
@@ -3595,16 +3590,13 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonSystemText
             if (source is null) throw new ArgumentNullException(nameof(source));
             this.Scalar = source.Scalar is null
                 ? default
-                : source.Scalar.Memory.ToArray();
+                : source.Scalar.ToByteArray();
             this.Vector = source.Vector is null
                 ? default
-                : source.Vector.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.Vector.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             this.MapValue = source.MapValue is null
                 ? default
-                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
-            field_MapKey = source.MapKey is null
-                ? default
-                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
+                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.ToByteArray());
         }
 
         public void CopyFrom(IBasic_Octets? source)
@@ -3613,16 +3605,13 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonSystemText
             base.CopyFrom(source);
             this.Scalar = source.Scalar is null
                 ? default
-                : source.Scalar.Memory.ToArray();
+                : source.Scalar.ToByteArray();
             this.Vector = source.Vector is null
                 ? default
-                : source.Vector.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.Vector.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             this.MapValue = source.MapValue is null
                 ? default
-                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
-            field_MapKey = source.MapKey is null
-                ? default
-                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
+                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.ToByteArray());
         }
 
         public bool Equals(Basic_Octets? other)
@@ -3633,7 +3622,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonSystemText
             if (!Scalar.ValueEquals(other.Scalar)) return false;
             if (!Vector.ArrayEquals(other.Vector)) return false;
             if (!MapValue.IndexEquals(other.MapValue)) return false;
-            if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
 
@@ -3646,7 +3634,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonSystemText
             hc.Add(Scalar.CalcHashUnary());
             hc.Add(Vector.CalcHashArray());
             hc.Add(MapValue.CalcHashIndex());
-            hc.Add(MapKey.CalcHashIndex());
             return hc.ToHashCode();
         }
     }

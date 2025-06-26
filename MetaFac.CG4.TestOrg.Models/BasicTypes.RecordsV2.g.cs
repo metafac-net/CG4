@@ -5,14 +5,14 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.3.2
+// Generator: RecordsV2.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.BasicTypes)
 // </information>
 #endregion
 #nullable enable
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable CS8019 // Unnecessary using directive
-using MetaFac.Memory;
+using DataFac.Memory;
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
 using System;
@@ -2341,8 +2341,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
         IReadOnlyList<Octets?>? IBasic_Octets.Vector => Vector;
         public ImmutableDictionary<String, Octets?>? MapValue { get; init; }
         IReadOnlyDictionary<String, Octets?>? IBasic_Octets.MapValue => MapValue;
-        public ImmutableDictionary<Octets, String?>? MapKey { get; init; }
-        IReadOnlyDictionary<Octets, String?>? IBasic_Octets.MapKey => MapKey;
 
         public Basic_Octets() : base()
         {
@@ -2354,7 +2352,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             Scalar = source.Scalar;
             Vector = source.Vector;
             MapValue = source.MapValue;
-            MapKey = source.MapKey;
         }
 
         public Basic_Octets(IBasic_Octets? source) : base(source)
@@ -2369,9 +2366,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
                 ? default
                 : ImmutableDictionary<String, Octets?>.Empty.AddRange(source.MapValue
                     .Select(x => new KeyValuePair<String, Octets?>(x.Key, x.Value)));
-            MapKey = source.MapKey is null
-                ? default
-                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
         }
 
         public virtual bool Equals(Basic_Octets? other)
@@ -2381,7 +2375,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             if (!Scalar.ValueEquals(other.Scalar)) return false;
             if (!Vector.ArrayEquals(other.Vector)) return false;
             if (!MapValue.IndexEquals(other.MapValue)) return false;
-            if (!MapKey.IndexEquals(other.MapKey)) return false;
             return base.Equals(other);
         }
 
@@ -2391,7 +2384,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.RecordsV2
             hc.Add(Scalar.CalcHashUnary());
             hc.Add(Vector.CalcHashArray());
             hc.Add(MapValue.CalcHashIndex());
-            hc.Add(MapKey.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

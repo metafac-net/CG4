@@ -1106,13 +1106,6 @@
               "InnerType": "binary",
               "ArrayRank": 1,
               "IndexType": "string"
-            },
-            {
-              "Name": "MapKey",
-              "Tag": 4,
-              "InnerType": "string",
-              "ArrayRank": 1,
-              "IndexType": "binary"
             }
           ]
         },

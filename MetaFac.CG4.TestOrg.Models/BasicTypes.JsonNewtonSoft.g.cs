@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonNewtonSoft.3.2
+// Generator: JsonNewtonSoft.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.BasicTypes)
 // </information>
 #endregion
@@ -20,7 +20,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using MetaFac.CG4.TestOrg.Models.BasicTypes.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 
 namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
 {
@@ -3567,13 +3567,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             ? null
             : MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : new Octets(x.Value));
         public Dictionary<String, byte[]?>? MapValue { get; set; }
-        private ImmutableDictionary<Octets, String?>? field_MapKey;
-        IReadOnlyDictionary<Octets, String?>? IBasic_Octets.MapKey => field_MapKey;
-        public ImmutableDictionary<Octets, String?>? MapKey
-        {
-            get => field_MapKey;
-            set => field_MapKey = value;
-        }
 
         public Basic_Octets() : base()
         {
@@ -3585,7 +3578,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             this.Scalar = source.Scalar;
             this.Vector = source.Vector;
             this.MapValue = source.MapValue;
-            field_MapKey = source.MapKey;
         }
 
         public Basic_Octets(IBasic_Octets? source) : base(source)
@@ -3593,16 +3585,13 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (source is null) throw new ArgumentNullException(nameof(source));
             this.Scalar = source.Scalar is null
                 ? default
-                : source.Scalar.Memory.ToArray();
+                : source.Scalar.ToByteArray();
             this.Vector = source.Vector is null
                 ? default
-                : source.Vector.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.Vector.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             this.MapValue = source.MapValue is null
                 ? default
-                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
-            field_MapKey = source.MapKey is null
-                ? default
-                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
+                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.ToByteArray());
         }
 
         public void CopyFrom(IBasic_Octets? source)
@@ -3611,16 +3600,13 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             base.CopyFrom(source);
             this.Scalar = source.Scalar is null
                 ? default
-                : source.Scalar.Memory.ToArray();
+                : source.Scalar.ToByteArray();
             this.Vector = source.Vector is null
                 ? default
-                : source.Vector.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.Vector.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             this.MapValue = source.MapValue is null
                 ? default
-                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
-            field_MapKey = source.MapKey is null
-                ? default
-                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
+                : source.MapValue.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.ToByteArray());
         }
 
         public bool Equals(Basic_Octets? other)
@@ -3631,7 +3617,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             if (!Scalar.ValueEquals(other.Scalar)) return false;
             if (!Vector.ArrayEquals(other.Vector)) return false;
             if (!MapValue.IndexEquals(other.MapValue)) return false;
-            if (!MapKey.IndexEquals(other.MapKey)) return false;
             return true;
         }
 
@@ -3644,7 +3629,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.JsonNewtonSoft
             hc.Add(Scalar.CalcHashUnary());
             hc.Add(Vector.CalcHashArray());
             hc.Add(MapValue.CalcHashIndex());
-            hc.Add(MapKey.CalcHashIndex());
             return hc.ToHashCode();
         }
     }

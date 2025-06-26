@@ -21,7 +21,6 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="MetaFac.Memory" Version="2.0.10" />
       <PackageReference Include="MetaFac.Mutability" Version="3.0.7" />
     </ItemGroup>
 

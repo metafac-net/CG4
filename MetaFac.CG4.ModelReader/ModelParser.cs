@@ -1,6 +1,6 @@
 ﻿using MetaFac.CG4.Models;
 using MetaFac.CG4.Schemas;
-using MetaFac.Memory;
+using DataFac.Memory;
 using System;
 using System.Buffers;
 using System.Collections.Generic;

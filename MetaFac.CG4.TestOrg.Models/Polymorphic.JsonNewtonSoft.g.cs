@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonNewtonSoft.3.2
+// Generator: JsonNewtonSoft.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -20,7 +20,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using MetaFac.CG4.TestOrg.Models.Polymorphic.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 
 namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
 {
@@ -1468,7 +1468,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             if (source is null) throw new ArgumentNullException(nameof(source));
             this.OctetsValue = source.OctetsValue is null
                 ? default
-                : source.OctetsValue.Memory.ToArray();
+                : source.OctetsValue.ToByteArray();
         }
 
         public void CopyFrom(IOctetsNode? source)
@@ -1477,7 +1477,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft
             base.CopyFrom(source);
             this.OctetsValue = source.OctetsValue is null
                 ? default
-                : source.OctetsValue.Memory.ToArray();
+                : source.OctetsValue.ToByteArray();
         }
 
         public bool Equals(OctetsNode? other)

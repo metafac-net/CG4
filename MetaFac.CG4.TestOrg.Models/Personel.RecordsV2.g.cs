@@ -5,14 +5,14 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: RecordsV2.3.2
+// Generator: RecordsV2.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Personel)
 // </information>
 #endregion
 #nullable enable
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable CS8019 // Unnecessary using directive
-using MetaFac.Memory;
+using DataFac.Memory;
 using MetaFac.Mutability;
 using MetaFac.CG4.Runtime;
 using System;

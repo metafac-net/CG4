@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonSystemText.3.2
+// Generator: JsonSystemText.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Polymorphic)
 // </information>
 #endregion
@@ -22,7 +22,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text.Json.Serialization;
 using MetaFac.CG4.TestOrg.Models.Polymorphic.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 
 namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonSystemText
 {
@@ -1493,6 +1493,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonSystemText
         public new const int EntityTag = 22;
         protected override int OnGetEntityTag() => EntityTag;
 
+        [JsonIgnore]
         Octets? IOctetsNode.OctetsValue => OctetsValue is null ? null : new Octets(OctetsValue);
         public byte[]? OctetsValue { get; set; }
 
@@ -1511,7 +1512,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonSystemText
             if (source is null) throw new ArgumentNullException(nameof(source));
             this.OctetsValue = source.OctetsValue is null
                 ? default
-                : source.OctetsValue.Memory.ToArray();
+                : source.OctetsValue.ToByteArray();
         }
 
         public void CopyFrom(IOctetsNode? source)
@@ -1520,7 +1521,7 @@ namespace MetaFac.CG4.TestOrg.Models.Polymorphic.JsonSystemText
             base.CopyFrom(source);
             this.OctetsValue = source.OctetsValue is null
                 ? default
-                : source.OctetsValue.Memory.ToArray();
+                : source.OctetsValue.ToByteArray();
         }
 
         public bool Equals(OctetsNode? other)

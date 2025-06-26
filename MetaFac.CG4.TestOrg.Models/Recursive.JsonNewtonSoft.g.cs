@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonNewtonSoft.3.2
+// Generator: JsonNewtonSoft.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Recursive)
 // </information>
 #endregion
@@ -20,7 +20,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using MetaFac.CG4.TestOrg.Models.Recursive.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 
 namespace MetaFac.CG4.TestOrg.Models.Recursive.JsonNewtonSoft
 {

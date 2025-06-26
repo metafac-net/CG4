@@ -1,5 +1,5 @@
 ﻿using MetaFac.CG4.Runtime.MessagePack;
-using MetaFac.Memory;
+using DataFac.Memory;
 using Shouldly;
 using System;
 using System.Collections.Generic;

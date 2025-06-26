@@ -37,7 +37,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using T_Namespace_.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 
 namespace T_Namespace_.JsonNewtonSoft
 {
@@ -451,17 +451,17 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>                    case FieldKind.UnaryBuffer:
             this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_ is null
                 ? default
-                : source.T_UnaryBufferFieldName_.Memory.ToArray();
+                : source.T_UnaryBufferFieldName_.ToByteArray();
             //>>                        break;
             //>>                    case FieldKind.ArrayBuffer:
             this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null
                 ? default
-                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             //>>                        break;
             //>>                    case FieldKind.IndexBuffer:
             this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null
                 ? default
-                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
+                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.ToByteArray());
             //>>                        break;
             //>>                    case FieldKind.UnaryString:
             field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;
@@ -540,17 +540,17 @@ namespace T_Namespace_.JsonNewtonSoft
             //>>                    case FieldKind.UnaryBuffer:
             this.T_UnaryBufferFieldName_ = source.T_UnaryBufferFieldName_ is null
                 ? default
-                : source.T_UnaryBufferFieldName_.Memory.ToArray();
+                : source.T_UnaryBufferFieldName_.ToByteArray();
             //>>                        break;
             //>>                    case FieldKind.ArrayBuffer:
             this.T_ArrayBufferFieldName_ = source.T_ArrayBufferFieldName_ is null
                 ? default
-                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.T_ArrayBufferFieldName_.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             //>>                        break;
             //>>                    case FieldKind.IndexBuffer:
             this.T_IndexBufferFieldName_ = source.T_IndexBufferFieldName_ is null
                 ? default
-                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.Memory.ToArray());
+                : source.T_IndexBufferFieldName_.ToDictionary(x => x.Key, x => x.Value is null ? null : x.Value.ToByteArray());
             //>>                        break;
             //>>                    case FieldKind.UnaryString:
             field_T_UnaryStringFieldName_ = source.T_UnaryStringFieldName_;

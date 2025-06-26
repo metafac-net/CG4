@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: MessagePack.3.2
+// Generator: MessagePack.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.BasicTypes)
 // </information>
 #endregion
@@ -13,7 +13,7 @@
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable CS8019 // Unnecessary using directive
 #pragma warning disable CS8019 // Unnecessary using directive
-using MetaFac.Memory;
+using DataFac.Memory;
 using MetaFac.Mutability;
 using MessagePack;
 using MetaFac.CG4.Runtime;
@@ -4274,7 +4274,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         private BinaryValue? field_Scalar;
         private ImmutableList<BinaryValue?>? field_Vector;
         private ImmutableDictionary<String, BinaryValue?>? field_MapValue;
-        private ImmutableDictionary<Octets, String?>? field_MapKey;
 
         // ---------- accessors ----------
         [Key(1)]
@@ -4295,12 +4294,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             get => field_MapValue;
             set => field_MapValue = CheckNotFrozen(ref value);
         }
-        [Key(4)]
-        public ImmutableDictionary<Octets, String?>? MapKey
-        {
-            get => field_MapKey;
-            set => field_MapKey = CheckNotFrozen(ref value);
-        }
 
         // ---------- IBasic_Octets methods ----------
         Octets? IBasic_Octets.Scalar => field_Scalar;
@@ -4310,7 +4303,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
         IReadOnlyDictionary<String, Octets?>? IBasic_Octets.MapValue => field_MapValue is null
             ? null
             : new DictionaryFacade<String, Octets?, BinaryValue?>(field_MapValue, x => (Octets?)x);
-        IReadOnlyDictionary<Octets, String?>? IBasic_Octets.MapKey => field_MapKey;
 
         public Basic_Octets()
         {
@@ -4321,7 +4313,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_Scalar = source.field_Scalar;
             field_Vector = source.field_Vector;
             field_MapValue = source.field_MapValue;
-            field_MapKey = source.field_MapKey;
         }
 
         public void CopyFrom(Basic_Octets source)
@@ -4330,7 +4321,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             field_Scalar = source.field_Scalar;
             field_Vector = source.field_Vector;
             field_MapValue = source.field_MapValue;
-            field_MapKey = source.field_MapKey;
         }
 
         public Basic_Octets(IBasic_Octets source) : base(source)
@@ -4343,9 +4333,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
                 ? null
                 : ImmutableDictionary<String, BinaryValue?>.Empty.AddRange(
                     source.MapValue.Select(kvp => new KeyValuePair<String, BinaryValue?>(kvp.Key, kvp.Value)));
-            field_MapKey = source.MapKey is null
-                ? null
-                : ImmutableDictionary<Octets, String?>.Empty.AddRange(source.MapKey);
         }
 
         public bool Equals(Basic_Octets? other)
@@ -4355,7 +4342,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             if (!field_Scalar.ValueEquals(other.field_Scalar)) return false;
             if (!field_Vector.ArrayEquals(other.field_Vector)) return false;
             if (!field_MapValue.IndexEquals(other.field_MapValue)) return false;
-            if (!field_MapKey.IndexEquals(other.field_MapKey)) return false;
             return base.Equals(other);
         }
 
@@ -4382,7 +4368,6 @@ namespace MetaFac.CG4.TestOrg.Models.BasicTypes.MessagePack
             hc.Add(field_Scalar.CalcHashUnary());
             hc.Add(field_Vector.CalcHashArray());
             hc.Add(field_MapValue.CalcHashIndex());
-            hc.Add(field_MapKey.CalcHashIndex());
             hc.Add(base.GetHashCode());
             return hc.ToHashCode();
         }

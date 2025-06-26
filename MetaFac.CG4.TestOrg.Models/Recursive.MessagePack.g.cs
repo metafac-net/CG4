@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: MessagePack.3.2
+// Generator: MessagePack.4.0
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Recursive)
 // </information>
 #endregion
@@ -13,7 +13,7 @@
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable CS8019 // Unnecessary using directive
 #pragma warning disable CS8019 // Unnecessary using directive
-using MetaFac.Memory;
+using DataFac.Memory;
 using MetaFac.Mutability;
 using MessagePack;
 using MetaFac.CG4.Runtime;

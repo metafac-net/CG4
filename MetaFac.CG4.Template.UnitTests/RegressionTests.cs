@@ -1,5 +1,5 @@
 ﻿using MessagePack;
-using MetaFac.Memory;
+using DataFac.Memory;
 using Shouldly;
 using System;
 using System.Collections.Immutable;

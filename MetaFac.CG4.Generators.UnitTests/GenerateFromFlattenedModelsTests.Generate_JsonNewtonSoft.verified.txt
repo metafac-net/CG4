@@ -23,7 +23,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using Generated.Contracts;
-using MetaFac.Memory;
+using DataFac.Memory;
 
 namespace Generated.JsonNewtonSoft
 {
@@ -430,7 +430,7 @@ namespace Generated.JsonNewtonSoft
                 : ImmutableList<String?>.Empty.AddRange(source.Strings);
             this.Buffers = source.Buffers is null
                 ? default
-                : source.Buffers.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.Buffers.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             field_Quantities = source.Quantities is null
                 ? default
                 : ImmutableList<QuantityValue>.Empty.AddRange(source.Quantities
@@ -550,7 +550,7 @@ namespace Generated.JsonNewtonSoft
                 : ImmutableList<String?>.Empty.AddRange(source.Strings);
             this.Buffers = source.Buffers is null
                 ? default
-                : source.Buffers.Select(x => x is null ? null : x.Memory.ToArray()).ToArray();
+                : source.Buffers.Select(x => x is null ? null : x.ToByteArray()).ToArray();
             field_Quantities = source.Quantities is null
                 ? default
                 : ImmutableList<QuantityValue>.Empty.AddRange(source.Quantities
