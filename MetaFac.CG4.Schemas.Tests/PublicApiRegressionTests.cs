@@ -11,7 +11,7 @@ namespace MetaFac.CG4.Schemas.Tests
         [Fact]
         public void VersionCheck()
         {
-            ThisAssembly.AssemblyVersion.ShouldBe("3.2.0.0");
+            ThisAssembly.AssemblyVersion.ShouldBe("4.0.0.0");
         }
 
         [Fact]

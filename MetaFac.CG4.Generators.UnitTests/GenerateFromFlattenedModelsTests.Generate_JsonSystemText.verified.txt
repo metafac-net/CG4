@@ -8,7 +8,7 @@
 // </copyright>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: JsonSystemText.3.2
+// Generator: JsonSystemText.4.0
 // Metadata : MetaFac.CG4.Generators.UnitTests(.FlattenedModels)
 // </information>
 #endregion
@@ -223,6 +223,7 @@ namespace Generated.JsonSystemText
             get => field_Strings;
             set => field_Strings = value;
         }
+        [JsonIgnore]
         IReadOnlyList<Octets?>? IBuiltinTypes.Buffers => Buffers is null
             ? null
             : new List<Octets?>(Buffers.Select(x => x is null ? null : new Octets(x)));
