@@ -27,7 +27,7 @@ namespace MetaFac.CG4.Template.UnitTests
             else
             {
                 writer.WriteInt64(value.Length);
-                writer.WriteRaw(value.Sequence);
+                writer.WriteRaw(value.AsMemory().Span);
             }
         }
 
@@ -37,7 +37,7 @@ namespace MetaFac.CG4.Template.UnitTests
 
             long length = reader.ReadInt64();
             var sequence = reader.ReadRaw(length);
-            return Octets.UnsafeWrap(sequence);
+            return Octets.Wrap(sequence);
         }
     }
 

@@ -38,6 +38,6 @@ namespace MetaFac.CG4.Runtime.MessagePack
         public static bool operator ==(BinaryValue? left, BinaryValue? right) => left is null ? right is null : left.Equals(right);
         public static bool operator !=(BinaryValue? left, BinaryValue? right) => !(left == right);
         public static implicit operator BinaryValue?(Octets? octets) => octets is null ? null : new BinaryValue(octets.AsMemory());
-        public static implicit operator Octets?(BinaryValue? binary) => binary is null ? null : Octets.UnsafeWrap(binary.Value);
+        public static implicit operator Octets?(BinaryValue? binary) => binary is null ? null : Octets.Wrap(binary.Value);
     }
 }
