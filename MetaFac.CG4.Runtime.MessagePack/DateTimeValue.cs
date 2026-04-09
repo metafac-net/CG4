@@ -1,5 +1,6 @@
 ﻿using MessagePack;
 using System;
+using System.Globalization;
 
 namespace MetaFac.CG4.Runtime.MessagePack
 {
@@ -24,33 +25,16 @@ namespace MetaFac.CG4.Runtime.MessagePack
             Kind = (int)value.Kind;
         }
 
-        public override int GetHashCode()
-        {
-            return Ticks.GetHashCode() ^ Kind.GetHashCode();
-        }
+        public override string ToString() => new DateTime(Ticks, (DateTimeKind)Kind).ToString("O", CultureInfo.InvariantCulture);
 
-        public override bool Equals(object? obj)
-        {
-            return obj is DateTimeValue other && Equals(other);
-        }
+        public static implicit operator DateTimeValue(DateTime value) => new DateTimeValue(value);
+        public static implicit operator DateTime(DateTimeValue value) => new DateTime(value.Ticks, (DateTimeKind)value.Kind);
 
-        public bool Equals(DateTimeValue other)
-        {
-            return other.Ticks.Equals(Ticks)
-                && other.Kind.Equals(Kind);
-        }
-
+        public bool Equals(DateTimeValue other) => other.Ticks.Equals(Ticks) && other.Kind.Equals(Kind);
+        public override bool Equals(object? obj) => obj is DateTimeValue other && Equals(other);
+        public override int GetHashCode() => HashCode.Combine(Ticks, Kind);
         public static bool operator ==(DateTimeValue left, DateTimeValue right) => left.Equals(right);
         public static bool operator !=(DateTimeValue left, DateTimeValue right) => !left.Equals(right);
 
-        public static implicit operator DateTimeValue(DateTime value)
-        {
-            return new DateTimeValue(value);
-        }
-
-        public static implicit operator DateTime(DateTimeValue value)
-        {
-            return new DateTime(value.Ticks, (DateTimeKind)value.Kind);
-        }
     }
 }

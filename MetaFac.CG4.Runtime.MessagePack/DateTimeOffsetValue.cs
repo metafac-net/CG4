@@ -1,5 +1,6 @@
 ﻿using MessagePack;
 using System;
+using System.Globalization;
 
 namespace MetaFac.CG4.Runtime.MessagePack
 {
@@ -24,33 +25,17 @@ namespace MetaFac.CG4.Runtime.MessagePack
             TimeSpanTicks = value.Offset.Ticks;
         }
 
-        public override int GetHashCode()
-        {
-            return DateTimeTicks.GetHashCode() ^ TimeSpanTicks.GetHashCode();
-        }
+        public override string ToString() => new DateTimeOffset(DateTimeTicks, new TimeSpan(TimeSpanTicks)).ToString("O", CultureInfo.InvariantCulture);
 
-        public override bool Equals(object? obj)
-        {
-            return obj is DateTimeOffsetValue other && Equals(other);
-        }
+        public static implicit operator DateTimeOffsetValue(DateTimeOffset value) => new DateTimeOffsetValue(value);
+        public static implicit operator DateTimeOffset(DateTimeOffsetValue value) => new DateTimeOffset(value.DateTimeTicks, new TimeSpan(value.TimeSpanTicks));
 
-        public bool Equals(DateTimeOffsetValue other)
-        {
-            return other.DateTimeTicks.Equals(DateTimeTicks)
-                && other.TimeSpanTicks.Equals(TimeSpanTicks);
-        }
-
+        public bool Equals(DateTimeOffsetValue other) => other.DateTimeTicks.Equals(DateTimeTicks) && other.TimeSpanTicks.Equals(TimeSpanTicks);
+        public override bool Equals(object? obj) => obj is DateTimeOffsetValue other && Equals(other);
+        public override int GetHashCode() => DateTimeTicks.GetHashCode() ^ TimeSpanTicks.GetHashCode();
         public static bool operator ==(DateTimeOffsetValue left, DateTimeOffsetValue right) => left.Equals(right);
         public static bool operator !=(DateTimeOffsetValue left, DateTimeOffsetValue right) => !left.Equals(right);
 
-        public static implicit operator DateTimeOffsetValue(DateTimeOffset value)
-        {
-            return new DateTimeOffsetValue(value);
-        }
 
-        public static implicit operator DateTimeOffset(DateTimeOffsetValue value)
-        {
-            return new DateTimeOffset(value.DateTimeTicks, new TimeSpan(value.TimeSpanTicks));
-        }
     }
 }
