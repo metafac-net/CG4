@@ -5,7 +5,7 @@
 // </auto-generated>
 // <information>
 // This file was generated using MetaFac.CG4 tools and user supplied metadata.
-// Generator: MessagePack.4.0
+// Generator: MessagePack.4.1
 // Metadata : MetaFac.CG4.TestOrg.Schema(.Personel)
 // </information>
 #endregion
