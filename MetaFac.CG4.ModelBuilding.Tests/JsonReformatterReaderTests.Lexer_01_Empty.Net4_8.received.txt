@@ -1,2 +1,0 @@
-﻿[0,StartObject]
-[0,EndObject]

@@ -1,4 +1,0 @@
-﻿[0,StartObject]
-[1,Property(Name)]
-[1,Number(123E-6)]
-[0,EndObject]

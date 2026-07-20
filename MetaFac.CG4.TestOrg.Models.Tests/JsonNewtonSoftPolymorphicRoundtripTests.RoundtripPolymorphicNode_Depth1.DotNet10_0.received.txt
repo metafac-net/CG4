@@ -1,6 +1,0 @@
-﻿{
-  "$type": "MetaFac.CG4.TestOrg.Models.Polymorphic.JsonNewtonSoft.StringNode, MetaFac.CG4.TestOrg.Models",
-  "StringValue": "Value1",
-  "Id": 1,
-  "Name": "string"
-}

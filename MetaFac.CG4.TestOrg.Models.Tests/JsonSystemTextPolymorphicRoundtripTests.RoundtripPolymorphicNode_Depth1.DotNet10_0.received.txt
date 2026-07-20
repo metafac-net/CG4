@@ -1,6 +1,0 @@
-﻿{
-  "$type": 3,
-  "StringValue": "Value1",
-  "Id": 1,
-  "Name": "string"
-}
