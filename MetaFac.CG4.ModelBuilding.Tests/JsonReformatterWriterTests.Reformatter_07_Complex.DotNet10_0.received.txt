@@ -1,0 +1,42 @@
+﻿{
+  "ModelDefs": [
+    {
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "Entity1",
+          "MemberDefs": [
+            {
+              "Name": "Member1",
+              "InnerType": "string",
+              "Nullable": true
+            }
+          ]
+        },
+        {
+          "Name": "Entity2",
+          "MemberDefs": []
+        }
+      ],
+      "EnumTypeDefs": [
+        {
+          "Name": "Enum1",
+          "EnumItemDefs": [
+            {
+              "Name": "None"
+            },
+            {
+              "Name": "Value1",
+              "Value": 1
+            },
+            {
+              "Name": "Value2",
+              "Value": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Tokens": {}
+}

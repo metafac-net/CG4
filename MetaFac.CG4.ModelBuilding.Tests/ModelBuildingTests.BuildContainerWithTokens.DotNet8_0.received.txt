@@ -1,0 +1,6 @@
+﻿{
+  "ModelDefs": [],
+  "Tokens": {
+    "Copyright": "2023 MetaFac"
+  }
+}

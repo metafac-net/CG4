@@ -36,13 +36,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MetaFac.TinyCLI" Version="2.2.3" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.9" />
+    <PackageReference Include="MetaFac.TinyCLI" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.10" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.10.91">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Text.Json" Version="10.0.9" />
+    <PackageReference Include="System.Text.Json" Version="10.0.10" />
   </ItemGroup>
 
   <ItemGroup>

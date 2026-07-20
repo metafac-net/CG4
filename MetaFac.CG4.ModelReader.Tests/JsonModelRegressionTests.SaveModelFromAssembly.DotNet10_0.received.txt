@@ -1,0 +1,205 @@
+﻿{
+  "ModelDefs": [
+    {
+      "Tag": 1,
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "BuiltinTypes",
+          "Tag": 1,
+          "MemberDefs": [
+            {
+              "Name": "Bools",
+              "Tag": 1,
+              "InnerType": "bool",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "SBytes",
+              "Tag": 2,
+              "InnerType": "int8",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Bytes",
+              "Tag": 3,
+              "InnerType": "uint8",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Shorts",
+              "Tag": 4,
+              "InnerType": "int16",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "UShorts",
+              "Tag": 5,
+              "InnerType": "uint16",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Chars",
+              "Tag": 6,
+              "InnerType": "char",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Ints",
+              "Tag": 7,
+              "InnerType": "int32",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "UInts",
+              "Tag": 8,
+              "InnerType": "uint32",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Floats",
+              "Tag": 9,
+              "InnerType": "single",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Longs",
+              "Tag": 10,
+              "InnerType": "int64",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "ULongs",
+              "Tag": 11,
+              "InnerType": "uint64",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Doubles",
+              "Tag": 12,
+              "InnerType": "double",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "DateTimes",
+              "Tag": 13,
+              "InnerType": "datetime",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "TimeSpans",
+              "Tag": 14,
+              "InnerType": "timespan",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Decimals",
+              "Tag": 15,
+              "InnerType": "decimal",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "DateTimeOffsets",
+              "Tag": 16,
+              "InnerType": "datetimezone",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Guids",
+              "Tag": 17,
+              "InnerType": "guid",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Strings",
+              "Tag": 18,
+              "InnerType": "string",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "Buffers",
+              "Tag": 19,
+              "InnerType": "binary",
+              "ArrayRank": 1
+            }
+          ],
+          "Tokens": {
+            "Token1": "Value1"
+          }
+        },
+        {
+          "Name": "ExternalTypes",
+          "Tag": 2,
+          "MemberDefs": [
+            {
+              "Name": "Quantities",
+              "Tag": 1,
+              "InnerType": "Quantity",
+              "ProxyDef": {
+                "ExternalName": "LabApps.Units.Quantity",
+                "ConcreteName": "QuantityValue"
+              },
+              "ArrayRank": 1
+            }
+          ],
+          "Tokens": {
+            "Token2": "Value2"
+          }
+        },
+        {
+          "Name": "EnumeratorTypes",
+          "Tag": 3,
+          "MemberDefs": [
+            {
+              "Name": "DaysOfWeek",
+              "Tag": 1,
+              "InnerType": "System.DayOfWeek",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MyCustomEnums",
+              "Tag": 2,
+              "InnerType": "MyCustomEnum",
+              "ArrayRank": 1
+            },
+            {
+              "Name": "MyDateTimeKinds",
+              "Tag": 3,
+              "InnerType": "MyDateTimeKind",
+              "ProxyDef": {
+                "ExternalName": "System.DateTimeKind",
+                "ConcreteName": "MyDateTimeKindValue"
+              },
+              "ArrayRank": 1
+            }
+          ]
+        }
+      ],
+      "EnumTypeDefs": [
+        {
+          "Name": "MyCustomEnum",
+          "EnumItemDefs": [
+            {
+              "Name": "DefaultValue"
+            },
+            {
+              "Name": "FirstValue",
+              "Value": 1
+            },
+            {
+              "Name": "SomeValue",
+              "Value": 2
+            },
+            {
+              "Name": "LastValue",
+              "Value": 99
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Tokens": {
+    "Metadata": "MetaFac.CG4.ModelReader.Tests(.GoodModels)"
+  }
+}

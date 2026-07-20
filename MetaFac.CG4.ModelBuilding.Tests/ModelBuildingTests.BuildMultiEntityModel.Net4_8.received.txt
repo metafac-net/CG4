@@ -1,0 +1,27 @@
+﻿{
+  "ModelDefs": [
+    {
+      "Name": "Model1",
+      "EntityDefs": [
+        {
+          "Name": "Entity1",
+          "Summary": "Description for Entity1",
+          "IsAbstract": true,
+          "MemberDefs": []
+        },
+        {
+          "Name": "Entity2",
+          "Summary": "Description for Entity2",
+          "State": {
+            "IsInactive": true,
+            "Reason": "Will be deleted soon"
+          },
+          "ParentName": "Entity1",
+          "MemberDefs": []
+        }
+      ],
+      "EnumTypeDefs": []
+    }
+  ],
+  "Tokens": {}
+}
