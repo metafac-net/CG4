@@ -16,12 +16,12 @@
 
     <ItemGroup>
       <PackageReference Include="LabApps.Units" Version="0.3.35" />
-      <PackageReference Include="MessagePack" Version="3.1.8" />
-      <PackageReference Include="MessagePackAnalyzer" Version="3.1.8">
+      <PackageReference Include="MessagePack" Version="3.1.10" />
+      <PackageReference Include="MessagePackAnalyzer" Version="3.1.10">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="MetaFac.Mutability" Version="3.2.7" />
+      <PackageReference Include="MetaFac.Mutability" Version="3.2.8" />
     </ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MetaFac.Mutability" Version="3.2.7" />
+    <PackageReference Include="MetaFac.Mutability" Version="3.2.8" />
   </ItemGroup>
 
   <ItemGroup>
